@@ -443,7 +443,7 @@ class HTTP_Header extends HTTP
 	function isInformational ($http_code)
 	{
 		if ($status_type = $this->getStatusType($http_code)) {
-			return $status_type{0} == HTTP_HEADER_STATUS_INFORMATIONAL;
+			return $status_type[0] == HTTP_HEADER_STATUS_INFORMATIONAL;
 		} else {
 			return false;
 		}
@@ -457,7 +457,7 @@ class HTTP_Header extends HTTP
 	function isSuccessful ($http_code)
 	{
 		if ($status_type = $this->getStatusType($http_code)) {
-			return $status_type{0} == HTTP_HEADER_STATUS_SUCCESSFUL;
+			return $status_type[0] == HTTP_HEADER_STATUS_SUCCESSFUL;
 		} else {
 			return false;
 		}
@@ -471,7 +471,7 @@ class HTTP_Header extends HTTP
 	function isRedirect ($http_code)
 	{
 		if ($status_type = $this->getStatusType($http_code)) {
-			return $status_type{0} == HTTP_HEADER_STATUS_REDIRECT;
+			return $status_type[0] == HTTP_HEADER_STATUS_REDIRECT;
 		} else {
 			return false;
 		}
@@ -485,7 +485,7 @@ class HTTP_Header extends HTTP
 	function isClientError ($http_code)
 	{
 		if ($status_type = $this->getStatusType($http_code)) {
-			return $status_type{0} == HTTP_HEADER_STATUS_CLIENT_ERROR;
+			return $status_type[0] == HTTP_HEADER_STATUS_CLIENT_ERROR;
 		} else {
 			return false;
 		}
@@ -499,7 +499,7 @@ class HTTP_Header extends HTTP
 	function isServerError ($http_code)
 	{
 		if ($status_type = $this->getStatusType($http_code)) {
-			return $status_type{0} == HTTP_HEADER_STATUS_SERVER_ERROR;
+			return $status_type[0] == HTTP_HEADER_STATUS_SERVER_ERROR;
 		} else {
 			return false;
 		}

@@ -979,7 +979,7 @@ class Securimage {
 		}
 
 		for($i = 0; $i < strlen($code); ++$i) {
-			$letters[] = $code{$i};
+			$letters[] = $code[$i];
 		}
 
 		if ($format == 'mp3') {
@@ -1163,10 +1163,10 @@ class Securimage {
 		$datalen = strlen($data) - $start - 256; // leave last 256 bytes unchanged
 		 
 		for ($i = $start; $i < $datalen; $i += 64) {
-			$ch = ord($data{$i});
+			$ch = ord($data[$i]);
 			if ($ch < 9 || $ch > 119) continue;
 
-			$data{$i} = chr($ch + rand(-8, 8));
+			$data[$i] = chr($ch + rand(-8, 8));
 		}
 	}
 

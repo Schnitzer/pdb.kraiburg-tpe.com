@@ -12,7 +12,9 @@
 					
 					
 				//}
-			  echo '<input type="hidden" value="'.$_SESSION['terms'].'" id="termslist">';
+?>
+<input type="hidden" value="<?php echo htmlspecialchars($_SESSION['terms'] ?? ''); ?>" id="termslist">
+<?php
 				if (false == isset($languages) || count($languages) < 2) {
 						$obj_ajax = new Tpepdb2_AjaxController();
 						$languages = $obj_ajax->getWcmsLanguages();

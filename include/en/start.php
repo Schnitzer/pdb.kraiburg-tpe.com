@@ -124,7 +124,14 @@
 			}
 		</style>
 
-	
+	<?php
+// PDB-specific CSS and JavaScript includes
+$pdb_url = 'https://pdb.kraiburg-tpe.com';
+$time = date('YmdHi');
+?>
+<link rel="stylesheet" href="<?php echo $pdb_url; ?>/assets/wcms/css/20220318tpe.css?time=<?php echo $time; ?>" media="all" />
+<link rel="stylesheet" href="<?php echo $pdb_url; ?>/assets/wcms/css/20200306tpepdb2.css?time=2352" media="all" />
+<link rel="stylesheet" href="<?php echo $pdb_url; ?>/assets/wcms/css/bootstrap-slider.css?time=2352" media="all" />
 
 
 			</head>

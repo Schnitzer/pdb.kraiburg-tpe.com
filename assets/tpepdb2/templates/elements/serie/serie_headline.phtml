@@ -94,8 +94,9 @@
 										// echo $compound["srs_farbe_db"];
 										$arr_farben = array();
 										foreach ($compounds As $compound) {
-											if (false == in_array(trim($compound['srs_farbe_db']), $arr_farben)) {
-												$arr_farben[] = trim(str_replace('<', '&lt;', str_replace(array('<p>', '</p>', '<P>', '</P>'), array('', ' '), $compound['srs_farbe_db'])));
+										$farbe_db = $compound['srs_farbe_db'] ?? '';
+										if (false == in_array(trim($farbe_db), $arr_farben)) {
+											$arr_farben[] = trim(str_replace('<', '&lt;', str_replace(array('<p>', '</p>', '<P>', '</P>'), array('', ' '), $farbe_db)));
 											}
 										}
 										// if (count($arr_farben) < 1) {

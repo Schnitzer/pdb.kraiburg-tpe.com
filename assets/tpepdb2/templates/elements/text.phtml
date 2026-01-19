@@ -77,7 +77,9 @@ if ($hasRecycling == true) {
 <?php
 
 
-
+if (!isset($hasRecycling)) {
+	$hasRecycling = false;
+}
 if ($hasRecycling == true) {
 	?>
 	<section class="paragraph paragraph--type--wysiwyg paragraph--view-mode--default ">
@@ -98,6 +100,9 @@ if ($hasRecycling == true) {
 <?php	
 }
 
+if (!isset($compound['id'])) {
+	$compound['id'] = null;
+}
 $descriptionText400 =  $this->getCompoundDescription400($compound['id'], $language_id);
 
 if (strlen(trim($descriptionText400)) > 2) {
@@ -161,14 +166,18 @@ if (strlen(trim($descriptionText400)) > 2) {
 									
 									//var_dump($serie['brand_id']);
 								//}
-				
-								//if ( $serie['brand_id'] == 4 ) {
-								if ( $serie['brand_id'] == 4 || $arr_brandname['brandnameen'] == 'THERMOLAST® M') {
-									
-									print Wcms_ContentboxController::getContenbox('pdb2-datasheet-footer-storage-24m', $language_id); 
-								} else {
-									print Wcms_ContentboxController::getContenbox('pdb2-datasheet-footer-storage', $language_id); 
-								}
+							
+							// Brandname abrufen falls verfügbar
+							if (!isset($arr_brandname) && isset($compound['id'])) {
+								$arr_brandname = $this->getCompoundBrandname($compound['id']);
+							}
+							
+							//if ( $serie['brand_id'] == 4 ) {
+							if ( $serie['brand_id'] == 4 || (isset($arr_brandname['brandnameen']) && $arr_brandname['brandnameen'] == 'THERMOLAST® M')) {
+								print Wcms_ContentboxController::getContenbox('pdb2-datasheet-footer-storage-24m', $language_id); 
+							} else {
+								print Wcms_ContentboxController::getContenbox('pdb2-datasheet-footer-storage', $language_id); 
+							}
 							?>
 							
 					</td>

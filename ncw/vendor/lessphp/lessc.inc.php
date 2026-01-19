@@ -15,11 +15,13 @@
 // fix the alpha value with color when using a percent
 //
 
+#[AllowDynamicProperties]
 class lessc {
 	private $buffer;
 	private $count;
 	private $line;
 	private $expandStack;
+	private $level = 0;
 
 	private $env = array();
 
@@ -52,7 +54,7 @@ class lessc {
 		// a property
 		if ($this->keyword($key) && $this->assign() && $this->propertyValue($value) && $this->end()) {
 			// look for important prefix
-			if ($key{0} == $this->imPrefix && strlen($key) > 1) {
+			if ($key[0] == $this->imPrefix && strlen($key) > 1) {
 				$key = substr($key, 1);
 				if ($value[0] == 'list' && $value[1] == ' ') {
 					$value[2][] = array('keyword', '!important');
@@ -95,7 +97,7 @@ class lessc {
 			$this->push();
 
 			// move out of variable scope
-			if ($tag{0} == $this->vPrefix) $tag[0] = $this->mPrefix;
+			if ($tag[0] == $this->vPrefix) $tag[0] = $this->mPrefix;
 
 			$this->set('__tags', array($tag));
 			if (isset($args)) $this->set('__args', $args);
@@ -109,7 +111,7 @@ class lessc {
 		if ($this->tags($tags) && $this->literal('{')) {
 			//  move @ tags out of variable namespace!
 			foreach($tags as &$tag) {
-				if ($tag{0} == $this->vPrefix) $tag[0] = $this->mPrefix;
+				if ($tag[0] == $this->vPrefix) $tag[0] = $this->mPrefix;
 			}
 
 			$this->push();
@@ -252,9 +254,9 @@ class lessc {
 		$rtags = array();
 		foreach ($parents as $p) {
 			foreach ($tags as $t) {
-				if ($t{0} == $this->mPrefix) continue; // skip functions
+				if ($t[0] == $this->mPrefix) continue; // skip functions
 				$d = ' ';
-				if ($t{0} == ':' || $t{0} == $this->selfSelector) {
+				if ($t[0] == ':' || $t[0] == $this->selfSelector) {
 					$t = ltrim($t, $this->selfSelector);
 					$d = '';
 				}
@@ -524,7 +526,7 @@ class lessc {
 				$t = $num % $width;
 				$num /= $width;
 
-				$color[$i] = $t * (256/$width) + $t * floor(16/$width);
+				$color[$i] = (int)($t * (256/$width) + $t * floor(16/$width));
 			}
 			
 			$out = $color;
@@ -683,7 +685,7 @@ class lessc {
 	function end() {
 		if ($this->literal(';'))
 			return true;
-		elseif ($this->count == strlen($this->buffer) || $this->buffer{$this->count} == '}') {
+		elseif ($this->count == strlen($this->buffer) || $this->buffer[$this->count] == '}') {
 			// if there is end of file or a closing block next then we don't need a ;
 			return true;
 		}
@@ -713,7 +715,7 @@ class lessc {
 			// todo: change this, poor hack
 			// make a better name storage system!!! (value types are fine)
 			// but.. don't render special properties (blocks, vars, metadata)
-			if (isset($value[0]) && $name{0} != $this->vPrefix && $name != '__args') {
+			if (isset($value[0]) && $name[0] != $this->vPrefix && $name != '__args') {
 				echo $this->compileProperty($name, $value, 1)."\n";
 				$props++;
 			}
@@ -759,7 +761,7 @@ class lessc {
 			
 			// search for inline variables to replace
 			$replace = array();
-			if (preg_match_all('/{(@[\w-_][0-9\w-_]*)}/', $value[1], $m)) {
+			if (preg_match_all('/{(@[\w-]+)}/', $value[1], $m)) {
 				foreach($m[1] as $name) {
 					if (!isset($replace[$name]))
 						$replace[$name] = $this->compileValue(array('variable', $name));
@@ -1110,7 +1112,7 @@ class lessc {
 
 		//  move @ tags out of variable namespace
 		foreach($path as &$tag)
-			if ($tag{0} == $this->vPrefix) $tag[0] = $this->mPrefix;
+			if ($tag[0] == $this->vPrefix) $tag[0] = $this->mPrefix;
 
 		$env = $this->get(array_shift($path));
 		while ($sub = array_shift($path)) {
@@ -1144,7 +1146,7 @@ class lessc {
 
 		// shortcut on single letter
 		if (!$eatWhitespace and strlen($what) == 1) {
-			if ($this->buffer{$this->count} == $what) {
+			if ($this->buffer[$this->count] == $what) {
 				$this->count++;
 				return true;
 			}
@@ -1171,7 +1173,7 @@ class lessc {
 	// try to match something on head of buffer
 	function match($regex, &$out, $eatWhitespace = true) {
 		$r = '/'.$regex.($eatWhitespace ? '\s*' : '').'/Ais';
-		if (preg_match($r, $this->buffer, $out, null, $this->count)) {
+		if (preg_match($r, $this->buffer, $out, 0, $this->count)) {
 			$this->count += strlen($out[0]);
 			return true;
 		}

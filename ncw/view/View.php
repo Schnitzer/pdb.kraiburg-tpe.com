@@ -36,6 +36,7 @@
  * @license   http://www.netzcraftwerk.com/license/ncw/1_0.txt Ncw License 1.0
  * @link      http://www.netzcraftwerk.com
  */
+#[AllowDynamicProperties]
 class Ncw_View extends Ncw_Object
 {
 

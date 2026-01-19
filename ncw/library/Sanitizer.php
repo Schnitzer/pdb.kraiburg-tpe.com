@@ -1,4 +1,5 @@
 <?php
+
 /**
  * includes the Sanitizer class
  *
@@ -27,6 +28,7 @@
  * @modby      $LastChangedBy$
  * @lastmod    $LastChangedDate$
  */
+
 /**
  * Data Sanitization.
  *
@@ -43,7 +45,6 @@
  */
 class Ncw_Library_Sanitizer
 {
-
     /**
      * Removes none alphanumeric characters.
      * You can define special characters which
@@ -54,7 +55,7 @@ class Ncw_Library_Sanitizer
      *
      * @return string
      */
-    public static function removeNonAlphanumeric ($string, Array $allowed = array())
+    public static function removeNonAlphanumeric($string, Array $allowed = array())
     {
         $allow = null;
         if (false === empty($allowed)) {
@@ -81,9 +82,9 @@ class Ncw_Library_Sanitizer
      *
      * @return string
      */
-    public static function escape ($string)
+    public static function escape($string)
     {
-        return addslashes($string);
+        return addslashes((string)$string);
     }
 
     /**
@@ -94,13 +95,13 @@ class Ncw_Library_Sanitizer
      *
      * @return string
      */
-    public static function html ($string, $remove = false)
+    public static function html($string, $remove = false)
     {
         if (true === $remove) {
             $string = strip_tags($string);
         } else {
-            $patterns = array("/\&/", "/%/", "/</", "/>/", '/"/', "/'/", "/\(/", "/\)/", "/\+/", "/-/");
-            $replacements = array("&amp;", "&#37;", "&lt;", "&gt;", "&quot;", "&#39;", "&#40;", "&#41;", "&#43;", "&#45;");
+            $patterns = array('/\&/', '/%/', '/</', '/>/', '/"/', "/'/", '/\(/', '/\)/', '/\+/', '/-/');
+            $replacements = array('&amp;', '&#37;', '&lt;', '&gt;', '&quot;', '&#39;', '&#40;', '&#41;', '&#43;', '&#45;');
             $string = preg_replace($patterns, $replacements, $string);
         }
         return $string;
@@ -113,10 +114,10 @@ class Ncw_Library_Sanitizer
      *
      * @return string
      */
-    public static function removeWhitespace ($string)
+    public static function removeWhitespace($string)
     {
-        $string = preg_replace("/[\n\r\t]+/", "", $string);
-        return preg_replace("/\s{2,}/", " ", $string);
+        $string = preg_replace("/[\n\r\t]+/", '', $string);
+        return preg_replace('/\s{2,}/', ' ', $string);
     }
 
     /**
@@ -126,11 +127,11 @@ class Ncw_Library_Sanitizer
      *
      * @return string
      */
-    public static function removeImages ($string)
+    public static function removeImages($string)
     {
-        $string = preg_replace("/(<a[^>]*>)(<img[^>]+alt=\")([^\"]*)(\"[^>]*>)(<\/a>)/i", "$1$3$5<br />", $string);
-        $string = preg_replace("/(<img[^>]+alt=\")([^\"]*)(\"[^>]*>)/i", "$2<br />", $string);
-        return preg_replace("/<img[^>]*>/i", "", $string);
+        $string = preg_replace('/(<a[^>]*>)(<img[^>]+alt=")([^"]*)("[^>]*>)(<\/a>)/i', '$1$3$5<br />', $string);
+        $string = preg_replace('/(<img[^>]+alt=")([^"]*)("[^>]*>)/i', '$2<br />', $string);
+        return preg_replace('/<img[^>]*>/i', '', $string);
     }
 
     /**
@@ -140,9 +141,9 @@ class Ncw_Library_Sanitizer
      *
      * @return string
      */
-    public static function removeScripts ($string)
+    public static function removeScripts($string)
     {
-        return preg_replace("/(<link[^>]+rel=\"[^\"]*stylesheet\"[^>]*>|<img[^>]*>|style=\"[^\"]*\")|<script[^>]*>.*?<\/script>|<style[^>]*>.*?<\/style>|<!--.*?-->/i", "", $string);
+        return preg_replace('/(<link[^>]+rel="[^"]*stylesheet"[^>]*>|<img[^>]*>|style="[^"]*")|<script[^>]*>.*?<\/script>|<style[^>]*>.*?<\/style>|<!--.*?-->/i', '', $string);
     }
 
     /**
@@ -154,13 +155,13 @@ class Ncw_Library_Sanitizer
      *
      * @return string
      */
-    public static function removeTags ()
+    public static function removeTags()
     {
         $params = func_get_args();
         $string = $params[0];
         for ($i = 1; $i < count($params); $i++) {
-            $string = preg_replace("/<" . $params[$i] . "[^>]*>/i", "", $string);
-            $string = preg_replace("/<\/" . $params[$i] . "[^>]*>/i", "", $string);
+            $string = preg_replace('/<' . $params[$i] . '[^>]*>/i', '', $string);
+            $string = preg_replace('/<\/' . $params[$i] . '[^>]*>/i', '', $string);
         }
         return $string;
     }
@@ -172,7 +173,7 @@ class Ncw_Library_Sanitizer
      *
      * @return string
      */
-    public static function removeAll ($string)
+    public static function removeAll($string)
     {
         $string = self::removeWhitespace($string);
         $string = self::removeImages($string);
@@ -190,7 +191,7 @@ class Ncw_Library_Sanitizer
      *
      * @return mixed
      */
-    public static function clean ($data, $options = array())
+    public static function clean($data, $options = array())
     {
         if (true === empty($data)) {
             return $data;
@@ -211,22 +212,22 @@ class Ncw_Library_Sanitizer
                 $data = self::html($data);
             }
             if (true === $options['dollar']) {
-                $data = str_replace("\\\$", "$", $data);
+                $data = str_replace('\$', '$', $data);
             }
             if (true === $options['carriage']) {
-                $data = str_replace("\r", "", $data);
+                $data = str_replace("\r", '', $data);
             }
 
-            $data = str_replace("'", "'", str_replace("!", "!", $data));
+            $data = str_replace("'", "'", str_replace('!', '!', $data));
 
             if (true === $options['unicode']) {
-                $data = preg_replace("/&amp;#([0-9]+);/s", "&#\\1;", $data);
+                $data = preg_replace('/&amp;#([0-9]+);/s', '&#\1;', $data);
             }
             if (true === $options['escape']) {
                 $data = self::escape($data);
             }
             if (true === $options['backslash']) {
-                $data = preg_replace("/\\\(?!&amp;#|\?#)/", "\\", $data);
+                $data = preg_replace('/\\\\(?!&amp;#|\?#)/', '\\', $data);
             }
             return $data;
         }

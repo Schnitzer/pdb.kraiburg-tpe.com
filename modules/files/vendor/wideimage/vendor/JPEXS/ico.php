@@ -453,7 +453,7 @@ function saveExeIcon($filename,$icoFileNameOrPath="",$iconIndex=-1) /*-1 for all
         if($key==14):
           $r=0;
           while (list ($key2, $val2) = each ($R["Subdir"][$key]["Subdir"])):
-             while (list ($key3, $val3) = each ($R["Subdir"][$key]["Subdir"][$key2]["Subdir"])):
+             while (list ($key3, $val3) = each ($R["Subdir"][$key]["Subdir"][$key[2]["Subdir"])):
                fseek($jpexs_f,$val3["DataOffset"]);
                $Reserved=jpexs_freadword($jpexs_f);
                $Type=jpexs_freadword($jpexs_f);

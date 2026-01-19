@@ -1,38 +1,37 @@
 <?php
 
 $layoutmode = 2021;
-if ( $_SERVER['REMOTE_ADDR'] == Ncw_Configure::read('developer_internal_ip') ) {
-	$layoutmode = 2021;	
+if ($_SERVER['REMOTE_ADDR'] == Ncw_Configure::read('developer_internal_ip')) {
+	$layoutmode = 2021;
 }
 ?>
 
 <?php if (true === $is_pdf) { ?>
 <?php ob_start(); ?>
-<?php // Wenn nicht Verarbeitungshinweis 
-if ( $_SESSION['datasheetmode'] != 'pg' ) {
-
-	if ( $serie['brand_id'] == 4 || $arr_brandname['brandnameen'] == 'THERMOLAST® M') {
-		$_SESSION['storageMonth'] = 24; 
-		// Für PDF Druck wird das Ganze in vendor/TpePdbPdf.php abgebildet
-		?>
+<?php  // Wenn nicht Verarbeitungshinweis
+	if ($_SESSION['datasheetmode'] != 'pg') {
+		if ($serie['brand_id'] == 4 || $arr_brandname['brandnameen'] == 'THERMOLAST® M') {
+			$_SESSION['storageMonth'] = 24;
+			// Für PDF Druck wird das Ganze in vendor/TpePdbPdf.php abgebildet
+			?>
 
 		<table style="font-size: 11px;" cellpadding="10" ><tr><td><?php print Wcms_ContentboxController::getContenbox('pdb2-datasheet-footer-storage-24m', $language_id); ?><br /><br /><?php print Wcms_ContentboxController::getContenbox('pdb2-for-further-information', $language_id); ?></td></tr></table>
-		<?php 
-	} else {
-		$_SESSION['storageMonth'] = 12;
+		<?php
+		} else {
+			$_SESSION['storageMonth'] = 12;
 		?>
 		<table style="font-size: 11px;" cellpadding="10" ><tr><td><?php print Wcms_ContentboxController::getContenbox('pdb2-datasheet-footer-storage', $language_id); ?><br /><br /><?php print Wcms_ContentboxController::getContenbox('pdb2-for-further-information', $language_id); ?></td></tr></table>
-		<?php 
-	}
-	?>
-<?php } else {?>
+		<?php
+		}
+		?>
+<?php } else { ?>
  <br /><br /><br /><br /><br /><br /><br /><br />
-<?php }?>
+<?php } ?>
 <?php if ($language_id == 3 || $language_id == 7 || $language_id == 10 || $language_id == 11) { ?>
 <table style="font-size: 10px;" cellpadding="6" >
 <?php } else { ?>
 <table style="font-size: 10px;" cellpadding="6" >
-<?php } ?>
+<?php } ?>
 
 	<tr>
 	<td style="background-color: #f3f3f3;border-right: 3px solid #ffffff; width: 167px">
@@ -63,9 +62,9 @@ if ( $_SESSION['datasheetmode'] != 'pg' ) {
 <?php } ?>
 	<?php ob_start(); ?>
 	<?php
-	//$footer = Wcms_ContentboxController::getContenbox('pdb---datasheet---footer', $language_id);
+	// $footer = Wcms_ContentboxController::getContenbox('pdb---datasheet---footer', $language_id);
 	if (false === $is_pdf) {
-	//    $footer = str_replace("<br />", "", $footer);
+		//    $footer = str_replace("<br />", "", $footer);
 	}
 	?>
 	<?php if (false === $is_pdf) { ?><br /><?php } ?>

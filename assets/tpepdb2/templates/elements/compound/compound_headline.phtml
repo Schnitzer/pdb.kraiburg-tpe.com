@@ -55,18 +55,18 @@ if (true === $is_pdf) {
 						
 						<?php
 						$arr_brandname = $this->getCompoundBrandname($compound['id']);  // Holt den Brandnamen in zh und eng
-						if (strlen(trim($arr_brandname['brandnameen'])) < 2) {  // Wenn im Compound kein Brandname vorhanden ist
-							$arr_brandname = $this->getBrandname($serie['brand_id']);  // Holt den Brandnamen in zh und eng
-						}
+					if (!is_array($arr_brandname) || strlen(trim((string)($arr_brandname['brandnameen'] ?? ''))) < 2) {  // Wenn im Compound kein Brandname vorhanden ist
+						$arr_brandname = $this->getBrandname($serie['brand_id']);  // Holt den Brandnamen in zh und eng
+					}
 
-						if ($language_id != 3) {
-							$brandname = $brand['name'];
-							if (strlen($arr_brandname['brandnameen']) > 1) {
-								$brandname = $arr_brandname['brandnameen'];
-							}
-						} else {  // 3 ist Chinesisch und soll den eintrag name_zh benutezn
-							$brandname = $brand['name_zh'];
-							if (strlen($arr_brandname['brandnamezh']) > 1) {
+					if ($language_id != 3) {
+						$brandname = $brand['name'];
+						if (is_array($arr_brandname) && strlen((string)($arr_brandname['brandnameen'] ?? '')) > 1) {
+							$brandname = $arr_brandname['brandnameen'];
+						}
+					} else {  // 3 ist Chinesisch und soll den eintrag name_zh benutezn
+						$brandname = $brand['name_zh'];
+						if (is_array($arr_brandname) && strlen((string)($arr_brandname['brandnamezh'] ?? '')) > 1) {
 								$brandname = $arr_brandname['brandnamezh'];
 							}
 						}
@@ -309,8 +309,9 @@ if (true === $is_pdf) {
 						</div>
 					</div>
 				</div>
-			<?php }
-			  ?>
+			<?php
+			}
+			?>
 		<?php
 			}  // Wenn kein non_portfolio
 			?>

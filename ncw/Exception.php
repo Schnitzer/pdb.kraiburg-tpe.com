@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Contains the NcwException class.
  *
@@ -20,6 +21,7 @@
  * @modby     $LastChangedBy$
  * @lastmod   $LastChangedDate$
  */
+
 /**
  * NcwException class.
  *
@@ -32,7 +34,6 @@
  */
 class Ncw_Exception extends Exception
 {
-
     /**
      * If a error occured then the value is true
      *
@@ -44,15 +45,26 @@ class Ncw_Exception extends Exception
      * Sets the static error var to true, calls the parents construct and
      * appends the error message to the error log.
      *
-     * @param string $message the exxeption message
+     * @param string|Throwable $message the exception message or Throwable object
      * @param string $code    the exception status code (optional)
      */
-    public function __construct ($message, $code = 0)
+    public function __construct($message, $code = 0)
     {
         self::$error = true;
-        parent::__construct($message, $code);
+
+        // Handle Throwable objects (Exception or Error)
+        if ($message instanceof Throwable) {
+            $code = $message->getCode();
+            $previous = $message;
+            $message = $message->getMessage();
+            parent::__construct($message, $code, $previous);
+        } else {
+            parent::__construct($message, $code);
+        }
+
         if (true === Ncw_Configure::read('Log') && true === Ncw_Configure::read('Log.exceptions')) {
             // log what we know
+            $msg = '';
             $msg .= __CLASS__ . ': [' . $this->code . ']: {'
                 . $this->message . '}' . "\n";
             $msg .= $this->getTraceAsString() . "\n";
@@ -67,14 +79,14 @@ class Ncw_Exception extends Exception
      *
      * @return void
      */
-    public function exitWithMessage ()
+    public function exitWithMessage()
     {
         switch ($this->code) {
-        case 1 :
-            // DB error, show the last query
-            $queries = Ncw_Database::getLoggedQueries();
-            $this->message .= '<br /><br />'
-                . $queries[count($queries) - 1]['query'];
+            case 1:
+                // DB error, show the last query
+                $queries = Ncw_Database::getLoggedQueries();
+                $this->message .= '<br /><br />'
+                    . $queries[count($queries) - 1]['query'];
         }
         include_once THEMES . DS . Ncw_Configure::read('App.theme') . DS . 'errors' . DS . 'error.phtml';
         exit();
@@ -83,11 +95,11 @@ class Ncw_Exception extends Exception
     /**
      * static exception_handler for default exception handling
      *
-     * @param Exception $exception the exception to handle
+     * @param Throwable $exception the exception to handle
      *
      * @return void
      */
-    public static function exceptionHandler (Exception $exception)
+    public static function exceptionHandler(Throwable $exception)
     {
         throw new Ncw_Exception($exception);
     }

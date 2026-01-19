@@ -425,6 +425,9 @@ class Wcms_WebsiteController extends Wcms_ModuleController
             $site['language_code'] = $obj_site->Language->getShortcut();
             $site['language_id'] = $obj_site->Language->getId();
             $site['copies'] = $obj_site->Language->getCopies();
+            
+            $site_id = $obj_site->getId();
+            $sitelanguage_id = $obj_site->PublishedSitelanguage->getId();
 
 		    // if the site is set to private
 			// check if the user has got the permission.
@@ -506,23 +509,20 @@ class Wcms_WebsiteController extends Wcms_ModuleController
 			if ($obj_site->Sitetemplate->getId() > 0) {
 				$sitetype = $obj_site->Sitetype;
 
-				ob_start();
-				include (
-				    ASSETS . DS . 'wcms' . DS . 'site_templates' . DS
-				    . $obj_site->Sitetemplate->getFilename() . '.phtml'
-				);
-				$output =  ob_get_clean();
+			$template_file = ASSETS . DS . 'wcms' . DS . 'site_templates' . DS . $obj_site->Sitetemplate->getFilename() . '.phtml';
 
-                $this->_triggerCallback(
-                    'afterWebsiteRender',
-                    $site['id'],
-                    $site['sitelanguage_id'],
-                    $site['language_id'],
-                    $site['language_code'],
-                    $sitetype
-                );
+			ob_start();
+			include ($template_file);
+			$output = ob_get_clean();
 
-				// if the site must be cached
+			$this->_triggerCallback(
+				'afterWebsiteRender',
+				$site_id,
+				$sitelanguage_id,
+				$language_id,
+				$language_code,
+				$sitetype
+			);
 				if (true === (boolean) $obj_site->getCache()) {
 					if (true === (boolean) $obj_site->getSchedule()) {
 						$cache_exparation = $obj_site->getExpire();

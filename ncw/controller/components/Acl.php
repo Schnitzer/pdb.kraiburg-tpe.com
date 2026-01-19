@@ -1,4 +1,5 @@
 <?php
+
 /**
  * contains the Access Control List component.
  *
@@ -21,6 +22,7 @@
  * @modby      $LastChangedBy$
  * @lastmod    $LastChangedDate$
  */
+
 /**
  * Access Control List component.
  *
@@ -34,34 +36,33 @@
  */
 class Ncw_Components_Acl extends Ncw_Component
 {
-
     /**
      * The ACO table
      *
      * @var string
      */
-    protected $_table = "";
+    protected $_table = '';
 
     /**
      * The ACO ARO join table
      *
      * @var string
      */
-    protected $_join_table = "";
+    protected $_join_table = '';
 
     /**
      * The usergroup_users table
      *
      * @var string
      */
-    protected $_usergroups_users_table = "";
+    protected $_usergroups_users_table = '';
 
     /**
      * The users table
      *
      * @var string
      */
-    protected $_users_table = "";
+    protected $_users_table = '';
 
     /**
      * Is ACOS read
@@ -79,14 +80,13 @@ class Ncw_Components_Acl extends Ncw_Component
 
     /**
      * Sets the database table strings
-     *
      */
-    public function __construct ()
+    public function __construct()
     {
-        $this->_table = "`" . Ncw_Database::getConfig('prefix') . "acos`";
-        $this->_join_table = "`" . Ncw_Database::getConfig('prefix') . "aros_acos`";
-        $this->_usergroups_users_table = "`" . Ncw_Database::getConfig('prefix') . "core_usergroup_user`";
-        $this->_users_table = "`" . Ncw_Database::getConfig('prefix') . "core_user`";
+        $this->_table = '`' . Ncw_Database::getConfig('prefix') . 'acos`';
+        $this->_join_table = '`' . Ncw_Database::getConfig('prefix') . 'aros_acos`';
+        $this->_usergroups_users_table = '`' . Ncw_Database::getConfig('prefix') . 'core_usergroup_user`';
+        $this->_users_table = '`' . Ncw_Database::getConfig('prefix') . 'core_user`';
     }
 
     /**
@@ -96,9 +96,9 @@ class Ncw_Components_Acl extends Ncw_Component
      *
      * @return voind
      */
-    public function startup (Ncw_Controller &$controller)
+    public function startup(Ncw_Controller &$controller)
     {
-    	$controller->acl = $this;
+        $controller->acl = $this;
     }
 
     /**
@@ -109,32 +109,32 @@ class Ncw_Components_Acl extends Ncw_Component
      *
      * @return void
      */
-    public function read ($user_id, $start)
+    public function read($user_id, $start)
     {
         $sql = "SELECT `aco3`.`id`,
-					   `aco3`.`alias`,
-					   `aco3`.`lft`,
-					   `aco3`.`rgt`,
-					   `join`.`access`
-				FROM " . $this->_table . " AS `aco`,
-					 " . $this->_table . " AS `aco2`,
-					 " . $this->_table . " AS `aco3`
-				LEFT JOIN " . $this->_join_table . " AS `join`
-				ON `aco3`.`id`=`join`.`aco_id`
-				LEFT JOIN " . $this->_usergroups_users_table . " AS `usergroups_users`
-				ON `join`.`aro_id`=`usergroups_users`.`usergroup_id`
-				LEFT JOIN " . $this->_users_table . " AS `users`
-				ON `usergroups_users`.`user_id`=`users`.`id`
-				WHERE `aco3`.`lft` BETWEEN `aco2`.`lft` AND `aco2`.`rgt`
-					  AND `aco3`.`lft` BETWEEN `aco`.`lft` AND `aco`.`rgt`
-					  AND `aco`.`alias`=:alias
-					  AND `users`.`id`=:id
-				GROUP BY `aco3`.`lft`
-				ORDER BY `aco3`.`lft`";
+\t\t\t\t\t   `aco3`.`alias`,
+\t\t\t\t\t   `aco3`.`lft`,
+\t\t\t\t\t   `aco3`.`rgt`,
+\t\t\t\t\t   `join`.`access`
+\t\t\t\tFROM " . $this->_table . " AS `aco`,
+\t\t\t\t\t " . $this->_table . " AS `aco2`,
+\t\t\t\t\t " . $this->_table . " AS `aco3`
+\t\t\t\tLEFT JOIN " . $this->_join_table . " AS `join`
+\t\t\t\tON `aco3`.`id`=`join`.`aco_id`
+\t\t\t\tLEFT JOIN " . $this->_usergroups_users_table . " AS `usergroups_users`
+\t\t\t\tON `join`.`aro_id`=`usergroups_users`.`usergroup_id`
+\t\t\t\tLEFT JOIN " . $this->_users_table . " AS `users`
+\t\t\t\tON `usergroups_users`.`user_id`=`users`.`id`
+\t\t\t\tWHERE `aco3`.`lft` BETWEEN `aco2`.`lft` AND `aco2`.`rgt`
+\t\t\t\t\t  AND `aco3`.`lft` BETWEEN `aco`.`lft` AND `aco`.`rgt`
+\t\t\t\t\t  AND `aco`.`alias`=:alias
+\t\t\t\t\t  AND `users`.`id`=:id
+\t\t\t\tGROUP BY `aco3`.`lft`
+\t\t\t\tORDER BY `aco3`.`lft`";
         $conn = Ncw_Database::getInstance();
         $stmt = $conn->prepare($sql);
-        $stmt->bindValue(":id", $user_id, PDO::PARAM_INT);
-        $stmt->bindValue(":alias", $start, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $user_id, PDO::PARAM_INT);
+        $stmt->bindValue(':alias', $start, PDO::PARAM_STR);
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         foreach ($rows as $row) {
@@ -148,19 +148,19 @@ class Ncw_Components_Acl extends Ncw_Component
      *
      * @return array the acos
      */
-    public function readAllACOS ()
+    public function readAllACOS()
     {
-        $sql = "SELECT `aco3`.`id`,
+        $sql = 'SELECT `aco3`.`id`,
                        `aco3`.`alias`,
                        `aco3`.`lft`,
                        `aco3`.`rgt`
-                FROM " . $this->_table . " AS `aco`,
-                     " . $this->_table . " AS `aco2`,
-                     " . $this->_table . " AS `aco3`
+                FROM ' . $this->_table . ' AS `aco`,
+                     ' . $this->_table . ' AS `aco2`,
+                     ' . $this->_table . ' AS `aco3`
                 WHERE `aco3`.`lft` BETWEEN `aco2`.`lft` AND `aco2`.`rgt`
                       AND `aco3`.`lft` BETWEEN `aco`.`lft` AND `aco`.`rgt`
                 GROUP BY `aco3`.`lft`
-                ORDER BY `aco3`.`lft`";
+                ORDER BY `aco3`.`lft`';
         $conn = Ncw_Database::getInstance();
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -179,23 +179,23 @@ class Ncw_Components_Acl extends Ncw_Component
      *
      * @return array the acos
      */
-    public function readACOSByARO ($aro_id)
+    public function readACOSByARO($aro_id)
     {
-        $sql = "SELECT `aco3`.`id`,
+        $sql = 'SELECT `aco3`.`id`,
                        `aco3`.`alias`,
                        `aco3`.`lft`,
                        `aco3`.`rgt`,
                        `join`.`access`
-                FROM " . $this->_table . " AS `aco`,
-                     " . $this->_table . " AS `aco2`,
-                     " . $this->_table . " AS `aco3`
-                LEFT JOIN " . $this->_join_table . " AS `join`
+                FROM ' . $this->_table . ' AS `aco`,
+                     ' . $this->_table . ' AS `aco2`,
+                     ' . $this->_table . ' AS `aco3`
+                LEFT JOIN ' . $this->_join_table . ' AS `join`
                 ON `aco3`.`id`=`join`.`aco_id`
                 WHERE `aco3`.`lft` BETWEEN `aco2`.`lft` AND `aco2`.`rgt`
                       AND `aco3`.`lft` BETWEEN `aco`.`lft` AND `aco`.`rgt`
                       AND `join`.`aro_id`=:aro_id
                 GROUP BY `aco3`.`lft`
-                ORDER BY `aco3`.`lft`";
+                ORDER BY `aco3`.`lft`';
         $conn = Ncw_Database::getInstance();
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(':aro_id', $aro_id, PDO::PARAM_INT);
@@ -213,7 +213,7 @@ class Ncw_Components_Acl extends Ncw_Component
      *
      * @return void
      */
-    public function getACOS ()
+    public function getACOS()
     {
         return $this->_acos;
     }
@@ -223,7 +223,7 @@ class Ncw_Components_Acl extends Ncw_Component
      *
      * @return boolean
      */
-    public function getIsAcosRead ()
+    public function getIsAcosRead()
     {
         return $this->_is_acos_read;
     }
@@ -235,18 +235,18 @@ class Ncw_Components_Acl extends Ncw_Component
      *
      * @return boolean
      */
-    public function check ($aco)
+    public function check($aco)
     {
-        $arr_aco = explode("/", $aco);
+        $arr_aco = explode('/', $aco);
         $return = false;
-        $aco = "";
+        $aco = '';
         if (true === isset($this->_acos[$aco])) {
             $return = $this->_acos[$aco]['access'];
         }
         $num = count($arr_aco);
         for ($count = 1; $count < $num; ++$count) {
             if (true === isset($arr_aco[$count]) && false === empty($arr_aco[$count])) {
-                $aco .= "/" . $arr_aco[$count];
+                $aco .= '/' . $arr_aco[$count];
                 if (true === isset($this->_acos[$aco])) {
                     $return = $this->_acos[$aco]['access'];
                 }
@@ -254,7 +254,7 @@ class Ncw_Components_Acl extends Ncw_Component
                 break;
             }
         }
-        return (boolean) $return;
+        return (bool) $return;
     }
 
     /**
@@ -264,7 +264,7 @@ class Ncw_Components_Acl extends Ncw_Component
      *
      * @return boolean
      */
-    public function addACO ($aco)
+    public function addACO($aco)
     {
         $arr_aco = explode('/', $aco);
         $acos = array();
@@ -343,13 +343,13 @@ class Ncw_Components_Acl extends Ncw_Component
      *
      * @return boolean
      */
-    public function removeACO ($aco)
+    public function removeACO($aco)
     {
         // Delete the ACO
         $conn = Ncw_Database::getInstance();
         $conn->beginTransaction();
         $stmt = $conn->prepare('SELECT `rgt`, `lft` FROM ' . $this->_table . ' WHERE `alias`=:alias');
-        $stmt->bindValue(":alias", $aco, PDO::PARAM_INT);
+        $stmt->bindValue(':alias', $aco, PDO::PARAM_INT);
         if (false === $stmt->execute()) {
             $error_info = $stmt->errorInfo();
             throw new Ncw_Exception('Insert failed (' . $error_info[2] . ')', 1);
@@ -359,22 +359,22 @@ class Ncw_Components_Acl extends Ncw_Component
             throw new Ncw_Exception('Insert failed (Nodes right or left value is null)', 1);
         }
         $stmt = $conn->prepare('DELETE FROM ' . $this->_table . ' WHERE `lft` BETWEEN :left_value AND :right_value');
-        $stmt->bindValue(":left_value", $row[0]['lft'], PDO::PARAM_INT);
-        $stmt->bindValue(":right_value", $row[0]['rgt'], PDO::PARAM_INT);
+        $stmt->bindValue(':left_value', $row[0]['lft'], PDO::PARAM_INT);
+        $stmt->bindValue(':right_value', $row[0]['rgt'], PDO::PARAM_INT);
         if (false === $stmt->execute()) {
             $error_info = $stmt->errorInfo();
             throw new Ncw_Exception('Insert failed (' . $error_info[2] . ')', 1);
         }
         $stmt = $conn->prepare('UPDATE ' . $this->_table . ' SET `lft`=`lft`-ROUND((:right_value-:left_value+1)) WHERE `lft`>:right_value');
-        $stmt->bindValue(":left_value", $row[0]['lft'], PDO::PARAM_INT);
-        $stmt->bindValue(":right_value", $row[0]['rgt'], PDO::PARAM_INT);
+        $stmt->bindValue(':left_value', $row[0]['lft'], PDO::PARAM_INT);
+        $stmt->bindValue(':right_value', $row[0]['rgt'], PDO::PARAM_INT);
         if (false === $stmt->execute()) {
             $error_info = $stmt->errorInfo();
             throw new Ncw_Exception('Insert failed (' . $error_info[2] . ')', 1);
         }
         $stmt = $conn->prepare('UPDATE ' . $this->_table . ' SET `rgt`=`rgt`-ROUND((:right_value-:left_value+1)) WHERE `rgt`>:right_value');
-        $stmt->bindValue(":left_value", $row[0]['lft'], PDO::PARAM_INT);
-        $stmt->bindValue(":right_value", $row[0]['rgt'], PDO::PARAM_INT);
+        $stmt->bindValue(':left_value', $row[0]['lft'], PDO::PARAM_INT);
+        $stmt->bindValue(':right_value', $row[0]['rgt'], PDO::PARAM_INT);
         if (false === $stmt->execute()) {
             $error_info = $stmt->errorInfo();
             throw new Ncw_Exception('Insert failed (' . $error_info[2] . ')', 1);
@@ -391,28 +391,28 @@ class Ncw_Components_Acl extends Ncw_Component
      *
      * @return boolean
      */
-    public function allow ($group_id, $aco)
+    public function allow($group_id, $aco)
     {
         if ($group_id > 0) {
             // Check If this node already is in the database.
             $conn = Ncw_Database::getInstance();
             $stmt = $conn->prepare(
-                "SELECT `id` "
-                . "FROM " . $this->_table
-                . "WHERE `alias`=:alias"
+                'SELECT `id` '
+                . 'FROM ' . $this->_table
+                . 'WHERE `alias`=:alias'
             );
-            $stmt->bindValue(":alias", $aco, PDO::PARAM_STR);
+            $stmt->bindValue(':alias', $aco, PDO::PARAM_STR);
             $stmt->execute();
             $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if (true === isset($row[0]['id']) && $row[0]['id'] > 0) {
                 // Set the access.
                 $stmt = $conn->prepare(
-                    "REPLACE INTO " . $this->_join_table
-                    . "(`aro_id`, `aco_id`, `access`)"
-                    . "VALUES (:aro_id, :aco_id, 1)"
+                    'REPLACE INTO ' . $this->_join_table
+                    . '(`aro_id`, `aco_id`, `access`)'
+                    . 'VALUES (:aro_id, :aco_id, 1)'
                 );
-                $stmt->bindValue(":aro_id", $group_id, PDO::PARAM_INT);
-                $stmt->bindValue(":aco_id", $row[0]['id'], PDO::PARAM_INT);
+                $stmt->bindValue(':aro_id', $group_id, PDO::PARAM_INT);
+                $stmt->bindValue(':aco_id', $row[0]['id'], PDO::PARAM_INT);
                 return $stmt->execute();
             }
         }
@@ -427,28 +427,28 @@ class Ncw_Components_Acl extends Ncw_Component
      *
      * @return boolean
      */
-    public function deny ($group_id, $aco)
+    public function deny($group_id, $aco)
     {
         if ($group_id > 0) {
             // Check If this node allready is in the database.
             $conn = Ncw_Database::getInstance();
             $stmt = $conn->prepare(
-                "SELECT `id`"
-                . "FROM " . $this->_table
-                . "WHERE `alias`=:alias"
+                'SELECT `id`'
+                . 'FROM ' . $this->_table
+                . 'WHERE `alias`=:alias'
             );
-            $stmt->bindValue(":alias", $aco, PDO::PARAM_STR);
+            $stmt->bindValue(':alias', $aco, PDO::PARAM_STR);
             $stmt->execute();
             $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if (true === isset($row[0]['id']) && $row[0]['id'] > 0) {
                 // Set the access.
                 $stmt = $conn->prepare(
-                    "REPLACE INTO " . $this->_join_table
-                    . "(`aro_id`, `aco_id`, `access`)"
-                    . "VALUES (:aro_id, :aco_id, 0)"
+                    'REPLACE INTO ' . $this->_join_table
+                    . '(`aro_id`, `aco_id`, `access`)'
+                    . 'VALUES (:aro_id, :aco_id, 0)'
                 );
-                $stmt->bindValue(":aro_id", $group_id, PDO::PARAM_INT);
-                $stmt->bindValue(":aco_id", $row[0]['id'], PDO::PARAM_INT);
+                $stmt->bindValue(':aro_id', $group_id, PDO::PARAM_INT);
+                $stmt->bindValue(':aco_id', $row[0]['id'], PDO::PARAM_INT);
                 return $stmt->execute();
             }
         }
@@ -463,28 +463,28 @@ class Ncw_Components_Acl extends Ncw_Component
      *
      * @return boolean
      */
-    public function remove ($group_id, $aco)
+    public function remove($group_id, $aco)
     {
         if ($group_id > 0) {
             // Check If this node allready is in the database.
             $conn = Ncw_Database::getInstance();
             $stmt = $conn->prepare(
-                "SELECT `id`"
-                . "FROM " . $this->_table
-                . "WHERE `alias`=:alias"
+                'SELECT `id`'
+                . 'FROM ' . $this->_table
+                . 'WHERE `alias`=:alias'
             );
-            $stmt->bindValue(":alias", $aco, PDO::PARAM_STR);
+            $stmt->bindValue(':alias', $aco, PDO::PARAM_STR);
             $stmt->execute();
             $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if (true === isset($row[0]['id']) && $row[0]['id'] > 0) {
                 // Set the access.
                 $stmt = $conn->prepare(
-                    "DELETE FROM " . $this->_join_table
-                    . " WHERE `aro_id`=:aro_id && `aco_id`=:aco_id"
+                    'DELETE FROM ' . $this->_join_table
+                    . ' WHERE `aro_id`=:aro_id && `aco_id`=:aco_id'
                 );
                 if (false !== $stmt) {
-                    $stmt->bindValue(":aro_id", $group_id, PDO::PARAM_INT);
-                    $stmt->bindValue(":aco_id", $row[0]['id'], PDO::PARAM_INT);
+                    $stmt->bindValue(':aro_id', $group_id, PDO::PARAM_INT);
+                    $stmt->bindValue(':aco_id', $row[0]['id'], PDO::PARAM_INT);
                     return $stmt->execute();
                 }
             }

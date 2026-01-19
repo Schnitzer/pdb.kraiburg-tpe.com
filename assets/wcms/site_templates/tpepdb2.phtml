@@ -8,7 +8,7 @@ $allowed_ips = Ncw_Configure::read('internal_ips');
 
 // var_dump($_SESSION);
 
-if (true == strstr(strtolower($_SERVER['HTTP_REFERER']), 'google')) {
+if (isset($_SERVER['HTTP_REFERER']) && true == strstr(strtolower($_SERVER['HTTP_REFERER']), 'google')) {
   header('Location:https://www.kraiburg-tpe.com/');
 }
 

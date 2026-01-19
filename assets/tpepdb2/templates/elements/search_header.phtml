@@ -122,6 +122,7 @@ if (true == isset($_GET['ls'])) {
 			
 								<?php 	
 									$array_region = array();
+									$tmp_group = '';
 
 									
 									$array_region['r_10'] = array('Europe, the Middle East and Africa', 'r1', 'checkbox', 'TPE-200000000000197');
@@ -161,7 +162,7 @@ if (true == isset($_GET['ls'])) {
 			</div>
 		</div>
 		
-		<div class="pdb2-search-console-sliderblock <?php echo $css_sliderblock; ?>" <?php echo $style_sliderblock; ?>  >
+		<div class="pdb2-search-console-sliderblock <?php echo isset($css_sliderblock) ? $css_sliderblock : ''; ?>" <?php echo isset($style_sliderblock) ? $style_sliderblock : ''; ?>  >
 			<h3>
 				<?php print Wcms_ContentboxController::getContenbox('pdb2-hardness', $language_id); ?>
 			</h3>
@@ -188,7 +189,7 @@ if (true == isset($_GET['ls'])) {
 			<div class="range-max"><span>95</span> Shore A</div>
 		</div>
 
-		<div class="pdb2-search-console-haftungblock <?php echo $css_haftungblock; ?>" <?php echo $style_haftungsblock; ?>  >
+		<div class="pdb2-search-console-haftungblock <?php echo isset($css_haftungblock) ? $css_haftungblock : ''; ?>" <?php echo isset($style_haftungsblock) ? $style_haftungsblock : ''; ?>  >
 				<h3>
 					<?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---srs-adhesion', $language_id); ?>
 
@@ -225,7 +226,7 @@ if (true == isset($_GET['ls'])) {
 			  </div>
 		</div>
 
-		<div class="pdb2-search-console-eigenschaftenblock <?php echo $css_eigenschaftenblock; ?>" <?php echo $style_eigenschaftenblock; ?>  >
+		<div class="pdb2-search-console-eigenschaftenblock <?php echo isset($css_eigenschaftenblock) ? $css_eigenschaftenblock : ''; ?>" <?php echo isset($style_eigenschaftenblock) ? $style_eigenschaftenblock : ''; ?>  >
 				<h3>
 					<?php print Wcms_ContentboxController::getContenbox('pdb---material-advantages', $language_id); ?>
 				</h3>
@@ -355,7 +356,7 @@ if (true == isset($_GET['ls'])) {
 			</div>
 		</div>
 	
-		<div class="pdb2-search-console-farbblock <?php echo $css_farbblock; ?>" <?php echo $style_farbblock; ?>  >
+		<div class="pdb2-search-console-farbblock <?php echo isset($css_farbblock) ? $css_farbblock : ''; ?>" <?php echo isset($style_farbblock) ? $style_farbblock : ''; ?>  >
 			<h3>
 				<?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---srs-color', $language_id); ?>
 			</h3>
@@ -410,7 +411,7 @@ if (true == isset($_GET['ls'])) {
 			</div>
 		</div>
 
-		<div class="pdb2-search-console-nachhaltigblock <?php echo $css_nachhaltigkeitblock; ?>" <?php echo $style_nachhaltigkeitblock; ?>  >
+		<div class="pdb2-search-console-nachhaltigblock <?php echo isset($css_nachhaltigkeitblock) ? $css_nachhaltigkeitblock : ''; ?>" <?php echo isset($style_nachhaltigkeitblock) ? $style_nachhaltigkeitblock : ''; ?>  >
 			<h3>
 				<?php 
 					print Wcms_ContentboxController::getContenbox('more-sustainable-tpe', $language_id); 

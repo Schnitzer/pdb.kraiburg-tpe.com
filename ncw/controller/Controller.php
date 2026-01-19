@@ -100,6 +100,27 @@ abstract class Ncw_Controller extends Ncw_Object
     public $view = null;
 
     /**
+     * The request handler component.
+     *
+     * @var Ncw_Components_RequestHandler
+     */
+    public $request_handler = null;
+
+    /**
+     * The session component.
+     *
+     * @var Ncw_Components_Session
+     */
+    public $session = null;
+
+    /**
+     * Core modules object.
+     *
+     * @var mixed
+     */
+    public $Core_Modules = null;
+
+    /**
      * As default the controller is assigned to a model.
      * Set to false if not.
      *

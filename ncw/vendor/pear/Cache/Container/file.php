@@ -21,87 +21,92 @@
 require_once 'Cache/Container.php';
 
 /**
-* Stores cache contents in a file.
-*
-* @author   Ulf Wendel  <ulf.wendel@phpdoc.de>
-* @version  $Id: file.php,v 1.18 2006/01/31 13:40:00 bate Exp $
-*/
+ * Stores cache contents in a file.
+ *
+ * @author   Ulf Wendel  <ulf.wendel@phpdoc.de>
+ * @version  $Id: file.php,v 1.18 2006/01/31 13:40:00 bate Exp $
+ */
 class Cache_Container_file extends Cache_Container
 {
-
     /**
-    * File locking
-    *
-    * With file container, it's possible, that you get corrupted
-    * data-entries under bad circumstances. The file locking must
-    * improve this problem but it's experimental stuff. So the
-    * default value is false. But it seems to give good results
-    *
-    * @var boolean
-    */
+     * File locking
+     *
+     * With file container, it's possible, that you get corrupted
+     * data-entries under bad circumstances. The file locking must
+     * improve this problem but it's experimental stuff. So the
+     * default value is false. But it seems to give good results
+     *
+     * @var boolean
+     */
     var $fileLocking = false;
 
     /**
-    * Directory where to put the cache files.
-    *
-    * @var  string  Make sure to add a trailing slash
-    */
+     * Directory where to put the cache files.
+     *
+     * @var  string  Make sure to add a trailing slash
+     */
     var $cache_dir = '';
 
     /**
-    * Filename prefix for cache files.
-    *
-    * You can use the filename prefix to implement a "domain" based cache or just
-    * to give the files a more descriptive name. The word "domain" is borroed from
-    * a user authentification system. One user id (cached dataset with the ID x)
-    * may exists in different domains (different filename prefix). You might want
-    * to use this to have different cache values for a production, development and
-    * quality assurance system. If you want the production cache not to be influenced
-    * by the quality assurance activities, use different filename prefixes for them.
-    *
-    * I personally don't think that you'll never need this, but 640kb happend to be
-    * not enough, so... you know what I mean. If you find a useful application of the
-    * feature please update this inline doc.
-    *
-    * @var  string
-    */
+     * Filename prefix for cache files.
+     *
+     * You can use the filename prefix to implement a "domain" based cache or just
+     * to give the files a more descriptive name. The word "domain" is borroed from
+     * a user authentification system. One user id (cached dataset with the ID x)
+     * may exists in different domains (different filename prefix). You might want
+     * to use this to have different cache values for a production, development and
+     * quality assurance system. If you want the production cache not to be influenced
+     * by the quality assurance activities, use different filename prefixes for them.
+     *
+     * I personally don't think that you'll never need this, but 640kb happend to be
+     * not enough, so... you know what I mean. If you find a useful application of the
+     * feature please update this inline doc.
+     *
+     * @var  string
+     */
     var $filename_prefix = '';
-    
-    
+
     /**
-    * List of cache entries, used within a gc run
-    * 
-    * @var array
-    */
+     * List of cache entries, used within a gc run
+     *
+     * @var array
+     */
     var $entries;
-    
+
     /**
-    * Total number of bytes required by all cache entries, used within a gc run.
-    * 
-    * @var  int
-    */
+     * List of cache group directories
+     *
+     * @var array
+     */
+    var $group_dirs;
+
+    /**
+     * Total number of bytes required by all cache entries, used within a gc run.
+     *
+     * @var  int
+     */
     var $total_size = 0;
 
-
     /**
-    * Max Line Length of userdata
-    *
-    * If set to 0, it will take the default 
-    * ( 1024 in php 4.2, unlimited in php 4.3)
-    * see http://ch.php.net/manual/en/function.fgets.php
-    * for details
-    *
-    * @var int
-    */
+     * Max Line Length of userdata
+     *
+     * If set to 0, it will take the default
+     * ( 1024 in php 4.2, unlimited in php 4.3)
+     * see http://ch.php.net/manual/en/function.fgets.php
+     * for details
+     *
+     * @var int
+     */
     var $max_userdata_linelength = 257;
 
     /**
-    * Creates the cache directory if neccessary
-    *
-    * @param    array   Config options: ["cache_dir" => ..., "filename_prefix" => ...]
-    */
-     function Cache_Container_file($options = '')
-     {
+     * Creates the cache directory if neccessary
+     *
+     * @param    array   Config options: ["cache_dir" => ..., "filename_prefix" => ...]
+     */
+    function __construct($options = '')
+    {
+        parent::__construct();
         if (is_array($options)) {
             $this->setOptions($options, array_merge($this->allowed_options, array('cache_dir', 'filename_prefix', 'max_userdata_linelength')));
         }
@@ -109,20 +114,28 @@ class Cache_Container_file extends Cache_Container
         if ($this->cache_dir) {
             // make relative paths absolute for use in deconstructor.
             // it looks like the deconstructor has problems with relative paths
-            if (OS_UNIX && '/' != $this->cache_dir{0}  )
-                $this->cache_dir = realpath( getcwd() . '/' . $this->cache_dir) . '/';
+            if (OS_UNIX && '/' != $this->cache_dir[0])
+                $this->cache_dir = realpath(getcwd() . '/' . $this->cache_dir) . '/';
 
             // check if a trailing slash is in cache_dir
-            if ($this->cache_dir{strlen($this->cache_dir)-1} != DIRECTORY_SEPARATOR)
-                 $this->cache_dir .= '/';
+            if ($this->cache_dir[strlen($this->cache_dir) - 1] != DIRECTORY_SEPARATOR)
+                $this->cache_dir .= '/';
 
-            if  (!file_exists($this->cache_dir) || !is_dir($this->cache_dir))
+            if (!file_exists($this->cache_dir) || !is_dir($this->cache_dir))
                 mkdir($this->cache_dir, 0755);
         }
         $this->entries = array();
         $this->group_dirs = array();
-                    
-    } // end func contructor
+    }  // end func contructor
+
+    /**
+     * PHP4 constructor for backwards compatibility
+     * @deprecated
+     */
+    function Cache_Container_file($options = '')
+    {
+        $this->__construct($options);
+    }
 
     function fetch($id, $group)
     {
@@ -147,14 +160,14 @@ class Cache_Container_file extends Cache_Container
         // 2nd line: user data
         // 3rd+ lines: cache data
         $expire = trim(fgets($fh, 12));
-        if ($this->max_userdata_linelength == 0 ) {
+        if ($this->max_userdata_linelength == 0) {
             $userdata = trim(fgets($fh));
         } else {
             $userdata = trim(fgets($fh, $this->max_userdata_linelength));
         }
         $buffer = '';
         while (!feof($fh)) {
-        	$buffer .= fread($fh, 8192);
+            $buffer .= fread($fh, 8192);
         }
         $cachedata = $this->decode($buffer);
 
@@ -166,18 +179,18 @@ class Cache_Container_file extends Cache_Container
 
         // last usage date used by the gc - maxlifetime
         // touch without second param produced stupid entries...
-        touch($file,time());
+        touch($file, time());
         clearstatcache();
 
         return array($expire, $cachedata, $userdata);
-    } // end func fetch
+    }  // end func fetch
 
     /**
-    * Stores a dataset.
-    *
-    * WARNING: If you supply userdata it must not contain any linebreaks,
-    * otherwise it will break the filestructure.
-    */
+     * Stores a dataset.
+     *
+     * WARNING: If you supply userdata it must not contain any linebreaks,
+     * otherwise it will break the filestructure.
+     */
     function save($id, $cachedata, $expires, $group, $userdata)
     {
         $this->flushPreload($id, $group);
@@ -207,11 +220,11 @@ class Cache_Container_file extends Cache_Container
         fclose($fh);
 
         // I'm not sure if we need this
-	// i don't think we need this (chregu)
+        // i don't think we need this (chregu)
         // touch($file);
 
         return true;
-    } // end func save
+    }  // end func save
 
     function remove($id, $group)
     {
@@ -230,7 +243,7 @@ class Cache_Container_file extends Cache_Container
         }
 
         return false;
-    } // end func remove
+    }  // end func remove
 
     function flush($group)
     {
@@ -242,39 +255,38 @@ class Cache_Container_file extends Cache_Container
         clearstatcache();
 
         return $num_removed;
-    } // end func flush
+    }  // end func flush
 
     function idExists($id, $group)
     {
         return file_exists($this->getFilename($id, $group));
-    } // end func idExists
+    }  // end func idExists
 
     /**
-    * Deletes all expired files.
-    *
-    * Garbage collection for files is a rather "expensive", "long time"
-    * operation. All files in the cache directory have to be examined which
-    * means that they must be opened for reading, the expiration date has to be
-    * read from them and if neccessary they have to be unlinked (removed).
-    * If you have a user comment for a good default gc probability please add it to
-    * to the inline docs.
-    *
-    * @param    integer Maximum lifetime in seconds of an no longer used/touched entry
-    * @throws   Cache_Error
-    */
-    function garbageCollection($maxlifetime)
+     * Deletes all expired files.
+     *
+     * Garbage collection for files is a rather "expensive", "long time"
+     * operation. All files in the cache directory have to be examined which
+     * means that they must be opened for reading, the expiration date has to be
+     * read from them and if neccessary they have to be unlinked (removed).
+     * If you have a user comment for a good default gc probability please add it to
+     * to the inline docs.
+     *
+     * @param    integer Maximum lifetime in seconds of an no longer used/touched entry
+     * @throws   Cache_Error
+     */
+    function garbageCollection($maxlifetime = null)
     {
         $this->flushPreload();
         clearstatcache();
 
         $ok = $this->doGarbageCollection($maxlifetime, $this->cache_dir);
 
-        // check the space used by the cache entries        
+        // check the space used by the cache entries
         if ($this->total_size > $this->highwater) {
-        
             krsort($this->entries);
             reset($this->entries);
-            
+
             while ($this->total_size > $this->lowwater && list($lastmod, $entry) = each($this->entries)) {
                 if (@unlink($entry['file'])) {
                     $this->total_size -= $entry['size'];
@@ -282,23 +294,22 @@ class Cache_Container_file extends Cache_Container
                     new CacheError("Can't delete {$entry['file']}. Check the permissions.");
                 }
             }
-            
         }
-        
+
         $this->entries = array();
         $this->total_size = 0;
-        
+
         return $ok;
-    } // end func garbageCollection
-    
+    }  // end func garbageCollection
+
     /**
-    * Does the recursive gc procedure, protected.
-    *
-    * @param    integer Maximum lifetime in seconds of an no longer used/touched entry
-    * @param    string  directory to examine - don't sets this parameter, it's used for a
-    *                   recursive function call!
-    * @throws   Cache_Error
-    */
+     * Does the recursive gc procedure, protected.
+     *
+     * @param    integer Maximum lifetime in seconds of an no longer used/touched entry
+     * @param    string  directory to examine - don't sets this parameter, it's used for a
+     *                   recursive function call!
+     * @throws   Cache_Error
+     */
     function doGarbageCollection($maxlifetime, $dir)
     {
         if (!is_writable($dir) || !is_readable($dir) || !($dh = opendir($dir))) {
@@ -311,7 +322,7 @@ class Cache_Container_file extends Cache_Container
 
             $file = $dir . $file;
             if (is_dir($file)) {
-                $this->doGarbageCollection($maxlifetime,$file . '/');
+                $this->doGarbageCollection($maxlifetime, $file . '/');
                 continue;
             }
 
@@ -324,12 +335,12 @@ class Cache_Container_file extends Cache_Container
             $expire = fgets($fh, 11);
             fclose($fh);
             $lastused = filemtime($file);
-            
+
             $this->entries[$lastused] = array('file' => $file, 'size' => filesize($file));
             $this->total_size += filesize($file);
-            
+
             // remove if expired
-            if (( ($expire && $expire <= time()) || ($lastused <= (time() - $maxlifetime)) ) && !unlink($file)) {
+            if ((($expire && $expire <= time()) || ($lastused <= (time() - $maxlifetime))) && !unlink($file)) {
                 new Cache_Error("Can't unlink cache file '$file', skipping. Check permissions and path.", __FILE__, __LINE__);
             }
         }
@@ -338,17 +349,16 @@ class Cache_Container_file extends Cache_Container
 
         // flush the disk state cache
         clearstatcache();
-
-    } // end func doGarbageCollection
+    }  // end func doGarbageCollection
 
     /**
-    * Returns the filename for the specified id.
-    *
-    * @param    string  dataset ID
-    * @param    string  cache group
-    * @return   string  full filename with the path
-    * @access   public
-    */
+     * Returns the filename for the specified id.
+     *
+     * @param    string  dataset ID
+     * @param    string  cache group
+     * @return   string  full filename with the path
+     * @access   public
+     */
     function getFilename($id, $group)
     {
         if (isset($this->group_dirs[$group])) {
@@ -367,15 +377,15 @@ class Cache_Container_file extends Cache_Container
         $this->group_dirs[$group] = $dir;
 
         return $dir . $this->filename_prefix . $id;
-    } // end func getFilename
+    }  // end func getFilename
 
     /**
-    * Deletes a directory and all files in it.
-    *
-    * @param    string  directory
-    * @return   integer number of removed files
-    * @throws   Cache_Error
-    */
+     * Deletes a directory and all files in it.
+     *
+     * @param    string  directory
+     * @return   integer number of removed files
+     * @throws   Cache_Error
+     */
     function deleteDir($dir)
     {
         if (!is_writable($dir) || !is_readable($dir) || !($dh = opendir($dir))) {
@@ -401,14 +411,13 @@ class Cache_Container_file extends Cache_Container
         }
         // according to php-manual the following is needed for windows installations.
         closedir($dh);
-        unset( $dh);
-        if ($dir != $this->cache_dir) {  //delete the sub-dir entries  itself also, but not the cache-dir.
+        unset($dh);
+        if ($dir != $this->cache_dir) {  // delete the sub-dir entries  itself also, but not the cache-dir.
             rmDir($dir);
             $num_removed++;
         }
 
         return $num_removed;
-    } // end func deleteDir
-    
-} // end class file
+    }  // end func deleteDir
+}  // end class file
 ?>

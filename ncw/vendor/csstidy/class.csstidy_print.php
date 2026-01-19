@@ -36,6 +36,7 @@
  * @version 1.0
  */
 
+#[AllowDynamicProperties]
 class csstidy_print
 {
     /**
@@ -65,7 +66,7 @@ class csstidy_print
      * @access private
      * @version 1.0
      */
-    function csstidy_print(&$css)
+    function __construct(&$css)
     {
         $this->parser    =& $css;
         $this->css       =& $css->css;
@@ -167,7 +168,7 @@ class csstidy_print
 
                 case SEL_START:
                     if($this->parser->get_cfg('lowercase_s')) $token[1] = strtolower($token[1]);
-                    $out .= ($token[1]{0} !== '@') ? $template[2].$this->_htmlsp($token[1], $plain) : $template[0].$this->_htmlsp($token[1], $plain);
+                    $out .= ($token[1][0] !== '@') ? $template[2].$this->_htmlsp($token[1], $plain) : $template[0].$this->_htmlsp($token[1], $plain);
                     $out .= $template[3];
                     break;
 

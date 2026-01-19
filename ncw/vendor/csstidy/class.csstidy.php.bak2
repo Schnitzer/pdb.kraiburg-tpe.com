@@ -58,7 +58,6 @@ require('class.csstidy_optimise.php');
  * @author Florian Schmitz (floele at gmail dot com) 2005-2006
  * @version 1.3
  */
-#[AllowDynamicProperties]
 class csstidy {
 
 /**
@@ -667,11 +666,7 @@ function parse($string) {
                 }
                 elseif($string[$i] == ';' || $pn)
                 {
-                if(isset($this->selector[0]) && $this->selector[0] == '@' && isset($at_rules[substr($this->selector,1)]) && $at_rules[substr($this->selector,1)] == 'iv')
-                {
-                    $this->sub_value_arr[] = trim($this->sub_value);
-
-                    $this->status = 'is';
+                if($this->selector[0] == '@' && isset($at_rules[substr($this->selector,1)]) && $at_rules[substr($this->selector,1)] == 'iv')
 
                         switch($this->selector)
                         {
@@ -932,9 +927,8 @@ function merge_css_blocks($media,$selector,$css_add)
  * @access public
  * @version 1.0
  */
-static function is_important(&$value)
+function is_important(&$value)
 {
-	if ($value === null) return false;
 	return (!strcasecmp(substr(str_replace($GLOBALS['csstidy']['whitespace'],'',$value),-10,10),'!important'));
 }
 
@@ -945,7 +939,7 @@ static function is_important(&$value)
  * @access public
  * @version 1.0
  */
-static function gvw_important($value)
+function gvw_important($value)
 {
 	if(csstidy::is_important($value))
 	{

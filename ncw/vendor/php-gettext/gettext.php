@@ -143,6 +143,12 @@ class gettext_reader {
       is_array($this->table_translations))
       return;
 
+    /* Check if STREAM is valid */
+    if (!$this->STREAM) {
+      $this->short_circuit = true;
+      return;
+    }
+
     /* get original and translations tables */
     if (!is_array($this->table_originals)) {
       $this->STREAM->seekto($this->originals);
@@ -174,6 +180,8 @@ class gettext_reader {
    * @return string Requested string if found, otherwise ''
    */
   function get_original_string($num) {
+    if (!is_array($this->table_originals) || !$this->STREAM)
+      return '';
     $length = $this->table_originals[$num * 2 + 1];
     $offset = $this->table_originals[$num * 2 + 2];
     if (! $length)
@@ -191,6 +199,8 @@ class gettext_reader {
    * @return string Requested string if found, otherwise ''
    */
   function get_translation_string($num) {
+    if (!is_array($this->table_translations) || !$this->STREAM)
+      return '';
     $length = $this->table_translations[$num * 2 + 1];
     $offset = $this->table_translations[$num * 2 + 2];
     if (! $length)

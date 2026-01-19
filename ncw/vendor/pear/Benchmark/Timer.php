@@ -282,7 +282,7 @@ class Benchmark_Timer extends PEAR {
         }
 
         if ($format == 'html') {
-            $out .= "<tr style='background: silver;'><td><b>total</b></td><td>-</td><td>${total}</td><td>100.00%</td>".($showTotal ? "<td>-</td><td>-</td>" : "")."</tr>\n";
+            $out .= "<tr style='background: silver;'><td><b>total</b></td><td>-</td><td>{$total}</td><td>100.00%</td>".($showTotal ? "<td>-</td><td>-</td>" : "")."</tr>\n";
             $out .= "</table>\n";
         } else {
             $out .= str_pad('total', $this->maxStringLength);

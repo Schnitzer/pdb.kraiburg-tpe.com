@@ -28,6 +28,20 @@
 class Wcms_NewsController extends Wcms_ModuleController
 {
 
+	/**
+	 * News model instance
+	 *
+	 * @var object|null
+	 */
+	public $News = null;
+
+	/**
+	 * ACL component instance
+	 *
+	 * @var object|null
+	 */
+	public $acl = null;
+
 	
 	    /**
      * @var array
@@ -228,7 +242,7 @@ class Wcms_NewsController extends Wcms_ModuleController
 				AND language_id = " . $language_id . "
 				";
 
-			if ($_GET['mode'] == 'debug') {
+			if (isset($_GET['mode']) && $_GET['mode'] == 'debug') {
 				echo $str_query;
 				//  
 			}

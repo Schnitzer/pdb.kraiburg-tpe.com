@@ -98,9 +98,9 @@ class Ncw_Database extends PDO
                 || $encoding === 'UTF-32'
                 || $encoding === 'UTF32'
             ) {
-                // Set db default charset to utf8.
-                self::$_instance->exec('SET NAMES \'utf32\';');
-                self::$_instance->exec('SET CHARACTER SET \'utf32\';');
+                // Set db default charset to utf8 (utf32 is not supported by MySQL for client connection).
+                self::$_instance->exec('SET NAMES \'utf8mb4\';');
+                self::$_instance->exec('SET CHARACTER SET \'utf8mb4\';');
             }
             if (true === Ncw_Configure::check('Cache.queries')) {
                 self::$_instance->_cache_prepared_statements = Ncw_Configure::read('Cache.queries');
@@ -183,6 +183,7 @@ class Ncw_Database extends PDO
      *
      * @return PDOStatement
      */
+    #[\ReturnTypeWillChange]
     public function prepare ($sql, $driver_options = array())
     {
         if (Ncw_Configure::read('debug_mode') > 1) {
@@ -209,6 +210,7 @@ class Ncw_Database extends PDO
      *
      * @return PDOStatement
      */
+    #[\ReturnTypeWillChange]
     public function exec ($sql)
     {
         if (Ncw_Configure::read('debug_mode') > 1) {

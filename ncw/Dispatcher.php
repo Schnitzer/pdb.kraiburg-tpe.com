@@ -517,7 +517,7 @@ class Ncw_Dispatcher extends Ncw_Object
         } else {
             $url = $_GET['url'];
         }
-        if ($url{0} == '/') {
+        if ($url[0] == '/') {
             $url = substr($url, 1);
         }
         return $url;

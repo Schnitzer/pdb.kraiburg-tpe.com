@@ -1,5 +1,6 @@
 <?php
 /* SVN FILE: $Id$ */
+
 /**
  * Contains the Published Site class.
  *
@@ -20,6 +21,7 @@
  * @lastmodified	$LastChangedDate$
  * @license			http://www.netzcraftwerk.com/licenses/
  */
+
 /**
  * Published Site class.
  *
@@ -27,38 +29,26 @@
  */
 class Wcms_PublishedSite extends Wcms_Site
 {
-	/**
-	 * Has many associations
-	 *
-	 * @var array
-	 */
-	public $has_many = array("PublishedSitelanguage", 'PublishedComponent', 'PublishedNewssite');
+    /**
+     * Has many associations
+     *
+     * @var array
+     */
+    public $has_many = array('PublishedSitelanguage', 'PublishedComponent', 'PublishedNewssite');
 
     /**
-     *
      * @return void
      */
-    public function beforeSave ()
-    {
-
-    }
+    public function beforeSave() {}
 
     /**
-     *
      * @return void
      */
-    public function beforeDelete ()
-    {
-
-    }
+    public function beforeDelete() {}
 
     /**
-     *
      * @return void
      */
-    public function afterDelete ()
-    {
-
-    }
+    public function afterDelete($deleted = null) {}
 }
 ?>

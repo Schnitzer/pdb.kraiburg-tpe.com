@@ -520,7 +520,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
     {
         $params = $this->params($model);
         if (false === empty($params)) {
-            if ($params["{$page}Page"] == true) {
+            if ($params["{$page]Page"] == true) {
                 return true;
             }
         }

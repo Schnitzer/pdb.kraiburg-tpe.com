@@ -1,54 +1,52 @@
 <?php $is_pdf = false; ?>
 
-<?php include_once ASSETS . DS . "tpepdb2" . DS . "templates"  . DS . "functions.php"; ?>
+<?php include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'functions.php'; ?>
 
-<?php $font_size_table =  "12px";
+<?php
+$font_size_table = '12px';
 
+// if ((true === isset($_GET['sid']) || true === isset($_GET['cid'])) && false == isset($_SESSION['terms'])) {
+$obj_news = new Wcms_NewsController();
+$_SESSION['terms'] = $obj_news->getTerms($_GET['ls'] ?? '');
 
-				//if ((true === isset($_GET['sid']) || true === isset($_GET['cid'])) && false == isset($_SESSION['terms'])) {
-					$obj_news = new Wcms_NewsController();
-					$_SESSION['terms'] = $obj_news->getTerms($_GET['ls']);
-					
-				//}
-			  echo '<input type="hidden" value="'.$_SESSION['terms'].'" id="termslist">';
+// }
+echo '<input type="hidden" value="' . $_SESSION['terms'] . '" id="termslist">';
 ?>
 
 <div style="width: 100%;">
-	<?php 
-		$type = "serie"; 
-    $url_type = "sid"; 
-    $id = $serie["id"]; 
-    $name = $serie["name"]; 
-    $documents = $serie["documents"]; 
+	<?php
+	$type = 'serie';
+	$url_type = 'sid';
+	$id = $serie['id'];
+	$name = $serie['name'];
+	$documents = $serie['documents'];
 
-	
+	if (!isset($arr_farben)) {
+		$arr_farben = array();
+	}
+	if (is_array($arr_farben) && count($arr_farben) < 1) {
+		$arr_farben = $this->getSerieColor($serie['id'], $language_id);
+	}
+	// var_dump($languages);
+	// include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "datacenter.phtml";
 
-											if (count($arr_farben) < 1) {
-											$arr_farben = $this->getSerieColor($serie['id'], $language_id);
-										}
-   //var_dump($languages);
-   //include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "datacenter.phtml"; 
-	
-    if (true === $is_pdf) { 
-      include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "pdf_templates" . DS . "serie_headline.phtml"; 
-			include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "pdf_templates" . DS . "serie_head.phtml"; 
-	  } else {
-			include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "serie" . DS . "serie_headline.phtml";
-		}
-    
+	if (true === $is_pdf) {
+		include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'pdf_templates' . DS . 'serie_headline.phtml';
+		include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'pdf_templates' . DS . 'serie_head.phtml';
+	} else {
+		include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'elements' . DS . 'serie' . DS . 'serie_headline.phtml';
+	}
 
-    include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "serie"  . DS . "compounds.phtml"; 
+	include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'elements' . DS . 'serie' . DS . 'compounds.phtml';
 
-		 //include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements"  . DS . "pictures.phtml"; 
-		 if (true === $is_pdf) {
-			 
-			 
-		 } else {
-			// $processingnotetypenumber = 1;
-			 //include ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound" . DS . "processing_note.phtml"; 
-			// $processingnotetypenumber = 0;
-			 //include ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound" . DS . "processing_note.phtml"; 
-		 } 
-     include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "footer.phtml"; 
+	// include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements"  . DS . "pictures.phtml";
+	if (true === $is_pdf) {
+	} else {
+		// $processingnotetypenumber = 1;
+		// include ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound" . DS . "processing_note.phtml";
+		// $processingnotetypenumber = 0;
+		// include ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound" . DS . "processing_note.phtml";
+	}
+	// include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'elements' . DS . 'footer.phtml';
 	?>
 </div>

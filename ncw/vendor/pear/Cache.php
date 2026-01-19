@@ -22,99 +22,98 @@ require_once 'PEAR.php';
 require_once 'Cache/Error.php';
 
 /**
-* Cache is a base class for cache implementations.
-*
-* The pear cache module is a generic data cache which can be used to
-* cache script runs. The idea behind the cache is quite simple. If you have
-* the same input parameters for whatever tasks/algorithm you use you'll
-* usually get the same output. So why not caching templates, functions calls,
-* graphic generation etc. Caching certain actions e.g. XSLT tranformations
-* saves you lots of time.
-*
-* The design of the cache reminds of PHPLibs session implementation. A
-* (PHPLib: session) controller uses storage container (PHPLib: ct_*.inc) to save
-* certain data (PHPLib: session data). In contrast to the session stuff it's up to
-* you to generate an ID for the data to cache. If you're using the output cache
-* you might use the script name as a seed for cache::generateID(), if your using the
-* function cache you'd use an array with all function parameters.
-*
-* Usage example of the generic data cache:
-*
-* require_once('Cache.php');
-*
-* $cache = new Cache('file', array('cache_dir' => 'cache/') );
-* $id = $cache->generateID('testentry');
-*
-* if ($data = $cache->get($id)) {
-*    print "Cache hit.<br>Data: $data";
-*
-* } else {
-*   $data = 'data of any kind';
-*   $cache->save($id, $data);
-*   print 'Cache miss.<br>';
-* }
-*
-* WARNING: No File/DB-Table-Row locking is implemented yet,
-*          it's possible, that you get corrupted data-entries under
-*          bad circumstances  (especially with the file container)
-*
-* @author   Ulf Wendel <ulf.wendel@phpdoc.de>
-* @version  $Id: Cache.php,v 1.9 2008/10/07 08:58:46 dufuz Exp $
-* @package  Cache
-* @access   public
-*/
+ * Cache is a base class for cache implementations.
+ *
+ * The pear cache module is a generic data cache which can be used to
+ * cache script runs. The idea behind the cache is quite simple. If you have
+ * the same input parameters for whatever tasks/algorithm you use you'll
+ * usually get the same output. So why not caching templates, functions calls,
+ * graphic generation etc. Caching certain actions e.g. XSLT tranformations
+ * saves you lots of time.
+ *
+ * The design of the cache reminds of PHPLibs session implementation. A
+ * (PHPLib: session) controller uses storage container (PHPLib: ct_*.inc) to save
+ * certain data (PHPLib: session data). In contrast to the session stuff it's up to
+ * you to generate an ID for the data to cache. If you're using the output cache
+ * you might use the script name as a seed for cache::generateID(), if your using the
+ * function cache you'd use an array with all function parameters.
+ *
+ * Usage example of the generic data cache:
+ *
+ * require_once('Cache.php');
+ *
+ * $cache = new Cache('file', array('cache_dir' => 'cache/') );
+ * $id = $cache->generateID('testentry');
+ *
+ * if ($data = $cache->get($id)) {
+ *    print "Cache hit.<br>Data: $data";
+ *
+ * } else {
+ *   $data = 'data of any kind';
+ *   $cache->save($id, $data);
+ *   print 'Cache miss.<br>';
+ * }
+ *
+ * WARNING: No File/DB-Table-Row locking is implemented yet,
+ *          it's possible, that you get corrupted data-entries under
+ *          bad circumstances  (especially with the file container)
+ *
+ * @author   Ulf Wendel <ulf.wendel@phpdoc.de>
+ * @version  $Id: Cache.php,v 1.9 2008/10/07 08:58:46 dufuz Exp $
+ * @package  Cache
+ * @access   public
+ */
 class Cache extends PEAR
 {
-
     /**
-    * Enables / disables caching.
-    *
-    * TODO: Add explanation what this is good for.
-    *
-    * @var      boolean
-    * @access   private
-    */
+     * Enables / disables caching.
+     *
+     * TODO: Add explanation what this is good for.
+     *
+     * @var      boolean
+     * @access   private
+     */
     var $caching = true;
 
     /**
-    * Garbage collection: probability in seconds
-    *
-    * If set to a value above 0 a garbage collection will
-    * flush all cache entries older than the specified number
-    * of seconds.
-    *
-    * @var      integer
-    * @see      $gc_probability, $gc_maxlifetime
-    * @access   public
-    */
-    var $gc_time  = 1;
+     * Garbage collection: probability in seconds
+     *
+     * If set to a value above 0 a garbage collection will
+     * flush all cache entries older than the specified number
+     * of seconds.
+     *
+     * @var      integer
+     * @see      $gc_probability, $gc_maxlifetime
+     * @access   public
+     */
+    var $gc_time = 1;
 
     /**
-    * Garbage collection: probability in percent
-    *
-    * TODO: Add an explanation.
-    *
-    * @var      integer     0 => never
-    * @see      $gc_time, $gc_maxlifetime
-    * @access   public
-    */
+     * Garbage collection: probability in percent
+     *
+     * TODO: Add an explanation.
+     *
+     * @var      integer     0 => never
+     * @see      $gc_time, $gc_maxlifetime
+     * @access   public
+     */
     var $gc_probability = 1;
 
     /**
-    * Garbage collection: delete all entries not use for n seconds.
-    *
-    * Default is one day, 60 * 60 * 24 = 86400 seconds.
-    *
-    * @var  integer
-    * @see  $gc_probability, $gc_time
-    */
+     * Garbage collection: delete all entries not use for n seconds.
+     *
+     * Default is one day, 60 * 60 * 24 = 86400 seconds.
+     *
+     * @var  integer
+     * @see  $gc_probability, $gc_time
+     */
     var $gc_maxlifetime = 86400;
 
     /**
-    * Storage container object.
-    *
-    * @var  object Cache_Container
-    */
+     * Storage container object.
+     *
+     * @var  object Cache_Container
+     */
     var $container;
 
     //
@@ -122,22 +121,47 @@ class Cache extends PEAR
     //
 
     /**
-    *
-    * @param    string  Name of container class
-    * @param    array   Array with container class options
-    */
-    function Cache($container, $container_options = '')
+     * @param    string  Name of container class
+     * @param    array   Array with container class options
+     */
+    function __construct($container, $container_options = '')
     {
-        $this->PEAR();
+        error_log("Cache::__construct() called with container: $container");
+        parent::__construct();
         $container = strtolower($container);
         $container_class = 'Cache_Container_' . $container;
         $container_classfile = 'Cache/Container/' . $container . '.php';
 
+        error_log("Cache: Including $container_classfile");
         include_once $container_classfile;
+
+        if (!class_exists($container_class)) {
+            error_log("Cache: ERROR - Class $container_class not found!");
+            trigger_error("Cache container class '$container_class' not found", E_USER_ERROR);
+            return;
+        }
+
+        error_log("Cache: Creating instance of $container_class");
         $this->container = new $container_class($container_options);
+
+        if ($this->container === null) {
+            error_log('Cache: ERROR - Container is null after instantiation!');
+            trigger_error("Failed to instantiate cache container '$container_class'", E_USER_ERROR);
+        } else {
+            error_log('Cache: Container successfully created: ' . get_class($this->container));
+        }
     }
 
-    //deconstructor
+    /**
+     * PHP4 constructor for backwards compatibility
+     * @deprecated
+     */
+    function Cache($container, $container_options = '')
+    {
+        $this->__construct($container, $container_options);
+    }
+
+    // deconstructor
     function _Cache()
     {
         $this->garbageCollection();
@@ -166,13 +190,13 @@ class Cache extends PEAR
     }
 
     /**
-    * Returns the requested dataset it if exists and is not expired
-    *
-    * @param    string  dataset ID
-    * @param    string  cache group
-    * @return   mixed   cached data or null on failure
-    * @access   public
-    */
+     * Returns the requested dataset it if exists and is not expired
+     *
+     * @param    string  dataset ID
+     * @param    string  cache group
+     * @return   mixed   cached data or null on failure
+     * @access   public
+     */
     function get($id, $group = 'default')
     {
         if (!$this->caching) {
@@ -183,160 +207,160 @@ class Cache extends PEAR
             return $this->load($id, $group);
         }
         return null;
-    } // end func get
+    }  // end func get
 
     /**
-    * Stores the given data in the cache.
-    *
-    * @param    string  dataset ID used as cache identifier
-    * @param    mixed   data to cache
-    * @param    integer lifetime of the cached data in seconds - 0 for endless
-    * @param    string  cache group
-    * @return   boolean
-    * @access   public
-    */
+     * Stores the given data in the cache.
+     *
+     * @param    string  dataset ID used as cache identifier
+     * @param    mixed   data to cache
+     * @param    integer lifetime of the cached data in seconds - 0 for endless
+     * @param    string  cache group
+     * @return   boolean
+     * @access   public
+     */
     function save($id, $data, $expires = 0, $group = 'default')
     {
         if (!$this->caching) {
             return true;
         }
-        return $this->extSave($id, $data, '',$expires, $group);
-    } // end func save
+        return $this->extSave($id, $data, '', $expires, $group);
+    }  // end func save
 
     /**
-    * Stores a dataset with additional userdefined data.
-    *
-    * @param    string  dataset ID
-    * @param    mixed   data to store
-    * @param    string  additional userdefined data
-    * @param    mixed   userdefined expire date
-    * @param    string  cache group
-    * @return   boolean
-    * @throws   Cache_Error
-    * @access   public
-    * @see      getUserdata()
-    */
+     * Stores a dataset with additional userdefined data.
+     *
+     * @param    string  dataset ID
+     * @param    mixed   data to store
+     * @param    string  additional userdefined data
+     * @param    mixed   userdefined expire date
+     * @param    string  cache group
+     * @return   boolean
+     * @throws   Cache_Error
+     * @access   public
+     * @see      getUserdata()
+     */
     function extSave($id, $cachedata, $userdata, $expires = 0, $group = 'default')
     {
         if (!$this->caching) {
             return true;
         }
         return $this->container->save($id, $cachedata, $expires, $group, $userdata);
-    } // end func extSave
+    }  // end func extSave
 
     /**
-    * Loads the given ID from the cache.
-    *
-    * @param    string  dataset ID
-    * @param    string  cache group
-    * @return   mixed   cached data or null on failure
-    * @access   public
-    */
+     * Loads the given ID from the cache.
+     *
+     * @param    string  dataset ID
+     * @param    string  cache group
+     * @return   mixed   cached data or null on failure
+     * @access   public
+     */
     function load($id, $group = 'default')
     {
         if (!$this->caching) {
             return '';
         }
         return $this->container->load($id, $group);
-    } // end func load
+    }  // end func load
 
     /**
-    * Returns the userdata field of a cached data set.
-    *
-    * @param    string  dataset ID
-    * @param    string  cache group
-    * @return   string  userdata
-    * @access   public
-    * @see      extSave()
-    */
+     * Returns the userdata field of a cached data set.
+     *
+     * @param    string  dataset ID
+     * @param    string  cache group
+     * @return   string  userdata
+     * @access   public
+     * @see      extSave()
+     */
     function getUserdata($id, $group = 'default')
     {
         if (!$this->caching) {
             return '';
         }
         return $this->container->getUserdata($id, $group);
-    } // end func getUserdata
+    }  // end func getUserdata
 
     /**
-    * Removes the specified dataset from the cache.
-    *
-    * @param    string  dataset ID
-    * @param    string  cache group
-    * @return   boolean
-    * @access   public
-    */
+     * Removes the specified dataset from the cache.
+     *
+     * @param    string  dataset ID
+     * @param    string  cache group
+     * @return   boolean
+     * @access   public
+     */
     function remove($id, $group = 'default')
     {
         if (!$this->caching) {
             return true;
         }
         return $this->container->remove($id, $group);
-    } // end func remove
+    }  // end func remove
 
     /**
-    * Flushes the cache - removes all data from it
-    *
-    * @param    string  cache group, if empty all groups will be flashed
-    * @return   integer number of removed datasets
-    */
+     * Flushes the cache - removes all data from it
+     *
+     * @param    string  cache group, if empty all groups will be flashed
+     * @return   integer number of removed datasets
+     */
     function flush($group = 'default')
     {
         if (!$this->caching) {
             return true;
         }
         return $this->container->flush($group);
-    } // end func flush
+    }  // end func flush
 
     /**
-    * Checks if a dataset exists.
-    *
-    * Note: this does not say that the cached data is not expired!
-    *
-    * @param    string  dataset ID
-    * @param    string  cache group
-    * @return   boolean
-    * @access   public
-    */
+     * Checks if a dataset exists.
+     *
+     * Note: this does not say that the cached data is not expired!
+     *
+     * @param    string  dataset ID
+     * @param    string  cache group
+     * @return   boolean
+     * @access   public
+     */
     function isCached($id, $group = 'default')
     {
         if (!$this->caching) {
             return false;
         }
         return $this->container->isCached($id, $group);
-    } // end func isCached
+    }  // end func isCached
 
     /**
-    * Checks if a dataset is expired
-    *
-    * @param    string  dataset ID
-    * @param    string  cache group
-    * @param    integer maximum age for the cached data in seconds - 0 for endless
-    *                   If the cached data is older but the given lifetime it will
-    *                   be removed from the cache. You don't have to provide this
-    *                   argument if you call isExpired(). Every dataset knows
-    *                   it's expire date and will be removed automatically. Use
-    *                   this only if you know what you're doing...
-    * @return   boolean
-    * @access   public
-    */
+     * Checks if a dataset is expired
+     *
+     * @param    string  dataset ID
+     * @param    string  cache group
+     * @param    integer maximum age for the cached data in seconds - 0 for endless
+     *                   If the cached data is older but the given lifetime it will
+     *                   be removed from the cache. You don't have to provide this
+     *                   argument if you call isExpired(). Every dataset knows
+     *                   it's expire date and will be removed automatically. Use
+     *                   this only if you know what you're doing...
+     * @return   boolean
+     * @access   public
+     */
     function isExpired($id, $group = 'default', $max_age = 0)
     {
         if (!$this->caching) {
             return true;
         }
         return $this->container->isExpired($id, $group, $max_age);
-    } // end func isExpired
+    }  // end func isExpired
 
     /**
-    * Generates a "unique" ID for the given value
-    *
-    * This is a quick but dirty hack to get a "unique" ID for a any kind of variable.
-    * ID clashes might occur from time to time although they are extreme unlikely!
-    *
-    * @param    mixed   variable to generate a ID for
-    * @return   string  "unique" ID
-    * @access   public
-    */
+     * Generates a "unique" ID for the given value
+     *
+     * This is a quick but dirty hack to get a "unique" ID for a any kind of variable.
+     * ID clashes might occur from time to time although they are extreme unlikely!
+     *
+     * @param    mixed   variable to generate a ID for
+     * @return   string  "unique" ID
+     * @access   public
+     */
     function generateID($variable)
     {
         // WARNING: ID clashes are possible although unlikely
@@ -344,11 +368,11 @@ class Cache extends PEAR
     }
 
     /**
-    * Calls the garbage collector of the storage object with a certain probability
-    *
-    * @param    boolean Force a garbage collection run?
-    * @see  $gc_probability, $gc_time
-    */
+     * Calls the garbage collector of the storage object with a certain probability
+     *
+     * @param    boolean Force a garbage collection run?
+     * @see  $gc_probability, $gc_time
+     */
     function garbageCollection($force = false)
     {
         static $last_run = 0;
@@ -362,7 +386,6 @@ class Cache extends PEAR
             $this->container->garbageCollection($this->gc_maxlifetime);
             $last_run = time();
         }
-    } // end func garbageCollection
-
-} // end class cache
+    }  // end func garbageCollection
+}  // end class cache
 ?>

@@ -482,79 +482,85 @@ FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 
 						$str_search = str_replace(',', ' ', $str_search);
 						$arr_search_tmp = explode(' ' ,trim($str_search));
-					
-					// Build search conditions first
-					$search_conditions = '';
-					$ctarrtmp = 0;
-					//foreach( $arr_search_tmp As $str_search_tmp) {
-					//	$str_search_tmp = trim($str_search_tmp);
-					//	if (strlen($str_search_tmp) > 1 && strtolower($str_search_tmp) != 'zu' && strtolower($str_search_tmp) != 'to' && strtolower($str_search_tmp) != 'auf' && strtolower($str_search_tmp) != 'and') {
-							// Hier werden die Materailvorteile, Applications und die Approvals mit dem Suchbegriff verglichen, wenn ein Treffer vorleigt wird die CompoundID zurückgegeben.
-							$arr_compound_ids = $this->_getCompoudLabels($str_search);
-							//return implode(';', $arr_compounds);
-							$str_or_compound_id = '';
-							foreach ($arr_compound_ids As $compound_tmp) {
-								$str_or_compound_id .= ' OR compound.id ="'.$compound_tmp.'"';
+						$str_where .= $pre_where .' ((';
+						$ctarrtmp = 0;
+						//foreach( $arr_search_tmp As $str_search_tmp) {
+						//	$str_search_tmp = trim($str_search_tmp);
+						//	if (strlen($str_search_tmp) > 1 && strtolower($str_search_tmp) != 'zu' && strtolower($str_search_tmp) != 'to' && strtolower($str_search_tmp) != 'auf' && strtolower($str_search_tmp) != 'and') {
+								// Hier werden die Materailvorteile, Applications und die Approvals mit dem Suchbegriff verglichen, wenn ein Treffer vorleigt wird die CompoundID zurückgegeben.
+								$arr_compound_ids = $this->_getCompoudLabels($str_search);
+								//return implode(';', $arr_compounds);
+								$str_or_compound_id = '';
+								foreach ($arr_compound_ids As $compound_tmp) {
+									$str_or_compound_id .= ' OR compound.id ="'.$compound_tmp.'"';
+								}
+						//	}
+						//}
+						
+						foreach( $arr_search_tmp As $str_search_tmp) {
+							$str_search_tmp = trim($str_search_tmp);
+							// Mind 3 Buchstaben länge bzw. wenn nur 2 dann wird hinten ein Leerzeichen angehängt
+							if(strlen($str_search_tmp) < 3) {
+							//	$str_search_tmp =  $str_search_tmp . ' ';
 							}
-					//	}
-					//}
-					
-					foreach( $arr_search_tmp As $str_search_tmp) {
-						$str_search_tmp = trim($str_search_tmp);
-						// Mind 3 Buchstaben länge bzw. wenn nur 2 dann wird hinten ein Leerzeichen angehängt
-						if(strlen($str_search_tmp) < 3) {
-						//	$str_search_tmp =  $str_search_tmp . ' ';
+							
+							if (strlen($str_search_tmp) > 1 && strtolower($str_search_tmp) != 'zu ' && strtolower($str_search_tmp) != 'to ' && strtolower($str_search_tmp) != 'auf' && strtolower($str_search_tmp) != 'and') {
+								if ($ctarrtmp > 0) {
+									$str_where .= ') AND (';
+								}
+								if(strlen($str_search_tmp) < 3) {
+									$str_where .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
+									OR serie.name REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
+									OR serie_values.description REGEXP "[[:<:]]' . $str_search_tmp . ' [[:>:]]"
+									OR serie_values.text1 REGEXP "[[:<:]]' . $str_search_tmp . ' [[:>:]]"
+									OR serie_values.text2 REGEXP "[[:<:]]' . $str_search_tmp . ' [[:>:]]"
+									OR compounddescription.description LIKE "%' . $str_search_tmp . ' %"
+									)';
+								} else {
+									$str_where .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
+									OR serie.name REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
+									OR serie_values.description REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
+									OR serie_values.text1 REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
+									OR serie_values.text2 REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
+									OR compounddescription.description LIKE "%' . $str_search_tmp . '%"
+									)';
+								}
+
+								//	$str_where .= $str_or_compound_id;
+								/*
+									$str_where .= ' OR (compound.name REGEXP "[[:<:]]' . $str_search_tmp . ',[[:>:]]"
+									OR serie.name REGEXP "[[:<:]]' . $str_search_tmp . ',[[:>:]]"
+									OR serie_values.description REGEXP "[[:<:]]' . $str_search_tmp . ',[[:>:]]"
+									OR serie_values.text1 REGEXP "[[:<:]]' . $str_search_tmp . ',[[:>:]]"
+									OR serie_values.text2 REGEXP "[[:<:]]' . $str_search_tmp . ',[[:>:]]"
+									OR compounddescription.description LIKE "%' . $str_search_tmp . '%"
+									)';*/
+								/*
+									$str_where .= ' OR (compound.name LIKE "%' . $str_search_tmp . '%"
+									OR serie.name LIKE  "%' . $str_search_tmp . '%"
+									OR serie_values.description LIKE  "%' . $str_search_tmp . '%"
+									OR serie_values.text1 LIKE  "%' . $str_search_tmp . '%"
+									OR serie_values.text2 LIKE  "%' . $str_search_tmp . '%"
+									)';*/
+								
+									$str_where .= $str_or_compound_id;
+							}
+
+							$ctarrtmp++;
 						}
 						
-						if (strlen($str_search_tmp) > 1 && strtolower($str_search_tmp) != 'zu ' && strtolower($str_search_tmp) != 'to ' && strtolower($str_search_tmp) != 'auf' && strtolower($str_search_tmp) != 'and') {
-							if ($ctarrtmp > 0) {
-								$search_conditions .= ') AND (';
-							}
-							if(strlen($str_search_tmp) < 3) {
-								$search_conditions .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
-								OR serie.name REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
-								OR serie_values.description REGEXP "[[:<:]]' . $str_search_tmp . ' [[:>:]]"
-								OR serie_values.text1 REGEXP "[[:<:]]' . $str_search_tmp . ' [[:>:]]"
-								OR serie_values.text2 REGEXP "[[:<:]]' . $str_search_tmp . ' [[:>:]]"
-								OR compounddescription.description LIKE "%' . $str_search_tmp . ' %"
-								)';
-							} else {
-								$search_conditions .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
-								OR serie.name REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
-								OR serie_values.description REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
-								OR serie_values.text1 REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
-								OR serie_values.text2 REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
-								OR compounddescription.description LIKE "%' . $str_search_tmp . '%"
-								)';
-							}
-
-							//	$search_conditions .= $str_or_compound_id;
-							/*
-								$search_conditions .= ' OR (compound.name REGEXP "[[:<:]]' . $str_search_tmp . ',[[:>:]]"
-								OR serie.name REGEXP "[[:<:]]' . $str_search_tmp . ',[[:>:]]"
-								OR serie_values.description REGEXP "[[:<:]]' . $str_search_tmp . ',[[:>:]]"
-								OR serie_values.text1 REGEXP "[[:<:]]' . $str_search_tmp . ',[[:>:]]"
-								OR serie_values.text2 REGEXP "[[:<:]]' . $str_search_tmp . ',[[:>:]]"
-								OR compounddescription.description LIKE "%' . $str_search_tmp . '%"
-								)';*/
-							/*
-								$search_conditions .= ' OR (compound.name LIKE "%' . $str_search_tmp . '%"
-								OR serie.name LIKE  "%' . $str_search_tmp . '%"
-								OR serie_values.description LIKE  "%' . $str_search_tmp . '%"
-								OR serie_values.text1 LIKE  "%' . $str_search_tmp . '%"
-								OR serie_values.text2 LIKE  "%' . $str_search_tmp . '%"
-								)';*/
-							
-								$search_conditions .= $str_or_compound_id;
-						}
-
-						$ctarrtmp++;
+						$str_where .='))';
+						//echo $str_or_compound_id;
 					}
-					
-					// Only add WHERE clause if we have search conditions
-					if (!empty($search_conditions)) {
-						$str_where .= $pre_where .' ((' . $search_conditions . '))';
-					}
+				}
+
+			
+			
+			$testmode = Ncw_Library_Sanitizer::escape($this->params['url']['testmode']);
+				// Range Hardness
+				if (true == isset($this->params['url']['hard']) && strlen($this->params['url']['pdb2_search']) < 1) {
+					$str_hard = Ncw_Library_Sanitizer::escape($this->params['url']['hard']);
+					if ($str_hard == 'hardness') {
 						if (true == strstr($str_where, 'WHERE')) {
 							$pre_where = ' AND ';
 						} else {
@@ -626,109 +632,91 @@ FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 					}
 				}
 				
-		
-	
-	// Wenn eine Farbe gewählt wurde
-	if ( true == isset($this->params['url']['c_10']) ||  true == isset($this->params['url']['c_11']) || true == isset($this->params['url']['c_12']) || true == isset($this->params['url']['c_13']) ) {
-		if (true == strstr($str_where, 'WHERE')) {
-			$pre_where = ' AND ';
-		} else {
-			$pre_where = ' WHERE ';
-		}
-		$color_conditions = '';
-		$color_or = '';
-		// Wenn eine Farbe 1 gewählt wurde
-		if ( true == isset($this->params['url']['c_10']) ) {
-			$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_10']);
-			if (!empty($search_color_id)) {
-				$color_conditions .=  $color_or . ' (
-					color.internal_id = "' . $search_color_id . '"
-				)';
-				$color_or = ' OR ';
+				
+			
+			// Wenn eine Farbe gewählt wurde
+			if ( true == isset($this->params['url']['c_10']) ||  true == isset($this->params['url']['c_11']) || true == isset($this->params['url']['c_12']) || true == isset($this->params['url']['c_13']) ) {
+				if (true == strstr($str_where, 'WHERE')) {
+					$pre_where = ' AND ';
+				} else {
+					$pre_where = ' WHERE ';
+				}
+				$str_where .= $pre_where . ' ( ';
+				$color_or = '';
+				// Wenn eine Farbe 1 gewählt wurde
+				if ( true == isset($this->params['url']['c_10']) ) {
+					$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_10']);
+						$str_where .=  $color_or . ' (
+							color.internal_id = "' . $search_color_id . '"
+						)';
+					$color_or = ' OR ';
+				}
+				// Wenn eine Farbe 2 gewählt wurde
+				if ( true == isset($this->params['url']['c_11']) ) {
+					$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_11']);
+						$str_where .=  $color_or . ' (
+							color.internal_id = "' . $search_color_id . '"
+						)';
+					$color_or = ' OR ';
+				}
+				// Wenn eine Farbe 3 gewählt wurde
+				if ( true == isset($this->params['url']['c_12']) ) {
+					$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_12']);
+						$str_where .=  $color_or . ' (
+							color.internal_id = "' . $search_color_id . '"
+						)';
+					$color_or = ' OR ';
+				}
+				// Wenn eine Farbe 4 gewählt wurde
+				if ( true == isset($this->params['url']['c_13']) ) {
+					$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_13']);
+						$str_where .=  $color_or . ' (
+							color.internal_id = "' . $search_color_id . '"
+						)';
+					$color_or = ' OR ';
+				}
+				$str_where .= ' ) ';
 			}
-		}
-		// Wenn eine Farbe 2 gewählt wurde
-		if ( true == isset($this->params['url']['c_11']) ) {
-			$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_11']);
-			if (!empty($search_color_id)) {
-				$color_conditions .=  $color_or . ' (
-					color.internal_id = "' . $search_color_id . '"
-				)';
-				$color_or = ' OR ';
-			}
-		}
-		// Wenn eine Farbe 3 gewählt wurde
-		if ( true == isset($this->params['url']['c_12']) ) {
-			$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_12']);
-			if (!empty($search_color_id)) {
-				$color_conditions .=  $color_or . ' (
-					color.internal_id = "' . $search_color_id . '"
-				)';
-				$color_or = ' OR ';
-			}
-		}
-		// Wenn eine Farbe 4 gewählt wurde
-		if ( true == isset($this->params['url']['c_13']) ) {
-			$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_13']);
-			if (!empty($search_color_id)) {
-				$color_conditions .=  $color_or . ' (
-					color.internal_id = "' . $search_color_id . '"
-				)';
-				$color_or = ' OR ';
-			}
-		}
-		if (!empty($color_conditions)) {
-			$str_where .= $pre_where . ' ( ' . $color_conditions . ' ) ';
-		}
-	}
 
-		
-	// Wenn eine Region gewählt wurde
-	if ( true == isset($this->params['url']['r_10']) ||  true == isset($this->params['url']['r_11']) ||  true == isset($this->params['url']['r_12'])) {
-		if (true == strstr($str_where, 'WHERE')) {
-			$pre_where = ' AND ';
-		} else {
-			$pre_where = ' WHERE ';
-		}
-		$region_conditions = '';
-		$region_or = '';
-		// Wenn eine Region 1 gewählt wurde
-		if ( true == isset($this->params['url']['r_10']) ) {
-			$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_10']);
-			if (!empty($search_region_str)) {
-				$search_region_id = 1;
-				$region_conditions .=  $region_or . ' (
-					serie_region.region_id = "' . $search_region_id . '"
-				)';
-				$region_or = ' OR ';
+				
+			// Wenn eine Region gewählt wurde
+			if ( true == isset($this->params['url']['r_10']) ||  true == isset($this->params['url']['r_11']) ||  true == isset($this->params['url']['r_12'])) {
+				if (true == strstr($str_where, 'WHERE')) {
+					$pre_where = ' AND ';
+				} else {
+					$pre_where = ' WHERE ';
+				}
+				$str_where .= $pre_where . ' ( ';
+				$region_or = '';
+				// Wenn eine Region 1 gewählt wurde
+				if ( true == isset($this->params['url']['r_10']) ) {
+					$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_10']);
+						$search_region_id = 1;
+						$str_where .=  $region_or . ' (
+							serie_region.region_id = "' . $search_region_id . '"
+						)';
+					$region_or = ' OR ';
+				}
+				// Wenn eine Region 2 gewählt wurde
+				if ( true == isset($this->params['url']['r_11']) ) {
+					$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_11']);
+						$search_region_id = 2;
+						$str_where .=  $region_or . ' (
+							serie_region.region_id = "' . $search_region_id . '"
+						)';
+					$region_or = ' OR ';
+				}
+				// Wenn eine Region 3 gewählt wurde
+				if ( true == isset($this->params['url']['r_12']) ) {
+					$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_12']);
+						$search_region_id = 3;
+						$str_where .=  $region_or . ' (
+							serie_region.region_id = "' . $search_region_id . '"
+						)';
+					$region_or = ' OR ';
+				}
+				$str_where .= ' ) ';
 			}
-		}
-		// Wenn eine Region 2 gewählt wurde
-		if ( true == isset($this->params['url']['r_11']) ) {
-			$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_11']);
-			if (!empty($search_region_str)) {
-				$search_region_id = 2;
-				$region_conditions .=  $region_or . ' (
-					serie_region.region_id = "' . $search_region_id . '"
-				)';
-				$region_or = ' OR ';
-			}
-		}
-		// Wenn eine Region 3 gewählt wurde
-		if ( true == isset($this->params['url']['r_12']) ) {
-			$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_12']);
-			if (!empty($search_region_str)) {
-				$search_region_id = 3;
-				$region_conditions .=  $region_or . ' (
-					serie_region.region_id = "' . $search_region_id . '"
-				)';
-				$region_or = ' OR ';
-			}
-		}
-		if (!empty($region_conditions)) {
-			$str_where .= $pre_where . ' ( ' . $region_conditions . ' ) ';
-		}
-	}
 			
 
 
@@ -779,7 +767,6 @@ FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 				$language = 'en';
 				$pre_where = '';
 			  	$str_where = '';
-				$str_where2 = '';
 				if (false === Ncw_Components_Session::checkInAll('PDB')) {
 					if (true == strstr($str_where, 'WHERE')) {
 						$pre_where = ' AND compound.pdb20 = 1 AND';
@@ -822,7 +809,7 @@ FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 					
 					$ct_label_id++;
 				}
-				if ($first_flag == false && !empty($label_str)) {
+				if ($first_flag == false) {
 					$str_where .= $pre_where ." ( " . $label_str . " )";
 				} 
 		// Insert term Suchbegriff speichern
@@ -862,68 +849,58 @@ FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 						$str_lang = Ncw_Library_Sanitizer::escape($_GET["l"]);
 			$str_insert_wcms_search = "INSERT INTO ncw_wcms_search (term, checkbox, type, lang, modified, vorgang_id) VALUES ('" . $str_search . "', '', '', '" . $str_lang . "', '" . date('Y-m-d H:i:s') . "', 0)";
 						
-					// Build search conditions first
-					$search_conditions = '';
-					$str_search = str_replace(',', ' ', $str_search);
-					$arr_search_tmp = explode(' ' ,trim($str_search));
-					$ctarrtmp = 0;
-					
-					foreach( $arr_search_tmp As $str_search_tmp) {
-						$str_search_tmp = trim($str_search_tmp);
+						foreach( $arr_search_tmp As $str_search_tmp) {
+							$str_search_tmp = trim($str_search_tmp);
 
-						$str_search_tmp = $this->suchbegriffReinigen($str_search_tmp);
+							$str_search_tmp = $this->suchbegriffReinigen($str_search_tmp);
 
-						// Mind 3 Buchstaben länge bzw. wenn nur 2 dann wird hinten ein Leerzeichen angehängt
-						if(strlen($str_search_tmp) < 3) {
-						//	$str_search_tmp = $str_search_tmp . ' ';
-						}
-						if (strlen($str_search_tmp) > 1 && strtolower($str_search_tmp) != 'zu' && strtolower($str_search_tmp) != 'to' && strtolower($str_search_tmp) != 'auf' && strtolower($str_search_tmp) != 'and') {
-							if ($ctarrtmp > 0) {
-								$search_conditions .= ') AND (';
-							}
+							// Mind 3 Buchstaben länge bzw. wenn nur 2 dann wird hinten ein Leerzeichen angehängt
 							if(strlen($str_search_tmp) < 3) {
-								$str_where2 .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
-								OR serie.name LIKE "%' . trim($str_search_tmp) . '%"
-								OR serie_values.description REGEXP "[[:<:]]' . $str_search_tmp . ' [[:>:]]"
-								OR serie_values.text1 REGEXP "[[:<:]]' . $str_search_tmp . ' [[:>:]]"
-								OR serie_values.text2 REGEXP "[[:<:]]' . $str_search_tmp . ' [[:>:]]"
-								OR compounddescription.description LIKE "%' . $str_search_tmp . ' %"
-								)';
-							} else {
-								$str_where2 .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
-								OR serie.name LIKE "%' . trim($str_search_tmp) . '%"
-								OR serie_values.description REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
-								OR serie_values.text1 REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
-								OR serie_values.text2 REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
-								OR compounddescription.description LIKE "%' . $str_search_tmp . '%"
-								)';
+							//	$str_search_tmp = $str_search_tmp . ' ';
 							}
-						
-							// abgespeckte Version da die Obige sehr sehr langsam ist - Aufrufe sind teils 20 mal schneller mit der neuen Methode
-							if(strlen($str_search_tmp) < 3) {
-								$search_conditions .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
-								OR serie.name LIKE "%' . trim($str_search_tmp) . '%"
-								OR serie_values.description LIKE "%' . trim($str_search_tmp) . '%"
-								)';
-							} else {
-								$search_conditions .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
-								OR serie.name LIKE "%' . trim($str_search_tmp) . '%"
-								OR compounddescription.description LIKE "%' . $str_search_tmp . '%"
-								)';
+							if (strlen($str_search_tmp) > 1 && strtolower($str_search_tmp) != 'zu' && strtolower($str_search_tmp) != 'to' && strtolower($str_search_tmp) != 'auf' && strtolower($str_search_tmp) != 'and') {
+								if ($ctarrtmp > 0) {
+									$str_where .= ') AND (';
+								}
+								if(strlen($str_search_tmp) < 3) {
+									$str_where2 .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
+									OR serie.name LIKE "%' . trim($str_search_tmp) . '%"
+									OR serie_values.description REGEXP "[[:<:]]' . $str_search_tmp . ' [[:>:]]"
+									OR serie_values.text1 REGEXP "[[:<:]]' . $str_search_tmp . ' [[:>:]]"
+									OR serie_values.text2 REGEXP "[[:<:]]' . $str_search_tmp . ' [[:>:]]"
+									OR compounddescription.description LIKE "%' . $str_search_tmp . ' %"
+									)';
+								} else {
+									$str_where2 .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
+									OR serie.name LIKE "%' . trim($str_search_tmp) . '%"
+									OR serie_values.description REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
+									OR serie_values.text1 REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
+									OR serie_values.text2 REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
+									OR compounddescription.description LIKE "%' . $str_search_tmp . '%"
+									)';
+								}
+							
+								// abgespeckte Version da die Obige sehr sehr langsam ist - Aufrufe sind teils 20 mal schneller mit der neuen Methode
+								if(strlen($str_search_tmp) < 3) {
+									$str_where .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
+									OR serie.name LIKE "%' . trim($str_search_tmp) . '%"
+									OR serie_values.description LIKE "%' . trim($str_search_tmp) . '%"
+									)';
+								} else {
+									$str_where .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
+									OR serie.name LIKE "%' . trim($str_search_tmp) . '%"
+									OR compounddescription.description LIKE "%' . $str_search_tmp . '%"
+									)';
+								}
+
+								$str_where .= $str_or_compound_id;
 							}
 
-							$search_conditions .= $str_or_compound_id;
+							$ctarrtmp++;
 						}
-
-						$ctarrtmp++;
-					}
-					
-					// Only add WHERE clause if we have search conditions
-					if (!empty($search_conditions)) {
-						$str_where .= $pre_where .' ((' . $search_conditions . '))';
+						$str_where .='))';
 					}
 				}
-			}
 			
 			$testmode = isset($this->params['url']['testmode']) ? Ncw_Library_Sanitizer::escape($this->params['url']['testmode']) : '';
 		// Range Hardness
@@ -950,11 +927,10 @@ FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 			$str_where .= $pre_where .' (
 					va.value <  "' . $str_search_max . '"
 					AND va.value >  "' . $str_search_min . '"
+					)
 					AND (va.internal_id = "00000101" OR va.internal_id = "00000103")
 			)';
 		}
-					
-					if ($str_hard == 'supersoft') {
 						if (true == strstr($str_where, 'WHERE')) {
 							$pre_where = ' AND ';
 						} else {
@@ -1040,108 +1016,92 @@ FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 				} else {
 					$pre_where = ' WHERE ';
 				}
-		$color_conditions = '';
-		$color_or = '';
-		// Wenn eine Farbe 1 gewählt wurde
-		if ( true == isset($this->params['url']['c_10']) ) {
-			$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_10']);
-			if (!empty($search_color_id)) {
-				$color_conditions .=  $color_or . ' (
-					color.internal_id = "' . $search_color_id . '"
-				)';
-				$color_or = ' OR ';
+				$str_where .= $pre_where . ' ( ';
+				$color_or = '';
+				// Wenn eine Farbe 1 gewählt wurde
+				if ( true == isset($this->params['url']['c_10']) ) {
+					$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_10']);
+						$str_where .=  $color_or . ' (
+							color.internal_id = "' . $search_color_id . '"
+						)';
+					$color_or = ' OR ';
+				}
+				// Wenn eine Farbe 2 gewählt wurde
+				if ( true == isset($this->params['url']['c_11']) ) {
+					$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_11']);
+						$str_where .=  $color_or . ' (
+							color.internal_id = "' . $search_color_id . '"
+						)';
+					$color_or = ' OR ';
+				}
+				// Wenn eine Farbe 3 gewählt wurde
+				if ( true == isset($this->params['url']['c_12']) ) {
+					$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_12']);
+						$str_where .=  $color_or . ' (
+							color.internal_id = "' . $search_color_id . '"
+						)';
+					$color_or = ' OR ';
+				}
+				// Wenn eine Farbe 4 gewählt wurde
+				if ( true == isset($this->params['url']['c_13']) ) {
+					$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_13']);
+						$str_where .=  $color_or . ' (
+							color.internal_id = "' . $search_color_id . '"
+						)';
+					$color_or = ' OR ';
+				}
+				$str_where .= ' ) ';
 			}
-		}
-		// Wenn eine Farbe 2 gewählt wurde
-		if ( true == isset($this->params['url']['c_11']) ) {
-			$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_11']);
-			if (!empty($search_color_id)) {
-				$color_conditions .=  $color_or . ' (
-					color.internal_id = "' . $search_color_id . '"
-				)';
-				$color_or = ' OR ';
+			
+			// Wenn eine Region gewählt wurde
+			if ( true == isset($this->params['url']['r_10']) ||  true == isset($this->params['url']['r_11']) ||  true == isset($this->params['url']['r_12'])) {
+				
+				// Insert term Suchbegriff speichern
+				$str_lang = Ncw_Library_Sanitizer::escape($_GET["l"]);
+			$str_insert_wcms_search = "INSERT INTO ncw_wcms_search (checkbox, term, type, lang, modified, vorgang_id) VALUES ('" . $this->params['url']['c_11'] . "', '', 'region', '" . $str_lang . "', '" . date('Y-m-d H:i:s') . "', 0)";
+				$sth = $db->prepare( $str_insert_wcms_search);
+				$sth->execute();
+				
+				
+				if (true == strstr($str_where, 'WHERE')) {
+					$pre_where = ' AND ';
+				} else {
+					$pre_where = ' WHERE ';
+				}
+				$str_where .= $pre_where . ' ( ';
+				$region_or = '';
+				// Wenn eine Region 1 gewählt wurde
+				if ( true == isset($this->params['url']['r_10']) ) {
+					$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_10']);
+						$search_region_id = 1;
+						$str_where .=  $region_or . ' (
+							serie_region.region_id = "' . $search_region_id . '"
+						)';
+					$region_or = ' OR ';
+				}
+				// Wenn eine Region 2 gewählt wurde
+				if ( true == isset($this->params['url']['r_11']) ) {
+					$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_11']);
+						$search_region_id = 2;
+						$str_where .=  $region_or . ' (
+							serie_region.region_id = "' . $search_region_id . '"
+						)';
+					$region_or = ' OR ';
+				}
+				// Wenn eine Region 3 gewählt wurde
+				if ( true == isset($this->params['url']['r_12']) ) {
+					$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_12']);
+						$search_region_id = 3;
+						$str_where .=  $region_or . ' (
+							serie_region.region_id = "' . $search_region_id . '"
+						)';
+					$region_or = ' OR ';
+				}
+				$str_where .= ' ) ';
 			}
-		}
-		// Wenn eine Farbe 3 gewählt wurde
-		if ( true == isset($this->params['url']['c_12']) ) {
-			$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_12']);
-			if (!empty($search_color_id)) {
-				$color_conditions .=  $color_or . ' (
-					color.internal_id = "' . $search_color_id . '"
-				)';
-				$color_or = ' OR ';
-			}
-		}
-		// Wenn eine Farbe 4 gewählt wurde
-		if ( true == isset($this->params['url']['c_13']) ) {
-			$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_13']);
-			if (!empty($search_color_id)) {
-				$color_conditions .=  $color_or . ' (
-					color.internal_id = "' . $search_color_id . '"
-				)';
-				$color_or = ' OR ';
-			}
-		}
-		if (!empty($color_conditions)) {
-			$str_where .= $pre_where . ' ( ' . $color_conditions . ' ) ';
-		}
-	}
-	
-	// Wenn eine Region gewählt wurde
-	if ( true == isset($this->params['url']['r_10']) ||  true == isset($this->params['url']['r_11']) ||  true == isset($this->params['url']['r_12'])) {
-		
-		// Insert term Suchbegriff speichern
-		$str_lang = Ncw_Library_Sanitizer::escape($_GET["l"]);
-		$str_insert_wcms_search = "INSERT INTO ncw_wcms_search (checkbox, term, type, lang, modified, vorgang_id) VALUES ('" . $this->params['url']['c_11'] . "', '', 'region', '" . $str_lang . "', '" . date('Y-m-d H:i:s') . "', 0)";
-		$db = Ncw_Database::getInstance();
-		$sth = $db->prepare( $str_insert_wcms_search);
-		$sth->execute();
-		
-		
-		if (true == strstr($str_where, 'WHERE')) {
-			$pre_where = ' AND ';
-		} else {
-			$pre_where = ' WHERE ';
-		}
-		$region_conditions = '';
-		$region_or = '';
-		// Wenn eine Region 1 gewählt wurde
-		if ( true == isset($this->params['url']['r_10']) ) {
-			$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_10']);
-			if (!empty($search_region_str)) {
-				$search_region_id = 1;
-				$region_conditions .=  $region_or . ' (
-					serie_region.region_id = "' . $search_region_id . '"
-				)';
-				$region_or = ' OR ';
-			}
-		}
-		// Wenn eine Region 2 gewählt wurde
-		if ( true == isset($this->params['url']['r_11']) ) {
-			$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_11']);
-			if (!empty($search_region_str)) {
-				$search_region_id = 2;
-				$region_conditions .=  $region_or . ' (
-					serie_region.region_id = "' . $search_region_id . '"
-				)';
-				$region_or = ' OR ';
-			}
-		}
-		// Wenn eine Region 3 gewählt wurde
-		if ( true == isset($this->params['url']['r_12']) ) {
-			$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_12']);
-			if (!empty($search_region_str)) {
-				$search_region_id = 3;
-				$region_conditions .=  $region_or . ' (
-					serie_region.region_id = "' . $search_region_id . '"
-				)';
-				$region_or = ' OR ';
-			}
-		}
-		if (!empty($region_conditions)) {
-			$str_where .= $pre_where . ' ( ' . $region_conditions . ' ) ';
-		}
-	}
+
+
+
 			// Hier wird der Suchstring geholt
 			$str_search = $this->_getQuerySearch($str_where);
 		
@@ -1178,7 +1138,6 @@ FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 				$arr_search_tmp = explode(' ' ,trim($str_search));
 				$ct = 0;
 			
-$str_where = '';
 			
 				if (false === Ncw_Components_Session::checkInAll('PDB')) {
 					//if (true == strstr($str_where, 'WHERE')) {

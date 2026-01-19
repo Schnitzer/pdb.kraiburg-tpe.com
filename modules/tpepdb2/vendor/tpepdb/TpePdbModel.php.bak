@@ -2240,12 +2240,17 @@ class TpePdbModel extends Ncw_Model
 		ob_get_clean();
 
 		if (false == is_dir($dir)) {
-			@mkdir($dir, 0777, true);
+			@mkdir($dir);
 		}
-// Clean up the file name, not the full path
-$pdf_name_clean = str_replace(" ", "", $pdf_name);
-$pdf_name_clean = str_replace(" ", "-", $pdf_name_clean);
-$pdf_file = $dir . DS . $pdf_name_clean;
+		$pdf_file = str_replace(' ', '', $pdf_file);
+		$pdf_file = str_replace(' ', '-', $pdf_file);
+		$pdf_file = str_replace('assets', '', $pdf_file);
+		$pdf_file = str_replace('tpep', '', $pdf_file);
+		$pdf_file = str_replace('db2', '', $pdf_file);
+		$pdf_file = str_replace('pdfs', '', $pdf_file);
+		$pdf_file = str_replace('serie', '', $pdf_file);
+		$pdf_file = str_replace('compound', '', $pdf_file);
+		$pdf_file = str_replace('_Serie', '', $pdf_file);
 
 		if (true == isset($_SESSION['allseries2'])) {
 			// $pdf_file = '/kraibn/public_html/pdb/assets/tpepdb2/pdfs/katalog/katdeDatenblatt_AD1_Reihe.pdf';

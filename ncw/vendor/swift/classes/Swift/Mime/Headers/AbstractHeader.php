@@ -237,7 +237,7 @@ abstract class Swift_Mime_Headers_AbstractHeader implements Swift_Mime_Header
     $this->_grammar['quoted-string'] = '(?:' . $this->_grammar['CFWS'] . '?"' .
         '(' . $this->_grammar['FWS'] . '?' . $this->_grammar['qcontent'] . ')*' .
         $this->_grammar['FWS'] . '?"' . $this->_grammar['CFWS'] . '?)';
-    $this->_grammar['atext'] = '[a-zA-Z0-9!#\$%&\'\*\+\-\/=\?\^_`\{\}\|~]';
+    $this->_grammar['atext'] = '[a-zA-Z0-9!#\$%&\'\*\+\-\/=\?\^_`\{\]\|~]';
     $this->_grammar['atom'] = '(?:' . $this->_grammar['CFWS'] . '?' .
         $this->_grammar['atext'] . '+' . $this->_grammar['CFWS'] . '?)';
     $this->_grammar['dot-atom-text'] = '(?:' . $this->_grammar['atext'] . '+' .

@@ -70,6 +70,7 @@ class Ncw_ModelList extends Ncw_Object implements IteratorAggregate, Countable, 
      *
      * @return void
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet ($offset, $value)
     {
         if (true === isset($offset)) {
@@ -86,6 +87,7 @@ class Ncw_ModelList extends Ncw_Object implements IteratorAggregate, Countable, 
      *
      * @return mixed
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists ($offset)
     {
         return isset($this->models[$offset]);
@@ -98,6 +100,7 @@ class Ncw_ModelList extends Ncw_Object implements IteratorAggregate, Countable, 
      *
      * @return void
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset ($offset)
     {
         unset($this->models[$offset]);
@@ -110,6 +113,7 @@ class Ncw_ModelList extends Ncw_Object implements IteratorAggregate, Countable, 
      *
      * @return mixed
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet ($offset)
     {
         return isset($this->models[$offset]) ? $this->models[$offset] : null;
@@ -120,6 +124,7 @@ class Ncw_ModelList extends Ncw_Object implements IteratorAggregate, Countable, 
      *
      * @return ArrayIterator
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return new ArrayIterator($this->models);
@@ -130,6 +135,7 @@ class Ncw_ModelList extends Ncw_Object implements IteratorAggregate, Countable, 
      *
      * @return int
      */
+    #[\ReturnTypeWillChange]
     public function count ()
     {
         return count($this->models);

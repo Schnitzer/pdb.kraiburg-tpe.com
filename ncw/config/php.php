@@ -75,7 +75,7 @@ if (true === Ncw_Configure::read('App.use_magic_quotes')) {
 }
 ini_set('magic_quotes_runtime', $magic_quotes);
 // file endings
-ini_set("auto_detect_line_endings", true);
+// ini_set("auto_detect_line_endings", true); // Deprecated in PHP 8.1, removed in PHP 9
 /*
  * -------------------------------------------------------------------------
  * Magic Quotes

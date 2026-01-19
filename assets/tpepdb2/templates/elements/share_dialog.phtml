@@ -32,6 +32,7 @@
 			<input type="text" value="<?php echo $subject; ?>" placeholders="<?php print Wcms_ContentboxController::getContenbox('contact-label-email-subject', $language_id); ?>" name="customer-subject" id="customer-subject" >
 			<textarea  placeholder="<?php print Wcms_ContentboxController::getContenbox('contact-label-message', $language_id); ?>" name="customer-text" id="customer-text" ></textarea>
 			<?php 
+				$file_ls = $file_ls ?? '';
 				if (trim($file_ls) == 'de') {
 					$labelMailDatasheet = Wcms_ContentboxController::getContenbox('mailanschreiben-2', 2);
 					$labelMailPg = Wcms_ContentboxController::getContenbox('mailanschreiben-3', 2);

@@ -28,7 +28,50 @@ jQuery(document).ready(function () {
   getTheIp();
   blocksprachumschalter();
   restore();
+
+  // Initialize Bootstrap-style collapse functionality
+  initCollapse();
 });
+
+/**
+ * Initialize collapse/accordion functionality for Bootstrap data-toggle="collapse"
+ */
+function initCollapse() {
+  // Handle clicks on elements with data-toggle="collapse"
+  $('[data-toggle="collapse"]').on('click', function (e) {
+    e.preventDefault();
+
+    var $this = $(this);
+    var target = $this.attr('href') || $this.data('target');
+    var $target = $(target);
+    var parent = $this.data('parent');
+
+    if ($target.length === 0) {
+      return;
+    }
+
+    // If parent is specified, close other panels
+    if (parent) {
+      $(parent).find('.panel-collapse').not($target).removeClass('in').addClass('collapse');
+      $(parent).find('[data-toggle="collapse"]').not($this).addClass('collapsed').attr('aria-expanded', 'false');
+    }
+
+    // Toggle the target panel
+    if ($target.hasClass('in')) {
+      $target.removeClass('in').addClass('collapsing');
+      $this.addClass('collapsed').attr('aria-expanded', 'false');
+      setTimeout(function () {
+        $target.removeClass('collapsing').addClass('collapse');
+      }, 350);
+    } else {
+      $target.addClass('collapsing').removeClass('collapse');
+      $this.removeClass('collapsed').attr('aria-expanded', 'true');
+      setTimeout(function () {
+        $target.removeClass('collapsing').addClass('in');
+      }, 350);
+    }
+  });
+}
 
 //
 function getTheIp() {

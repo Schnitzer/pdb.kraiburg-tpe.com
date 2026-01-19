@@ -27,7 +27,7 @@ class ctPHPMailer extends PHPMailer {
 		if ($variables) {
 			$params = array();
 			foreach ($variables as $name => $rules) {
-				$params['{' . $name . '}'] = $this->getValueFromArray($name, $post, '');
+				$params['{' . $name . ']'] = $this->getValueFromArray($name, $post, '');
 			}
 
 			$body = strtr($body, $params);

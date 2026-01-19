@@ -492,12 +492,12 @@ location.replace("' . str_replace('"', '\\"', $url) . '");
 		} else {
 			$uriBase = $uriAll;
 		}
-		if (!strlen($url) || $url{0} == '#') {
+		if (!strlen($url) || $url[0] == '#') {
 			$url = $uriAll . $url;
-		} elseif ($url{0} == '?') {
+		} elseif ($url[0] == '?') {
 			$url = $uriBase . $url;
 		}
-		if ($url{0} == '/') {
+		if ($url[0] == '/') {
 			return $server . $url;
 		}
 

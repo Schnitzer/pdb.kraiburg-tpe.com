@@ -1,4 +1,8 @@
-<?php if ($safetydatadocumentflag == true) { ?>
+<?php 
+if (!isset($safetydatadocumentflag)) {
+	$safetydatadocumentflag = false;
+}
+if ($safetydatadocumentflag == true) { ?>
 <div class="paragraph clearfix panel-group paragraph--type--akkordeon paragraph--view-mode--default ncw-u-padding-bottom-40000" id="392" role="tablist" aria-multiselectable="true" style="">
 		<div class="panel panel-default">
 			<div class="panel-heading flaticon-leave-right dark-font" role="tab" id="headingOne">
@@ -110,8 +114,12 @@
 							}
 							$arr_path_for_filesize = explode('pdb/', $sds_path);
 							$path_for_filesize = './' . $arr_path_for_filesize[1];
+						if (file_exists($path_for_filesize)) {
 							$filesize = number_format(filesize($path_for_filesize) / 1024 / 1024, 1);
 							if ($filesize == 0.0) {
+								$filesize = 1.8;
+							}
+						} else {
 								$filesize = 1.8;
 							}
 							?>
@@ -120,11 +128,10 @@
 									<div class="clearfix">
 												<div class="col-xs-18 download-info" style="background-image:url('<?php echo $website_url; ?>/sites/default/files/assets/pattern/dark-grey.png')">
 											<div class="icon kbtpe-icon-download">
-													<span class="download-datum"><?php echo $str_region . ' (' . $sds_lang_name[$sds_item] . $str_language_addon . ')'; ?> PDF file</span><span class="download-title"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---safety-data-sheet', $language_id); ?></span> 							</div>
-										</div>
-									</div>
-									<a href="<?php print $sds_path; ?>" target="_blank" class="clickhelper"><span class="hidden">Download</span></a>
-								</div>
+												<span class="download-datum"><?php 
+													$lang_display = isset($sds_lang_name[$sds_item]) ? $sds_lang_name[$sds_item] : ucfirst($sds_item);
+													echo $str_region . ' (' . $lang_display . $str_language_addon . ')'; 
+												?> PDF file</span><span class="download-title"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---safety-data-sheet', $language_id); ?></span> 							</div>
 
                                 <?php $docs_count++; ?>
 

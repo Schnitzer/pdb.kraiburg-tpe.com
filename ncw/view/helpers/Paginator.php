@@ -455,7 +455,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
         }
 
         foreach (array_keys($_defaults) as $key) {
-            ${$key} = $options[$key];
+            ${$key} = $options[$key]; // PHP 8 compatible variable variable
             unset($options[$key]);
         }
         $url = array_merge(

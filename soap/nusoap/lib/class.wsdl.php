@@ -109,7 +109,7 @@ class wsdl extends nusoap_base {
 		            foreach ($xs->imports as $ns2 => $list2) {
 		                for ($ii = 0; $ii < count($list2); $ii++) {
 		                	if (! $list2[$ii]['loaded']) {
-		                		$this->schemas[$ns]->imports[$ns2][$ii]['loaded'] = true;
+		                		$this->schemas[$ns]->imports[$ns[2][$ii]['loaded'] = true;
 		                		$url = $list2[$ii]['location'];
 								if ($url != '') {
 									$urlparts = parse_url($url);
@@ -1570,7 +1570,7 @@ class wsdl extends nusoap_base {
 					$this->getPrefixFromNamespace('http://schemas.xmlsoap.org/soap/encoding/')
 					.':arrayType="'
 					.$this->getPrefixFromNamespace($this->getPrefix($typeDef['arrayType']))
-					.":".$this->getLocalPart($typeDef['arrayType'])."[$rows$cols]\">"
+					.":".$this->getLocalPart($typeDef['arrayType'])."[$rows[$cols]\">"
 					.$contents
 					."</$name>";
 			}

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Contains the RequestHandler component
  *
@@ -30,6 +31,7 @@
 if (!defined('REQUEST_MOBILE_UA')) {
     define('REQUEST_MOBILE_UA', '(iPhone|MIDP|AvantGo|BlackBerry|J2ME|Opera Mini|DoCoMo|NetFront|Nokia|PalmOS|PalmSource|portalmmm|Plucker|ReqwirelessWeb|SonyEricsson|Symbian|UP\.Browser|Windows CE|Xiino)');
 }
+
 /**
  * Request object for handling HTTP requests
  *
@@ -41,8 +43,8 @@ if (!defined('REQUEST_MOBILE_UA')) {
  * @license    http://www.netzcraftwerk.com/license/ncw/1_0.txt Ncw License 1.0
  * @link       http://www.netzcraftwerk.com
  */
-class Ncw_Components_RequestHandler extends Ncw_Component {
-
+class Ncw_Components_RequestHandler extends Ncw_Component
+{
     /**
      * The layout that will be switched to for Ajax requests
      *
@@ -72,33 +74,33 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      * @var array
      */
     private $__requestContent = array(
-        'javascript'    => 'text/javascript',
-        'js'            => 'text/javascript',
-        'json'          => 'application/json',
-        'css'           => 'text/css',
-        'html'          => array('text/html', '*/*'),
-        'text'          => 'text/plain',
-        'txt'           => 'text/plain',
-        'csv'           => array('application/vnd.ms-excel', 'text/plain'),
-        'form'          => 'application/x-www-form-urlencoded',
-        'file'          => 'multipart/form-data',
-        'xhtml'         => array('application/xhtml+xml', 'application/xhtml', 'text/xhtml'),
-        'xhtml-mobile'  => 'application/vnd.wap.xhtml+xml',
-        'xml'           => array('application/xml', 'text/xml'),
-        'rss'           => 'application/rss+xml',
-        'atom'          => 'application/atom+xml',
-        'amf'           => 'application/x-amf',
-        'wap'           => array(
+        'javascript' => 'text/javascript',
+        'js' => 'text/javascript',
+        'json' => 'application/json',
+        'css' => 'text/css',
+        'html' => array('text/html', '*/*'),
+        'text' => 'text/plain',
+        'txt' => 'text/plain',
+        'csv' => array('application/vnd.ms-excel', 'text/plain'),
+        'form' => 'application/x-www-form-urlencoded',
+        'file' => 'multipart/form-data',
+        'xhtml' => array('application/xhtml+xml', 'application/xhtml', 'text/xhtml'),
+        'xhtml-mobile' => 'application/vnd.wap.xhtml+xml',
+        'xml' => array('application/xml', 'text/xml'),
+        'rss' => 'application/rss+xml',
+        'atom' => 'application/atom+xml',
+        'amf' => 'application/x-amf',
+        'wap' => array(
             'text/vnd.wap.wml',
             'text/vnd.wap.wmlscript',
             'image/vnd.wap.wbmp'
         ),
-        'wml'           => 'text/vnd.wap.wml',
-        'wmlscript'     => 'text/vnd.wap.wmlscript',
-        'wbmp'          => 'image/vnd.wap.wbmp',
-        'pdf'           => 'application/pdf',
-        'zip'           => 'application/x-zip',
-        'tar'           => 'application/x-tar'
+        'wml' => 'text/vnd.wap.wml',
+        'wmlscript' => 'text/vnd.wap.wmlscript',
+        'wbmp' => 'image/vnd.wap.wbmp',
+        'pdf' => 'application/pdf',
+        'zip' => 'application/x-zip',
+        'tar' => 'application/x-tar'
     );
 
     /**
@@ -133,9 +135,8 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
 
     /**
      * Constructor. Parses the accepted content types accepted by the client using HTTP_ACCEPT
-     *
      */
-    public function __construct ()
+    public function __construct()
     {
         $this->__acceptTypes = explode(',', env('HTTP_ACCEPT'));
 
@@ -157,7 +158,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *
      * @return void
      */
-    public function initialize (Ncw_Controller &$controller)
+    public function initialize(Ncw_Controller &$controller)
     {
         if (true === isset($controller->params['url']['ext'])) {
             $this->ext = $controller->params['url']['ext'];
@@ -182,7 +183,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *
      * @return void
      */
-    public function startup (Ncw_Controller &$controller)
+    public function startup(Ncw_Controller &$controller)
     {
         $controller->request_handler = $this;
 
@@ -219,7 +220,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      * @param object $controller A reference to the controller
      * @param mixed $url A string or array containing the redirect location
      */
-    public function beforeRedirect (&$controller, $url)
+    public function beforeRedirect(Ncw_Controller &$controller, $url, $status = null, $exit = true)
     {
         if (!$this->isAjax()) {
             return;
@@ -236,9 +237,9 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *
      * @return boolean True if call is Ajax
      */
-    public function isAjax ()
+    public function isAjax()
     {
-        return env('HTTP_X_REQUESTED_WITH') === "XMLHttpRequest";
+        return env('HTTP_X_REQUESTED_WITH') === 'XMLHttpRequest';
     }
 
     /**
@@ -246,7 +247,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *
      * @return boolean True if call is from Flash
      */
-    public function isFlash ()
+    public function isFlash()
     {
         return (preg_match('/^(Shockwave|Adobe) Flash/', env('HTTP_USER_AGENT')) == 1);
     }
@@ -256,7 +257,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *
      * @return bool True if call is over HTTPS
      */
-    public function isSSL ()
+    public function isSSL()
     {
         return env('HTTPS');
     }
@@ -266,7 +267,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *
      * @return boolean True if client accepts an XML response
      */
-    public function isXml ()
+    public function isXml()
     {
         return $this->prefers('xml');
     }
@@ -276,7 +277,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *
      * @return boolean True if client accepts an RSS response
      */
-    public function isRss ()
+    public function isRss()
     {
         return $this->prefers('rss');
     }
@@ -286,7 +287,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *
      * @return boolean True if client accepts an RSS response
      */
-    public function isAtom ()
+    public function isAtom()
     {
         return $this->prefers('atom');
     }
@@ -297,7 +298,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *
      * @return boolean True if user agent is a mobile web browser
      */
-    public function isMobile ()
+    public function isMobile()
     {
         preg_match('/' . REQUEST_MOBILE_UA . '/i', env('HTTP_USER_AGENT'), $match);
         if (!empty($match) || $this->accepts('wap')) {
@@ -311,7 +312,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *
      * @return bool
      */
-    public function isWap ()
+    public function isWap()
     {
         return $this->prefers('wap');
     }
@@ -321,7 +322,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *
      * @return boolean True if call is a POST
      */
-    public function isPost ()
+    public function isPost()
     {
         return (strtolower(env('REQUEST_METHOD')) == 'post');
     }
@@ -331,7 +332,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *
      * @return boolean True if call is a PUT
      */
-    public function isPut ()
+    public function isPut()
     {
         return (strtolower(env('REQUEST_METHOD')) == 'put');
     }
@@ -341,7 +342,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *
      * @return boolean True if call is a GET
      */
-    public function isGet ()
+    public function isGet()
     {
         return (strtolower(env('REQUEST_METHOD')) == 'get');
     }
@@ -351,7 +352,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *
      * @return boolean True if call is a DELETE
      */
-    public function isDelete ()
+    public function isDelete()
     {
         return (strtolower(env('REQUEST_METHOD')) == 'delete');
     }
@@ -362,7 +363,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *
      * @return string Prototype version of component making Ajax call
      */
-    public function getAjaxVersion ()
+    public function getAjaxVersion()
     {
         if (env('HTTP_X_PROTOTYPE_VERSION') != null) {
             return env('HTTP_X_PROTOTYPE_VERSION');
@@ -382,7 +383,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *
      * @return void
      */
-    public function setContent ($name, $type = null)
+    public function setContent($name, $type = null)
     {
         if (is_array($name)) {
             $this->__requestContent = array_merge($this->__requestContent, $name);
@@ -397,7 +398,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      * @return string Server address
      * @access public
      */
-    public function getReferrer ()
+    public function getReferrer()
     {
         if (env('HTTP_HOST') != null) {
             $sessHost = env('HTTP_HOST');
@@ -414,7 +415,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *
      * @return string Client IP address
      */
-    public function getClientIP ($safe = true)
+    public function getClientIP($safe = true)
     {
         if (!$safe && env('HTTP_X_FORWARDED_FOR') != null) {
             $ipaddr = preg_replace('/(?:,.*)/', '', env('HTTP_X_FORWARDED_FOR'));
@@ -449,13 +450,12 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *   if the client accepts it.  If an array is passed, returns true
      *   if the client accepts one or more elements in the array.
      */
-    public function accepts ($type = null)
+    public function accepts($type = null)
     {
         $this->__initializeTypes();
 
         if ($type == null) {
             return $this->mapType($this->__acceptTypes);
-
         } elseif (is_array($type)) {
             foreach ($type as $t) {
                 if ($this->accepts($t) == true) {
@@ -464,7 +464,6 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
             }
             return false;
         } elseif (is_string($type)) {
-
             if (!isset($this->__requestContent[$type])) {
                 return false;
             }
@@ -492,7 +491,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *
      * @return mixed
      */
-    public function requestedWith ($type = null)
+    public function requestedWith($type = null)
     {
         if (!$this->isPost() && !$this->isPut()) {
             return null;
@@ -527,7 +526,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      * @return mixed If $type is null or not provided, the first content-type in the
      *    list, based on preference, is returned.
      */
-    public function prefers ($type = null)
+    public function prefers($type = null)
     {
         $this->__initializeTypes();
         $accept = $this->accepts();
@@ -585,7 +584,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *
      * @return void
      */
-    public function renderAs (&$controller, $type)
+    public function renderAs(&$controller, $type)
     {
         $this->__initializeTypes();
         $options = array('charset' => 'UTF-8');
@@ -602,7 +601,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
         if (true === empty($this->__renderType)) {
             $controller->view_path .= DS . $type;
         } else {
-            $remove = preg_replace("/([\/\\\\]{$this->__renderType})$/", DS . $type, $controller->view_path);
+            $remove = preg_replace("/([\/\\\\]{$this->__renderType})\$/", DS . $type, $controller->view_path);
             $controller->view_path = $remove;
         }
         $this->__renderType = $type;
@@ -625,7 +624,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *    not exist in the type map, or if the Content-type header has
      *    already been set by this method.
      */
-    public function respondAs ($type, $options = array())
+    public function respondAs($type, $options = array())
     {
         $this->__initializeTypes();
         if ($this->__responseTypeSet != null) {
@@ -684,7 +683,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      * @return mixed A string content type alias, or raw content type if no alias map exists,
      *    otherwise null
      */
-    public function responseType ()
+    public function responseType()
     {
         if ($this->__responseTypeSet == null) {
             return null;
@@ -699,7 +698,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *
      * @return mixed Alias
      */
-    public function mapType ($ctype)
+    public function mapType($ctype)
     {
         if (is_array($ctype)) {
             $out = array();
@@ -730,7 +729,7 @@ class Ncw_Components_RequestHandler extends Ncw_Component {
      *
      * @return void
      */
-    private function __initializeTypes ()
+    private function __initializeTypes()
     {
         if ($this->__typesInitialized) {
             return;

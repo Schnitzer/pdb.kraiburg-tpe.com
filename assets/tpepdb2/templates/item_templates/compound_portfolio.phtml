@@ -26,11 +26,11 @@ $processingnotes_all = $this->getCompoundProcessing($compound['id']);
 
 ?>
 <?php 
-$processingnotes = $processingnotes_all['processing_im'];
+$processingnotes = isset($processingnotes_all['processing_im']) ? $processingnotes_all['processing_im'] : array();
 ?>
 <?php include ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound" . DS . "processing_note.phtml"; ?>
 <?php 
-$processingnotes = $processingnotes_all['processing_ex'];
+$processingnotes = isset($processingnotes_all['processing_ex']) ? $processingnotes_all['processing_ex'] : array();
 ?>
 <?php include ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound" . DS . "processing_note.phtml"; ?>
 

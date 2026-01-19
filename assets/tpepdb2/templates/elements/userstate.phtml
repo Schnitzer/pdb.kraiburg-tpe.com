@@ -29,10 +29,12 @@ $url_pdb2 = Ncw_Configure::read('Project.url');
       </div>
       <div class="pdb2-breadcrumb-text you-are-here-position">
         <a href="<?php echo $url_pdb2; ?>?sid=<?php echo $_SESSION['searchsid']; ?>"  target="_self">
-          <?php if ($language_id == 8 || $language_id == 5 || $language_id == 11 || $language_id == 4) { 
-            echo Wcms_ContentboxController::getContenbox('pdb---series', $language_id) . " " . $serie["name"]; 
-          } else {
-            echo $serie["name"] . ' ' . Wcms_ContentboxController::getContenbox('pdb---series', $language_id);
+          <?php if (isset($serie) && is_array($serie)) {
+            if ($language_id == 8 || $language_id == 5 || $language_id == 11 || $language_id == 4) { 
+              echo Wcms_ContentboxController::getContenbox('pdb---series', $language_id) . " " . $serie["name"]; 
+            } else {
+              echo $serie["name"] . ' ' . Wcms_ContentboxController::getContenbox('pdb---series', $language_id);
+            }
           }
           ?>
           </a>
@@ -45,7 +47,9 @@ $url_pdb2 = Ncw_Configure::read('Project.url');
       <div class="pdb2-breadcrumb-text">
         <a href="<?php echo $url_pdb2; ?>?cid=<?php echo $_SESSION['searchcid']; ?>" target="_self">
         <?php
-            echo $compound["name"];
+            if (isset($compound) && is_array($compound)) {
+              echo $compound["name"];
+            }
         ?>      
         </a>
       </div>

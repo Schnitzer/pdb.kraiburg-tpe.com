@@ -1,5 +1,6 @@
 <?php
 /* SVN FILE: $Id$ */
+
 /**
  * Contains the ModuleController class.
  *
@@ -20,6 +21,7 @@
  * @lastmodified	$LastChangedDate$
  * @license			http://www.netzcraftwerk.com/licenses/
  */
+
 /**
  * ModuleController class.
  *
@@ -27,13 +29,12 @@
  */
 class Wcms_ModuleController extends AppController
 {
-
     /**
      * General translations. only for translation tool
      *
      * @return void
      */
-    private function __generalTranslations ()
+    private function __generalTranslations()
     {
         T_('Applications');
         T_('Other');
@@ -62,7 +63,7 @@ class Wcms_ModuleController extends AppController
      *
      * @return void
      */
-    private function __wcmsTranslations ()
+    private function __wcmsTranslations()
     {
         T_('Publishing...');
         T_('Published');
@@ -83,14 +84,13 @@ class Wcms_ModuleController extends AppController
         T_('The site has been renamed successfully');
         T_('Edit content');
         T_('Close');
-        T_("Do you want to save before the editor is closed?");
+        T_('Do you want to save before the editor is closed?');
     }
 
     /**
      * before filter
-     *
      */
-    public function beforeFilter ()
+    public function beforeFilter()
     {
         parent::beforeFilter();
         if (Ncw_Configure::read('App.language') != 'en_EN') {
@@ -101,9 +101,8 @@ class Wcms_ModuleController extends AppController
 
     /**
      * before Render
-     *
      */
-    public function beforeRender ()
+    public function beforeRender()
     {
         if ($this->layout === 'default') {
             parent::beforeRender();
@@ -112,15 +111,15 @@ class Wcms_ModuleController extends AppController
             $html->startup($this->view);
 
             $menu = array();
-           // if (true === $this->acl->check('/wcms')) {
-           //     $menu[] = $html->link(T_('Website'), array('controller' => 'site', 'action' => 'all'));
-          //  }
-           // if (true === $this->acl->check('/wcms')) {
-           //     $menu[] = $html->link(T_('Site Structure'), array('controller' => 'site', 'action' => 'all'), array('class' => (($this->name == 'Site') ? 'opened' : '')));
-           // }
-           // if (true === $this->acl->check('/files/file/all')) {
-           //     $menu[] = $html->link(T_('Files'), array('module' => 'files', 'controller' => 'folder', 'action' => 'all'));
-           // }
+            // if (true === $this->acl->check('/wcms')) {
+            //     $menu[] = $html->link(T_('Website'), array('controller' => 'site', 'action' => 'all'));
+            //  }
+            // if (true === $this->acl->check('/wcms')) {
+            //     $menu[] = $html->link(T_('Site Structure'), array('controller' => 'site', 'action' => 'all'), array('class' => (($this->name == 'Site') ? 'opened' : '')));
+            // }
+            // if (true === $this->acl->check('/files/file/all')) {
+            //     $menu[] = $html->link(T_('Files'), array('module' => 'files', 'controller' => 'folder', 'action' => 'all'));
+            // }
             if (true === $this->acl->check('/wcms')) {
                 $menu[] = $html->link(T_('Contentboxes'), array('controller' => 'contentboxgroup', 'action' => 'all'), array('class' => (($this->name == 'Site') ? 'opened' : '')));
             }
@@ -133,62 +132,55 @@ class Wcms_ModuleController extends AppController
             if (true === $this->acl->check('/wcms')) {
                 $menu[] = $html->link(T_('Export Download Stats'), array('controller' => 'stats', 'action' => 'exportStatsCsv'));
             }
-          
-           // if (true === $this->acl->check('/wcms')) {
-           //     $menu[] = $html->link(T_('Statistics'), array('controller' => 'stats', 'action' => 'all'));
-            //}
-           // if (true === $this->acl->check('/wcms')) {
+
+            // if (true === $this->acl->check('/wcms')) {
+            //     $menu[] = $html->link(T_('Statistics'), array('controller' => 'stats', 'action' => 'all'));
+            // }
+            // if (true === $this->acl->check('/wcms')) {
             //    $menu[] =  '<a href="https://pdb.kraiburg-tpe.com/tpepdb/pdf?allseries=true&l=de&datasheetmode=datasheet" target="_blank">Katalog DE</a>';
-           //    $menu[] =  '<a href="https://pdb.kraiburg-tpe.com/tpepdb/pdf?allseries=true&l=en&datasheetmode=datasheet" target="_blank">Katalog EN</a>';
-           // }
+            //    $menu[] =  '<a href="https://pdb.kraiburg-tpe.com/tpepdb/pdf?allseries=true&l=en&datasheetmode=datasheet" target="_blank">Katalog EN</a>';
+            // }
             /*if (true === $this->acl->check('/wcms/news/all')) {
                 $menu[] = $html->link(T_('News'), array('controller' => 'news', 'action' => 'all'), array('class' => (($this->name == 'News') ? 'opened' : '')));
             }*/
-           // $menu[] = $html->link(T_('Edit Website'), '/');
+            // $menu[] = $html->link(T_('Edit Website'), '/');
 
             $this->view->menu = $menu;
 
             if (true === $this->acl->check('/wcms/other')) {
                 $this->view->extras_menu = array(
-                    //$html->link(T_('Settings'), array('controller' => 'setting')),
+                    // $html->link(T_('Settings'), array('controller' => 'setting')),
                     $html->link(T_('Languages'), array('controller' => 'language', 'action' => 'all')),
-                    //$html->link(T_('Site templates'), array('controller' => 'sitetemplate', 'action' => 'all')),
-                    //$html->link(T_('Component templates'), array('controller' => 'componenttemplate', 'action' => 'all')),
-                    //$html->link(T_('Navigation templates'), array('controller' => 'navtemplate', 'action' => 'all')),
-                    //$html->link(T_('Javascript'), array('controller' => 'javascript', 'action' => 'all')),
-                    //$html->link(T_('CSS'), array('controller' => 'css', 'action' => 'all')),
-                    //$html->link(T_('Site Structure'), array('controller' => 'site', 'action' => 'all')),
-                  
+                    // $html->link(T_('Site templates'), array('controller' => 'sitetemplate', 'action' => 'all')),
+                    // $html->link(T_('Component templates'), array('controller' => 'componenttemplate', 'action' => 'all')),
+                    // $html->link(T_('Navigation templates'), array('controller' => 'navtemplate', 'action' => 'all')),
+                    // $html->link(T_('Javascript'), array('controller' => 'javascript', 'action' => 'all')),
+                    // $html->link(T_('CSS'), array('controller' => 'css', 'action' => 'all')),
+                    // $html->link(T_('Site Structure'), array('controller' => 'site', 'action' => 'all')),
                     '<a href="https://pdb.kraiburg-tpe.com/special/curl/generate.php" target="_blank">PDB Header generieren</a>',
                     '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseries?l=de" target="_blank">Katalog generieren DE</a>',
                     '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseriesjoin?l=de" target="_blank">Katalog DE download</a>',
-                    //'<a href="#" onclick="$(\'.ncw-main-tab-content\').html(\'<iframe></iframe>\'); $(\'.ncw-main-tab-content\').children(\'iframe\').attr(\'src\',\'/tpepdb/allseriesjoin?l=en\' );">Katalog EN download</a>',
+                    // '<a href="#" onclick="$(\'.ncw-main-tab-content\').html(\'<iframe></iframe>\'); $(\'.ncw-main-tab-content\').children(\'iframe\').attr(\'src\',\'/tpepdb/allseriesjoin?l=en\' );">Katalog EN download</a>',
                     '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseries?l=en" target="_blank">Katalog generieren EN</a>',
                     '<a href="/tpepdb/allseriesjoin?l=en" target="_blank">Katalog EN download</a>',
-                    //'<a href="#" onclick="$(\'.ncw-main-tab-content\').html(\'<iframe></iframe>\'); $(\'.ncw-main-tab-content\').children(\'iframe\').attr(\'src\',\'/tpepdb/allseriesjoin?l=en\' );">Katalog EN download</a>',
-                  
+                    // '<a href="#" onclick="$(\'.ncw-main-tab-content\').html(\'<iframe></iframe>\'); $(\'.ncw-main-tab-content\').children(\'iframe\').attr(\'src\',\'/tpepdb/allseriesjoin?l=en\' );">Katalog EN download</a>',
                     '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseries?l=zh" target="_blank" >Katalog generieren ZH</a>',
                     '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseriesjoin?l=zh" target="_blank" >Katalog ZH download</a>',
-                  
                     '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseries?l=kr" target="_blank" >Katalog generieren KR</a>',
                     '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseriesjoin?l=kr" target="_blank" >Katalog KR download</a>',
                     '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseries?l=jp" target="_blank" >Katalog generieren JP</a>',
                     '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseriesjoin?l=jp" target="_blank" >Katalog JP download</a>',
-                  
                     '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseries?l=pl" target="_blank">Katalog generieren PL</a>',
                     '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseriesjoin?l=pl" target="_blank">Katalog PL download</a>',
                     '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseries?l=it" target="_blank">Katalog generieren IT</a>',
                     '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseriesjoin?l=it" target="_blank">Katalog IT download</a>',
-                  
                     '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseries?l=fr" target="_blank">Katalog generieren FR</a>',
                     '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseriesjoin?l=fr" target="_blank">Katalog FR download</a>',
                     '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseries?l=es" target="_blank">Katalog generieren SP</a>',
                     '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseriesjoin?l=es" target="_blank">Katalog SP download</a>',
-                  
-                   // '<a href="#" onclick="$(\'.ncw-main-tab-content\').html(\'<iframe></iframe>\'); $(\'.ncw-main-tab-content\').children(\'iframe\').attr(\'src\',\'/tpepdb/allseriesjoin?l=sp\' );">Katalog SP download</a>',
-                  
-                    //$html->link(T_('Contentboxes'), array('controller' => 'contentboxgroup', 'action' => 'all')),
-                    //$html->link(T_('Terms'), array('controller' => 'news', 'action' => 'all')),
+                    // '<a href="#" onclick="$(\'.ncw-main-tab-content\').html(\'<iframe></iframe>\'); $(\'.ncw-main-tab-content\').children(\'iframe\').attr(\'src\',\'/tpepdb/allseriesjoin?l=sp\' );">Katalog SP download</a>',
+                    // $html->link(T_('Contentboxes'), array('controller' => 'contentboxgroup', 'action' => 'all')),
+                    // $html->link(T_('Terms'), array('controller' => 'news', 'action' => 'all')),
                 );
             }
         }
@@ -203,7 +195,7 @@ class Wcms_ModuleController extends AppController
      *
      * @return void
      */
-    public function checkLanguageAccess ($id, $redirect = true)
+    public function checkLanguageAccess($id, $redirect = true)
     {
         if (false === $this->acl->check('/wcms/permissions/language/' . $id)) {
             if (false === $redirect) {
@@ -226,7 +218,7 @@ class Wcms_ModuleController extends AppController
      * @param string $type
      * @param Ncw_DataModel $object
      */
-    public function publishObject ($type, Ncw_DataModel $object)
+    public function publishObject($type, Ncw_DataModel $object)
     {
         $db = Ncw_Database::getInstance();
         $id = $object->getId();
@@ -264,7 +256,7 @@ class Wcms_ModuleController extends AppController
      *
      * @return string
      */
-    public function siteLinklist (&$linklist, $language_code = 'en', $mode = true, $prefix = '--', $site_id = 1, $names = array(), $depth = 0, $absolute = false)
+    public function siteLinklist(&$linklist, $language_code = 'en', $mode = true, $prefix = '--', $site_id = 1, $names = array(), $depth = 0, $absolute = false)
     {
         $site = new Wcms_Site();
         $site->unbindModel('all');
@@ -312,7 +304,7 @@ class Wcms_ModuleController extends AppController
      *
      * @return string
      */
-    public function makeUrlForWebsite ($site, $breadcrumb = false, $language_code, $non_dynamic = true, $live = true, $absolute = false)
+    public function makeUrlForWebsite($site, $breadcrumb = false, $language_code = null, $non_dynamic = true, $live = true, $absolute = false)
     {
         if (true === $site instanceof Ncw_DataModel) {
             $site_id = $site->getId();
@@ -345,10 +337,9 @@ class Wcms_ModuleController extends AppController
         $name = implode('/', $breadcrumb);
         // not permalink ?
         $id = '';
-        if (false === $live
-        || false === (boolean) $site_permalink
-        ) {
-            $id =  '-' .$site_id;
+        if (false === $live ||
+                false === (bool) $site_permalink) {
+            $id = '-' . $site_id;
         }
 
         if (false === $absolute) {
@@ -359,10 +350,10 @@ class Wcms_ModuleController extends AppController
         // set up the url
         if (true === $non_dynamic) {
             $url = $language_code . '/'
-              . str_replace(array(' '), array('-'), $name) . $id;
+                . str_replace(array(' '), array('-'), $name) . $id;
         } else {
-            $url =  '{language.code}' . '/'
-              . str_replace(array(' '), array('-'), $name) . $id;
+            $url = '{language.code}' . '/'
+                . str_replace(array(' '), array('-'), $name) . $id;
         }
         if (true === Ncw_Configure::read('App.rewrite')) {
             $url = $base . '/' . $url;
@@ -381,7 +372,7 @@ class Wcms_ModuleController extends AppController
      *
      * @return void
      */
-    public function readSiteBreadcrumb (&$breadcrumb, $parent_id, $live = true)
+    public function readSiteBreadcrumb(&$breadcrumb, $parent_id, $live = true)
     {
         if ($parent_id > 1) {
             switch ($live) {
@@ -434,20 +425,20 @@ class Wcms_ModuleController extends AppController
      *
      * @return string
      */
-    public function siteSelectOptions ($parent_id = 0, $not_this_site = false, $start_parent_id = 0, $depth = 0)
+    public function siteSelectOptions($parent_id = 0, $not_this_site = false, $start_parent_id = 0, $depth = 0)
     {
         $site = new Wcms_Site();
         $site->unbindModel('all');
         $parent_options = $site->fetch(
             'all',
-             array(
-                 'fields' => array(
-                     'Site.id',
-                     'Site.name'
-                 ),
-                 'conditions' => array('Site.parent_id' => $start_parent_id),
-                 'order' => array('Site.parent_id', 'Site.position')
-             )
+            array(
+                'fields' => array(
+                    'Site.id',
+                    'Site.name'
+                ),
+                'conditions' => array('Site.parent_id' => $start_parent_id),
+                'order' => array('Site.parent_id', 'Site.position')
+            )
         );
         $options = '';
         foreach ($parent_options as $option) {
@@ -459,13 +450,13 @@ class Wcms_ModuleController extends AppController
                 $selected = ' selected="selected"';
             }
 
-            $id =   $option->getId();
+            $id = $option->getId();
             $name = $option->getName();
             if ($id === 1) {
                 $name = T_('root');
             }
 
-            $options .= '<option value="' . $option->getId() . '"' . $selected. '>'
+            $options .= '<option value="' . $option->getId() . '"' . $selected . '>'
                 . str_repeat('--', $depth) . ' ' . $name . '</option>';
             $options .= $this->siteSelectOptions(
                 $parent_id,
@@ -482,7 +473,7 @@ class Wcms_ModuleController extends AppController
      *
      * @param Wcms_Sitelanguage $sitelanguage
      */
-    public function unpublishComponents (Wcms_Sitelanguage $sitelanguage)
+    public function unpublishComponents(Wcms_Sitelanguage $sitelanguage)
     {
         // delete the current published component, componentlanguages and the value fields (text, shorttext, file) which belongs to this sitelanguage.
         $full_published_componentlanguage = new Wcms_PublishedComponentlanguage();
@@ -521,9 +512,8 @@ class Wcms_ModuleController extends AppController
 
     /**
      * flush the website cache.
-     *
      */
-    public function flushWebsiteCache ()
+    public function flushWebsiteCache()
     {
         $cache = new Ncw_Helpers_Cache();
         $cache->object->flush('website');
@@ -537,7 +527,7 @@ class Wcms_ModuleController extends AppController
      *
      * @return array
      */
-    public function sitetype ($class, $obj_id)
+    public function sitetype($class, $obj_id)
     {
         $tabs = array();
         $content = array(
@@ -596,7 +586,7 @@ class Wcms_ModuleController extends AppController
      *
      * @return array
      */
-    public function sitetypeUpdate ($class, $obj_id, $data)
+    public function sitetypeUpdate($class, $obj_id, $data)
     {
         $class = ucfirst($class);
         if (false === empty($class)) {
@@ -627,7 +617,7 @@ class Wcms_ModuleController extends AppController
      *
      * @return array
      */
-    public function sitetypePublish ($class, $obj_id)
+    public function sitetypePublish($class, $obj_id)
     {
         $class = ucfirst($class);
         if (false === empty($class)) {
@@ -657,7 +647,7 @@ class Wcms_ModuleController extends AppController
      *
      * @return array
      */
-    public function sitetypeUnpublish ($class, $obj_id)
+    public function sitetypeUnpublish($class, $obj_id)
     {
         $class = ucfirst($class);
         if (false === empty($class)) {
@@ -688,7 +678,7 @@ class Wcms_ModuleController extends AppController
      *
      * @return string
      */
-    protected function _sitetypeCallAction ($action_name, $obj_id, $controller)
+    protected function _sitetypeCallAction($action_name, $obj_id, $controller)
     {
         if (true === method_exists($controller, $action_name . 'Action')) {
             $params = $this->params;

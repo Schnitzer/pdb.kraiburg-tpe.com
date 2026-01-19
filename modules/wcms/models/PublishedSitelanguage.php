@@ -49,7 +49,7 @@ class Wcms_PublishedSitelanguage extends Wcms_Sitelanguage
      *
      * @return void
      */
-    public function afterDelete ()
+    public function afterDelete ($deleted)
     {
 
     }

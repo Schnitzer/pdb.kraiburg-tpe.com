@@ -7,7 +7,7 @@ $url_website = 'https://www.kraiburg-tpe.com';
 
 
 <!--<script src="<?php echo $url_website; ?>/core/assets/vendor/jquery/jquery.min.js?v=3.2.1"></script>-->
-<?php if ($_GET['sid'] > 0 || $_GET['cid'] > 0) { ?>
+<?php if ((isset($_GET['sid']) && $_GET['sid'] > 0) || (isset($_GET['cid']) && $_GET['cid'] > 0)) { ?>
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * index.php
  *
@@ -22,9 +23,7 @@
  * @modby     $LastChangedBy$
  * @lastmod   $LastChangedDate$
  */
-/**
- * Include the Bootstrap class.
- */
+/** Include the Bootstrap class. */
 require_once 'ncw/Bootstrap.php';
 // Initialize a new object of the Bootstrap class.
 new Ncw_Bootstrap();

@@ -63,7 +63,7 @@
   
  // var_dump($processingnotes);
   //echo count($processingnotes);
-if (count($processingnotes) > 0) {
+if (is_array($processingnotes) && count($processingnotes) > 0) {
   ?>
 <section class="compound-processing-notes" >
   <div class="container">
