@@ -1,0 +1,20 @@
+<div <?php if (true === $admin) { ?>id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>"<?php } ?> class="product_table <?php if (true === $admin) { ?>ncw-sortable-item<?php } ?>">
+  <h2>
+  <?php if (true === $admin) { ?><div id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['shorttext'][1]['componentcontent_id']; ?>-shorttext-1" class="<?php if (true === $admin) { ?>ncw-wysiwyg-website-admin<?php } ?>"><?php } ?><?php print $component['shorttext'][1]['content']; ?><?php if (true === $admin) { ?></div><?php } ?>
+  </h2>
+  <div class="table_spacer_top"></div>
+  <?php if (true === $admin) { ?><div id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['text'][1]['componentcontent_id']; ?>-text-1" class="<?php if (true === $admin) { ?>ncw-wysiwyg-website-admin<?php } ?> table_content"><?php } ?>    
+    <?php print $component['text'][1]['content']; ?>
+  <?php if (true === $admin) { ?></div><?php } ?>  
+  <div class="table_spacer_footer"></div>
+</div>
+<?php if (true === $admin) { ?><input type="hidden" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['shorttext'][1]['componentcontent_id']; ?>-shorttext-1-width" value="672" /><?php } ?>
+<?php if (true === $admin) { ?><input type="hidden" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['shorttext'][1]['componentcontent_id']; ?>-shorttext-1-height" value="27" /><?php } ?>
+<?php if (true === $admin) { ?><input type="hidden" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['shorttext'][1]['componentcontent_id']; ?>-shorttext-1-background" value="#FFC300" /><?php } ?>
+<?php if (true === $admin) { ?><input type="hidden" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['shorttext'][1]['componentcontent_id']; ?>-shorttext-1-mode" value="simple" /><?php } ?>
+<?php if (true === $admin) { ?><input type="hidden" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['shorttext'][1]['componentcontent_id']; ?>-shorttext-1-button-top" value="-10" /><?php } ?>
+<?php if (true === $admin) { ?><input type="hidden" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['shorttext'][1]['componentcontent_id']; ?>-shorttext-1-button-left" value="-16" /><?php } ?>
+<?php if (true === $admin) { ?><input type="hidden" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['text'][1]['componentcontent_id']; ?>-text-1-width" value="704" /><?php } ?>
+<?php if (true === $admin) { ?><input type="hidden" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['text'][1]['componentcontent_id']; ?>-text-1-background" value="#969696" /><?php } ?>
+
+<?php if (true === $admin) { ?><input type="hidden" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-move-left" value="-16" /><?php } ?>

@@ -1,0 +1,104 @@
+.image-left {
+    float: left;
+    margin: 0 20px 0 0;
+    display: inline;
+}
+
+.image-right {
+    float: right;
+    margin: 0 0 0 20px;
+    display: inline;
+}
+
+div,td,p,span,h1,h2,h3,h4,h5,h6,ul,ol,li,address,table,th,td,tr {
+    font: 12px "Trebuchet MS", "Lucida Grande", "Segoe UI", "Bitstraem Vera Sans",
+        Arial, sans-serif;
+    color: #4b4b4d;
+    line-height: 18px
+}
+
+h1,h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #696969
+}
+
+h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #4b4b4d;
+    margin: 0 0 8px 0
+}
+
+h4,h5,h6 {
+    font-size: 10px;
+    font-weight: normal;
+    color: #4b4b4d;
+}
+
+li {
+    list-style-type: none
+}
+
+strong {
+    font-weight: 700
+}
+
+a:link,a:visited,a:hover,a:active,a:focus {
+    color: #4b4b4d;
+    text-decoration: underline;
+}
+
+a:hover,a:active,a:focus {
+    text-decoration: underline;
+}
+
+li {
+    background: url('../files/bg_li.gif') no-repeat 0 7px;
+    padding: 0 0 0 10px
+}
+
+hr {
+    border: none;   
+    line-height: 0;
+    font-size: 0;
+    height: 2px;
+    background: #969696;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0
+}
+
+.table {
+    width: 100%;   
+}
+
+.table .table {
+    border-collapse : collapse; 
+    width: 100%;   
+}
+
+.table thead th, .table thead td {
+    height: 26px;
+    padding: 0 16px;
+    font-weight: 700;
+    text-align: left;
+    color: #000;
+    background: #b0b0b0
+}
+
+.table tr {
+    background: #b0b0b0
+}
+
+.table td {
+    height: 26px;
+    padding: 0 16px;
+    vertical-align: middle;
+    font-weight: 700;
+    color: #fff;
+    border-bottom: 1px solid #979797
+}

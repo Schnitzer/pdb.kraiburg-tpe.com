@@ -1,0 +1,54 @@
+<?php if (true === $is_pdf) { ?>
+<?php ob_start(); ?>
+<table style="font-size: 11px;" cellpadding="10" ><tr><td><?php print Wcms_ContentboxController::getContenbox('pdb2-datasheet-footer-storage', $language_id); ?><br /><br /><?php print Wcms_ContentboxController::getContenbox('pdb2-for-further-information', $language_id); ?></td></tr></table>
+
+<table style="font-size: 11px;" cellpadding="10" >
+	<tr>
+	<td style="background-color: #f3f3f3;border-right: 3px solid #ffffff;">
+		<?php print Wcms_ContentboxController::getContenbox('datenblatt-adr-euro', $language_id); ?>
+	</td>
+	<td style="background-color: #f3f3f3;border-right: 3px solid #ffffff;">
+		<?php print Wcms_ContentboxController::getContenbox('datenblatt-adr-asia', $language_id); ?>
+	</td>
+	<td style="background-color: #f3f3f3;">
+		<?php print Wcms_ContentboxController::getContenbox('datenblatt-adr-usa', $language_id); ?>
+		</td>
+	</tr>
+</table>
+<?php $footer_content = ob_get_clean(); ?>
+<?php if (true === $is_pdf) { ?>
+	<?php $pdf->footer_content_s1 = $footer_content; ?>
+<?php } ?>
+	<?php ob_start(); ?>
+	<?php
+	//$footer = Wcms_ContentboxController::getContenbox('pdb---datasheet---footer', $language_id);
+	if (false === $is_pdf) {
+	//    $footer = str_replace("<br />", "", $footer);
+	}
+	?>
+	<?php if (false === $is_pdf) { ?><br /><?php } ?>
+
+
+
+	<table style="width:100%;" cellpadding="0" cellspacing="0">
+	    <tr>
+	        <td style="font-size: 11px;"><?php print str_replace('date(Y)', date('Y'), $footer); ?><br /><br /><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---disclaimer', $language_id); ?><br /><?php if (false === $is_pdf) { ?><br /><?php } ?></td>
+	    </tr>
+	    <tr>
+	        <td><table style="width:100%;" cellpadding="0" cellspacing="0">
+	                <tr>
+	                    <td style="font-size: 11px;"><?php print date(Wcms_ContentboxController::getContenbox('pdb---datasheet---date', $language_id), time()); ?>
+	                    <?php if (true === $is_pdf) { ?><?php print str_replace('date(Y)', date('Y'), Wcms_ContentboxController::getContenbox('pdb---datasheet---pdf-footer', $language_id)); ?><?php } ?>
+												</td>
+	                </tr>
+	            </table>
+	        </td>
+	    </tr>
+	</table>
+	<?php $footer_content = ob_get_clean(); ?>
+	<?php if (true === $is_pdf) { ?>
+	    <?php $pdf->footer_content = $footer_content; ?>
+	<?php } else { ?>
+	    <?php print $footer_content; ?>
+	<?php } ?>
+<?php } ?>

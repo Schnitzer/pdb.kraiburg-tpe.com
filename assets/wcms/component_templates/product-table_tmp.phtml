@@ -1,0 +1,20 @@
+<div {if.admin}id="{component.id}"{/if} class="product_table {admin.class}">
+  <h2>
+  {if.admin}<div id="{shorttext.1.id}" class="{admin.content.class}">{/if}{shorttext.1}{if.admin}</div>{/if}
+  </h2>
+  <div class="table_spacer_top"></div>
+  {if.admin}<div id="{text.1.id}" class="{admin.content.class} table_content">{/if}    
+    {text.1}
+  {if.admin}</div>{/if}  
+  <div class="table_spacer_footer"></div>
+</div>
+{shorttext.1.width=672}
+{shorttext.1.height=27}
+{shorttext.1.background=#FFC300}
+{shorttext.1.mode=simple}
+{shorttext.1.button-top=-10}
+{shorttext.1.button-left=-16}
+{text.1.width=704}
+{text.1.background=#969696}
+
+{component.move-left=-16}

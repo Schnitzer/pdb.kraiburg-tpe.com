@@ -1,0 +1,223 @@
+<?php if (true === $is_pdf) { ?>
+
+<?php
+$descriptionText400 =  $this->getCompoundDescription400($compound['id'], $language_id);
+
+if (strlen($descriptionText400) > 2) {
+?>
+    <table cellpadding="2" border="0" width="100%">
+        <tr>
+            <td style="font-size: <?php echo $font_size_table; ?>;"><?php echo $descriptionText400; ?></td>
+        </tr>
+    </table>
+<?php
+}
+
+
+?>
+
+<?php if (true === isset($serie["text2"]) && $serie["text2"] != "") { ?>
+    <?php if (true === $is_pdf) { ?><div style="font-size: <?php print $text_line_heiht; ?>px;line-height: <?php print $text_line_heiht; ?>px;">&nbsp;</div><?php } else { ?><div style="font-size: 8px;line-height: 8px;">&nbsp;</div><?php } ?>
+    <table cellpadding="2" border="0" width="100%">
+        <tr>
+            <td style="font-size: 12px;"><?php print trim(str_replace(array("<P>", "</P>"), array("", " "), $serie["text2"])); ?></td>
+        </tr>
+    </table>
+<?php } ?>
+
+<?php if (true === $is_pdf) { ?><div style="font-size: <?php print $text_line_heiht; ?>px;line-height: <?php print $text_line_heiht; ?>px;">&nbsp;</div><?php } else { ?><div style="font-size: 8px;line-height: 8px;">&nbsp;</div><?php } ?>
+<table cellpadding="2" border="0" width="100%">
+    <tr>
+        <td style="font-size: 12px; line-height: <?php echo ((int) $font_size_table + 2); ?>px;"><?php
+            if ($compound['status'] == 'portfolio') {
+                print Wcms_ContentboxController::getContenbox('pdb---datasheet---general', $language_id);
+            } else {
+                //print Wcms_ContentboxController::getContenbox('pdb---datasheet---general-test-report', $language_id);
+                print Wcms_ContentboxController::getContenbox('pdb---datasheet---general', $language_id);
+            }
+            ?></td>
+    </tr>
+</table>
+
+
+<?php if (count($serie["verordnungen"]) > 0 ) { ?>
+	<!-- Für weiterführende Informationen  Further Informations text.phtml-->
+	<table cellpadding="0" border="0" width="100%" class="pdb-compound-text">
+			<tr>
+					<td style="font-size: 12px;">* 
+						<?php print Wcms_ContentboxController::getContenbox('series-regulations-footnote', $language_id); ?>
+				</td>
+			</tr>
+	</table>
+<?php } ?>
+
+
+<?php
+// Neu hinzugekommen am 09.01.2024 **Recyclinganteil in den Fußnoten
+if ($hasRecycling == true) {
+	?>
+    <table cellpadding="2" border="0" width="100%">
+        <tr>
+            <td style="font-size: 12px;">**
+				<?php
+					echo '' . Wcms_ContentboxController::getContenbox('footnote-recycling-**', $language_id);
+				?>
+			</td>
+        </tr>
+    </table>
+<?php	
+}
+
+?>
+
+
+<?php 
+} else { // Ende PDF Anfang HTML
+?>
+<?php
+
+
+
+if ($hasRecycling == true) {
+	?>
+	<section class="paragraph paragraph--type--wysiwyg paragraph--view-mode--default ">
+		<div class="container">
+			<div class="row">
+				<table cellpadding="2" border="0" width="100%" class="pdb-compound-text">
+					<tr>
+						<td>
+							<?php
+								echo '<sup>**</sup>' . Wcms_ContentboxController::getContenbox('footnote-recycling-**', $language_id);
+							?>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</section>
+<?php	
+}
+
+$descriptionText400 =  $this->getCompoundDescription400($compound['id'], $language_id);
+
+if (strlen(trim($descriptionText400)) > 2) {
+	?>
+	<section class="paragraph paragraph--type--wysiwyg paragraph--view-mode--default ">
+		<div class="container">
+			<div class="row">
+				<table cellpadding="2" border="0" width="100%" class="pdb-compound-text">
+					<tr>
+						<td>
+							<?php
+								echo $descriptionText400;
+							?>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</section>
+<?php	
+}
+
+?>
+<section class="paragraph paragraph--type--wysiwyg paragraph--view-mode--default ">
+  <div class="container">
+    <div class="row">
+    	
+		<?php if (true === isset($serie["text2"]) && $serie["text2"] != "") { ?>
+		    <div style="font-size: 10px;">&nbsp;</div>
+		    <table cellpadding="2" border="0" width="100%">
+		        <tr>
+		            <td><br /><br /><?php print str_replace(array("<P>", "</P>"), array("", " "), $serie["text2"]); ?></td>
+		        </tr>
+		    </table>
+		<?php } ?>
+
+		<table cellpadding="2" border="0" width="100%" class="pdb-compound-text">
+		    <tr>
+		        <td><?php
+						print str_replace(array("<P>","<p>", "</P>", "</p>"), array("",""," ", " "), Wcms_ContentboxController::getContenbox('pdb---datasheet---general', $language_id));
+		            ?>
+				</td>
+		    </tr>
+		</table>
+	  </div>
+  </div>
+</section>
+
+<section class="paragraph paragraph--type--wysiwyg paragraph--view-mode--default ">
+  <div class="container">
+    <div class="row">
+    	
+
+		
+		
+		<table cellpadding="2" border="0" width="100%" class="pdb-compound-text">
+		    <tr>
+		        <td>
+							<?php 
+								//if ($_SERVER['REMOTE_ADDR'] == '87.148.0.19') {
+									
+									//var_dump($serie['brand_id']);
+								//}
+				
+								//if ( $serie['brand_id'] == 4 ) {
+								if ( $serie['brand_id'] == 4 || $arr_brandname['brandnameen'] == 'THERMOLAST® M') {
+									
+									print Wcms_ContentboxController::getContenbox('pdb2-datasheet-footer-storage-24m', $language_id); 
+								} else {
+									print Wcms_ContentboxController::getContenbox('pdb2-datasheet-footer-storage', $language_id); 
+								}
+							?>
+							
+					</td>
+		    </tr>
+		</table>
+	  </div>
+  </div>
+</section>
+
+<section class="paragraph paragraph--type--wysiwyg paragraph--view-mode--default ">
+  <div class="container">
+    <div class="row">
+    	
+
+		
+		<!-- Für weiterführende Informationen  Further Informations text.phtml-->
+		<table cellpadding="2" border="0" width="100%" class="pdb-compound-text">
+		    <tr>
+		        <td>
+							<?php print Wcms_ContentboxController::getContenbox('pdb2-for-further-information', $language_id); ?>
+					</td>
+		    </tr>
+		</table>
+	  </div>
+  </div>
+</section>
+
+
+<?php if (count($serie["verordnungen"]) > 0 && true == isset($sitetype)) { ?>
+	<section class="paragraph paragraph--type--wysiwyg paragraph--view-mode--default ">
+		<div class="container">
+			<div class="row">
+
+
+
+			<!-- Für weiterführende Informationen  Further Informations text.phtml-->
+			<table cellpadding="2" border="0" width="100%" class="pdb-compound-text">
+					<tr>
+							<td>* 
+								<?php print Wcms_ContentboxController::getContenbox('series-regulations-footnote', $language_id); ?>
+						</td>
+					</tr>
+			</table>
+			</div>
+		</div>
+	</section>
+<?php } ?>
+
+
+<?php 
+}// Ende  HTML
+?>

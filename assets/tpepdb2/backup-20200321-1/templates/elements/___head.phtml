@@ -1,0 +1,96 @@
+<?php if (true === $is_pdf) { ?>
+
+
+<?php if (true === $is_pdf) { ?><br /><?php } ?>
+
+
+
+<?php 
+} else { // Ende PDF Anfang HTML HTML 
+?>
+
+<?php if ($type != "serie") { ?>
+<section class="paragraph paragraph--type--wysiwyg paragraph--view-mode--default" >
+<div class="container">
+          <div class="row">
+<table style="width:100%" cellspacing="0" cellpadding="<?php if (true === $is_pdf) { print "8"; } else { print "0"; } ?>">
+    <tr>
+        <td colspan="2" valign="middle" style="vertical-align:middle; height: <?php if (true === $is_pdf) { ?>55<?php } else { ?>70<?php } ?>px; padding-right: 10px; background-color: #fff; border-top: 1px solid #cccccc; border-left: 1px solid #cccccc; border-right: 1px solid #cccccc; border-bottom: 1px solid #cccccc;"><?php
+            if (true === isset($serie["description"])) { ?><table style="width: 100%" cellpadding="0" cellspacing="0">
+                    <tr><td colspan="2" style="height: 4px; font-size: 2px; line-height: 2px;">&nbsp;</td></tr>
+                    <tr>
+                        <td style="width: 2%;">&nbsp;</td>
+                        <td style="color: #18529D; width: 98%; font-size: <?php echo ((int) $font_size_table + 2) . "px"; ?>;text-align: left;"><b><?php
+                        if ($type == "serie") {
+                            print trim(str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $serie["description"]));
+                        } else {
+                            print trim(str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $serie["text1"]));
+                        }
+                        ?></b></td>
+                    </tr>
+                </table>
+            <?php }
+        ?></td>
+    </tr>
+    <tr>
+        <td style="width: 50%; vertical-align:top; border-left: 1px solid #cccccc;border-bottom: 1px solid #cccccc;background-color: #eee; font-size: <?php print $font_size_table; ?>; color: #000;"><table style="width: 100%" cellpadding="0" cellspacing="0">
+                <tr><td colspan="2" style="height: <?php if (true === $is_pdf) { print "3"; } else { print "15"; } ?>px; font-size: 2px; line-height: 2px;">&nbsp;</td></tr>
+                <tr>
+                    <td style="width: 4%;">&nbsp;</td>
+                    <td style="width: 96%;padding-bottom: 10px; font-size: <?php echo ((int) $font_size_table) . "px"; ?>;text-align: left;"><?php if (true === $is_pdf) { ?><br /><?php } ?>
+                        <span style="color: #18529D; font-size: <?php print $font_size_table; ?>; margin-left: <?php if (true === $is_pdf) { print "20"; } else { print "0"; } ?>px;"><b><?php print Wcms_ContentboxController::getContenbox('pdb---typical-applications', $language_id); ?></b>
+                        </span>
+                        <ul style="list-style-type: disc;margin-left: 16px;">
+                        <?php foreach ($serie["anwendungsbereiche"] as $anwendungsbereich) { ?>
+                            <?php //if (true === empty($anwendungsbereich)) { continue; } ?>
+                            <li style="list-style-type: disc;"><?php print trim(str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $anwendungsbereich)); ?></li>
+                        <?php } ?>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td style="vertical-align:top;border-left: 1px solid #cccccc;border-right: 1px solid #cccccc;border-bottom: 1px solid #cccccc;background-color: #eee; font-size: <?php print $font_size_table; ?>; color: #000;"><table style="width: 100%" cellpadding="0" cellspacing="0">
+                <tr><td colspan="2" style="height: <?php if (true === $is_pdf) { print "3"; } else { print "15"; } ?>px; font-size: 2px; line-height: 2px;">&nbsp;</td></tr>
+                <tr>
+                    <td style="width: 4%;">&nbsp;</td>
+                    <td style="width: 96%;padding-bottom: 10px; font-size: <?php echo ((int) $font_size_table) . "px"; ?>;text-align: left;"><?php if (true === $is_pdf) { ?><br /><?php } ?>
+                        <span style="color: #18529D; font-size: <?php print $font_size_table; ?>; margin-left: <?php if (true === $is_pdf) { print "20"; } else { print "0"; } ?>px;"><b><?php print Wcms_ContentboxController::getContenbox('pdb---material-advantages', $language_id); ?></b>
+                        </span>
+                        <ul style="list-style-type: disc;margin-left: 16px;">
+                        <?php foreach ($serie["materialvorteile"] as $materialvorteile) { ?>
+                            <?php //if (true === empty($materialvorteile)) { continue; } ?>
+                            <li style="list-style-type: disc;"><?php print trim(str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $materialvorteile)); ?></li>
+                        <?php } ?>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" valign="middle" style="vertical-align:middle; height: <?php if (true === $is_pdf) { ?>35<?php } else { ?>45<?php } ?>px; <?php if (true === $is_pdf) { ?>line-height: 27px;<?php } ?> color: #18529D; background-color: #fff;border-left: 1px solid #cccccc;font-size: <?php print $font_size_table; ?>; border-right: 1px solid #cccccc; border-bottom: 1px solid #cccccc;"><table style="width: 100%" cellpadding="0" cellspacing="0">
+                <tr><td colspan="2" style="height: 3px; font-size: 2px; line-height: 2px;">&nbsp;</td></tr>
+                <tr>
+                    <td style="width: 2%;">&nbsp;</td>
+                    <td style="color: #18529D; width: 98%; font-size: <?php echo $font_size_table; ?>;text-align: left;"><b style="color: #18529D;"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-method', $language_id); ?>:</b>
+                        <?php
+                        $processingnote_types = array();
+                        foreach ($processingnotes as $processingnote_type => $processingnote) {
+                            $processingnote_types[] = trim(str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $processingnote_type));
+                        }
+                        print implode(", ", $processingnote_types);
+                        ?>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+          </div>
+        </div>
+</section>
+	<?php 
+	} // Ende Nicht serie 
+	?>
+<?php } ?>

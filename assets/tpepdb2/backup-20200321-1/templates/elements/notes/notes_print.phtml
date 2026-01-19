@@ -1,0 +1,48 @@
+<?php if (true === $is_pdf) { ?>
+			<table border="0">
+			<tr>
+				<td>
+	    	<?php
+				$count_footer = 0;
+		   	foreach ($arr_str_footer As $item){
+				 		$count_footer++;
+						$str_br = '';
+						//if ($count_footer > 1) {
+							$str_br = '<br />';
+						//}
+				 		$label_sup = '<sup>' . $count_footer . '</sup>';
+		        echo $str_br . '<span style="font-size: 12px;">'. $label_sup . $item . ' </span>';
+		    }
+		    ?>
+				</td>
+			</tr>
+		</table>
+
+
+<?php 
+} else { // Ende PDF Anfang HTML
+?>
+<section class="note">
+  <div class="container">
+    <div class="row">
+    	<div class="col-md-24">
+	    	<?php
+				$count_footer = 0;
+		   	foreach ($arr_str_footer As $item){
+				 		$count_footer++;
+						$str_br = '';
+						if ($count_footer > 1) {
+							$str_br = '<br />';
+						}
+				 		$label_sup = '<sup>' . $count_footer . '</sup>';
+		        echo $str_br . '<span>'. $label_sup . $item . ' </span>';
+		    }
+		    ?>
+      <div>
+    </div>
+  </div>
+</section>
+
+<?php 
+} // Ende  HTML
+?>

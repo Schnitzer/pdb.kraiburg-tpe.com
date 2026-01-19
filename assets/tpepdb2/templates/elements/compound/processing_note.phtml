@@ -1,0 +1,114 @@
+<?php if (true === $is_pdf) { 
+
+?>
+
+<br />
+<br /><br />
+        <table width="100%" cellspacing="0" cellpadding="2">
+        <?php $count = 0;
+          
+
+          ?>
+        <?php
+          $countprocessings = 0;
+          foreach ($processingnotes as $processingnote) { 
+        if ($language_id == 3 || $language_id == 7 || $language_id == 10 || $language_id == 11) { 
+          $styles_pgtd = 'height: 36px; font-size: 10px; border-top: 7px solid #fff; ';
+          $td_value_font = 10.4;
+        } else {
+          $styles_pgtd = 'height: 38px; font-size: 11px; border-top: 8px solid #fff; ';
+          $td_value_font = 11;
+        } 
+          
+            ?>
+            <tr nobr="true">
+                <td style="width: 31.7%; <?php echo $styles_pgtd; ?>  color: #1d1d1b; background-color: <?php if ($count % 2 != 0) { ?>#f1f1f1;<?php } else { ?>#e3e3e3;<?php } ?>  vertical-align: middle; border-bottom: 0px solid #fff;border-right: 4px solid #fff;">
+                  <b><?php 
+                      //print td_value(print ucwords($processingnote['label_id']), 11, false, '#1d1d1b', '8px', '8px'); 
+                      $processingnote['label_id'] = htmlspecialchars($processingnote['label_id']);
+                      echo   td_value($processingnote['label_id'],$td_value_font, false, '#1d1d1b', '7px', '7px');
+                    ?></b>
+                </td>
+                <td style="width: 68.3%; color: #1d1d1b; <?php echo $styles_pgtd; ?> background-color: <?php if ($count % 2 != 0) { ?>#f1f1f1;<?php } else { ?>#e3e3e3;<?php } ?> vertical-align: middle;  solid #fff; border-bottom: 0px solid #fff;">
+                  <? 
+                  $processingnote['translation'] = htmlspecialchars($processingnote['translation']);
+                  echo  td_value($processingnote['translation'],$td_value_font, false, '#1d1d1b', '7px', '7px');
+                  ?>
+                </td>
+            </tr>
+          
+              
+            <?php 
+                
+                if ($countprocessings > 12 && count($processingnote) > 12) {
+                  	echo '</table><tcpdf method="AddPage" />';
+                    ?>
+                    <table width="100%" cellspacing="0" cellpadding="2">
+                    <?php
+                    $countprocessings = 0;
+                } 
+                $countprocessings++;
+            ?>
+          
+          
+          
+        <?php 
+         $count++;                                                   
+         } ?>
+        </table>
+
+ 
+ <?php 
+} else { // Ende PDF ANFANG HTML
+  
+ // var_dump($processingnotes);
+  //echo count($processingnotes);
+if (count($processingnotes) > 0) {
+  ?>
+<section class="compound-processing-notes" >
+  <div class="container">
+  	<div class="row">
+  		
+
+        <table width="100%"  class="pdb-list-notes" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr class="headline light-font">
+                  <?php 
+                  $processing_type = $processingnotes[0]['type'];
+                  if ($processing_type == 'processing_im') {
+                    $processing_type = 'injection';
+                  }
+                  if ($processing_type == 'processing_ex') {
+                    $processing_type = 'extrusion';
+                  }
+                  ?>
+                    <th colspan="2" ><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-guideline', $language_id) . ' ' . Wcms_ContentboxController::getContenbox($processing_type, $language_id) ; ?>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+        <?php 
+            foreach ($processingnotes as  $processingnote) { ?>
+            <tr nobr="true">
+                <td class="pdb2-processing-note-name" width="33%">
+                	<?php print ucwords($processingnote['label_id']); ?>
+                 </td>
+                <td>
+                	<?php print $processingnote['translation']; ?>
+                </td>
+            </tr>             
+        <?php } ?>
+            </tbody>
+        </table>
+
+ </div>
+</div>
+</section>
+<?php
+  }
+?>
+
+
+<?php 
+} // ENDE HTML
+?>

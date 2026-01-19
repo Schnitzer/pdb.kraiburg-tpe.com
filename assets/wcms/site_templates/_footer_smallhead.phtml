@@ -1,0 +1,103 @@
+            <div id="imprint">
+                <?php print Wcms_ContentboxController::getContenbox('kraiburg-tpe', $language_id); ?>
+                <?php include (ASSETS . DS . 'wcms' . DS . 'nav_templates' . DS . 'imprint.phtml'); ?>
+            </div>
+
+          </div>
+          <div id="footer">
+
+            <div id="footer_content">
+                <?php
+                $div_open = false;
+                if (true === isset($sites[1][1])) {
+                    $count2 = 0;
+                    $count = 0;
+                    $first = true;
+                    foreach ($sites[1][1] as $navigation_id => $navigation) {
+                        if ($navigation_id > 0) {
+                            foreach ($navigation as $node) {
+                                if ($count === 2 || true === $first) { $div_open = true; ?>
+                                    <div<?php if ($count2 === 3) { ?> class="fourth_column"<?php $count2 = 0; } else { ++$count2; }?>>
+                                        <?php $count = 0; $first = false; } ?>
+                                        <ul>
+                                           <li><a href="<?php print $node['url']; ?>" title="<?php print $node['title']; ?>"><span><?php print $node['name']; ?></span></a></li>
+                                           <?php if (true === isset($sites[2][$node['id']][$navigation_id])) { foreach ($sites[2][$node['id']][$navigation_id] as $sub_node) { ?>
+                                           <li><a href="<?php print $sub_node['url']; ?>" title="<?php print $sub_node['title']; ?>"><?php print $sub_node['name']; ?></a></li>
+                                             <?php if (true === isset($sites[3][$sub_node['id']][16])) {foreach ($sites[3][$sub_node['id']][16] as $sub_sub_node) { ?>
+                                             <li class="sub"><a href="<?php print $sub_sub_node['url']; ?>" title="<?php print $sub_sub_node['title']; ?>">- <?php print $sub_sub_node['name']; ?></a></li>
+                                             <?php } } ?>
+                                             <?php if (true === isset($sites[3][$sub_node['id']][$navigation_id])) { foreach ($sites[3][$sub_node['id']][$navigation_id] as $sub_sub_node) { ?>
+                                             <li class="sub"><a href="<?php print $sub_sub_node['url']; ?>" title="<?php print $sub_sub_node['title']; ?>">- <?php print $sub_sub_node['name']; ?></a></li>
+                                             <?php } } ?>
+                                           <?php } } ?>
+                                        </ul>
+                                        <?php if ($count === 1) { $div_open = false; ?>
+                                    </div>
+                                <?php }
+                                ++$count;
+                            }
+                        }
+                    }
+                }
+                ?>
+                <?php if (true === $div_open) { ?>
+                    </div>
+                <?php } ?>
+            </div>
+
+            <div id="footer_description">
+               &nbsp;
+               <?php 
+               //print $site['description']; 
+               ?>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="jqmWindow" id="search_wrapper">
+            <img id="s_close" src="<?php print $this->base; ?>/assets/wcms/files/bg_s_close.gif" width="56" height="36" alt="close search" title="close search" />
+            <div id="s_body">
+                <div id="s_header">
+                    <ul>
+                      <li><a href="<?php print $pd_url; ?>"><?php print Wcms_ContentboxController::getContenbox('compound-id-search', $language_id); ?></a></li>
+                      <li><a href="<?php print $pd_url; ?>"><?php print Wcms_ContentboxController::getContenbox('series-search', $language_id); ?></a></li>
+                      <li class="s_li_active"><?php print Wcms_ContentboxController::getContenbox('text-search', $language_id); ?></li>
+                      <li><a href="<?php print $pd_url; ?>"><?php print Wcms_ContentboxController::getContenbox('detailed-search', $language_id); ?></a></li>
+                    </ul>
+                </div>
+                <div id="s_section">
+                    <div id="ts_form">
+                      <form id="textsearchform" action="" method="post" onsubmit="search(); return false;">
+                        <label for="textsearch"><?php print Wcms_ContentboxController::getContenbox('text-search', $language_id); ?></label>
+                        <input type="text" id="textsearch" name="Search[q]" class="ts_searchtext" tabindex="1" value="" title="" />
+                        <input type="hidden" name="Search[l]" value="<?php print $language_id; ?>" />
+                        <div class="ts_submit_container">
+                            <input type="submit" value="<?php print Wcms_ContentboxController::getContenbox('search', $language_id); ?>" class="ts_submit" />
+                        </div>
+                      </form>
+                    </div>
+                    <div id="ts_results"></div>
+                </div>
+            </div>
+        </div>
+
+        <?php if (true === Ncw_Components_Session::checkInAll('logout_message') && true === Ncw_Components_Session::readInAll('logout_message')) { ?>
+            <div id="logout_message">
+                <div class="logout_section"><?php print Wcms_ContentboxController::getContenbox('logged-out', $language_id); ?></div>
+            </div>
+        <?php Ncw_Components_Session::deleteInAll('logout_message'); ?>
+        <?php } ?>
+
+        <script src="<?php print $this->base; ?>/themes/default/web/javascript/lib/jquery-1.4.2.min.js" type="text/javascript"></script>
+        <?php if (false !== $admin_code) { print $admin_code; } ?>
+
+        <?php if (false === $admin && true === isset($gallery) && true === $gallery) { ?><script src="<?php print $this->base; ?>/assets/wcms/javascript/gallery.20100131.js" type="text/javascript"></script><?php } ?>
+        <script src="<?php print $this->base; ?>/assets/wcms/javascript/tpe_scripts.20100609.js" type="text/javascript"></script>
+
+        <?php if (false === $admin && $analytics == 88888) { ?>
+        <script type="text/javascript">_gaq.push(['_gat._anonymizeIp']); var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));</script>
+        <script type="text/javascript">try {var pageTracker = _gat._getTracker("UA-11223830-1");pageTracker._trackPageview();} catch(err) {}</script>
+        <?php }  ?>
+  </body>
+</html>

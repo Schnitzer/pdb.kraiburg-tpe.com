@@ -1,0 +1,74 @@
+<?php 
+
+$url_pdb = Ncw_Configure::read('Project.url');
+$add_to_url = '';
+foreach($_GET as $key=>$value)
+{
+    if ($i > 0) {
+      $add_to_url .= '&';
+    } else {
+      $add_to_url .= '?';
+    }
+    $add_to_url .= $key."=".$value;
+  $i++;
+}
+?>
+<!-- serie_search.phtml -->
+
+	 <div class="pdb2_search_headline">
+		 <h1>
+			 <?php print Wcms_ContentboxController::getContenbox('find-the-right-product', $language_id); ?>
+		 </h1>
+		<?php print Wcms_ContentboxController::getContenbox('pdb---search---info', $language_id); ?>
+</div>
+   <div class="pdb2_search_list">
+    <!--<div id="ergebniss_header"><h3><?php print Wcms_ContentboxController::getContenbox('pdb---search---search-results', $language_id); ?></h3></div>-->
+		<?php 
+		$counter = 1;
+		 
+		if (count($series) > 0) { 
+		?>
+    <table class="pdb-list-search" cellspacing="0" cellpadding="0">
+			<input class="pdb2-label-input-search-results" type="hidden" value="<?php print Wcms_ContentboxController::getContenbox('pdb---search---search-results', $language_id); ?>" />
+    	<thead>
+    		<tr class="headline ">
+        <th width="20%"><?php print Wcms_ContentboxController::getContenbox('pdb---series', $language_id); ?></th>
+        <th class="pdb-list-search-small-hide"><?php print Wcms_ContentboxController::getContenbox('description', $language_id); ?></th>
+        <th width="20%"><?php print Wcms_ContentboxController::getContenbox('pdb---brand', $language_id); ?></th>
+        </tr>
+       </thead>
+			<tbody>
+        <?php 
+			
+				foreach ($series as $serie) { 
+					if ($serie['pdb20'] == 1) { // Nur noch neue Serien Ausgeben
+					?>
+					<tr>
+							<td class="name">
+								 <a href="<?php print $url_pdb . $add_to_url . ''; ?>&amp;sid=<?php print $serie["id"]; ?><?php if ($language == "it") { ?>&amp;ls=it<?php } ?><?php if ($language == "pl") { ?>&amp;ls=pl<?php } ?>" target="_self"><?php print $serie["name"]; ?></a>
+							</td>
+							<td class="pdb-list-search-small-hide">
+									<?php if (true === isset($serie["text1"])) { print $serie["text1"]; } ?>
+							</td>
+							<?php 
+								if ($language_id != 3 || strlen($serie["brand"]["name_zh"]) < 1) { // 3 ist Chinesisch und soll den eintrag name_zh benutezn
+							?>
+								<td style="white-space: nowrap"><?php print str_replace('®', '<sup>®</sup>', $serie["brand"]["name"]); ?></td>
+							<?php } else { ?>
+								<td style="white-space: nowrap"><?php print str_replace('®', '<sup>®</sup>', $serie["brand"]["name_zh"]); ?></td>
+							<?php }?>
+					</tr>
+
+					<?php 
+						$counter++;
+					}  // If serie PDB20
+		    }
+        ?>
+				</tbody>
+    </table>
+    <?php } ?>
+	    
+	   </div>
+   <!--</div>
+ </div>
+</section>-->

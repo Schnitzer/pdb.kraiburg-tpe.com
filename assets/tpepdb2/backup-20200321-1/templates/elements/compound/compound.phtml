@@ -1,0 +1,87 @@
+<?php if (true === $is_pdf) { ?>
+
+
+<?php 
+} else { // Ende PDF Anfang HTML
+?>
+
+<section class="compound-table">
+  <div class="container">
+    <div class="row">
+			<div class="col-sm-24 ct-u-padding-top-40">
+    	<!--
+			<table class="compound-table pdb-compound-properties" style="width: 100%;" cellspacing="0" cellpadding="0">
+				<thead>
+			    <tr class="headline light-font">
+			        <th colspan="2"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---product-properties', $language_id); ?></th>
+			    </tr>
+			   </thead>
+			   <tbody>
+			    <tr>
+			        <td><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---compound-name', $language_id); ?></td>
+			        <td><?php print $compound["name"]; ?></td>
+			    </tr>
+			    <?php if ($serie["id"] > 0) { ?>
+			        <?php
+			        if (false === $is_pdf) {
+			            $serie_name = '<a href="?sid=' .  $serie["id"];
+			            if ($language == "it") {
+			                $serie_name .= '&amp;ls=it';
+			            }
+			            if ($language == "pl") {
+			                $serie_name .= '&amp;ls=pl';
+			            }
+			            $serie_name .='">' . $serie["name"] . '</a>';
+			        } else {
+			            $serie_name = $serie["name"];
+			        }
+			        ?>
+			        <tr>
+			            <td width="66%"><?php print Wcms_ContentboxController::getContenbox('pdb---series', $language_id); ?></td>
+			            <td><?php print $serie_name; ?></td>
+			        </tr>
+			    <?php } ?>
+			    <?php if (true === isset($compound["srs_farbe_db"])) { ?>
+			        <tr>
+			            <td ><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---srs-color', $language_id); ?></td>
+			            <td ><?php print $compound["srs_farbe_db"]; ?></td>
+			        </tr>
+			    <?php } ?>
+			    <?php if ($compound["status"] != "portfolio" && count($processingnotes) > 0) { ?>
+			        <tr>
+			            <td><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-method', $language_id); ?></td>
+			            <td><?php
+			                $processingnote_types = array();
+			                foreach ($processingnotes as $processingnote_type => $processingnote) {
+			                    $processingnote_types[] = str_replace(array("<p>", "</p>", "<P>", "</P>"), "", $processingnote_type);
+			                }
+			                print implode(", ", $processingnote_types);
+			                ?>
+			            </td>
+			        </tr>
+			    <?php } ?>
+			    <?php if ($compound["status"] != "portfolio" && true === isset($compound["srs_adhesion"]) && !empty($compound["srs_adhesion"])) { ?>
+			        <tr>
+			            <td><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---srs-adhesion', $language_id); ?></td>
+			            <td><?php print $compound["srs_adhesion"]; ?></td>
+			        </tr>
+			    <?php } ?>
+			  </tbody>
+			</table>
+-->
+			<?php include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound" . DS . "mechanical_properties.phtml"; ?>
+			<?php include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "notes" . DS . "notes_print.phtml"; ?>
+			<?php 
+			if ($compound["description"] != "") {
+				print trim(str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $compound["description"]));
+			}
+			?>
+			<?php include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "text.phtml"; ?>
+			<br />
+    	
+			</div>
+	  </div>
+  </div>
+</section>
+
+<?php } ?>

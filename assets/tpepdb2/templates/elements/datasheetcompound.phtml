@@ -1,0 +1,73 @@
+<?php 
+$url_pdb = Ncw_Configure::read('Project.url');
+?>
+
+
+		<?php include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'elements' . DS . 'share_dialog.phtml'; ?>
+<div class="paragraph clearfix panel-group paragraph--type--akkordeon paragraph--view-mode--default" id="390" role="tablist" aria-multiselectable="true" style="">
+		<div class="panel panel-default">
+			<div class="panel-heading flaticon-leave-right dark-font" role="tab" id="headingOne">
+				<h4 class="panel-title">
+					<a role="button" data-toggle="collapse" data-parent="#390" href="#target390" aria-expanded="false" aria-controls="target390" class="noTrigger collapsed">
+						<?php 
+						echo  Wcms_ContentboxController::getContenbox('pdb2-datasheet-to-download', $language_id);
+						?>
+						<span class="kbtpe-icon-minus minus"></span>
+						<span class="kbtpe-icon-plus plus"></span>
+					</a>
+				</h4>
+			</div>
+			<div id="target390" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+				<div class="panel-body">
+					<div class="row">
+						
+	      	  <div class="rows  ncw-u-padding-bottom-20">
+      	  	<div class="cols-sm-12">
+      	  	  <h5>
+								<?php print Wcms_ContentboxController::getContenbox('please-choose-language-of-datasheet', $language_id); ?>
+							</h5>
+      	    </div>
+      	  </div>
+						<?php 
+						$languages = array();
+						$languages["English"] =  "en";
+						$languages["Deutsch"] =  "de";
+						$languages["中文"] =  "zh";
+						$languages["Español"] =  "es";
+						$languages["Français"] =  "fr";
+						$languages["日本語"] =  "jp";
+						$languages["한국어"] =  "kr";
+						$languages["Polski"] =  "pl";	
+						$languages["Italiano"] =  "it";
+						foreach ($languages as $key => $value) { 
+							if ($value != 'pt' && $value != 'us') {
+							?>
+							<div class="paragraph clearfix paragraph--type--download paragraph--view-mode--default color-scheme-darkgrey light-font col-md-8 col-sm-12 no_image" style="height: 57px;">
+								<div class="clearfix">
+											<div class="col-xs-18 download-info" style="background-image:url('<?php echo $website_url; ?>/sites/default/files/assets/pattern/dark-grey.png')">
+
+										<div class="icon kbtpe-icon-download">
+											 <span class="download-datum"> PDF file - 1MB</span><span class="download-title"><?php print $key; ?></span>
+										</div>
+										<?php if (true == TpePdbWeb::rights()) { ?>
+											<!--<a href="javascript: var openshare = open_share_dialog('datasheet', '<?php echo $value; ?>', '<?php echo $id; ?>', '<?php echo $url_pdb; ?>/tpepdb/pdf?cid=<?php echo $id; ?>&amp;l=<?php echo $value; ?>', 'datasheet');" target="_blank" class="share-buton">-->
+												<div class="icosn kbtpe-icon-share" onclick="open_share_dialog('datasheet', '<?php echo $value; ?>', '<?php echo $id; ?>', '<?php echo $url_pdb; ?>/tpepdb/pdf?cid=<?php echo $id; ?>&amp;l=<?php echo $value; ?>', 'datasheet');" ></div>
+											<!--</a>-->
+										<?php } ?>
+									</div>
+								</div>
+								<a href="<?php echo $url_pdb; ?>/tpepdb/pdf?cid=<?php echo $id; ?>&amp;l=<?php echo $value; ?>&datasheetmode=datasheet" target="_blank" class="clickhelper" onclick="tpepedb2stats('<?php echo $url_pdb; ?>/tpepdb/pdf?cid=<?php echo $id; ?>','<?php echo $value; ?>', 'compound', 'datasheet', 'download');"><span class="hidden">Download</span></a>
+							</div>
+							<?php } // End if nicht portugisisch?>
+						<?php } ?>
+
+						<div class="panel-space"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		
+		
+

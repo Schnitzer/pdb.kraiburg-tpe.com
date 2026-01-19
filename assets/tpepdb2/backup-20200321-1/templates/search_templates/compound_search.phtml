@@ -1,0 +1,43 @@
+<section class="paragraph paragraph--type--wysiwyg paragraph--view-mode--default ">
+<div class="container">
+          <div class="row">
+    <div id="ergebniss_header"><?php print Wcms_ContentboxController::getContenbox('pdb---search---search-results', $language_id); ?><?php if (count($compounds) == 50) {  print " - <b style=\"color: #AA0000;\">" . Wcms_ContentboxController::getContenbox('pdb---search---to-many-results', $language_id) . "</b>"; } ?></div>
+    <table class="compound-table  pdb-list-search  light-font" style="width: 944px; margin: 0; padding: 0px;" cellspacing="0" cellpadding="0">
+        <th class="pdb-list-search-headline"><?php print Wcms_ContentboxController::getContenbox('pdb---compound', $language_id); ?></th>
+        <th class="pdb-list-search-headline"><?php print Wcms_ContentboxController::getContenbox('pdb---series', $language_id); ?></th>
+        <th class="pdb-list-search-headline"><?php print Wcms_ContentboxController::getContenbox('pdb---brand', $language_id); ?></th>
+        <?php 
+        $count_compounds = 0;
+        foreach ($compounds as $compound) { 
+            $count_compounds++;
+        ?>
+        <tr style="height: 32px;">
+            <td style="padding: 0px 0 0 18px; border-right: 1px solid #ccc; border-top: 1px solid #ccc;">
+                    <p><a href="<?php print $url_pdb; ?>?cid=<?php print $compound["id"]; ?><?php if ($language == "it") { ?>&amp;ls=it<?php } ?><?php if ($language == "pl") { ?>&amp;ls=pl<?php } ?>" target="_self"><?php print $compound["name"]; ?></a></p>
+            </td>
+            <td style="padding: 0 0 0 18px; border-right: 1px solid #ccc; border-top: 1px solid #ccc;">
+                <p><a href="<?php print $url_pdb; ?>?sid=<?php print $compound["serie"]["id"]; ?><?php if ($language == "it") { ?>&amp;ls=it<?php } ?><?php if ($language == "pl") { ?>&amp;ls=pl<?php } ?>" target="_self"><?php print $compound["serie"]["name"]; ?></a></p>
+            </td>
+            <td style="padding: 0 0 0 18px; border-top: 1px solid #ccc;">
+            	  <?php 
+        					if ($language_id != 3 || strlen($compound["brand"]["name_zh"]) < 1 ) { // 3 ist Chinesisch und soll den eintrag name_zh benutezn
+        				?>
+                  <p><?php print str_replace('®', '<sup>®</sup>', $compound["brand"]["name"]); ?></p>
+                <?php } else { ?>
+                  <p><?php print str_replace('®', '<sup>®</sup>', $compound["brand"]["name_zh"]); ?></p>
+                <?php }?>
+            </td>
+        </tr>
+        <?php } ?>
+    </table>
+
+
+<?php 
+    if ($count_compounds == 0) {
+        print Wcms_ContentboxController::getContenbox('pdb---search-noresult', $language_id);
+    }
+
+?>
+          </div>
+        </div>
+</section>

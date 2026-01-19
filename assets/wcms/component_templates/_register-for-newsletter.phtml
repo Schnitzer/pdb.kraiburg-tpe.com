@@ -1,0 +1,288 @@
+<?php
+$contactExists = null;
+$warning_css_class = array(
+    'name' => '',
+    'firstname' => '',
+    'email' => '',
+    'title' => '',
+    'country' => '',
+    'company' => '',
+    'phone' => ''
+);
+$success = false;
+$arr_language = array();
+
+$arr_language['send'] = Wcms_ContentboxController::getContenbox('contact-label-send', $language_id);
+$arr_language['name'] = Wcms_ContentboxController::getContenbox('contact-label-name', $language_id);
+$arr_language['firstname'] = Wcms_ContentboxController::getContenbox('contact-label-firstname', $language_id);
+$arr_language['company'] = Wcms_ContentboxController::getContenbox('contact-label-company', $language_id);
+$arr_language['country'] = Wcms_ContentboxController::getContenbox('contact-label-country', $language_id);
+$arr_language['email'] = Wcms_ContentboxController::getContenbox('contact-label-e-mail', $language_id);
+$arr_language['title'] = Wcms_ContentboxController::getContenbox('contact-label-title-position', $language_id);
+$arr_language['phone'] = Wcms_ContentboxController::getContenbox('contact-label-phone', $language_id);
+$arr_language['branches'] = Wcms_ContentboxController::getContenbox('contact-label-branches', $language_id);
+$arr_language['language'] = Wcms_ContentboxController::getContenbox('contact-label-language', $language_id);
+$arr_language['yes_i_like_to'] = Wcms_ContentboxController::getContenbox('contact-label-yes-i-like-newsletter', $language_id);
+$arr_language['automotive'] = Wcms_ContentboxController::getContenbox('contact-label-automotive', $language_id);
+$arr_language['consumer'] = Wcms_ContentboxController::getContenbox('contact-label-consumer', $language_id);
+$arr_language['industries'] = Wcms_ContentboxController::getContenbox('contact-label-industries', $language_id);
+$arr_language['all_branches'] = Wcms_ContentboxController::getContenbox('contact-label-all-branches', $language_id);
+$arr_language['thank_you'] = Wcms_ContentboxController::getContenbox('contact-label-thank-you-newsletter', $language_id);
+$arr_language['contact_exits'] = Wcms_ContentboxController::getContenbox('contact-label-contact-exits', $language_id);
+
+$group = new Contacts_Group();
+$group->unbindModel('all');
+$arr_groups = $group->fetch(
+    'all',
+    array(
+        'fields' => array('Group.id', 'Group.name'),
+        'order' => array('Group.name'),
+        'conditions' => array('Group.parent_id' => 2)
+    )
+);
+// new Country object
+$obj_country = new Contacts_Country();
+$obj_country->unbindModel('all');
+$countries = $obj_country->fetch('all', array('fields' => array('Country.id', 'Country.code', 'Country.name')));
+
+require_once 'I18Nv2/I18Nv2.php';
+require_once 'I18Nv2/Country.php';
+if ($language_code == 'jp') {
+    $tmp_language_code = 'ja';
+} else {
+    $tmp_language_code = $language_code;
+}
+$I18Nv2_country = new I18Nv2_Country($tmp_language_code, 'utf-8');
+
+$arr_countries = array();
+foreach ($countries as $country) {
+    
+    $translated_country_name = $I18Nv2_country->getName(strtolower($country->getCode()));
+    if (false === empty($translated_country_name)) {
+        $arr_countries[$country->getId()] = $translated_country_name;
+    } else {
+        $arr_countries[$country->getId()] = $country->getName();
+    }
+}
+
+
+if (true === isset($_POST['register'])) {
+    // array to validate
+    $fields = array('name' => array('rules' => array('MaxLength' => 100, 'NotEmpty'), 'required' => true),
+            'firstname' => array('rules' => array('MaxLength' => 100, 'NotEmpty'), 'required' => true),
+            'email' => array('rules' => array('Email'), 'required' => true),
+            'title' => array('rules' => array('MaxLength' => 30)),
+            'company' => array('rules' => array('MaxLength' => 100)),
+            'phone' => array('rules' => array('MaxLength' => 25))
+            );
+    // new validator class
+    $validator = new Ncw_Validator($fields);
+    $email = $_POST['register']['email'];
+    $data = Ncw_Library_Sanitizer::clean($_POST['register']);
+    $data['email'] = $email;
+    // validate user data
+    list($success, $invalid_fields) = $validator->validate($data);
+    if (true === $success) {
+        $contact = new Contacts_Contact();
+        $contact_email = new Contacts_Email();
+        $contact_email->setEmail($data['email']);
+        // find an existing contact with the same email
+        $contactExists = $contact_email->findBy('email' , $data['email'], array('fields' => array('Contact.id')));
+
+        if (false === is_object($contactExists)) {
+
+            $contact_city = new Contacts_City();
+            $contact_address = new Contacts_Address();
+            $contact_phone = new Contacts_Phone();
+
+            $contact->setType('private');
+            $contact->setName($data['name']);
+            $contact->setFirstname($data['firstname']);
+            $contact->setTitle($data['title']);
+            if (false === empty($data['company'])) {
+                $contact->setInfo('Works at ' . $data['company']);
+            }
+            $contact->save();
+
+            $contact_email->setContactId($contact->getId());
+            $contact_email->setLocation('work');
+            $contact_email->setFirst(true);
+            $contact_email->save();
+
+            $contact_phone->setPhone($data['phone'], false);
+            $contact_phone->setContactId($contact->getId());
+            $contact_phone->setLocation('work');
+            $contact_phone->setFirst(true);
+            $contact_phone->save();
+
+            $obj_city = $contact_city->findBy(
+                'country_id',
+                $data['country'],
+                array(
+                    'fields' => array('City.id'),
+                    'conditions' => array(
+                        'City.postcode' => '12345',
+                        'City.name' => 'No City'
+                    )
+                )
+            );
+
+            if (false !== $obj_city) {
+                $city_id = $obj_city->getId();
+            } else {
+                $contact_city->setCountryId($data['country']);
+                $contact_city->setPostcode(12345);
+                $contact_city->setName('No City');
+                $contact_city->save();
+                $city_id = $contact_city->getId();
+            }
+
+            // save contact address
+            $contact_address->setContactId($contact->getId());
+            $contact_address->setCityId($city_id);
+            $contact_address->setStreet('No Street');
+            $contact_address->setLocation('work');
+            $contact_address->setFirst(1);
+            $contact_address->save();
+        }
+
+        // add to group
+        if (false === is_object($contactExists)) {
+            $group_contact = new Contacts_GroupContact();
+            $group_contact->setContactId($contact->getId());
+            $group_contact->setGroupId($data['group']);
+            $group_contact->save();
+        }
+    }
+
+
+    $warningclass = array();
+        // required
+    if(true == isset($invalid_fields['name'])) {
+        $warning_css_class['name'] = 'class="tpe-warning-input"';
+        $data['name'] = '';
+    }
+    if(true == isset($invalid_fields['firstname'])) {
+        $warning_css_class['firstname'] = 'class="tpe-warning-input"';
+        $data['firstname'] = '';
+    }
+    if(true == isset($invalid_fields['email'])) {
+        $warning_css_class['email'] = ' tpe-warning-input';
+        $data['email'] = '';
+    }
+        // not required
+        // validate title
+    if(true == isset($invalid_fields['title'])) {
+        $warning_css_class['title'] = 'class="tpe-warning-input"';
+    }
+        // validate country
+    if(true == isset($invalid_fields['country'])) {
+        $warning_css_class['country'] = 'class="tpe-warning-input"';
+        }
+        // validate company
+    if(true == isset($invalid_fields['company'])) {
+        $warning_css_class['company'] = 'class="tpe-warning-input"';
+        }
+        // validate phone
+    if(true == isset($invalid_fields['phone'])) {
+        $warning_css_class['phone'] = 'class="tpe-warning-input"';
+        }
+} else {
+    $data['group'] = 3;
+    switch ($language_code) {
+    case('de'):
+        $data['country'] = 81;
+        break;
+    case('zh'):
+        $data['country'] = 44;
+        break;
+    case('es'):
+        $data['country'] = 199;
+        break;
+    case('fr'):
+        $data['country'] = 74;
+        break;
+    default:
+        $data['country'] = 225;
+    }
+}
+?>
+<?php if (true === $admin) { ?><div id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>" class="<?php if (true === $admin) { ?>ncw-sortable-item<? } ?>"><?php } ?>
+<?php if (true === $success && false === is_object($contactExists)) {
+    $data = array();
+    ?>
+    <div><?php echo $arr_language['thank_you']; ?></div>
+<?php } else if (true === is_object($contactExists)) {?>
+    <div><?php echo $arr_language['contact_exits']; ?></div>
+<?php } else if (false === is_object($contactExists)) {?>
+
+<form id="contactform" method="post" action="">
+<div id="contact_left">
+  <div>
+    <label for="cf_lastname" <?php echo $warning_css_class['name']; ?> >* <?php echo $arr_language['name']; ?></label>
+    <input id="cf_lastname" type="text" name="register[name]" title="<?php echo $arr_language['name']; ?>" value="<?php if (true === isset($data['name'])) { echo $data['name']; } ?>" tabindex="2" />
+  </div>
+
+  <div>
+    <label for="cf_firstname" <?php echo $warning_css_class['firstname']; ?> >* <?php echo $arr_language['firstname']; ?></label>
+    <input id="cf_firstname" type="text" name="register[firstname]" title="<?php echo $arr_language['firstname']; ?>" value="<?php if (true === isset($data['firstname'])) { echo $data['firstname']; } ?>" tabindex="3" />
+  </div>
+  <div>
+    <label for="cf_title" <?php echo $warning_css_class['title']; ?> ><?php echo $arr_language['title']; ?></label>
+    <input id="cf_title" class="cf_no_margin" type="text" name="register[title]" title="<?php echo $arr_language['title']; ?>" value="<?php if (true === isset($data['title'])) { echo $data['title']; } ?>" tabindex="4" />
+  </div>
+
+  <div class="tpe-input-radio-container">
+        <label for="cf_selectregion" ><?php echo $arr_language['country']; ?></label>
+        <select id="cf_selectregion" name="register[country]" tabindex="5">
+                <?php foreach ($arr_countries as $country_id => $country_name) {
+                        //$country_name = substr($country_name, 0, 40);
+                    ?>
+                    <option value="<?php echo $country_id; ?>" <?php if ($data['country'] == $country_id) { echo 'selected="selected"'; } ?> ><?php echo $country_name; ?></option>
+                <?php } ?>
+        </select>
+  </div>
+
+  <div>
+    <label for="cf_firm" <?php echo $warning_css_class['company']; ?> ><?php echo $arr_language['company']; ?></label>
+    <input id="cf_firm" type="text" name="register[company]" title="<?php echo $arr_language['company']; ?>" value="<?php if (true === isset($data['company'])) { echo $data['company']; } ?>" tabindex="6" />
+  </div>
+  <div >
+    <input id="cf_btn" type="submit" value="<?php echo $arr_language['send']; ?>" class="tpe-button-small" tabindex="14" title="<?php echo $arr_language['send']; ?>" />
+  </div>
+</div>
+
+<div id="contact_right">
+
+  <div>
+    <label for="cf_tel" <?php echo $warning_css_class['phone']; ?> ><?php echo $arr_language['phone']; ?></label>
+    <input id="cf_tel" type="text" name="register[phone]" title="<?php echo $arr_language['phone']; ?>" value="<?php if (true === isset($data['phone'])) { echo $data['phone']; } ?>" tabindex="7" />
+  </div>
+  <div>
+    <label for="cf_email" class="cf_no_margin <?php echo $warning_css_class['email']; ?>"  >* <?php echo $arr_language['email']; ?></label>
+    <input id="cf_email" name="register[email]" class="cf_no_margin" type="text" title="<?php echo $arr_language['email']; ?>" value="<?php if (true === isset($data['email'])) { echo $data['email']; } ?>" tabindex="8" />
+  </div>
+
+  <div class="tpe-input-headline-container">
+    <label><?php echo $arr_language['language']; ?></label>
+  </div>
+  <?php $count = 0; ?>
+  <?php foreach ($arr_groups as $group) { ?>
+            <?php
+            $name = Wcms_ContentboxController::getContenbox('contact-label-' . strtolower($group->getName()), $language_id);
+            if (true === empty($name)) {
+                $name = $group->getName();
+            }
+            ?>
+            <div class="tpe-input-radio-container">
+               <label for="cf_language_<?php echo $group->getId();?>"><?php echo $name; ?></label>
+               <input id="cf_language_<?php echo $group->getId();?>" class="tpe-radio" name="register[group]" type="radio" title="<?php echo $group->getName(); ?>" value="<?php echo $group->getId();?>" <?php if ($data['group'] == $group->getId()) { echo 'checked="checked"'; } ?> />
+            </div>
+  <?php }?>
+
+</div>
+
+</form>
+<?php }?>
+<?php if (true === $admin) { ?></div><?php } ?>
+

@@ -1,0 +1,301 @@
+<?php 
+	$layoutMitHergestelltIn = true;
+
+	if (true === $is_pdf) { 
+	if ($compound['status'] == 'portfolio') {
+		$border_bottom_row_1 = 'border-bottom: 1px solid #bdbcbc;';
+		$height_table_info = '100px;';
+	} else {
+		$border_bottom_row_1 = '';
+		$height_table_info = '50px;';
+	}
+	$trenner_img = '<img src="' .  ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'images' . DS . 'quadrat.png" height="6" style="margin-bottom: 3px;" />';
+
+	$processingnotes_all = $this->getCompoundProcessing($compound['id'], $language_id);
+	
+	$serie["anwendungsbereiche"] = $this->getCompoundTypicalapplication($compound['id'], $language_id);
+	$serie["materialvorteile"] = $this->getCompoundMaterialadvantages($compound['id'], $language_id);
+	$serie["verordnungen"] = $this->getCompoundApproval($compound['id'], $language_id);
+	$count_all_items = count($serie["anwendungsbereiche"]) + count($serie["verordnungen"]) + count($serie["materialvorteile"]);
+	$line_height = 19;
+	$str_blocktrenner = '<br /><br />';
+	if ($count_all_items > 24) {
+		$line_height = 17;
+		$trenner_img = '<img src="' .  ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'images' . DS . 'quadrat.png" height="6" style="margin-bottom: 6px;" />';
+	}
+	if ($count_all_items > 29) {
+		$str_blocktrenner = '<br />';
+	}
+	if ($count_all_items > 35 ) {
+		$line_height = 16;
+	}
+?>
+
+<table style="width:100%;" cellspacing="0" cellpadding="8">
+    <tr>
+			<td style=" height: <?php echo $height_table_info; ?>; padding: 10px; background-color: #fff; border: 1px solid #134d93;">
+				<?php if (strlen(trim($text_grauer_kasten)) > 0) { ?>
+					<table style="width:100%" cellspacing="0" cellpadding="8">
+						<tr><td style=" height: 40px; padding: 10px; border-bottom: 1px solid #bdbcbc;"><?php echo $text_grauer_kasten; ?></td></tr>
+					</table>
+				<?php } ?>
+					<table style="width:100%" cellspacing="0" cellpadding="8">
+							<?php if ($layoutMitHergestelltIn == false) { ?>
+							<tr>
+								<?php 
+								$border_bottom = '';
+								if ($compound['status'] == 'portfolio') {	
+									$border_bottom = ' border-bottom: 1px solid #bdbcbc;';
+								}
+								?>
+								<td style=" height: 20px; padding: 10px; background-color: #fff; <?php echo $border_bottom; ?> border-right: 1px solid #bdbcbc; font-size: 14px; line-height: 19px;">
+									<b style="color: #055499; font-size: 16px;"><?php echo Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-method', $language_id); ?></b><br />
+									<?php
+										$str_processingnote_type = '';
+										if (true == isset($processingnotes_all['processing_im']) ){
+											$processing_type = 'injection';
+											$str_processingnote_type = Wcms_ContentboxController::getContenbox($processing_type, $language_id);
+										}
+										if (true == isset($processingnotes_all['processing_ex']) ){
+											$processing_type = 'extrusion';
+											if (strlen($str_processingnote_type) > 1) {
+												$str_processingnote_type .= ', ' . Wcms_ContentboxController::getContenbox($processing_type, $language_id);
+											} else {
+												$str_processingnote_type .= Wcms_ContentboxController::getContenbox($processing_type, $language_id);
+											}
+										}
+										echo $str_processingnote_type;
+									?>
+								</td>
+								<?php 
+								$border_bottom = '';
+								if ($compound['status'] == 'portfolio') {	
+									$border_bottom = ' border-bottom: 1px solid #bdbcbc;';
+								}
+								?>
+								<td style=" height: 20px; padding: 10px; background-color: #fff; <?php echo $border_bottom; ?> font-size: 14px; line-height: 18px;">
+										<b style="color: #055499; font-size: 16px;"><?php echo Wcms_ContentboxController::getContenbox('pdb---datasheet---srs-color', $language_id); ?></b><br />
+										<?php
+										$colors = $this->getCompoundColor($compound['id'], $language_id);
+										echo implode(', ',$colors);
+									?>
+								</td>
+						</tr>
+						<?php } else { // mit Hergestellt in und Verfügbarkeit ?>
+							<tr>
+								<?php 
+
+								$border_bottom = '';
+								if ($compound['status'] == 'portfolio') {	
+									$border_bottom = ' border-bottom: 1px solid #bdbcbc;';
+								}
+								?>
+								<td style=" height: 20px; padding: 10px; background-color: #fff;  font-size: 14px; line-height: 18px;<?php echo $border_bottom; ?>">
+									<b style="color: #055499; font-size: 16px;"><?php echo $version. Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-method', $language_id); ?></b><br />
+									<?php
+									$str_processingnote_type = '';
+									if (true == isset($processingnotes_all['processing_im']) ){
+										$processing_type = 'injection';
+										$str_processingnote_type = Wcms_ContentboxController::getContenbox($processing_type, $language_id);
+									}
+									if (true == isset($processingnotes_all['processing_ex']) ){
+										$processing_type = 'extrusion';
+										if (strlen($str_processingnote_type) > 1) {
+											$str_processingnote_type .= ', ' . Wcms_ContentboxController::getContenbox($processing_type, $language_id);
+										} else {
+											$str_processingnote_type .= Wcms_ContentboxController::getContenbox($processing_type, $language_id);
+										}
+									}
+									echo $str_processingnote_type;
+									?>
+									<br />
+									<b style="color: #055499; font-size: 16px;"><?php echo Wcms_ContentboxController::getContenbox('pdb---datasheet---srs-color', $language_id); ?></b><br />
+									<?php
+									$colors = $this->getCompoundColor($compound['id'], $language_id);
+									echo strip_tags(implode(', ', $colors));
+									?>
+									<?php if (strlen($compound['bioanteil']) > 0) { ?>
+									<br />
+									<b style="color: #055499; font-size: 16px;"><?php echo Wcms_ContentboxController::getContenbox('biologicalmaterials', $language_id); ?></b><br />
+									<?php echo round($compound['bioanteil']); ?>%
+									<?php } ?>
+								</td>
+								<?php 
+								$border_bottom = '';
+								if ($compound['status'] == 'portfolio') {	
+									$border_bottom = ' border-bottom: 1px solid #bdbcbc;';
+								}
+								$strHergestelltIn = $this->getCompoundCOrigin($compound['id'], $language_id);
+								$strVerfuegbarkeit = $this->getCompoundRegion20($compound['id'], $language_id);
+								if ($strVerfuegbarkeit == 'GLOBAL') {
+									$strVerfuegbarkeit = Wcms_ContentboxController::getContenbox('global', $language_id);
+								}
+								//$strVerfuegbarkeit = $compound['verfuegbarkeit'];
+								if (strlen(trim($strHergestelltIn)) < 1) {
+									$strHergestelltIn = '';
+								}
+								if (strlen(trim($strVerfuegbarkeit)) < 1) {
+									$strVerfuegbarkeit = '';
+								}
+								?>
+								<td style=" height: 20px; padding: 10px; background-color: #fff;  font-size: 14px; line-height: 18px; <?php echo $border_bottom; ?>">
+									<?php if (strlen($strHergestelltIn) > 0) { ?>
+										<b style="color: #055499; font-size: 16px;"><?php echo Wcms_ContentboxController::getContenbox('hergestellt-in', $language_id); ?></b><br />
+										<?php echo $strHergestelltIn; ?>
+									<?php } ?>
+									<?php if (strlen($strVerfuegbarkeit) > 0) { ?>
+										<br>
+										<b style="color: #055499; font-size: 16px;"><?php echo Wcms_ContentboxController::getContenbox('verfuegbarkeit', $language_id); ?></b><br />
+										<?php echo $strVerfuegbarkeit; ?>
+									<?php } ?>
+									<?php if (strlen($compound['recyclinganteil']) > 0) { ?>
+										<br />
+										<b style="color: #055499; font-size: 16px;"><?php echo Wcms_ContentboxController::getContenbox('rawmaterials', $language_id); ?><sup>**</sup></b>
+										<br />
+										<?php 
+										$hasRecycling = true;
+										echo round($compound['recyclinganteil']); ?>%
+									<?php } ?>
+								</td>
+						</tr>
+						<?php } ?>
+					</table>
+				<?php if ($compound['status'] == 'portfolio') { ?>
+					<table style="width:100%" cellspacing="0" cellpadding="8" border="0">
+							<tr>
+								<td style=" height:40px; padding: 10px; background-color: #fff; border-bottom: 1px solid #fff; border-right: 1px solid #fff; font-size: 16px;  line-height: 19px;">
+									<?php 
+										$count_all = count($serie["anwendungsbereiche"]);
+									?>
+									<?php if ($count_all > 0 ) { ?>
+									<b style=" font-weight: 800; color: #055499;"><?php print Wcms_ContentboxController::getContenbox('pdb---typical-applications', $language_id); ?></b><br>
+									<?php } ?>
+									<?php $arr_typical_applications = array();
+											echo '<table border="0">';
+												$count_left = ceil ( $count_all/2 );
+												$str_left = '';
+												$str_right = '';
+												$count = 0;
+												foreach ($serie["anwendungsbereiche"] as $item) { 
+													//if ($count_aw > 1) {
+													if ($count < $count_left) {
+														//$str_left .= $trenner_img . ' ' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $item))) . '<br />';
+														
+														$str_left .= '<table width="100%" border="0"><tr><td width="12">' . $trenner_img . '</td><td width="300">' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $item))) . '</td></tr></table>';
+													} else {
+														//$str_right .= $trenner_img . ' ' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $item))) . '<br />';
+														
+														$str_right .= '<table width="100%" border="0"><tr><td width="12">' . $trenner_img . '</td><td width="300">' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $item))) . '</td></tr></table>';
+													}
+													$count++;
+												}
+												echo '<tr>';
+												echo '<td style="font-size: 14px;  line-height: ' . $line_height . 'px;">';
+													echo $str_left;
+												echo '</td>'; 
+												echo '<td style="font-size: 14px;  line-height: ' . $line_height . 'px;">';
+													echo $str_right;
+												echo '</td>';
+											echo '</tr>';
+										echo '</table>';
+									//print implode(" " . $trenner_img . " ", $arr_typical_applications);
+									?>
+									<?php 
+
+										$count_all = count($serie["materialvorteile"]);
+									?>
+									<?php if ($count_all > 0 ) { ?>
+									<?php echo $str_blocktrenner; ?>
+									<b style=" font-weight: 800; color: #055499;"><?php print Wcms_ContentboxController::getContenbox('pdb---material-advantages', $language_id); ?></b><br>
+									<?php } ?>
+									<?php 
+									echo '<table border="0">';
+
+										$count_left = ceil ( $count_all/2 );
+										$str_left = '';
+										$str_right = '';
+										$count = 0;
+										foreach ($serie["materialvorteile"] as $item) {
+											if ($count < $count_left) {
+												//$str_left .= $trenner_img . ' ' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $item))) . '<br />';
+												$str_left .= '<table width="100%" border="0"><tr><td width="12">' . $trenner_img . '</td><td width="300">' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $item))) . '</td></tr></table>';
+											} else {
+												//$str_right .= $trenner_img . ' ' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $item))) . '<br />';
+												$str_right .= '<table width="100%" border="0"><tr><td width="12">' . $trenner_img . '</td><td width="300">' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $item))) . '</td></tr></table>';
+											}
+											$count++;
+										}
+										echo '<tr>';
+										echo '<td style="font-size: 14px;  line-height: ' . $line_height . 'px;">';
+											echo $str_left;
+										echo '</td>'; 
+										echo '<td style="font-size: 14px;  line-height: ' . $line_height . 'px;">';
+											echo $str_right;
+										echo '</td>';
+										echo '</tr>';
+									echo '</table>';
+									?>
+									
+									<?php echo $str_blocktrenner; ?>
+
+									<?php 
+	//	var_dump($serie["verordnungen"]);
+		
+		if (count($serie["verordnungen"]) > 0) { ?>
+									<b style=" font-weight: 800; color: #055499;"><?php print Wcms_ContentboxController::getContenbox('regulations-approvals', $language_id); ?></b><br>
+									<?php } ?>
+									<?php $arr_zulassungen = array();
+
+										$count_e = 0;
+										echo '<table border="0">';
+
+										$count_all = count($serie["verordnungen"]);
+										$count_left = ceil ( $count_all/2 );
+										$str_left = '';
+										$str_right = '';
+										$count = 0;
+										foreach ($serie["verordnungen"] as $item) {
+											if ($count < 16) {
+												if ($count < $count_left) {
+													$str_left .= '<table width="100%" border="0"><tr><td width="12">' . $trenner_img . '</td><td width="300">' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $item))) . '</td></tr></table>';
+												} else {
+													$str_right .= '<table width="100%" border="0"><tr><td width="12">' . $trenner_img . '</td><td width="300">' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $item))) . '</td></tr></table>';
+												}
+											}
+											$count++;
+										}
+										echo '<tr>';
+										echo '<td style="font-size: 14px;  line-height: ' . $line_height . 'px;">';
+											echo $str_left;
+										echo '</td>'; 
+										echo '<td style="font-size: 14px;  line-height: ' . $line_height . 'px;">';
+											echo $str_right;
+										echo '</td>';
+										echo '</tr>';
+										echo '</table>';
+										//print implode(" " . $trenner_img . " ", $arr_zulassungen);
+									?>
+								</td>
+						</tr>
+				  </table>
+				  
+				  <?php  } // Wenn Portfolio ?>
+			</td>
+	</tr>
+</table>
+
+
+
+<?php
+$arrayCidBreak = [2187];
+ if (true == in_array($_GET['cid'],$arrayCidBreak) ) {
+?>
+<tcpdf method="AddPage" />
+<?php
+ }
+?>
+
+<?php if (true === $is_pdf) { ?><?php } ?>
+	<?php 
+	} // Ende Nicht serie 
+	?>

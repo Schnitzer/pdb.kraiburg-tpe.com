@@ -1,0 +1,11 @@
+<section class="paragraph  paragraph--view-mode--default ">
+  <div class="container">
+    <div class="row ct-u-padding-top-80 ct-u-padding-bottom-80">
+       <div class="col-sm-6 ">
+<div <?php if (true === $admin) { ?>id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['text'][1]['componentcontent_id']; ?>-text-1"<?php } ?> class="continuous_text <?php if (true === $admin) { ?>ncw-wysiwyg-website-admin<?php } ?> <?php if (true === $admin) { ?>ncw-sortable-item<?php } ?>"><?php print $component['text'][1]['content']; ?></div>
+<?php if (true === $admin) { ?><input type="hidden" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['text'][1]['componentcontent_id']; ?>-text-1-background" value="#EBEBEB" /><?php } ?>
+
+<?php if (true === $admin) { ?><input type="hidden" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-move-left" value="-16" /><?php } ?>
+
+
+</div></div></div></section>

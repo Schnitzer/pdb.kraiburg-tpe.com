@@ -1,0 +1,24 @@
+<?php 
+//include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "datacenter.phtml"; 
+?>
+
+<?php 
+include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound" . DS . "compound_headline.phtml";
+?>
+
+<?php include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound"  . DS . "compound.phtml"; ?>
+
+<?php 
+// Alle Verarbeitungshinweise lesen
+$processingnotes_all = $this->getCompoundProcessing($compound['id'], $language_id);
+// IM zuteilen
+$processingnotes = $processingnotes_all['processing_im'];
+?>
+<?php include ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound" . DS . "processing_note.phtml"; ?>
+<?php
+// EX zuteilen
+$processingnotes = $processingnotes_all['processing_ex'];
+?>
+<?php include ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound" . DS . "processing_note.phtml"; ?>
+
+<?php include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "footer.phtml"; ?>

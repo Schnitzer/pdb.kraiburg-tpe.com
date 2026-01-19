@@ -1,0 +1,51 @@
+<?php include (ASSETS . DS . 'wcms' . DS . 'nav_templates' . DS . '3-navigation.phtml'); ?>
+
+<div class="box_right search">
+    <h3><?php print Wcms_ContentboxController::getContenbox('search', $language_id); ?></h3>
+    <div>
+	<strong><?php print Wcms_ContentboxController::getContenbox('product-database', $language_id); ?></strong>
+        <ul>
+            <?php
+            //$pd_url = $this->base . '/' . $language_code . '/' . 'products/product-database';
+            $pd_url = $this->base . '/' . $language_code . '/' . 'products/new-product-database-179';
+            $pd2_url = $this->base . '/' . $language_code . '/products/overview-datasheet1705-164';
+            ?>
+            <li>
+            <a href="<?php print $pd_url; ?>"><?php print Wcms_ContentboxController::getContenbox('compound-id-search', $language_id); ?></a>
+            </li>
+            <li>
+              <a href="<?php print $pd2_url; ?>"><?php print Wcms_ContentboxController::getContenbox('series-search', $language_id); ?></a>
+            </li>
+	</ul>
+	<br style="clear: both;" /><br />
+	<strong><?php print Wcms_ContentboxController::getContenbox('website', $language_id); ?></strong>
+	<ul>
+            <li>
+              <a href="#" id="text_search"><?php print Wcms_ContentboxController::getContenbox('text-search', $language_id); ?></a>
+            </li>
+            <?php /* ?><li>
+              <a href="<?php print $pd_url; ?>"><?php print Wcms_ContentboxController::getContenbox('detailed-search', $language_id); ?></a>
+            </li><?php */ ?>
+        </ul>
+    </div>
+</div>
+<?php if (count($news) > 0) { ?>
+    <div <?php if (true === $admin) { ?>id="{component.id}"<?php } ?> class="news box_right">
+        <h3><?php print Wcms_ContentboxController::getContenbox('news', $language_id); ?></h3>
+        <?php $first = true; ?>
+            <?php /* foreach ($news as $news_head => $news_body) { ?>
+                <div<?php if (true !== $first) { ?> class="line"<?php } $first = false; ?>>
+                <h4><?php print $news_head; ?></h4><p><?php print $news_body; ?></p>
+                </div>
+            <?php } */ ?>
+            <?php 
+                for ($count = 0; $count < 2; $count++) {
+		          $news_head = $news[$count]['head'];
+		          $news_body = $news[$count]['body']
+		          ?>
+                    <div<?php if (true !== $first) { ?> class="line"<?php } $first = false; ?>>
+                    <h4><?php print $news_head; ?></h4><p><?php print $news_body; ?></p>
+                    </div>
+        <?php } ?>
+    </div>
+<?php } ?>

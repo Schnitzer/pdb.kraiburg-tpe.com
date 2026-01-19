@@ -1,0 +1,59 @@
+<?php $is_pdf = false; ?>
+
+<?php include_once ASSETS . DS . "tpepdb2" . DS . "templates"  . DS . "functions.php"; 
+
+				//if ((true === isset($_GET['sid']) || true === isset($_GET['cid'])) && false == isset($_SESSION['terms'])) {
+					$obj_news = new Wcms_NewsController();
+					//if (null !== $obj_news->getTerms($_GET['ls']) ) {
+						$_SESSION['terms'] = @$obj_news->getTerms(@$_GET['ls']);
+					//} else {
+					//	$_SESSION['terms'] = '';
+					//}
+					
+					
+				//}
+			  echo '<input type="hidden" value="'.$_SESSION['terms'].'" id="termslist">';
+				if (false == isset($languages) || count($languages) < 2) {
+						$obj_ajax = new Tpepdb2_AjaxController();
+						$languages = $obj_ajax->getWcmsLanguages();
+				}
+
+// array(9) { ["Deutsch"]=> string(2) "de" ["English"]=> string(2) "en" ["Français"]=> string(2) "fr" ["Italiano"]=> string(2) "it" ["日本語"]=> string(2) "jp" ["한국어"]=> string(2) "kr" ["Polski"]=> string(2) "pl" [""]=> string(2) "sp" ["中文"]=> string(2) "zh" }
+//
+?>
+
+<?php $font_size_table =  "12px"; ?>
+
+<div style="width: 100%;">
+	<?php $type = "compound"; ?>
+    <?php $url_type = "cid"; ?>
+    <?php $id = $compound["id"]; ?>
+    <?php $name = $compound["name"]; ?>
+    <?php $documents = $compound["documents"]; ?>
+    <?php
+	    if ($compound['status'] == 'portfolio') {
+	    	include_once ASSETS . DS . "tpepdb2" . DS . "templates"  . DS . "item_templates" . DS . "compound_portfolio.phtml";
+	    } else {
+	    	include_once ASSETS . DS . "tpepdb2" . DS . "templates"  . DS . "item_templates" . DS . "compound_non_portfolio.phtml";
+	    }
+    ?>
+	
+	<?php 
+	
+	//print Wcms_ContentboxController::getContenbox('pdb2-datasheet-footer-storage-24m', $language_id); 
+	
+	//var_dump($brand);
+
+		if ( $serie['brand_id'] == 4 || $arr_brandname['brandnameen'] == 'THERMOLAST® M') {
+			$_SESSION['fs'] = 24;
+			print Wcms_ContentboxController::getContenbox('pdb2-datasheet-footer-storage-24m', $language_id); 
+		} else {
+			$_SESSION['fs'] = 12;
+			print Wcms_ContentboxController::getContenbox('pdb2-datasheet-footer-storage', $language_id); 
+		}
+	
+	?>
+</div>
+
+
+		

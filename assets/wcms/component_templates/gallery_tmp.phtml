@@ -1,0 +1,21 @@
+<div {if.admin}id="{component.id}"{/if} class="horizontal_gallery {admin.class}">
+ <h2 id="{shorttext.1.id}" class="{admin.content.class}">{shorttext.1}</h2>
+   <div class="horizontal_content">
+    <img class="horizontal_content_prev" src="assets/wcms/files/horizontal_gallery_prev.gif" alt="" title="" />
+      <div class="images">
+        <ul id="{area.4.id}" class="{area.admin.class.sub}">{area.4.noadmin}</ul>
+      </div>
+    <img class="horizontal_content_next" src="assets/wcms/files/horizontal_gallery_next.gif" alt="" title="" />
+  </div>
+  <div id="{shorttext.2.id}" class="{admin.content.class}">
+    {shorttext.2} 
+  </div>
+</div>
+{shorttext.1.width=464}
+{shorttext.1.background=url(assets/wcms/files/bg_large_box_center_h.gif) no-repeat 0 0}
+{shorttext.2.width=464}
+{shorttext.2.height=62}
+{shorttext.2.background=url(assets/wcms/files/bg_box_right.gif) repeat-x 0 bottom #ececed}
+
+{component.move-left=-16}
+<?php $gallery = true; ?>

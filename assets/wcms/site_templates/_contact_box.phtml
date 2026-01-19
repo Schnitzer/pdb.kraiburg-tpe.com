@@ -1,0 +1,75 @@
+<?php include (ASSETS . DS . 'wcms' . DS . 'nav_templates' . DS . '3-navigation.phtml'); ?>
+            <?php
+            //$pd_url = $this->base . '/' . $language_code . '/' . 'products/product-database';
+            $pd_url = $this->base . '/' . $language_code . '/' . 'products/product-database';
+            ?>
+<div class="box_right search large_box_center" onclick="javascript: location.href='<?php echo $pd_url; ?>'" style="cursor:pointer; ">
+    <h2 style="background: url('http://www.kraiburg-tpe.com/assets/wcms/files/bg_vertical_gallery_h.gif') no-repeat scroll 0 0 transparent !important;"><?php print Wcms_ContentboxController::getContenbox('product-database', $language_id) ?></h3>
+    <div style="height: 20px; margin-top: 10px;">
+    <!--<strong><?php print Wcms_ContentboxController::getContenbox('product-database', $language_id) . ' ' . Wcms_ContentboxController::getContenbox('pdb---search---search', $language_id); ?></strong>-->
+        <ul>
+            <strong>
+                <?php print Wcms_ContentboxController::getContenbox('pdb---search---material-search', $language_id); ?>
+            </strong>
+            <!--
+            <li>
+            <?php print Wcms_ContentboxController::getContenbox('pdb---search---series-search', $language_id); ?>
+            </li>
+            <li> 
+            <?php print Wcms_ContentboxController::getContenbox('pdb---search---text-search', $language_id); ?>
+            </li>
+            -->
+        </ul>
+    </div>
+</div>
+<?php if ('84.145.23.65.0000' != $_SERVER['REMOTE_ADDR']) {   
+    
+    $search_2015_input_style = '
+        border: 1px solid #ffffff;
+        width: 186px;
+        float: left;
+        font-size: 18px;
+        height: 37px;
+        padding-left: 4px;
+        margin-top: 8px;
+    ';
+    $search_2015_submit_style = '
+        
+        width: 193px;
+        float: left;
+        font-size: 14px;
+        height: 37px;
+        margin: 16px 0 0 0;
+    ';
+    
+    //$search_2015_submit_style = '';
+    ?>
+<div class="box_right search" style="height: 160px;">
+    <h3><?php print Wcms_ContentboxController::getContenbox('website', $language_id); ?></h3>
+    <div>
+
+ <form id="textsearchform" action="" method="post" onsubmit="search2015(); return false;">
+   
+   <input id="textsearch" name="Search[q]" class="" tabindex="1" value="" title="" type="text" style="<?php echo $search_2015_input_style; ?>">
+   <input value="<?php print Wcms_ContentboxController::getContenbox('pdb---search---search', $language_id); ?>" class="tpepdb2_submit" type="submit" style="<?php echo $search_2015_submit_style; ?>">
+    <input name="Search[l]" value="1" type="hidden">
+
+ </form>
+    </div>
+</div>
+<?php } else { // Alte Textsuche?>
+<div class="box_right search">
+    <h3><?php print Wcms_ContentboxController::getContenbox('website', $language_id); ?></h3>
+    <div>
+    <ul>
+            <li>
+              <a href="#" id="text_search"><?php print Wcms_ContentboxController::getContenbox('pdb---search---text-search', $language_id); ?></a>
+            </li>
+        </ul>
+    </div>
+</div>
+<?php }?>
+<div <?php if (true === $admin) { ?>id="{component.id}"<?php } ?> class="news box_right">
+    <h3><?php print Wcms_ContentboxController::getContenbox('contact', $language_id); ?></h3>
+    <?php print Wcms_ContentboxController::getContenbox('contact-archiv-box', $language_id); ?>
+</div>

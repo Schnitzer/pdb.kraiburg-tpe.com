@@ -1,0 +1,83 @@
+<?php
+/* Diese Datei wird in 
+  elements/compound/compound_headline.phtml
+  elements/series/series_headline.phtml
+  elements/search_header.phtml
+* includiert
+*
+*
+
+**/
+
+$url_pdb2 = Ncw_Configure::read('Project.url');
+
+
+
+?>
+
+  <div class="pdb2-userstate row cols-sm-12 ct-u-padding-bottom-20 tpe-downloadcenter light-font">
+    <div class="col-sm-18">
+      <div class="pdb2-breadcrumb-text you-are-here">
+        <a href="<?php echo $url_pdb2; ?>?searchheader=true" target="_top"><?php print Wcms_ContentboxController::getContenbox('you-are-here', $language_id); ?></a>
+      </div>
+      <div class="pdb2-breadcrumb-text">
+        <a href="<?php echo $url_pdb2; ?>?searchheader=true" target="_self"><?php print Wcms_ContentboxController::getContenbox('pdb2-product-finder', $language_id); ?></a>
+      </div>
+      <?php if (true == isset($_SESSION['searchsid']) ) { ?>
+      <div class="pdb2-breadcrumb-between">
+        > 
+      </div>
+      <div class="pdb2-breadcrumb-text you-are-here-position">
+        <a href="<?php echo $url_pdb2; ?>?sid=<?php echo $_SESSION['searchsid']; ?>"  target="_self">
+          <?php if ($language_id == 8 || $language_id == 5 || $language_id == 11 || $language_id == 4) { 
+            echo Wcms_ContentboxController::getContenbox('pdb---series', $language_id) . " " . $serie["name"]; 
+          } else {
+            echo $serie["name"] . ' ' . Wcms_ContentboxController::getContenbox('pdb---series', $language_id);
+          }
+          ?>
+          </a>
+      </div>
+      <?php } ?>
+      <?php if (true == isset($_SESSION['searchcid']) ) { ?>
+      <div class="pdb2-breadcrumb-between">
+        > 
+      </div>
+      <div class="pdb2-breadcrumb-text">
+        <a href="<?php echo $url_pdb2; ?>?cid=<?php echo $_SESSION['searchcid']; ?>" target="_self">
+        <?php
+            echo $compound["name"];
+        ?>      
+        </a>
+      </div>
+      <?php } ?>
+      </div>
+    <div class="col-sm-6">
+      <div class="pdb2-usericon">
+        <a href="<?php echo $url_pdb2; ?>/?url=en/products/loginktpepdb-215" target="_self">
+
+  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+  width="26" height="26"
+  viewBox="0 0 224 224"
+  style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,224v-224h224v224z" fill="none"></path><g id="original-icon" fill="#000000"><g id="surface1"><path d="M112,28c-26.98828,0 -49,22.01172 -49,49c0,16.76172 8.53125,31.63672 21.4375,40.46875c-25.04687,10.66407 -42.4375,35.54688 -42.4375,64.53125h14c0,-31.25391 24.74609,-56 56,-56c31.25391,0 56,24.74609 56,56h14c0,-28.98437 -17.39062,-53.86718 -42.4375,-64.53125c12.90625,-8.83203 21.4375,-23.70703 21.4375,-40.46875c0,-26.98828 -22.01172,-49 -49,-49zM112,42c19.41407,0 35,15.58594 35,35c0,19.41407 -15.58593,35 -35,35c-19.41406,0 -35,-15.58593 -35,-35c0,-19.41406 15.58594,-35 35,-35z"></path></g></g></g></svg>
+
+        </a>
+      </div>
+
+      <div class="pdb2-usertext dark-font">
+        <a href="<?php echo $url_pdb2; ?>/?url=<?php echo $language; ?>/products/loginktpepdb-215" target="_self">
+        <?php 
+         
+          if (true == TpePdbWeb::rights()) {
+            //echo 'You are logged in as netzcraftwerk.';
+            $login = Ncw_Components_Session::readInAll('PDB');
+            echo '<span class="bigscreen">' . Wcms_ContentboxController::getContenbox('you-are-logged-in-as', $language_id) . ' ' . $login['USRNAME'] . '</span>';
+            echo '<span class="smallscreen">' . $login['USRNAME'] . '</span>';
+          } else {
+            echo Wcms_ContentboxController::getContenbox('login', $language_id);
+          }
+        ?>
+        </a>
+      </div>
+
+    </div>
+  </div>

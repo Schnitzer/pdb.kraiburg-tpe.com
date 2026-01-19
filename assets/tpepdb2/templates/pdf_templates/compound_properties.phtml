@@ -1,0 +1,266 @@
+<?php if (true === $is_pdf) { 
+
+$borderwidth = 4;
+					
+	
+$color2_header = '#009fe3';
+$color2_header = '#66676e';
+
+// Wie viele Eigenschaften hat das Compound?
+$compound["values"] = $this->getCompoundValues($compound['id'], $language_id);
+$count_all_items = 0;
+foreach ($compound['values'] As $item) {
+	$count_all_items++;
+}
+if ($count_all_items > 6) {
+	$pdf->compoundStatusFooter = '';
+}
+
+
+?>
+
+<?php 
+ // Entfernt am 15.01.2024 wegen Ticket I-2401-0296WG: Distorted Datasheet - TC7FEZ-9375
+ // || $count_all_items < 5
+if ($nonportfolio == true || $compound['id'] == 2187) {
+	?>
+	<tcpdf />
+	<br />
+	<?php
+} else {
+	?>
+	<tcpdf method="AddPage" />
+	<?php
+}
+
+$cellpadding = 7;
+if ($count_all_items > 10) {
+	$cellpadding = 5;
+}
+if ($count_all_items > 11) {
+	$cellpadding = 4;
+}
+if ($count_all_items > 13) {
+	$cellpadding = 2;
+}
+
+?>
+
+<table class="compound-table" style="width: 100%;" cellspacing="0" cellpadding="<?php echo $cellpadding; ?>" border="">
+	<thead>
+	<tr>
+		<td style="color: #fff; background-color: #134d93;  width: 35%;height: 16px; font-size: 15px; font-size: 13px;"><br><br><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---product-properties', $language_id); ?></td>
+		<td style="color: #fff; background-color: <?php echo $color2_header; ?>;  width: 12%; border-left: <?php echo $borderwidth; ?>px solid #fff; font-size: 13px;"><br><br><?php print Wcms_ContentboxController::getContenbox('pdb2-iso-value', $language_id); ?></td>
+		<td style="color: #fff; background-color: <?php echo $color2_header; ?>;  width: 12%; border-left: <?php echo $borderwidth; ?>px solid #fff; font-size: 13px;"><br><br><?php print Wcms_ContentboxController::getContenbox('pdb2-iso-unit', $language_id); ?></td>
+		<td style="color: #fff; background-color: <?php echo $color2_header; ?>; width: 41%; border-left: <?php echo $borderwidth; ?>px solid #fff; font-size: 13px;"><br><br><?php print Wcms_ContentboxController::getContenbox('pdb2-iso-norm', $language_id); ?></td>
+	</tr>
+	</thead>
+					<?php 
+					
+					$compound["values"] = $this->getCompoundValues($compound['id'], $language_id);
+					// $arr_str_footer ist für die Fußnoten notwendig
+					$arr_str_footer = array();
+					$count_sup = 1;
+					$label_sup = '';
+					$count_rows = 0;
+					foreach ($compound['values'] As $item){
+						
+						$item['einheit'] = str_replace('Ω', '<img src="/assets/files/uploads/ohm.png" style="border: 0; height: 13px;">', $item['einheit']);
+						$item['einheit'] = str_replace('GOhm', 'Ohm', $item['einheit']);
+						
+						$item['value'] = str_replace("<", "&lt;	", $item['value']);
+						$item['value'] = str_replace(">", "&gt;	", $item['value']);
+						//$item['einheit'] = html_entity_decode(utf8_encode($item['einheit']));
+								if (true == is_int($count_rows / 2)) {
+									$bgcolor = '#f3f3f3;';
+									
+								} else {
+									$bgcolor = '#e5e5e5;';
+								}
+						
+						$label_sup = '';
+						if (strlen($item['footer']) > 1) {
+							if (false == in_array(trim($item['footer']), $arr_str_footer)) {
+								$arr_str_footer[$count_sup] = trim($item['footer']);
+								$label_sup = '<sup>' . $count_sup . '</sup>';
+								$count_sup++;
+							} else {
+								$label_sup = '<sup>' . array_search ( trim($item['footer']) , $arr_str_footer ) . '</sup>';
+							}
+						}
+						
+						?>
+						<tr nobr="true">
+							<td class="properties"  style="font-size: 13px; height: 16px; color: #1d1d1b; width: 35%; background-color: <?php echo $bgcolor; ?> border-top: <?php echo $borderwidth; ?>px solid #fff;"><b><?php echo $item['bezeichnung'] . $label_sup; ?></b></td>
+							<td class="values" style="font-size: 13px; color: #1d1d1b; width: 12%; background-color: <?php echo $bgcolor; ?> border-left: <?php echo $borderwidth; ?>px solid #fff; border-top: <?php echo $borderwidth; ?>px solid #fff;"><?php echo $item['value']; ?></td>
+							<td class="units" style="font-size: 13px; color: #1d1d1b; width: 12%; background-color: <?php echo $bgcolor; ?> border-left: <?php echo $borderwidth; ?>px solid #fff; border-top: <?php echo $borderwidth; ?>px solid #fff;"><?php echo $item['einheit']; ?></td>
+							<td class="standards" style="font-size: 13px; color: #1d1d1b; width: 41%; background-color: <?php echo $bgcolor; ?> border-left: <?php echo $borderwidth; ?>px solid #fff; border-top: <?php echo $borderwidth; ?>px solid #fff;"><?php echo $item['standard']; ?></td>
+						</tr>
+						<?php
+						$count_rows++;
+					}
+	
+	
+					?>
+	
+	<!--
+    <?php //if ($compound["status"] != "portfolio" && true === isset($compound["srs_adhesion"]) && !empty($compound["srs_adhesion"])) { ?>
+
+<?php $columns = array(); ?>
+<?php
+$order = array(
+	"103" => 0,
+	"106" => 1,
+	"104" => 2,
+	"101" => 3,
+	"102" => 4,
+	"77" => 5,
+	"242" => 6,
+	"87" => 7,
+	"232" => 8,
+	"685" => 9,
+	"62" => 10,
+	"66" => 11,
+	"63" => 12,
+	"64" => 13
+ );
+?>
+<?php $next_column = count($order) + 1; ?>
+<?php foreach ($compound as $key => $value) { ?>
+    		
+    <?php if ((int) $key > 0 && true === isset($labels["compound"][$key]) && false === empty($value)) { ?>
+        <?php
+        if (true === isset($order[$key])) {
+            $pos = $order[$key];
+        } else {
+            $pos = ++$next_column;
+        }
+        $columns[$pos] = array("", 0, $key);
+        ?>
+    <?php } ?>
+<?php } ?>
+<?php if (count($columns > 0)) { ?>
+    <?php ksort($columns); ?>
+    <?php
+    $arr_note = $arr_notecount = array();
+    $notecount = 0;
+    $note_texts = array();
+    foreach ($columns as $values) {
+        $key = $values[2];
+        $note_name = $key . "_note";
+        if (true === isset($labels["compound"][$note_name])) {
+            $note_text = str_replace(array('<P>', '</P>'), '', trim($labels["compound"][$note_name]));
+            if (false == in_array($note_text, $note_texts)) {
+                $note_texts[$key] = $note_text;
+                $notecount++;
+                $arr_notecount[$key] = ' <sup>' . $notecount . '</sup>';
+                $arr_note[$key] = '<sup>' . $notecount . '</sup> ' .  $note_text . '<br />';
+            } else {
+                foreach ($note_texts as $note_key => $note_value) {
+                    if ($note_value == $note_text) {
+                        $arr_notecount[$key] = $arr_notecount[$note_key];
+                    }
+                    //$arr_note[$key] = $arr_note[$key];
+                }
+            }
+        }
+    }
+    ?>
+
+    <?php 
+		$count_rows = 0;												
+		foreach ($columns as $column) { ?>
+    
+        <?php $key = $column[2]; ?>
+        <?php $value = $compound[$column[2]]; ?>
+        
+        <?php if ((int) $key > 0 && true === isset($labels["compound"][$key]) && $labels["compound"][$key] != "" && $labels["compound"][$key] != "QPMK_NORM" && false === empty($compound[$column[2]])) {
+						if (true == is_int($count_rows / 2)) {
+							$bgcolor = '#f3f3f3;';
+						} else {
+							$bgcolor = '#e5e5e5;';
+						}
+					?>
+                    <tr style="" nobr="true">
+                        <?php
+                        $norm = "";
+                        $prop_name = "";
+     
+                            $pname = trim($labels["compound"][$key . '_name']);
+                            if (strlen($pname) > 45) {
+                                $pname = substr($pname, 0, 45);
+                            }                            
+                      		$prop_name = "<b>" . $pname . "</b>";
+                      		$norm = $labels["compound"][$key . '_norm'];
+
+                        if (true === isset($arr_notecount[$key])) {
+                             $prop_name .= $arr_notecount[$key];
+                        }
+
+											
+                        ?>
+                        <td style="font-size: 13px; height: 28px; color: #1d1d1b; width: 40%; background-color: <?php echo $bgcolor; ?> border-top: <?php echo $borderwidth; ?>px solid #fff;"><?php print $prop_name; ?></td>
+                        <?php
+                        $value = $compound[$column[2]];
+                        if ($language == "de") {
+                            $value = str_replace(".", ",", $value);
+                        }
+                        if (true === isset($compound[$key . "_unit"])) {
+                           // $value .= " " . $compound[$key . "_unit"];
+                        }
+                        ?>
+
+                        <td style="font-size: 13px; background-color: <?php echo $bgcolor; ?>; color: #1d1d1b; width: 12%; border-left: <?php echo $borderwidth; ?>px solid #fff; border-top: <?php echo $borderwidth; ?>px solid #fff;"><?php print $value; ?></td>
+						<td style="font-size: 13px; color: #1d1d1b; width: 12%; background-color: <?php echo $bgcolor; ?> border-left: <?php echo $borderwidth; ?>px solid #fff; border-top: <?php echo $borderwidth; ?>px solid #fff;"><?php print $compound[$key . "_unit"]; ?></td>
+                        <td style="font-size: 13px; color: #1d1d1b; width: 36%; background-color: <?php echo $bgcolor; ?> border-left: <?php echo $borderwidth; ?>px solid #fff; border-top: <?php echo $borderwidth; ?>px solid #fff;"><?php print $norm; ?>
+                            <?php if (true === isset($compound[$key . "_din_norm"])) { ?>
+                                <?php print td_value($compound[$key . "_din_norm"], $font_size_table); ?>
+                            <?php } ?>
+                        </td>
+                    </tr>
+        <?php } ?>
+    <?php 
+					$count_rows++;
+				 } 
+	   ?>
+
+<?php } ?>
+
+					
+
+
+    <?php //} ?>
+	-->
+</table>
+
+<?php 
+if ($count_all_items > 1100) {
+	?>
+
+	<tcpdf method="AddPage" />
+	<?php
+}
+?>
+
+<?php 
+	 include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "notes" . DS . "notes_print.phtml"; 
+?>
+
+<?php 
+	include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "text.phtml"; 
+?>
+
+<?php
+if ($compound["description"] != "") {
+	print trim(str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $compound["description"]));
+}
+?>
+
+<br />
+
+<?php 
+} else { // Ende PDF Anfang HTML
+?>
+
+
+<?php } ?>

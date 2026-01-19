@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+
+    <title>Error 403</title>
+
+    <link rel="stylesheet" type="text/css" href="http://www.kraiburg-tpe.com/assets/wcms/css/errorpage.css" media="screen" />
+    <link rel="shortcut icon" href="http://www.kraiburg-tpe.com/assets/wcms/files/favicon.ico" type="image/x-icon" />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-language" content="en" />
+
+    <meta http-equiv="cache-control" content="no-cache" />
+
+  </head>
+  <body>
+
+    <div id="shell">
+      <div id="err_header">
+
+        <a href="<?php print PROJECT_URL; ?>" title="">
+
+          <img id="err_logo" src="http://www.kraiburg-tpe.com/assets/wcms/files/err_tpe_logo.gif" alt="" title="" />
+        </a>
+
+        <img id="err_slogan" src="http://www.kraiburg-tpe.com/assets/wcms/files/err_tpe_slogan.gif" alt="" title="" />
+
+      </div>
+      <div id="err_section">
+
+        <h1>Error 403</h1>
+
+        <p>
+          We´ re sorry. You haven't got the permission to access this site!
+        </p>
+
+      </div>
+      <div id="err_footer">
+
+        <div id="footer_content">
+
+            <?php
+            $div_open = false;
+            if (true === isset($sites[1][1])) {
+                $count2 = 0;
+                $count = 0;
+                $first = true;
+                foreach ($sites[1][1] as $navigation_id => $navigation) {
+                    if ($navigation_id > 0) {
+                        foreach ($navigation as $node) {
+                            if ($count === 2 || true === $first) { $div_open = true; ?>
+                                <div<?php if ($count2 === 3) { ?> class="fourth_column"<?php $count2 = 0; } else { ++$count2; }?>>
+                                    <?php $count = 0; $first = false; } ?>
+                                    <ul>
+                                       <li><a href="<?php print $node['url']; ?>" title="<?php print $node['title']; ?>"><span><?php print $node['name']; ?></span></a></li>
+                                       <?php if (true === isset($sites[2][$node['id']][$navigation_id])) {foreach ($sites[2][$node['id']][$navigation_id] as $sub_node) { ?>
+                                       <li><a href="<?php print $sub_node['url']; ?>" title="<?php print $sub_node['title']; ?>"><?php print $sub_node['name']; ?></a></li>
+                                         <?php if (true === isset($sites[3][$sub_node['id']][16])) {foreach ($sites[3][$sub_node['id']][16] as $sub_sub_node) { ?>
+                                         <li class="sub"><a href="<?php print $sub_sub_node['url']; ?>" title="<?php print $sub_sub_node['title']; ?>">- <?php print $sub_sub_node['name']; ?></a></li>
+                                         <?php } } ?>
+                                         <?php if (true === isset($sites[3][$sub_node['id']][$navigation_id])) {foreach ($sites[3][$sub_node['id']][$navigation_id] as $sub_sub_node) { ?>
+                                         <li class="sub"><a href="<?php print $sub_sub_node['url']; ?>" title="<?php print $sub_sub_node['title']; ?>">- <?php print $sub_sub_node['name']; ?></a></li>
+                                         <?php } } ?>
+                                       <?php } } ?>
+                                    </ul>
+                                    <?php if ($count === 1) { $div_open = false; ?>
+                                </div>
+                            <?php }
+                            ++$count;
+                        }
+                    }
+                }
+            }
+            ?>
+            <?php if (true === $div_open) { ?>
+                </div>
+            <?php } ?>
+
+        </div>
+
+        <div id="imprint">
+          &copy; KRAIBURG TPE GmbH &amp; Co. KG | All rights reserved <?php include (ASSETS . DS . 'wcms' . DS . 'nav_templates' . DS . 'imprint.phtml'); ?>
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+</html>

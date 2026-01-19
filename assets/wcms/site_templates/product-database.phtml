@@ -1,0 +1,12 @@
+<?php if (true === isset($_GET['key']) && $_GET['key'] == 'skd8m3m48') { 
+$pdb = true;
+?>
+<?php include_once '_head.phtml'; ?>
+<div id="article_large">
+    {article}
+</div>
+
+<?php include_once '_footer.phtml'; ?>     
+<?php } else { ?>    
+<?php $this->_error404(); ?>
+<? } ?>

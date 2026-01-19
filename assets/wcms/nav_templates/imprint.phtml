@@ -1,0 +1,4 @@
+<?php if (true === isset($sites[1], $sites[1][1], $sites[1][1][2])) { $node_save = false; if (true === isset($node)) { $node_save = $node; } foreach ($sites[1][1][2] as $node) { ?> 
+  | <a href="<?php print $node['url']; ?>" title="<?php print $node['title']; ?>"><?php print $node['name']; ?></a>
+<?php } if (true === isset($node_save) && false !== $node_save) { $node = $node_save;} } ?>
+

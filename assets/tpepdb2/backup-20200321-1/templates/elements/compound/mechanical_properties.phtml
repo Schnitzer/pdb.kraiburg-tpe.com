@@ -1,0 +1,198 @@
+<?php if (true === $is_pdf) { ?>
+
+
+<?php 
+} else { // Ende PDF Anfang HTML
+	
+	
+	
+?>
+
+<section class="compound-mechanical-properties">
+  <div class="container">
+    <div class="row">
+			<table class="pdb-compound-properties compound-table  ct-u-padding-top-20" style="width: 100%;">
+				<thead>
+					<tr class="headline light-font">
+							<th class="properties"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---product-properties', $language_id); ?></th>
+							<th class="values"><?php print Wcms_ContentboxController::getContenbox('pdb2-iso-value', $language_id); ?></th>
+							<th class="units"><?php print Wcms_ContentboxController::getContenbox('pdb2-iso-unit', $language_id); ?></th>
+							<th class="standards"><?php print Wcms_ContentboxController::getContenbox('pdb2-iso-norm', $language_id); ?></th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php 
+					
+					$compound["values"] = $this->getCompoundValues($compound['id']);
+					// $arr_str_footer ist für die Fußnoten notwendig
+					$arr_str_footer = array();
+					$count_sup = 1;
+					$label_sup = '';
+					foreach ($compound['values'] As $item){
+
+						$label_sup = '';
+						if (strlen($item['footer']) > 1) {
+							if (false == in_array(trim($item['footer']), $arr_str_footer)) {
+								$arr_str_footer[$count_sup] = trim($item['footer']);
+								$label_sup = '<sup>' . $count_sup . '</sup>';
+								$count_sup++;
+							} else {
+								$label_sup = '<sup>' . array_search ( trim($item['footer']) , $arr_str_footer ) . '</sup>';
+							}
+						}
+						?>
+						<tr>
+							<td class="properties" style="width: 33%;"><?php echo $item['bezeichnung'] . $label_sup; ?></td>
+							<td class="values" style="width: 12%;"><?php echo $item['value']; ?></td>
+							<td class="units" style="width: 12%;"><?php echo $item['einheit']; ?></td>
+							<td class="standards"><?php echo $item['standard']; ?></td>
+							
+						</tr>
+						<?php
+					}
+	
+	
+					?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>
+
+<!--
+<?php $columns = array(); ?>
+<?php
+$order = array(
+	"103" => 0,
+	"106" => 1,
+	"104" => 2,
+	"101" => 3,
+	"102" => 4,
+	"77" => 5,
+	"242" => 6,
+	"87" => 7,
+	"232" => 8,
+	"685" => 9,
+	"62" => 10,
+	"66" => 11,
+	"63" => 12,
+	"64" => 13
+ );
+?>
+<?php $next_column = count($order) + 1; ?>
+<?php foreach ($compound as $key => $value) { ?>
+    		
+    <?php if ((int) $key > 0 && true === isset($labels["compound"][$key]) && false === empty($value)) { ?>
+        <?php
+        if (true === isset($order[$key])) {
+            $pos = $order[$key];
+        } else {
+            $pos = ++$next_column;
+        }
+        $columns[$pos] = array("", 0, $key);
+        ?>
+    <?php } ?>
+<?php } ?>
+<?php if (count($columns > 0)) { ?>
+    <?php ksort($columns); ?>
+    <?php
+    $arr_note = $arr_notecount = array();
+    $notecount = 0;
+    $note_texts = array();
+    foreach ($columns as $values) {
+        $key = $values[2];
+        $note_name = $key . "_note";
+        if (true === isset($labels["compound"][$note_name])) {
+            $note_text = str_replace(array('<P>', '</P>'), '', trim($labels["compound"][$note_name]));
+            if (false == in_array($note_text, $note_texts)) {
+                $note_texts[$key] = $note_text;
+                $notecount++;
+                $arr_notecount[$key] = ' <sup>' . $notecount . '</sup>';
+                $arr_note[$key] = '<sup>' . $notecount . '</sup> ' .  $note_text . '<br />';
+            } else {
+                foreach ($note_texts as $note_key => $note_value) {
+                    if ($note_value == $note_text) {
+                        $arr_notecount[$key] = $arr_notecount[$note_key];
+                    }
+                    //$arr_note[$key] = $arr_note[$key];
+                }
+            }
+        }
+    }
+    ?>
+    <?php 
+		$first = true; 
+    $count_p = 0;
+    ?>
+            <table class="pdb-compound-properties compound-table  ct-u-padding-top-20" style="width: 100%;">
+            	<thead>
+                <tr class="headline light-font">
+                    <th class="properties"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---product-properties', $language_id); ?></th>
+                    <th class="values">Value</th>
+                    <th class="units">Unit</th>
+                    <th class="standards">Standard</th>
+                </tr>
+							</thead>
+               	<tbody>
+									
+									<?php 
+									
+										//
+									
+									?>
+    <?php foreach ($columns as $column) { ?>
+
+    
+        <?php $key = $column[2]; ?>
+        <?php $value = $compound[$column[2]]; ?>
+                   <?php //var_dump($key . " - " . $value); ?>
+        <?php if ((int) $key > 0 && true === isset($labels["compound"][$key]) && $labels["compound"][$key] != "" && $labels["compound"][$key] != "QPMK_NORM" && false === empty($compound[$column[2]])) { ?>
+
+                    <tr>
+                        <?php
+                        $norm = "";
+                        $prop_name = "";
+                            $pname = trim($labels["compound"][$key . '_name']);
+                            if (strlen($pname) > 45) {
+                                $pname = substr($pname, 0, 45);
+                            }                            
+                      		$prop_name = $pname;
+                      		$norm = $labels["compound"][$key . '_norm'];
+
+                        if (true === isset($arr_notecount[$key])) {
+                             $prop_name .= $arr_notecount[$key];
+                        }
+                        ?>
+											
+                        <td width="33%" class="properties"><?php print $prop_name; ?></td>
+											
+                        <?php
+                        $value = $compound[$column[2]];
+                        if ($language == "de") {
+                            $value = str_replace(".", ",", $value);
+                        }?>
+												</td>
+												<td width="12%" class=""><?php print $value; ?></td>
+												<?php
+												$unit = '';
+                        if (true === isset($compound[$key . "_unit"])) {
+                            $unit = " " . $compound[$key . "_unit"];
+                        }
+                        ?>
+                        <td width="12%"><?php print $unit; ?></td>
+                        <td style="<?php print $font_size_table; ?>"><?php print $norm; ?>
+                            <?php if (true === isset($compound[$key . "_din_norm"])) { ?>
+                                <?php print $compound[$key . "_din_norm"]; ?>
+                            <?php } ?>
+                        </td>
+                    </tr>
+        <?php } ?>
+    <?php } ?>
+    </tbody></table>
+<?php } ?>
+    	
+	  </div>
+  </div>
+</section>
+-->
+<?php } ?>

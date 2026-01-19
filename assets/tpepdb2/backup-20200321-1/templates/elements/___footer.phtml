@@ -1,0 +1,30 @@
+<?php if (true === $is_pdf) { ?>
+	<?php ob_start(); ?>
+	<?php
+	$footer = Wcms_ContentboxController::getContenbox('pdb---datasheet---footer', $language_id);
+	if (false === $is_pdf) {
+	    $footer = str_replace("<br />", "", $footer);
+	}
+	?>
+	<?php if (false === $is_pdf) { ?><br /><?php } ?>
+	<table style="width:100%;" cellpadding="0" cellspacing="0">
+	    <tr>
+	        <td style="font-size: <?php  print ((int) $font_size_table - 2); ?>px;"><?php print str_replace('date(Y)', date('Y'), $footer); ?><br /><br /><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---disclaimer', $language_id); ?><br /><?php if (false === $is_pdf) { ?><br /><?php } ?></td>
+	    </tr>
+	    <tr>
+	        <td><table style="width:100%;" cellpadding="0" cellspacing="0">
+	                <tr>
+	                    <td style="font-size: <?php  print ((int) $font_size_table - 2); ?>px;"><?php print date(Wcms_ContentboxController::getContenbox('pdb---datasheet---date', $language_id), time()); ?></td>
+	                    <?php if (true === $is_pdf) { ?><td style="font-size: <?php  print ((int) $font_size_table - 2); ?>px;text-align: right;"><?php print str_replace('date(Y)', date('Y'), Wcms_ContentboxController::getContenbox('pdb---datasheet---pdf-footer', $language_id)); ?></td><?php } ?>
+	                </tr>
+	            </table>
+	        </td>
+	    </tr>
+	</table>
+	<?php $footer_content = ob_get_clean(); ?>
+	<?php if (true === $is_pdf) { ?>
+	    <?php $pdf->footer_content = $footer_content; ?>
+	<?php } else { ?>
+	    <?php print $footer_content; ?>
+	<?php } ?>
+<?php } ?>

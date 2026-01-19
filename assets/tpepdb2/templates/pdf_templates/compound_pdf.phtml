@@ -1,0 +1,25 @@
+<?php $is_pdf = true; ?>
+
+<?php include_once ASSETS . DS . "tpepdb2" . DS . "templates"  . DS . "functions.php"; ?>
+
+<?php $font_size_table =  "10px"; ?>
+
+<?php $type = "compound"; ?>
+<?php $id = $compound["id"]; ?>
+<?php $name = $compound["name"]; ?>
+<?php $documents = $compound["documents"]; ?>
+
+<?php 
+include ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "pdf_templates" . DS . "header.phtml"; 
+?>
+<?php 
+include ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "pdf_templates" . DS . "footer.phtml"; 
+?>
+
+<?php 
+    if ($compound['status'] == 'portfolio') {
+    	include_once ASSETS . DS . "tpepdb2" . DS . "templates"  . DS . "pdf_templates" . DS . "compound_portfolio.phtml";
+    } else {
+    	include_once ASSETS . DS . "tpepdb2" . DS . "templates"  . DS . "pdf_templates" . DS . "compound_non_portfolio.phtml";
+    } 
+?>

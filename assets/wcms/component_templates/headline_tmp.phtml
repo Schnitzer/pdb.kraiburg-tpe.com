@@ -1,0 +1,23 @@
+<section class="paragraph  paragraph--view-mode--default ">
+  <div class="container">
+    <div class="row ct-u-padding-top-80 ct-u-padding-bottom-80">
+       <div class="col-sm-6 ">
+
+<?php 
+  if (isset($_GET['regionsearch_countryname'])) {
+    $text = str_replace('{country.name}', $_GET['regionsearch_countryname'], Wcms_ContentboxController::getContenbox('region-country-responsible', $language_id)) . ' ';
+    ?>
+        <h2 {if.admin}id="{shorttext.1.id}"{/if} class="h2_large {admin.class} {admin.content.class}"><?php echo $text; ?></h2>
+    <?php
+  } else {
+      ?>
+        <h2 {if.admin}id="{shorttext.1.id}"{/if} class="h2_large {admin.class} {admin.content.class}">{shorttext.1}</h2>
+    <?php
+  }
+?>
+
+{shorttext.1.background=#EBEBEB}
+{shorttext.1.mode=simple}
+
+{component.move-left=-16}
+</div></div></div></section>

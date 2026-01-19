@@ -1,0 +1,268 @@
+<?php
+/*
+* SETTING
+*/
+
+$send_to = 'simone.hammerl@kraiburg-tpe.com';
+$send_to2 = 'andrea.hoenig@kraiburg-tpe.com';
+$send_to3 = 'w.weingartner@netzcraftwerk.com';
+
+if ($_SERVER['REMOTE_ADDR'] == '84.145.5.122') {
+    $send_to = 'w.weingartner@gmx.net';
+    $send_to2 = 'w.weingartner@gmx.net';
+} else {
+  $send_to3 = 'w.weingartner@gmx.net';
+}
+  
+
+$warning_css_class = array(
+    'title' => false,
+    'name' => false,
+    'firstname' => false,
+    'company' => false,
+    'country' => false,
+    'email' => false,
+    'zip' => false,
+    'city' => false,
+    'phone' => false,
+    'fax' => false,
+    'branches' => false,
+    'address' => false,
+    'message' => false,
+);
+  
+$success = false;
+$arr_language = array();
+
+$arr_language['send'] = Wcms_ContentboxController::getContenbox('contact-label-send', $language_id);
+$arr_language['title'] = Wcms_ContentboxController::getContenbox('contact-label-title', $language_id);
+$arr_language['name'] = Wcms_ContentboxController::getContenbox('contact-label-name', $language_id);
+$arr_language['firstname'] = Wcms_ContentboxController::getContenbox('contact-label-firstname', $language_id);
+$arr_language['company'] = Wcms_ContentboxController::getContenbox('contact-label-company', $language_id);
+$arr_language['country'] = Wcms_ContentboxController::getContenbox('contact-label-country', $language_id);
+$arr_language['email'] = Wcms_ContentboxController::getContenbox('contact-label-e-mail', $language_id);
+$arr_language['zip'] = Wcms_ContentboxController::getContenbox('contact-label-zip', $language_id);
+$arr_language['city'] = Wcms_ContentboxController::getContenbox('contact-label-city', $language_id);
+$arr_language['phone'] = Wcms_ContentboxController::getContenbox('contact-label-phone', $language_id);
+$arr_language['fax'] = Wcms_ContentboxController::getContenbox('contact-label-fax', $language_id);
+$arr_language['branches'] = Wcms_ContentboxController::getContenbox('contact-label-branches', $language_id);
+$arr_language['address'] = Wcms_ContentboxController::getContenbox('contact-label-address', $language_id);
+$arr_language['message'] = Wcms_ContentboxController::getContenbox('contact-label-message', $language_id);
+$arr_language['thank_you'] = Wcms_ContentboxController::getContenbox('contact-label-thank-you', $language_id);
+$arr_language['contact_from_website'] = Wcms_ContentboxController::getContenbox('contact-label-from', $language_id);
+$arr_language['mr'] = Wcms_ContentboxController::getContenbox('mr', $language_id);
+$arr_language['mrs'] = Wcms_ContentboxController::getContenbox('mrs', $language_id);
+$arr_language['date'] = Wcms_ContentboxController::getContenbox('date', $language_id);
+$arr_language['time'] = Wcms_ContentboxController::getContenbox('time', $language_id);
+
+
+
+if (true === isset($_POST['contact'])) {
+
+    $email = $_POST['contact']['email'];
+    $data = Ncw_Library_Sanitizer::clean($_POST['contact']);
+    $data['email'] = $email;
+
+    // array to validate
+    $fields = array('name' => array('rules' => array('MaxLength' => 100, 'NotEmpty'), 'required' => true),
+                  'firstname' => array('rules' => array('MaxLength' => 100, 'NotEmpty'), 'required' => true),
+                  'email' => array('rules' => array('Email'), 'required' => true),
+                  'company' => array('rules' => array('MaxLength' => 100, 'NotEmpty'), 'required' => true)
+                  );
+    // new validator class
+    $validator = new Ncw_Validator($fields);
+
+    // validate user data
+    list($success, $invalid_fields) = $validator->validate($data);
+  
+    if (true === $success) {
+            $str_mailbody = '<br />' . $arr_language['title'] . ': ' . $data['title'];
+            $str_mailbody .= '<br />' . $arr_language['firstname'] . ': ' . $data['firstname'];
+            $str_mailbody .= '<br />' . $arr_language['name'] . ': ' . $data['name'];
+            $str_mailbody.= '<br />' . $arr_language['company'] . ': ' . $data['company'];
+            $str_mailbody.= '<br />' . $arr_language['email'] . ': ' . $data['email'];
+            $str_mailbody.= '<br />' . $arr_language['date'] . ': ' . $data['date'];
+            $str_mailbody.= '<br />' . $arr_language['time'] . ': ' . $data['time'];
+
+
+            // include swift mail class
+            include_once 'ncw/vendor/swift/swift_required.php';
+            $transport = Swift_SmtpTransport::newInstance(
+                'kraiburgtpe.com'
+            )
+            ->setUsername('form@kraiburgtpe.com')
+            ->setPassword('tpeform1');
+
+            //Create the Mailer using your created Transport
+            $mailer = Swift_Mailer::newInstance($transport);
+            //Create a message
+            $message = Swift_Message::newInstance('Messetreffen')
+              //->setFrom(array($data['email'] => $data['firstname'] . ' ' . $data['name']))
+              ->setFrom('simone.hammerl@kraiburgtpe.com')
+              ->setTo(array($send_to, $send_to2, $send_to3))
+              ->setBody($str_mailbody)
+              ->setContentType('text/html')
+              ->addPart(str_replace('<br />', '\n', $str_mailbody), 'text/plain');
+
+            // send the message
+            $mailer->send($message);
+    }
+    // required
+    // validate name
+    if(true == isset($invalid_fields['name'])) {
+        $warning_css_class['name'] = 'class="tpe-warning-input"';
+    }
+    // validate firstname
+    if(true == isset($invalid_fields['firstname'])) {
+        $warning_css_class['firstname'] = 'class="tpe-warning-input"';
+    }
+    // validate phone
+    if(true == isset($invalid_fields['phone'])) {
+        $warning_css_class['phone'] = 'class="tpe-warning-input"';
+    }
+    // validate email
+    if(true == isset($invalid_fields['email'])) {
+        $warning_css_class['email'] = 'class="tpe-warning-input"';
+    }
+
+    // not required
+    // validate address
+    if(true == isset($invalid_fields['address'])) {
+        $warning_css_class['address'] = 'class="tpe-warning-input"';
+        }
+        // validate message
+    if(true == isset($invalid_fields['message'])) {
+        $warning_css_class['message'] = 'class="tpe-warning-input"';
+        }
+        // validate city
+    if(true == isset($invalid_fields['city'])) {
+        $warning_css_class['city'] = 'class="tpe-warning-input"';
+        }
+        // validate zip
+    if(true == isset($invalid_fields['zip'])) {
+        $warning_css_class['zip'] = 'class="tpe-warning-input"';
+        }
+        // validate country
+    if(true == isset($invalid_fields['country'])) {
+        $warning_css_class['country'] = 'class="tpe-warning-input"';
+        }
+    // validate fax
+    if(true == isset($invalid_fields['fax'])) {
+        $warning_css_class['fax'] = 'class="tpe-warning-input"';
+    }
+        // validate company
+    if(true == isset($invalid_fields['company'])) {
+        $warning_css_class['company'] = 'class="tpe-warning-input"';
+    }
+        // validate branches
+    if(true == isset($invalid_fields['branches'])) {
+        $warning_css_class['branches'] = 'class="ntpe-warning-input"';
+    }
+
+} else {
+    switch ($language_code) {
+    case('de'):
+        $data['country'] = 81;
+        break;
+    case('zh'):
+        $data['country'] = 44;
+        break;
+    case('es'):
+        $data['country'] = 199;
+        break;
+    case('fr'):
+        $data['country'] = 74;
+        break;
+    default:
+        $data['country'] = 225;
+    }
+}
+?>
+<?php if (true === $admin) { ?><div id="ncw3-<?php print $area; ?>-component-<?php print $component['id']; ?>" class="<?php if (true === $admin) { ?>ncw3-sortable-item<? } ?>"><?php } ?>
+<?php if (true === $success) { $data = array(); ?>
+    <!--<div class="continuous_text "><?php echo $arr_language['thank_you']; ?><br /></div>-->
+<?php } else { ?>
+<form id="contactform" method="post" action="">
+
+<div id="contact_left">
+  <div>
+    <label for="cf_title" <?php echo $warning_css_class['title']; ?> ><?php echo $arr_language['title']; ?></label>
+    <select id="cf_title" name="contact[title]" type="text" title="<?php echo $arr_language['title']; ?>" tabindex="1" />
+        <option value="female" <?php if ($data['title'] == 'female'){ echo 'selected';} ?> ><?php echo $arr_language['mrs']; ?></option>
+        <option value="male" <?php if ($data['title'] == 'male'){ echo 'selected';} ?> ><?php echo $arr_language['mr']; ?></option>
+    </select>
+  </div>
+  <div>
+    <label for="cf_firstname" <?php echo $warning_css_class['firstname']; ?> >* <?php echo $arr_language['firstname']; ?></label>
+    <input id="cf_firstname" name="contact[firstname]" type="text" title="<?php echo $arr_language['firstname']; ?>" value="<?php if (true === isset($data['firstname'])) { echo $data['firstname']; } ?>" tabindex="2" />
+  </div>
+  <div>
+    <label for="cf_name" <?php echo $warning_css_class['name']; ?> >* <?php echo $arr_language['name']; ?></label>
+    <input id="cf_name" name="contact[name]" type="text" title="<?php echo $arr_language['name']; ?>" value="<?php if (true === isset($data['name'])) { echo $data['name']; } ?>" tabindex="3" />
+  </div>
+
+
+  <div>
+    <label for="cf_firm" <?php echo $warning_css_class['company']; ?>>* <?php echo $arr_language['company']; ?></label>
+    <input id="cf_firm" name="contact[company]" type="text" title="<?php echo $arr_language['company']; ?>" value="<?php if (true === isset($data['company'])) { echo $data['company']; } ?>" tabindex="4" />
+  </div>
+
+</div>
+
+<div id="contact_right">
+  <div>
+    <label for="cf_email" <?php echo $warning_css_class['email']; ?> >* <?php echo $arr_language['email']; ?></label>
+    <input id="cf_email" name="contact[email]" type="text" title="<?php echo $arr_language['email']; ?>" value="<?php if (true === isset($data['email'])) { echo $data['email']; } ?>" tabindex="5" />
+  </div>
+  <div>
+    <label for="cf_tel" <?php echo $warning_css_class['phone']; ?> > <?php echo $arr_language['date']; ?></label>
+    <select id="cf_date" name="contact[date]">
+        <?php 
+        for ($i = 19; $i < 27; $i++ )
+        {
+         if ($language_id == 2) {
+           $text = $i . '. Oktober 2016';
+         } else {
+             $text = 'Oktober ' . $i . 'th 2016';
+         }
+        ?>
+        <option value="<?php echo $i; ?>.10.2016" <?php if ($data['date'] == $i . '.10.2016'){ echo 'selected';} ?> ><?php echo $text; ?></option>
+        <?php 
+        } 
+        ?>
+    </select>
+
+  </div>
+
+  <div>
+    <label for="cf_fax" <?php echo $warning_css_class['fax']; ?> ><?php echo $arr_language['time']; ?></label>
+    <select id="cf_time" name="contact[time]">
+        <?php
+        for ($i = 8; $i < 18; $i++ )
+        {
+         if ($language_id == 2) {
+           $text = $i . '. Oktober 2016';
+         } else {
+             $text = 'Oktober ' . $i . 'th 2016';
+         }
+        ?>
+        <option value="<?php echo sprintf('%02d', $i); ?>:00" <?php if ($data['time'] == sprintf('%02d', $i) . ':00'){ echo 'selected';} ?> ><?php echo sprintf('%02d', $i); ?>:00</option>
+        <option value="<?php echo sprintf('%02d', $i); ?>:30" <?php if ($data['time'] == sprintf('%02d', $i) . ':30'){ echo 'selected';} ?>><?php echo sprintf('%02d', $i); ?>:30</option>
+        <?php
+        }
+        ?>
+    </select>
+  </div>
+      
+</div>
+      
+  <div>
+    <input id="cf_btn" type="submit" value="<?php echo $arr_language['send']; ?>" class="tpe-button-big" tabindex="14" title="<?php print $arr_language['send']; ?>" />
+  </div>
+</form>
+<br style="clear: both;" />
+<?php } ?>
+<?php if (true === $admin) { ?></div><?php } ?>
+      
+
+

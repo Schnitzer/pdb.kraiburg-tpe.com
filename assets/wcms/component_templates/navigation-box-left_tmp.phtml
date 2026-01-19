@@ -1,0 +1,32 @@
+<div {if.admin}id="{component.id}"{/if} class="box_center navibox {if.admin}{admin.class}{/if}" style="height: 428px">
+  <h2{if.admin} class="{admin.content.class}" id="{shorttext.1.id}"{/if} style="border-bottom: 4px solid #FFC300">{shorttext.1}</h2>
+    {if.admin}<div id="itemcontainer" style="margin: -25px 0 0 -59px; height: 370px; overflow: visible;">{else}<div id="itemcontainer" style="margin-left:-31px;height:370px">{/if}
+      {if.admin}<div id="ncw-navigation-2012-admin">{/if}
+      {subarea.9}
+      {if.admin}</div>{/if}
+  </div>
+</div>
+    
+{component.move-left=-15}
+    
+    <script type="text/javascript">
+      $(document).ready(function () {
+        
+        var navisize = $('.navibox .naviitem').size();
+        
+        var height = 370;
+        var moarheight = 428;
+        
+        if (navisize == 5 || navisize == 6) {
+          height = 530;
+          moarheight = 588;
+        }
+        if (navisize == 7 || navisize == 8) {
+          height = 690;
+          moarheight = 748;
+        }
+        
+        $('.navibox').css('height', moarheight + 'px');
+        $('#itemcontainer').css('height', height + 'px');
+      });
+    </script>

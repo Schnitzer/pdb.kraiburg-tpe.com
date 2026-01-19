@@ -1,0 +1,465 @@
+<?php
+include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'elements' . DS . 'userstate.phtml';
+
+//$url_pdb = 'https://testsystem.kraiburg-tpe.com';
+$url_pdb = Ncw_Configure::read('Project.url');
+$website_url = Ncw_Configure::read('Project.url');
+
+//$url_pdb = 'http://kraiburg-tpe.com/special/curl';
+
+//var_dump($_GET);
+if (true == isset($_GET['ls'])) {
+	if ($_GET['ls'] == 'de') {
+	  $language_id = 2;
+  }
+	if ($_GET['ls'] == 'zh') {
+	  $language_id = 3;
+  }
+}
+
+						$obj_ajax = new Tpepdb2_AjaxController();
+						//$languages =$obj_ajax->getWcmsLanguages();
+
+?>
+
+
+<div class="search-container-left">
+	
+
+
+
+<section class="pdb2-search-console-container">
+			<div class="search-small-label">
+				<?php print Wcms_ContentboxController::getContenbox('pdb2-product-finder', $language_id); ?> <div class="close-small-search" onclick="close_small_search();"> 
+				<i class="kbtpe-icon-closesmall ncw-white-font"></i>
+				</div>
+			</div>
+	<div class="search-small-overlay">
+
+	</div>
+<form  class="tpe-search-form" id="tpepdb2_search" onblur="return false;" onkeypress="return dontSubmit(event, this);">
+	<!--<form  class="tpe-search-form" id="tpepdb2_search" >-->
+		<div class="pdb2-search-console-textsearch">
+			<?php 
+			$smallclass= "";
+			$smallshowclass= "";
+			$smallplaceholder = "";
+			if ($language_id == 11 || $language_id == 5 || $language_id == 4) {
+				$smallclass= "smallh1";
+				$smallshowclass= "smallsearchresult";
+			}
+			if ($language_id == 4) {
+				$smallplaceholder= "smallplaceholder";
+
+			}
+			?>
+			<h1 class="<?php echo $smallclass; ?>">
+				<?php print Wcms_ContentboxController::getContenbox('pdb2-product-finder', $language_id);
+			//	echo $language_id;
+				?>
+			</h1>
+			<?php 
+			$str_label_small = Wcms_ContentboxController::getContenbox('pdb2-open-search-filter', $language_id);
+
+			?>
+			<div class="open-small-search" onclick="open_small_search();">
+				<?php print $str_label_small; ?>
+				<i class="kbtpe-icon-opensmall"></i>
+			</div>
+
+			<div class="input-group"><span class="input-group-addon">
+				<?php 
+				$str_placeholder = Wcms_ContentboxController::getContenbox('pdb2-compound-item', $language_id);
+
+				?>
+	       	<input type="text" name="pdb2_search" autofocus placeholder="<?php print $str_placeholder; ?>" id="tpepdb2_s_text" class="tpepdb2_sf tpe-pdb-search-textsearch <?php echo $smallplaceholder; ?>" value="<?php if ($this->search_type == "text" && $this->search_value != "") {?><?php print $this->search_value; ?><?php } else { ?><?php } ?>" ref="text" />
+				<i class="kbtpe-icon-search" onclick="close_small_search();"></i></span>
+	     </div>
+		</div>
+		
+		<div class="pdb2-search-console-show  pdb2_search light-font">
+			<div class="results pdb2-treffer"><span></span></div>
+			<div class="show-results <?php echo $smallshowclass; ?>" ><?php print Wcms_ContentboxController::getContenbox('pdb2-show-results', $language_id); ?></div>
+			<div class="show-results-small <?php echo $smallshowclass; ?>" onclick="close_small_search();" ><?php print Wcms_ContentboxController::getContenbox('pdb2-show-results', $language_id); ?></div>
+			<img class="refresh-icon" src="<?php echo $website_url; ?>/assets/wcms/files/refreshgreen.png" />
+			<img class="refresh-icon-small" onclick="close_small_search();" src="<?php echo $website_url; ?>/assets/wcms/files/refreshgreen.png" />
+			
+		</div>
+	
+	<?php 
+	$class_hide = '';
+	if (true == TpePdbWeb::rights()) {
+		$class_hide = 'style="visibility: hidden;"';
+		//$style_sliderblock = 'style="top: 237px"';
+		//$style_haftungsblock = 'style="top: 473px"';
+		//$style_eigenschaftenblock = 'style="top: 900px"';
+		//$style_farbblock = 'style="top: 1981px"';
+		//$style_nachhaltigkeitblock = 'style="top: 247px"';
+		$css_sliderblock = ' sliderblocktoploggedin_P';
+		$css_regionblock = ' regionblocktoploggedin_P';
+		$css_haftungblock = ' haftungblocktoploggedin_P';
+		$css_eigenschaftenblock = 'eigenschaftenblocktoploggedin_P';
+		$css_farbblock = 'farbblocktoploggedin_p';
+		$css_nachhaltigkeitblock = 'nachhaltigkeittoploggedin_p';
+		
+		echo '<input type="hidden" id="islogintrue" value="true">';
+	} else {
+		$css_sliderblock = ' sliderblocktop';
+		$css_regionblock = ' regionblocktop';
+		$css_haftungblock = ' haftungblocktop';
+		$css_eigenschaftenblock = 'eigenschaftenblocktop';
+		$css_farbblock = 'farbblocktop';
+		
+		echo '<input type="hidden" id="islogintrue" value="false">';
+	}
+	
+	?>
+		<div class="pdb2-search-console-regionblock <?php echo $css_regionblock; ?>" <?php echo $class_hide; ?>  >
+				<h3>
+					<?php print Wcms_ContentboxController::getContenbox('contact-label-region', $language_id); ?>
+				</h3>
+				<div class="region-container light-font">
+			
+								<?php 	
+									$array_region = array();
+
+									
+									$array_region['r_10'] = array('Europe, the Middle East and Africa', 'r1', 'checkbox', 'TPE-200000000000197');
+									$array_region['r_11'] = array('Americas', 'r1', 'checkbox', 'TPE-200000000000196');
+									$array_region['r_12'] = array('Asia Pacific', 'r1', 'checkbox', 'TPE-200000000000199');
+//									$array_materialeigenschaften['r_1'] = array('Transluzent', 'c1', 'radio', 'TPE-200000000000198');
+									
+									foreach ($array_region As $item => $value) {
+										if ($value[1] != $tmp_group) {
+											//echo '<br />Alle Keine';
+											$tmp_group = $value[1];
+										}
+										// Radio oder Checkbox
+										if ($value[2] == 'radio') {
+											$str_type = $value[2];
+											$input_name = $value[1] . '_' . $value[2];
+										} else {
+											$str_type = 'checkbox';
+											$input_name = $item;
+										}
+										
+										$input_value = $value[3];
+										
+										
+									?>
+					
+									<div class="row zeile">
+										<div class="col-sm-24">
+											<input type="<?php echo $str_type; ?>" name="<?php echo $input_name; ?>" id="<?php echo $item; ?>" value="<?php echo $input_value; ?>" class="pdb2-checkbox pdb2-suche-checkbox pdb2_search" />
+											<label for="<?php echo $item; ?>" class="pdb2-suche-label"><?php echo $value[0]; ?></label>
+										</div>
+									</div>
+
+									<?php
+									}
+									?>
+			</div>
+		</div>
+		
+		<div class="pdb2-search-console-sliderblock <?php echo $css_sliderblock; ?>" <?php echo $style_sliderblock; ?>  >
+			<h3>
+				<?php print Wcms_ContentboxController::getContenbox('pdb2-hardness', $language_id); ?>
+			</h3>
+			<div class="row range-mode-container">
+				<div class="col-sm-8 col-xs-12">
+					<input type="radio"  id="cbox_hardness" value="hardness" class="pdb2-checkbox hardnessmode pdb2_search pdb2-suche-checkbox whiteslider" name="hard" checked />
+					<label for="cbox_hardness">Shore A</label>
+				</div>
+				<div class="col-sm-8 col-xs-12">
+					<input type="radio"  id="cbox_supersoft" value="supersoft" class="pdb2-checkbox hardnessmode pdb2_search pdb2-suche-checkbox greyslider" name="hard" />
+					<label for="cbox_supersoft">Supersoft</label>
+				</div>
+				<div class="col-sm-8 col-xs-12">
+					<input type="radio"  id="cbox_shorea" value="shored" class="pdb2-checkbox hardnessmode pdb2_search pdb2-suche-checkbox greyslider" name="hard" />
+					<label for="cbox_shorea">Shore D</label>
+				</div>
+			</div>			
+			<div class="range-container">
+				<div id="slider-range-hardness2"></div>
+				<input type="hidden" name="rangeHardnessMin" id="rangeHardnessMin" readonly style="border:0; color:#fff; background: transparent;">
+				<input type="hidden" name="rangeHardnessMax" id="rangeHardnessMax" readonly style="border:0; color:#fff; background: transparent;">
+			</div>
+			<div class="range-min"><span>10</span> Shore A</div>
+			<div class="range-max"><span>95</span> Shore A</div>
+		</div>
+
+		<div class="pdb2-search-console-haftungblock <?php echo $css_haftungblock; ?>" <?php echo $style_haftungsblock; ?>  >
+				<h3>
+					<?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---srs-adhesion', $language_id); ?>
+
+					
+				</h3>
+				<div class="haftung-container light-font">
+					<?php 					
+					//'m_26a' => array('EPDM', 'TPE-300000000004727'),
+						$array_haftung_zu = array(
+							'm_21a' => array('PP', 'TPE-300000000004736;TPE-300000000004737'), 
+							'm_22a' => array('PA', 'TPE-300000000004731;TPE-300000000004730;TPE-300000000004729;TPE-300000000006471'),
+							'm_24a' => array('POM', 'TPE-300000000004735'),
+							'm_25a' => array('PE', 'TPE-300000000004737;TPE-300000000004728'),
+							
+							'm_27a' => array('PC, ABS, PC/ABS', 'TPE-300000000004733;TPE-300000000005570;TPE-300000000005784;TPE-300000000006715'),
+							'm_28a' => array('PS', 'TPE-300000000004738'),
+							'm_29a' => array('ASA, PMMA, SAN, PBT', 'TPE-300000000004733;TPE-300000000006715;TPE-300000000005552;TPE-300000000006715'),
+						);
+					
+					//300000000004737 PP/PE
+						foreach ($array_haftung_zu As $item => $value) {
+							$str_title = $value[0];
+							$str_value = $value[1];
+						?>
+						<div class="row zeile">
+							<div class="col-sm-24">
+								<input type="checkbox" name="<?php echo $item; ?>" id="<?php echo $item; ?>" value="<?php echo $str_value; ?>" class="pdb2-checkbox pdb2-suche-checkbox pdb2_search" />
+								<label for="<?php echo $item; ?>" class="pdb2-suche-label"><?php echo $str_title; ?></label>
+							</div>
+						</div>
+					<?php
+					}
+					?>
+			  </div>
+		</div>
+
+		<div class="pdb2-search-console-eigenschaftenblock <?php echo $css_eigenschaftenblock; ?>" <?php echo $style_eigenschaftenblock; ?>  >
+				<h3>
+					<?php print Wcms_ContentboxController::getContenbox('pdb---material-advantages', $language_id); ?>
+				</h3>
+				<div class="eigenschaften-container light-font">
+			
+								<?php
+									
+									$array_materialeigenschaften = array();
+					
+									$str_label = $obj_ajax->getLabelName('TPE-300000000004842', 'UL94 HB' ,$language_id);
+									$array_materialeigenschaften['m_2'] = array($str_label, 'g1', 'checkbox', 'TPE-300000000004842');
+					
+									$str_label = $obj_ajax->getLabelName('TPE-300000000004843', 'UL94 V0' ,$language_id);
+									$array_materialeigenschaften['m_1a'] = array($str_label, 'g1', 'checkbox', 'TPE-300000000004843');
+														$str_label = $obj_ajax->getLabelName('TPE-300000000004844', 'UL94 V0' ,$language_id);
+									$array_materialeigenschaften['m_1b'] = array($str_label, 'g1', 'checkbox', 'TPE-300000000004844');
+	
+									$str_label = $obj_ajax->getLabelName('TPE-300000000004847', 'DIN EN 45545-2' ,$language_id);
+									$array_materialeigenschaften['m_42'] = array($str_label, 'g1', 'checkbox', 'TPE-300000000004847;TPE-300000000006861;TPE-300000000006862;TPE-300000000006988');
+					
+									$str_label = $obj_ajax->getLabelName('TPE-300000000004826', 'PV3930 Florida' ,$language_id);
+									$array_materialeigenschaften['m_4a'] = array($str_label, 'g1', 'checkbox', 'TPE-300000000004826');
+
+									$str_label = $obj_ajax->getLabelName('TPE-300000000004827', 'PV3930 Florida' ,$language_id);
+									$array_materialeigenschaften['m_4b'] = array($str_label, 'g1', 'checkbox', 'TPE-300000000004827');
+					
+									$str_label = $obj_ajax->getLabelName('TPE-300000000004828', 'PV3929 Kalahari' ,$language_id);
+									$array_materialeigenschaften['m_4ba'] = array($str_label, 'g1', 'checkbox', 'TPE-300000000004828');
+									$str_label = $obj_ajax->getLabelName('TPE-300000000004829', 'PV3929 Kalahari' ,$language_id);
+									$array_materialeigenschaften['m_4bb'] = array($str_label, 'g1', 'checkbox', 'TPE-300000000004829');
+									
+									$str_label = $obj_ajax->getLabelName('TPE-300000000004824', 'VDA 270 B3 Odor' ,$language_id);
+									$array_materialeigenschaften['m_44'] = array($str_label, 'g2', 'checkbox', 'TPE-300000000004824');
+					
+									$str_label = $obj_ajax->getLabelName('TPE-300000000004825', '49 CFR §571.302 (FMVSS 302)' ,$language_id);
+									$array_materialeigenschaften['m_6'] = array($str_label, 'g2', 'checkbox', 'TPE-300000000004825');
+					
+									$str_label = $obj_ajax->getLabelName('TPE-300000000004823', 'DIN 75201-B – Fogging' ,$language_id);	
+									$array_materialeigenschaften['m_43'] = array($str_label, 'g2', 'checkbox', 'TPE-300000000004823');
+					
+									$str_label = $obj_ajax->getLabelName('TPE-300000000004806', 'KRAIBURG TPE Medical Service Package' ,$language_id);
+									$array_materialeigenschaften['m_59'] = array($str_label, 'g2', 'checkbox', 'TPE-300000000004806');
+									
+									$str_label = $obj_ajax->getLabelName('TPE-300000000004793', 'US DMF listed' ,$language_id);
+									$array_materialeigenschaften['m_15'] = array($str_label, 'g3', 'checkbox', 'TPE-300000000004793');
+					
+									$str_label = $obj_ajax->getLabelName('TPE-300000000004860', 'VDI 2017' ,$language_id);
+									$array_materialeigenschaften['m_30'] = array($str_label, 'g3', 'checkbox', 'TPE-300000000004860');
+					
+									$str_label = $obj_ajax->getLabelName('TPE-300000000004932', 'US CFR 21 FDA (raw material conformity)' ,$language_id);
+									$array_materialeigenschaften['m_17a'] = array($str_label, 'g3', 'checkbox', '300000000004932');
+					
+									$str_label = $obj_ajax->getLabelName('TPE-3000000004852', 'US FDA CFR 21' ,$language_id);
+									$array_materialeigenschaften['m_17b'] = array($str_label, 'g3', 'checkbox', '300000000004852');
+					
+									$str_label = $obj_ajax->getLabelName('TPE-300000000004855', 'Regulation (EU) No 10/2011' ,$language_id);
+									$array_materialeigenschaften['m_18'] = array($str_label, 'g3', 'checkbox', '300000000004855');
+					
+					
+									$str_label = $obj_ajax->getLabelName('TPE-300000000004857', 'China GB4806-2016' ,$language_id);
+									$array_materialeigenschaften['m_19e'] = array($str_label, 'g3', 'checkbox', '300000000004857');
+					
+					
+						
+									$str_label = $obj_ajax->getLabelName('TPE-300000000005968', 'Cytotoxicity' ,$language_id);
+									$array_materialeigenschaften['m_19f'] = array($str_label, 'g3', 'checkbox', '300000000005968');
+						
+									$str_label = $obj_ajax->getLabelName('TPE-300000000004856', 'EN71-3' ,$language_id);
+									$array_materialeigenschaften['m_19'] = array($str_label, 'g3', 'checkbox', '300000000004856');
+					
+									$str_label = $obj_ajax->getLabelName('TPE-300000000004846', 'CSTB/DER/BV-PEM' ,$language_id);
+									$array_materialeigenschaften['m_20'] = array($str_label, 'g3', 'checkbox', '300000000004846');
+					
+									$str_label = $obj_ajax->getLabelName('TPE-300000000004845', 'RAL-GZ 716/1' ,$language_id);
+									$array_materialeigenschaften['m_21e'] = array($str_label, 'g3', 'checkbox', '300000000004845');
+					
+									$str_label = $obj_ajax->getLabelName('TPE-300000000004848', 'DVGW worksheet W 270 ' ,$language_id);
+									$array_materialeigenschaften['m_22e'] = array($str_label, 'g3', 'checkbox', '300000000004848');
+					
+									$str_label = $obj_ajax->getLabelName('TPE-300000000004849', 'KTW' ,$language_id);
+									$array_materialeigenschaften['m_23e'] = array($str_label, 'g3', 'checkbox', '300000000004849');
+									
+									$str_label = $obj_ajax->getLabelName('TPE-300000000004850', 'ACS (DGS/VS4 n° 200/232)' ,$language_id);
+									$array_materialeigenschaften['m_24e'] = array($str_label, 'g3', 'checkbox', '300000000004850');
+					
+									//$str_label = $obj_ajax->getLabelName('TPE-300000000004851', 'WRAS' ,$language_id);
+									//$array_materialeigenschaften['m_25e'] = array($str_label, 'g3', 'checkbox', '300000000004851');
+					
+					$str_label = $obj_ajax->getLabelName('TPE-300000000006360', 'WRAS' ,$language_id);
+									$array_materialeigenschaften['m_25e'] = array($str_label, 'g3', 'checkbox', '300000000006360');
+					
+					$str_label = $obj_ajax->getLabelName('TPE-300000000006361', 'WRAS' ,$language_id);
+									$array_materialeigenschaften['m_25f'] = array($str_label, 'g3', 'checkbox', '300000000006361');
+
+					$str_label = $obj_ajax->getLabelName('TPE-300000000006316', 'WRAS' ,$language_id);
+									$array_materialeigenschaften['m_25g'] = array($str_label, 'g3', 'checkbox', '300000000006316');
+									
+									  
+
+									foreach ($array_materialeigenschaften As $item => $value) {
+										if ($value[1] != $tmp_group) {
+											//echo '<br />Alle Keine';
+											$tmp_group = $value[1];
+										}
+										// Radio oder Checkbox
+										if ($value[2] == 'radio') {
+											$str_type = $value[2];
+											$input_name = $value[1] . '_' . $value[2];
+										} else {
+											$str_type = 'checkbox';
+											$input_name = $item;
+										}
+										
+										$input_value = $value[3];
+										
+										
+									?>
+									<div class="row zeile">
+										<div class="col-sm-24">
+											<input type="<?php echo $str_type; ?>" name="<?php echo $input_name; ?>" id="<?php echo $item; ?>" value="<?php echo $input_value; ?>" class="pdb2-checkbox pdb2-suche-checkbox pdb2_search" />
+											<label for="<?php echo $item; ?>" class="pdb2-suche-label"><?php echo $value[0]; ?></label>
+										</div>
+									</div>
+									<?php
+									}
+									?>
+			</div>
+		</div>
+	
+		<div class="pdb2-search-console-farbblock <?php echo $css_farbblock; ?>" <?php echo $style_farbblock; ?>  >
+			<h3>
+				<?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---srs-color', $language_id); ?>
+			</h3>
+			<div class="eigenschaften-container light-font">
+			
+					<?php
+
+						$array_materialeigenschaften = array();
+
+
+
+						// Farben
+						$str_label = $obj_ajax->getColorName('TPE-200000000000197', 'Transparent' ,$language_id);
+						$array_materialeigenschaften['c_10'] = array($str_label, 'c1', 'checkbox', 'TPE-200000000000197');
+						$str_label = $obj_ajax->getColorName('TPE-200000000000196', 'Natur' ,$language_id);
+						$array_materialeigenschaften['c_11'] = array($str_label, 'c1', 'checkbox', 'TPE-200000000000196');
+						$str_label = $obj_ajax->getColorName('TPE-200000000000199', 'Schwarz' ,$language_id);
+						$array_materialeigenschaften['c_12'] = array($str_label, 'c1', 'checkbox', 'TPE-200000000000199');
+						$str_label = $obj_ajax->getColorName('TPE-200000000000198', 'Transluzent' ,$language_id);
+						$array_materialeigenschaften['c_13'] = array($str_label, 'c1', 'checkbox', 'TPE-200000000000198');
+
+
+
+
+						foreach ($array_materialeigenschaften As $item => $value) {
+							if ($value[1] != $tmp_group) {
+								//echo '<br />Alle Keine';
+								$tmp_group = $value[1];
+							}
+							// Radio oder Checkbox
+							if ($value[2] == 'radio') {
+								$str_type = $value[2];
+								$input_name = $value[1] . '_' . $value[2];
+							} else {
+								$str_type = 'checkbox';
+								$input_name = $item;
+							}
+
+							$input_value = $value[3];
+
+
+						?>
+						<div class="row zeile">
+							<div class="col-sm-24">
+								<input type="<?php echo $str_type; ?>" name="<?php echo $input_name; ?>" id="<?php echo $item; ?>" value="<?php echo $input_value; ?>" class="pdb2-checkbox pdb2-suche-checkbox pdb2_search" />
+								<label for="<?php echo $item; ?>" class="pdb2-suche-label"><?php echo $value[0]; ?></label>
+							</div>
+						</div>
+						<?php
+						}
+					?>
+			</div>
+		</div>
+
+		<div class="pdb2-search-console-nachhaltigblock <?php echo $css_nachhaltigkeitblock; ?>" <?php echo $style_nachhaltigkeitblock; ?>  >
+			<h3>
+				<?php 
+					print Wcms_ContentboxController::getContenbox('more-sustainable-tpe', $language_id); 
+				?>
+				
+			</h3>
+			<div class="eigenschaften-container light-font">
+				<?php
+					$array_materialeigenschaftenn = array();
+					$array_materialeigenschaftenn = array(
+						'm_41a' => array(Wcms_ContentboxController::getContenbox('iscc-plus', $language_id), 'TPE-300000000006822;TPE-300000000006823'), 
+						'm_42a' => array(Wcms_ContentboxController::getContenbox('recycled', $language_id), 'TPE-300000000005701;TPE-300000000005702;TPE-300000000005703;TPE-300000000005704;TPE-300000000005705;TPE-300000000006885;TPE-300000000007062'),
+						'm_43a' => array(Wcms_ContentboxController::getContenbox('bio-based', $language_id), 'TPE-300000000005503;TPE-300000000005504;TPE-300000000005505;TPE-300000000005506;TPE-300000000005507;TPE-300000000005510'),
+						'm_44a' => array(Wcms_ContentboxController::getContenbox('grs-certified', $language_id), 'TPE-300000000007292'),
+						
+					);
+
+					// 'm_43a' => array(Wcms_ContentboxController::getContenbox('bio-based', $language_id), 'TPE-300000000005503;TPE-300000000005504;TPE-300000000005505;TPE-300000000005506;TPE-300000000005507;TPE-300000000005510;'),
+					foreach ($array_materialeigenschaftenn As $item => $value) {
+						$str_title = $value[0];
+						$str_value = $value[1];
+						?>
+						<div class="row zeile">
+							<div class="col-sm-24">
+								<input type="checkbox" name="<?php echo $item; ?>" id="<?php echo $item; ?>" value="<?php echo $str_value; ?>" class="pdb2-checkbox pdb2-suche-checkbox pdb2_search" />
+								<label for="<?php echo $item; ?>" class="pdb2-suche-label"><?php echo $str_title; ?></label>
+							</div>
+						</div>
+					<?php
+					}
+				?>
+			</div>
+		</div>
+
+	<div style="display: none;" id="noresult2">
+		<?php echo Wcms_ContentboxController::getContenbox('pdb---search-noresult', $language_id); ?>
+	</div>
+<input type="hidden" id="noresult" value="<?php print str_replace(array('<', '>', '"'), array('#op#', '#cl#', '#AUSR#'), Wcms_ContentboxController::getContenbox('pdb---search-noresult', $language_id)); ?>" />
+	<input type="hidden" id="searchresult" value="<?php print Wcms_ContentboxController::getContenbox('pdb---search---search-results', $language_id); ?>" />
+		
+	</form>
+</section>
+
+<?php if ($this->region_id > 0 || true == TpePdbWeb::rights()) { ?>
+<!--<div data-scroll="#undefined" class="ct-nextSection-scroll ct-js-nextSection-scroll animated pulse animation-infinity activate"><i class="fa fa-angle-double-down"></i><span><?php print Wcms_ContentboxController::getContenbox('read-more', $language_id); ?></span></div>-->
+<?php } ?>
+	
+	</div>
+
+      	
+
+

@@ -1,0 +1,11 @@
+<div class="naviitem <?php if (true === $admin) { ?><?php if (true === $admin) { ?>ncw-sortable-item<?php } ?><?php } ?>" style="height:75px;width:215px;"<?php if (true === $admin) { ?> id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>"<?php } ?>>  
+  <a href="<?php print $component['file'][1]['link']; ?>" title="<?php print $component['file'][1]['title']; ?>">  
+  <img <?php if (true === $admin) { ?> class="<?php if (true === $admin) { ?>ncw-image-droppable<?php } ?>" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['file'][1]['componentcontent_id']; ?>-file-1"<?php } ?> src="<?php print $component['file'][1]['content']; ?>" width="75" height="75" title="<?php print $component['file'][1]['title']; ?>" alt="<?php print $component['file'][1]['alt']; ?>" style="width:75px;height:75px;" /></a>
+  <!--<p <?php if (true === $admin) { ?> class="<?php if (true === $admin) { ?>ncw-wysiwyg-website-admin<?php } ?>" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['text'][1]['componentcontent_id']; ?>-text-1"<?php } ?> style="float: left; width: 110px; padding-left: 6px;"><?php print $component['text'][1]['content']; ?></p>-->
+  <p<?php if (true === $admin) { ?> class="<?php if (true === $admin) { ?>ncw-wysiwyg-website-admin<?php } ?>" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['text'][1]['componentcontent_id']; ?>-text-1"<?php } ?> style="float: left; width: 110px; padding-left: 6px;"><?php print $component['text'][1]['content']; ?> <a href="<?php print $component['file'][1]['link']; ?>" target="<?php print $component['file'][1]['target']; ?>"><?php print Wcms_ContentboxController::getContenbox('read-more', $language_id); ?></a>
+  </p>
+</div>
+
+<?php if (true === $admin) { ?><input type="hidden" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-move-left" value="-15" /><?php } ?>
+
+

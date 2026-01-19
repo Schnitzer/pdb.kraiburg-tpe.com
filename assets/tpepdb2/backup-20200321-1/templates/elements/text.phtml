@@ -1,0 +1,98 @@
+<?php if (true === $is_pdf) { ?>
+<?php if (true === isset($serie["text2"]) && $serie["text2"] != "") { ?>
+    <?php if (true === $is_pdf) { ?><div style="font-size: <?php print $text_line_heiht; ?>px;line-height: <?php print $text_line_heiht; ?>px;">&nbsp;</div><?php } else { ?><div style="font-size: 8px;line-height: 8px;">&nbsp;</div><?php } ?>
+    <table cellpadding="2" border="0" width="100%">
+        <tr>
+            <td style="font-size: <?php echo $font_size_table; ?>;"><?php print str_replace(array("<P>", "</P>"), array("", " "), $serie["text2"]); ?></td>
+        </tr>
+    </table>
+<?php } ?>
+
+<?php if (true === $is_pdf) { ?><div style="font-size: <?php print $text_line_heiht; ?>px;line-height: <?php print $text_line_heiht; ?>px;">&nbsp;</div><?php } else { ?><div style="font-size: 8px;line-height: 8px;">&nbsp;</div><?php } ?>
+<table cellpadding="2" border="0" width="100%">
+    <tr>
+        <td style="font-size: <?php echo $font_size_table; ?>; line-height: <?php echo ((int) $font_size_table + 2); ?>px;"><?php
+            if ($compound['status'] == 'portfolio') {
+                print Wcms_ContentboxController::getContenbox('pdb---datasheet---general', $language_id);
+            } else {
+                //print Wcms_ContentboxController::getContenbox('pdb---datasheet---general-test-report', $language_id);
+                print Wcms_ContentboxController::getContenbox('pdb---datasheet---general', $language_id);
+            }
+            ?></td>
+    </tr>
+</table>
+
+<?php 
+} else { // Ende PDF Anfang HTML
+?>
+
+<section class="paragraph paragraph--type--wysiwyg paragraph--view-mode--default ">
+  <div class="container">
+    <div class="row">
+    	
+		<?php if (true === isset($serie["text2"]) && $serie["text2"] != "") { ?>
+		    <div style="font-size: 10px;">&nbsp;</div>
+		    <table cellpadding="2" border="0" width="100%">
+		        <tr>
+		            <td><?php print str_replace(array("<P>", "</P>"), array("", " "), $serie["text2"]); ?></td>
+		        </tr>
+		    </table>
+		<?php } ?>
+		
+		
+		<table cellpadding="2" border="0" width="100%" class="pdb-compound-text">
+		    <tr>
+		        <td><?php
+		            if ($compound['status'] == 'portfolio') {
+		                print Wcms_ContentboxController::getContenbox('pdb---datasheet---general', $language_id);
+		            } else {
+		                //print Wcms_ContentboxController::getContenbox('pdb---datasheet---general-test-report', $language_id);
+		                print Wcms_ContentboxController::getContenbox('pdb---datasheet---general', $language_id);
+		            }
+		            ?>
+					</td>
+		    </tr>
+		</table>
+	  </div>
+  </div>
+</section>
+
+<section class="paragraph paragraph--type--wysiwyg paragraph--view-mode--default ">
+  <div class="container">
+    <div class="row">
+    	
+
+		
+		
+		<table cellpadding="2" border="0" width="100%" class="pdb-compound-text">
+		    <tr>
+		        <td>
+							<?php print Wcms_ContentboxController::getContenbox('pdb2-datasheet-footer-storage', $language_id); ?>
+					</td>
+		    </tr>
+		</table>
+	  </div>
+  </div>
+</section>
+
+<section class="paragraph paragraph--type--wysiwyg paragraph--view-mode--default ">
+  <div class="container">
+    <div class="row">
+    	
+
+		
+		<!-- Für weiterführende Informationen  Further Informations text.phtml-->
+		<table cellpadding="2" border="0" width="100%" class="pdb-compound-text">
+		    <tr>
+		        <td>
+							<?php print Wcms_ContentboxController::getContenbox('pdb2-for-further-information', $language_id); ?>
+					</td>
+		    </tr>
+		</table>
+	  </div>
+  </div>
+</section>
+
+<?php 
+}// Ende  HTML
+?>

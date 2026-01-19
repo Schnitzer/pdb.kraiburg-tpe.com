@@ -1,0 +1,23 @@
+<div {if.admin}id="{component.id}"{/if} class="large_box_center {admin.class}">
+  <h2><a href="{file.1.link}" target="{file.1.target}">{if.admin}<div id="{shorttext.1.id}" class="{admin.content.class}">{/if}{shorttext.1}{if.admin}</div>{/if}</a></h2>
+  <a href="{file.1.link}" target="{file.1.target}"><img id="{file.1.id}" src="{file.1}" alt="{file.1.alt}" title="{file.1.title}" class="{admin.image.class}" /></a>
+  <div>
+    {if.admin}<span id="{shorttext.2.id}" class="{admin.content.class}">{/if}{shorttext.2}{if.admin}</span>{/if}
+    <a href="{file.1.link}" target="{file.1.target}">{contentbox.read-more}</a>
+  </div>
+</div>
+{shorttext.1.width=432}
+{shorttext.1.background=#FFC300}
+{shorttext.1.mode=simple}
+{shorttext.1.button-top=-10}
+{shorttext.1.button-left=-16}
+{shorttext.2.width=432}
+{shorttext.2.height=51}
+{shorttext.2.background=url(assets/wcms/files/bg_box_right.gif) repeat-x 0 bottom #ececed}
+{shorttext.2.mode=simple}
+{shorttext.2.button-top=-10}
+{shorttext.2.button-left=-16}
+{shorttext.2.text-top=1}
+
+{component.move-left=-16}
+

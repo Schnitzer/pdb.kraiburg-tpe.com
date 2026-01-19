@@ -1,0 +1,25 @@
+<div id="nav">
+  <ul>
+  <?php $first = true; ?>
+  <?php if (true === isset($sites[1], $sites[1][1], $sites[1][1][1])) { $node_save = false; if (true === isset($node)) { $node_save = $node; } foreach ($sites[1][1][1] as $node) { ?> 
+    <li class="<?php if (true === $first && true === $node['highlight']) { ?>active_home <?php } else if (true === $first) { ?>home <?php } ?> <?php if (true === $node['highlight']) { ?>active<?php } else { ?>nav1<?php } ?>" onclick="window.location.href='<?php print $node['url']; ?>'">
+      <a href="<?php print $node['url']; ?>" title="<?php print $node['title']; ?>"><?php print $node['name']; ?></a>
+    </li>
+    <?php $first = false; ?>
+  <?php } if (true === isset($node_save) && false !== $node_save) { $node = $node_save;} } ?>
+  </ul>
+</div>
+ 
+<div id="breadcrumb"<?php if (true === isset($sites[2], $breadcrumb[2-2]['id'], $sites[2][$breadcrumb[2-2]['id']], $sites[2][$breadcrumb[2-2]['id']][1])) { ?> class="breadcrumb_background"<?php } ?>> 
+<?php if (true === isset($sites[2], $breadcrumb[2-2]['id'], $sites[2][$breadcrumb[2-2]['id']], $sites[2][$breadcrumb[2-2]['id']][1])) { ?>        
+  <ul>
+  <?php $first = true; ?>
+  <?php if (true === isset($sites[2], $breadcrumb[2-2]['id'], $sites[2][$breadcrumb[2-2]['id']], $sites[2][$breadcrumb[2-2]['id']][1])) { $node_save = false; if (true === isset($node)) { $node_save = $node; } foreach ($sites[2][$breadcrumb[2-2]['id']][1] as $node) { ?>
+    <li <?php if (true === $node['highlight']) { ?>class="active"<?php } ?>>
+    <?php if (false === $first) { ?><span>&nbsp;| </span><?php } ?><a href="<?php print $node['url']; ?>" title="<?php print $node['title']; ?>"><?php print $node['name']; ?></a>
+    </li>
+    <?php $first = false; ?>
+  <?php } if (true === isset($node_save) && false !== $node_save) { $node = $node_save;} } ?>
+  </ul>
+<?php } ?>
+</div>

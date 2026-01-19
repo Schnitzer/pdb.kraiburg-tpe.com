@@ -1,0 +1,157 @@
+<!-- elements/share_dialog.phtml -->
+<?php
+	if (true == isset($_GET['sid'])) {
+		$subject = '';
+	} else {
+		$subject = $compound['name'];
+	}
+?>
+
+
+<div class="pdb-share-dialog">
+	<div class="close" onclick="close_share_dialog();">X</div>
+	<div class="badge">
+		<div style="background-image:url('<?php echo $website_url; ?>/sites/default/files/assets/pattern/blue.png')" class="pattern-outer">
+			<div class="smallspace-wrapper clearfix pattern-inner">
+				<div class="paragraph clearfix paragraph--type--textblock paragraph--view-mode--default col-sm-24">
+					<h4 class="subheadline">
+						<?php print Wcms_ContentboxController::getContenbox('pdb2-share-file', $language_id); ?> <span class="share-file-name"></span>
+					</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+
+	</div>
+
+	<div class="row inputarea">
+		<div class="col-xs-24">
+			<input type="email" placeholder="<?php print Wcms_ContentboxController::getContenbox('contact-label-send-to', $language_id); ?>" name="customer-email" id="customer-email" >
+			<input type="text" value="<?php echo $subject; ?>" placeholders="<?php print Wcms_ContentboxController::getContenbox('contact-label-email-subject', $language_id); ?>" name="customer-subject" id="customer-subject" >
+			<textarea  placeholder="<?php print Wcms_ContentboxController::getContenbox('contact-label-message', $language_id); ?>" name="customer-text" id="customer-text" ></textarea>
+			<?php 
+				if (trim($file_ls) == 'de') {
+					$labelMailDatasheet = Wcms_ContentboxController::getContenbox('mailanschreiben-2', 2);
+					$labelMailPg = Wcms_ContentboxController::getContenbox('mailanschreiben-3', 2);
+					$labelMailAfterLink = Wcms_ContentboxController::getContenbox('mailanschreiben-4', 2);
+				} else {
+					$labelMailDatasheet = Wcms_ContentboxController::getContenbox('mailanschreiben-2', 1);
+					$labelMailPg = Wcms_ContentboxController::getContenbox('mailanschreiben-3', 1);
+					$labelMailAfterLink = Wcms_ContentboxController::getContenbox('mailanschreiben-4', 1);
+				}
+			?>
+			<label  class="label-vorschau" for="vorschau"><?php echo Wcms_ContentboxController::getContenbox('this-text-is-generated', $language_id); ?></label>
+			
+			<textarea class="vorschau" name="vorschau" id="vorschau" disabled>
+<?php
+if (true == isset($_GET['sid'])) {
+echo $labelMailDatasheet . '
+<div class="link-to-datasheet">Link to datasheet</div>
+	
+' . ausgabeaInTextarea($labelMailAfterLink);
+} else {
+echo $labelMailDatasheet . '
+<div class="link-to-datasheet">Link to datasheet</div>
+
+' . $labelMailPg . ':
+<div class="link-to-pg">Link processing guidlines</div>
+	
+' . ausgabeaInTextarea($labelMailAfterLink);
+}
+
+
+?>
+			</textarea>
+
+			<?php 
+			$email = $this->getUserEmail();
+			if ($email == false) {
+			?>
+				<input type="email" disabled="true" class="disabled" placeholder="<?php print Wcms_ContentboxController::getContenbox('contact-label-e-mail', $language_id); ?>" name="your-email" id="your-email">
+			<?php } else { ?>
+				<input type="email" disabled="true" class="disabled" placeholder="<?php print Wcms_ContentboxController::getContenbox('contact-label-e-mail', $language_id); ?>" name="your-email" id="your-email" value="<?php echo $email; ?>">
+			<?php } ?>
+
+			<input type="hidden" name="file_link" id="file_link">
+			<input type="hidden" name="file_ls" id="file_ls">
+			<input type="hidden" name="file_dm" id="file_dm">
+			<input type="hidden" id="tmpTextarea" />
+			
+
+			<input type="hidden" id="labelMailDatasheet_de" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-2', 2)); ?>">
+			<input type="hidden" id="labelMailDatasheet_en" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-2', 1)); ?>">
+			<input type="hidden" id="labelMailDatasheet_es" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-2', 4)); ?>">
+			<input type="hidden" id="labelMailDatasheet_fr" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-2', 5)); ?>">
+			<input type="hidden" id="labelMailDatasheet_it" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-2', 8)); ?>">
+			<input type="hidden" id="labelMailDatasheet_pl" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-2', 11)); ?>">
+			<input type="hidden" id="labelMailDatasheet_zh" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-2', 3)); ?>">
+			<input type="hidden" id="labelMailDatasheet_jp" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-2', 7)); ?>">
+			<input type="hidden" id="labelMailDatasheet_kr" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-2', 10)); ?>">
+
+			<input type="hidden" id="labelMailPG_de" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-3', 2)); ?>">
+			<input type="hidden" id="labelMailPG_en" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-3', 1)); ?>">
+			<input type="hidden" id="labelMailPG_es" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-3', 4)); ?>">
+			<input type="hidden" id="labelMailPG_fr" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-3', 5)); ?>">
+			<input type="hidden" id="labelMailPG_it" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-3', 8)); ?>">
+			<input type="hidden" id="labelMailPG_pl" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-3', 11)); ?>">
+			<input type="hidden" id="labelMailPG_zh" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-3', 3)); ?>">
+			<input type="hidden" id="labelMailPG_jp" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-3', 7)); ?>">
+			<input type="hidden" id="labelMailPG_kr" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-3', 10)); ?>">
+			
+			<input type="hidden" name="file_tmp_de" id="file_tmp_de" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-1', 2)); ?>">
+			<input type="hidden" name="file_tmp_en" id="file_tmp_en" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-1', 1)); ?>">
+			<input type="hidden" name="file_tmp_es" id="file_tmp_es" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-1', 4)); ?>">
+			<input type="hidden" name="file_tmp_fr" id="file_tmp_fr" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-1', 5)); ?>">
+			<input type="hidden" name="file_tmp_it" id="file_tmp_it" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-1', 8)); ?>">
+			<input type="hidden" name="file_tmp_pl" id="file_tmp_pl" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-1', 11)); ?>">
+			<input type="hidden" name="file_tmp_zh" id="file_tmp_zh" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-1', 3)); ?>">
+			<input type="hidden" name="file_tmp_jp" id="file_tmp_jp" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-1', 7)); ?>">
+			<input type="hidden" name="file_tmp_kr" id="file_tmp_kr" value="<?php print ausgabeaInTextarea(Wcms_ContentboxController::getContenbox('mailanschreiben-1', 10)); ?>">
+
+			<input type="hidden" name="file_sub_de" id="file_sub_de" value="<?php print $subject . ' ' . Wcms_ContentboxController::getContenbox('mailanschreiben-2', 2) . '/' . Wcms_ContentboxController::getContenbox('mailanschreiben-3', 2); ?>">
+			<input type="hidden" name="file_sub_en" id="file_sub_en" value="<?php print $subject . ' ' . Wcms_ContentboxController::getContenbox('mailanschreiben-2', 1) . '/' . Wcms_ContentboxController::getContenbox('mailanschreiben-3', 1); ?>">
+			<input type="hidden" name="file_sub_es" id="file_sub_es" value="<?php print $subject . ' ' . Wcms_ContentboxController::getContenbox('mailanschreiben-2', 4) . '/' . Wcms_ContentboxController::getContenbox('mailanschreiben-3', 4); ?>">
+			<input type="hidden" name="file_sub_fr" id="file_sub_fr" value="<?php print $subject . ' ' . Wcms_ContentboxController::getContenbox('mailanschreiben-2', 5) . '/' . Wcms_ContentboxController::getContenbox('mailanschreiben-3', 5); ?>">
+			<input type="hidden" name="file_sub_it" id="file_sub_it" value="<?php print $subject . ' ' . Wcms_ContentboxController::getContenbox('mailanschreiben-2', 8) . '/' . Wcms_ContentboxController::getContenbox('mailanschreiben-3', 8); ?>">
+			<input type="hidden" name="file_sub_pl" id="file_sub_pl" value="<?php print $subject . ' ' . Wcms_ContentboxController::getContenbox('mailanschreiben-2', 11) . '/' . Wcms_ContentboxController::getContenbox('mailanschreiben-3', 11); ?>">
+			<input type="hidden" name="file_sub_zh" id="file_sub_zh" value="<?php print $subject . ' ' . Wcms_ContentboxController::getContenbox('mailanschreiben-2', 3) . '/' . Wcms_ContentboxController::getContenbox('mailanschreiben-3', 3); ?>">
+			<input type="hidden" name="file_sub_jp" id="file_sub_jp" value="<?php print $subject . ' ' . Wcms_ContentboxController::getContenbox('mailanschreiben-2', 7) . '/' . Wcms_ContentboxController::getContenbox('mailanschreiben-3', 7); ?>">
+			<input type="hidden" name="file_sub_kr" id="file_sub_kr" value="<?php print $subject . ' ' . Wcms_ContentboxController::getContenbox('mailanschreiben-2', 10) . '/' . Wcms_ContentboxController::getContenbox('mailanschreiben-3', 10); ?>">
+
+			<input type="hidden" name="link_canbeused_de" id="link_canbeused_de" value="<?php print Wcms_ContentboxController::getContenbox('mailanschreiben-4', 2) . '/' . Wcms_ContentboxController::getContenbox('mailanschreiben-3', 2); ?>">
+			<input type="hidden" name="link_canbeused_en" id="link_canbeused_en" value="<?php print Wcms_ContentboxController::getContenbox('mailanschreiben-4', 1) . '/' . Wcms_ContentboxController::getContenbox('mailanschreiben-3', 1); ?>">
+			<input type="hidden" name="link_canbeused_es" id="link_canbeused_es" value="<?php print Wcms_ContentboxController::getContenbox('mailanschreiben-4', 4) . '/' . Wcms_ContentboxController::getContenbox('mailanschreiben-3', 4); ?>">
+			<input type="hidden" name="link_canbeused_fr" id="link_canbeused_fr" value="<?php print Wcms_ContentboxController::getContenbox('mailanschreiben-4', 5) . '/' . Wcms_ContentboxController::getContenbox('mailanschreiben-3', 5); ?>">
+			<input type="hidden" name="link_canbeused_it" id="link_canbeused_it" value="<?php print Wcms_ContentboxController::getContenbox('mailanschreiben-4', 8) . '/' . Wcms_ContentboxController::getContenbox('mailanschreiben-3', 8); ?>">
+			<input type="hidden" name="link_canbeused_pl" id="link_canbeused_pl" value="<?php print Wcms_ContentboxController::getContenbox('mailanschreiben-4', 11) . '/' . Wcms_ContentboxController::getContenbox('mailanschreiben-3', 11); ?>">
+			<input type="hidden" name="link_canbeused_zh" id="link_canbeused_zh" value="<?php print Wcms_ContentboxController::getContenbox('mailanschreiben-4', 3) . '/' . Wcms_ContentboxController::getContenbox('mailanschreiben-3', 3); ?>">
+			<input type="hidden" name="link_canbeused_jp" id="link_canbeused_jp" value="<?php print Wcms_ContentboxController::getContenbox('mailanschreiben-4', 7) . '/' . Wcms_ContentboxController::getContenbox('mailanschreiben-3', 7); ?>">
+			<input type="hidden" name="link_canbeused_kr" id="link_canbeused_kr" value="<?php print Wcms_ContentboxController::getContenbox('mailanschreiben-4', 10) . '/' . Wcms_ContentboxController::getContenbox('mailanschreiben-3', 10); ?>">
+
+
+			<input type="hidden" name="seriesOrCompound" id="seriesOrCompound" value=""> 
+
+			<div class="send" name="send" onclick="send_share();"><?php print Wcms_ContentboxController::getContenbox('contact-label-send', $language_id); ?></div>
+		</div>
+	</div>
+</div>
+
+
+<?php 
+
+function ausgabeaInTextarea($string)
+{
+	$string = trim($string);
+	$string = str_replace('<br>', '<br />', $string);
+	$string = str_replace('<br /><br />', '<br />', $string);
+	$string = str_replace('<br />', '
+', $string);
+	$string = str_replace('"', ' ', $string);
+	$string = str_replace("'", " ", $string);
+
+	return $string;
+}
+
+?>

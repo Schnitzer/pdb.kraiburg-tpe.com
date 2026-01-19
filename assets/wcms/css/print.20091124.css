@@ -1,0 +1,137 @@
+/*
+  Print-Template CSS | © 2009 by www.kraiburgtpe.de
+  HTML-Tags
+------------------------------------ */
+div,td,p,span,a,h1,h2,h3,h4,h5,h6,ul,ol,li,address,table,th,td,tr,input,label,textarea,button
+    {
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+div,td,p,span,h1,h2,h3,h4,h5,h6,ul,ol,li,address,table,th,td,tr,input,label,textarea,button
+    {
+    color: black;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    page-break-after: avoid;
+}
+
+img {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+strong {
+    font-weight: bold
+}
+
+a:link,a:visited,a:active,a:focus,a:hover {
+    text-decoration: none
+}
+
+/*
+  Modules
+------------------------------------ */
+.continuous_text .image-left {
+    float: left;
+    margin: 0 20pt 0 0;
+    display: inline;
+}
+
+.continuous_text .image-right {
+    float: right;
+    margin: 0 0 0 20pt;
+    display: inline;
+}
+
+/*
+  Layout
+------------------------------------ */
+html, body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+#header {
+    margin-bottom: 20pt;
+    page-break-after: avoid;  
+}
+
+#shell, #section, div.clear {
+    width: auto;
+    margin: 0;
+    padding: 0;        
+    page-break-after: avoid;   
+}
+
+#shell {
+    margin-right: 10mm;   
+}
+
+#change_language , #nav, #breadcrumb, #aside_left, #aside_right, #imprint, #footer, 
+.horizontal_gallery,.horizontal_gallery_big,.vertical_gallery, .box_right, 
+#contactform, #search_wrapper, div.twelve, div.sixteen, div.twenty,
+#fancy_overlay, #fancy_wrap, input, label, textarea, button, select {
+    page-break-after: avoid; 
+    display: none
+}
+
+.box_center img, .large_box_center img {
+    margin-bottom: 10pt;   
+}
+
+/*
+  Magic-Break
+------------------------------------ */
+div.clear {
+    clear: both
+}
+
+* html div.clear {
+    line-height: 0;
+    font-size: 0
+}
+
+/*
+  Tables
+------------------------------------ */
+.table {
+    text-align: left;
+    border-bottom: 4pt solid #ffc301
+}
+
+.table caption {
+    height: 36pt;
+    padding: 8pt 16pt 0 16pt;
+    font-weight: 700;
+    color: black;
+    text-align: left;
+    font-size: 16pt;
+}
+
+.table th {
+    height: 26pt;
+    padding: 0 16pt;
+    font-weight: 700;
+    text-align: left;
+    color: black;
+}
+
+.table td {
+    height: 26pt;
+    padding: 0 16pt;
+    vertical-align: middle;
+    font-weight: 700;
+    color: black;
+    border-bottom: 1pt solid #979797
+}
+
+.table_spacer_top th,.table_spacer_top td {
+    height: 16pt;
+}
+
+.table_spacer_footer td {
+    height: 15pt;
+}

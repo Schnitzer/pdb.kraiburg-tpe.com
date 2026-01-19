@@ -1,0 +1,78 @@
+<?php if ( $_SESSION['datasheetmode'] == 'pg' ) { ?>
+<?php 
+
+	
+ $arr_processingnote_type = array();
+ foreach ($processingnotes as $processingnote_type => $processingnote) {
+	 $arr_processingnote_type[] = $processingnote_type;
+ }
+ //$pdf->header_description = '<div style="font-size: 16px; color: #055499;">' . Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-guideline', $language_id) . '</div><div style="font-size: 16px; color: #4D4D4F;">' . $arr_processingnote_type[1] . '</div>';
+}
+
+$processingnotes_all = $this->getCompoundProcessing($compound['id'], $language_id);
+
+?>
+<?php $pdf->AddPage(); ?>
+<?php ob_start(); ?>
+<br style="height:1px;line-height:1px;" />
+<?php
+if ( $_SESSION['datasheetmode'] == 'datasheet' ) {
+include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "pdf_templates"  . DS . "compound_head.phtml";
+}
+?>
+<?php
+if ( $_SESSION['datasheetmode'] == 'datasheet' ) {
+$nonportfolio = true;
+include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "pdf_templates"  . DS . "compound_properties.phtml";
+}
+?>
+<?php $pdf->writeHTML(ob_get_clean(), true, false, false, false, ""); ?>
+
+<?php if (count($documents) > 0 || count($serie['documents']) > 0) {?>
+	<?php //$pdf->AddPage(); ?>
+	<?php ob_start(); ?>
+    <?php //include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements"  . DS . "pictures.phtml"; ?>
+	<?php $pdf->writeHTML(ob_get_clean(), true, false, false, false, ""); ?>
+<?php } ?>
+
+<?php //$pdf->AddPage(); ?>
+<?php ob_start(); 
+
+?>
+
+<br style="height:1px;line-height:1px;" />
+<?php if ( $_SESSION['datasheetmode'] == 'pg' ) { ?>
+<?php 
+
+	
+
+	//$pdf->header_type = '<div style="font-size: 22px; color: #fff;"><b>' . Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-guideline', $language_id) . '</b> ('. $processing_type . $arr_processingnote_type[0] . ')</div>';
+// $pdf->header_description = '<div style="font-size: 16px; color: #055499;">' . Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-guideline', $language_id) . '</div><div style="font-size: 16px; color: #4D4D4F;">' . $arr_processingnote_type[0] . '</div>';
+?>
+<?php 
+	$processingnotes = $processingnotes_all['processing_im'];
+	//$processing_type = 'injection';
+	$pdf->header_type = '<div style="font-size: 22px; color: #fff;"><b>' . Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-guideline', $language_id) . '</b> ('. Wcms_ContentboxController::getContenbox($processing_type, $language_id) . ')</div>';
+	include ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound" . DS . "processing_note.phtml"; ?>
+<?php } ?>
+<?php $pdf->writeHTML(ob_get_clean(), true, false, false, false, ""); ?>
+<?php 
+
+?>
+<?php 
+$processing_type = 'extrusion';
+$processingnotes = $processingnotes_all['processing_ex'];
+$pdf->header_type = '<div style="font-size: 22px; color: #fff;"><b>' . Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-guideline', $language_id) . '</b> ('. Wcms_ContentboxController::getContenbox($processing_type, $language_id) . ')</div>';
+    if ($count > 1 && isset($processingnotes_all['processing_im']) && isset($processingnotes_all['processing_ex'])) {
+        $pdf->AddPage();
+    }
+ob_start();
+?>
+<br style="height:1px;line-height:1px;" />
+<?php 
+	if ( $_SESSION['datasheetmode'] == 'pg' ) { 
+ 		include ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound" . DS . "processing_note.phtml";
+ 	}
+?>
+<?php $pdf->writeHTML(ob_get_clean(), true, false, false, false, ""); ?>
+

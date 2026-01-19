@@ -1,0 +1,12 @@
+<?php if (true === isset($sites[3], $breadcrumb[3-2]['id'], $sites[3][$breadcrumb[3-2]['id']], $sites[3][$breadcrumb[3-2]['id']][16])) { ?>
+<div class="box_right nav3">
+  <h3><a href="<?php print $breadcrumb[1]['url']; ?>"><?php print $breadcrumb[1]['name']; ?></a></h3>
+  <div>
+    <ul>
+    <?php if (true === isset($sites[3], $breadcrumb[3-2]['id'], $sites[3][$breadcrumb[3-2]['id']], $sites[3][$breadcrumb[3-2]['id']][16])) { $node_save = false; if (true === isset($node)) { $node_save = $node; } foreach ($sites[3][$breadcrumb[3-2]['id']][16] as $node) { ?>
+    <li><a href="<?php print $node['url']; ?>" title="<?php print $node['title']; ?>" <?php if (true === $node['highlight']) { ?>class="nav3_active"<?php } ?>><?php print $node['name']; ?></a></li>
+    <?php } if (true === isset($node_save) && false !== $node_save) { $node = $node_save;} } ?>
+    </ul>
+  </div>
+</div>
+<?php } ?>

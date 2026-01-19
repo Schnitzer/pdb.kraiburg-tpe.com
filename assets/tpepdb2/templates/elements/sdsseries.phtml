@@ -1,0 +1,54 @@
+<div class="paragraph clearfix panel-group paragraph--type--akkordeon paragraph--view-mode--default" id="391" role="tablist" aria-multiselectable="true" style="">
+		<div class="panel panel-default">
+			<div class="panel-heading flaticon-leave-right dark-font" role="tab" id="headingOne">
+				<h4 class="panel-title">
+					<a role="button" data-toggle="collapse" data-parent="#391" href="#target391" aria-expanded="false" aria-controls="target391" class="noTrigger collapsed">
+						
+	Processing Guideline to download
+
+						<span class="kbtpe-icon-minus minus"></span>
+						<span class="kbtpe-icon-plus plus"></span>
+					</a>
+				</h4>
+			</div>
+			<div id="target391" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+				<div class="panel-body">
+					<div class="row">
+						
+	
+
+						<div class="cols-sm-12 pdb-series-description ct-u-padding-top-20">
+	            <div class="dropdown show pdb-dropdown-blue">
+							  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    Choose  Language
+							  </button>
+							
+							  <div class="dropdown-menu pdb-dropdown-menu" aria-labelledby="dropdownMenuLink">
+									<?php
+									if (Ncw_Configure::read('App.ssl') == 'true') {
+										$download_pdf_url = 'https://pdb.kraiburg-tpe.com';
+									} else {
+										$download_pdf_url = 'https://pdb.kraiburg-tpe.com';
+									}
+									?>	
+							  	<?php foreach ($languages as $key => $value) { ?>
+							  	
+							    	<a href="<?php echo $download_pdf_url; ?>/tpepdb/pdf?cid=<?php echo $id; ?>&amp;l=<?php echo $value; ?>&datasheetmode=pg" target="_blank" class="pdb-dropdown-item tpepdb2_download">
+							    		<?php print $key; ?>
+							    	</a>
+							    
+							    <?php } ?>
+							  
+							  </div>
+							</div>
+            </div>
+
+
+
+
+						<div class="panel-space"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

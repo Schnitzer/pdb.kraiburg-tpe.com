@@ -1,0 +1,171 @@
+<?php
+if (false === Ncw_Components_Session::checkInAll('PDB')) {
+    Ncw_Components_Session::writeInAll(
+        'PDB',
+        array(
+            'ROLE' => 0,
+            'LANG' => $language_code,
+        )
+    );
+} else {
+    $_SESSION['PDB']['LANG'] = $language_code;
+}
+
+if (true === isset($_GET['logout']) && 1 == $_GET['logout']) {
+    $tpe_id = Ncw_Components_Session::readInAll('tpe_login_id');
+    $login = new Tpe_Login();
+    $login->setId($tpe_id);
+    $login->delete(false);
+    Ncw_Components_Session::deleteInAll('tpe_login');
+    Ncw_Components_Session::deleteInAll('tpe_login_id');
+    Ncw_Components_Session::deleteInAll('PDB');
+    Ncw_Components_Session::writeInAll('logout_message', true);
+    Core_UserController::logout();
+    Ncw_Components_Session::regenerate();
+    if (!strstr($_SERVER['REQUEST_URI'], '/product/')) {
+        header('Location: ' . $this->here);
+    } else {
+        header('Location: http://www.kraiburg-tpe.com/product');
+    }
+    exit();
+}
+?>
+<?php
+    $login = Ncw_Components_Session::readInAll('PDB');
+    //strlen($login['USRNAME']) > 3
+    if (true == strstr($_SERVER['REQUEST_URI'], '/loginktpepdb') ||  true === Ncw_Components_Session::checkInAll('tpe_login')) {
+?>
+<div class="login box_right">
+    <?php
+
+    $login_error = false;
+    if (true === isset($_POST['sent'], $_POST['login'], $_POST['password'])
+        && $_POST['sent'] == 1) {
+        try {
+            Ncw_Components_Session::regenerate();
+
+            $fields = array(
+                'name' => array('rules' => array('Username'), 'required' => true),
+                'password' => array('rules' => array('Password'), 'required' => true)
+            );
+            //$validator = new Ncw_Validator($fields);
+            $data = array();
+            
+            $data['name'] = Ncw_Library_Sanitizer::clean($_POST['login']);
+            $data['password'] = Ncw_Library_Sanitizer::clean($_POST['password']);
+            
+            //$data['name'] = $_POST['login'];
+            //$data['password'] = $_POST['password'];
+            //list($success, $invalid_fields) = $validator->validate($data);
+            //if (true === $success) {
+                $obj_user = Core_UserController::validateLogin($data['name'], $data['password']);
+                if (true === $obj_user instanceof Core_User) {
+                    Core_UserController::login($obj_user);
+
+                    $usergroup_user = new Core_UsergroupUser();
+                    $usergroup = $usergroup_user->fetch(
+                        'list',
+                        array(
+                            'fields' => array('Usergroup.name'),
+                            'conditions' => array(
+                                'User.id' => $obj_user->getId(),
+                                'Usergroup.parent_id' => 20
+                            ),
+                            'LIMIT' => 1
+                        )
+                    );
+
+                    $usr_role = array_pop(explode(';', array_pop($usergroup)));
+
+                    Ncw_Components_Session::writeInAll(
+                        'PDB',
+                        array(
+                            'USRID' => $obj_user->getId(),
+                            'USRNAME' => $obj_user->getName(),
+                            'ROLE' => $usr_role,
+                            'LANG' => $language_code,
+                        )
+                    );
+                }
+            /*} else {
+                $login_error = true;
+            }*/
+
+            if (false === empty($_POST['login'])
+                && false === empty($_POST['password'])
+            ) {
+                $request = new Ncw_Components_Request();
+                $request = $request->object;
+                $request->setUrl(
+                    'http://admin.kraiburgtpe.com/authenticate.php?'
+                    . 'u=' . $_POST['login']
+                    . '&p=' . $_POST['password']
+                );
+
+                $response = $request->send();
+                $response = str_replace(array('<?php array(', '); ?>'), '', $response->getBody());
+                if (strlen($response) > 0) {
+                    $arr_response = explode(',', $response);
+                    $user = array();
+                    foreach ($arr_response as $property) {
+                        $property = explode('=>', $property);
+                        $user[trim($property[0], '\'')] = trim($property[1], '\'');
+                    }
+                }
+            }
+
+            if (true === isset($user['mainid'], $user['un'])
+                && (int) $user['mainid'] > 0
+            ) {
+                $login = new Tpe_Login();
+                $login->setSessId(session_id());
+                $login->setUser($user['un']);
+                $login->save(false);
+                Ncw_Components_Session::writeInAll('tpe_login', $user['un']);
+                Ncw_Components_Session::writeInAll('tpe_login_id', $login->getId());
+            }
+            if (!strstr($_SERVER['REQUEST_URI'], '/product/')) {
+                header('Location: ' . $this->here  . '');
+            } else {
+                header('Location: http://www.kraiburg-tpe.com/product');
+            }
+
+        } catch (Exception $e) {
+            print $e->getMessage();
+        }
+    }
+    ?>
+    <h3><?php print Wcms_ContentboxController::getContenbox('login', $language_id); ?></h3>
+    <div>
+      <?php if (true === Ncw_Components_Session::checkInAll('tpe_login')) { ?>
+        <?php $login = Ncw_Components_Session::readInAll('tpe_login'); ?>
+        <?php print Wcms_ContentboxController::getContenbox('logged-in', $language_id) . ' ' . $login ?><br />
+        <a href="?logout=1"><?php print Wcms_ContentboxController::getContenbox('logout', $language_id); ?></a>
+      <?php } else if (true === Ncw_Components_Session::checkInAll('PDB') && $_SESSION['PDB']['ROLE'] > 0 && true === isset($_SESSION['PDB']['USRID'])) { ?>
+        <?php $login = Ncw_Components_Session::readInAll('PDB'); ?>
+        <?php print Wcms_ContentboxController::getContenbox('logged-in', $language_id) . ' ' . $login['USRNAME'] ?><br />
+        <a href="?logout=1"><?php print Wcms_ContentboxController::getContenbox('logout', $language_id); ?></a>
+      <?php } else { ?>
+      <?php if (true === $login_error) { ?>
+        <p class="error"><?php print Wcms_ContentboxController::getContenbox('login-error', $language_id); ?></p>
+      <?php } ?>
+      <form id="product-database-login" method="post" action="<?php print str_replace('http', 'https', $this->here); ?>">
+      <input type="hidden" name="sent" value="1" />
+      <ol>
+        <li>
+          <label for="user"><?php print Wcms_ContentboxController::getContenbox('user', $language_id); ?>:</label>
+          <input type="text" id="user" name="login" tabindex="997" value="" />
+        </li>
+        <li>
+          <label for="password"><?php print Wcms_ContentboxController::getContenbox('password', $language_id); ?>:</label>
+          <input type="password" id="password" name="password" tabindex="998" value="" />
+        </li>
+        <li>
+          <input type="submit" value="" class="submit" tabindex="999"<?php if ($language_code === 'zh') { ?> style="background-image: url(<?php print $this->base; ?>/assets/wcms/files/bg_login_submit_zh.gif)"<?php } ?> />
+        </li>
+       </ol>
+       </form>
+       <?php } ?>
+    </div>
+</div>
+<?php } ?>

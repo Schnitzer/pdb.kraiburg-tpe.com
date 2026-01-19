@@ -1,0 +1,49 @@
+<?php include_once '_head.phtml'; ?>
+<div id="article_large">
+    {area.1.Main}
+    <div class="continuous_text">
+    {archive.articles}
+
+<?php
+$date = explode('-', $article['date']);
+switch ($language_code) {
+case 'de':
+    $month = array('Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'July', 'August', 'September', 'Oktober', 'November', 'Dezember');
+    $time = mktime(0, 0, 0, $date[1], $date[2], $date[0]);
+    $date = date('d', $time) . '. ' . $month[date('m', $time) - 1] . ' ' . date('Y', $time);
+    break;
+case 'zh':
+    $date = date('Y年n月d日', mktime(0, 0, 0, $date[1], $date[2], $date[0]));
+    break;
+case 'fr':
+    $date = date('d-m-Y', mktime(0, 0, 0, $date[1], $date[2], $date[0]));
+    break;
+case 'es':
+    $date = date('d/m/Y', mktime(0, 0, 0, $date[1], $date[2], $date[0]));
+    break;
+default:
+    $date = explode('-', $article['date']);
+    $date = date('F d, Y', mktime(0, 0, 0, $date[1], $date[2], $date[0]));
+}
+?>
+
+        <h4><?php print $date; ?></h4>
+        <h3>{archive.article.head}</h3>
+        {archive.article.body}
+        <a href="{archive.article.url}">...{contentbox.read-more}</a><br /><br />
+    {/archive.articles}
+    {archive.previous}{contentbox.previous}{/archive.previous} {archive.next}{contentbox.next}{/archive.next}
+</div>
+</div>
+<div id="aside_right">
+    <?php 
+    //if ($_SERVER['REMOTE_ADDR'] == '84.145.4.211' || $_SERVER['REMOTE_ADDR'] =='212.68.121.65') {
+        include_once '_contact_box.phtml';
+    //} else {
+    //     include_once '_search_news.phtml';   
+    //}
+    ?>
+    {area.2.Aside}
+    <?php include_once '_toolbox_login.phtml'; ?>
+</div>
+<?php include_once '_footer.phtml'; ?>

@@ -1,0 +1,47 @@
+<?php
+
+$url_website = 'https://www.kraiburg-tpe.com';
+$url_pdb = $this->base;
+
+?>
+<?php
+
+$pdb_url = 'https://pdb.kraiburg-tpe.com';
+
+// $pdb_url = Ncw_Configure::read('Project.url');
+?>
+
+<?php
+$db_url = $pdb_url;
+
+$time = date('YmdHi');
+
+$str = '
+<link rel="stylesheet" href="' . $db_url . '/assets/wcms/css/20220318tpe.css?time=' . $time . '" media="all" />
+<link rel="stylesheet" href="' . $db_url . '/assets/wcms/css/20200306tpepdb2.css?time=2352" media="all" />
+<link rel="stylesheet" href="' . $db_url . '/assets/wcms/css/bootstrap-slider.css?time=2352" media="all" />
+';
+
+$str .= '<!--<script src="' . $db_url . '/core/assets/vendor/domready/ready.min.js?v=1.0.8"></script>-->
+         <script src="' . $db_url . '/assets/wcms/javascript/jquery-3.3.1.min.js?v=3.2.1"></script>
+         <!--<script src="' . $db_url . "/assets/tpepdb2/javascript/config.js?time=2020101609\" type=\"text/javascript\"></script>-->
+\t       <!--<script src=\"" . $db_url . '/assets/tpepdb2/javascript/main.js?time=2020101609" type="text/javascript"></script>-->';
+$o = 'class="layout-content"';
+$n = 'class="layout-content" style="background-image:url(http://2019.kraiburg-tpe.com/sites/default/files/assets/pattern/blue.png"';
+
+$str .= '<!--<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
+
+<script src=' . $db_url . '/assets/tpepdb2/javascript/2020config.js?time=' . date('mdHi') . '" type="text/javascript"></script>
+
+<script src="' . $db_url . '/assets/tpepdb2/javascript/2020main.js?time=' . date('mdHi') . '" type="text/javascript"></script>
+
+
+';
+
+$str = str_replace($o, $n, $str);
+
+echo $str;
+
+// var_dump($_SESSION);
+?>

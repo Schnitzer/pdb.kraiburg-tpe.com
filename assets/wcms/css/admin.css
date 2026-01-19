@@ -1,0 +1,69 @@
+.large_box_center h2 div, .box_center h2 div {
+    height: 25px;
+    padding: 2px 16px 0 0;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 700;
+}
+
+.large_box_center h2 div {
+    color: #000;    
+}
+
+.product_table h2 div {
+    font-weight: 700;
+    color: #000;
+    text-align: left;
+    font-size: 16px
+}
+
+.product_table .table_content {
+    min-height: 26px;
+}
+
+.large_box_center div span, .box_center div span {
+    vertical-align: top;
+    line-height: 14px;
+}
+
+.horizontal_gallery, .horizontal_gallery_big {
+    overflow: auto !important;
+}
+
+.horizontal_content {
+    min-height: 100px !important;
+    height: auto !important;
+    position: static !important;
+}
+
+.horizontal_content .images, .horizontal_gallery_big .images {
+    min-height: 100px !important;
+    height: auto !important;
+    width: auto !important;
+    overflow: auto !important;
+    position: static !important;
+}
+
+.horizontal_gallery_big .horizontal_content .images {
+    width: auto !important;   
+}
+
+.horizontal_content ul, .horizontal_gallery_big ul {
+    min-height: 100px !important;
+    height: auto !important;
+    width: auto !important;
+    overflow: auto !important;
+}
+
+.horizontal_content li {
+    width: 196px !important;    
+    margin-bottom: 8px;
+}
+
+.horizontal_content_prev,.horizontal_content_next {
+    display: none !important;   
+}
+
+.horizontal_gallery div {
+    overflow: auto !important;
+}

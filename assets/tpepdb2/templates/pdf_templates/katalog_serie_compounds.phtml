@@ -1,0 +1,290 @@
+<?php
+if (Ncw_Configure::read('developer_internal_ip') != $_SERVER['REMOTE_ADDR'] ) {
+	//echo Ncw_Configure::read('developer_internal_ip');
+	//exit;
+} 
+
+
+
+$color1_header = '#075399';
+$color2_header = '#66676e';
+
+$arr_note = $arr_notecount = array();
+$notecount = 0;
+
+$columns_list = array();
+$columns = array();
+
+$column_count = 0;
+$width = 0;
+
+
+if (count($arr_compounds) > 0) {
+	
+
+	
+    $note_texts = array();
+		$flag_first = false;
+    foreach ($compounds as $compound) {
+			
+			
+
+			
+				$pos = 1;
+				$columns[0] = array('<b>' . Wcms_ContentboxController::getContenbox('pdb---datasheet---compound-name', $language_id) . '</b><br /><br >');
+				$columns[1] = array('<b>' . Wcms_ContentboxController::getContenbox('pdb---datasheet---srs-color', $language_id) . '</b><br /><br >');
+				// $arr_str_footer ist für die Fußnoten notwendig
+				if ($flag_first == false) {
+					$arr_str_footer = array();
+					$count_sup = 1;
+					$label_sup = '';
+				}
+
+				foreach ($arr_headline as $value) {
+					
+					$label_sup = '';
+					if (strlen($value['footer']) > 1) {
+						if (false == in_array(trim($value['footer']), $arr_str_footer)) {
+							$arr_str_footer[$count_sup] = trim($value['footer']);
+							$label_sup = '<sup> ' . $count_sup . '</sup>';
+							$count_sup++;
+						} else {
+							$label_sup = '<sup>' . array_search ( trim($value['footer']) , $arr_str_footer ) . '</sup>';
+							//$label_sup = '1';
+						}
+					}
+					
+					$pos++;
+					$column_name = '<b>' . $value['name'] . $label_sup . '</b><br />' . $value['norm'] . '<br />' .$value['einheit'];
+					$columns[$pos] = array($column_name);
+				}
+				$flag_first = true;
+
+    }
+    //ksort($columns);
+
+
+        $name_width = 10;
+        $color_width = 0;
+        $width = ((100 - $name_width) - $color_width) / ($column_count + 1);
+
+}
+?>
+<?php if (count($compounds) > 0) { ?>
+
+
+
+    
+<?php 
+
+
+	$tr_serie_compounds_headline_cols = '';
+
+	$pdf->pdf_mode = 'series';
+
+	$name_width = 10;
+	$color_width = 0;
+	$width_td = ((100 - $name_width) - $color_width) / (count($arr_headline) +1 );
+	//$width_td = (89 - $name_width) / (count($arr_headline));
+
+?>
+
+
+
+
+<tcpdf method="AddPage" />
+    <table class="tpepdb2_rotate_table_content" width="100%" cellspacing="0" cellpadding="2" border="0">
+			
+			<thead>
+            <tr style="background-color: #ffffff; color: #134d93;">
+							
+                <th style="display: none; font-size: <?php echo $font_size_table; ?>;color:#134d93; background-color: #fff; height: 215px; width: 1px; display: none;"></th>
+
+                <?php 
+										$ct = 0;
+
+										foreach ($columns as  $column) {
+											if ($ct == 0) {
+												$td_width_print = $name_width;
+												$bg_color = $color2_header;
+												$border_left = 0;
+											} else {
+												$td_width_print = $width_td;
+												$bg_color = $color2_header;
+												$border_left = 4;
+											}
+											$ct++;
+
+											
+										?>
+                    <th style="background-color: <?php echo $bg_color; ?>; font-size: <?php echo $font_size_table; ?>;border-left: <?php echo $border_left; ?>px solid #fff; color:#134d93; width:<?php echo $td_width_print; ?>%; height: 215px;">
+                      <tcpdf method="RotateCellContent" params="<?php print $params; ?>" />
+									  </th>
+                <?php } ?>
+            </tr>
+        </thead>
+			
+			
+        <tbody>
+            <?php $count = 0;?>
+            <?php $last_compound_first_letters = ""; ?>
+            <?php $bg_color = ""; ?>
+					
+						<!-- Hier wird die Reihe der Compounds ausgegeben -->
+					
+					
+					
+            <?php 
+								$ctcompound = 0;	
+								foreach ($arr_compounds as $compound) { 
+									if ($ctcompound > 15) {
+									//	$pdf->setAutoPageBreak(true);
+										echo '        </tbody>
+
+    </table>';
+										echo '<tcpdf method="AddPage" />';
+
+										?>
+										
+										
+    <table class="tpepdb2_rotate_table_content" width="100%" cellspacing="0" cellpadding="2" border="0">
+			
+			<thead>
+            <tr style="background-color: #ffffff; color: #134d93;">
+							
+                <th style="display: none; font-size: <?php echo $font_size_table; ?>;color:#134d93; background-color: #fff; height: 215px; width: 1px; display: none;"></th>
+
+                <?php 
+										$ct = 0;
+
+										foreach ($columns as  $column) {
+											if ($ct == 0) {
+												$td_width_print = $name_width;
+												$bg_color = $color2_header;
+												$border_left = 0;
+											} else {
+												$td_width_print = $width_td;
+												$bg_color = $color2_header;
+												$border_left = 4;
+											}
+											$ct++;
+
+											
+										?>
+                    <th style="background-color: <?php echo $bg_color; ?>; font-size: <?php echo $font_size_table; ?>;border-left: <?php echo $border_left; ?>px solid #fff; color:#134d93; width:<?php echo $td_width_print; ?>%; height: 215px;">
+                      <tcpdf method="RotateCellContent" params="<?php print $label_sup . $params; ?>" />
+									  </th>
+                <?php } ?>
+            </tr>
+        </thead>
+			
+			
+        <tbody><?php
+										
+										
+										$ctcompound = 0;
+										//break;
+									}
+									$ctcompound++;
+								?>
+                <?php
+                $substr = substr($compound['name'], 0, 3);
+                
+                    if (true == is_int($count / 2)) {
+                        $bg_color = "#e3e3e3";
+                    } else {
+                        $bg_color = "#f1f1f1";
+                    }
+         
+                ?>
+                <tr nobr="true" style="height: 32px; background-color: <?php  print $bg_color; ?>;">
+                   <td style="vertical-align: middle; height: 32px; border-bottom: 4px solid #fff; width: <?php if (true === $is_pdf) { print $name_width. "%"; } ?>;">
+											<table style="width: 100%" cellpadding="0" cellspacing="0">
+                            <tr><td style="height: 7px;font-size: 2px;line-height: 2px">&nbsp;</td></tr>
+                            <tr><td style="font-size: <?php echo $font_size_table; ?>;text-align: center;"><?php if (false === $is_pdf) { ?><a href="?cid=<?php print $compound["id"]; ?><?php if ($language == "it") { ?>&amp;ls=it<?php } ?><?php if ($language == "pl") { ?>&amp;ls=pl<?php } ?>"><?php } ?><b><?php  print $compound[0]["compound_name"]; ?></b><?php if (false === $is_pdf) { ?></a><?php } ?></td></tr>
+                        </table>
+                    </td>
+										
+                    <td style="vertical-align: middle; border-bottom: 4px solid #fff;border-left: 4px solid #fff; width: <?php  print $width_td. "%"; ?>;">
+											<table style="width: 100%" cellpadding="0" cellspacing="0">
+                            <tr><td style="height: 7px;font-size: 2px;line-height: 2px">&nbsp;</td></tr>
+                            <tr><td style="font-size: <?php echo $font_size_table; ?>;text-align: center;"><?php echo $this->getColorNameById($compound[0]['compound_id'], $language_id); ?></td></tr>
+                        </table>
+                    </td>
+                    <?php foreach ($compound as $value) { ?>
+
+                        <td style="vertical-align: middle; border-bottom: 4px solid #fff;border-left: 4px solid #fff; width: <?php if (true === $is_pdf) { echo $width_td . "%"; } else { print $column[1] ."px"; } ?>;">
+													<table style="width: 100%" cellpadding="0" cellspacing="0">
+                                <tr><td style="height: 7px;font-size: 2px;line-height: 2px">&nbsp;</td></tr>
+                                <tr><td style="font-size: <?php echo $font_size_table; ?>;text-align: center;"><?php print $value['value']; ?></td></tr>
+                            </table>
+                        </td>
+                    <?php } ?>
+                </tr>
+                <?php ++$count; ?>
+            <?php } ?>
+
+        </tbody>
+
+    </table>
+<?php } ?>
+<?php  ?>
+<?php
+
+
+
+
+if (true === $is_pdf) {
+	
+	if (isset($_SESSION['allseries'])) {
+	//	var_dump($_SESSION['allseries']);
+		echo '
+   <table class="tpepdb2_rotate_table_content" width="100%" cellspacing="0" cellpadding="2" border="0">
+			
+			<thead>
+            <tr style="background-color: #ffffff; color: #134d93;">
+							
+                <th style="display: none; font-size: <?php echo $font_size_table; ?>;color:#134d93; background-color: #fff; height: 215px; width: 1px; display: none;"></th>
+';
+                
+										$ct = 0;
+
+										foreach ($columns as  $column) {
+											if ($ct == 0) {
+												$td_width_print = $name_width;
+												$bg_color = $color2_header;
+												$border_left = 0;
+											} else {
+												$td_width_print = $width_td;
+												$bg_color = $color2_header;
+												$border_left = 4;
+											}
+											$ct++;
+
+											
+										echo '
+                    <th style="background-color: <?php echo $bg_color; ?>; font-size: <?php echo $font_size_table; ?>;border-left: <?php echo $border_left; ?>px solid #fff; color:#134d93; width:<?php echo $td_width_print; ?>%; height: 215px;">
+                      <tcpdf method="RotateCellContent" params="<?php print $params; ?>" />
+									  </th>';
+                 } 
+			echo '
+            </tr>
+        </thead>';
+			
+}	
+
+	
+    $pdf->writeHTML(ob_get_clean(), true, false, true, false, "");
+    $pdf->table_end = $pdf->getPage();
+
+}
+?>
+
+<?php ob_start(); ?>
+
+
+<br />
+
+
+
+	

@@ -1,0 +1,265 @@
+<!--[if lt IE 8]>
+<style>
+    .back_to_search {
+        top: 2px !important;
+        height: 28px !important;
+    }
+</style>
+<![endif]-->
+<div id="data_header">
+    <?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---data-center', $language_id); ?>
+    <div class="back_to_search">
+        <a href="?sess=1<?php if ($language == "it") { ?>&amp;ls=it<?php } ?>"><img src="<?php print Ncw_Configure::read('Project.url'); ?>/assets/wcms/files/tpepdb2_back_arrow.jpg" /></a>
+        <a href="?sess=1<?php if ($language == "it") { ?>&amp;ls=it<?php } ?>"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---back-to-search', $language_id); ?></a>
+    </div>
+</div>
+<div class="tpepdb2_languages_select_bg" style="z-index: 999; position: absolute; top: 0; left: 0; height: 100%; width: 100%; background-color: transparent; display: none;">&nbsp;</div>
+<div id="data_content">
+    <p>
+        <?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---data-center-info', $language_id); ?>
+    </p>
+    <div class="data_content">
+        <div class="data_content_left">
+            <label><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---download-datasheet', $language_id); ?></label><br />
+            <input id="tpepdb2_type" type="hidden" value="<?php print $url_type; ?>" />
+            <input id="tpepdb2_id" type="hidden" value="<?php print $id; ?>" />
+            <input id="language" type="hidden" value="<?php print $language_id; ?>" />
+            <input id="tpepdb2_languages_select" type="hidden" value="<?php print $language; ?>" />
+            <div value="<?php print $language; ?>" style="position: relative; width: 190px; height: 19px; margin: 14px 0 4px 0; padding: 5px 0px 0px 8px; border: 1px solid #ccc; background-color: #fff;">
+                <?php if (count($languages) > 1) { ?>
+                    <div class="tpepdb2_languages_select_arrow" style="z-index: 1000; position: absolute; right: 0; top: 0; height: 22px; width: 22px; background-color: #ddd; border: 1px solid #fff;z-index: 1001;">
+                        <img style="margin:0" src="<?php print Ncw_Configure::read('Project.url'); ?>/assets/wcms/files/tpepdb2_language_select.jpg" />
+                    </div>
+                <?php } ?>
+                <?php $y = 24; ?>
+                <?php foreach ($languages as $key => $value) { ?>
+                    <?php
+                    $img = $value;
+                    if ($img == "en") {
+                        $img = "en_us";
+                    }
+                    ?>
+                    <div class="<?php if ($value != $language) { ?>tpepdb2_languages_select_option<?php } else { ?>tpepdb2_languages_select_option_selected<?php } ?>" style="z-index: 1000; cursor: pointer; position: absolute; width: 190px; height: 19px; padding: 5px 0px 0px 8px; border: 1px solid #ccc; background-color: #fff; <?php if ($value != $language) { ?>left: -1px; top: <?php print $y; ?>px; display: none;<?php } else { ?>top: -1px; left: -1px;<?php } ?>" value="<?php print $value; ?>">
+                        <img style="margin-top:0px;" src="<?php print Ncw_Configure::read('Project.url'); ?>/themes/default/web/images/country_flags/<?php print $img; ?>.gif" alt="<?php print $key; ?>" title="<?php print $key; ?>" />
+                        <?php print $key; ?>
+                    </div>
+                    <?php if ($value != $language) { $y += 24; } ?>
+                <?php } ?>
+            </div>
+            <a href="<?php print Ncw_Configure::read('Project.url') . "/tpepdb/pdf" . "?" . $url_type . "=" . $id . "&l=" . $language; ?>" target="_blank" class="tpepdb2_download"><img src="../../assets/wcms/files/pfd_pic.jpg" alt="" title="" /></a>
+            <a href="<?php print Ncw_Configure::read('Project.url') . "/tpepdb/pdf" . "?" . $url_type . "=" . $id . "&l=" . $language; ?>" target="_blank" class="tpepdb2_download">
+                <?php
+                if ($type == "serie" || $compound['status'] == 'portfolio') {
+                    print Wcms_ContentboxController::getContenbox('pdb---datasheet---download-datasheet', $language_id);
+                } else {
+                    print Wcms_ContentboxController::getContenbox('pdb---datasheet---download-test-report', $language_id);
+                }
+                ?>
+            </a>
+        </div>
+        <div class="data_content_right">
+            <?php
+            $doc_num = 0;
+            foreach ($documents as $document) {
+                if ($document['type'] == 'CRD') {
+                    ++$doc_num;
+                }
+            }
+            ?>
+            <?php
+            if ($type == "compound" && $compound["safetydata"] != "") {
+                ++$doc_num;
+            }
+            ?>
+            <?php if ($doc_num > 0) { ?>
+                <label><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---download-related-docs', $language_id); ?></label><br />
+                <table style="width:100%">
+                    <?php $docs_count = 0; ?>
+                    <?php if ($type == "compound" && $compound["safetydata"] != "") { ?>
+                         <tr>
+                        <?php
+                        $set_region = 0;
+                        if (Ncw_Components_Session::checkInAll("tpepdb2_last_search")) {
+                            $last_search = Ncw_Components_Session::readInAll("tpepdb2_last_search");
+                            $set_region = $last_search["region_id"];
+                        }
+                        foreach ($serie["regions"] as $region) {
+
+                            if ($set_region != 0 && $region["region_id"] != $set_region) {
+                                continue;
+                            }
+
+                            $region_name = "";
+                            if ($set_region == 0) {
+                                switch ($region["region_id"]) {
+                                    case 1:
+                                        $region_name = " (EMEA)";
+                                        break;
+                                    case 2:
+                                        $region_name = " (" . Wcms_ContentboxController::getContenbox('pdb---search---region---americas', $language_id) . ")";
+                                        break;
+                                    case 3:
+                                        $region_name = " (" . Wcms_ContentboxController::getContenbox('pdb---search---region---asia-pacific', $language_id) . ")";
+                                        break;
+                                }
+                            }
+
+                            if (true === isset($language_us) && true === $language_us) {
+                                $sds_language = "us";
+                            } else {
+                                $sds_language = $language;
+                            }
+                            $sds_path = ASSETS . DS . "tpepdb2" . DS ."safetydata" . DS . $compound["safetydata"] . "_" . $sds_language . ".pdf";
+                            //if (true === is_file($sds_path)) {
+                                $sds_path = Ncw_Configure::read('Project.url') . "/tpepdb/safetydata?s=" . $compound["safetydata"] . "&l=" . $sds_language . "&t=" . $compound["name"] . "&r=" . $region["region_id"];
+                            ?>
+                            <?php if ($docs_count % 2 == 0) { ?>
+                                <?php if ($docs_count > 0) { ?></tr><?php } ?>
+                                <tr>
+                            <?php } ?>
+                                <td style="width: 47.5%" class="compound_document <?php if ($doc_num > 2 && $docs_count >= 2) { ?>document_border<?php } ?>">
+                                    <a href="<?php print $sds_path; ?>" target="_blank"><img src="../../assets/wcms/files/pfd_pic.jpg" alt="<?php print $compound["safetydata"]; ?>" title="<?php print $compound["safetydata"]; ?>" /></a>
+                                    <a href="<?php print $sds_path; ?>" target="_blank"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---safety-data-sheet', $language_id) . $region_name; ?></a>
+                                </td>
+                                <td style="width: 5%;">&nbsp;</td>
+                            <?php
+                                $docs_count++;
+
+                                // Wenn Region 3 dann zeige ZH Datenblatt , wenn nicht Sprache ZH
+                                if ($sds_language != 'zh' && $set_region == 3) {
+                                        // ZH
+                                        if ($compound["safetydata"] != 'S4 HIPEX') {
+                                        $sds_path = ASSETS . DS . "tpepdb2" . DS ."safetydata" . DS . $compound["safetydata"] . "_zh.pdf";
+                                        $sds_path = Ncw_Configure::read('Project.url') . "/tpepdb/safetydata?s=" . $compound["safetydata"] . "&l=zh&t=" . $compound["name"] . "&r=" . 3;
+                                        ?>
+
+                                        <td style="width: 47.5%" class="compound_document <?php if ($doc_num > 2 && $docs_count >= 2) { ?>document_border<?php } ?>">
+                                            <a href="<?php print $sds_path; ?>" target="_blank"><img src="../../assets/wcms/files/pfd_pic.jpg" alt="<?php print $compound["safetydata"]; ?> ZH" title="<?php print $compound["safetydata"]; ?> ZH" /></a>
+                                            <a href="<?php print $sds_path; ?>" target="_blank"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---safety-data-sheet', $language_id) . ' (ZH)'; ?></a>
+                                        </td>
+                                        <td style="width: 5%;">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                        <?php }
+                                        $docs_count++;
+                                } else if ($sds_language == 'zh' && $set_region == 3) { // wenn region 3 und ZH als Sprache zusätzlich ASIA
+                                        // ZH
+                                        if ($compound["safetydata"] != 'S4 HIPEX') {
+                                        $sds_path = ASSETS . DS . "tpepdb2" . DS ."safetydata" . DS . $compound["safetydata"] . "_asia.pdf";
+                                        $sds_path = Ncw_Configure::read('Project.url') . "/tpepdb/safetydata?s=" . $compound["safetydata"] . "&l=en&t=" . $compound["name"] . "&r=" . 3;
+                                        ?>
+
+                                        <td style="width: 47.5%" class="compound_document <?php if ($doc_num > 2 && $docs_count >= 2) { ?>document_border<?php } ?>">
+                                            <a href="<?php print $sds_path; ?>" target="_blank"><img src="../../assets/wcms/files/pfd_pic.jpg" alt="<?php print $compound["safetydata"]; ?> EN" title="<?php print $compound["safetydata"]; ?> EN" /></a>
+                                            <a href="<?php print $sds_path; ?>" target="_blank"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---safety-data-sheet', $language_id) . ' (EN)'; ?></a>
+                                        </td>
+                                        <td style="width: 5%;">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                        <?php }
+                                        $docs_count++;
+                                }
+                            //}
+                        }
+
+                        // Nonportfolio Notlösung
+                        if ($compound["status"] == "non_portfolio") {
+                            $sds_path = ASSETS . DS . "tpepdb2" . DS ."safetydata" . DS . $compound["safetydata"] . "_us.pdf";
+                            $sds_path = Ncw_Configure::read('Project.url') . "/tpepdb/safetydata?s=" . $compound["safetydata"] . "&l=us&t=" . $compound["name"] . "&r=" . 2;
+                            ?>
+                            <tr>
+                            <td style="width: 47.5%" class="compound_document <?php if ($doc_num > 2 && $docs_count >= 2) { ?>document_border<?php } ?>">
+                                <a href="<?php print $sds_path; ?>" target="_blank"><img src="../../assets/wcms/files/pfd_pic.jpg" alt="<?php print $compound["safetydata"]; ?> Americas" title="<?php print $compound["safetydata"]; ?> Americas" /></a>
+                                <a href="<?php print $sds_path; ?>" target="_blank"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---safety-data-sheet', $language_id) . ' Americas'; ?></a>
+                            </td>
+                            <td style="width: 5%;">&nbsp;</td>
+                            <?php
+
+                                $sds_path = ASSETS . DS . "tpepdb2" . DS ."safetydata" . DS . $compound["safetydata"] . "_en.pdf";
+                                $sds_path = Ncw_Configure::read('Project.url') . "/tpepdb/safetydata?s=" . $compound["safetydata"] . "&l=en&t=" . $compound["name"] . "&r=" . 1;
+                            ?>
+                                <td style="width: 47.5%" class="compound_document <?php if ($doc_num > 2 && $docs_count >= 2) { ?>document_border<?php } ?>">
+                                    <a href="<?php print $sds_path; ?>" target="_blank"><img src="../../assets/wcms/files/pfd_pic.jpg" alt="<?php print $compound["safetydata"]; ?> English" title="<?php print $compound["safetydata"]; ?> English" /></a>
+                                    <a href="<?php print $sds_path; ?>" target="_blank"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---safety-data-sheet', $language_id) . ' English'; ?></a>
+                                </td>
+                                <td style="width: 5%;">&nbsp;</td>
+                                </tr>
+                                 <tr>
+                            <?php
+                                $sds_path = ASSETS . DS . "tpepdb2" . DS ."safetydata" . DS . $compound["safetydata"] . "_de.pdf";
+                                $sds_path = Ncw_Configure::read('Project.url') . "/tpepdb/safetydata?s=". $compound["safetydata"] . "&l=de&t=" . $compound["name"] . "&r=" . 1;
+                                ?>
+                                <td style="width: 47.5%" class="compound_document document_border">
+                                    <a href="<?php print $sds_path; ?>" target="_blank"><img src="../../assets/wcms/files/pfd_pic.jpg" alt="<?php print $compound["safetydata"]; ?> German" title="<?php print $compound["safetydata"]; ?> German" /></a>
+                                    <a href="<?php print $sds_path; ?>" target="_blank"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---safety-data-sheet', $language_id) . ' German'; ?></a>
+                                </td>
+                                <td style="width: 5%;">&nbsp;</td>
+                            <?php
+                                // ZH
+                                if ($compound["safetydata"] != 'S4 HIPEX' && $compound["safetydata"] != 'S3 For-Tec E' && $compound["safetydata"] != 'S2 COPEC') {
+                                $sds_path = ASSETS . DS . "tpepdb2" . DS ."safetydata" . DS . $compound["safetydata"] . "_zh.pdf";
+                                $sds_path = Ncw_Configure::read('Project.url') . "/tpepdb/safetydata?s=" . $compound["safetydata"] . "&l=zh&t=" . $compound["name"] . "&r=" . 3;
+                                ?>
+                                <td style="width: 47.5%" class="compound_document document_border">
+                                    <a href="<?php print $sds_path; ?>" target="_blank"><img src="../../assets/wcms/files/pfd_pic.jpg" alt="<?php print $compound["safetydata"]; ?> Asia Pacific Chinese" title="<?php print $compound["safetydata"]; ?> Asia Pacific Chinese" /></a>
+                                    <a href="<?php print $sds_path; ?>" target="_blank"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---safety-data-sheet', $language_id) . ' Asia Pacific Chinese'; ?></a>
+                                </td>
+                                <td style="width: 5%;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                <?php } ?>
+                            <?php
+                                // Asia
+                                if ($compound["safetydata"] != 'S4 HIPEX') {
+                                $sds_path = ASSETS . DS . "tpepdb2" . DS ."safetydata" . DS . $compound["safetydata"] . "_asia.pdf";
+                                $sds_path = Ncw_Configure::read('Project.url') . "/tpepdb/safetydata?s=" . $compound["safetydata"] . "&l=en&t=" . $compound["name"] . "&r=" . 3;
+                            ?>
+                                <td style="width: 47.5%" class="compound_document document_border">
+                                    <a href="<?php print $sds_path; ?>" target="_blank"><img src="../../assets/wcms/files/pfd_pic.jpg" alt="<?php print $compound["safetydata"]; ?> Asia Pacific English" title="<?php print $compound["safetydata"]; ?> Asia Pacific English" /></a>
+                                    <a href="<?php print $sds_path; ?>" target="_blank"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---safety-data-sheet', $language_id) . ' Asia Pacific English'; ?></a>
+                                </td>
+                                <td style="width: 5%;">&nbsp;</td>
+                                </tr>
+                                <?php } ?>
+
+                                </table>
+                        <?php
+                        }
+                        ?>
+                    <?php } ?>
+                    <?php foreach ($documents as $document) { ?>
+                        <?php if ($document['type'] == 'CRD') { ?>
+                            <?php
+                            $doc_name = explode("_", $document["name"]);
+                            if ($type == "compound") {
+                                $doc_name = strtoupper($doc_name[3]);
+                            } else {
+                                $doc_name = strtoupper($doc_name[2]);
+                            }
+
+                            if ($doc_name == "DER") {
+                                $doc_name = "CSTB Homologation";
+                            }
+
+                            ?>
+                            <?php if ($docs_count % 2 == 0) { ?>
+                                <?php if ($docs_count > 0) { ?></tr><?php } ?>
+                                <tr>
+                            <?php } ?>
+                                <td style="width: 47.5%;" class="compound_document <?php if ($doc_num > 2 && $docs_count >= 2) { ?>document_border<?php } ?>">
+                                    <a href="<?php print $document["path"]; ?>" target="_blank"><img src="../../assets/wcms/files/pfd_pic.jpg" alt="<?php print $document["name"]; ?>" title="<?php print $document["name"]; ?>" /></a>
+                                    <a href="<?php print $document["path"]; ?>" target="_blank"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---download', $language_id) . ' ' . $doc_name; ?></a>
+                                </td>
+                                <?php if ($docs_count % 2 == 0) { ?>
+                                   <td style="width: 5%;">&nbsp;</td>
+                                <?php } ?>
+                            <?php $docs_count++; ?>
+                        <?php } ?>
+                    <?php } ?>
+                </table>
+            <?php } ?>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+</div>
+

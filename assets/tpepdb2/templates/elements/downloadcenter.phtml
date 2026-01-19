@@ -1,0 +1,321 @@
+<?php if ($safetydatadocumentflag == true) { ?>
+<div class="paragraph clearfix panel-group paragraph--type--akkordeon paragraph--view-mode--default ncw-u-padding-bottom-40000" id="392" role="tablist" aria-multiselectable="true" style="">
+		<div class="panel panel-default">
+			<div class="panel-heading flaticon-leave-right dark-font" role="tab" id="headingOne">
+				<h4 class="panel-title">
+					<a role="button" data-toggle="collapse" data-parent="#392" href="#target392" aria-expanded="false" aria-controls="target392" class="noTrigger collapsed">
+						
+					<?php echo Wcms_ContentboxController::getContenbox('pdb2-safety-datasheet-to-download', $language_id); ?>
+
+						<span class="kbtpe-icon-minus minus"></span>
+						<span class="kbtpe-icon-plus plus"></span>
+					</a>
+				</h4>
+			</div>
+			<div id="target392" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+				<div class="panel-body">
+					<div class="row">
+
+<?php
+	$sds_lang_name = array('us' => 'English');
+	foreach ($languages as $sds_lang_item => $sds_lang_key) {
+		$sds_lang_name[$sds_lang_key] = $sds_lang_item;
+	}
+?>
+
+<?php
+	$str_compoundname_for_url = '';
+	if (true == isset($compound['name'])) {
+		$str_compoundname_for_url = str_replace('-', '_', $compound['name']);
+	}
+?>
+
+<?php
+
+	// $pdb_url = 'http://pdb.kraiburg-tpe.com';
+	$pdb_url = Ncw_Configure::read('Project.url');
+	$website_url = 'https://www.kraiburg-tpe.com';
+
+?>
+
+
+
+            <?php
+
+			$doc_num = 0;
+			foreach ($documents as $document) {
+				if ($document['type'] == 'CRD') {
+					++$doc_num;
+				}
+			}
+			?>
+            <?php
+			if ($type == 'compound' && $compound['safetydata'] != '') {
+				++$doc_num;
+			}
+			?>
+            <?php if ($doc_num > 0) { ?>
+
+                    <?php $docs_count = 0; ?>
+
+                    <?php if ($type == 'compound' && $compound['safetydata'] != '') { ?>
+
+                        <?php
+						$set_region = 0;
+
+						if (Ncw_Components_Session::checkInAll('tpepdb2_last_search')) {
+							$last_search = Ncw_Components_Session::readInAll('tpepdb2_last_search');
+							$set_region = $last_search['region_id'];
+						}
+
+						if (true == TpePdbWeb::rights()) {
+							$not_logged_in = false;
+						} else {
+							$not_logged_in = true;
+						}
+
+						// NONPORTFOLIO // Umgebaut am 15.10.2014 winni
+						$sds_lang = array('en', 'us', 'de', 'asia', 'fr', 'zh', 'it', 'kr', 'es', 'jp', 'pl');
+						if (date('Ymd') > '20230206') {
+							$sds_lang = array('us', 'asia', 'zh', 'kr', 'jp');
+						}
+
+						// Diese Ausnahme wurde am 07.04.2016 auf Wunsch von TPE eingeführt. Für das eine Compound gibt es nur diese
+						// Sprachen
+						if ($compound['name'] == 'HX6ICN') {
+							//   $sds_lang = array("en", "us", "de", "asia", "zh", "kr", "jp");
+						}
+						// Diese Ausnahme wurde am 19.04.2016 auf Wunsch von TPE eingeführt. Für das eine Compound gibt es nur de und en
+						// Sprachen
+						if ($compound['name'] == 'HTF8675/69') {
+							//   $sds_lang = array("de", "en");
+						}
+
+						foreach ($sds_lang as $sds_item) {
+							$sds_path = ASSETS . DS . 'tpepdb2' . DS . 'safetydata' . DS . $compound['safetydata'] . '_' . $sds_item . '.pdf';
+							$sds_path = Ncw_Configure::read('Project.url') . '/tpepdb/safetydata?s=' . $compound['safetydata'] . '&l=' . $sds_item . '&t=' . $str_compoundname_for_url;
+
+							$str_region = ' EMEA ';
+							$str_language_addon = '';
+							if ($sds_item == 'us') {
+								$str_region = ' Americas ';
+							}
+
+							if ($sds_item == 'asia' || $sds_item == 'zh' || $sds_item == 'kr' || $sds_item == 'jp') {
+								$str_region = ' Asia ';
+							}
+
+							if ($sds_item == 'asia') {
+								$str_language_addon = 'English';
+							}
+							$arr_path_for_filesize = explode('pdb/', $sds_path);
+							$path_for_filesize = './' . $arr_path_for_filesize[1];
+							$filesize = number_format(filesize($path_for_filesize) / 1024 / 1024, 1);
+							if ($filesize == 0.0) {
+								$filesize = 1.8;
+							}
+							?>
+
+								<div class="paragraph clearfix paragraph--type--download paragraph--view-mode--default color-scheme-darkgrey light-font col-md-8 col-sm-12 no_image" style="height: 57px;">
+									<div class="clearfix">
+												<div class="col-xs-18 download-info" style="background-image:url('<?php echo $website_url; ?>/sites/default/files/assets/pattern/dark-grey.png')">
+											<div class="icon kbtpe-icon-download">
+													<span class="download-datum"><?php echo $str_region . ' (' . $sds_lang_name[$sds_item] . $str_language_addon . ')'; ?> PDF file</span><span class="download-title"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---safety-data-sheet', $language_id); ?></span> 							</div>
+										</div>
+									</div>
+									<a href="<?php print $sds_path; ?>" target="_blank" class="clickhelper"><span class="hidden">Download</span></a>
+								</div>
+
+                                <?php $docs_count++; ?>
+
+                        <?php } ?>
+
+                    <?php } ?>
+
+
+<!--
+                    <?php if ($type == 'compound') { ?>
+                        <?php foreach ($serie['documents'] as $document) { ?>
+                            <?php if ($document['type'] == 'CRD') { ?>
+                                <?php
+								$doc_name = explode('_', $document['name']);
+								$doc_name = strtoupper($doc_name[2]);
+								if ($doc_name == 'DER') {
+									$doc_name = 'CSTB Homologation';
+								}
+								// Lösung für ein Bezechnungsproblem eingebaut am 19.09.2017
+								if (true == strstr($document['path'], 'TPE_UL94-YellowCard_FR1')) {
+									$doc_name = 'UL94-YellowCard_FR1';
+								}
+								if (true == strstr($document['path'], 'TPE_UL94-YellowCard_FR2')) {
+									$doc_name = 'UL94-YellowCard_FR2';
+								}
+								if (true == strstr($document['path'], 'TPE_UL94-YellowCard_FRAD1')) {
+									$doc_name = 'UL94-YellowCard_FRAD1';
+								}
+								$arr_path_for_filesize = explode('pdb/', $document['path']);
+								$path_for_filesize = './' . $arr_path_for_filesize[1];
+								$filesize = number_format(filesize($path_for_filesize) / 1024 / 1024, 1);
+								?>
+      
+															<div class="paragraph clearfix paragraph--type--download paragraph--view-mode--default color-scheme-darkgrey light-font col-md-8 col-sm-12 no_image" style="height: 57px;">
+																<div class="clearfix">
+																			<div class="col-xs-18 download-info" style="background-image:url('<?php echo $website_url; ?>/sites/default/files/assets/pattern/dark-grey.png')">
+																		<div class="icon kbtpe-icon-download">
+																			 <span class="download-datum">PDF file</span><span class="download-title"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---download', $language_id) . ' ' . $doc_name; ?></span> 							</div>
+																	</div>
+																</div>
+																<a href="<?php print $document['path']; ?>" target="_blank" class="clickhelper"><span class="hidden">Download</span></a>
+															</div>
+                                    
+
+                                <?php $docs_count++; ?>
+                            <?php } ?>
+                        <?php } ?>
+                    <?php } ?>
+-->
+            <?php } ?>
+
+						
+						
+						<div class="panel-space"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> <!-- !!! ENDE Safety Data -->
+<?php } // ende $safetydatadocumentflag ?>
+ <?php
+
+// Dieser Block ist für die Reltated Documents zuerst wird abgefragt ob überhaupt welche da sind
+$count_crd = 0;
+
+foreach ($documents as $document) {
+	// if ($document['type'] == 'CAT') {
+	$count_crd++;
+	break;
+	// }
+}
+
+if ($type == 'compound') {
+	?>
+    <?php foreach ($serie['documents'] as $document) {
+		$count_crd++;
+		// break;
+		$documents[] = array(
+			'name' => $document['name'],
+			'path' => $document['path']
+		);
+	} ?>
+    <?php } ?>
+
+
+
+
+<?php if ($count_crd > 0) { ?>
+<div class="paragraph clearfix panel-group paragraph--type--akkordeon paragraph--view-mode--default ncw-u-padding-bottom-40000" id="394" role="tablist" aria-multiselectable="true" style="">
+		<div class="panel panel-default">
+			<div class="panel-heading flaticon-leave-right dark-font" role="tab" id="headingOne">
+				<h4 class="panel-title">
+					<a role="button" data-toggle="collapse" data-parent="#3926" href="#target394" aria-expanded="false" aria-controls="target394" class="noTrigger collapsed">
+						<?php echo Wcms_ContentboxController::getContenbox('pdb---datasheet---download-related-docs', $language_id); ?>
+						<span class="kbtpe-icon-minus minus"></span>
+						<span class="kbtpe-icon-plus plus"></span>
+					</a>
+				</h4>
+			</div>
+			<div id="target394" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+				<div class="panel-body">
+					<div class="row">
+				<?php
+				// var_dump($documents);
+
+				foreach ($documents as $document) {
+					$arr_document_path = explode('/', $document['path']);
+					$document['path'] = '/assets/tpepdb2/imported_documents/' . $arr_document_path[count($arr_document_path) - 1]
+
+					?>
+						<? php // if ($document['type'] == 'CAT') { ?>
+								<?php
+								$doc_name = explode('_', $document['name']);
+								if ($type == 'compound') {
+									$doc_name = strtoupper($doc_name[3]);
+								} else {
+									$doc_name = strtoupper($doc_name[2]);
+								}
+
+								$arr_pdb2_doc_name = explode('_', $arr_document_path[count($arr_document_path) - 1]);
+
+								if (false == is_int($arr_pdb2_doc_name[2])) {
+									$doc_name = $arr_pdb2_doc_name[2] . '-' . $arr_pdb2_doc_name[3];
+								}
+								if (strlen($doc_name) < 2) {
+									$doc_name = $arr_pdb2_doc_name[3];
+								}
+
+								if (strlen($doc_name) < 4) {
+									$doc_name .= $arr_pdb2_doc_name[2];
+								}
+
+								$doc_name = str_replace('.pdf', '', $doc_name);
+								// $doc_name = $arr_document_path[count($arr_document_path) -1];
+								if ($doc_name == 'DER') {
+									$doc_name = 'CSTB Homologation';
+								}
+
+								$arr_cstb_names = array(
+									'CSTB-HOMOLOGATION-2014',
+									'TP7HPN',
+									'TP7HPG',
+									'TP7SKZ',
+									'TP6HPN',
+									'TP6HPG',
+									'TP6SKZ',
+									'TA7AOZ',
+									'TC6EXN',
+									'TC6EXN-701',
+									'TC6EXN-999'
+								);
+
+								$doc_name = str_replace('-HTC9480', '', $doc_name);
+
+								if (true == in_array($doc_name, $arr_cstb_names)) {
+									$doc_name = 'CSTB Homologation';
+								}
+
+								// Lösung für ein Bezechnungsproblem eingebaut am 19.09.2017
+								if (true == strstr($document['path'], 'TPE_UL94-YellowCard_FR1')) {
+									$doc_name = 'UL94-YellowCard_FR1';
+								}
+								if (true == strstr($document['path'], 'TPE_UL94-YellowCard_FR2')) {
+									$doc_name = 'UL94-YellowCard_FR2';
+								}
+								if (true == strstr($document['path'], 'TPE_UL94-YellowCard_FRAD1')) {
+									$doc_name = 'UL94-YellowCard_FRAD1';
+								}
+								$arr_path_for_filesize = explode('pdb/', $document['path']);
+								$path_for_filesize = './' . $arr_path_for_filesize[1];
+								$filesize = number_format(filesize($path_for_filesize) / 1024 / 1024, 1);
+								// http://www.kraiburg-tpe.com/pdb/assets/tpepdb2/imported_documents/PORTFOLIO_20171218134807_TM3ADT_ISO10993-5_TM3ADT_.pdf
+								?>
+
+								<div class="paragraph clearfix paragraph--type--download paragraph--view-mode--default color-scheme-darkgrey light-font col-md-8 col-sm-12 no_image" style="height: 57px;">
+									<div class="clearfix">
+												<div class="col-xs-18 download-info" style="background-image:url('<?php echo $website_url; ?>/sites/default/files/assets/pattern/dark-grey.png')">
+											<div class="icon kbtpe-icon-download">
+												 <span class="download-datum">PDF file</span><span class="download-title"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---download', $language_id) . ' ' . $doc_name; ?></span> 							</div>
+										</div>
+									</div>
+									<a href="<?php print $document['path']; ?>" target="_blank" class="clickhelper" onclick="tpepedb2stats('<?php echo $url_pdb; ?>/tpepdb/pdf?sid=<?php echo $id; ?>','<?php echo $document['path']; ?>', 'series', 'datasheet', 'download');"><span class="hidden">Download</span></a>
+								</div>
+
+								<?php $docs_count++; ?>
+						<?php // } // if document CRD ?>
+				<?php } // Foreach documents ?>
+						<div class="panel-space"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php } // If count CRD > 0 ?>

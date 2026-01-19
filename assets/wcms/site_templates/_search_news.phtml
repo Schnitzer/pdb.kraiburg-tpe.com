@@ -1,0 +1,146 @@
+<?php include (ASSETS . DS . 'wcms' . DS . 'nav_templates' . DS . '3-navigation.phtml'); ?>
+
+    
+            <?php
+            //$pd_url = $this->base . '/' . $language_code . '/' . 'products/product-database';
+            $pd_url = $this->base . '/' . $language_code . '/' . 'products/product-database';
+            ?>
+<div class="box_right search large_box_center" onclick="javascript: location.href='<?php echo $pd_url; ?>'" style="cursor:pointer; ">
+    <h2 style="background: url('http://www.kraiburg-tpe.com/assets/wcms/files/bg_vertical_gallery_h.gif') no-repeat scroll 0 0 transparent !important;"><?php print Wcms_ContentboxController::getContenbox('product-database', $language_id) ?></h3>
+    <div style="height: 20px; margin-top: 10px;">
+    <!--<strong><?php print Wcms_ContentboxController::getContenbox('product-database', $language_id) . ' ' . Wcms_ContentboxController::getContenbox('pdb---search---search', $language_id); ?></strong>-->
+        
+
+            
+            <strong><?php print Wcms_ContentboxController::getContenbox('pdb---search---material-search', $language_id); ?></strong>
+           
+            <!--
+            <li>
+            <?php print Wcms_ContentboxController::getContenbox('pdb---search---series-search', $language_id); ?>
+            </li>
+            <li> 
+            <?php print Wcms_ContentboxController::getContenbox('pdb---search---text-search', $language_id); ?>
+            </li>
+            -->
+        
+    </div>
+</div>
+
+<?php // Textsuche 
+    
+    $search_2015_input_style = '
+        border: 1px solid #ffffff;
+        width: 186px;
+        float: left;
+        font-size: 18px;
+        height: 37px;
+        padding-left: 4px;
+        margin-top: 8px;
+    ';
+    $search_2015_submit_style = '
+        
+        width: 193px;
+        float: left;
+        font-size: 14px;
+        height: 37px;
+        margin: 16px 0 0 0;
+    ';
+    
+    //$search_2015_submit_style = '';
+    ?>
+<div class="box_right search" style="height: 160px;">
+    <h3><?php print Wcms_ContentboxController::getContenbox('website', $language_id); ?></h3>
+    <div>
+
+ <form id="textsearchform" action="" method="post" onsubmit="search2015(); return false;">
+   
+   <input id="textsearch" name="Search[q]" class="" tabindex="1" value="" title="" type="text" style="<?php echo $search_2015_input_style; ?>">
+
+
+   <input value="<?php print Wcms_ContentboxController::getContenbox('pdb---search---search', $language_id); ?>" class="tpepdb2_submit" type="submit" style="<?php echo $search_2015_submit_style; ?>">
+      <input name="Search[l]" value="1" type="hidden">
+ </form>
+    </div>
+</div>
+<?php 
+
+    //echo $_SERVER['REQUEST_URI'];
+    $arr_urls_only_address = array('/jp/', '/jp', '/kr/', '/kr', '/zh/', '/zh');
+    if (true == in_array($_SERVER['REQUEST_URI'], $arr_urls_only_address)) {
+        ?>
+        <div <?php if (true === $admin) { ?>id="{component.id}"<?php } ?> class="news box_right" style="height: 158px">
+            <h3><?php print Wcms_ContentboxController::getContenbox('service-hotline', $language_id); ?></h3>
+                <div class="line">
+                <?php print Wcms_ContentboxController::getContenbox('service-hotline-content', $language_id); ?>
+                </div>
+        </div>
+        <?php
+    } else {
+        
+    ?>
+    
+<?php if ('87.148.14.2100' != $_SERVER['REMOTE_ADDR']) {
+		if ($language_code == 'us') {
+			$link = 'http://newton.newtonsoftware.com/career/CareerHome.action?clientId=8a78826756b5dae60156e28ada850b81';
+		} else {
+			$link = $this->base .'/' . $language_code . '/company/careers-14';
+		}
+    ?>
+    <style>
+    	.news{
+        height: 100px !important;
+    	}
+    	
+    	.news h4{
+        padding: 0;
+        margin: 0;
+    	}
+    	 	.news span {
+    		line-height: 14px !important;
+    	
+    	}
+
+    	
+			.wide-submit {
+			    width: 224px;
+			    font-size: 14px;
+			    margin: 3px 0 16px 0;
+			    height: 18px;
+			    cursor: pointer;
+			    text-align: center;
+			    padding: 10px 0 10px 0;
+			}
+			
+
+		</style>
+		<a href="<?php echo $link; ?>">
+      <button  name="carreers " class="tpepdb2_submit wide-submit" tabindex="1" value="<?php print Wcms_ContentboxController::getContenbox('careers', $language_id); ?>" title="" style="height: 38px;" /><?php print Wcms_ContentboxController::getContenbox('careers', $language_id); ?></button>
+	  </a>
+    <?php
+  }
+    ?>
+    
+    
+    <?php
+    if (false == strstr($_SERVER['REQUEST_URI'], '/loginktpepdb')) {
+    ?>
+        <?php if (count($news) > 0) { ?>
+            <div <?php if (true === $admin) { ?>id="{component.id}"<?php } ?> class="news box_right" style="height: 158px">
+                <h3><?php print Wcms_ContentboxController::getContenbox('news', $language_id); ?></h3>
+                <?php $first = true; ?>
+                    <?php 
+                        for ($count = 0; $count < 1; $count++) {
+                          $news_head = $news[$count]['head'];
+                          $news_body = $news[$count]['body']
+                          ?>
+                            <div<?php if (true !== $first) { ?> class="line"<?php } $first = false; ?>>
+                            <!--<h4><?php print $news_head; ?></h4>--><p><?php print $news_body; ?></p>
+                            </div>
+                <?php } ?>
+            </div>
+        <?php } ?>
+    <?php }  ?>
+        
+    <?php
+    }
+    ?>

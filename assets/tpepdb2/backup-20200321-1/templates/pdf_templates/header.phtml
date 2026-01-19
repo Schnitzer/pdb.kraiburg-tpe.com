@@ -1,0 +1,200 @@
+<?php ob_start(); ?>
+
+<table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+        <td style="height: 70px"><img src="<?php print ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'images' . DS . 'tpe-logo-b-2019.png'; ?>" height="170" /></td>
+        
+
+      
+       
+        <!--<td align="right">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <td style="height: 28px;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><b style="font-size:16px;">
+                    <?php
+                        if ($type == "serie" || $compound['status'] == 'portfolio') {
+                            print Wcms_ContentboxController::getContenbox('pdb---datasheet---datasheet', $language_id);
+                        } else {
+                            //print Wcms_ContentboxController::getContenbox('pdb---datasheet---test-report', $language_id);
+                            print Wcms_ContentboxController::getContenbox('pdb---datasheet---datasheet', $language_id);
+                        }
+                    ?>
+</b>
+                    </td>
+                </tr>
+            </table>
+        </td>-->
+    </tr>
+    <?php if ($_SESSION['datasheetmode'] != 'pg' && $compound['status'] != 'non_portfolio' ) { ?>
+
+    <?php } ?>
+</table>
+
+<br />
+<br />
+<br /><br /><br /><br /><br />
+<?php
+if ($type == "serie") {
+    include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "pdf_templates"  . DS . "serie_headline.phtml";
+} else {
+    include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "pdf_templates"  . DS . "compound_headline.phtml";
+}
+?>
+<?php 
+ 
+// Wenn Verarbeitungshinweis 
+if ( $_SESSION['datasheetmode'] == 'pg' ) {
+
+	 $arr_processingnote_type = array();
+
+										$processing_type = $processingnotes[0]['type'];
+										if ($processing_type == 'processing_im') {
+											$processing_type = 'injection';
+										}
+										if ($processing_type == 'processing_ex') {
+											$processing_type = 'extrusion';
+										}
+		$processingnotes_all = $this->getCompoundProcessing($compound['id'], $language_id);
+
+		//var_dump($processingnotes_all);
+	 foreach ($processingnotes as $processingnote_type => $processingnote) {
+		 $arr_processingnote_type[] = $processingnote_type;
+	 }
+		$processingnotes = $processingnotes_all['processing_im'];
+		$processing_type = $processingnotes[0]['type'];
+		if ($processing_type == 'processing_im') {
+			$processing_type = 'injection';
+		}
+		if ($processing_type == 'processing_ex') {
+			$processing_type = 'extrusion';
+		}
+	 //$pdf->header_description = '<div style="font-size: 16px; color: #055499;">' . Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-guideline', $language_id) . '</div><div style="font-size: 16px; color: #4D4D4F;">' . 					$arr_processingnote_type[1] . '</div>';
+	$processing_type = 'injection';
+	if ($language_id == 11) {
+		$pdf->header_type = '<div style="font-size: 18px; color: #fff;"><b>' . Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-guideline', $language_id) . '</b> ('. Wcms_ContentboxController::getContenbox($processing_type, $language_id) . 	')</div>';
+	} else {
+		$pdf->header_type = '<div style="font-size: 22px; color: #fff;"><b>' . Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-guideline', $language_id) . '</b> ('. Wcms_ContentboxController::getContenbox($processing_type, $language_id) . 	')</div>';
+	}
+		
+	
+} else { // Normales Datenblatt
+  $pdf->header_type = '<div style="font-size: 22px; color: #fff;"><b>' . Wcms_ContentboxController::getContenbox('pdb---datasheet---datasheet', $language_id) . '</b></div>';
+		if ($compound["status"] == "portfolio") {
+
+
+		}
+
+}
+
+if (strlen(trim(str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $serie["description"]))) > 1 || strlen(trim(str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $compound["description"]))) > 1 || strlen(trim($this->getCompoundDescription($compound['id'], $language_id))) > 1 ||  strlen(trim($this->getSerieDescription($serie["id"], $language_id))) > 10) {
+	    			// Grauer Kasten 
+			$pdf->header_content_symbol = '
+						<img src="' . ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'images' . DS . 'symbol.png" style="width: 960px; height: 200px;" />
+				';
+}
+
+		    
+
+    $headline = '<div style="font-size: 18px; color: #fff; width: 350px;">';
+    if ($type == "serie") {
+      if ($serie["name"] != "") {
+        if ($language_id == 8 || $language_id == 5) {
+          $headline .=  "" . Wcms_ContentboxController::getContenbox('pdb---series', $language_id) . ' ' . $serie["name"] . '';
+        } else {
+          $headline .=  "<b>" . $serie["name"] . '</b> ' . Wcms_ContentboxController::getContenbox('pdb---series', $language_id) . '';
+        }
+      }
+    } else {
+      $headline .=  '<b>' . $compound["name"] . '</b> ';
+      if ($serie["name"] != "") {
+        if ($language_id == 8 || $language_id == 5) {
+          $headline .=  " (" . Wcms_ContentboxController::getContenbox('pdb---series', $language_id) . ' ' . $serie["name"] . ')';
+        } else {
+          $headline .=  " (" . $serie["name"] . ' ' . Wcms_ContentboxController::getContenbox('pdb---series', $language_id) . ')';
+        }
+      }
+    }
+    if (strlen($brand["name"]) > 1) {
+      if ($language_id != 3 || strlen($brand["name_zh"]) < 1) { // 3 ist Chinesisch und soll den eintrag name_zh benutezn
+        // $headline .=  ' | ' . str_replace('®', '<sup>®</sup>', $brand["name"]);
+      } else {
+        // $headline .=   ' | ' . str_replace('®', '<sup>®</sup>', $brand["name_zh"]);
+      }
+    }
+
+
+			$arr_brandname =  $this->getCompoundBrandname($compound['id']); // Holt den Brandnamen in zh und eng
+//var_dump($arr_brandname);
+			if ( strlen( trim($arr_brandname['brandnameen']) ) < 2 ) { // Wenn im Compound kein Brandname vorhanden ist
+				$arr_brandname =  $this->getBrandname($serie['brand_id']); // Holt den Brandnamen in zh und eng
+			}
+			if ($language_id != 3) {
+				$brandname = $brand["name"];
+				if (strlen($arr_brandname['brandnameen']) > 1) {
+					$brandname = ' | ' . $arr_brandname['brandnameen'];
+				} else if ( strlen( trim($brand["name"]) ) > 1) {
+					$headline .=  ' | ' . $brand["name"];
+				}
+			} else { // 3 ist Chinesisch und soll den eintrag name_zh benutezn
+				$brandname = $brand["name_zh"];
+				if (strlen($arr_brandname['brandnamezh']) > 1) {
+					$brandname = ' | ' . $arr_brandname['brandnamezh'];
+				} else if ( strlen( trim($brand["name_zh"]) ) > 1) {
+					$headline .=  ' | ' . $brand["name_zh"];
+				}
+			}
+			$headline .= str_replace('®', '<sup>®</sup>', $brandname);
+
+
+    $headline .= '</div>';
+
+    $pdf->header_name = '<div style="font-size: 22px; color: #fff;">' . $headline . '</div>';
+
+    if ($type == "serie") {
+        $pdf->pdf_mode = 'series';
+        $font_size_symbol = 14;
+        $line_height_symbol = 19;
+       // if (strlen($serie["description"]) > 400) {
+        //  $font_size_symbol = 14;
+        //  $line_height_symbol = 15;
+       // }
+				if (strlen($serie["description"]) > 10) {
+					$text_grauer_kasten_pdf = $serie["description"];
+				} else {
+					$text_grauer_kasten_pdf = $this->getSerieDescription($serie["id"], $language_id); 
+				}
+			 
+        $pdf->header_description = '<div style="font-size: 16px;  color: #055499;"><b>' . Wcms_ContentboxController::getContenbox('pdb2-label-key-features', $language_id) . '</b></div><div style="font-size: ' . $font_size_symbol . 'px; line-height: ' . 						$line_height_symbol . 'px; color: #000000;">' . trim( str_replace( array("<p>", "</p>", "<P>", "</P>"), array("", " "), $text_grauer_kasten_pdf)) . '</div>';
+        //$pdf->pdf_mode = 'series';
+    } else {
+        $font_size_symbol = 14;
+        $line_height_symbol = 19;
+				$_SESSION['compound_status'] = false;
+        if ( $_SESSION['datasheetmode'] == 'datasheet'  && $compound['status'] != 'non_portfolio') {
+					$pdf->compound_status = 'non_portfolio';
+					if (strlen(trim($this->getCompoundDescription($compound['id'], $language_id))) < 2) {
+					 $text_grauer_kasten =  trim(str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $serie["text1"]));
+					} else {
+						$text_grauer_kasten = $this->getCompoundDescription($compound['id'], $language_id);
+					}
+					if (strlen(trim($text_grauer_kasten)) > 1) {
+						$pdf->header_description = '<div style="font-size: 16px; color: #055499;"><b>' . Wcms_ContentboxController::getContenbox('pdb2-label-key-features', $language_id) . '</b></div><div style="font-size: ' . $font_size_symbol . 'px; line-height: ' . 						$line_height_symbol . 'px; color: #000000;">' . $text_grauer_kasten . '</div>';
+					} else {
+						$pdf->SetMargins(7.5, 39, 7.5, true); // Hier werden Die Abstände des eigentlichen Contents eingestellt
+					}
+
+        }
+    }
+// else {
+    //print Wcms_ContentboxController::getContenbox('pdb---datasheet---test-report', $language_id);
+//    $pdf->header_type = Wcms_ContentboxController::getContenbox('pdb---datasheet---datasheet', $language_id);
+//}
+
+$pdf->header_content = ob_get_clean(); 
+
+
+
+?>

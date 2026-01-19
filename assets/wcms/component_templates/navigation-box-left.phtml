@@ -1,0 +1,32 @@
+<div <?php if (true === $admin) { ?>id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>"<?php } ?> class="box_center navibox <?php if (true === $admin) { ?><?php if (true === $admin) { ?>ncw-sortable-item<?php } ?><?php } ?>" style="height: 428px">
+  <h2<?php if (true === $admin) { ?> class="<?php if (true === $admin) { ?>ncw-wysiwyg-website-admin<?php } ?>" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['shorttext'][1]['componentcontent_id']; ?>-shorttext-1"<?php } ?> style="border-bottom: 4px solid #FFC300"><?php print $component['shorttext'][1]['content']; ?></h2>
+    <?php if (true === $admin) { ?><div id="itemcontainer" style="margin: -25px 0 0 -59px; height: 370px; overflow: visible;"><?php } else { ?><div id="itemcontainer" style="margin-left:-31px;height:370px"><?php } ?>
+      <?php if (true === $admin) { ?><div id="ncw-navigation-2012-admin"><?php } ?>
+      <?php if (true === $admin) { ?><div id="ncw-area-9-<?php print $component['id'] ?>" class="ncw-sortable-sub"><?php } if (true === isset($areas[9 . "-" . $component['id']])) { $component_save = $component; $area_save = $area; $area = 9; foreach ($areas[9 . "-" . $component['id']] as $position => $component) { include (ASSETS . DS . 'wcms' . DS . 'component_templates' . DS . $component['template_id'] . '.phtml'); } $area = $area_save; $component = $component_save; } if (true === $admin) { ?><div class="ncw-area-clear"></div></div><?php } ?>
+      <?php if (true === $admin) { ?></div><?php } ?>
+  </div>
+</div>
+    
+<?php if (true === $admin) { ?><input type="hidden" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-move-left" value="-15" /><?php } ?>
+    
+    <script type="text/javascript">
+      $(document).ready(function () {
+        
+        var navisize = $('.navibox .naviitem').size();
+        
+        var height = 370;
+        var moarheight = 428;
+        
+        if (navisize == 5 || navisize == 6) {
+          height = 530;
+          moarheight = 588;
+        }
+        if (navisize == 7 || navisize == 8) {
+          height = 690;
+          moarheight = 748;
+        }
+        
+        $('.navibox').css('height', moarheight + 'px');
+        $('#itemcontainer').css('height', height + 'px');
+      });
+    </script>

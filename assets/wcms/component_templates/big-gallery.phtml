@@ -1,0 +1,21 @@
+<div <?php if (true === $admin) { ?>id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>"<?php } ?> class="horizontal_gallery_big <?php if (true === $admin) { ?>ncw-sortable-item<?php } ?>">
+ <h2 id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['shorttext'][1]['componentcontent_id']; ?>-shorttext-1" class="<?php if (true === $admin) { ?>ncw-wysiwyg-website-admin<?php } ?>"><?php print $component['shorttext'][1]['content']; ?></h2>
+   <div class="horizontal_content">
+    <img class="horizontal_content_prev" src="assets/wcms/files/horizontal_gallery_prev.gif" alt="" title="" />
+      <div class="images">
+        <ul id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['area'][4]['componentcontent_id']; ?>-area-4" class="{area.admin.class.sub}"><?php if (true === $admin) { ?><div id="ncw-area-4" class="ncw-sortable"><?php } if (true === isset($areas[4])) { foreach ($areas[4] as $area =>  $content) { print $content; } } if (true === $admin) { ?><div class="ncw-area-clear"></div></div><?php } ?></ul>
+      </div>
+    <img class="horizontal_content_next" src="assets/wcms/files/horizontal_gallery_next.gif" alt="" title="" />
+  </div>
+  <div id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['text'][1]['componentcontent_id']; ?>-text-1" class="<?php if (true === $admin) { ?>ncw-wysiwyg-website-admin<?php } ?>">
+    <?php print $component['text'][1]['content']; ?> 
+  </div>
+</div>
+<?php if (true === $admin) { ?><input type="hidden" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['shorttext'][1]['componentcontent_id']; ?>-shorttext-1-width" value="704" /><?php } ?>
+<?php if (true === $admin) { ?><input type="hidden" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['shorttext'][1]['componentcontent_id']; ?>-shorttext-1-background" value="url(assets/wcms/files/bg_large_box_center_h.gif) no-repeat 0 0" /><?php } ?>
+<?php if (true === $admin) { ?><input type="hidden" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['text'][1]['componentcontent_id']; ?>-text-1-width" value="704" /><?php } ?>
+<?php if (true === $admin) { ?><input type="hidden" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['text'][1]['componentcontent_id']; ?>-text-1-height" value="62" /><?php } ?>
+<?php if (true === $admin) { ?><input type="hidden" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['text'][1]['componentcontent_id']; ?>-text-1-background" value="url(assets/wcms/files/bg_box_right.gif) repeat-x 0 bottom #ececed" /><?php } ?>
+
+<?php if (true === $admin) { ?><input type="hidden" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-move-left" value="-16" /><?php } ?>
+<?php $gallery = true; ?>

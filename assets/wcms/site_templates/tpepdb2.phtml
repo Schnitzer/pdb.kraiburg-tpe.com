@@ -1,0 +1,71 @@
+<?php
+
+$allowed_ips = Ncw_Configure::read('internal_ips');
+
+// if (!in_array($_SERVER['REMOTE_ADDR'], $allowed_ips)) {
+// header("Location:https://www.kraiburg-tpe.com/");
+// }
+
+// var_dump($_SESSION);
+
+if (true == strstr(strtolower($_SERVER['HTTP_REFERER']), 'google')) {
+  header('Location:https://www.kraiburg-tpe.com/');
+}
+
+$url_website = 'https://www.kraiburg-tpe.com';
+$website_url = $url_website;
+
+// include_once 'https://pdb2.kraiburg-tpe.com/include/start.php';
+// include_once 'http://pdb.kraiburg-tpe.com/include/cleanpdb.php';
+
+if (true == isset($_GET['ls'])) {
+  $_SESSION['ls'] = $_GET['ls'];
+  include_once Ncw_Configure::read('Project.url') . '/include/' . $_GET['ls'] . '/start.php';
+} else if (true == isset($_SESSION['ls'])) {
+  include_once Ncw_Configure::read('Project.url') . '/include/' . $_SESSION['ls'] . '/start.php';
+} else {
+  include_once Ncw_Configure::read('Project.url') . '/include/en/start.php';
+}
+
+?>
+
+<?php
+// ob_start(); // Start output buffering
+include_once '_head2019.phtml';
+// $replacementString = ob_get_clean(); // Store output in variable, and stop output-buffering
+// echo cleanPdb($replacementString);
+// var_dump($_SESSION);
+$add_to_url = '?url=product';
+$i = 0;
+foreach ($_GET as $key => $value) {
+  if ($i > 0) {
+    $add_to_url .= '&';
+  } else {
+    $add_to_url .= '?';
+  }
+  $add_to_url .= $key . '=' . $value;
+  $i++;
+}
+
+?>
+
+    <?php if (true === $admin) { ?><div id="ncw-area-1" class="ncw-sortable"><?php }
+if (true === isset($areas[1])) {
+  foreach ($areas[1] as $area => $content) {
+    print $content;
+  }
+} ?>
+
+<?php
+include_once '_footer2019.phtml';
+?>
+   
+<?php
+
+if (true == isset($_SESSION['ls'])) {
+  include_once 'https://pdb.kraiburg-tpe.com/include/' . $_SESSION['ls'] . '/ende.php';
+} else {
+  include_once 'https://pdb.kraiburg-tpe.com/include/en/ende.php';
+}
+
+?>

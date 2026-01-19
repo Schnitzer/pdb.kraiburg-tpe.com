@@ -1,0 +1,223 @@
+/*
+  Error-Template CSS | © 2009 by www.kraiburgtpe.de
+  HTML-Tags
+------------------------------------ */
+div,td,p,span,a,h1,h2,h3,h4,h5,h6,ul,ol,li,address,table,th,td,tr,input,label,textarea,button
+    {
+    font: 12px "Trebuchet MS", "Lucida Grande", "Segoe UI", "Bitstraem Vera Sans",
+        Arial, sans-serif;
+    color: #4b4b4d;
+    line-height: 18px
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #696969
+}
+
+img {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    image-rendering: optimizeQuality;
+    -ms-interpolation-mode: bicubic
+}
+
+img[src $=".gif"] {
+    image-rendering: -moz-crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor
+}
+
+li {
+    list-style-type: none
+}
+
+strong {
+    font-weight: 700
+}
+
+address {
+    font-style: normal
+}
+
+abbr {
+    border-bottom: 1px dotted #4b4b4d;
+    cursor: help
+}
+
+a:link,a:visited,a:hover,a:active,a:focus {
+    color: #4b4b4d;
+    outline: none;
+    text-decoration: underline
+}
+
+a:hover,a:active,a:focus {
+    text-decoration: underline
+}
+
+: :-moz-selection {
+    color: #fff;
+    background: #696969
+}
+
+: :selection {
+    color: #fff;
+    background: #696969
+}
+
+a: :-moz-selection {
+    background: #ffc300
+}
+
+a: :selection {
+    background: #ffc300
+}
+
+/*
+  Layout
+------------------------------------ */
+* {
+    margin: 0;
+    padding: 0;
+    border: 0
+}
+
+body {
+    width: 100%;
+    text-align: center;
+    background: #fff
+}
+
+html,body {
+    height: 100%
+}
+
+#shell {
+    margin: auto;
+    width: 976px;
+    text-align: left
+}
+
+#footer {
+    width: 976px;
+    float: left;
+    padding: 0 0 28px 0;
+    background: #f2f2f2;
+    overflow: hidden
+}
+
+#footer_content {
+    width: 935px;
+    float: left;
+    margin: 19px 0 0 16px;
+    padding: 0 0 0 9px;
+}
+
+* html #footer_content {
+    margin-left: 8px
+}
+
+#footer_content div {
+    width: 208px;
+    float: left;
+    margin: 0 32px 0 0
+}
+
+.fourth_column {
+    margin: 0 !important
+}
+
+#footer_content ul {
+    width: 208px;
+    float: left;
+    padding: 0 0 16px 0
+}
+
+#footer_content li {
+    width: 100%;
+    height: 16px;
+    float: left;
+    overflow: hidden
+}
+
+#footer_content li a {
+    font-size: 10px;
+    text-decoration: none
+}
+
+#footer_content li a:hover {
+    text-decoration: underline
+}
+
+#footer_content li a span {
+    font-weight: 700;
+    line-height: 17px;
+    font-size: 11px
+}
+
+#imprint {
+    width: 912px;
+    height: 20px;
+    float: left;
+    margin: 5px 0 24px 0;
+    padding: 1px 16px 0 16px;
+    border-top: 1px solid #9e9e9e;
+    border-bottom: 1px solid #9e9e9e;
+    line-height: 18px;
+    font-size: 10px;
+    color: #696969
+}
+
+#imprint a {
+    line-height: 19px;
+    font-size: 10px;
+    color: #696969;
+    text-decoration: none
+}
+
+#imprint a:hover {
+    text-decoration: underline
+}
+
+/*
+  Errorpage
+------------------------------------ */
+#err_header {
+    width: 892px;
+    height: 150px;
+    float: left;
+    margin: 0 0 39px 0;
+    padding: 0 42px;
+    position: relative
+}
+
+#err_logo {
+    position: absolute;
+    top: 80px;
+    left: 42px
+}
+
+#err_slogan {
+    position: absolute;
+    top: 132px;
+    left: 588px
+}
+
+#err_section {
+    width: 892px;
+    float: left;
+    margin: 0 0 103px 0;
+    padding: 0 42px
+}
+
+#err_section h1 {
+    font-size: 14px;
+    margin: 0 0 9px 0
+}
+
+#err_footer {
+    width: 944px;
+    float: left;
+    padding: 0 16px
+}

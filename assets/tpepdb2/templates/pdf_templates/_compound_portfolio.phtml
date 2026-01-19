@@ -1,0 +1,19 @@
+<?php $pdf->AddPage(); ?>
+<?php ob_start(); ?>
+<br style="height:1px;line-height:1px;" />
+<?php include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements"  . DS . "head.phtml"; ?>
+<?php include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound"  . DS . "compound.phtml"; ?>
+<?php $pdf->writeHTML(ob_get_clean(), true, false, false, false, ""); ?>
+
+<?php if (count($documents) > 0 || count($serie['documents']) > 0) {?>
+	<?php //$pdf->AddPage(); ?>
+	<?php ob_start(); ?>
+    <?php //include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements"  . DS . "pictures.phtml"; ?>
+	<?php //$pdf->writeHTML(ob_get_clean(), true, false, false, false, ""); ?>
+<?php } ?>
+
+<?php $pdf->AddPage(); ?>
+<?php ob_start(); ?>
+<br style="height:1px;line-height:1px;" />
+<?php include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound" . DS . "processing_note.phtml"; ?>
+<?php $pdf->writeHTML(ob_get_clean(), true, false, false, false, ""); ?>

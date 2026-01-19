@@ -1,0 +1,7 @@
+<div class="pp-gallery<?php if (true === $admin) { ?> <?php if (true === $admin) { ?>ncw-sortable-item<?php } ?><?php } ?>" style="width: 720px;"><div style="clear:both; height:20px; font-size:0; line-height:0; "></div>
+    <h3<?php if (true === $admin) { ?> class="<?php if (true === $admin) { ?>ncw-wysiwyg-website-admin<?php } ?>" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['shorttext'][1]['componentcontent_id']; ?>-shorttext-1" <?php } ?>><?php print $component['shorttext'][1]['content']; ?></h3>
+    <?php if (true === $admin) { ?><br /><?php } ?>
+      <?php if (true === $admin) { ?><div id="ncw-area-8-<?php print $component['id'] ?>" class="ncw-sortable-sub"><?php } if (true === isset($areas[8 . "-" . $component['id']])) { $component_save = $component; $area_save = $area; $area = 8; foreach ($areas[8 . "-" . $component['id']] as $position => $component) { include (ASSETS . DS . 'wcms' . DS . 'component_templates' . DS . $component['template_id'] . '.phtml'); } $area = $area_save; $component = $component_save; } if (true === $admin) { ?><div class="ncw-area-clear"></div></div><?php } ?>
+</div>
+      
+

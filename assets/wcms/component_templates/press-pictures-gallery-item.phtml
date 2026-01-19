@@ -1,0 +1,9 @@
+<div style="min-height: 150px; width: 120px; padding: 10px 0 5px; float:left; "<?php if (true === $admin) { ?> class="<?php if (true === $admin) { ?>ncw-sortable-item<?php } ?>"<?php } ?>>
+  <?php if (true === $admin) { ?><br /><?php } ?>
+  <a href="<?php print $component['file'][1]['content']; ?>" target="_blank" title="<?php print $component['file'][1]['title']; ?>">
+    <img src="http://www.kraiburg-tpe.com/assets/wcms/files/thumb.php?src=<?php print $component['file'][1]['content']; ?>&w=100&h=130&zc=1&q=90" title="<?php print $component['file'][1]['title']; ?>" alt="<?php print $component['file'][1]['alt']; ?>"<?php if (true === $admin) { ?> style="max-width:100px; max-height:100px" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['file'][1]['componentcontent_id']; ?>-file-1" class="<?php if (true === $admin) { ?>ncw-image-droppable<?php } ?>"<?php } ?> >
+  </a>
+  <br />
+  <span style="color: #4C52AC;"><a href="<?php print $component['file'][1]['content']; ?>" target="_blank" title="<?php print $component['file'][1]['title']; ?>"><?php print $component['file'][1]['title']; ?></a></span>
+
+</div>

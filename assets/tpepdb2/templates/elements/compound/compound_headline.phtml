@@ -1,0 +1,389 @@
+<?php
+$hasRecycling = false;
+
+if (true === $is_pdf) {
+	?>
+
+
+
+<?php
+} else {  // Ende PDF Anfang HTML
+?>
+<?php
+
+	// $pdb_url = 'https://pdb.kraiburg-tpe.com';
+	$pdb_url = Ncw_Configure::read('Project.url');
+	$website_url = 'https://www.kraiburg-tpe.com';
+	include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'elements' . DS . 'userstate.phtml';
+?>
+
+
+<!-- compound_headline.phtml -->
+<div style="background-image:url('<?php echo $website_url; ?>/sites/default/files/assets/pattern/transparent.png')" class="compound-headline paragraph clearfix paragraph--type--section paragraph--view-mode--default row section-bottom-space-big color-scheme-transparent">
+	<div class="paragraph clearfix paragraph--type--pattern paragraph--view-mode--default color-scheme-blue light-font col-md-8" style="height: 181px;">
+		<div style="background-image:url('<?php echo $website_url; ?>/sites/default/files/assets/pattern/blue.png')" class="pattern-outer">
+			<div class="smallspace-wrapper clearfix pattern-inner">
+				<div class="paragraph clearfix paragraph--type--textblock paragraph--view-mode--default col-sm-24">
+					<h1 class="headline-1"><?php echo $compound['name']; ?></h1>
+					<h4 class="subheadline">
+							<?php
+							$serie_link = '?sid=' . $serie['id'];
+							if ($language == 'it') {
+								$serie_link .= '&amp;ls=it';
+							}
+							if ($language == 'pl') {
+								$serie_link .= '&amp;ls=pl';
+							}
+							?>
+						<?php
+						if (strlen(trim($serie['name'])) > 1) {
+							?>
+								<a href="<?php echo $serie_link; ?>"  target="_self">
+							<?php
+						}
+
+						if (strlen(trim($serie['name'])) > 1) {
+							if ($language_id == 8 || $language_id == 5 || $language_id == 11 || $language_id == 4) {
+								?> 
+										<?php print Wcms_ContentboxController::getContenbox('pdb---series', $language_id) . ' ' . $serie['name'] . ' | '; ?>
+										<?php } else { ?>
+										<?php print $serie['name'] . ' ' . Wcms_ContentboxController::getContenbox('pdb---series', $language_id) . ' | '; ?>
+								<?php
+							}
+						}
+						?>
+						
+						<?php
+						$arr_brandname = $this->getCompoundBrandname($compound['id']);  // Holt den Brandnamen in zh und eng
+						if (strlen(trim($arr_brandname['brandnameen'])) < 2) {  // Wenn im Compound kein Brandname vorhanden ist
+							$arr_brandname = $this->getBrandname($serie['brand_id']);  // Holt den Brandnamen in zh und eng
+						}
+
+						if ($language_id != 3) {
+							$brandname = $brand['name'];
+							if (strlen($arr_brandname['brandnameen']) > 1) {
+								$brandname = $arr_brandname['brandnameen'];
+							}
+						} else {  // 3 ist Chinesisch und soll den eintrag name_zh benutezn
+							$brandname = $brand['name_zh'];
+							if (strlen($arr_brandname['brandnamezh']) > 1) {
+								$brandname = $arr_brandname['brandnamezh'];
+							}
+						}
+						// Wenn der Brandname nicht im Compound sondern nur in der Serie zu finden ist
+						if (strlen(trim($brandname)) < 2) {
+							if ($language_id != 3 || strlen($brand['name_zh']) < 1) {  // 3 ist Chinesisch und soll den eintrag name_zh benutezn
+								$brandname = str_replace('®', '<sup>®</sup>', $brand['name']);
+							} else {
+								$brandname = str_replace('®', '<sup>®</sup>', $brand['name_zh']);
+							}
+						}
+						if (strlen(trim($brandname)) < 2) {
+						}
+
+						print str_replace('®', '<sup>®</sup>', $brandname);
+
+						if (strlen(trim($serie['name'])) > 1) {
+							?>
+								</a>
+							<?php
+						}
+						?>
+					</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<?php
+
+	$descriptionText = $this->getCompoundDescription($compound['id'], $language_id) . $serie['text1'];
+
+	if (strlen(trim($descriptionText)) < 2) {
+		$descriptionText = '<br />';
+	}
+
+	?>
+
+	<div class="paragraph clearfix paragraph--type--pattern paragraph--view-mode--default color-scheme-extralight dark-font col-md-16 pdb-headline-textblock" style="height: 181px;">
+		<div style="background-image:url('<?php echo $website_url; ?>/sites/default/files/assets/pattern/extralight.png')" class="pattern-outer">
+			<div class="smallspace-wrapper clearfix pattern-inner pdb-pattern-inner">
+				<div class="paragraph clearfix paragraph--type--textblock paragraph--view-mode--default col-sm-24 ">
+					<p class="pdb2-processing-method-text text-align-justify"><?php echo $descriptionText; ?></p>
+					
+						<div class="col-sm-8 line-height-small padding-bottom-10px">
+							<b><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-method', $language_id); ?>:</b><br />
+							<?php
+							if ($serie['id'] == '97' || $serie['id'] == '92') {
+								$processingnotes_all = $this->getCompoundProcessing($compound['id']);
+								// var_dump($processingnotes_all);
+								$str_processingnote_type = '';
+								if (true == isset($processingnotes_all['processing_ex'])) {
+									$processing_type = 'extrusion';
+									$str_processingnote_type = Wcms_ContentboxController::getContenbox($processing_type, $language_id);
+								}
+								if (true == isset($processingnotes_all['processing_im'])) {
+									$processing_type = 'injection';
+									if (strlen($str_processingnote_type) > 1) {
+										$str_processingnote_type .= ', ' . Wcms_ContentboxController::getContenbox($processing_type, $language_id);
+									} else {
+										$str_processingnote_type .= Wcms_ContentboxController::getContenbox($processing_type, $language_id);
+									}
+								}
+							} else {
+								$processingnotes_all = $this->getCompoundProcessing($compound['id']);
+								// var_dump($processingnotes_all);
+								$str_processingnote_type = '';
+								if (true == isset($processingnotes_all['processing_im'])) {
+									$processing_type = 'injection';
+									$str_processingnote_type = Wcms_ContentboxController::getContenbox($processing_type, $language_id);
+								}
+								if (true == isset($processingnotes_all['processing_ex'])) {
+									$processing_type = 'extrusion';
+									if (strlen($str_processingnote_type) > 1) {
+										$str_processingnote_type .= ', ' . Wcms_ContentboxController::getContenbox($processing_type, $language_id);
+									} else {
+										$str_processingnote_type .= Wcms_ContentboxController::getContenbox($processing_type, $language_id);
+									}
+								}
+							}
+							echo $str_processingnote_type;
+							?>
+						</div>
+						<div  class="col-sm-8 line-height-small padding-bottom-10px">
+							<b><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---srs-color', $language_id); ?>:</b><br />
+							<?php
+							$colors = $this->getCompoundColor($compound['id']);
+							echo implode(', ', $colors);
+							?>
+						</div>
+						<?php // if ($compound['recyclinganteil'] > 0) { ?>
+							<div  class="col-sm-8 line-height-small padding-bottom-10px">
+								<?php
+								// RECYCLINGANTEIL
+								if (strlen($compound['recyclinganteil']) > 0) {
+									$strSup = '<sup>**</sup>';
+									$hasRecycling = true;
+									echo '<b>' . Wcms_ContentboxController::getContenbox('rawmaterials', $language_id) . '' . $strSup . ':</b><br />' . round($compound['recyclinganteil'], 0) . '%';
+									$strSup = '';
+								} else {
+									echo '&nbsp;<br />&nbsp;';
+								}
+								?>
+							</div>
+						<?php // } ?>
+						<?php
+						$strVerfuegbarkeit = $this->getCompoundRegion20($compound['id'], $language_id);
+						if ($strVerfuegbarkeit == 'GLOBAL') {
+							$strVerfuegbarkeit = Wcms_ContentboxController::getContenbox('global', $language_id);
+						}
+						$compound['verfuegbarkeit'] = $strVerfuegbarkeit;
+						?>
+						<?php if (strlen($compound['verfuegbarkeit']) > 0) { ?>
+							<div  class="col-sm-8 line-height-small padding-bottom-10px hasterm" term="<?php echo Wcms_ContentboxController::getContenbox('verfuegbarkeit', $language_id); ?>">
+								<?php
+								// Verfügbarkeit
+								if (strlen($compound['verfuegbarkeit']) > 0) {
+									echo '<b>' . Wcms_ContentboxController::getContenbox('verfuegbarkeit', $language_id) . ':</b><br />' . $compound['verfuegbarkeit'] . '';
+								}
+								?>
+							</div>
+						<?php } ?>
+						<?php
+						$compound['hergestelltin'] = $this->getCompoundCOrigin($compound['id'], $language_id);
+						if (strlen($compound['hergestelltin']) > 0) {
+							?>
+							<div  class="col-sm-8 line-height-small padding-bottom-10px">
+								<?php
+								// Hergestellt in
+								if (strlen($compound['hergestelltin']) > 0) {
+									echo '<b>' . Wcms_ContentboxController::getContenbox('hergestellt-in', $language_id) . ':</b><br />' . $compound['hergestelltin'] . '';
+								}
+								?>
+							</div>
+						<?php } ?>
+						<?php
+						if ($compound['bioanteil'] > 0) {
+							$strSup = '<sup>***</sup>';
+							$strSup = '';
+							?>
+							<div  class="col-sm-8 line-height-small padding-bottom-10px">
+								<?php
+								// BIONTEIL
+								if ($compound['bioanteil'] > 0) {
+									echo '<b>' . Wcms_ContentboxController::getContenbox('biologicalmaterials', $language_id) . ':</b><br />' . round($compound['bioanteil'], 0) . '%';
+								}
+								$strSup = '';
+								?>
+							</div>
+						<?php } ?>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<section class="compound">
+  <div class="container">
+    <div class="row">
+			<?php
+			$height = 127;
+			// getCompoundTypicalapplication aus TpePdbModel.php
+			$serie['anwendungsbereiche'] = $this->getCompoundTypicalapplication($compound['id']);
+			$count_anwendungsbereiche = count($serie['anwendungsbereiche']);
+			// getCompoundMaterialadvantages aus TpePdbModel.php
+			$serie['materialvorteile'] = $this->getCompoundMaterialadvantages($compound['id']);
+			$count_materialvorteile = count($serie['materialvorteile']);
+			if (count($serie['materialvorteile']) > count($serie['anwendungsbereiche'])) {
+				$height_add = count($serie['materialvorteile']) * 30;
+			} else {
+				$height_add = count($serie['anwendungsbereiche']) * 30;
+			}
+			$height = $height_add + $height;
+
+			?>
+			<?php
+			if ($compound['status'] != 'non_portfolio') {
+				?>
+			<?php
+			if ($count_anwendungsbereiche > 0) {
+				// $count_anwendungsbereiche
+				// $count_materialvorteile
+				if ($count_materialvorteile > 0) {
+					$str_col_sm = 'col-sm-12';
+				} else {
+					$str_col_sm = 'col-sm-24';
+				}
+				?>
+				<!-- Anwendungsbereiche -->
+				<div class="anwendungsbereiche paragraph clearfix paragraph--type--pattern paragraph--view-mode--default color-scheme-extralight dark-font <?php echo $str_col_sm; ?> vertical-center_" style="height: <?php echo $height; ?>px;">
+					<div style="background-image:url('<?php echo $website_url; ?>/sites/default/files/assets/pattern/extralight.png')" class="pattern-outer">
+						<div class="smallspace-wrapper clearfix pattern-inner">
+							<div class="paragraph clearfix paragraph--type--textblock paragraph--view-mode--default col-sm-24">
+								<h2><?php print Wcms_ContentboxController::getContenbox('pdb---typical-applications', $language_id); ?></h2>
+									<ul>
+										<?php foreach ($serie['anwendungsbereiche'] as $anwendungsbereich) { ?>
+											<li term="<?php echo trim(str_replace(array('<p>', '</p>', '<P>', '</P>'), array('', ' '), $anwendungsbereich)); ?>">
+												<?php print trim(str_replace(array('<p>', '</p>', '<P>', '</P>'), array('', ' '), $anwendungsbereich)); ?>
+											</li>
+										<?php } ?>
+									</ul>
+								<p>&nbsp;</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php } ?>
+			
+			<?php
+			if ($count_materialvorteile > 0) {
+				// $count_anwendungsbereiche
+				// $count_materialvorteile
+				if ($count_anwendungsbereiche > 0) {
+					$str_col_sm = 'col-sm-12';
+				} else {
+					$str_col_sm = 'col-sm-24';
+				}
+				?>
+				<!-- MATERIALVORTEILE -->
+				<div class="materialvorteile paragraph clearfix paragraph--type--pattern paragraph--view-mode--default color-scheme-extralight dark-font <?php echo $str_col_sm; ?>" style="height: <?php echo $height; ?>px;">
+					<div style="background-image:url('<?php echo $website_url; ?>/sites/default/files/assets/pattern/extralight.png')" class="pattern-outer">
+						<div class="smallspace-wrapper clearfix pattern-inner">
+							<div class="paragraph clearfix paragraph--type--textblock paragraph--view-mode--default col-sm-24">
+								<h2><?php print Wcms_ContentboxController::getContenbox('pdb---material-advantages', $language_id); ?></h2>
+								<ul>
+									<?php foreach ($serie['materialvorteile'] as $materialvorteile) { ?>
+										<?php // if (true === empty($materialvorteile)) { continue; } ?>
+										<li term="<?php echo trim(str_replace(array('<p>', '</p>', '<P>', '</P>'), array('', ' '), $materialvorteile)); ?>">
+											<?php
+
+											print trim(str_replace(array('<p>', '</p>', '<P>', '</P>'), array('', ' '), $materialvorteile));
+											?>
+										</li>
+									<?php } ?>
+								</ul>
+								<p>&nbsp;</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php }
+			  ?>
+		<?php
+			}  // Wenn kein non_portfolio
+			?>
+			
+			<!-- Regulations Approvals-->
+			<?php
+			// echo $this->getCompoundApproval($compound['id']);
+			$serie['verordnungen'] = $this->getCompoundApproval($compound['id']);
+			$height = 84;
+			$height_add = count($serie['verordnungen']) * 30;
+			$height = $height_add + $height;
+			?>
+			<?php if (count($serie['verordnungen']) > 0) { ?>
+				<div class="verordnungenzulassungen  paragraph clearfix paragraph--type--pattern paragraph--view-mode--default color-scheme-extralight dark-font col-sm-24 vertical-center_" style="height: <?php echo $height; ?>px;">
+					<div style="background-image:url('<?php echo $website_url; ?>/sites/default/files/assets/pattern/extralight.png')" class="pattern-outer">
+						<div class="smallspace-wrapper clearfix pattern-inner">
+							<div class="paragraph clearfix paragraph--type--textblock paragraph--view-mode--default col-sm-24">
+								<h2>
+									<?php print Wcms_ContentboxController::getContenbox('regulations-approvals', $language_id); ?>
+								</h2>
+									<ul>
+
+										<?php
+										// $serie["verordnungen"] = array('FDA Compliant', 'Halogenfrei (ISO63216-1)', 'DBL5562', 'UL94');
+										foreach ($serie['verordnungen'] as $verordnung) {
+											?>
+											<li term="<?php echo trim(str_replace(array('<p>', '</p>', '<P>', '</P>'), array('', ' '), $verordnung)); ?>">
+												<?php print trim(str_replace(array('<p>', '</p>', '<P>', '</P>'), array('', ' '), $verordnung)); ?>
+											</li>
+										<?php } ?>
+									</ul>
+								<p>&nbsp;</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			<?php } ?>
+			
+    	<div class="row ct-u-padding-bottom-80">
+			
+
+
+        </div>
+			
+			
+			
+			
+			
+			
+			
+<?php include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'elements' . DS . 'datasheetcompound.phtml'; ?>
+			
+<?php include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'elements' . DS . 'sdscompound.phtml'; ?>
+			
+<?php
+	$safetydatadocumentflag = true;
+	$path_include = ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'elements' . DS . 'downloadcenter.phtml';
+	include_once $path_include;
+	?>
+	
+        <div class="cols-sm-12 ct-u-padding-top-30 ct-u-padding-bottom-20 tpe-downloadcenter ncw-u-padding-bottom-40">
+         
+				  <!-- Downloadcenter -->
+          <div class="rows ">
+						<div class="cols-sm-24 pdb-series-description ct-u-padding-top-20 ncw-u-padding-bottom-40">
+						</div>
+					</div>
+				</div><!-- Ende Col-->
+         
+    	</div><!-- Ende Row-->
+
+	  </div>
+  </div>
+</section>
+
+<?php } ?>

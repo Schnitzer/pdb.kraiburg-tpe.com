@@ -1,0 +1,37 @@
+
+<?php 
+//include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "datacenter.phtml"; 
+?>
+
+<?php 
+if (true === $is_pdf) {
+  include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "psf_templates" . DS . "compound_headline.phtml";
+} else {
+  include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound" . DS . "compound_headline.phtml";
+}
+?>
+
+<?php 
+//include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements"  . DS . "head.phtml"; 
+?>
+
+<?php include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound"  . DS . "compound.phtml"; ?>
+
+<?php 
+//include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements"  . DS . "pictures.phtml"; ?>
+
+<?php 
+
+$processingnotes_all = $this->getCompoundProcessing($compound['id']);
+
+?>
+<?php 
+$processingnotes = $processingnotes_all['processing_im'];
+?>
+<?php include ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound" . DS . "processing_note.phtml"; ?>
+<?php 
+$processingnotes = $processingnotes_all['processing_ex'];
+?>
+<?php include ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound" . DS . "processing_note.phtml"; ?>
+
+<?php //require_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "footer.phtml"; ?>

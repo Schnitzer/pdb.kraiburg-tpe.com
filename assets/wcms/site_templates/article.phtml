@@ -1,0 +1,18 @@
+<?php include_once '_head.phtml'; ?>
+<div id="article_large">
+    <?php if (true === $admin) { ?><div id="ncw-area-1" class="ncw-sortable"><?php } if (true === isset($areas[1])) { foreach ($areas[1] as $area =>  $content) { print $content; } } if (true === $admin) { ?><div class="ncw-area-clear"></div></div><?php } ?>
+    
+  
+</div>
+<div id="aside_right">
+    <?php
+     if (true == strstr($_SERVER['REQUEST_URI'], 'presspictures')) {
+         include_once '_contact_box.phtml';
+     } else {
+         include_once '_search_news.phtml'; 
+     }
+     ?>     
+    <?php if (true === $admin) { ?><div id="ncw-area-2" class="ncw-sortable"><?php } if (true === isset($areas[2])) { foreach ($areas[2] as $area =>  $content) { print $content; } } if (true === $admin) { ?><div class="ncw-area-clear"></div></div><?php } ?>
+  <?php include_once '_toolbox_login.phtml'; ?> 
+</div>
+<?php include_once '_footer.phtml'; ?>

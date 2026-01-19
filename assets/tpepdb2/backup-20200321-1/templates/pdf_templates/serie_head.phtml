@@ -1,0 +1,226 @@
+<?php if (true === $is_pdf) { 
+
+$trenner_img = '<img src="' .  ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'images' . DS . 'quadrat.png" height="6" style="margin-bottom: 3px;" />';
+
+?>
+
+<table style="width:100%; " cellspacing="1" cellpadding="8">
+    <tr>
+			<td style=" height: 100px; padding: 10px; background-color: #fff; border: 1px solid #134d93;">
+			
+								
+					<table style="width:100%" cellspacing="0" cellpadding="8">
+							<tr>
+								<td style=" height: 40px; padding: 10px; background-color: #fff; border-bottom: 1px solid #bdbcbc; border-right: 1px solid #bdbcbc; font-size: 14px; line-height: 19px;">
+									<b style="color: #055499; font-size: 16px;"><?php echo Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-method', $language_id); ?></b><br />
+									<?php
+										$processingnotes_all = $this->getSerieProcessing($serie['id']);
+										//var_dump($processingnotes_all);
+										$str_processingnote_type = '';
+										if (true == isset($processingnotes_all['processing_im']) ){
+											$processing_type = 'injection';
+											$str_processingnote_type = Wcms_ContentboxController::getContenbox($processing_type, $language_id);
+										}
+										if (true == isset($processingnotes_all['processing_ex']) ){
+											$processing_type = 'extrusion';
+											if (strlen($str_processingnote_type) > 1) {
+												$str_processingnote_type .= ', ' . Wcms_ContentboxController::getContenbox($processing_type, $language_id);
+											} else {
+												$str_processingnote_type .= Wcms_ContentboxController::getContenbox($processing_type, $language_id);
+											}
+
+										}
+										echo $str_processingnote_type;
+									?>
+								</td>
+								<td style=" height: 40px; padding: 10px; background-color: #fff; border-bottom: 1px solid #bdbcbc; font-size: 14px; line-height: 18px;">
+										<b style="color: #055499; font-size: 16px;"><?php echo Wcms_ContentboxController::getContenbox('pdb---datasheet---srs-color', $language_id); ?></b><br />
+										<?php
+														 //echo $compound["srs_farbe_db"]; 
+										$arr_farben = array();
+										/*		
+										foreach ($compounds As $compound) {
+											if (false == in_array(trim($compound['srs_farbe_db']), $arr_farben)) {
+													$arr_farben[] = trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $compound['srs_farbe_db']))); 
+											}
+										}*/
+										//if (count($arr_farben) < 1) {
+											$arr_farben = $this->getSerieColor($serie['id'], $language_id);
+										//}
+										if (count($arr_farben) > 0) {
+											print $trenner_img . ' ';
+										}
+										print ucwords(implode(" " . $trenner_img . " ", $arr_farben) );
+									?>
+
+								</td>
+						</tr>
+					</table>
+					<table style="width:100%" cellspacing="0" cellpadding="8" border="0">
+							<tr>
+								<td style=" height: 40px; padding: 10px; background-color: #fff; border-bottom: 1px solid #fff; border-right: 1px solid #fff; font-size: 16px;  line-height: 19px;">
+									<b style=" font-weight: 800; color: #055499;"><?php print Wcms_ContentboxController::getContenbox('pdb---typical-applications', $language_id); ?></b><br>
+									<?php 
+										// getCompoundTypicalapplication aus TpePdbModel.php
+										$serie["anwendungsbereiche"] = $this->getSerieTypicalapplication($serie['id'], $language_id);
+										$serie["verordnungen"] = $this->getSerieApproval($serie['id'], $language_id); 
+										$serie["materialvorteile"] = $this->getSerieMaterialadvantages($serie['id'], $language_id);
+	
+										$count_all_items = count($serie["anwendungsbereiche"]) + count($serie["verordnungen"]) + count($serie["materialvorteile"]);
+										$line_height = 19;
+										$str_blocktrenner = '<br /><br />';
+										if ($count_all_items > 24) {
+											$line_height = 17;
+											$trenner_img = '<img src="' .  ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'images' . DS . 'quadrat.png" height="6" style="margin-bottom: 6px;" />';
+										}
+										if ($count_all_items > 29) {
+											$str_blocktrenner = '<br />';
+										}
+										if ($count_all_items > 35 ) {
+											$line_height = 16;
+										}
+										$arr_typical_applications = array();
+										echo '<table border="0">';
+											$count_all = count($serie["anwendungsbereiche"]);
+											$count_left = ceil ( $count_all/2 );
+											$str_left = '';
+											$str_right = '';
+											$count = 0;
+											
+											foreach ($serie["anwendungsbereiche"] as $item) { 
+												//if ($count_aw > 1) {
+													if ($count < $count_left) {
+														//$str_left .= $trenner_img . ' ' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $item))) . '<br />';
+														$str_left .= '<table width="100%" border="0"><tr><td width="12">' . $trenner_img . '</td><td width="300">' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $item))) . '</td></tr></table>';
+													} else {
+														//$str_right .= $trenner_img . ' ' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $item))) . '<br />';
+														$str_right .= '<table width="100%" border="0"><tr><td width="12">' . $trenner_img . '</td><td width="300">' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $item))) . '</td></tr></table>';
+													}
+													$count++;
+											}
+											echo '<tr>';
+												echo '<td style="font-size: 14px;  line-height: ' . $line_height . 'px;">';
+													echo $str_left;
+												echo '</td>'; 
+												echo '<td style="font-size: 14px;  line-height: ' . $line_height . 'px;">';
+													echo $str_right;
+												echo '</td>';
+											echo '</tr>';
+										echo '</table>';
+									//print implode(" " . $trenner_img . " ", $arr_typical_applications);
+									?>
+									<?php echo $str_blocktrenner;
+									$count_all = count($serie["materialvorteile"]);
+									?>
+									<?php if ($count_all > 0) { ?>
+									<b style=" font-weight: 800; color: #055499;"><?php print Wcms_ContentboxController::getContenbox('pdb---material-advantages', $language_id); ?></b><br>
+									<?php } ?>
+									<?php $arr_materialvorteile = array();
+									// getCompoundMaterialadvantages aus TpePdbModel.php
+									//$serie["materialvorteile"] = $this->getSerieMaterialadvantages($serie['id'], $language_id);
+									echo '<table border="0">';
+										
+										$count_left = ceil ( $count_all/2 );
+										$str_left = '';
+										$str_right = '';
+										$count = 0;
+										foreach ($serie["materialvorteile"] as $item) { 
+											//if ($count_aw > 1) {
+												if ($count < $count_left) {
+													//$str_left .= $trenner_img . ' ' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $item))) . '<br />';
+													$str_left .= '<table width="100%" border="0"><tr><td width="12">' . $trenner_img . '</td><td width="300">' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $item))) . '</td></tr></table>';
+												} else {
+													//$str_right .= $trenner_img . ' ' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $item))) . '<br />';
+													$str_right .= '<table width="100%" border="0"><tr><td width="12">' . $trenner_img . '</td><td width="300">' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $item))) . '</td></tr></table>';
+												}
+												$count++;
+										}
+										echo '<tr>';
+											echo '<td style="font-size: 14px;  line-height: ' . $line_height . 'px;">';
+												echo $str_left;
+											echo '</td>'; 
+											echo '<td style="font-size: 14px;  line-height: ' . $line_height . 'px;">';
+												echo $str_right;
+											echo '</td>';
+										echo '</tr>';
+									echo '</table>';
+									?>
+									<?php echo $str_blocktrenner; ?>
+									<?php 
+										//$serie["verordnungen"] = $this->getSerieApproval($serie['id'], $language_id); 
+										if (count($serie["verordnungen"]) > 0) {
+										?>
+											<b style=" font-weight: 800; color: #055499;"><?php print Wcms_ContentboxController::getContenbox('regulations-approvals', $language_id); ?></b><br>
+										<?php
+										}
+									?>
+									
+									<?php $arr_zulassungen = array();
+
+										echo '<table border="0">';
+											$count_all = count($serie["verordnungen"]);
+											$count_left = ceil ( $count_all/2 );
+											$str_left = '';
+											$str_right = '';
+											$count = 0;
+											foreach ($serie["verordnungen"] as $item) { 
+												//if ($count_aw > 1) {
+													if ($count < $count_left) {
+														//$str_left .= $trenner_img . ' ' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $item))) . '<br />';
+														$str_left .= '<table width="100%" border="0"><tr><td width="12">' . $trenner_img . '</td><td width="300">' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $item))) . '</td></tr></table>';
+													} else {
+														//$str_right .= $trenner_img . ' ' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $item))) . '<br />';
+														$str_right .= '<table width="100%" border="0"><tr><td width="12">' . $trenner_img . '</td><td width="300">' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $item))) . '</td></tr></table>';
+													}
+													$count++;
+											}
+											echo '<tr>';
+												echo '<td style="font-size: 14px;  line-height: ' . $line_height . 'px;">';
+													echo $str_left;
+												echo '</td>'; 
+												echo '<td style="font-size: 14px;  line-height: ' . $line_height . 'px;">';
+													echo $str_right;
+												echo '</td>';
+											echo '</tr>';
+										echo '</table>';
+									?>
+									<!--
+									<br /><br />
+									<b style=" font-weight: 800; color: #055499;"><?php print Wcms_ContentboxController::getContenbox('pdb2--label-verordnungen', $language_id); ?></b><br>
+									<?php $arr_verordnungen = array();
+										$serie["verordnungen"] = array('FDA Compliant', 'Halogenfrei (ISO63216-1)');
+										$count_e = 0;
+										echo '<table border="0">';
+										foreach ($serie["verordnungen"] as $verordnung) {  ?>
+												<?php
+												$arr_verordnungen[] = trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $verordnung))); 
+											if (true == is_int($count_e / 2)) {
+												echo '<tr>';
+											}
+											echo '<td style="font-size: 14px;  line-height: 19px;">';
+											echo $trenner_img . ' ' . trim(str_replace('<', '&lt;', str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $verordnung)));
+											echo '</td>';
+											if (false == is_int($count_e / 2)) {
+												echo '</tr>';
+											}
+											$count_e++;
+										}
+									echo '</table>';
+									//print implode(" " . $trenner_img . " ", $arr_verordnungen);
+									?>	
+									-->
+								</td>
+						</tr>
+				  </table>
+								 
+			</td>
+	</tr>
+</table>
+
+<br />
+
+
+<?php if (true === $is_pdf) { ?><br /><?php } ?>
+	<?php 
+	} // Ende Nicht serie 
+	?>

@@ -1,0 +1,9 @@
+<div style="min-height: 150px; width: 120px; padding: 10px 0 5px; float:left; "{if.admin} class="{admin.class}"{/if}>
+  {if.admin}<br />{/if}
+  <a href="{file.1}" target="_blank" title="{file.1.title}">
+    <img src="{path.files}thumb.php?src={file.1}&w=100&h=130&zc=1&q=90" title="{file.1.title}" alt="{file.1.alt}"{if.admin} style="max-width:100px; max-height:100px" id="{file.1.id}" class="{admin.image.class}"{/if} >
+  </a>
+  <br />
+  <span style="color: #4C52AC;"><a href="{file.1}" target="_blank" title="{file.1.title}">{file.1.title}</a></span>
+
+</div>

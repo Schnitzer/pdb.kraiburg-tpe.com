@@ -1,0 +1,25 @@
+<div id="nav">
+  <ul>
+  <?php $first = true; ?>
+  {sites.1}
+    <li class="<?php if (true === $first && true === $node['highlight']) { ?>active_home <?php } else if (true === $first) { ?>home <?php } ?> {if.site.highlight}active{else}nav1{/if}" onclick="window.location.href='{site.url}'">
+      <a href="{site.url}" title="{site.title}">{site.name}</a>
+    </li>
+    <?php $first = false; ?>
+  {/sites}
+  </ul>
+</div>
+ 
+<div id="breadcrumb"{if.sites.2} class="breadcrumb_background"{/if}> 
+{if.sites.2}        
+  <ul>
+  <?php $first = true; ?>
+  {sites.2}
+    <li {if.site.highlight}class="active"{/if}>
+    <?php if (false === $first) { ?><span>&nbsp;| </span><?php } ?><a href="{site.url}" title="{site.title}">{site.name}</a>
+    </li>
+    <?php $first = false; ?>
+  {/sites}
+  </ul>
+{/if}
+</div>

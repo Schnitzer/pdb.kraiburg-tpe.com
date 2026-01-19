@@ -1,0 +1,11 @@
+<div class="naviitem {if.admin}{admin.class}{/if}" style="height:75px;width:215px;"{if.admin} id="{component.id}"{/if}>  
+  <a href="{file.1.link}" title="{file.1.title}">  
+  <img {if.admin} class="{admin.image.class}" id="{file.1.id}"{/if} src="{file.1}" width="75" height="75" title="{file.1.title}" alt="{file.1.alt}" style="width:75px;height:75px;" /></a>
+  <!--<p {if.admin} class="{admin.content.class}" id="{text.1.id}"{/if} style="float: left; width: 110px; padding-left: 6px;">{text.1}</p>-->
+  <p{if.admin} class="{admin.content.class}" id="{text.1.id}"{/if} style="float: left; width: 110px; padding-left: 6px;">{text.1} <a href="{file.1.link}" target="{file.1.target}">{contentbox.read-more}</a>
+  </p>
+</div>
+
+{component.move-left=-15}
+{file.1.label=Bild und Verlinkung}
+{text.1.label=Fließtext}

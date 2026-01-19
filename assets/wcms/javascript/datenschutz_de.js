@@ -1,0 +1,1 @@
+window.cookieconsent_options = {"message":"Diese Website verwendet Cookies. Durch die Nutzung unserer Services erkl&auml;ren Sie sich damit einverstanden, dass wir Cookies setzen. ","dismiss":"Zustimmen","learnMore":" - Mehr erfahren","link":"http://www.hagl-s.de/datenschutz/","theme":"light-bottom"};

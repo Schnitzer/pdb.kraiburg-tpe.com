@@ -1,0 +1,25 @@
+<?php
+
+$url_pdb = $this->base;
+include_once "modules/tpepdb2/vendor/tpepdb/TpePdbWeb.php";
+$tpepdb_web = new TpePdbWeb($language_code, $language_id);
+print $tpepdb_web->content();
+
+
+
+
+
+?>
+<br />
+<?php 
+if (true == TpePdbWeb::rights()) {
+  ?>
+  <script>
+    jQuery(document).ready(
+        function () {
+          removeChat();
+        }
+    );
+  </script>
+  <?php
+}

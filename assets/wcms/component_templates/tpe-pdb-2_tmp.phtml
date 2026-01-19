@@ -1,0 +1,6 @@
+<?php
+include_once "modules/tpepdb2/vendor/tpepdb/TpePdbWeb.php";
+$tpepdb_web = new TpePdbWeb($language_code, $language_id);
+print "<div>" . $tpepdb_web->content() . "</div>";
+?>
+<br />

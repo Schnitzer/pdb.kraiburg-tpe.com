@@ -1,0 +1,12 @@
+<?php  
+  $literature_language_id = 0;
+  if (true === isset($this->data['Literature']['language_id'])) {
+    $literature_language_id = $this->data['Literature']['language_id'];
+  }
+  echo $this->requestAction(
+    array('module' => 'tpe', 'controller' => 'literature', 'action' => 'frontend', 'wcms_language_id' => $language_id, 'language_id' => $literature_language_id), 
+    array('return' => 0, 'auto_render' => 1)
+  );
+?>
+<br />
+

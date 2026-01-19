@@ -1,0 +1,80 @@
+<?php
+
+$arr_language['region'] = Wcms_ContentboxController::getContenbox('contact-label-region', $language_id);
+$arr_language['country'] = Wcms_ContentboxController::getContenbox('contact-label-country', $language_id);
+$arr_language['select'] = Wcms_ContentboxController::getContenbox('contact-label-select', $language_id);
+$arr_language['forward'] = Wcms_ContentboxController::getContenbox('contact-label-forward', $language_id);
+
+// new region object
+$obj_region = new Tpe_Region();
+$obj_region->unbindModel('all');
+$arr_regions = $obj_region->fetch(
+    'all',
+    array(
+        'fields' => array(
+            'Region.id',
+            'Region.name',
+            'Region.namede',
+            'Region.namezh',
+            'Region.namees',
+            'Region.namefr',
+            'Region.namejp',
+            'Region.nameit',
+            'Region.namept',
+            'Region.namekr'
+    ),
+    'order' => array(
+        'Region.namede')
+    )
+);
+
+?>
+<?php if (true === $admin) { ?><div id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>" class="<?php if (true === $admin) { ?>ncw-sortable-item<?php } ?>"><?php } ?>
+<form id="contactform_dbp" method="post" action="">
+
+<div id="contact_right_dbp" class="distribution">
+  <div id="distribution_region_dbp">
+    <div class="tpe-input-radio-container_dbp">
+      <label for="cf_selectregion_dbp" ><?php echo $arr_language['region']; ?></label>
+      <select id="cf_selectregion_dbp" >
+          <?php foreach ($arr_regions as $region) {
+              switch ($language_code) {
+		          case 'de':
+		              $str_region = $region->getNamedeEncoded();
+		              break;
+                  case 'zh':
+                      $str_region = $region->getNamezhEncoded();
+                      break;
+                  case 'es':
+                      $str_region = $region->getNameesEncoded();
+                      break;
+                  case 'fr':
+                      $str_region = $region->getNamefrEncoded();
+                      break;
+                  case 'it':
+                      $str_region = $region->getNameitEncoded();
+                      break;
+                  case 'jp':
+                      $str_region = $region->getNamejpEncoded();
+                      break;
+                  case 'kr':
+                      $str_region = $region->getNamekrEncoded();
+                      break;
+                default:
+                $str_region = $region->getNameEncoded();
+              }
+            ?>
+          <option value="<?php echo $region->getId(); ?>" ><?php echo $str_region; ?></option>
+          <?php } ?>
+      </select>
+    </div>
+  </div>
+  <div >
+    <input id="cf_btn_dbp" type="button" value="<?php echo $arr_language['select']; ?>" class="tpe-button-small" tabindex="14" title="<?php echo $arr_language['select']; ?>" onclick="region_search_country($('#cf_selectregion_dbp').val(), '<?php echo $arr_language['country']; ?>', '<?php echo $arr_language['forward']; ?>', '<?php echo $language_code; ?>');"/>
+  </div>
+  <div id="distribution_country">&nbsp;</div>
+</div>
+
+</form>
+<br style="clear: both;" />
+<?php if (true === $admin) { ?></div><?php } ?>

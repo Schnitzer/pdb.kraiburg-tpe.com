@@ -1,0 +1,23 @@
+<section class="paragraph  paragraph--view-mode--default ">
+  <div class="container">
+    <div class="row ct-u-padding-top-80 ct-u-padding-bottom-80">
+       <div class="col-sm-6 ">
+
+<?php 
+  if (isset($_GET['regionsearch_countryname'])) {
+    $text = str_replace('{country.name}', $_GET['regionsearch_countryname'], Wcms_ContentboxController::getContenbox('region-country-responsible', $language_id)) . ' ';
+    ?>
+        <h2 <?php if (true === $admin) { ?>id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['shorttext'][1]['componentcontent_id']; ?>-shorttext-1"<?php } ?> class="h2_large <?php if (true === $admin) { ?>ncw-sortable-item<?php } ?> <?php if (true === $admin) { ?>ncw-wysiwyg-website-admin<?php } ?>"><?php echo $text; ?></h2>
+    <?php
+  } else {
+      ?>
+        <h2 <?php if (true === $admin) { ?>id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['shorttext'][1]['componentcontent_id']; ?>-shorttext-1"<?php } ?> class="h2_large <?php if (true === $admin) { ?>ncw-sortable-item<?php } ?> <?php if (true === $admin) { ?>ncw-wysiwyg-website-admin<?php } ?>"><?php print $component['shorttext'][1]['content']; ?></h2>
+    <?php
+  }
+?>
+
+<?php if (true === $admin) { ?><input type="hidden" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['shorttext'][1]['componentcontent_id']; ?>-shorttext-1-background" value="#EBEBEB" /><?php } ?>
+<?php if (true === $admin) { ?><input type="hidden" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['shorttext'][1]['componentcontent_id']; ?>-shorttext-1-mode" value="simple" /><?php } ?>
+
+<?php if (true === $admin) { ?><input type="hidden" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-move-left" value="-16" /><?php } ?>
+</div></div></div></section>

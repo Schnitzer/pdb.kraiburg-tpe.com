@@ -1,0 +1,46 @@
+<!-- elements/share_dialog.phtml -->
+
+	<div class="pdb-share-dialog">
+		<div class="close" onclick="close_share_dialog();">X</div>
+		<div class="badge">
+			<div style="background-image:url('<?php echo $website_url; ?>/sites/default/files/assets/pattern/blue.png')" class="pattern-outer">
+				<div class="smallspace-wrapper clearfix pattern-inner">
+					<div class="paragraph clearfix paragraph--type--textblock paragraph--view-mode--default col-sm-24">
+						<h4 class="subheadline">
+							<?php print Wcms_ContentboxController::getContenbox('pdb2-share-file', $language_id); ?> <span class="share-file-name"></span>
+						</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+    
+		<div class="row">
+		
+		
+			
+		
+		</div>
+		
+			<div class="row inputarea">
+				<div class="col-xs-24">
+					
+					<input type="email" placeholder="<?php print Wcms_ContentboxController::getContenbox('contact-label-send-to', $language_id); ?>" name="customer-email" id="customer-email" >
+					<input type="text" placeholder="<?php print Wcms_ContentboxController::getContenbox('contact-label-email-subject', $language_id); ?>" name="customer-subject" id="customer-subject" >
+					<textarea  placeholder="<?php print Wcms_ContentboxController::getContenbox('contact-label-message', $language_id); ?>" name="customer-text" id="customer-text" ></textarea>
+					<?php 
+					$email = $this->getUserEmail();
+			
+					if ($email == false) { ?>
+					  <input type="email" placeholder="<?php print Wcms_ContentboxController::getContenbox('contact-label-e-mail', $language_id); ?>" name="your-email" id="your-email">
+					<?php } else {?>
+					  <input type="email" placeholder="<?php print Wcms_ContentboxController::getContenbox('contact-label-e-mail', $language_id); ?>" name="your-email" id="your-email" value="<?php echo $email; ?>">
+					<?php }?>
+					<input type="hidden" name="file_link" id="file_link">
+					<input type="hidden" name="file_ls" id="file_ls">
+					<input type="hidden" name="file_dm" id="file_dm"> 
+					<div class="send" name="send" onclick="send_share();"><?php print Wcms_ContentboxController::getContenbox('contact-label-send', $language_id); ?></div>
+				</div>
+			</div>
+		
+	</div>
+</div>

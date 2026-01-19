@@ -1,0 +1,14 @@
+/*
+  Modules
+------------------------------------ */
+.h2_large {
+    line-height: 24px !important;
+    padding: 0 16px 6px 16px;
+}
+
+/*
+  Layout
+------------------------------------ */
+#imprint {
+    margin-top: 20px;
+}

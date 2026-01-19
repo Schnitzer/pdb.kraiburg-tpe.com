@@ -1,0 +1,84 @@
+<?php
+$arr_language = array();
+
+$warning_css_class = array(
+    'email' => false
+);
+
+$arr_language['send'] = Wcms_ContentboxController::getContenbox('contact-label-send', $language_id);
+$arr_language['email'] = Wcms_ContentboxController::getContenbox('contact-label-e-mail', $language_id);
+$arr_language['deregistration_successful'] = Wcms_ContentboxController::getContenbox('contact-label-deregistration-successful', $language_id);
+
+$data = array('email' => false);
+$success = false;
+if (true === isset($_POST['unregister'])) {
+    
+    // array to validate
+    $fields = array(
+        'email' => array('rules' => array('Email'), 'required' => true)
+    );
+    // new validator class
+    $validator = new Ncw_Validator($fields);
+    $data = $_POST['unregister'];
+    // validate user data
+    list($success, $invalid_fields) = $validator->validate($data);
+    if (true === $success) {
+      /*  
+        $contact = new Contacts_Contact();
+        $contact_email = new Contacts_Email();
+        $contactExists = $contact_email->findBy(
+            'email',
+            $data['email'],
+            array(
+                'fields' => array('Email.contact_id')
+            )
+        );
+        if (false !== $contactExists) {
+            $contact->setId($contactExists->getContactId());
+            $contact->delete();
+        }
+    */ 
+    $this->requestAction(
+      array(
+        'module' => 'Newsletter',
+        'controller' => 'Recipient',
+        'action' => 'unsubscribe',
+      ),
+      array(
+        'url' => array(
+          'email' => $data['email'],
+        )
+      )
+    );        
+    }
+
+    // required
+    if(true == isset($invalid_fields['email'])) {
+        $warning_css_class['email'] = ' tpe-warning-input';
+        $data['email'] = '';
+    }
+
+}
+?>
+<?php if (true === $admin) { ?><div id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>" class="<?php if (true === $admin) { ?>ncw-sortable-item<?php } ?>"><?php } ?>
+<?php if (true === $success) {
+  $data = array();
+  ?>
+  <div class="continuous_text"><?php echo $arr_language['deregistration_successful']; ?></div>
+<?php } else {?>
+
+<form id="contactform_urn" method="post" action="">
+    <div id="contact_left_urn">
+      <div>
+        <label for="cf_email_urn" class="cf_no_margin <?php echo $warning_css_class['email']; ?>"  ><?php echo $arr_language['email']; ?> *</label>
+        <input id="cf_email_urn" name="unregister[email]" class="cf_no_margin" type="text" title="<?php echo $arr_language['email']; ?>" value="<?php echo $data['email']; ?>" tabindex="10" />
+      </div>
+
+      <div >
+        <input id="cf_btn_urn" type="submit" value="<?php echo $arr_language['send']; ?>" class="tpe-button-small" tabindex="11" title="<?php echo $arr_language['send']; ?>" />
+      </div>
+    </div>
+</form>
+<br style="clear: both;" />
+<?php }?>
+<?php if (true === $admin) { ?></div><?php } ?>

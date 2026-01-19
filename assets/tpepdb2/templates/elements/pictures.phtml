@@ -1,0 +1,208 @@
+<?php if (true === $is_pdf) { ?>
+
+<?php
+if ($type == "compound") {
+    $pictures = array_merge($documents, $serie['documents']);
+} else {
+    $pictures = $documents;
+}
+foreach ($pictures as $picture) { ?>
+    <?php if ($picture['type'] == '' ) { ?>
+        <?php
+            $pciture_path = $picture['path'];
+            //if (false === $is_pdf) {
+                $doc_type = explode(".", $picture["name"]);
+                $doc_type = array_pop($doc_type);
+                $additional = "";
+                if (true === $is_pdf) {
+                    $additional = "pdf";
+                }
+	
+								$arr_pic_name = explode('/CATMAN/', $picture["name"]);
+	$has_picture = true;
+	//$pdf->AddPage();
+	$picture["name"] = $arr_pic_name[1];
+                $new_pic_path = ASSETS . DS . 'tpepdb2' . DS . 'imported_documents' . DS . $picture["name"];
+
+                if (false === is_file($new_pic_path)) {
+
+                    if (false !== strstr($picture['headline'], "Tests") || false !== strstr($picture['name'], "Flowspiral")) {
+                        $width = 400;
+                    } else {
+                        $width = 1000;
+                    }
+                    $height = 200;
+
+                    $new_image = resizeImage($picture['path'], $width, $height);
+                    imagejpeg($new_image, $new_pic_path, 100);
+                }
+
+                $size = getimagesize($new_pic_path);
+                $pciture_path = Ncw_Configure::read('Project.url') . DS . $new_pic_path;
+	
+								if ($size[1] > 130 ) {
+									$faktor = 130 / (int) $size[1];
+									$size[1] = (int) $size[1] * $faktor;
+									$size[0] = (int) $size[0] * $faktor;
+								}
+            //}
+        ?>
+        <div nobr="true" style="<?php if (true === $is_pdf) { ?>width: 100%;<?php } else {  ?>width: <?php print $size[0] + 12; ?>px;padding: 5px;<?php } ?> font-size: <?php print $font_size_table; ?>;"><?php if (false === empty($picture['headline'])) { ?><b style="font-size: <?php print (int) $font_size_table + 4; ?>px"><?php print $picture['headline']; ?></b>
+            <br /><?php if (true === $is_pdf) { ?><br /><?php } ?><?php } ?>
+								<?php //var_dump($size); ?>
+                <img src="<?php print $pciture_path; ?>" height="<?php echo $size[1]; ?>" width="<?php echo $size[0]; ?>" alt="<?php print $picture['name']; ?>" title="<?php print $picture['name']; ?>" />
+            <br />
+            <span><?php if (false === empty($picture['text'])) { print trim(str_replace(array("<P>", "</P>"), array("", "<br />"), $picture['text'])); } ?></span>
+        </div>
+        <br />
+    <?php } ?>
+<?php } ?>
+<?php
+foreach ($pictures as $picture) { ?>
+    <?php if ($picture['type'] == 'CAT' ) { ?>
+        <?php
+            $pciture_path = $picture['path'];
+            //if (false === $is_pdf) {
+                $doc_type = explode(".", $picture["name"]);
+                $doc_type = array_pop($doc_type);
+                $additional = "";
+                if (true === $is_pdf) {
+                    $additional = "pdf";
+                }
+                $new_pic_path = ASSETS . DS . 'tpepdb2' . DS . 'imported_documents' . DS . 'tmp' . DS . md5(str_replace('.' . $doc_type, '', $picture["name"]) . $language . $additional) . '.' . $doc_type;
+
+                if (false === is_file($new_pic_path)) {
+                    if (false !== strstr($picture['headline'], "Tests") || false !== strstr($picture['name'], "Flowspiral")) {
+                        $width = 400;
+                    } else {
+                        $width = 1000;
+                    }
+                    $height = 450;
+                    $new_image = resizeImage($picture['path'], $width, $height);
+                    imagejpeg($new_image, $new_pic_path, 100);
+                }
+
+                $size = getimagesize($new_pic_path);
+                $pciture_path = Ncw_Configure::read('Project.url') . DS . $new_pic_path;
+            //}
+        ?>
+        <div nobr="true" style="<?php if (true === $is_pdf) { ?>width: 100%;<?php } else {  ?>width: <?php print $size[0] + 12; ?>px;padding: 5px;<?php } ?> font-size: <?php print $font_size_table; ?>;"><?php if (false === empty($picture['headline'])) { ?><b style="font-size: <?php print (int) $font_size_table + 4; ?>px"><?php print $picture['headline']; ?></b>
+            <br /><?php if (true === $is_pdf) { ?><br /><?php } ?><?php } ?>
+            <?php if (false === $is_pdf) { ?><div style="margin-top: 5px; margin-bottom: 5px; padding: 5px; border: 1px solid #ccc;background-color: #fff;text-align: center;"><?php } ?>
+                <img src="<?php print $pciture_path; ?>"  alt="<?php print $picture['name']; ?>" title="<?php print $picture['name']; ?>" style="height: 400px" />
+            <?php if (false === $is_pdf) { ?></div><?php } else { ?><br /><?php } ?>
+            <span><?php if (false === empty($picture['text'])) { print trim(str_replace(array("<P>", "</P>"), array("", "<br />"), $picture['text'])); } ?></span>
+        </div>
+        <br />
+    <?php } ?>
+<?php } ?>
+
+
+<?php 
+} else { // Ende PDF ANFANG HTML
+?>
+
+PICS
+
+<link href="http://www.kraiburg-tpe.com/pdb/assets/wcms/js/plugins/lightbox/css/lightbox.css" rel="stylesheet">
+<section class="compound-images" >
+  <div class="container">
+  	<div>
+
+<?php
+if ($type == "compound") {
+    $pictures = array_merge($documents, $serie['documents']);
+} else {
+    $pictures = $documents;
+}
+foreach ($pictures as $picture) { ?>
+    <?php if ($picture['type'] == '' ) { ?>
+        <?php
+            $pciture_path = $picture['path'];
+            //if (false === $is_pdf) {
+                $doc_type = explode(".", $picture["name"]);
+                $doc_type = array_pop($doc_type);
+                $additional = "";
+                if (true === $is_pdf) {
+                    $additional = "pdf";
+                }
+                $new_pic_path = ASSETS . DS . 'tpepdb2' . DS . 'imported_documents' . DS . 'tmp' . DS . md5(str_replace('.' . $doc_type, '', $picture["name"]) . $language . $additional) . '.' . $doc_type;
+
+                if (false === is_file($new_pic_path)) {
+
+                    if (false !== strstr($picture['headline'], "Tests") || false !== strstr($picture['name'], "Flowspiral") ) {
+                       // $width = 400;
+                    } else {
+                       // $width = 400;
+                    }
+                    $height = 260;
+
+                    $new_image = resizeImage($picture['path'], $width, $height);
+                    imagejpeg($new_image, $new_pic_path, 100);
+                }
+
+                $size = getimagesize($new_pic_path);
+                $pciture_path = Ncw_Configure::read('Project.url') . DS . $new_pic_path;
+            //}
+        ?>
+		<div class="col-sm-6 tpe-img-container-container">
+		  <div class="tpe-img-container">
+            <img src="<?php print $pciture_path; ?>"  alt="<?php print $picture['name']; ?>" title="<?php print $picture['name']; ?>" />
+          </div>
+          <span>
+          <b style="font-size: <?php print (int) $font_size_table + 4; ?>px"><?php print $picture['headline']; ?></b>
+            <?php if (false === empty($picture['text'])) { print trim(str_replace(array("<P>", "</P>"), array("", "<br />"), $picture['text'])); } ?>
+          </span>
+        </div>
+    <?php } ?>
+<?php } ?>
+<?php
+foreach ($pictures as $picture) { ?>
+    <?php if ($picture['type'] == 'CAT' ) { ?>
+        <?php
+            $pciture_path = $picture['path'];
+            //if (false === $is_pdf) {
+                $doc_type = explode(".", $picture["name"]);
+                $doc_type = array_pop($doc_type);
+                $additional = "";
+                if (true === $is_pdf) {
+                    $additional = "pdf";
+                }
+                $new_pic_path = ASSETS . DS . 'tpepdb2' . DS . 'imported_documents' . DS . 'tmp' . DS . md5(str_replace('.' . $doc_type, '', $picture["name"]) . $language . $additional) . '.' . $doc_type;
+
+                if (false === is_file($new_pic_path)) {
+                    if (false !== strstr($picture['headline'], "Tests") || false !== strstr($picture['name'], "Flowspiral") ) {
+                        $width = 400;
+                    } else {
+                        $width = 800;
+                    }
+                    $height = 260;
+                    $new_image = resizeImage($picture['path'], $width, $height);
+                    imagejpeg($new_image, $new_pic_path, 100);
+                }
+
+                $size = getimagesize($new_pic_path);
+                $pciture_path = Ncw_Configure::read('Project.url') . DS . $new_pic_path;
+            //}
+        ?>
+			
+			<div class="col-sm-12 tpe-img-container-container">
+				<div class="tpe-img-container">
+                    <img src="<?php print $pciture_path; ?>"  alt="<?php print $picture['name']; ?>" title="<?php print $picture['name']; ?>" />
+                </div>
+                <span class="col-sm-12"><?php if (false === empty($picture['text'])) { print trim(str_replace(array("<P>", "</P>"), array("", "<br />"), $picture['text'])); } ?></span>
+            	</div>
+            
+       
+    <?php } ?>
+<?php } ?>
+			
+			
+</div>
+</div>
+</section>
+<script src="http://www.kraiburg-tpe.com/pdb/assets/wcms/js/plugins/lightbox/js/lightbox.min.js"></script>
+
+<?php 
+} // ENDE HTML
+?>

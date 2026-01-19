@@ -1,0 +1,104 @@
+<?php include_once '_head.phtml'; ?>
+<?php
+if (true === isset($_GET['c_id'])) {    
+    $compound_id = (int) $_GET['c_id'];
+    print $this->requestAction(
+        array(
+            'controller' => 'compoundsearch',
+            'action' => 'showCompound'
+         ),
+        array(
+            'pass' => array($compound_id, $language_code, $language_id),
+            'form' => $this->params['form']
+        )
+    );
+}  else {
+?>
+<div id="article_large">
+    <?php if (true == isset($_GET["q"])) { ?>
+    <h2 class="h2_large">
+      <?php
+          if ($language_code == 'de') {
+              echo T_('Produktdatenbank');
+          } else if ($language_code == 'en') {
+              echo T_('Product-Database');
+          } else if ($language_code == 'fr') {
+              echo T_('Produit Database');
+          } else if ($language_code == 'it') {
+              echo T_('Dati sui prodotti');
+          } else if ($language_code == 'es') {
+              echo T_('Búsqueda de productos');
+          } else {
+              //echo T_('Compound Search');
+              echo Wcms_ContentboxController::getContenbox('compound-id-search', $language_id);
+          }
+      ?>
+    </h2>
+  <?php } ?>
+    <?php if (true === isset($_GET["q"]) && strlen($_GET["q"]) >= 2) { ?>
+        <div class="continuous_text">
+        <?php
+        print $this->requestAction(
+            array(
+                'controller' => 'compoundsearch',
+                'action' => 'searchCompounds'
+            ),
+            array(
+                'pass' => array(Ncw_Library_Sanitizer::escape($_GET["q"]))
+            )
+        );  
+        ?>
+        </div>
+    <?php } else if (strlen($_GET["q"]) < 2 && true == isset($_GET["q"])) { ?>
+        <div class="continuous_text">
+            <?php echo Wcms_ContentboxController::getContenbox('to-many-results', $language_id); ?>
+        </div>
+    <?php } else { ?>
+    <!--
+    <form>
+        <input name="q" />  
+        <input type="submit" value="<?php echo T_('Search'); ?>" />
+    </form>
+    -->
+      <!--  Big Product search -->
+      <div class="horizontal_gallery_big search">
+        <h2><?php print Wcms_ContentboxController::getContenbox('product-database-search', $language_id); ?></h2>
+        <div class="continuous_text">
+            <?php 
+            if (strlen(Wcms_ContentboxController::getContenbox('product-database-information', $language_id)) > 2) {
+                print Wcms_ContentboxController::getContenbox('product-database-information', $language_id); 
+            } else {
+              ?>
+                You are searching for information about special compounds? Then use our product database! Beside the technical datasheets you can find corresponding processing guidelines, safety                       datasheets and further required documents here.
+              <?php
+            }
+            ?>
+        </div>
+        <div>
+            <form>
+                <input name="q" style="float: none; width: auto; width: 200px; height:17px;" />
+              <input type="submit" value="<?php echo Wcms_ContentboxController::getContenbox('search', $language_id); ?>" style="background: url("<?php print $this->base; ?>/assets/wcms/files/bg_cf_button.gif") no-repeat scroll 0 0 #969696; width: 96px;" />
+            </form>
+        </div>
+    </div>
+    <?php } ?>
+</div>
+<div id="aside_right">
+  <?php if (true == isset($_GET["q"])) { ?>
+    <div class="box_right search">
+        <h3><?php print Wcms_ContentboxController::getContenbox('product-database-search', $language_id); ?></h3>
+        <div>
+            <form>
+                <input name="q" style="float: none; width: auto;" />
+                <input type="submit" value="search" style="float: none; width: auto;" />
+            </form>
+        </div>
+    </div>
+  <?php }?>
+    <?php include_once '_search_news.phtml'; ?>
+    <?php if (true === $admin) { ?><div id="ncw-area-2" class="ncw-sortable"><?php } if (true === isset($areas[2])) { foreach ($areas[2] as $area =>  $content) { print $content; } } if (true === $admin) { ?><div class="ncw-area-clear"></div></div><?php } ?>
+    <?php include_once '_toolbox_login.phtml'; ?>
+</div>
+<?php } ?>
+<?php include_once '_search_news.phtml'; ?>
+<?php include_once '_footer.phtml'; ?>

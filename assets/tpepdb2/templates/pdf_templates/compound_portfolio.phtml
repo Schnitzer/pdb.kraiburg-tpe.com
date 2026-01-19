@@ -1,0 +1,66 @@
+<?php $pdf->AddPage(); ?>
+<?php ob_start(); ?>
+
+<?php
+	if ( $_SESSION['datasheetmode'] == 'datasheet' ) {
+		include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "pdf_templates"  . DS . "compound_head.phtml";
+	}
+?>
+<?php
+	if ( $_SESSION['datasheetmode'] == 'datasheet' ) {
+		include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "pdf_templates"  . DS . "compound_properties.phtml";
+	}
+?>
+<?php $pdf->writeHTML(ob_get_clean(), true, false, false, false, ""); ?>
+
+<?php if (count($documents) > 0 || count($serie['documents']) > 0) {?>
+	<?php //$pdf->AddPage(); ?>
+	<?php ob_start(); 
+		$has_picture = false;
+	?>
+  <?php 
+		if ( $_SESSION['datasheetmode'] != 'pg' ) {
+			include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements"  . DS . "pictures.phtml"; 
+		}
+	?>
+	<?php if ($has_picture == true) {
+	//$pdf->AddPage();
+	}?>
+	<?php $pdf->writeHTML(ob_get_clean(), true, false, false, false, ""); ?>
+<?php } ?>
+
+<?php //$pdf->AddPage(); ?>
+<?php ob_start(); 
+$processingnotetypenumber = 1;
+?>
+
+<br style="height:1px;line-height:1px;" />
+<?php if ( $_SESSION['datasheetmode'] == 'pg' ) { ?>
+<?php 
+	$pdf->header_type = '<div style="font-size: 22px; color: #fff;"><b>' . Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-guideline', $language_id) . '</b> ('. Wcms_ContentboxController::getContenbox($processing_type, $language_id) . ')</div>';
+?>
+<?php 
+	$processingnotes = $processingnotes_all['processing_im'];
+	//var_dump($processingnotes_all['processing_ex']);
+	include ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound" . DS . "processing_note.phtml"; ?>
+<?php } ?>
+<?php $pdf->writeHTML(ob_get_clean(), true, false, false, false, ""); 
+$processing_type = 'extrusion';
+$processingnotes = $processingnotes_all['processing_ex'];
+$pdf->header_type = '<div style="font-size: 22px; color: #fff;"><b>' . Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-guideline', $language_id) . '</b> ('. Wcms_ContentboxController::getContenbox($processing_type, $language_id) . ')</div>';
+
+if ($count > 1 && isset($processingnotes_all['processing_im']) && isset($processingnotes_all['processing_ex'])) {
+		$pdf->AddPage();
+}
+
+ob_start(); 
+$processingnotes = $processingnotes_all['processing_ex'];
+?>
+<br style="height:1px;line-height:1px;" />
+<?php if ( $_SESSION['datasheetmode'] == 'pg' ) { 
+
+?>
+<?php include ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound" . DS . "processing_note.phtml"; ?>
+<?php } ?>
+<?php $pdf->writeHTML(ob_get_clean(), true, false, false, false, ""); ?>
+

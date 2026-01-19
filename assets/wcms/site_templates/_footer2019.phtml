@@ -1,0 +1,63 @@
+<?php
+
+$url_website = 'https://www.kraiburg-tpe.com';
+?>
+
+        
+
+
+<!--<script src="<?php echo $url_website; ?>/core/assets/vendor/jquery/jquery.min.js?v=3.2.1"></script>-->
+<?php if ($_GET['sid'] > 0 || $_GET['cid'] > 0) { ?>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+
+
+
+<?php } ?>
+
+<!--
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>$.fn.slider = false;</script>
+<script src="https://pdb2.kraiburg-tpe.com/assets/wcms/js/bootstrap-slider.min.js?time=' . date('mdH') . '" type="text/javascript"></script>
+
+<script>
+ // $("#ex16b").slider({ min: 0, max: 10, value: 0, focus: true });
+  //var sliderB = new Slider("#ex16b", { min: 0, max: 10, value: [0, 10], focus: true });
+	
+  $("#rangeHardnessMax").slider({ min: 0, max: 100,  value: [20, 80], focus: true, });
+	
+  $("#rangeHardnessMin").slider({ min: 0, max: 100,  value: [20, 80], focus: true,	formatter: function(value) {
+		//$('#rangeHardnessText').val ( $('#rangeHardness').val() );
+    //var str_slider_hardness = $('#rangeHardness').val();
+    //var arr_slider_hardness =  str_slider_hardness.split(',');
+    
+    //$('.min-slider-handle').html(arr_slider_hardness[0]);
+    
+    //$('.max-slider-handle').html(arr_slider_hardness[1]);
+	}, });
+
+	
+	$('.max-slider-handle').css('color', '#ffffff');
+	$('.min-slider-handle').css('color', '#ffffff');
+  $('.min-slider-handle').html(20);
+  $('.max-slider-handle').html(80);
+
+</script>-->
+<!-- Für Range Slider nötig -->
+ <link rel="stylesheet" href="https://pdb.kraiburg-tpe.com/assets/wcms/css/jquery-ui.css">
+  <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+  <script src="/assets/wcms/javascript/ncwslider.js"></script>
+
+
+
+
+<?php
+// include('_language_switch.php');
+?>
+
+

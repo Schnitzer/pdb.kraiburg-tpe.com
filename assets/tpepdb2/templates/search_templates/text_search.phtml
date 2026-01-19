@@ -1,0 +1,126 @@
+<?php 
+// Hier muss die Curl Adresse rein
+
+$url_pdb = Ncw_Configure::read('Project.url');
+/*
+$add_to_url = '';
+foreach($_GET as $key=>$value)
+{
+    if ($i > 0) {
+      $add_to_url .= '&';
+    } else {
+      $add_to_url .= '?';
+    }
+    $add_to_url .= $key."=".$value;
+  $i++;
+}*/
+
+foreach($_GET as $key=>$value)
+{
+	if ($key == 'SID' || $key == 'CID') {
+		//if ($true == strstr($add_to_url, "?")) {
+			$add_to_url .= '&';
+		//} else {
+		//	$add_to_url .= '?';
+		//}
+			$add_to_url .= $key."=".$value;
+	}
+    
+  $i++;
+}
+
+?>
+<section class="serie-compounds " >
+	<div class="container">
+          <div class="row ct-u-padding-top-30 ct-u-padding-bottom-30">
+          	<div class="pdb2_search_list">
+<div class="bigspace-wrapper clearfix pattern-inner">
+	<div class="paragraph clearfix paragraph--type--textblock paragraph--view-mode--default col-sm-24">
+		<h2 class="headline-2 text-align-center">
+<?php print Wcms_ContentboxController::getContenbox('pdb---search---search-results', $language_id); ?>	
+		</h2>
+		<h4 class="subheadline text-align-center"></h4>
+	</div>
+</div>
+		<?php 
+		$counter = 1;
+							
+							//var_dump($series);
+							
+		if (count($series) > 0) { 
+		?>
+    <table class="compound-table pdb-list-search" cellspacing="0" cellpadding="0">
+    	<thead>
+    		<tr class="headline light-font">
+        <th><?php print Wcms_ContentboxController::getContenbox('pdb---series', $language_id); ?></th>
+        <th class="pdb-list-search-small-hide">&nbsp;</th>
+        <th><?php print Wcms_ContentboxController::getContenbox('pdb---brand', $language_id); ?></th>
+        </tr>
+       </thead>
+        <?php foreach ($series as $serie) { ?>
+        <tr>
+            <td>
+               <b><a href="<?php print $url_pdb . $add_to_url . ''; ?>&sid=<?php print $serie["id"]; ?><?php if ($language == "it") { ?>&amp;ls=it<?php } ?><?php if ($language == "pl") { ?>&amp;ls=pl<?php } ?>" target="_self"><?php print $serie["name"]; ?></a></b>
+            </td>
+            <td class="pdb-list-search-small-hide">
+                <?php if (true === isset($serie["text1"])) { print $serie["text1"]; } ?>
+            </td>
+            <?php 
+        		  if ($language_id != 3 || strlen($serie["brand"]["name_zh"]) < 1) { // 3 ist Chinesisch und soll den eintrag name_zh benutezn
+        	  ?>
+              <td><?php print str_replace('®', '<sup>®</sup>', $serie["brand"]["name"]); ?></td>
+            <?php } else { ?>
+              <td><?php print str_replace('®', '<sup>®</sup>', $serie["brand"]["name_zh"]); ?></td>
+            <?php }?>
+        </tr>
+        <tr class="pdb-list-search-big-hide">
+        	<td colspan="2"><?php if (true === isset($serie["text1"])) { print $serie["text1"]; } ?></td>
+        </tr>
+	        <?php if (true == is_int($counter / 2)) {?>
+		        <tr class="pdb-list-search-small-row-hide">
+		        	<td colspan="3"><hr /></td>
+		        </tr>
+		        <tr class="pdb-list-search-big-row-hide">
+		        	<td colspan="2"><hr /></td>
+		        </tr>
+	        <?php } ?>
+        <?php 
+        	$counter++;
+        } 
+        ?>
+    </table>
+    <?php } ?>
+
+    <?php if (count($compounds) > 0) { ?>
+        <table class="compound-table pdb-list-search" cellspacing="0" cellpadding="0">
+          <thead>
+    		   <tr class="headline light-font">
+            <th><?php print Wcms_ContentboxController::getContenbox('pdb---compound', $language_id); ?></th>
+            <th><?php print Wcms_ContentboxController::getContenbox('pdb---series', $language_id); ?></th>
+            <th><?php print Wcms_ContentboxController::getContenbox('pdb---brand', $language_id); ?></th>
+					 </tr>
+          </thead>
+            <?php foreach ($compounds as $compound) { ?>
+            <tr>
+                <td>
+                    <a href="<?php print $url_pdb; ?>?cid=<?php print $compound["id"]; ?><?php if ($language == "it") { ?>&amp;ls=it<?php } ?><?php if ($language == "pl") { ?>&amp;ls=pl<?php } ?>" target="_self"><?php print $compound["name"]; ?></a></p>
+                </td>
+                <td>
+                    <a href="<?php print $url_pdb; ?>?sid=<?php print $compound["serie"]["id"]; ?><?php if ($language == "it") { ?>&amp;ls=it<?php } ?><?php if ($language == "pl") { ?>&amp;ls=pl<?php } ?>" target="_self"><?php print $compound["serie"]["name"]; ?></a>
+                </td>
+		            <?php 
+		        		  if ($language_id != 3 || strlen($serie["brand"]["name_zh"]) < 1) { // 3 ist Chinesisch und soll den eintrag name_zh benutezn
+		        	  ?>
+                	<td><?php print str_replace('®', '<sup>®</sup>', $compound["brand"]["name"]); ?></td>
+                <?php } else { ?>
+                  <td><?php print str_replace('®', '<sup>®</sup>', $compound["brand"]["name_zh"]); ?></td>
+                <?php } ?>
+            </tr>
+            <?php } ?>
+        </table>
+    <?php } ?>
+</div>
+
+</div>
+</div>
+</section>
