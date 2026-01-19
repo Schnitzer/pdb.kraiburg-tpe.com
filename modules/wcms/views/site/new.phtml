@@ -1,0 +1,53 @@
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+        <li class="ncw-main-tab"><a href="#"><?php print T_('New site'); ?></a></li>
+    </ul>
+    <div class="ncw-main-tab-contents">
+        <div class="ncw-main-tab-content">
+            <?php print $this->form->create('ncw-site', array('onsubmit' => 'return false;')); ?>
+            <div class="ncw-input-container">
+                <label class="ncw-label"><?php print T_('Name in URL'); ?></label>
+                <div class="ncw-disabled"><?php print $this->base; ?>/<span id="ncw-site-meta-name"></span></div>
+            </div>
+            <?php print $this->form->input("name", array('maxlength' => 100, 'type' => 'hidden')); ?>
+            <?php print $this->form->input("Sitelanguage.name", array('maxlength' => 100, 'title' => T_('Title and navigation name of the translation(s)'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Name')))); ?>
+            <?php print $this->form->input("sitetype_id", array('type' => 'select', 'options' => $this->sitetypes, 'title' => T_('Choose a sitetype. For example redirect if you want this site to redirect to a other site'), 'class' => 'ncw-select', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Site type')))); ?>
+            <?php print $this->form->input("sitetemplate_id", array('type' => 'select', 'options' => $this->arr_sitetemplates, 'title' => T_('Look of the site'), 'class' => 'ncw-select', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Site template')))); ?>
+            <div class="ncw-input-container">
+                <label class="ncw-label"><?php print T_('Navigations'); ?></label>
+                <div class="ncw-radios-checkbox">
+                <?php $count = 0; ?>
+                <?php foreach ($this->arr_navtemplates as $navigation_name => $navigation_id) { ?>
+                    <input type="checkbox" value="<?php print $navigation_id; ?>" name="data[SiteNavtemplate][<?php print $count; ?>][navtemplate_id]" id="site_navtemplate_navtemplate_id_<?php print $navigation_id; ?>"/>
+                    <label for="site_navtemplate_navtemplate_id_<?php print $navigation_id; ?>"><?php print $navigation_name; ?></label>
+                    <?php ++$count; ?>
+                <?php } ?>
+                </div>
+            </div>
+            <div class="ncw-input-container">
+                <label for="site_parent_id" class="ncw-label"><?php echo T_('Parent site'); ?></label>
+                <select id="site_parent_id" title="<?php echo T_('Where this site will be located'); ?>" name="data[Site][parent_id]" class="ncw-select">
+                    <?php print $this->parent_options; ?>
+                </select>
+            </div>
+            <?php if ($this->num_languages > 1) { ?>
+                <div class="ncw-input-container">
+                    <label class="ncw-label">add in following languages</label>
+                    <div class="ncw-radios-checkbox">
+                    <?php foreach ($this->languages as $language) { ?>
+                        <input type="checkbox" checked="checked" value="1" name="data[Sitelanguage][languages][<?php print $language['id']; ?>]" id="sitelanguage_languages_<?php print $language['id']; ?>"/>
+                        <label for="sitelanguage_languages_<?php print $language['id']; ?>"><?php print $language['name']; ?></label>
+                    <?php } ?>
+                    </div>
+                </div>
+            <?php } ?>
+            <?php print $this->form->end(); ?>
+        </div>
+    </div>
+</div>
+<div class="ncw-status-action-bar">
+    <div class="ncw-status-message"></div>
+    <ul class="ncw-actions">
+        <li class="ncw-action"><a href="#" rel="wcms/site" class="ncw-new-trigger-ajax ncw_save_icon"><?php print T_('Save'); ?></a></li>
+    </ul>
+</div>

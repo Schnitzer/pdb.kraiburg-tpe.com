@@ -1,0 +1,23 @@
+<div class="ncw-left">
+    <div class="ncw-accordion">
+        <h3 class="ncw-accordion-header current"><?php print T_('Language'); ?></h3>
+        <div class="ncw-accordion-content ncw-accordion-current">
+            <?php echo $this->form->create('ncw-language-search', array('onsubmit' => 'ncw.tpe.language.search(); return false;')); ?>
+            <div class="ncw-input-container-small">
+                <label class="ncw-label-small" for="contact_search"><?php print T_('Search'); ?></label>
+                <input id="language_search" class="ncw-input-small" type="text" title="<?php print T_('Search'); ?>" value="" name="s"/>
+            </div>
+            <input type="submit" style="display: none;"/>
+            <p class="ncw-accordion-content-part-dark">
+                <a href="javascript: ncw.tpe.language.search();" class="ncw_text_button_search"><?php print T_('Search'); ?></a>
+            </p>
+            <?php echo $this->form->end(); ?>
+            <?php //if (true === $this->permissions['/tpe/language/new']) { ?>
+                <p class="ncw-accordion-content-part-dark">
+                    <a href="javascript: ncw.tpe.language.loadNew();" class="ncw_text_button_add"><?php print T_('New language'); ?></a>
+                </p>
+            <?php //} ?>
+        </div>
+    </div>
+</div>
+<div class="ncw-right"></div>

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="Website" de_DE="Webseite" version="1.0" requires="files"  url="wcms/site/all" permission_name="wcms" assets_folder_name="wcms">
+	
+	<mkdir dir="css" />
+	<mkdir dir="javascript" />
+	<mkdir dir="site_templates" />
+	<mkdir dir="nav_templates" />
+	<mkdir dir="component_templates" />
+	<mkdir dir="errors" />
+	<mkdir dir="files" />
+	<mkdir dir="images" />
+	
+	<mkfile file="css/admin.css" />
+	<mkfile file="css/errorpage.css" />
+	<mkfile file="css/wysiwyg.css" />
+	<mkfile file="css/styles.css" />
+	<mkfile file="errors/403.html">
+		<![CDATA[
+		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+		<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+		    <head>
+		
+		    <title>Error 403</title>
+		
+		    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		    <meta http-equiv="content-language" content="en" />
+		
+		    <meta http-equiv="cache-control" content="no-cache" />
+		
+		    </head>
+		    <body>
+		        <h1>Error 403</h1>
+		        <p>We'r sorry. You haven't got the permission to access this site!</p>
+		    </body>
+		</html>
+		]]>
+	</mkfile>
+	<mkfile file="errors/404.html">
+		<![CDATA[
+		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+		<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+		    <head>
+		
+		    <title>Error 404</title>
+		
+		    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		    <meta http-equiv="content-language" content="en" />
+		
+		    <meta http-equiv="cache-control" content="no-cache" />
+		
+		    </head>
+		    <body>
+		        <h1>Error 404</h1>
+		        <p>We'r sorry. The Web address you entered is not a functioning page on
+		        our site!</p>
+		    </body>
+		</html>
+		]]>
+	</mkfile>		
+	<mkfile file=".htaccess">
+		<![CDATA[
+		<IfModule mod_rewrite.c>
+		    RewriteEngine On
+		    RewriteCond %{REQUEST_FILENAME} !-d
+		    RewriteCond %{REQUEST_FILENAME} !-f
+			RewriteRule ^(.*)$ ../../index.php?url=$1&%{QUERY_STRING} [QSA,L]
+		</IfModule>
+		]]>
+	</mkfile>
+	
+	<mkfile file="site_templates/standardvorlage_tmp.phtml">
+		<![CDATA[
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>{site.title}</title>
+    <link rel="stylesheet" type="text/css" href="{css.styles} " />
+    {admin.css}    
+  </head>
+  <body>
+    {nav.navigation}
+    {area.1.content}
+    <script type="text/javascript" src="{jquery}"></script>
+    {admin.area}
+  </body>
+</html>
+		]]>
+	</mkfile>	
+	<mkfile file="site_templates/standardvorlage.phtml">
+		<![CDATA[
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title><?php print $site['title']; ?></title>
+    <link rel="stylesheet" type="text/css" href="http://localhost/Development/php/netzcraftwerk3/assets/wcms/css/styles.css " />
+    <?php if (false !== $admin_code) { print $admin_css; } ?>    
+  </head>
+  <body>
+    <?php include (ASSETS . DS . 'wcms' . DS . 'nav_templates' . DS . 'navigation.phtml'); ?>
+    <?php if (true === $admin) { ?><div id="ncw-area-1" class="ncw-sortable"><?php } if (true === isset($areas[1])) { foreach ($areas[1] as $area =>  $content) { print $content; } } if (true === $admin) { ?><div class="ncw-area-clear"></div></div><?php } ?>
+    <script type="text/javascript" src="http://localhost/Development/php/netzcraftwerk3/themes/default/web/javascript/lib/jquery-1.4.2.min.js"></script>
+    <?php if (false !== $admin_code) { print $admin_code; } ?>
+  </body>
+</html>
+		]]>
+	</mkfile>	
+	
+	<mkfile file="component_templates/headline_tmp.phtml">
+		<![CDATA[
+<h1 id="{shorttext.1.id}" class="{admin.class} {admin.content.class}">
+  {shorttext.1}
+</h1>
+		]]>
+	</mkfile>	
+	<mkfile file="component_templates/headline.phtml">
+		<![CDATA[
+<h1 id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['shorttext'][1]['componentcontent_id']; ?>-shorttext-1" class="<?php if (true === $admin) { ?>ncw-sortable-item<?php } ?> <?php if (true === $admin) { ?>ncw-wysiwyg-website-admin<?php } ?>">
+  <?php print $component['shorttext'][1]['content']; ?>
+</h1>
+		]]>
+	</mkfile>
+	<mkfile file="component_templates/text_tmp.phtml">
+		<![CDATA[
+<div id="{text.1.id}" class="{admin.class} {admin.content.class}">
+  {text.1}
+</div>
+		]]>
+	</mkfile>	
+	<mkfile file="component_templates/text.phtml">
+		<![CDATA[
+<div id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['text'][1]['componentcontent_id']; ?>-text-1" class="<?php if (true === $admin) { ?>ncw-sortable-item<?php } ?> <?php if (true === $admin) { ?>ncw-wysiwyg-website-admin<?php } ?>">
+  <?php print $component['text'][1]['content']; ?>
+</div>
+		]]>
+	</mkfile>
+	<mkfile file="component_templates/image_tmp.phtml">
+		<![CDATA[
+<div id="{component.id}" class="{admin.class}">
+<image src="{file.1}" id="{file.1.id}" class="{admin.image.class}" />
+</div>
+		]]>
+	</mkfile>	
+	<mkfile file="component_templates/image.phtml">
+		<![CDATA[
+<div id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>" class="<?php if (true === $admin) { ?>ncw-sortable-item<?php } ?>">
+<image src="<?php print $component['file'][1]['content']; ?>" id="ncw-<?php print $area; ?>-component-<?php print $component['id']; ?>-<?php print $component['componentlanguage_id']; ?>-<?php print $component['file'][1]['componentcontent_id']; ?>-file-1" class="<?php if (true === $admin) { ?>ncw-image-droppable<?php } ?>" />
+</div>
+		]]>
+	</mkfile>
+	
+		
+	<mkfile file="nav_templates/navigation_tmp.phtml">
+		<![CDATA[
+<ul>
+  {sites.1}
+  <li>
+    <a href="{site.url}" title="{site.title}">{site.name}</a>
+  </li>
+{/sites}
+</ul>
+		]]>
+	</mkfile>	
+	<mkfile file="nav_templates/navigation.phtml">
+		<![CDATA[
+<ul>
+  <?php if (true === isset($sites[1], $sites[1][1], $sites[1][1][1])) { $node_save = false; if (true === isset($node)) { $node_save = $node; } foreach ($sites[1][1][1] as $node) { ?> 
+  <li>
+    <a href="<?php print $node['url']; ?>" title="<?php print $node['title']; ?>"><?php print $node['name']; ?></a>
+  </li>
+<?php } if (true === isset($node_save) && false !== $node_save) { $node = $node_save;} } ?>
+</ul>
+		]]>
+	</mkfile>
+	
+	<addAco alias="site" name="Sites" />
+	<addAco alias="site/all" name="Show Sites" />
+	<addAco alias="site/new" name="New Site" />
+	<addAco alias="site/edit" name="Edit Site" />
+	<addAco alias="site/notifySearchEnginges" name="Notify Search Enginges" />
+	<addAco alias="site/publish" name="Publish Site" />
+	<addAco alias="site/unpublish" name="Unpublish Site" />
+	<addAco alias="site/delete" name="Delete Site" />	
+	<addAco alias="sitelanguage" name="Site Translations" />
+	<addAco alias="sitelanguage/new" name="New Translation" />
+	<addAco alias="sitelanguage/edit" name="Edit Translation" />
+	<addAco alias="sitelanguage/publish" name="Publish Translation" />
+	<addAco alias="sitelanguage/unpublish" name="Unpublish Translation" />
+	<addAco alias="sitelanguage/delete" name="Delete Translation" />		
+	<addAco alias="permissions" name="Permissions" />
+	<addAco alias="permissions/language" name="Language permissions" />
+	<addAco alias="permissions/language/1" name="Deutsch" />
+	<addAco alias="permissions/website" name="Website permissions" />
+	<addAco alias="permissions/website/2" name="Home" />
+	<addAco alias="component" name="Components" />
+	<addAco alias="component/all" name="Show Components" />
+	<addAco alias="component/new" name="New Component" />
+	<addAco alias="component/edit" name="Edit Component" />
+	<addAco alias="component/copy" name="Copy Component" />
+	<addAco alias="component/publish" name="Publish Component" />
+	<addAco alias="component/unpublish" name="Unpublish Component" />
+	<addAco alias="component/delete" name="Delete Component" />
+	<addAco alias="componentfile" name="Component-Files" />
+	<addAco alias="componentfile/editMeta" name="Edit Metadata" />
+	<addAco alias="componentfile/saveMeta" name="Save Metadata" />	
+	<addAco alias="componentlanguage" name="Component-Translations" />
+	<addAco alias="componentlanguage/new" name="New Translation" />
+	<addAco alias="componentlanguage/edit" name="Edit Translation" />
+	<addAco alias="componentlanguage/delete" name="Delete Translation" />	
+	<addAco alias="news" name="News" />
+	<addAco alias="news/all" name="Show News" />
+	<addAco alias="news/new" name="New News" />
+	<addAco alias="news/edit" name="Edit News" />
+	<addAco alias="news/publish" name="Publish News" />	
+	<addAco alias="news/unpublish" name="Unpublish News" />	
+	<addAco alias="news/delete" name="Delete News" />	
+	<addAco alias="newslanguage" name="News-Translation" />
+	<addAco alias="newslanguage/new" name="New Translation" />
+	<addAco alias="newslanguage/edit" name="Edit Translation" />
+	<addAco alias="newslanguage/publish" name="Publish Translation" />	
+	<addAco alias="newslanguage/unpublish" name="Unpublish Translation" />	
+	<addAco alias="newslanguage/delete" name="Delete Translation" />		
+	<addAco alias="newssite" name="News-Sites" />
+	<addAco alias="newssite/new" name="New Newssite" />
+	<addAco alias="newssite/edit" name="Edit Newssite" />
+	<addAco alias="newssite/delete" name="Delete Newssite" />		
+	<addAco alias="contentbox" name="Contentboxes" />
+	<addAco alias="contentbox/all" name="Show Contentboxes" />
+	<addAco alias="contentbox/new" name="New Contentbox" />
+	<addAco alias="contentbox/edit" name="Edit Contentbox" />
+	<addAco alias="contentbox/delete" name="Delete Contentbox" />		
+	<addAco alias="contentboxlanguage" name="Contentbox-Translations" />
+	<addAco alias="contentboxlanguage/new" name="New Translation" />
+	<addAco alias="contentboxlanguage/edit" name="Edit Translation" />
+	<addAco alias="contentboxlanguage/delete" name="Delete Translation" />		
+	<addAco alias="other" name="Menu - Other" />
+	<addAco alias="setting" name="Settings" />		
+	<addAco alias="css" name="CSS Manager" />	
+	<addAco alias="javascript" name="Javascript Manager" />
+	<addAco alias="language" name="Language Manager" />
+	<addAco alias="sitetemplate" name="Site-Templates Manager" />
+	<addAco alias="navtemplate" name="Navtemplate Manager" />	
+	<addAco alias="componenttemplate" name="Component-Templates Manager" />	
+
+	<addUsergroup group="Website Module" parent="root" />
+	<addUsergroup group="Portal Manager" parent="Website Module">
+		<permission aco="/wcms" access="1" />
+	</addUsergroup>	
+	<addUsergroup group="Content Manager" parent="Website Module">
+		<permission aco="/wcms" access="1" />
+		<permission aco="/wcms/site/publish" access="0" />
+		<permission aco="/wcms/site/unpublish" access="0" />
+		<permission aco="/wcms/sitelanguage/publish" access="0" />
+		<permission aco="/wcms/sitelanguage/unpublish" access="0" />		
+		<permission aco="/wcms/newslanguage/publish" access="0" />
+		<permission aco="/wcms/newslanguage/unpublish" access="0" />
+		<permission aco="/wcms/sitetemplate" access="0" />
+		<permission aco="/wcms/navtemplate" access="0" />
+		<permission aco="/wcms/componenttemplate" access="0" />
+		<permission aco="/wcms/javascript" access="0" />
+		<permission aco="/wcms/css" access="0" />
+		<permission aco="/wcms/language" access="0" />
+		<permission aco="/wcms/setting" access="0" />			
+	</addUsergroup>
+	<addUsergroup group="Editor" parent="Website Module">
+		<permission aco="/wcms" access="1" />
+		<permission aco="/wcms/site" access="0" />
+		<permission aco="/wcms/site/all" access="1" />
+		<permission aco="/wcms/sitelanguage/delete" access="0" />
+		<permission aco="/wcms/sitelanguage/publish" access="0" />
+		<permission aco="/wcms/sitelanguage/unpublish" access="0" />
+		<permission aco="/wcms/news" access="0" />
+		<permission aco="/wcms/sitetemplate" access="0" />
+		<permission aco="/wcms/navtemplate" access="0" />
+		<permission aco="/wcms/componenttemplate" access="0" />
+		<permission aco="/wcms/javascript" access="0" />
+		<permission aco="/wcms/css" access="0" />
+		<permission aco="/wcms/language" access="0" />
+		<permission aco="/wcms/setting" access="0" />		
+	</addUsergroup>	
+	
+	<addRoute url="sitemap.xml">	
+    array(
+        'module' => 'wcms',
+        'controller' => 'xml',
+        'action' => 'sitemap.xml',
+    )
+	</addRoute>
+	<addRoute url="robots.txt">	
+    array(
+        'module' => 'wcms',
+        'controller' => 'website',
+        'action' => 'robots'
+    )
+	</addRoute>	
+	<addRoute url="*">	
+    array(
+        'module' => 'wcms',
+        'controller' => 'website',
+        'params' => array(
+            'named' => array('url' => ':url')
+        )
+    )
+	</addRoute>
+</module>

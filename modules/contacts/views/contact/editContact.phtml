@@ -1,0 +1,219 @@
+<?php
+if ($this->contact['type'] == 'private') {
+    $shortname = $this->contact['firstname'];
+        
+    $title = '';
+    if (false === empty($this->contact['title'])) {
+        $title .= ' ' . $this->contact['title'];
+    }
+    
+    $name = $this->contact['firstname'] . ' ' . $this->contact['name'];
+} else {
+    $name = $shortname = $this->contact['name'];
+}
+?>
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+        <li class="ncw-option-tab"><a href="javascript: ncw.contacts.contact.loadContact(<?php print $this->contact_id; ?>);"><?php print T_('Back') ; ?></a></li>
+        <li class="ncw-main-tab"><a href="#"><?php echo T_('Edit contact ' . $name); ?></a></li>
+    </ul>
+    <div class="ncw-main-tab-contents">
+
+        <div class="ncw-main-tab-content">
+            <?php print $this->form->create('ncw-contact'); ?>
+
+            <?php if ($this->contact_type == 'private') { ?>
+                <h2 class="ncw-label"><?php print T_('Person'); ?></h2>
+            <?php } else { ?>
+                <h2 class="ncw-label"><?php print T_('Company'); ?></h2>
+            <?php } ?>                    
+            
+            <?php print $this->form->input("id", array('type' => 'hidden')); ?>
+            <?php print $this->form->input("update", array('type' => 'hidden', 'value' => 'contact')); ?>
+            <?php print $this->form->input("type", array('type' => 'hidden')); ?>
+            <?php print $this->form->input("file_id", array("type" => "hidden")); ?>
+          
+            <div>
+            <div>
+                <?php if ($this->contact_type == 'private') { ?>
+                    <strong>Herr / Frau</strong>
+                    <br /><?php print $this->form->input('gender', array('type' => 'select', 'class' => 'ncw-input ncw-w300-select ncw-h32', 'options' => array(T_('Mr.') => 'male',T_('Mrs.') => 'female'), 'div' => false, 'label' => false)); ?>
+                    <br /><br /><strong>Titel</strong><br />
+                    <?php print $this->form->input("title", array("maxlength" => 30, 'class' => 'ncw-input ncw-w300', 'title' => T_('Title'), 'div' => false,'label' => false, 'style' => 'width: 80px')); ?>
+                    <br /><br /><strong>Vorname</strong><br />
+                    <?php print $this->form->input('firstname', array('maxlength' => 100, 'class' => 'ncw-input ncw-w600', 'div' => false, 'label' => false)); ?>
+                <?php } ?>
+                <?php if ($this->contact_type == 'private') { ?><br /><br /><strong>Name</strong><br /> <?php }?>
+                <?php print $this->form->input("name", array("maxlength" => 100, 'class' => 'ncw-input ncw-w600', 'div' => false, 'label' => false)); ?>
+                <?php if ($this->contact_type == 'business') { ?>
+                    <br /><br /><strong>Namenszusatz</strong><br />
+                    <?php echo $this->form->input("name_addon", array("maxlength" => 100, 'class' => 'ncw-input ncw-w600',  'div' => false, 'label' => false)); ?>
+                    <br /><br /><strong>Inhaber Name</strong><br />
+                    <?php echo $this->form->input("owner_name", array("maxlength" => 100, 'class' => 'ncw-input ncw-w600',  'div' => false, 'label' => false)); ?>
+                    <br /><br /><strong>Inhaber Vorname</strong><br />
+                    <?php echo $this->form->input("owner_firstname", array("maxlength" => 100, 'class' => 'ncw-input ncw-w600',  'div' => false, 'label' => false)); ?>
+                <?php } ?>
+            </div>
+            </div>
+            
+            <br />
+            
+            <a href="javascript: ncw.contacts.contact.chooseImageDialog(); ">
+                <?php if (false !== $this->preview_image) { ?>
+                    <img id="ncw-contact-preview-image" src="<?php print $this->preview_image; ?>"  style="width: 53px; height: 53px;" /><br />
+                <?php } ?>
+                <?php print T_('Choose Image'); ?>
+            </a><br />                  
+            
+            <hr class="ncw-w600"/>
+            
+            <?php if ($this->contact_type == 'private') { ?>
+                <strong><?php print T_('Member of Companies'); ?></strong><br /><br />
+                <div id="ncw-related-companies" class="ncw-container-contact-stuff">
+                    <?php for ($count = 0; $count < $this->related_companies_num; ++$count) { ?>
+                        <div class="ncw-related-company" id="related_company_<?php print $count; ?>">
+                            <?php print $this->form->input('Member.' . $count . '.contact_id', array('type' => 'hidden')); ?>
+                            <?php print $this->form->input('Member.' . $count . '.description', array('maxlength' => 255, 'div' => false, 'label' => false)); ?>                            
+                            <?php print T_('at') . ' ' . $this->arr_related_companies[$count] . ' ' ?>
+                            <?php print $this->form->input('Member.' . $count . '.first', array('type' => 'checkbox', 'div' => false, 'label' => FALSE, 'class' => 'ncw-members-first', 'style' => 'width: 15px; margin:0;padding:0;')); ?>                            
+                            <div class="ncw-related-company-remove ncw-contact-stuff-remove">
+                                <?php print $this->html->image('icons/16px/cross.png', false, array('rel' => $count, 'title' => T_('Remove related company'), 'alt' => T_('Remove related company'))); ?>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
+                <input type="hidden" value="<?php print $count; ?>" id="related_company_num"><br />
+                <a id="ncw-related-company-add" href="javascript: void(0)"><?php print T_('Add company'); ?></a>
+                <hr class="ncw-w600"/>           
+            <?php } ?>
+            
+            <strong><?php print T_('Phone'); ?></strong><br /><br />
+            <div id="ncw-phones" class="ncw-container-contact-stuff">
+                <?php for ($count = 0; $count < $this->phone_num; ++$count) { ?>
+                    <div class="ncw-phone" id="phone_<?php print $count; ?>">
+                        <?php print $this->form->input('Phone.' . $count . '.phone', array('maxlength' => 255, 'div' => false, 'label' => false)); ?>
+                        <?php print $this->form->input('Phone.' . $count . '.location', array('type' => 'select', 'options' => $this->phone_locations, 'div' => false, 'label' => false)); ?>
+                        <?php print $this->form->input('Phone.' . $count . '.first', array('type' => 'checkbox', 'div' => false, 'label' => FALSE, 'class' => 'ncw-phones-first', 'style' => 'width: 15px; margin:0;padding:0;')); ?>                         
+                        <div class="ncw-phone-remove ncw-contact-stuff-remove">
+                            <?php print $this->html->image('icons/16px/cross.png', false, array('rel' => $count, 'title' => T_('Remove phone'), 'alt' => T_('Remove phone'))); ?>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+            <input type="hidden" value="<?php print $count; ?>" id="phone_num"><br />
+            <a id="ncw-phone-add" href="javascript: void(0);"><?php print T_('Add phone'); ?></a>
+            <hr class="ncw-w600"/>
+            
+            <strong><?php print T_('Email'); ?></strong><br /><br />
+            <div id="ncw-emails" class="ncw-container-contact-stuff">
+                <?php for ($count = 0; $count < $this->email_num; ++$count) { ?>
+                    <div class="ncw-email" id="email_<?php print $count; ?>">
+                        <?php print $this->form->input('Email.' . $count . '.email', array('maxlength' => 255, 'div' => false, 'label' => false)); ?>
+                        <?php print $this->form->input('Email.' . $count . '.location', array('type' => 'select', 'options' => $this->locations, 'div' => false, 'label' => false)); ?>
+                        <?php print $this->form->input('Email.' . $count . '.first', array('type' => 'checkbox', 'div' => false, 'label' => FALSE, 'class' => 'ncw-emails-first', 'style' => 'width: 15px; margin:0;padding:0;')); ?>
+                        <div class="ncw-email-remove ncw-contact-stuff-remove">
+                            <?php print $this->html->image('icons/16px/cross.png', false, array('rel' => $count, 'title' => T_('Remove email'), 'alt' => T_('Remove email'))); ?>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+            <input type="hidden" value="<?php print $count; ?>" id="email_num"><br />
+            <a id="ncw-email-add" href="javascript: void(0);"><?php print T_('Add email'); ?></a>
+            <hr class="ncw-w600"/>
+            
+            <strong><?php print T_('Messenger'); ?></strong><br /><br />
+            <div id="ncw-messengers" class="ncw-container-contact-stuff">
+                <?php for ($count = 0; $count < $this->messenger_num; ++$count) { ?>
+                    <div class="ncw-messenger" id="messenger_<?php print $count; ?>">
+                        <?php print $this->form->input('Messenger.' . $count . '.messenger', array('maxlength' => 255, 'div' => false, 'label' => false)); ?>
+                        <?php print $this->form->input('Messenger.' . $count . '.protocol', array('type' => 'select', 'options' => $this->messenger_protocols, 'div' => false, 'label' => false)); ?>
+                        <?php print $this->form->input('Messenger.' . $count . '.location', array('type' => 'select', 'options' => $this->messenger_locations, 'div' => false, 'label' => false)); ?>
+                        <?php print $this->form->input('Messenger.' . $count . '.first', array('type' => 'checkbox', 'div' => false, 'label' => FALSE, 'class' => 'ncw-messengers-first', 'style' => 'width: 15px; margin:0;padding:0;')); ?>                        
+                        <div class="ncw-messenger-remove ncw-contact-stuff-remove">
+                            <?php print $this->html->image('icons/16px/cross.png', false, array('rel' => $count, 'title' => T_('Remove messenger'), 'alt' => T_('Remove messenger'))); ?>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+            <input type="hidden" value="<?php print $count; ?>" id="messenger_num"><br />
+            <a id="ncw-messenger-add" href="javascript: void(0);"><?php print T_('Add messenger'); ?></a>
+            <hr class="ncw-w600"/>
+            
+            <strong><?php print T_('Websites'); ?></strong><br /><br />
+            <div id="ncw-websites" class="ncw-container-contact-stuff">
+                <?php for ($count = 0; $count < $this->website_num; ++$count) { ?>
+                    <div class="ncw-website" id="website_<?php print $count; ?>">
+                        <?php print $this->form->input('Website.' . $count . '.website', array('maxlength' => 255, 'div' => false, 'label' => false)); ?>
+                        <?php print $this->form->input('Website.' . $count . '.location', array('type' => 'select', 'options' => $this->messenger_locations, 'div' => false, 'label' => false)); ?>
+                        <?php print $this->form->input('Website.' . $count . '.first', array('type' => 'checkbox', 'div' => false, 'label' => FALSE, 'class' => 'ncw-websites-first', 'style' => 'width: 15px; margin:0;padding:0;')); ?>                        
+                        <div class="ncw-website-remove ncw-contact-stuff-remove">
+                            <?php print $this->html->image('icons/16px/cross.png', false, array('rel' => $count, 'title' => T_('Remove website'), 'alt' => T_('Remove website'))); ?>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+            <input type="hidden" value="<?php print $count; ?>" id="website_num"><br />
+            <a id="ncw-website-add" href="javascript: void(0);"><?php print T_('Add website'); ?></a>
+            <hr class="ncw-w600"/>
+            
+            <strong><?php print T_('Address'); ?></strong><br /><br />
+            <div id="ncw-addresses" class="ncw-container-contact-stuff">
+                <?php for ($count = 0; $count < $this->address_num; ++$count) { ?>
+                    <div class="ncw-address" id="address_<?php print $count; ?>" style="margin-bottom: 15px;">
+                        <?php print $this->form->input('Address.' . $count . '.street', array('class' => 'street', 'maxlength' => 255, 'div' => false, 'label' => false)); ?>
+                        <?php print $this->form->input('Address.' . $count . '.location', array('type' => 'select', 'options' => $this->locations, 'div' => false, 'label' => false)); ?>
+                        <?php print $this->form->input('Address.' . $count . '.first', array('type' => 'checkbox', 'div' => false, 'label' => FALSE, 'class' => 'ncw-addresses-first', 'style' => 'width: 15px; margin:0;padding:0;')); ?>                        
+                        <div class="ncw-address-remove ncw-contact-stuff-remove">
+                            <?php print $this->html->image('icons/16px/cross.png', false, array('rel' => $count, 'title' => T_('Remove address'), 'alt' => T_('Remove address'))); ?>
+                        </div><br />
+                        <?php print $this->form->input('City.' . $count . '.postcode', array('class' => 'postcode', 'maxlength' => 5, 'div' => false, 'label' => false)); ?>
+                        <?php print $this->form->input('City.' . $count . '.name', array('class' => 'city', 'maxlength' => 100, 'div' => false, 'label' => false)); ?>
+                        <?php print $this->form->input('City.' . $count . '.state', array('class' => 'state', 'maxlength' => 100, 'div' => false, 'label' => false)); ?>
+                        <br />
+                        <?php print $this->form->input('City.' . $count . '.country_id', array('type' => 'select', 'options' => $this->countries, 'div' => false, 'label' => false)); ?>
+                    </div>
+                <?php } ?>
+            </div>
+            <input type="hidden" value="<?php print $count; ?>" id="address_num"><br />
+            <a id="ncw-address-add" href="javascript: void(0);"><?php print T_('Add address'); ?></a>
+            <hr class="ncw-w600"/>
+            
+            <strong><?php print T_('Bank account'); ?></strong><br /><br />
+            <div id="ncw-banks" class="ncw-container-contact-stuff">
+                <?php for ($count = 0; $count < $this->bank_num; ++$count) { ?>
+                    <div class="ncw-bank" id="bank_<?php print $count; ?>" style="margin-bottom: 15px;">
+                        <?php print $this->form->input('Bank.' . $count . '.name', array('maxlength' => 255, 'div' => false, 'label' => false)); ?>
+                        <br />
+                        <?php print $this->form->input('Bank.' . $count . '.bankcode', array('maxlength' => 255, 'div' => false, 'label' => false)); ?>
+                        <br />
+                        <?php print $this->form->input('Bank.' . $count . '.accountnumber', array('maxlength' => 255, 'div' => false, 'label' => false)); ?>
+                        <br />
+                        <?php print $this->form->input('Bank.' . $count . '.iban', array('maxlength' => 255, 'div' => false, 'label' => false)); ?>
+                        <br />
+                        <?php print $this->form->input('Bank.' . $count . '.bic', array('maxlength' => 255, 'div' => false, 'label' => false)); ?>
+                        <br />
+                        <?php print $this->form->input('Bank.' . $count . '.location', array('type' => 'select', 'options' => $this->bank_locations, 'div' => false, 'label' => false)); ?>
+                        <?php print $this->form->input('Bank.' . $count . '.first', array('type' => 'checkbox', 'div' => false, 'label' => FALSE, 'class' => 'ncw-banks-first', 'style' => 'width: 15px; margin:0;padding:0;')); ?>                        
+                        <div class="ncw-bank-remove ncw-contact-stuff-remove">
+                            <?php print $this->html->image('icons/16px/cross.png', false, array('rel' => $count, 'title' => T_('Remove email'), 'alt' => T_('Remove email'))); ?>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+            <input type="hidden" value="<?php print $count; ?>" id="bank_num"><br />
+            <a id="ncw-bank-add" href="javascript: void(0);"><?php print T_('Add bank account'); ?></a>
+      
+            <?php print $this->form->end(); ?>
+        </div>
+
+    </div>
+</div>
+<div class="ncw-status-action-bar">
+    <div class="ncw-status-message"></div>
+    <ul class="ncw-actions">
+        <?php if (true === $this->permissions['/contacts/contact/delete']) { ?>
+            <li class="ncw-action"><a href="#" rel="contacts/contact" class="ncw-delete-trigger-ajax ncw_delete_icon"><?php print T_('Delete'); ?></a></li>
+        <?php } ?>
+        <li class="ncw-action"><a href="#" rel="contacts/contact" class="ncw-save-trigger-ajax ncw_save_icon"><?php print T_('Save'); ?></a></li>
+    </ul>
+</div>

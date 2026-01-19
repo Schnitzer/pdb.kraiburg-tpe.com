@@ -1,0 +1,1470 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 01.\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-01 15:05+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Thomas Hinterecker <t.hinterecker@netzcraftwerk.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: Germany\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: ModuleController.php:33
+msgid "Applications"
+msgstr "Anwendungen"
+
+#: ModuleController.php:34
+msgid "Other"
+msgstr "Andere"
+
+#: ModuleController.php:35
+msgid "Logout"
+msgstr "Abmelden"
+
+#: ModuleController.php:36
+msgid "Profile"
+msgstr "Profil"
+
+#: ModuleController.php:38
+msgid "Alert"
+msgstr "Achtung"
+
+#: ModuleController.php:39
+msgid "Choose your options!"
+msgstr "Wähle deine Optionen!"
+
+#: ModuleController.php:40
+msgid "Confirm"
+msgstr "Bestätigen"
+
+#: ModuleController.php:41
+msgid "Make a decision!"
+msgstr "Treffe eine Wahl!"
+
+#: ModuleController.php:42
+msgid "Do you really want to delete this object?"
+msgstr "Wollen sie dieses Objekt wirklich löschen?"
+
+#: ModuleController.php:43
+msgid "Saved"
+msgstr "Gespeichert"
+
+#: ModuleController.php:44
+msgid "Your data has been saved successfully."
+msgstr "Die Daten wurden erfolgreich gespeichert."
+
+#: ModuleController.php:45
+msgid "Error"
+msgstr "Fehler"
+
+#: ModuleController.php:46
+msgid "An error has occurred!"
+msgstr "Ein Fehler ist aufgetreten"
+
+#: ModuleController.php:47
+msgid "Notify"
+msgstr "Benachrichtigung"
+
+#: ModuleController.php:48
+msgid "Be aware that..."
+msgstr "Beachten Sie, dass ..."
+
+#: ModuleController.php:49
+msgid "Custom"
+msgstr "Meldung"
+
+#: ModuleController.php:50
+msgid "Saving..."
+msgstr "Speichern..."
+
+#: ModuleController.php:51
+msgid "Deleting..."
+msgstr "Löschen..."
+
+#: ModuleController.php:52
+msgid "The item has been deleted successfully"
+msgstr "Das Objekt wurden erfolgreich gelöscht."
+
+#: ModuleController.php:54
+msgid "Publishing..."
+msgstr "Veröffentlichen..."
+
+#: ModuleController.php:55
+msgid "Published"
+msgstr "Veröffentlicht"
+
+#: ModuleController.php:56
+msgid "The item has been published successfully."
+msgstr "Das Objekt wurde erfolgreich veröffentlicht."
+
+#: ModuleController.php:57
+msgid "Unpublishing..."
+msgstr "Unveröffentlichen..."
+
+#: ModuleController.php:58
+msgid "Unpublished"
+msgstr "Unveröffentlicht"
+
+#: ModuleController.php:59
+msgid "The item has been unpublished successfully."
+msgstr "Das Objekt wurden erfolgreich unveröffentlicht."
+
+#: ModuleController.php:60
+msgid "Copied"
+msgstr "Kopiert"
+
+#: ModuleController.php:61
+msgid "The item has been copied successfully."
+msgstr "Das Objekt wurde erfolgreich kopiert."
+
+#: ModuleController.php:63
+msgid "Move"
+msgstr "Verschieben"
+
+#: ModuleController.php:64
+msgid "Do you really want to move this site?"
+msgstr "Wollen sie diese Seite wirklich verschieben?"
+
+#: ModuleController.php:65
+msgid "Moved"
+msgstr "Verschoben"
+
+#: ModuleController.php:66
+msgid "The site has been moved successfully"
+msgstr "Die Seite wurde erfolgreich verschoben"
+
+#: ModuleController.php:67
+msgid "Rename"
+msgstr "Übersetzen"
+
+#: ModuleController.php:68
+msgid "Do you really want to rename this site?"
+msgstr "Wollen sie diese Seite wirklich umbenennen?"
+
+#: ModuleController.php:69
+msgid "Renamed"
+msgstr "Umbenannt"
+
+#: ModuleController.php:70
+msgid "The site has been renamed successfully"
+msgstr "Die Seite wurde erfolgreich umbenannt"
+
+#: ModuleController.php:71
+msgid "Edit content"
+msgstr "Inhalt bearbeiten"
+
+#: ModuleController.php:72
+msgid "Close"
+msgstr "Schließen"
+
+#: ModuleController.php:73
+msgid "Do you want to save before the editor is closed?"
+msgstr "Wollen sie speichern bevor der Editor geschlossen wird?"
+
+#: ModuleController.php:103
+msgid "Website"
+msgstr "Webseite"
+
+#: ModuleController.php:106
+#: controllers/WebsiteController.php:2167
+#: views/site/all.phtml:3
+msgid "Site Structure"
+msgstr "Seitenstruktur"
+
+#: ModuleController.php:109
+#: controllers/WebsiteController.php:2168
+msgid "Files"
+msgstr "Dateien"
+
+#: ModuleController.php:114
+msgid "Edit Website"
+msgstr "Website bearbeiten"
+
+#: ModuleController.php:120
+#: views/setting/index.phtml:5
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: ModuleController.php:121
+#: views/component/all.phtml:42
+#: views/news/edit.phtml:42
+#: views/news/all.phtml:29
+#: views/language/all.phtml:14
+#: views/contentbox/edit.phtml:24
+#: views/contentbox/edit.phtml:35
+#: views/contentbox/all.phtml:23
+msgid "Languages"
+msgstr "Sprachen"
+
+#: ModuleController.php:122
+msgid "Site templates"
+msgstr "Seitenvorlagen"
+
+#: ModuleController.php:123
+msgid "Component templates"
+msgstr "Bausteinvorlagen"
+
+#: ModuleController.php:124
+msgid "Navigation templates"
+msgstr "Navigationsvorlagen"
+
+#: ModuleController.php:125
+msgid "Javascript"
+msgstr "Javascript"
+
+#: ModuleController.php:126
+msgid "CSS"
+msgstr "CSS"
+
+#: ModuleController.php:127
+msgid "Contentboxes"
+msgstr "Contentboxes"
+
+#: ModuleController.php:128
+#: views/news/all.phtml:16
+msgid "News"
+msgstr "News"
+
+#: ModuleController.php:394
+msgid "root"
+msgstr "Ordnerstruktur"
+
+#: controllers/ComponentlanguageController.php:250
+#: controllers/ComponentfileController.php:72
+msgid "Open in this window / frame"
+msgstr "Im gleichen Fenstern / Frame öffnen"
+
+#: controllers/ComponentlanguageController.php:251
+#: controllers/ComponentfileController.php:73
+msgid "Open in new window (_blank)"
+msgstr "In einem neuen Fenster öffnen (_blank)"
+
+#: controllers/ComponentlanguageController.php:252
+#: controllers/ComponentfileController.php:74
+msgid "Open in new parent window / frame (_parent)"
+msgstr "In einem neuen, übergeordnetem Fenster / Frame öffnen (_parent)"
+
+#: controllers/ComponentlanguageController.php:253
+#: controllers/ComponentfileController.php:75
+msgid "Open in top frame (replaces all frames) (_top)"
+msgstr "In dem Top-Frame öffnen (ersetzt alle Frames) (_top)"
+
+#: controllers/SitelanguageController.php:171
+msgid "Always"
+msgstr "Immer"
+
+#: controllers/SitelanguageController.php:172
+msgid "Hourly"
+msgstr "Stündlich"
+
+#: controllers/SitelanguageController.php:173
+msgid "Dialy"
+msgstr "Täglich"
+
+#: controllers/SitelanguageController.php:174
+msgid "Weekly"
+msgstr "Wöchentlich"
+
+#: controllers/SitelanguageController.php:175
+msgid "Monthly"
+msgstr "Monatlich"
+
+#: controllers/SitelanguageController.php:176
+msgid "Yearly"
+msgstr "Jährlich"
+
+#: controllers/SitelanguageController.php:177
+msgid "Never"
+msgstr "Nie"
+
+#: controllers/WebsiteController.php:1143
+#: controllers/WebsiteController.php:1241
+msgid "No Content"
+msgstr "Kein Inhalt"
+
+#: controllers/WebsiteController.php:2042
+#: views/sitetemplate/edit.phtml:24
+#: views/sitetemplate/new.phtml:20
+#: views/site/edit.phtml:127
+#: views/site/new.phtml:14
+msgid "Site type"
+msgstr "Seitentyp"
+
+#: controllers/WebsiteController.php:2045
+msgid "Site status"
+msgstr "Status"
+
+#: controllers/WebsiteController.php:2050
+msgid "Home site"
+msgstr "Ist diese Seite eine Startseite?"
+
+#: controllers/WebsiteController.php:2056
+msgid "Is private"
+msgstr "Diese Seite ist private"
+
+#: controllers/WebsiteController.php:2062
+msgid "Site schedule status is"
+msgstr "Terminierungsstatus dieser Seite"
+
+#: controllers/WebsiteController.php:2079
+msgid "Show site in live mode"
+msgstr "Zeige diese Seite im Livemodus"
+
+#: controllers/WebsiteController.php:2083
+msgid "You cannot show this site in live mode"
+msgstr "Sie können diese Seite nicht im Livemodus betrachten"
+
+#: controllers/WebsiteController.php:2083
+msgid "Live Mode"
+msgstr "Livemodus"
+
+#: controllers/WebsiteController.php:2088
+msgid "Show site in preview mode"
+msgstr "Zeige diese Seite im Vorschaumodus"
+
+#: controllers/WebsiteController.php:2088
+msgid "Preview Mode"
+msgstr "Vorschaumodus"
+
+#: controllers/WebsiteController.php:2091
+msgid "Show site in edit mode"
+msgstr "Zeige diese Seite im Bearbeitungsmodus"
+
+#: controllers/WebsiteController.php:2091
+msgid "Edit Mode"
+msgstr "Bearbeitungsmodus"
+
+#: controllers/WebsiteController.php:2097
+msgid "Opens the site window"
+msgstr "Öffnet das Seitenfenster"
+
+#: controllers/WebsiteController.php:2097
+#: views/component/edit.phtml:118
+#: views/component/all.phtml:82
+#: views/site/edit.phtml:267
+msgid "Edit"
+msgstr "Ändern"
+
+#: controllers/WebsiteController.php:2103
+msgid "Publish the site"
+msgstr "Zeitpunkt der Veröffentlichung"
+
+#: controllers/WebsiteController.php:2103
+#: views/component/edit.phtml:142
+#: views/news/edit.phtml:137
+#: views/sitelanguage/edit.phtml:116
+#: views/site/edit.phtml:350
+#: views/newslanguage/edit.phtml:50
+msgid "Publish"
+msgstr "Veröffentlichen"
+
+#: controllers/WebsiteController.php:2118
+msgid "Refresh the site"
+msgstr "Aussehen der Seite"
+
+#: controllers/WebsiteController.php:2118
+msgid "Refresh"
+msgstr "Neu Laden"
+
+#: controllers/WebsiteController.php:2126
+msgid "More"
+msgstr "Mehr"
+
+#: controllers/WebsiteController.php:2133
+msgid "Copy the site"
+msgstr "Seite kopieren"
+
+#: controllers/WebsiteController.php:2133
+#: views/component/edit.phtml:145
+#: views/site/edit.phtml:353
+msgid "Copy"
+msgstr "Kopieren"
+
+#: controllers/WebsiteController.php:2140
+msgid "Delete the site"
+msgstr "Seite löschen"
+
+#: controllers/WebsiteController.php:2140
+#: views/sitetemplate/edit.phtml:35
+#: views/component/edit.phtml:148
+#: views/news/edit.phtml:139
+#: views/language/edit.phtml:42
+#: views/css/edit.phtml:34
+#: views/sitelanguage/edit.phtml:119
+#: views/javascript/edit.phtml:34
+#: views/componentlanguage/edit.phtml:107
+#: views/navtemplate/edit.phtml:38
+#: views/componenttemplate/edit.phtml:41
+#: views/site/edit.phtml:226
+#: views/site/edit.phtml:356
+#: views/newslanguage/edit.phtml:53
+msgid "Delete"
+msgstr "Löschen"
+
+#: controllers/WebsiteController.php:2150
+msgid "Unpublish the site"
+msgstr "Zeitpunkt der Veröffentlichung"
+
+#: controllers/WebsiteController.php:2150
+#: views/component/edit.phtml:139
+#: views/news/edit.phtml:134
+#: views/sitelanguage/edit.phtml:113
+#: views/site/edit.phtml:347
+#: views/newslanguage/edit.phtml:47
+msgid "Unpublish"
+msgstr "Unveröffentlichen"
+
+#: controllers/SiteController.php:357
+msgid "first position"
+msgstr "An erster Position"
+
+#: controllers/SiteController.php:361
+msgid "after "
+msgstr "nach"
+
+#: views/sitetemplate/edit.phtml:3
+#: views/sitetemplate/new.phtml:3
+#: views/sitetemplate/all.phtml:3
+#: views/sitetemplate/all.phtml:23
+#: views/component/edit.phtml:103
+#: views/component/all.phtml:43
+#: views/contentboxlanguage/edit.phtml:6
+#: views/contentboxlanguage/new.phtml:3
+#: views/news/edit.phtml:3
+#: views/news/edit.phtml:62
+#: views/news/edit.phtml:103
+#: views/news/new.phtml:3
+#: views/news/all.phtml:3
+#: views/news/all.phtml:30
+#: views/language/edit.phtml:3
+#: views/language/new.phtml:3
+#: views/language/all.phtml:3
+#: views/language/all.phtml:25
+#: views/contentbox/edit.phtml:3
+#: views/contentbox/edit.phtml:36
+#: views/contentbox/new.phtml:3
+#: views/contentbox/all.phtml:3
+#: views/contentbox/all.phtml:24
+#: views/css/edit.phtml:3
+#: views/css/new.phtml:3
+#: views/css/all.phtml:3
+#: views/css/all.phtml:23
+#: views/javascript/edit.phtml:3
+#: views/javascript/new.phtml:3
+#: views/javascript/all.phtml:3
+#: views/javascript/all.phtml:23
+#: views/navtemplate/edit.phtml:3
+#: views/navtemplate/new.phtml:3
+#: views/navtemplate/all.phtml:3
+#: views/navtemplate/all.phtml:24
+#: views/componenttemplate/edit.phtml:3
+#: views/componenttemplate/new.phtml:3
+#: views/componenttemplate/all.phtml:30
+#: views/componenttemplate/generator.phtml:6
+#: views/site/edit.phtml:217
+#: views/site/edit.phtml:250
+#: views/newslanguage/edit.phtml:7
+#: views/newslanguage/new.phtml:3
+msgid "Options"
+msgstr "Optionen"
+
+#: views/sitetemplate/edit.phtml:6
+#: views/sitetemplate/new.phtml:6
+msgid "Show sitetemplates"
+msgstr "Zeite Seitenvorlagen"
+
+#: views/sitetemplate/edit.phtml:9
+#: views/sitetemplate/new.phtml:15
+#: views/sitetemplate/all.phtml:6
+msgid "New sitetemplate"
+msgstr "Neue Seitenvorlage"
+
+#: views/sitetemplate/edit.phtml:19
+msgid "Edit sitetemplate"
+msgstr "Seitenvorlage bearbeiten"
+
+#: views/sitetemplate/edit.phtml:23
+#: views/sitetemplate/new.phtml:19
+#: views/sitetemplate/all.phtml:21
+#: views/component/edit.phtml:49
+#: views/component/edit.phtml:102
+#: views/component/new.phtml:26
+#: views/component/all.phtml:37
+#: views/news/edit.phtml:31
+#: views/news/new.phtml:19
+#: views/news/all.phtml:28
+#: views/language/edit.phtml:23
+#: views/language/new.phtml:19
+#: views/language/all.phtml:21
+#: views/contentbox/edit.phtml:23
+#: views/contentbox/new.phtml:31
+#: views/contentbox/all.phtml:21
+#: views/css/edit.phtml:23
+#: views/css/new.phtml:19
+#: views/css/all.phtml:21
+#: views/sitelanguage/edit.phtml:38
+#: views/javascript/edit.phtml:23
+#: views/javascript/new.phtml:19
+#: views/javascript/all.phtml:21
+#: views/navtemplate/edit.phtml:23
+#: views/navtemplate/new.phtml:19
+#: views/navtemplate/all.phtml:21
+#: views/componenttemplate/edit.phtml:26
+#: views/componenttemplate/new.phtml:19
+#: views/componenttemplate/all.phtml:27
+#: views/componenttemplate/generator.phtml:22
+#: views/site/edit.phtml:60
+#: views/site/edit.phtml:216
+#: views/site/edit.phtml:249
+#: views/site/new.phtml:13
+msgid "Name"
+msgstr "Name"
+
+#: views/sitetemplate/edit.phtml:36
+#: views/sitetemplate/new.phtml:31
+#: views/component/edit.phtml:150
+#: views/component/new.phtml:64
+#: views/component/new.phtml:70
+#: views/news/edit.phtml:140
+#: views/news/new.phtml:37
+#: views/language/edit.phtml:43
+#: views/language/new.phtml:27
+#: views/css/edit.phtml:35
+#: views/css/new.phtml:30
+#: views/sitelanguage/edit.phtml:121
+#: views/sitelanguage/new.phtml:28
+#: views/componentfile/editMeta.phtml:19
+#: views/javascript/edit.phtml:35
+#: views/javascript/new.phtml:30
+#: views/componentlanguage/edit.phtml:109
+#: views/componentlanguage/new.phtml:27
+#: views/navtemplate/edit.phtml:39
+#: views/navtemplate/new.phtml:34
+#: views/componenttemplate/edit.phtml:42
+#: views/componenttemplate/new.phtml:34
+#: views/componenttemplate/generator.phtml:52
+#: views/setting/index.phtml:22
+#: views/site/edit.phtml:358
+#: views/site/new.phtml:51
+#: views/newslanguage/edit.phtml:55
+#: views/newslanguage/new.phtml:26
+msgid "Save"
+msgstr "Speichern"
+
+#: views/sitetemplate/all.phtml:14
+msgid "Sitetemplates"
+msgstr "Seitenvorlagen"
+
+#: views/sitetemplate/all.phtml:22
+#: views/contentbox/all.phtml:22
+#: views/css/all.phtml:22
+#: views/javascript/all.phtml:22
+#: views/navtemplate/all.phtml:22
+#: views/componenttemplate/all.phtml:28
+msgid "Filename"
+msgstr "Dateiname"
+
+#: views/sitetemplate/all.phtml:33
+#: views/news/edit.phtml:75
+#: views/news/all.phtml:55
+#: views/language/all.phtml:61
+#: views/contentbox/edit.phtml:48
+#: views/contentbox/all.phtml:55
+#: views/contentbox/all.phtml:56
+#: views/css/all.phtml:33
+#: views/javascript/all.phtml:33
+#: views/navtemplate/all.phtml:35
+#: views/componenttemplate/all.phtml:41
+msgid "edit"
+msgstr "Ändern"
+
+#: views/component/edit.phtml:3
+msgid "Content"
+msgstr "Inhalt"
+
+#: views/component/edit.phtml:4
+msgid "Component"
+msgstr "Baustein"
+
+#: views/component/edit.phtml:4
+msgid "container"
+msgstr "Behälter"
+
+#: views/component/edit.phtml:4
+msgid "data"
+msgstr "Daten"
+
+#: views/component/edit.phtml:5
+#: views/site/edit.phtml:4
+msgid "Behaviour"
+msgstr "Verhalten"
+
+#: views/component/edit.phtml:6
+#: views/site/edit.phtml:6
+msgid "Translations"
+msgstr "Übersetzungen"
+
+#: views/component/edit.phtml:13
+#: views/component/new.phtml:10
+#: views/site/edit.phtml:53
+msgid "Show components"
+msgstr "Übersicht der Bausteine"
+
+#: views/component/edit.phtml:25
+#: views/contentboxlanguage/new.phtml:19
+#: views/news/edit.phtml:60
+#: views/sitelanguage/edit.phtml:39
+#: views/sitelanguage/new.phtml:17
+#: views/componentlanguage/new.phtml:16
+#: views/site/all.phtml:31
+#: views/newslanguage/new.phtml:19
+msgid "Language"
+msgstr "Sprache"
+
+#: views/component/edit.phtml:33
+msgid "Current language"
+msgstr "Aktuelle Sprache"
+
+#: views/component/edit.phtml:40
+#: views/news/edit.phtml:26
+#: views/sitelanguage/edit.phtml:16
+#: views/site/edit.phtml:30
+#: views/site/edit.phtml:116
+msgid "Main"
+msgstr "Hauptdaten"
+
+#: views/component/edit.phtml:46
+#: views/sitelanguage/edit.phtml:37
+#: views/site/edit.phtml:59
+msgid "ID"
+msgstr "ID"
+
+#: views/component/edit.phtml:47
+msgid "Status"
+msgstr "Status"
+
+#: views/component/edit.phtml:49
+msgid "Internal name of the component. Will not be used on the website."
+msgstr "Interner Name des Bausteins. Wird nicht auf der Website angezeigt"
+
+#: views/component/edit.phtml:54
+#: views/site/edit.phtml:129
+msgid "Appearance"
+msgstr "Erscheinung"
+
+#: views/component/edit.phtml:56
+#: views/component/all.phtml:9
+msgid "Site"
+msgstr "Seite"
+
+#: views/component/edit.phtml:61
+#: views/component/new.phtml:31
+msgid "In which content area must this component be"
+msgstr "In welchem Inhaltsbereich soll dieser Baustein erscheinen"
+
+#: views/component/edit.phtml:61
+#: views/component/new.phtml:31
+msgid "Content area"
+msgstr "Inhaltsbereich"
+
+#: views/component/edit.phtml:63
+#: views/component/new.phtml:36
+#: views/component/new.phtml:37
+#: views/component/all.phtml:40
+msgid "Parent component"
+msgstr "Übergeordneter Baustein"
+
+#: views/component/edit.phtml:65
+#: views/component/new.phtml:38
+msgid "-- No parent component --"
+msgstr "Keine übergeordneter Baustein"
+
+#: views/component/edit.phtml:71
+#: views/site/edit.phtml:152
+msgid "Position of the component within a content area"
+msgstr "Bausteinposition innerhalb des Inhaltbereichs"
+
+#: views/component/edit.phtml:71
+#: views/site/edit.phtml:152
+msgid "Position"
+msgstr "Position"
+
+#: views/component/edit.phtml:73
+msgid "Should this component be permanent?"
+msgstr "Ist dieser Baustein permanent sichtbar?"
+
+#: views/component/edit.phtml:78
+msgid "Do you want to schedule this component?"
+msgstr "Wollen Sie diesen Baustein terminieren?"
+
+#: views/component/edit.phtml:82
+msgid "On which date the component will be viewable"
+msgstr "Ab welchen Datum ist dieser Baustein sichtbar"
+
+#: views/component/edit.phtml:82
+#: views/news/edit.phtml:37
+#: views/site/edit.phtml:160
+msgid "Publish date"
+msgstr "Datum der Veröffentlichung"
+
+#: views/component/edit.phtml:83
+msgid "On which time the component will be viewable"
+msgstr "Ab welchen Zeitpunkt ist dieser Baustein sichtbar"
+
+#: views/component/edit.phtml:83
+#: views/news/edit.phtml:38
+#: views/site/edit.phtml:161
+msgid "Publish time"
+msgstr "Zeitpunkt der Veröffentlichung"
+
+#: views/component/edit.phtml:84
+msgid "On which date the component will expire"
+msgstr "Ab welchen Datum ist dieser Baustein abgelaufen"
+
+#: views/component/edit.phtml:84
+#: views/news/edit.phtml:39
+#: views/site/edit.phtml:162
+msgid "Expire date"
+msgstr "Ablaufdatum"
+
+#: views/component/edit.phtml:85
+msgid "On which time the component will expire"
+msgstr "Ab welchen Zeitpunkt ist dieser Baustein abgelaufen"
+
+#: views/component/edit.phtml:85
+#: views/news/edit.phtml:40
+#: views/site/edit.phtml:163
+msgid "Expire time"
+msgstr "Ablaufzeitpunkt"
+
+#: views/component/edit.phtml:93
+#: views/sitelanguage/new.phtml:3
+#: views/site/edit.phtml:241
+msgid "New translation"
+msgstr "Neue Übersetzung"
+
+#: views/component/new.phtml:4
+#: views/component/new.phtml:15
+#: views/component/all.phtml:14
+#: views/componentlanguage/new.phtml:3
+msgid "New component"
+msgstr "Neuer Baustein"
+
+#: views/component/new.phtml:26
+msgid "Only for internal use needed"
+msgstr "Nur für interne Zwecke"
+
+#: views/component/new.phtml:27
+msgid "How many components?"
+msgstr "Wie viele Bausteine?"
+
+#: views/component/new.phtml:27
+msgid "How many of this components must be created"
+msgstr "Wie viele von diesem Baustein sollen erstellt werden."
+
+#: views/component/new.phtml:28
+msgid "Look and functionality of the component"
+msgstr "Aussehen und Funktion des Bausteins"
+
+#: views/component/new.phtml:28
+msgid "Component type"
+msgstr "Bausteintyp"
+
+#: views/component/new.phtml:47
+#: views/news/new.phtml:22
+msgid "Add in following languages"
+msgstr "In folgenden Sprachen anlegen"
+
+#: views/component/new.phtml:73
+#: views/componentfile/editMeta.phtml:22
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: views/component/all.phtml:3
+#: views/component/all.phtml:8
+msgid "Components of"
+msgstr "Baustein von"
+
+#: views/component/all.phtml:38
+msgid "Template"
+msgstr "Vorlage"
+
+#: views/component/all.phtml:39
+msgid "Area"
+msgstr "Inhaltsbereich"
+
+#: views/component/all.phtml:41
+msgid "Permanent"
+msgstr "Permanent"
+
+#: views/component/all.phtml:64
+msgid "This component is permanent"
+msgstr "Dieser Baustein ist permanent sichtbar"
+
+#: views/contentboxlanguage/edit.phtml:9
+#: views/contentboxlanguage/new.phtml:6
+msgid "edit Content Box"
+msgstr "Contentbox bearbeiten"
+
+#: views/contentboxlanguage/edit.phtml:12
+#: views/contentboxlanguage/new.phtml:15
+msgid "edit Content Box Translation"
+msgstr "Übersetzung der Contenbox bearbeiten"
+
+#: views/contentboxlanguage/edit.phtml:36
+#: views/contentbox/edit.phtml:62
+msgid "delete"
+msgstr "Löschen"
+
+#: views/news/edit.phtml:6
+#: views/news/new.phtml:6
+msgid "Show news"
+msgstr "Newsübersicht"
+
+#: views/news/edit.phtml:10
+#: views/news/new.phtml:15
+#: views/news/all.phtml:7
+#: views/newslanguage/new.phtml:15
+msgid "New news"
+msgstr "Neue News"
+
+#: views/news/edit.phtml:21
+msgid "Edit news"
+msgstr "News bearbeiten"
+
+#: views/news/edit.phtml:27
+#: views/news/edit.phtml:89
+#: views/news/edit.phtml:102
+msgid "Sites"
+msgstr "Seiten"
+
+#: views/news/edit.phtml:31
+#: views/news/new.phtml:19
+msgid "Name of the news. Only for internal use"
+msgstr "Newsname. Nur für interne Zwecke"
+
+#: views/news/edit.phtml:33
+msgid "Do you want to schedule this news?"
+msgstr "Wollen Sie diese News terminieren"
+
+#: views/news/edit.phtml:37
+#: views/site/edit.phtml:160
+msgid "On which date the site will be viewable"
+msgstr "Ab welchen Datum ist diese Seite sichtbar"
+
+#: views/news/edit.phtml:38
+#: views/site/edit.phtml:161
+msgid "On which time the site will be viewable"
+msgstr "Ab welchen Zeitpunkt ist diese Seite sichtbar"
+
+#: views/news/edit.phtml:39
+#: views/site/edit.phtml:162
+msgid "On which date the site will expire"
+msgstr "Ab welchen Datum ist diese Seite abgelaufen"
+
+#: views/news/edit.phtml:40
+#: views/site/edit.phtml:163
+msgid "On which time the site will expire"
+msgstr "Ab welchen Zeitpunkt ist diese Seite abgelaufen"
+
+#: views/news/edit.phtml:46
+msgid "Add translation"
+msgstr "Neue Übersetzung"
+
+#: views/news/edit.phtml:52
+#: views/news/all.phtml:21
+#: views/site/all.phtml:61
+msgid "new"
+msgstr "neu"
+
+#: views/news/edit.phtml:53
+#: views/news/all.phtml:22
+#: views/site/all.phtml:62
+msgid "modified"
+msgstr "verändert"
+
+#: views/news/edit.phtml:54
+#: views/news/all.phtml:23
+#: views/site/all.phtml:63
+msgid "published"
+msgstr "veröffentlicht"
+
+#: views/news/edit.phtml:61
+#: views/article/article.phtml:2
+msgid "Headline"
+msgstr "Überschrift"
+
+#: views/news/edit.phtml:86
+msgid "Show on all sites"
+msgstr "Auf allen Seiten anzeigen"
+
+#: views/news/edit.phtml:93
+msgid "Add to site"
+msgstr "Zu einer Seite hinzufügen"
+
+#: views/news/edit.phtml:112
+msgid "Remove"
+msgstr "Entfernen"
+
+#: views/redirect/dataMain.phtml:1
+msgid "Redirect"
+msgstr "Weiterleitung"
+
+#: views/redirect/dataMain.phtml:3
+#: views/sitelanguage/edit.phtml:42
+#: views/site/edit.phtml:62
+#: views/site/edit.phtml:64
+msgid "URL"
+msgstr "URL"
+
+#: views/redirect/dataMain.phtml:5
+#: views/redirect/dataMain.phtml:6
+#: views/componentfile/editMeta.phtml:7
+#: views/componentfile/editMeta.phtml:8
+#: views/componentlanguage/edit.phtml:85
+msgid "Internal"
+msgstr "Intern"
+
+#: views/language/edit.phtml:6
+#: views/language/new.phtml:6
+msgid "Show languages"
+msgstr "Zeige Sprachen"
+
+#: views/language/edit.phtml:9
+#: views/language/new.phtml:15
+#: views/language/all.phtml:6
+msgid "New language"
+msgstr "Neue Sprache"
+
+#: views/language/edit.phtml:19
+msgid "Edit language"
+msgstr "Sprache bearbeiten"
+
+#: views/language/edit.phtml:23
+#: views/language/new.phtml:19
+msgid "The full language name"
+msgstr "Der komplette Name der Sprache"
+
+#: views/language/edit.phtml:24
+#: views/language/new.phtml:20
+msgid "Shortcut of the language name"
+msgstr "Sprachkürzel"
+
+#: views/language/edit.phtml:24
+#: views/language/new.phtml:20
+#: views/language/all.phtml:24
+msgid "Shortcut"
+msgstr "Sprachkürzel"
+
+#: views/language/edit.phtml:26
+msgid "Is this language active (live)?"
+msgstr "Ist diese Sprache aktiv (live)?"
+
+#: views/language/edit.phtml:30
+msgid "If not then the language and all it's translations will not be displayed on the website"
+msgstr "Wenn diese Option nicht angewählt ist, dann wird die Sprache und all ihre Übersetzungen nicht auf der Webseite angezeigt"
+
+#: views/language/edit.phtml:33
+msgid "Copies content from the master language?"
+msgstr "Inhalt von der Mastersprache kopieren?"
+
+#: views/language/all.phtml:22
+msgid "Active"
+msgstr "Aktiv"
+
+#: views/language/all.phtml:23
+msgid "Copies"
+msgstr "Kopiert"
+
+#: views/mainsite/mainsite.phtml:2
+msgid "Navigation Headline"
+msgstr "Überschrift in der Navigation"
+
+#: views/mainsite/mainsite.phtml:3
+msgid "Navigation Description"
+msgstr "Beschreibung in der Navigation"
+
+#: views/contentbox/edit.phtml:6
+#: views/contentbox/new.phtml:6
+msgid "show Content Boxes"
+msgstr "Übersicht der Contentboxen"
+
+#: views/contentbox/edit.phtml:9
+#: views/contentbox/new.phtml:15
+#: views/contentbox/all.phtml:6
+msgid "new Content Box"
+msgstr "neue Contentbox"
+
+#: views/contentbox/edit.phtml:19
+msgid "Edit Content Box"
+msgstr "Content Box bearbeiten"
+
+#: views/contentbox/new.phtml:42
+msgid "save"
+msgstr "Speichern"
+
+#: views/css/edit.phtml:6
+#: views/css/new.phtml:6
+msgid "show Css"
+msgstr "Zeige Css"
+
+#: views/css/edit.phtml:9
+#: views/css/new.phtml:15
+#: views/css/all.phtml:6
+msgid "New Css"
+msgstr "Neue CSS"
+
+#: views/css/all.phtml:14
+msgid "Css"
+msgstr "CSS"
+
+#: views/sitelanguage/edit.phtml:3
+msgid "Translation Data"
+msgstr "Daten der Übersetzung"
+
+#: views/sitelanguage/edit.phtml:17
+#: views/site/edit.phtml:31
+msgid "Meta data"
+msgstr "Metadaten"
+
+#: views/sitelanguage/edit.phtml:31
+msgid "Edit site container"
+msgstr "Seitenbehälter bearbeiten"
+
+#: views/sitelanguage/edit.phtml:43
+msgid "Belongs to site container"
+msgstr "Gehört zum Seitenbehälter"
+
+#: views/sitelanguage/edit.phtml:47
+#: views/sitelanguage/new.phtml:16
+#: views/site/edit.phtml:70
+msgid "This is the name which is shown in a navigation"
+msgstr "Dieser Name wird in der Navigation angezeigt"
+
+#: views/sitelanguage/edit.phtml:47
+#: views/sitelanguage/new.phtml:16
+#: views/site/edit.phtml:70
+msgid "Navigation name"
+msgstr "Name in der Navigation"
+
+#: views/sitelanguage/edit.phtml:48
+#: views/site/edit.phtml:71
+msgid "This text is shown in the browser bar and is used as title text of a search result of any search engine"
+msgstr "Dieser Text wird in der Browserleiste angezeigt und als Überschrift in einem Suchmaschinenergebnis."
+
+#: views/sitelanguage/edit.phtml:48
+#: views/componentlanguage/edit.phtml:82
+#: views/site/edit.phtml:71
+msgid "Title"
+msgstr "Titel"
+
+#: views/sitelanguage/edit.phtml:50
+#: views/site/edit.phtml:73
+msgid "Is home site?"
+msgstr "Ist diese Seite eine Startseite?"
+
+#: views/sitelanguage/edit.phtml:57
+#: views/site/edit.phtml:85
+msgid "keywords are used by meta data search engines. Google does not look at keywords anymore (negligible)"
+msgstr "Schlüsselwörter werden von Metadaten-Suchmaschinen verwendet. Google verwendet sie nicht mehr (also vernachlässigbar)."
+
+#: views/sitelanguage/edit.phtml:57
+#: views/site/edit.phtml:85
+msgid "Keywords"
+msgstr "Schlüsselwörter"
+
+#: views/sitelanguage/edit.phtml:58
+#: views/site/edit.phtml:86
+msgid "The description is used by search engines. It will be displayed after the title text of a search result"
+msgstr "The Beschreibung wird von Suchmaschinen verwendet. Sie wird unter der Überschrift von einem Suchmaschinenergebnis angezeigt."
+
+#: views/sitelanguage/edit.phtml:58
+#: views/site/edit.phtml:86
+msgid "Description"
+msgstr "Beschreibung"
+
+#: views/sitelanguage/edit.phtml:59
+#: views/site/edit.phtml:87
+msgid "Author of the document. Used by some search engines (negligible)"
+msgstr "Der Autor dieser Seite. Wird von manchen Suchmaschinen verwendet (vernachlässigbar)"
+
+#: views/sitelanguage/edit.phtml:59
+#: views/site/edit.phtml:87
+msgid "Author"
+msgstr "Autor"
+
+#: views/sitelanguage/edit.phtml:60
+#: views/site/edit.phtml:88
+msgid "Changefrequency of the site. Beware that wrong information may not have any effect"
+msgstr "Dieser Wert gibt an, wie oft sich diese Seite ungefähr verändert. Falsche Einstellungen werden keine Nutzen haben."
+
+#: views/sitelanguage/edit.phtml:60
+#: views/site/edit.phtml:88
+msgid "Changefreq"
+msgstr "Wir oft ändert sich diese Seite?"
+
+#: views/sitelanguage/edit.phtml:61
+#: views/site/edit.phtml:89
+msgid "Priority of the site. Beware that wrong information may not have any effect"
+msgstr "Gibt die Wichtigkeit dieser Seite an. Falsche Informationen werden keinen Nutzen haben."
+
+#: views/sitelanguage/edit.phtml:61
+#: views/site/edit.phtml:89
+msgid "Priority"
+msgstr "Wichtigkeit"
+
+#: views/sitelanguage/new.phtml:9
+#: views/componentlanguage/edit.phtml:13
+#: views/componentlanguage/new.phtml:9
+#: views/newslanguage/edit.phtml:10
+#: views/newslanguage/new.phtml:6
+msgid "Back"
+msgstr "Zurück"
+
+#: views/sitelanguage/new.phtml:17
+msgid "Language of the site"
+msgstr "Seitensprache"
+
+#: views/sitelanguage/new.phtml:19
+#: views/componentlanguage/new.phtml:18
+msgid "All translations are already added!"
+msgstr "Diese Seite wurde bereits in alle Sprachen übersetzt!"
+
+#: views/componentfile/editMeta.phtml:1
+msgid "Edit Image Meta"
+msgstr "Bilder-Metadaten bearbeiten"
+
+#: views/componentfile/editMeta.phtml:3
+msgid "Alternative text"
+msgstr "Alternativer Text"
+
+#: views/componentfile/editMeta.phtml:4
+msgid "Title text"
+msgstr "Titel"
+
+#: views/componentfile/editMeta.phtml:5
+#: views/componentlanguage/edit.phtml:83
+msgid "Link"
+msgstr "Link"
+
+#: views/componentfile/editMeta.phtml:15
+#: views/componentlanguage/edit.phtml:93
+msgid "Target"
+msgstr "Ziel"
+
+#: views/javascript/edit.phtml:6
+#: views/javascript/new.phtml:6
+#: views/javascript/all.phtml:14
+msgid "Javascript Files"
+msgstr "Javascriptdatein"
+
+#: views/javascript/edit.phtml:9
+#: views/javascript/new.phtml:15
+#: views/javascript/all.phtml:6
+msgid "new Javascript"
+msgstr "neues Javascript"
+
+#: views/javascript/edit.phtml:19
+msgid "edit Javascript"
+msgstr "Javascript bearbeiten"
+
+#: views/componentlanguage/edit.phtml:7
+msgid "Translation data"
+msgstr "Übersetzungsdaten"
+
+#: views/componentlanguage/edit.phtml:19
+msgid "New componentlanguage"
+msgstr "Neue Bausteinübersetzung"
+
+#: views/componentlanguage/edit.phtml:79
+msgid "Choose File"
+msgstr "Wählen Sie eine Datei"
+
+#: views/componentlanguage/edit.phtml:81
+msgid "Alternative text of the file"
+msgstr "Alternativer Text dieser Datei"
+
+#: views/componentlanguage/edit.phtml:81
+msgid "Alt"
+msgstr "Alternativer Text"
+
+#: views/componentlanguage/edit.phtml:82
+msgid "Title of the file"
+msgstr "Titel der Datei"
+
+#: views/componentlanguage/edit.phtml:83
+msgid "Url which is opened when the file is clicked"
+msgstr "Bei Klick auf die Datei, wird diese URL geöffnet"
+
+#: views/componentlanguage/edit.phtml:86
+msgid "Copies the internal url into the link field"
+msgstr "Kopiert die interne URL in das obere Feld."
+
+#: views/componentlanguage/edit.phtml:93
+msgid "Must the link be opened in a new window or not?"
+msgstr "Muss der Link in einem neuen Fenster aufgehen?"
+
+#: views/componentlanguage/new.phtml:16
+msgid "Language of the component translation"
+msgstr "Sprache der Bausteinübersetzung"
+
+#: views/navtemplate/edit.phtml:6
+#: views/navtemplate/new.phtml:6
+msgid "Show navtemplates"
+msgstr "Zeige Navigationsvorlagen"
+
+#: views/navtemplate/edit.phtml:9
+#: views/navtemplate/all.phtml:6
+msgid "New navtemplates"
+msgstr "Neue Navigationsvorlage"
+
+#: views/navtemplate/edit.phtml:19
+msgid "Edit navtemplate"
+msgstr "Navigationsvorlage bearbeiten"
+
+#: views/navtemplate/edit.phtml:25
+#: views/navtemplate/new.phtml:21
+#: views/navtemplate/all.phtml:23
+msgid "In list"
+msgstr "in Liste anzeigen"
+
+#: views/navtemplate/new.phtml:15
+msgid "New navtemplate"
+msgstr "Neue Navigationsvorlage"
+
+#: views/navtemplate/all.phtml:14
+msgid "Navtemplates"
+msgstr "Navigationsvorlagen"
+
+#: views/componenttemplate/edit.phtml:6
+#: views/componenttemplate/new.phtml:6
+#: views/componenttemplate/generator.phtml:9
+msgid "show Component Templates"
+msgstr "Übersicht der Bausteinvorlagen"
+
+#: views/componenttemplate/edit.phtml:9
+#: views/componenttemplate/new.phtml:15
+#: views/componenttemplate/all.phtml:6
+msgid "new Component Template"
+msgstr "neue Bausteinvorlage"
+
+#: views/componenttemplate/edit.phtml:12
+#: views/componenttemplate/all.phtml:12
+#: views/componenttemplate/generator.phtml:18
+msgid "Template Generator"
+msgstr "Vorlagengenerator"
+
+#: views/componenttemplate/edit.phtml:22
+msgid "edit Component Template"
+msgstr "Bausteinvorlage bearbeiten"
+
+#: views/componenttemplate/all.phtml:9
+msgid "edit Sitearea"
+msgstr "Seitenbereich bearbeiten"
+
+#: views/componenttemplate/all.phtml:20
+msgid "Component Templates"
+msgstr "Bausteinvorlagen"
+
+#: views/componenttemplate/all.phtml:29
+msgid "in List"
+msgstr "in Liste anzeigen"
+
+#: views/componenttemplate/generator.phtml:27
+msgid "Componenttemplate Tags"
+msgstr "Bausteinvorlagen Tags"
+
+#: views/componenttemplate/generator.phtml:38
+msgid "Sitetemplate Tags"
+msgstr "Seitenvorlagen Tags"
+
+#: views/setting/index.phtml:9
+msgid "Rewrite"
+msgstr "Überschreiben"
+
+#: views/setting/index.phtml:10
+msgid "Master language"
+msgstr "Master-Sprache"
+
+#: views/setting/index.phtml:12
+msgid "Should slave languages copy content from the master language, if they have no own content?"
+msgstr "Sollen die Slave-Sprachen den Inhalt der Master-Sprache kopieren, wenn sie keinen eigenen Inhalt besitzt?"
+
+#: views/setting/index.phtml:15
+msgid "The robots txt content"
+msgstr "Die Robots-Txt"
+
+#: views/site/edit.phtml:3
+msgid "Site container data"
+msgstr "Daten des Seitenbehälters"
+
+#: views/site/edit.phtml:3
+msgid "Site data"
+msgstr "Seitendaten"
+
+#: views/site/edit.phtml:5
+msgid "Access"
+msgstr "Zugriff"
+
+#: views/site/edit.phtml:67
+#: views/site/new.phtml:9
+msgid "Name in URL"
+msgstr "Name in der URL"
+
+#: views/site/edit.phtml:67
+msgid "For example: /en/<strong>home</strong>"
+msgstr "Zum Beispiel: /de/<strong>home</strong>"
+
+#: views/site/edit.phtml:117
+#: views/site/all.phtml:69
+msgid "Miscellaneous"
+msgstr "Verschiedenes"
+
+#: views/site/edit.phtml:126
+msgid "Type & look"
+msgstr "Typ & Aussehen"
+
+#: views/site/edit.phtml:127
+#: views/site/new.phtml:14
+msgid "Choose a sitetype. For example redirect if you want this site to redirect to a other site"
+msgstr "Wählen Sie einen Seitentyp aus. Zum Beispiel eine Weiterleitung für diese Seite auf eine andere Seite weiterleiten soll."
+
+#: views/site/edit.phtml:128
+#: views/site/new.phtml:15
+msgid "Look of the site"
+msgstr "Aussehen der Seite"
+
+#: views/site/edit.phtml:128
+#: views/site/new.phtml:15
+msgid "Site template"
+msgstr "Seitenvorlage"
+
+#: views/site/edit.phtml:131
+#: views/site/new.phtml:17
+msgid "Navigations"
+msgstr "Navigationen"
+
+#: views/site/edit.phtml:146
+#: views/site/new.phtml:28
+msgid "Parent site"
+msgstr "Übergeordnete Seite"
+
+#: views/site/edit.phtml:147
+#: views/site/new.phtml:29
+msgid "Where this site will be located"
+msgstr "Unter welche Seite diese angezeigt wird"
+
+#: views/site/edit.phtml:154
+msgid "Schedule"
+msgstr "Terminieren"
+
+#: views/site/edit.phtml:156
+msgid "Do you want to schedule this site?"
+msgstr "Wollen Sie diese Seite terminieren"
+
+#: views/site/edit.phtml:170
+msgid "Cache"
+msgstr "Zwischenspeichern"
+
+#: views/site/edit.phtml:174
+msgid "Cache exparation"
+msgstr "Wann der Zwischenspeicher veraltet ist"
+
+#: views/site/edit.phtml:177
+msgid "Permalink?"
+msgstr "Permalink?"
+
+#: views/site/edit.phtml:193
+msgid "Site is only viewable for"
+msgstr "Diese Seite ist nur sichtbar für"
+
+#: views/site/edit.phtml:195
+msgid "logged in users"
+msgstr "eingeloggte Benutzer"
+
+#: views/site/edit.phtml:198
+msgid "From groups"
+msgstr "Von den Gruppen"
+
+#: views/site/edit.phtml:201
+msgid "Groups"
+msgstr "Gruppen"
+
+#: views/site/edit.phtml:202
+msgid "Usergroup which will be allowed to access this site"
+msgstr "Benutzergruppe der es erlaubt ist, diese Seite anzusehen."
+
+#: views/site/edit.phtml:208
+msgid "Add"
+msgstr "Hinzufügen"
+
+#: views/site/edit.phtml:210
+msgid "All groups are added"
+msgstr "Alle Gruppen sind bereits hinzugefügt"
+
+#: views/site/new.phtml:3
+msgid "New site"
+msgstr "Neue Seite"
+
+#: views/site/new.phtml:13
+msgid "Title and navigation name of the translation(s)"
+msgstr "Titel und Name in der Navigation von dieser Übersetzung"
+
+#: views/site/notifySearchEngines.phtml:3
+#: views/site/all.phtml:72
+msgid "Notify search engines"
+msgstr "Suchmaschinen benachrichtigen"
+
+#: views/site/notifySearchEngines.phtml:7
+msgid "Search engines notified"
+msgstr "Die Suchmaschinen wurden benachrichtigt"
+
+#: views/site/all.phtml:7
+msgid "New Site"
+msgstr "Neue Seite"
+
+#: views/site/all.phtml:13
+#: views/site/tree.phtml:15
+msgid "Site container"
+msgstr "Seitenbehälter"
+
+#: views/site/all.phtml:65
+msgid "not translated yet"
+msgstr "noch nicht übersetzt"
+
+#: views/site/all.phtml:81
+msgid "Choose a site"
+msgstr "Wählen Sie eine Seite"
+
+#: views/site/all.phtml:85
+msgid "Please choose a site from the left side."
+msgstr "Bitte wählen Sie eine Seite aus der linken Seitenstruktur"
+
+#: views/article/article.phtml:3
+msgid "Text"
+msgstr "Text"
+
+#: views/article/article.phtml:4
+msgid "Date"
+msgstr "Datum"
+
+#: views/newslanguage/edit.phtml:14
+msgid "New newstranslation"
+msgstr "Neue Newsübersetzung"
+
+#: views/newslanguage/edit.phtml:26
+msgid "Edit news translation"
+msgstr "Newsübersetzung bearbeiten"
+
+#: views/newslanguage/edit.phtml:31
+msgid "Headline of the news"
+msgstr "Newsüberschrift"
+
+#: views/newslanguage/edit.phtml:33
+msgid "Body text of the news"
+msgstr "Newsinhalt"
+

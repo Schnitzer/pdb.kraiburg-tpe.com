@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CATALOG>
+ <HEAD>
+  <ID>PORTFOLIO</ID>
+  <DESCRIPTIONS_SHORT>
+   <DESCRIPTION_SHORT lang="chi">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="kor">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ger">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="eng">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="fre">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ita">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="jpn">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="pol">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="spa">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+  </DESCRIPTIONS_SHORT>
+ </HEAD>
+ <NODES>
+  <NODE ID="0000000001-0000000101" type="SERIE" internal_id="0000000101">
+   <DRAWING_NUMBER/>
+   <VALID_FROM>00000000</VALID_FROM>
+   <VALID_TO>00000000</VALID_TO>
+   <DESCRIPTIONS_SHORT>
+    <DESCRIPTION_SHORT lang="chi">
+     <![CDATA[RC/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="kor">
+     <![CDATA[RC/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="ger">
+     <![CDATA[RC/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="eng">
+     <![CDATA[RC/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="fre">
+     <![CDATA[RC/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="ita">
+     <![CDATA[RC/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="jpn">
+     <![CDATA[RC/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="pol">
+     <![CDATA[RC/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="spa">
+     <![CDATA[RC/UV]]>
+    </DESCRIPTION_SHORT>
+   </DESCRIPTIONS_SHORT>
+   <DESCRIPTIONS_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="ger">
+     <![CDATA[Die RC/UV-Reihe ist Ihre Materiallösung mit einem Recycling-Anteil über 68% für Anwendungen mit Anforderungen an die UV-Beständigkeit und Haftung zu PP. Sie sind für den Automobilaußeneinsatz geeignet und in schwarz erhältlich.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="eng">
+     <![CDATA[The RC/UV series is your material solution with a recycling content above 68% for applications requiring UV resistance and adhesion to PP. The compounds are suitable for automotive exterior applications and are available in black.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="fre">
+     <![CDATA[La série RC/UV est votre solution TPE avec un contenu recyclé supérieur à 68 % pour des applications nécessitant une résistance aux UV et une adhésion au PP. Elle est adaptée aux applications extérieures automobiles et disponible en noir.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="spa">
+     <![CDATA[La serie RC/UV es su solución con un contenido de reciclado superior al 68% para aplicaciones que requieren resistencia a los rayos UV y adherencia a PP. Los compuestos son adecuados para aplicaciones de exterior de automóvil y están disponibles en negro.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="ita">
+     <![CDATA[La serie RC/UV è la soluzione in TPE con un contenuto di riciclato superiore al 68% per applicazioni che richiedono resistenza ai raggi UV e adesione al PP. I compound sono adatti per applicazioni esterne automobilistiche e sono disponibili in nero.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="pol">
+     <![CDATA[Tworzywa z serii RC/UV to materiały z zawartością do 68% surowców wtórnych, do zastosowań wymagających odporności UV i adhezji z PP. tworzywa mogą być stosowane w detalach motoryzacyjnych zewnętrznych, są dostępne w kolorze czarnym.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="chi">
+     <![CDATA[RC/UV系列材料解决方案，具有超过68%的回收成分，适用于需要抗紫外线和包胶PP的应用。这类化合物尤其适用于汽车外饰，并提供黑色可供选择。]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="jpn">
+     <![CDATA[RC/UVシリーズは、耐紫外線性能およびPPへの接着性を必要とするアプリケーションのための、68%以上のリサイクル材を含有する、あなたの材料ソリューションです。このコンパウンドは自動車の外装アプリケーションに適しており、黒色で供給されます。]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="kor">
+     <![CDATA[RC/UV 시리즈는 UV 저항성 및 PP 접착이 필요한 어플리케이션에 적용 가능하며 재활용 원소재 함량이 68% 이상인 재료 솔루션입니다. 이 제품은 자동차 외장재에 적합하며 검은색으로 제공됩니다.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="ger">
+     <![CDATA[Recycling Content TPE mit PP-Haftung; PIR- und PCR-Anteil; Anwendungen mit Anforderungen an die UV-Beständigkeit]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="eng">
+     <![CDATA[Recycling Content TPE with PP adhesion; PIR and PCR content; applications with demands on UV resistance]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="fre">
+     <![CDATA[Contenu recyclé TPE avec adhésion au PP ; pourcentage PIR et PCR ; applications nécessitant une résistance aux UV.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="spa">
+     <![CDATA[TPE con contenido reciclado y adhesión a PP; contenido PIR y PCR; aplicaciones con exigencias de resistencia UV]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="ita">
+     <![CDATA[TPE con contenuto di riciclato per adesione PP; contiene PIR e PCR; applicazioni con requisiti di resistenza ai raggi UV]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="pol">
+     <![CDATA[Materiały TPE z zawartością surowców wtórnych PCR i PIR, adhezja z PP; zastosowania wymagające UV-odporności]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="chi">
+     <![CDATA[含回收成分的TPE与PP包胶；含PIR和PCR成分；适用于对抗紫外线有要求的应用。]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="jpn">
+     <![CDATA[PPへの接着性を備えたリサイクル材含有TPE、PIR およびPCR含有；耐紫外線性能を必要とするアプリケーション]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="kor">
+     <![CDATA[PP 접착 가능한 재활용 원소재 TPE; PIR 및 PCR 함량; UV 저항이 필요한 어플리케이션]]>
+    </DESCRIPTION_LONG>
+   </DESCRIPTIONS_LONG>
+   <CLASSIFICATION>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_001_SERIAL">
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">Serie</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">series</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+     <VALUE>
+      TPE-300000000005753
+      <VALUE_TEXTS>
+       <VALUE_TEXT lang="chi">RC/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="kor">RC/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="ger">RC/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="eng">RC/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">RC/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="ita">RC/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="jpn">RC/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="pol">RC/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="por">RC/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">RC/UV</VALUE_TEXT>
+      </VALUE_TEXTS>
+     </VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_002_BRAND">
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">Brand</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+     <VALUE>
+      TPE-300000000006154
+      <VALUE_TEXTS>
+       <VALUE_TEXT lang="chi">凯柏胶宝® R</VALUE_TEXT>
+       <VALUE_TEXT lang="tha">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="kor">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="rum">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="slv">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="hrv">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="may">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="ukr">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="est">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="ara">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="heb">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="cze">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="ger">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="eng">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="gre">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="hun">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="ita">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="jpn">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="dan">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="pol">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="chi">凯柏胶宝® R</VALUE_TEXT>
+       <VALUE_TEXT lang="dut">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="nor">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="por">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="slo">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="rus">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="tur">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="fin">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="swe">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="bul">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="lit">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="lav">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="ice">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="srp">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="ind">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="hin">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="vie">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="mac">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="alb">THERMOLAST® R</VALUE_TEXT>
+      </VALUE_TEXTS>
+     </VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_010_REGION">
+     <VALUE>TPE-300000000007010</VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_4000_001">
+     <VALUE>TPE-300000000006772</VALUE>
+     <VALUE>TPE-300000000004713</VALUE>
+     <VALUE>TPE-300000000006773</VALUE>
+     <VALUE>TPE-300000000006774</VALUE>
+     <VALUE>TPE-300000000006771</VALUE>
+     <VALUE>TPE-300000000005556</VALUE>
+     <VALUE>TPE-300000000006707</VALUE>
+     <VALUE>TPE-300000000004664</VALUE>
+     <VALUE>TPE-300000000006706</VALUE>
+     <VALUE>TPE-300000000004662</VALUE>
+     <VALUE>TPE-300000000004667</VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_4000_002">
+     <VALUE>TPE-300000000005511</VALUE>
+     <VALUE>TPE-300000000007062</VALUE>
+     <VALUE>TPE-300000000004788</VALUE>
+     <VALUE>TPE-300000000006911</VALUE>
+     <VALUE>TPE-300000000005984</VALUE>
+     <VALUE>TPE-300000000004763</VALUE>
+     <VALUE>TPE-300000000004736</VALUE>
+    </ATTRIBUTE>
+   </CLASSIFICATION>
+  </NODE>
+ </NODES>
+</CATALOG>
+                                                                                                                                                

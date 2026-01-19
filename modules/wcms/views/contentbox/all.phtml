@@ -1,0 +1,45 @@
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+        <li class="ncw-main-tab"><a href="#"><?php print T_('Content Boxes'); ?></a></li>
+        <li class="ncw-option-tab"><a href="javascript: ncw.wcms.contentbox.loadNew();"><?php print T_('New Content Box'); ?></a></li>
+    </ul>
+    <div class="ncw-main-tab-contents">
+        <div class="ncw-main-tab-content">
+            <table class="ncw-table">
+                <thead>
+                    <tr>
+                        <th><?php echo T_('Name'); ?></th>
+                        <th><?php echo T_('ID'); ?></th>
+                        <th><?php echo T_('Languages'); ?></th>
+                        <th><?php echo T_('Options'); ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (true === is_array($this->contentboxes)) { ?>
+                        <?php foreach ($this->contentboxes as $contentbox) { ?>
+                            <tr>
+                                <td><a href="javascript: ncw.wcms.contentbox.loadEdit(<?php print $contentbox->getId(); ?>);"><?php print $contentbox->getNameEncoded(); ?></a></td>
+                                <td><a href="javascript: ncw.wcms.contentbox.loadEdit(<?php print $contentbox->getId(); ?>);"><?php print $contentbox->getFilename(); ?></a></td>
+                                <td class="ncw-table-td-icons">
+                                    <?php
+                                    if (true === isset($this->arr_languages[$contentbox->getId()])) {
+                                        foreach ($this->arr_languages[$contentbox->getId()] as $language) {
+                                            ?> <?php
+                                            echo $this->html->image("country_flags/" . $language['shortcut'] . ".gif", false, array("alt" => $language['name'], "title" => $language['name']));
+                                        }
+                                    } else {
+                                    ?>
+                                    &nbsp;
+                                    <?php } ?>
+                                </td>
+                                <td class="ncw-table-td-icons">
+                                    <?php echo $this->html->link($this->html->image( 'icons/16px/pencil.png', false, array('alt' => T_('edit'), 'title' => T_('edit'))), array('action' => 'edit', 'id' => $contentbox->getId()), null, false, false); ?>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

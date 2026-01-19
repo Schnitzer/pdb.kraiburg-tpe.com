@@ -1,0 +1,96 @@
+<div class="ncw-left">
+    <div class="ncw-accordion">
+        <h3 class="ncw-accordion-header current">Options</h3>
+        <div class="ncw-accordion-content ncw-accordion-current">
+            <p class="ncw-accordion-content-part-dark">
+                <?php print $this->html->link(T_('Show region'), array('action' => 'all')); ?>
+            </p>
+            <p class="ncw-accordion-content-part-dark">
+                <?php print $this->html->link(T_('New region'), array('action' => 'new')); ?>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="ncw-right">
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+            <li class="ncw-main-tab"><a href="#"><?php print T_('Edit region'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <ul class="ncw-tabs-container">
+                    <li class="ncw-tab"><a href="#">main</a></li>
+                    <li class="ncw-tab"><a href="#">countries</a></li>
+                </ul>
+                <div class="ncw-tab-contents">
+                    <div class="ncw-tab-content ncw-tab-content-full">
+                        <?php print $this->form->create(); ?>
+                        <?php print $this->form->input("id", array('type' => 'hidden', 'value' => $this->region_id)); ?>
+                        <?php print $this->form->input("name", array('maxlength' => 25, 'title' => 'english name', 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => 'english name'))); ?>
+                        <?php print $this->form->input("namede", array('maxlength' => 25, 'title' => 'german name', 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => 'german name'))); ?>
+                        <?php print $this->form->input("namezh", array('maxlength' => 25, 'title' => 'chinese name', 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => 'chinese name'))); ?>
+                        <?php print $this->form->input("namees", array('maxlength' => 25, 'title' => 'spanish name', 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => 'spanish name'))); ?>
+                        <?php print $this->form->input("namefr", array('maxlength' => 25, 'title' => 'french name', 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => 'french name'))); ?>
+                        <?php print $this->form->input("namejp", array('maxlength' => 25, 'title' => 'japanese name', 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => 'japanese name'))); ?>
+                        <?php print $this->form->input("nameit", array('maxlength' => 25, 'title' => 'italian name', 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => 'italian name'))); ?>
+                        <?php print $this->form->input("namept", array('maxlength' => 25, 'title' => 'portuguese name', 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => 'portuguese name'))); ?>
+                        <?php print $this->form->input("namekr", array('maxlength' => 25, 'title' => 'korean name', 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => 'korean name'))); ?>
+                        <?php if (count($this->arr_options) > 0) {?>
+                            <div class="ncw-input-container">
+                                <label for="region_site_id" class="ncw-label"><?php echo T_('Site');?></label>
+                                <select id="region_site_id" class="ncw-select" name="data[Region][site_id]">
+                                    <?php foreach ($this->arr_options as $option) { ?>
+                                        <option <?php if ($option->getId() == $this->site_id) {echo 'selected'; } ?> value="<?php print $option->getId(); ?>"  ><?php echo str_repeat('--', $option->getLevel() - 1) . ' ' . $option->getName(); ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        <?php } ?>
+                        <?php print $this->form->end(); ?>
+                    </div>
+                    <div class="ncw-tab-content ncw-tab-content-full">
+                        <?php if (count($this->arr_country_options) > 0) {?>
+                            <?php print $this->form->input('country', array('type' => 'select', 'options' => $this->arr_country_options, 'title' => T_('country'), 'class' => 'ncw-select', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('country')))); ?>
+                            <p>
+                                <a id="ncw-add-country"  href="#" class="ncw-action">
+                                    <?php print T_('Add country'); ?>
+                                </a>
+                            </p>
+                            <br class="ncw-clear" />
+                        <?php } else { ?>
+                            <span>all countries added!</span>
+                        <?php } ?>
+                        <h2>Countries: </h2>
+                        <table class="ncw-table">
+                            <thead>
+                                <tr>
+                                    <th><?php echo T_('Country');?></th>
+                                    <th>Options</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ncw-countries">
+                            <?php if (true === is_array($this->arr_all_countries)) { ?>
+                                <?php foreach ($this->arr_all_countries as $obj_country) { ?>
+                                    <tr id="ncw-added-country-<?php print $obj_country->getId(); ?>">
+                                        <td><?php echo $this->html->link($obj_country->getNameEncoded(), array('controller' => 'countrysite', 'action' => 'edit', 'id' => $obj_country->getId(), $this->region_id)); ?></td>
+                                        <td class="ncw-table-td-icons">
+                                            <?php print $this->html->link($this->html->image("icons/16px/pencil.png", false, array('alt' => T_('edit'), 'title' => T_('edit'))), array('controller' => 'countrysite', 'action' => 'edit', 'id' => $obj_country->getId()), array('region_id' => $this->region_id), null, false, false); ?>
+                                            <a href="javascript: ncw.tpe.regions.countries.remove(<?php print $this->region_id?>, <?php print $obj_country->getId(); ?>);"><?php print $this->html->image("icons/16px/delete.png", false, array('alt' => T_('delete'), 'title' => T_('delete'))); ?></a>
+                                            </td>
+                                    </tr>
+                                <?php } ?>
+                            <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ncw-status-action-bar">
+        <div class="ncw-status-message"></div>
+        <ul class="ncw-actions">
+            <li class="ncw-action"><a href="<?php print $this->html->url(array('action' => 'delete', 'id' => $this->region_id)); ?>" class="ncw-delete-trigger ncw_delete_icon" rel="#ncw-delete">Delete</a></li>
+            <li class="ncw-action"><a href="#" class="ncw-save-trigger ncw_save_icon">Save</a></li>
+        </ul>
+    </div>
+</div>

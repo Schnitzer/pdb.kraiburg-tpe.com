@@ -1,0 +1,157 @@
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+        <li class="ncw-main-tab"><a href="#"><?php print T_('Content'); ?></a></li>
+        <li class="ncw-main-tab"><a href="#"><?php print T_('Component'); ?><?php if ($this->languages_num > 1) { ?> <?php print T_('container'); ?><?php } ?> <?php print T_('data'); ?></a></li>
+        <li class="ncw-main-tab"><a href="#"><?php print T_('Behaviour'); ?></a></li>
+        <?php if ($this->languages_num > 1) { ?><li class="ncw-main-tab"><a href="#"><?php print T_('Translations'); ?></a></li><?php } ?>
+    </ul>
+    <?php print $this->form->create('ncw-component', array('onsubmit' => 'return false;')); ?>
+    <div class="ncw-main-tab-contents">
+        <div class="ncw-main-tab-content">
+            <p>
+                <a href="javascript: ncw.wcms.component(<?php print $this->site_id ?>);" class="ncw-action">
+                    <?php print T_('Show components'); ?>
+                </a>
+            </p>
+            <br class="ncw-clear" />
+            <?php
+            if (false === empty($this->componentlanguages)
+                && count($this->componentlanguages) > 1
+                && $this->languages_num > 1
+            ) {
+            ?>
+                <br />
+                <p>
+                    <?php print T_('Language'); ?>:
+                <?php foreach ($this->componentlanguages as $componentlanguage) { ?>
+                    <a href="javascript: ncw.wcms.componentlanguage.loadInside($('.ncw-componentlanguage-view'), <?php print $componentlanguage->getId(); ?>, '<?php print $componentlanguage->Language->getShortcut(); ?>');">
+                        <?php print $this->html->image("country_flags/" . $componentlanguage->Language->getShortcut() . ".gif", false, array("alt" => $componentlanguage->Language->getName(), "title" => $componentlanguage->Language->getNameEncoded())); ?>
+                    </a>
+                <?php } ?>
+                    <br />
+                    <br />
+                    <?php print T_('Current language'); ?>: <?php print $this->html->image("country_flags/" . $this->componentlanguages[0]->Language->getShortcut() . ".gif", false, array('class' => 'ncw-language-flag')); ?>
+                </p>
+            <?php } ?>
+            <div class="ncw-componentlanguage-view"></div>
+        </div>
+        <div class="ncw-main-tab-content">
+            <ul class="ncw-tabs-container">
+                <li class="ncw-tab"><a href="#"><?php print T_('Main'); ?></a></li>
+            </ul>
+            <?php print $this->form->input("id", array('type' => 'hidden', 'value' => $this->component_id)); ?>
+            <div class="ncw-tab-contents">
+                <div class="ncw-tab-content ncw-tab-content-full">
+                    <p>
+                        <?php print T_('ID'); ?>: <?php print $this->component_id; ?><br />
+                        <?php print T_('Status'); ?>: <span class="ncw-<?php print $this->component_status; ?>"><?php print $this->component_status; ?></span>
+                    </p>
+                    <?php print $this->form->input("name", array('maxlength' => 100, 'title' => T_('Internal name of the component. Will not be used on the website.'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Name')))); ?>
+                </div>
+            </div>
+        </div>
+        <div class="ncw-main-tab-content">
+            <h2><?php print T_('Appearance'); ?></h2>
+            <div class="ncw-input-container">
+                <label class="ncw-label" for="component_site_id"><?php print T_('Site'); ?></label>
+                <select id="component_site_id" name="data[Component][site_id]" class="ncw-select" title="To which site does this component belong too?">
+                    <?php print $this->site_options; ?>
+                </select>
+            </div>
+            <?php print $this->form->input("area", array('type' => 'select', 'options' => $this->arr_sitearea, 'title' => T_('In which content area must this component be'), 'class' => 'ncw-select', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Content area')))); ?>
+            <div class="ncw-input-container">
+                <label class="ncw-label" for="component_site_id"><?php print T_('Parent component'); ?></label>
+                <select id="component_site_id" name="data[Component][parent_id]" class="ncw-select" title="parent component">
+                    <option value="0"><?php print T_('-- No parent component --'); ?></option>
+                    <?php foreach ($this->parent_options as $option_name => $option_id) { ?>
+                        <option value="<?php print $option_id; ?>"<?php if ($this->parent_id == $option_id) {?> selected="selected"<?php }?>><?php print $option_name; ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+            <?php print $this->form->input("position", array('type' => 'select', 'options' => $this->position_options, 'title' => T_('Position of the component within a content area'), 'class' => 'ncw-select', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Position')))); ?>
+            <div class="ncw-input-container">
+                <label class="ncw-label" for="component_permanent"><?php print T_('Should this component be permanent?'); ?></label>
+                <?php print $this->form->input("permanent", array('type' => 'checkbox', 'class' => 'ncw-checkbox', 'div' => array('class' => 'ncw-radios-checkbox'), 'label' => FALSE)); ?>
+            </div>
+            <h2>Schedule</h2>
+            <div class="ncw-input-container">
+                <label class="ncw-label" for="component_schedule"><?php print T_('Do you want to schedule this component?'); ?></label>
+                <?php print $this->form->input("schedule", array('type' => 'checkbox', 'class' => 'ncw-checkbox', 'div' => array('class' => 'ncw-radios-checkbox ncw-schedule-check'), 'label' => FALSE)); ?>
+            </div>
+            <div class="ncw-schedule<?php if (true === $this->schedule) { ?> ncw-schedule-show<?php } ?>">
+                <?php print $this->form->input('publish_date', array('title' => T_('On which date the component will be viewable'), 'class' => 'ncw-input ncw-datepick', 'value' => $this->component_publish[0], 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Publish date')))); ?>
+                <?php print $this->form->input('publish_time', array('title' => T_('On which time the component will be viewable'), 'class' => 'ncw-input ncw-timepick', 'value' => substr($this->component_publish[1], 0, 5),  'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Publish time')))); ?>
+                <?php print $this->form->input('expire_date', array('title' => T_('On which date the component will expire'), 'class' => 'ncw-input ncw-datepick', 'value' => $this->component_expire[0], 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Expire date')))); ?>
+                <?php print $this->form->input('expire_time', array('title' => T_('On which time the component will expire'), 'class' => 'ncw-input ncw-timepick', 'value' => substr($this->component_expire[1], 0, 5), 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Expire time')))); ?>
+            </div>
+        </div>
+        <?php if ($this->languages_num > 1) { ?>
+            <div class="ncw-main-tab-content">
+                <?php if (true === $this->permissions['/wcms/componentlanguage/new']) { ?>
+                    <p>
+                        <a href="javascript: ncw.wcms.componentlanguage.loadNew(<?php print $this->component_id ?>); " class="ncw-action ncw-action-with-margin">
+                            <?php print T_('New translation'); ?>
+                        </a>
+                    </p>
+                <?php } ?>
+                <br class="ncw-clear" /><br />
+                <?php if (false === empty($this->componentlanguages)) { ?>
+                    <table class="ncw-table">
+                        <thead>
+                            <tr>
+                                <th><?php print T_('Name'); ?></th>
+                                <th><?php print T_('Options'); ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($this->componentlanguages as $componentlanguage) { ?>
+                            <tr>
+                                <td>
+                                    <a href="javascript: ncw.wcms.componentlanguage(<?php print $componentlanguage->getId(); ?>);">
+                                        <?php print $this->html->image("country_flags/" . $componentlanguage->Language->getShortcut() . ".gif", false, array("alt" => $componentlanguage->Language->getName(), "title" => $componentlanguage->Language->getNameEncoded())); ?>
+                                    </a>
+                                    <a href="javascript: ncw.wcms.componentlanguage(<?php print $componentlanguage->getId(); ?>);">
+                                        <?php print $componentlanguage->Language->getName(); ?>
+                                    </a>
+                                </td>
+                                <td class="ncw-table-td-icons">
+                                    <a href="javascript: ncw.wcms.componentlanguage(<?php print $componentlanguage->getId(); ?>);"><?php print $this->html->image("icons/16px/pencil.png", false, array('alt' => T_('Edit'), 'title' => T_('Edit'))); ?></a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                <?php } ?>
+            </div>
+        <?php } ?>
+    </div>
+    <?php print $this->form->end(); ?>
+</div>
+<div class="ncw-status-action-bar">
+    <div class="ncw-status-message"></div>
+    <ul class="ncw-actions">
+        <?php
+        if (true === $this->permissions['/wcms/component/unpublish']
+            && $this->component_status === 'published'
+            || $this->component_status === 'modified'
+        ) {
+        ?>
+            <li class="ncw-action"><a href="#" rel="component" class="ncw-unpublish-trigger ncw_unpublish_icon"><?php print T_('Unpublish'); ?></a></li>
+        <?php } ?>
+        <?php if (true === $this->permissions['/wcms/component/publish']) { ?>
+            <li class="ncw-action"><a href="#" rel="component" class="ncw-publish-trigger ncw_publish_icon"><?php print T_('Publish'); ?></a></li>
+        <?php } ?>
+        <?php if (true === $this->permissions['/wcms/component/new']) { ?>
+            <li class="ncw-action"><a href="#" rel="component" class="ncw-copy-trigger ncw_copy_icon"><?php print T_('Copy'); ?></a></li>
+        <?php } ?>
+        <?php if (true === $this->permissions['/wcms/component/delete']) { ?>
+            <li class="ncw-action"><a href="#" rel="wcms/component" class="ncw-delete-trigger-ajax ncw_delete_icon"><?php print T_('Delete'); ?></a></li>
+        <?php } ?>
+        <li class="ncw-action"><a href="#" rel="wcms/component" class="ncw-save-trigger-ajax ncw_save_icon"><?php print T_('Save'); ?></a></li>
+    </ul>
+</div>
+<?php if (false === empty($this->componentlanguages)) { ?>
+    <script type="text/javascript">
+    ncw.wcms.componentlanguage.loadInside($('.ncw-componentlanguage-view'), <?php print $this->componentlanguages[0]->getId(); ?>, '<?php print $this->componentlanguages[0]->Language->getShortcut(); ?>');
+    </script>
+<?php } ?>

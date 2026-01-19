@@ -1,0 +1,30 @@
+<div class="ncw-left">
+    <div class="ncw-accordion">
+        <h3 class="ncw-accordion-header current"><?php print T_('Options'); ?></h3>
+        <div class="ncw-accordion-content ncw-accordion-current">
+            <p class="ncw-accordion-content-part-dark">
+                <?php print $this->html->link(T_('Back'), array('controller' => 'news', 'action' => 'edit', 'id' => $this->news_id), array('class' => 'ncw_text_button_back')); ?>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="ncw-right">
+    <?php print $this->form->create('ncw-newslanguage'); ?>
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+            <li class="ncw-main-tab"><a href="#"><?php print T_('New news'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <?php print $this->form->input('language_id', array('type' => 'select', 'options' => $this->arr_languages, 'class' => 'ncw-select', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Language')))); ?>
+            </div>
+        </div>
+    </div>
+    <div class="ncw-status-action-bar">
+        <div class="ncw-status-message"></div>
+        <ul class="ncw-actions">
+            <li class="ncw-action"><a href="#" class="ncw-save-trigger ncw_save_icon"><?php print T_('Save'); ?></a></li>
+        </ul>
+    </div>
+    <?php print $this->form->end(); ?>
+</div>

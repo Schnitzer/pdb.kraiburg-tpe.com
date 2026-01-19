@@ -1,0 +1,30 @@
+<div class="ncw-right">
+    <?php print $this->form->create(); ?>
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+        	<li class="ncw-option-tab"><?php print $this->html->link(T_('Component Templates'), array('action' => 'all')); ?></li>
+            <li class="ncw-main-tab"><a href="#"><?php echo T_('New Component Template');?></a></li>
+            <li class="ncw-option-tab"><?php print $this->html->link(T_('Template Generator'), array('action' => 'generator')); ?></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <?php print $this->form->input("name", array('maxlength' => 100, 'title' => T_('Name'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Name')))); ?>
+                <div class="ncw-input-container">
+                    <label class="ncw-label" for="componenttemplate_in_list">In list</label>
+                    <?php print $this->form->input("in_list", array('type' => 'checkbox', 'class' => 'ncw-checkbox', 'div' => array('class' => 'ncw-radios-checkbox'), 'label' => FALSE)); ?>
+                </div>
+                <?php print $this->form->input("code", array("type" => "hidden")); ?>
+                <div class="codemirror">
+                    <?php print $this->form->input("Codemirror.editor", array("type" => "textarea", 'cols' => 20, 'rows' => 30, 'label' => false, "value" => $this->code)); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ncw-status-action-bar">
+        <div class="ncw-status-message"></div>
+        <ul class="ncw-actions">
+            <li class="ncw-action"><a href="#" class="ncw-componenttemplate-new-trigger ncw_save_icon"><?php echo T_('Save');?></a></li>
+        </ul>
+    </div>
+    <?php print $this->form->end(); ?>
+</div>

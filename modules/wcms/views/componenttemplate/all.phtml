@@ -1,0 +1,37 @@
+<div class="ncw-right">
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+            <li class="ncw-main-tab"><a href="#"><?php echo T_('Component Templates'); ?></a></li>
+            <li class="ncw-option-tab"><?php print $this->html->link(T_('New Component Template'), array('action' => 'new')); ?></li>
+            <li class="ncw-option-tab"><?php print $this->html->link(T_('Template Generator'), array('action' => 'generator')); ?></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <table class="ncw-table">
+                    <thead>
+                        <tr>
+                            <th><?php echo T_('Name'); ?></th>
+                            <th><?php echo T_('Filename'); ?></th>
+                            <th><?php echo T_('in List'); ?></th>
+                            <th><?php echo T_('Options'); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (true === is_array($this->all_componenttemplates)) { ?>
+                            <?php foreach ($this->all_componenttemplates as $obj_componenttemplate) { ?>
+                                <tr>
+                                    <td><?php print $this->html->link($obj_componenttemplate->getName(), array("action" => "edit", "id" => $obj_componenttemplate->getId())); ?></td>
+                                    <td><?php print $this->html->link($obj_componenttemplate->getFilename(), array("action" => "edit", "id" => $obj_componenttemplate->getId())); ?></td>
+                                    <td class="ncw-table-td-icons"><?php if (true === (boolean) $obj_componenttemplate->getInList()) { print $this->html->image("icons/16px/tick.png", false); } ?></td>
+                                    <td class="ncw-table-td-icons">
+                                        <?php print $this->html->link($this->html->image("icons/16px/pencil.png", false, array('alt' => T_('edit'), 'title' => T_('edit'))), array("action" => "edit", "id" => $obj_componenttemplate->getId()), null, false, false); ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

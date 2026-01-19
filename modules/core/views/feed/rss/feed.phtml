@@ -1,0 +1,9 @@
+<?php foreach ($this->feed_items as $item) { ?>
+	<item>
+	  <title><?php print $item['title'] ?></title>
+      <link><?php print $item['link'] ?></link>
+      <description><?php print $item['description'] ?></description>
+      <pubDate><?php print $item['pub_date'] ?></pubDate>
+      <guid><?php print $item['guid'] ?></guid>
+	</item>
+<?php } ?>

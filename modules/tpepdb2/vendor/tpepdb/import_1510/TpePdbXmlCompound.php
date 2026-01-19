@@ -1,0 +1,51 @@
+<?php
+
+require_once MODULES . DS . 'tpepdb2' . DS . 'vendor' . DS . 'tpepdb' . DS . 'import' . DS . 'TpePdbXmlItem.php';
+
+class TpePdbXmlCompound extends TpePdbXmlItem {
+
+    /**
+     * @var string
+     */
+    protected $_ncw_model_name = "Tpepdb2_Compound";
+
+    /**
+     *
+     */
+    protected function _loadName ()
+    {
+        $this->_name = trim((string) $this->_xml_element->MATERIAL_NUMBER);
+    }
+
+    /**
+     *
+     */
+    protected function _loadLanguages ()
+    {
+        if (true === $this->is_portfolio) {
+            if (true === isset($this->_xml_element->BRAND[0])) {
+                foreach ($this->_xml_element->BRAND as $brand) {
+                    $language = (string) $brand["lang"];
+                    if (false === in_array($language, $this->_languages)) {
+                        $this->_languages[] = $language;
+                    }
+                }
+            }
+        } else {
+            if (true === isset($this->_xml_element->CLASSIFICATION[0])) {
+                foreach ($this->_xml_element->CLASSIFICATION[0]->ATTRIBUTES as $attribute) {
+                    if (true === isset($attribute->ATTRIBUTE->DESCRIPTIONS_SHORT)) {
+                        foreach ($attribute->ATTRIBUTE->DESCRIPTIONS_SHORT->DESCRIPTION_SHORT as $description) {
+                            $language = (string) $description["lang"];
+                            if (false === in_array($language, $this->_languages)) {
+                                $this->_languages[] = $language;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
+?>

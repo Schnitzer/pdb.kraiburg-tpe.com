@@ -1,0 +1,105 @@
+<div class="ncw-left">
+    <div class="ncw-accordion">
+        <h3 class="ncw-accordion-header current"><?php print T_('Site Structure'); ?></h3>
+        <div class="ncw-accordion-content ncw-accordion-current">
+            <?php if (true === $this->permissions['/wcms/site/new']) { ?>
+                <p class="ncw-accordion-content-part-dark">
+                    <a href="javascript: ncw.wcms.site.loadNew();" class="ncw_text_button_add"><?php print T_('New Site'); ?></a>
+                </p>
+            <?php } ?>
+            <?php if ($this->languages_num > 1) { ?>
+                <?php if (true === $this->permissions['/wcms/site/edit']) { ?>
+                    <p class="ncw-accordion-content-part-dark">
+                        <?php print T_('Site container'); ?>:
+                        <?php
+                        print $this->html->image(
+                            'icons/16px/sitemap.png',
+                            false,
+                            array(
+                                'alt' => 'Site Container',
+                                'title' => 'Site Container',
+                                'rel' => 'sitecontainer',
+                                'class' => 'ncw-tree-language',
+                                'style' => 'height: 11px',
+                                'onclick' => 'ncw.wcms.site.tree.switchLanguage(0, "sitecontainer");'
+                            )
+                        );
+                        ?>
+                    </p>
+                <?php } ?>
+                <p class="ncw-accordion-content-part-dark">
+                    <?php print T_('Language'); ?>:&nbsp;
+                    <?php
+                    $first = true;
+                    foreach ($this->languages as $language) {
+                        if (true === $first) { ?>
+                            <input type="hidden" id="ncw-language_id" value="<?php print $language['id']; ?>" />
+                            <input type="hidden" id="ncw-language_code" value="<?php print $language['shortcut']; ?>" />
+                        <?php
+                            $first = false;
+                        }
+                            print $this->html->image(
+                                'country_flags/' . $language['shortcut'] . '.gif',
+                                false,
+                                array(
+                                    'alt' => $language['name'],
+                                    'title' => $language['name'],
+                                    'rel' => $language['id'] . ';' . $language['shortcut'],
+                                    'class' => 'ncw-tree-language',
+                                    'onclick' => 'ncw.wcms.site.tree.switchLanguage(' . $language['id'] . ', "' . $language['shortcut'] . '");'
+                                )
+                            );
+                        ?>
+                    <?php } ?>
+                </p>
+            <?php } else { ?>
+                <input type="hidden" id="ncw-language_id" value="<?php print $this->languages[0]['id']; ?>" />
+                <input type="hidden" id="ncw-language_code" value="<?php print $this->languages[0]['shortcut']; ?>" />
+            <?php } ?>
+            <div class="ncw-sites-tree ncw-tree"></div>
+            <p class="ncw-states ncw-accordion-content-part-dark">
+                <span class="ncw-new"><?php print T_('new'); ?></span>
+                <span class="ncw-modified"><?php print T_('modified'); ?></span>
+                <span class="ncw-published"><?php print T_('published'); ?></span>
+                <!-- <span class="ncw-deleted">deleted</span> -->
+                <span class="ncw-not-translated"><?php print T_('not translated yet'); ?></span>
+            </p>
+        </div>
+        <?php if (true === $this->permissions['/wcms/site/notifySearchEnginges']) { ?>
+            <h3 class="ncw-accordion-header"><?php print T_('Miscellaneous'); ?></h3>
+            <div class="ncw-accordion-content">
+                <p class="ncw-accordion-content-part-dark">
+                    <a href="javascript: ncw.wcms.site.notfiySearchEngines();"><?php print T_('Notify search engines'); ?></a>
+                </p>
+            </div>
+        <?php } ?>
+    </div>
+</div>
+<div class="ncw-right">
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+            <li class="ncw-main-tab"><a href="#"><?php print T_('Choose a site'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <?php print T_('Please choose a site from the left side.'); ?>
+            </div>
+        </div>
+    </div>
+    <div class="ncw-status-action-bar"></div>
+</div>
+<script type="text/javascript">
+ncw.wcms.window_mode = <?php print ($this->window_mode ? 'true' : 'false'); ?>;
+ncw.wcms.site.tree.languages_num = <?php print $this->languages_num; ?>;
+ncw.wcms.site.tree.permissions = {};
+ncw.wcms.site.tree.permissions.site = {};
+ncw.wcms.site.tree.permissions.site.addNew = <?php print ($this->permissions['/wcms/site/new'] ? 'true' : 'false'); ?>;
+ncw.wcms.site.tree.permissions.site.edit = <?php print ($this->permissions['/wcms/site/edit'] ? 'true' : 'false'); ?>;
+ncw.wcms.site.tree.permissions.sitelanguage = {};
+ncw.wcms.site.tree.permissions.sitelanguage.edit = <?php print ($this->permissions['/wcms/sitelanguage/edit'] ? 'true' : 'false'); ?>;
+ncw.wcms.site.tree.permissions.sitelanguage.addNew = <?php print ($this->permissions['/wcms/sitelanguage/new'] ? 'true' : 'false'); ?>;
+ncw.wcms.site.tree.permissions.component = {};
+ncw.wcms.site.tree.permissions.component.all = <?php print ($this->permissions['/wcms/component/all'] ? 'true' : 'false'); ?>;
+ncw.wcms.site.tree.permissions.component.edit = <?php print ($this->permissions['/wcms/component/edit'] ? 'true' : 'false'); ?>;
+ncw.wcms.site.tree.permissions.component.addNew = <?php print ($this->permissions['/wcms/component/new'] ? 'true' : 'false'); ?>;
+</script>

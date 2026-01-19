@@ -1,0 +1,44 @@
+<div class="ncw-left">
+    <div class="ncw-accordion">
+        <h3 class="ncw-accordion-header current">Options</h3>
+        <div class="ncw-accordion-content ncw-accordion-current">
+            <p class="ncw-accordion-content-part-dark">
+                <?php print $this->html->link(T_('New Region'), array('action' => 'new')); ?>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="ncw-right">
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+            <li class="ncw-main-tab"><a href="#"><?php print T_('Show regions'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <table class="ncw-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (true === is_array($this->arr_all_regions)) { ?>
+                            <?php foreach ($this->arr_all_regions as $obj_region) { ?>
+                                <tr>
+                                    <td><?php echo $this->html->link($obj_region->getNameEncoded(), array('action' => 'edit', 'id' => $obj_region->getId())); ?></td>
+                                    <td class="ncw-table-td-icons">
+                                        <?php print $this->html->link($this->html->image("icons/16px/pencil.png", false, array('alt' => T_('edit'), 'title' => T_('edit'))), array("action" => "edit", "id" => $obj_region->getId()), null, false, false); ?>
+                                        <?php // print $this->html->image("icons/16px/delete.png", false, array('alt' => _DELETE, 'title' => _DELETE, 'class' => 'ncw3-delete', 'id' => $obj_region->getId())); ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        <?php } ?>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <div class="ncw-status-action-bar"></div>
+</div>

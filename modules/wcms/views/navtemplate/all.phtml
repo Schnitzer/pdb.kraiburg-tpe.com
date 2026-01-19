@@ -1,0 +1,36 @@
+<div class="ncw-right">
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+            <li class="ncw-main-tab"><a href="#"><?php print T_('Navtemplates'); ?></a></li>
+            <li class="ncw-option-tab"><?php print $this->html->link(T_('New navtemplates'), array('action' => 'new')); ?></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <table class="ncw-table">
+                    <thead>
+                        <tr>
+                            <th><?php print T_('Name'); ?></th>
+                            <th><?php print T_('Filename'); ?></th>
+                            <th><?php print T_('In list'); ?></th>
+                            <th><?php print T_('Options'); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (true === is_array($this->all_navtemplates)) { ?>
+                            <?php foreach ($this->all_navtemplates as $obj_navtemplate) { ?>
+                                <tr>
+                                    <td><?php print $this->html->link($obj_navtemplate->getNameEncoded(), array("action" => "edit", "id" => $obj_navtemplate->getId())); ?></td>
+                                    <td><?php print $this->html->link($obj_navtemplate->getFilenameEncoded(), array("action" => "edit", "id" => $obj_navtemplate->getId())); ?></td>
+                                    <td class="ncw-table-td-icons"><?php if (true === (boolean) $obj_navtemplate->getInList()) { print $this->html->image("icons/16px/tick.png", false); } ?></td>
+                                    <td class="ncw-table-td-icons">
+                                        <?php print $this->html->link($this->html->image("icons/16px/pencil.png", false, array('alt' => T_('edit'), 'title' => t_('edit'))), array("action" => "edit", "id" => $obj_navtemplate->getId()), null, false, false); ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

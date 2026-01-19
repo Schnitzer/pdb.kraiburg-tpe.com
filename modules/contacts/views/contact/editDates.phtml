@@ -1,0 +1,59 @@
+<?php
+if ($this->contact['type'] == 'private') {
+    $shortname = $this->contact['firstname'];
+		
+	$title = '';
+	if (false === empty($this->contact['title'])) {
+		$title .= ' ' . $this->contact['title'];
+	}
+	
+	$name = $this->contact['firstname'] . ' ' . $this->contact['name'];
+} else {
+    $name = $shortname = $this->contact['name'];
+}
+?>
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+    	<li class="ncw-option-tab"><a href="javascript: ncw.contacts.contact.loadContact(<?php print $this->contact_id; ?>);"><?php print T_('Back') ; ?></a></li>
+        <li class="ncw-main-tab"><a href="#"><?php echo T_('Edit dates of ' . $name); ?></a></li>
+    </ul>
+    <div class="ncw-main-tab-contents">
+
+        <div class="ncw-main-tab-content">
+
+			<?php print $this->form->create('ncw-contact'); ?>
+            <?php print $this->form->input("id", array('type' => 'hidden', 'value' => $this->contact_id)); ?>
+            <?php print $this->form->input("update", array('type' => 'hidden', 'value' => 'dates')); ?>
+		    <h2><?php print T_('Add new date'); ?></h2>
+            <div>
+                <?php print $this->form->input("Check.description", array('type' => 'select', 'options' => $this->date_descriptions, 'div' => false, 'label' => false)); ?>
+                <input class="ncw-datepick" name="<?php print time(); ?>" id="ncw-date-add-value" title="<?php print T_('New date'); ?>" />
+            </div>
+            <a href="javascript: void(0);" id="ncw-date-add" class="ncw-action">
+                <?php print T_('Add'); ?>
+            </a>
+            <br /><br />
+            <h2><?php print T_('Dates'); ?></h2>
+            <div id="ncw-dates">
+                <?php for ($count = 0; $count < $this->dates; $count++) { ?>
+                    <div id="date_<?php print $count; ?>">
+                        <?php print $this->form->input("Date." . $count . ".description", array('type' => 'select', 'options' => $this->date_descriptions, 'title' => T_('Date'), 'div' => false, 'label' => false)); ?>
+                        <?php print $this->form->input("Date." . $count . ".date", array('title' => T_('Date'), 'class' => 'ncw-datepick', 'div' => false, 'label' => false)); ?>
+                        <?php print $this->form->input('Date.' . $count . '.first', array('type' => 'checkbox', 'div' => false, 'label' => FALSE, 'class' => 'ncw-dates-first', 'style' => 'width: 15px; margin:0;padding:0;')); ?>
+                        <a href="javascript: void(0);" class="ncw-date-remove ncw-contact-stuff-remove"><?php print $this->html->image('icons/16px/cross.png', false, array('rel' => $count, 'alt' => T_('Delete'), 'title' => T_('Delete'))); ?></a>
+                        <br /><br />
+                    </div>
+                <?php } ?>
+                <input type="hidden" value="<?php print $count; ?>" id="date_num">
+            </div>
+			<?php print $this->form->end(); ?>
+			
+		</div>
+    </div>
+</div>
+<div class="ncw-status-action-bar">
+    <div class="ncw-status-message"></div>
+    <ul class="ncw-actions">
+        <li class="ncw-action"><a href="#" rel="contacts/contact" class="ncw-save-trigger-ajax ncw_save_icon"><?php print T_('Save'); ?></a></li>
+    </ul>
+</div>

@@ -1,0 +1,103 @@
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+        <li class="ncw-option-tab"><a href="javascript: ncw.tpe.literature.load();"><?php print T_('Back'); ?></a></li>    
+        <li class="ncw-main-tab"><a href="#"><?php print T_('Edit literature'); ?></a></li>
+        <li class="ncw-main-tab"><a href="#"><?php print T_("Add translation"); ?></a></li>
+    </ul>
+    <?php print $this->form->create('ncw-literature'); ?>
+    <div class="ncw-main-tab-contents">
+        <div class="ncw-main-tab-content">
+            <?php print $this->form->input("id", array('type' => 'hidden', 'value' => $this->id)); ?>
+            <?php print $this->form->input("name", array('maxlength' => 25, 'title' => T_("Name"), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_("Name")))); ?>
+
+
+            <div class="ncw-input-container">
+                <label class="ncw-label">Show on which website translations?</label>
+                <?php $counter = 1; ?>
+                <?php foreach ($this->wcms_languages as $language) { ?>              
+                    <? print $this->html->image('country_flags/' . $language->getShortcut() . '.gif', false, array('alt' => $language->getNameEncoded(), 'title' => $language->getNameEncoded()) ); ?>
+
+                    <?php if (true === isset($this->added_wcmslanguages[$language->getId()])) { ?>
+                        <?php print $this->form->input("LiteratureWcmslanguage." . $counter . ".id", array('type' => 'hidden', 'value' => $this->added_wcmslanguages[$language->getId()]['id'])); ?>  
+                    <?php } ?>
+                    <?php print $this->form->input("LiteratureWcmslanguage." . $counter . ".language_id", array('type' => 'hidden', 'value' => $language->getId())); ?>                     
+                    <?php print $this->form->input("LiteratureWcmslanguage." . $counter . ".checked", array('type' => 'checkbox', 'value' => $this->added_wcmslanguages[$language->getId()]['checked'], 'div' => false, 'label' => false)); ?>
+                    &nbsp;&nbsp;
+                    <?php ++$counter; ?>
+                <?php } ?>
+            </div>
+
+            <?php if (count($this->literature_language) > 0) { ?>
+                <br />
+                <?php $counter = 1; ?>
+                <ul class="ncw-tabs-container">
+                    <?php foreach ($this->literature_language as $language) { ?>
+                        <li class="ncw-tab"><a href="#"><? print $this->html->image('country_flags/' . $language->Language->getShortcut() . '.gif', false, array('alt' => $language->Language->getNameEncoded(), 'title' => $language->Language->getNameEncoded()) ); ?></a></li>
+                    <?php } ?>
+                </ul>
+                <div class="ncw-tab-contents">
+                    <?php foreach ($this->literature_language as $language) { ?>
+                        <div class="ncw-tab-content">
+                            <a href="javascript: ncw.tpe.literature.removeLanguage(<?php print $language->getId(); ?>);" class="ncw-action">
+                                <?php print T_('Remove'); ?>
+                            </a><br /><br /><br /> 
+
+                            <?php print $this->form->input("LiteratureLanguage." . $counter . ".id", array('type' => 'hidden', 'value' => $language->getId())); ?>
+                            
+                            <div class="ncw-input-container">
+                                <label class="ncw-label"  style="display: inline !important;"><?php print T_("Picture"); ?></label>
+                                - <a href="javascript: ncw.tpe.literature.changeLanguagePic(<?php print $language->getId() . ", " . $counter; ?>);">
+                                    <?php print T_('Change'); ?>
+                                </a>
+                                <br />
+                                <?php print $this->form->input("LiteratureLanguage." . $counter . ".pic_id", array('type' => 'hidden', 'value' => $language->getPicId())); ?>
+                                <img id="literaturelanguage_<?php print $counter; ?>_pic" src="<?php print Files_File::previewImageUrl($language->getPicId()); ?>" />
+                            </div>
+
+                            <?php print $this->form->input("LiteratureLanguage." . $counter . ".title", array('maxlength' => 100, 'title' => T_("Title"), 'value' => $language->getTitle(), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_("Title")))); ?>
+
+                            <?php print $this->form->input("LiteratureLanguage." . $counter . ".description", array('type' => 'textarea', 'maxlength' => 255, 'title' => T_("Description"), 'value' => $language->getDescription(), 'class' => 'ncw-textarea', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_("Description")))); ?>
+                            
+                            <?php print $this->form->input("LiteratureLanguage." . $counter . ".position", array('maxlength' => 3, 'title' => T_("Position"), 'value' => $language->getPosition(), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_("Position")))); ?>
+
+                            <div class="ncw-input-container">
+                                <label class="ncw-label" style="display: inline !important;"><?php print T_("File"); ?></label>
+                                - <a href="javascript: ncw.tpe.literature.changeLanguageFile(<?php print $language->getId() . ", " . $counter; ?>);">
+                                    <?php print T_('Change'); ?>
+                                </a>
+                                <br />
+                                <?php print $this->form->input("LiteratureLanguage." . $counter . ".file_id", array('type' => 'hidden', 'value' => $language->getFileId())); ?>
+                                <a id="literaturelanguage_<?php print $counter; ?>_file" href="<?php print Files_File::makeImageUrl($language->Files_File->getId(), $language->Files_File->getName(), $language->Files_File->getType()); ?>" target="_blank">
+                                    <?php if ($language->getFileId() > 0) { ?>
+                                        <?php print $language->Files_File->getNameEncoded() . "." . $language->Files_File->getTypeEncoded(); ?>
+                                    <?php } ?>
+                                </a>
+                            </div>
+                        </div>
+                        <?php ++$counter; ?>
+                    <?php } ?>
+                </div>
+            <?php } ?>
+        </div>
+        <div class="ncw-main-tab-content">
+            <?php if (false === empty($this->languages)) { ?>
+                <?php print T_("To add a translation to this literature entry select a language and click add the add language button."); ?>
+                <br /><br />          
+                <?php print $this->form->input("Language.language_id", array('type' => 'select', 'options' => $this->languages, 'title' => T_('Add language'), 'class' => 'ncw-select', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Language')))); ?>
+                <a href="javascript: ncw.tpe.literature.addLanguage(<?php print $this->id; ?>);" class="ncw-action"><?php print T_('Add language'); ?></a>
+            <?php } else { ?>
+                <?php print T_('All translations are already added!'); ?>
+            <?php } ?>
+        </div>        
+    </div>
+    <?php print $this->form->end(); ?>
+</div>
+<div class="ncw-status-action-bar">
+    <div class="ncw-status-message"></div>
+    <ul class="ncw-actions">
+        <?php //if (true === $this->permissions['/newsletter/group/delete']) { ?>
+            <li class="ncw-action"><a href="#" rel="tpe/literature" class="ncw-delete-trigger-ajax ncw_delete_icon" rel="#ncw-delete"><?php echo T_('Delete'); ?></a></li>
+        <?php //} ?>
+        <li class="ncw-action"><a href="#" rel="tpe/literature" class="ncw-save-trigger-ajax ncw_save_icon"><?php print T_('Save'); ?></a></li>        
+    </ul>
+</div>

@@ -1,0 +1,117 @@
+.ncw-window-container {
+    width: 150px;
+    position: absolute;
+    left: 350;
+    top: 200;
+}
+
+.ncw-window-titleBar {
+    width: 100%;
+    height: 15px;
+    padding: 1px 0 0;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    line-height: normal !important; 
+    text-align: center !important;      
+    color: #fff !important;   
+    font-weight: 700 !important;
+    cursor: move;
+    overflow: hidden;
+    position: relative;
+}
+
+.ncw-window-content {
+	width: 100%;
+	height: 100%;
+    padding: 5px 0 5px 0;
+    overflow: auto
+}
+
+.ncw-window-statusBar {
+    width: 100%;
+    height: 15px;
+    text-indent: 3px;
+    
+    color: #fff;
+    overflow: hidden
+}
+
+.ncw-window-minimizeButton {
+    width: 18px;
+    height: 12px;
+    background: url(../../modules/wcms/web/images/window_minimize.png) no-repeat 0 0;
+    position: absolute;
+    right: 37px;
+    top: 2px;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    line-height: normal !important; 
+    text-align: center !important;      
+    color: #fff !important;   
+    font-weight: 700 !important
+}
+
+    .ncw-window-minimizeButton:hover {
+        background: url(../../modules/wcms/web/images/window_minimize-hover.png) no-repeat 0 0
+        }
+
+.ncw-window-maximizeButton {
+    width: 16px;
+    height: 12px;
+    background: url(../../modules/wcms/web/images/window_maximize.png) no-repeat 0 0;
+    position: absolute;
+    right: 21px;
+    top: 2px;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    line-height: normal !important; 
+    text-align: center !important;      
+    color: #fff !important;   
+    font-weight: 700 !important
+}
+
+    .ncw-window-maximizeButton:hover {
+        background: url(../../modules/wcms/web/images/window_maximize-hover.png) no-repeat 0 0
+        }
+
+.ncw-window-closeButton {
+    width: 19px;
+    height: 12px;
+    background: url(../../modules/wcms/web/images/window_close.png) no-repeat 0 0;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    line-height: normal !important; 
+    text-align: center !important;      
+    color: #fff !important;   
+    font-weight: 700 !important
+}
+
+    .ncw-window-closeButton:hover {
+        background: url(../../modules/wcms/web/images/window_close-hover.png) no-repeat 0 0
+        }
+
+.ncw-window-resizeIcon {
+    width: 12px;
+    height: 12px;
+    background: url(../../modules/wcms/web/images/window_resize.png) no-repeat right bottom;
+    float: right;
+    margin: 0 3px 0 0;
+    cursor: nw-resize;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    line-height: normal !important; 
+    text-align: center !important;      
+    color: #fff !important;   
+    font-weight: 700 !important
+    }

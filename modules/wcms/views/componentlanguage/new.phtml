@@ -1,0 +1,29 @@
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+        <li class="ncw-main-tab"><a href="#"><?php print T_('New component'); ?></a></li>
+    </ul>
+    <div class="ncw-main-tab-contents">
+        <div class="ncw-main-tab-content">
+            <p>
+                <a href="javascript: ncw.wcms.component.loadEdit(<?php print $this->component_id; ?>);" class="ncw-action">
+                    <?php print T_('Back'); ?>
+                </a>
+            </p>
+            <br class="ncw-clear" /><br />
+            <?php print $this->form->create('ncw-componentlanguage', array('onsubmit' => 'return false;')); ?>
+            <?php print $this->form->input("component_id", array('type' => 'hidden', 'value' => $this->component_id)); ?>
+            <?php if (false === empty($this->arr_languages)) { ?>
+                <?php print $this->form->input("language_id", array('type' => 'select', 'options' => $this->arr_languages, 'title' => T_('Language of the component translation'), 'class' => 'ncw-select', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Language')))); ?>
+            <?php } else { ?>
+                <?php print T_('All translations are already added!'); ?>
+            <?php } ?>
+            <?php print $this->form->end(); ?>
+        </div>
+    </div>
+</div>
+<div class="ncw-status-action-bar">
+    <div class="ncw-status-message"></div>
+    <ul class="ncw-actions">
+        <li class="ncw-action"><a href="#" rel="wcms/componentlanguage" class="ncw-new-trigger-ajax ncw_save_icon"><?php print T_('Save'); ?></a></li>
+    </ul>
+</div>

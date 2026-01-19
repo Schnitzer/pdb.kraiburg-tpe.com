@@ -1,0 +1,16 @@
+<?php print '<?xml version="1.0" encoding="' . Ncw_Configure::read('App.encoding') . '"?>'; ?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel>
+        <title><?php print $this->page_title; ?></title>
+        <link><?php print $this->base; ?></link>
+        <description><?php if (true === isset($this->description)) { print $this->description; } ?></description>
+        <language><?php if (true === isset($this->language)) { print $this->language; } ?></language>
+        <pubDate><?php if (true === isset($this->pub_date)) { print date("D, j M Y H:i:s", $this->pub_date) . ' GMT'; } ?></pubDate>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <generator><?php if (true === isset($this->generator)) { print $this->generator; } ?></generator>
+        <managingEditor><?php if (true === isset($this->managing_editor)) { print $this->managing_editor; } ?></managingEditor>
+        <webMaster><?php if (true === isset($this->web_master)) { print $this->web_master; } ?></webMaster>
+
+        <?php print $this->view; ?>
+    </channel>
+</rss>

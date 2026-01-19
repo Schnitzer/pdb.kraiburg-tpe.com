@@ -1,0 +1,26 @@
+<div class="ncw-right">
+    <?php print $this->form->create(); ?>
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+        	<li class="ncw-option-tab"><?php print $this->html->link(T_('Sitetemplates'), array('action' => 'all')); ?></li>
+            <li class="ncw-main-tab"><a href="#"><?php print T_('New sitetemplate'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <?php print $this->form->input("name", array('maxlength' => 100, 'title' => T_('Name'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Name')))); ?>
+                <?php print $this->form->input("sitetype_id", array('type' => 'select', 'options' => $this->sitetypes, 'title' => T_('Site type'), 'class' => 'ncw-select', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Site type')))); ?>
+                <?php print $this->form->input("code", array("type" => "hidden")); ?>
+                <div class="codemirror">
+                    <?php print $this->form->input("Codemirror.editor", array("type" => "textarea", 'cols' => 20, 'rows' => 30, 'label' => false, "value" => $this->code)); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ncw-status-action-bar">
+        <div class="ncw-status-message"></div>
+        <ul class="ncw-actions">
+            <li class="ncw-action"><a href="#" class="ncw-sitetemplate-new-trigger ncw_save_icon"><?php print T_('Save'); ?></a></li>
+        </ul>
+    </div>
+    <?php print $this->form->end(); ?>
+</div>

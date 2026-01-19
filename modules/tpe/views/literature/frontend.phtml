@@ -1,0 +1,37 @@
+<script type="text/javascript">
+	var literature_getEntries = function () {
+		var language_id = $('#literature_language_id').val();
+		$.get(
+			
+				'http://www.kraiburg-tpe.com/admin/tpe/literature/getEntries'
+				+ '/' + language_id
+				+ '/' + <?php print $this->wcms_language_id; ?>
+			,
+			function (data) {
+				$('#literature-entries').html('');
+				setTimeout(
+					function () {
+						$('#literature-entries').html(data);
+					},
+					500
+				);
+			}
+		);
+	};
+</script>
+
+<div class="horizontal_gallery_big search" style="overflow: inherit !important;">
+  <h1 style="background: url(http://www.kraiburg-tpe.com/assets/wcms/files/bg_box_literature.png) no-repeat 0 0;"><?php print Wcms_ContentboxController::getContenbox('tpe---literature---headline', $this->wcms_language_id); ?></h1>
+  <?php print Wcms_ContentboxController::getContenbox('tpe---literature---search-box-image', $this->wcms_language_id); ?>
+  <div class="search_content_right" style="border: none; width: 100%; height: auto; margin-top: 10px; float: none; overflow: inherit;">
+  	<?php //print $this->form->create(); ?>
+  	<div style="float left; width: 50%;">
+  		<?php print $this->form->input("language_id", array('type' => 'select', 'value' => $this->selected_language, 'options' => $this->languages, 'label' => false, 'div' => false)); ?>
+  	</div>
+  	<input type="submit" onclick="literature_getEntries();" class="tpepdb2_submit" value="<?php print Wcms_ContentboxController::getContenbox('tpe---literature---search---button', $this->wcms_language_id); ?>" style="cursor: pointer; float: left; margin-top: 4px;margin-left: 50px;">
+  	<?php //print $this->form->end(); ?>
+  </div>
+</div>
+
+
+<div id="literature-entries"></div>

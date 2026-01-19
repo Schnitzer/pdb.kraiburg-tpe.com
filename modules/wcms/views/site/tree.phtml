@@ -1,0 +1,20 @@
+<ul class="ltr">
+    <li id="phtml_1" rel="root" class="open ncw-tree-root">
+        <?php if (false === $this->sitecontainer) { ?>
+            <a href="#"
+               class="<?php print $this->language_shortcut; ?> ncw-published"
+               lang="<?php print $this->language_shortcut; ?>">
+               <ins>&nbsp;</ins>
+            <?php print $this->language_name; ?>
+            </a>
+        <?php } else { ?>
+            <a href="#"
+               class="sitecontainer ncw-published"
+               lang="sitecontainer">
+               <ins>&nbsp;</ins>
+                <?php print T_('Site container'); ?>
+            </a>
+        <?php } ?>
+        <?php print $this->tree; ?>
+    </li>
+</ul>

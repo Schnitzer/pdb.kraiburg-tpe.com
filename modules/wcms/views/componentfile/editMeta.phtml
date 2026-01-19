@@ -1,0 +1,25 @@
+<h2><?php print T_('Edit Image Meta'); ?></h2>
+<?php print $this->form->create('', array('onsubmit' => 'return false;')); ?>
+<?php print $this->form->input('alt', array('maxlength' => 255, 'title' => T_('Alternative text'), 'class' => 'ncw-input-dialog', 'div' => array('class' => 'ncw-input-container-dialog'), 'label' => array('class' => 'ncw-label-dialog', 'text' => T_('Alternative text')))); ?>
+<?php print $this->form->input('title', array('maxlength' => 255, 'title' => T_('Title text'), 'class' => 'ncw-input-dialog', 'div' => array('class' => 'ncw-input-container-dialog'), 'label' => array('class' => 'ncw-label-dialog', 'text' => T_('Title text')))); ?>
+<?php print $this->form->input('link', array('maxlength' => 255, 'title' => T_('Link'), 'class' => 'ncw-input-dialog', 'div' => array('class' => 'ncw-input-container-dialog'), 'label' => array('class' => 'ncw-label-dialog', 'text' => T_('Link')))); ?>
+<div class="ncw-input-container-dialog">
+	<label class="ncw-label-dialog" for="componentfile_internal"><?php print T_('Internal'); ?></label>
+	<select id="componentfile_internal" class="ncw-select-dialog" title="<?php print T_('Internal'); ?>">
+		<option>---</option>
+		<?php foreach ($this->linklist as $link => $values) { ?>
+		<option value="<?php print $link; ?>"<?php if ($this->link === $link) { ?> selected="selected"<?php } ?>><?php print $values['prefix'] . ' ' . $values['name']; ?></option>
+		<?php } ?>
+	</select>
+</div>
+<?php print $this->form->input('target', array('type' => 'select', 'options' => $this->targets, 'title' => T_('Target'), 'class' => 'ncw-select-dialog', 'div' => array('class' => 'ncw-input-container-dialog'), 'label' => array('class' => 'ncw-label-dialog', 'text' => T_('Target')))); ?>
+<?php print $this->form->input('id', array('type' => 'hidden', 'value' => $this->id)); ?>
+<p>
+    <a href="javascript: ncw.wcms.website_admin.files.metadata.save();" class="ncw-action">
+        <?php print T_('Save'); ?>
+    </a>
+    <a href="javascript: ncw.wcms.website_admin.files.metadata.close();" class="ncw-action ncw-action-with-margin">
+        <?php print T_('Cancel'); ?>
+    </a>
+</p>
+<?php print $this->form->end(); ?>

@@ -1,0 +1,28 @@
+<div class="ncw-left">
+    <div class="ncw-accordion">
+        <h3 class="ncw-accordion-header current"><?php print T_('Files'); ?></h3>
+        <div class="ncw-accordion-content ncw-accordion-current">
+            <?php print $this->form->create('ncw-file-search', array('onsubmit' => 'ncw.files.file.search(); return false;')); ?>
+            <?php print $this->form->input('File.search', array('title' => T_('Search'), 'class' => 'ncw-input-small', 'div' => array('class' => 'ncw-input-container-small'), 'label' => array('class' => 'ncw-label-small', 'text' => T_('Search')))); ?>
+            <input type="submit" style="display: none;"/>
+            <p class="ncw-accordion-content-part-dark">
+                <a href="javascript: ncw.files.file.search();" class="ncw_text_button_search"><?php print T_('Search'); ?></a>
+            </p>
+            <?php echo $this->form->end(); ?>
+            <?php if (true === $this->permissions['/files/folder/new']) { ?>
+                <p class="ncw-accordion-content-part-dark">
+                    <a href="javascript: ncw.files.folder.loadNew();" class="ncw_text_button_add"><?php print T_('New Folder'); ?></a>
+                </p>
+            <?php } ?>
+            <div class="ncw-folders-tree ncw-tree"></div>
+        </div>
+    </div>
+</div>
+<div class="ncw-right"></div>
+<script type="text/javascript">
+ncw.files.folder.tree.permissions = {};
+ncw.files.folder.tree.permissions.folder = {};
+ncw.files.folder.tree.permissions.folder.addNew = <?php print ($this->permissions['/files/folder/new'] ? 'true' : 'false'); ?>;
+ncw.files.folder.tree.permissions.folder.edit = <?php print ($this->permissions['/files/folder/edit'] ? 'true' : 'false'); ?>;
+ncw.files.folder();
+</script>

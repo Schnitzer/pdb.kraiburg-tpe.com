@@ -1,0 +1,92 @@
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+        <li class="ncw-main-tab"><a href="#"><?php print T_('Components of'); ?> <?php print$this->site_name;?></a></li>
+    </ul>
+    <div class="ncw-main-tab-contents">
+        <div class="ncw-main-tab-content">
+            <p>
+                <?php print T_('Components of'); ?>
+                <a href="javascript: ncw.wcms.component.loadSite(<?php print $this->site_id; ?>); "><?php print T_('Site'); ?>: <?php print $this->site_name; ?></a>
+            </p>
+            <?php if (true === $this->permissions['/wcms/component/new']) { ?>
+                <p>
+                    <a href="javascript: ncw.wcms.component.loadNew(<?php print $this->site_id ?>); " class="ncw-action">
+                        <?php print T_('New component'); ?>
+                    </a>
+                </p>
+            <?php } ?>
+            <br class="ncw-clear" />
+            <?php if (true === is_array($this->all_components)) {
+                $current_site_id = 0;
+                $last_sitearea = 0;
+                $table_set = false;
+                foreach ($this->all_components as $obj_component) {
+                    if ($obj_component->Sitearea->getId() != $last_sitearea) {
+                    ?>
+                        <?php if (true === $table_set) { ?>
+                            </tbody>
+                        </table>
+                        <?php
+                        }
+                        $table_set = true;
+                        ?>
+                        <h2><?php print $obj_component->Sitearea->getName(); ?></h2>
+                        <table class="ncw-table">
+                            <thead>
+                                <tr>
+                                    <th><?php print T_('Name'); ?></th>
+                                    <th><?php print T_('Template'); ?></th>
+                                    <th><?php print T_('Area'); ?></th>
+                                    <th><?php print T_('Parent component'); ?></th>
+                                    <th><?php print T_('Permanent'); ?></th>
+                                    <?php if ($this->languages_num > 1) { ?><th><?php print T_('Languages'); ?></th><?php } ?>
+                                    <th><?php print T_('Options'); ?></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    <?php
+                    }
+                    $last_sitearea = $obj_component->Sitearea->getId();
+                    ?>
+                        <tr>
+                            <td>
+                                <a href="javascript: ncw.wcms.component.loadEdit(<?php print $obj_component->getId(); ?>);">
+                                    <?php if ($obj_component->getStatus() === 'unpublished') {?><span class="ncw-unpublished"><?php } ?>
+                                    <?php print $obj_component->getNameEncoded(); ?>
+                                    <?php if ($obj_component->getStatus() === 'unpublished') { ?></span><?php } ?>
+                                </a>
+                            </td>
+                            <td class="ncw-table-td-icons"><?php print $obj_component->Componenttemplate->getName(); ?></td>
+                            <td class="ncw-table-td-icons"><?php print $obj_component->Sitearea->getName(); ?></td>
+                            <td class="ncw-table-td-icons"><?php print $obj_component->getParentId(); ?></td>
+                            <td class="ncw-table-td-icons">
+                                <?php if (true === (boolean) $obj_component->getPermanent()) { ?>
+                                    <?php print $this->html->image("icons/16px/tick.png", false, array('alt' => T_('This component is permanent'), 'title' => T_('This component is permanent'))); ?>
+                                <?php } ?>
+                            </td>
+                            <?php if ($this->languages_num > 1) { ?>
+                                <td class="ncw-table-td-icons">
+                                    <?php
+                                    if (true === isset($this->arr_languages[$obj_component->getId()])) {
+                                        foreach ($this->arr_languages[$obj_component->getId()] as $language) {
+                                    ?>
+                                            <?php print $this->html->image("country_flags/" . $language['shortcut'] . ".gif", false, array("alt" => $language['name'], "title" => $language['name'])); ?>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </td>
+                            <?php } ?>
+                            <td class="ncw-table-td-icons">
+                                <?php if (true === $this->permissions['/wcms/component/edit']) { ?>
+                                    <a href="javascript: ncw.wcms.component.loadEdit(<?php print $obj_component->getId(); ?>);"><?php print $this->html->image("icons/16px/pencil.png", false, array('alt' => T_('Edit'), 'title' => T_('Edit'))); ?></a>
+                                <?php } ?>
+                            </td>
+                        </tr>
+                <?php } ?>
+                    </tbody>
+                </table>
+            <?php } ?>
+        </div>
+    </div>
+</div>

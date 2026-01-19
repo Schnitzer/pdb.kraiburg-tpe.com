@@ -1,0 +1,255 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-08-03 10:17+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Thomas Hinterecker <t.hinterecker@netzcraftwerk.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: Germany\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: ModuleController.php:38
+msgid "Applications"
+msgstr "Anwendungen"
+
+#: ModuleController.php:39
+msgid "Logout"
+msgstr "Abmelden"
+
+#: ModuleController.php:40
+msgid "Profile"
+msgstr "Profil"
+
+#: ModuleController.php:69
+#: views/folder/all.phtml:3
+msgid "Files"
+msgstr "Dateien"
+
+#: ModuleController.php:70
+msgid "Show files"
+msgstr "Zeige Dateien"
+
+#: ModuleController.php:110
+msgid "First level"
+msgstr "Erste Ebene"
+
+#: views/folder/dialog.phtml:4
+msgid "Search for a file"
+msgstr "Suche nach einer Datei"
+
+#: views/folder/dialog.phtml:6
+#: views/folder/dialog.phtml:8
+#: views/folder/js/searchDialog.phtml:22
+#: views/folder/js/searchDialog.phtml:29
+#: views/folder/all.phtml:6
+#: views/folder/all.phtml:9
+msgid "Search"
+msgstr "Suchen"
+
+#: views/folder/dialog.phtml:16
+msgid "To upload a file click on the BROWSE button"
+msgstr "Um eine Datei hochzuladen, klicken sie auf die BROWSE-Schaltfläche"
+
+#: views/folder/dialog.phtml:21
+msgid "Upload file"
+msgstr "Datei(en) hochladen"
+
+#: views/folder/dialog.phtml:23
+#: views/file/all.phtml:137
+msgid "Clear queue"
+msgstr "Liste leeren"
+
+#: views/folder/tree.phtml:5
+msgid "Root"
+msgstr "Ordnerstruktur"
+
+#: views/folder/tree.phtml:16
+msgid "Local:"
+msgstr "Lokal:"
+
+#: views/folder/js/searchDialog.phtml:20
+msgid "Folder search"
+msgstr "Ordnersuche"
+
+#: views/folder/js/searchDialog.phtml:34
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: views/folder/js/searchDialog.phtml:148
+#: views/folder/edit.phtml:10
+#: views/folder/new.phtml:9
+#: views/file/js/searchDialog.phtml:253
+#: views/file/edit.phtml:10
+#: views/file/all.phtml:41
+#: views/ftp/all.phtml:11
+msgid "Name"
+msgstr "Name"
+
+#: views/folder/edit.phtml:3
+msgid "Files of Folder:"
+msgstr "Dateien des Ordners:"
+
+#: views/folder/edit.phtml:4
+#: views/file/all.phtml:18
+msgid "Edit Folder"
+msgstr "Ordner bearbeiten"
+
+#: views/folder/edit.phtml:12
+#: views/folder/new.phtml:11
+msgid "Parent Folder"
+msgstr "Übergeordneter Ordner"
+
+#: views/folder/edit.phtml:25
+#: views/file/edit.phtml:40
+msgid "Delete"
+msgstr "Löschen"
+
+#: views/folder/edit.phtml:27
+#: views/folder/new.phtml:23
+#: views/file/edit.phtml:42
+msgid "Save"
+msgstr "Speichern"
+
+#: views/folder/new.phtml:3
+#: views/file/edit.phtml:3
+msgid "Back"
+msgstr "Zurück"
+
+#: views/folder/new.phtml:4
+#: views/folder/all.phtml:14
+msgid "New Folder"
+msgstr "Neuer Ordner"
+
+#: views/file/js/searchDialog.phtml:32
+msgid "File Search"
+msgstr "Dateisuche"
+
+#: views/file/js/searchDialog.phtml:196
+#: views/file/all.phtml:29
+#: views/file/all.phtml:111
+msgid "Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%"
+msgstr "Seite %page% von %pages%, zeige %current% Einträge von insgesamt %count%, gezeigt werden die Einträge %start% bis %end%"
+
+#: views/file/js/searchDialog.phtml:252
+#: views/file/all.phtml:40
+#: views/ftp/all.phtml:10
+msgid "Preview"
+msgstr "Vorschau"
+
+#: views/file/js/searchDialog.phtml:254
+#: views/file/all.phtml:43
+#: views/ftp/all.phtml:13
+msgid "Date"
+msgstr "Datum"
+
+#: views/file/js/searchDialog.phtml:255
+#: views/file/all.phtml:44
+#: views/ftp/all.phtml:14
+msgid "Size"
+msgstr "Größe"
+
+#: views/file/js/searchDialog.phtml:315
+msgid "BROWSE"
+msgstr "BROWSE"
+
+#: views/file/js/searchDialog.phtml:321
+msgid "Uploaded"
+msgstr "Hochgeladen"
+
+#: views/file/js/searchDialog.phtml:321
+msgid "Your file has been uploaded successfully"
+msgstr "Die Daten wurden erfolgreich hochgeladen"
+
+#: views/file/edit.phtml:4
+#: views/file/all.phtml:97
+msgid "Edit"
+msgstr "Ändern"
+
+#: views/file/edit.phtml:12
+msgid "Folder"
+msgstr "Ordner"
+
+#: views/file/edit.phtml:17
+msgid "Tags internal"
+msgstr "Interne Schlüsselwörter"
+
+#: views/file/edit.phtml:38
+msgid "Download file"
+msgstr "Datei herunterladen"
+
+#: views/file/all.phtml:4
+msgid "Files of folder:"
+msgstr "Dateien des Ordners:"
+
+#: views/file/all.phtml:4
+msgid "Found Files"
+msgstr "Gefundene Dateien"
+
+#: views/file/all.phtml:10
+msgid "New File"
+msgstr "Neue Datei"
+
+#: views/file/all.phtml:42
+#: views/file/all.phtml:86
+#: views/ftp/all.phtml:12
+#: views/ftp/all.phtml:46
+msgid "Download"
+msgstr "Herunterladen"
+
+#: views/file/all.phtml:45
+msgid "Options"
+msgstr "Optionen"
+
+#: views/file/all.phtml:128
+msgid "To upload files click on the BROWSE button"
+msgstr "Um eine Datei hochzuladen, klicken sie auf die BROWSE-Schaltfläche"
+
+#: views/file/all.phtml:133
+msgid "Upload file(s)"
+msgstr "Datei(en) hochladen"
+
+#~ msgid "Other"
+#~ msgstr "Andere"
+#~ msgid "Alert"
+#~ msgstr "Achtung"
+#~ msgid "Choose your options!"
+#~ msgstr "Wähle deine Optionen!"
+#~ msgid "Confirm"
+#~ msgstr "Bestätigen"
+#~ msgid "Make a decision!"
+#~ msgstr "Treffe eine Wahl!"
+#~ msgid "Do you really want to delete this object?"
+#~ msgstr "Wollen sie dieses Objekt wirklich löschen?"
+#~ msgid "Saved"
+#~ msgstr "Gespeichert"
+#~ msgid "Error"
+#~ msgstr "Fehler"
+#~ msgid "An error has occurred!"
+#~ msgstr "Ein Fehler ist aufgetreten"
+#~ msgid "Notify"
+#~ msgstr "Benachrichtigung"
+#~ msgid "Be aware that..."
+#~ msgstr "Beachten Sie, dass ..."
+#~ msgid "Custom"
+#~ msgstr "Meldung"
+#~ msgid "Saving..."
+#~ msgstr "Speichern..."
+#~ msgid "Deleting..."
+#~ msgstr "Löschen..."
+#~ msgid "The item has been deleted successfully"
+#~ msgstr "Das Objekt wurden erfolgreich gelöscht."
+#~ msgid "the file name"
+#~ msgstr "Der Dateiname"
+#~ msgid "where this file will be located"
+#~ msgstr "Unter welchem Ordner, soll diese Datei angezeigt werden?"
+#~ msgid "Tags are for internal use. You can search for them."
+#~ msgstr "Schlüsselwörter sind für den internen Gebrauch, z.B. für die Suche"
+#~ msgid "where this folder will be located"
+#~ msgstr "Unter welchem Ordner, soll dieser angezeigt werden?"
+

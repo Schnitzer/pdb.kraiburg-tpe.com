@@ -1,0 +1,76 @@
+<?php if (false === $this->dialog_mode) { ?>
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+        <li class="ncw-main-tab"><a href="#"><?php print T_('New component'); ?></a></li>
+    </ul>
+    <div class="ncw-main-tab-contents">
+        <div class="ncw-main-tab-content">
+            <p>
+                <a href="javascript: ncw.wcms.component(<?php print $this->site_id ?>);" class="ncw-action">
+                    <?php print T_('Show components'); ?>
+                </a>
+            </p>
+            <br class="ncw-clear" /><br />
+<?php } else { ?>
+<h2><?php print T_('New component'); ?></h2>
+<?php } ?>
+            <?php
+            if (false === $this->dialog_mode) {
+                $class_addition = '';
+            } else {
+                $class_addition = '-dialog';
+            }
+            ?>
+            <?php print $this->form->create('ncw-component', array('onsubmit' => 'return false;')); ?>
+            <?php print $this->form->input("site_id", array('type' => 'hidden', 'value' => $this->site_id)); ?>
+            <?php print $this->form->input("name", array('maxlength' => 100, 'title' => T_('Only for internal use needed'), 'class' => 'ncw-input' . $class_addition, 'div' => array('class' => 'ncw-input-container' . $class_addition), 'label' => array('class' => 'ncw-label' . $class_addition, 'text' => T_('Name')))); ?>
+            <?php print $this->form->input('num', array('maxlength' => 3, 'value' => '1', 'title' => T_('How many components?'), 'class' => 'ncw-input' . $class_addition, 'div' => array('class' => 'ncw-input-container' . $class_addition), 'label' => array('class' => 'ncw-label' . $class_addition, 'text' => T_('How many of this components must be created')))); ?>
+            <?php print $this->form->input("componenttemplate_id", array('type' => 'select', 'options' => $this->arr_templates, 'title' => T_('Look and functionality of the component'), 'class' => 'ncw-select' . $class_addition, 'div' => array('class' => 'ncw-input-container' . $class_addition), 'label' => array('class' => 'ncw-label' . $class_addition, 'text' => T_('Component type')))); ?>
+            <?php if (false === $this->dialog_mode) { ?>
+                <?php if (false !== $this->arr_sitearea) { ?>
+                    <?php print $this->form->input("area", array('type' => 'select', 'options' => $this->arr_sitearea, 'title' => T_('In which content area must this component be'), 'class' => 'ncw-select' . $class_addition, 'div' => array('class' => 'ncw-input-container' . $class_addition), 'label' => array('class' => 'ncw-label' . $class_addition, 'text' => T_('Content area')))); ?>
+                <?php } else { ?>
+                    <?php print $this->form->input("area", array('type' => 'hidden', 'value' => 1)); ?>
+                <?php } ?>
+                <div class="ncw-input-container<?php print  $class_addition; ?>">
+                    <label class="ncw-label<?php print  $class_addition; ?>" for="component_parent_id"><?php print T_('Parent component'); ?></label>
+                    <select id="component_parent_id" name="data[Component][parent_id]" class="ncw-select<?php print  $class_addition; ?>" title="<?php print T_('Parent component'); ?>">
+                        <option value="0"><?php print T_('-- No parent component --'); ?></option>
+                        <?php foreach ($this->parent_options as $option_name => $option_id) { ?>
+                            <option value="<?php print $option_id; ?>"><?php print $option_name; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            <?php } ?>
+            <?php if ($this->num_languages > 1) { ?>
+                <div class="ncw-input-container<?php print  $class_addition; ?>">
+                    <label class="ncw-label<?php print  $class_addition; ?>"><?php print T_('Add in following languages'); ?></label>
+                    <div class="ncw-radios-checkbox">
+                    <?php foreach ($this->languages as $language) { ?>
+                    <input type="checkbox" checked="checked" value="1" name="data[Component][languages][<?php print $language['id']; ?>]" class="ncw-component-language" id="component_languages_<?php print $language['id']; ?>"/>
+                    <label for="component_languages_<?php print $language['id']; ?>"><?php print $language['name']; ?></label>
+                    <?php } ?>
+                    </div>
+                </div>
+            <?php } ?>
+            <?php print $this->form->end(); ?>
+            <?php if (false === $this->dialog_mode) { ?>
+        </div>
+    </div>
+</div>
+<div class="ncw-status-action-bar">
+    <div class="ncw-status-message"></div>
+    <ul class="ncw-actions">
+        <li class="ncw-action"><a href="#" rel="wcms/component" class="ncw-new-trigger-ajax ncw_save_icon"><?php print T_('Save'); ?></a></li>
+    </ul>
+</div>
+<?php } else { ?>
+<p>
+    <a href="javascript: ncw.wcms.website_admin.components.window.newComponent.save();" class="ncw-action">
+        <?php print T_('Save'); ?>
+    </a>
+    <a href="javascript: ncw.wcms.website_admin.components.window.newComponent.close();" class="ncw-action ncw-action-with-margin">
+        <?php print T_('Cancel'); ?>
+    </a>
+</p>
+<?php } ?>

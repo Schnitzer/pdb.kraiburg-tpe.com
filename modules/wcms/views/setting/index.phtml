@@ -1,0 +1,26 @@
+<div class="ncw-right">
+    <?php print $this->form->create(); ?>
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+            <li class="ncw-main-tab"><a href="#"><?php print T_('Settings'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <?php print $this->form->input("rewrite", array('maxlength' => 100, 'title' => T_('Rewrite'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Rewrite')))); ?>
+                <?php print $this->form->input("language_id", array('type' => 'select', 'options' => $this->languages, 'title' => T_('Master language'), 'class' => 'ncw-select', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Master language')))); ?>
+                <div class="ncw-input-container">
+                    <label class="ncw-label" for="setting_master_language_copy"><?php print T_('Should slave languages copy content from the master language, if they have no own content?'); ?></label>
+                    <?php print $this->form->input("master_language_copy", array('type' => 'checkbox', 'class' => 'ncw-checkbox', 'div' => array('class' => 'ncw-radios-checkbox'), 'label' => FALSE)); ?>
+                </div>
+                <?php print $this->form->input("robots", array('type' => 'textarea', 'title' => T_('The robots txt content'), 'class' => 'ncw-textarea', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('The robots txt content')))); ?>
+            </div>
+        </div>
+    </div>
+    <div class="ncw-status-action-bar">
+        <div class="ncw-status-message"></div>
+        <ul class="ncw-actions">
+            <li class="ncw-action"><a href="#" class="ncw-save-trigger ncw_save_icon"><?php print T_('Save'); ?></a></li>
+        </ul>
+    </div>
+    <?php print $this->form->end(); ?>
+</div>

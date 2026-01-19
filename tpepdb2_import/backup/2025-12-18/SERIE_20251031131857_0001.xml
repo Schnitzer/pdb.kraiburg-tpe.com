@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CATALOG>
+ <HEAD>
+  <ID>PORTFOLIO</ID>
+  <DESCRIPTIONS_SHORT>
+   <DESCRIPTION_SHORT lang="chi">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="kor">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ger">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="eng">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="fre">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ita">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="jpn">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="pol">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="spa">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+  </DESCRIPTIONS_SHORT>
+ </HEAD>
+ <NODES>
+  <NODE ID="0000000001-0000000034" type="SERIE" internal_id="0000000034">
+   <DRAWING_NUMBER/>
+   <VALID_FROM>00000000</VALID_FROM>
+   <VALID_TO>00000000</VALID_TO>
+   <DESCRIPTIONS_SHORT>
+    <DESCRIPTION_SHORT lang="chi">
+     <![CDATA[MC/tl]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="kor">
+     <![CDATA[MC/tl]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="ger">
+     <![CDATA[MC/tl]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="eng">
+     <![CDATA[MC/tl]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="fre">
+     <![CDATA[MC/tl]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="ita">
+     <![CDATA[MC/tl]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="jpn">
+     <![CDATA[MC/tl]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="pol">
+     <![CDATA[MC/tl]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="spa">
+     <![CDATA[MC/tl]]>
+    </DESCRIPTION_SHORT>
+   </DESCRIPTIONS_SHORT>
+   <DESCRIPTIONS_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="pol">
+     <![CDATA[<P>Seria MC/tl to tworzywa do różnorodnych zastosowań wymagających podstawowych dopuszczeń medycznych takich jak ISO 10993-5. Materiały te charakteryzują się adhezją do PP oraz PE. Tworzywa są dostępne jako prześwitujące, mogą być barwione na dowolne kolory; materiały tej serii są wytwarzane wyłącznie na specjalnej linii dedykowanej do produktów medycznych.</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="ita">
+     <![CDATA[La serie MC/tl è la soluzione ideale per le applicazioni che richiedono approvazioni medicali come ISO 10993-5. Si caratterizza per la sua adesione su PP e PE. I materiali sono traslucidi e possono essere colorati in molti modi diversi. Sono prodotti esclusivamente su un'unità medicale speciale.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="spa">
+     <![CDATA[<P>La serie MC/tl es la solución para diversas aplicaciones que requieren aprobaciones médicas básicas como la ISO 10993-5. La serie se caracteriza por su adhesión a PP y PE. Los compuestos están disponibles en colores translúcidos y pueden ser coloreados de muchas maneras diferentes. Los compuestos se producen exclusivamente en una unidad médica especial.</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="chi">
+     <![CDATA[<P>MC/tl 系列适用于基本医疗批复（如 ISO 10993-5）应用的材料解决方案。该系列的特点是包胶 PP 和 PE。这类化合物为半透明，可用多种不同方式着色。这类化合物仅由专门的医疗部门生产。</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="kor">
+     <![CDATA[<P>MC/tl 시리즈는 의료 승인 ISO 10993-5와 같은 기본 승인을 요구하는 다양한 어플리케이션을 위한 소재 솔루션입니다. 이 시리즈는 PP 및 PE 접착이 특징입니다. 제품은 반투명 색상으로 제공하며 다양한 색상으로 착색 간으합니다. 제품은 특별 의료용 라인에서 단독 생산합니다.</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="jpn">
+     <![CDATA[MC/tlシリーズは、ISO 10993-5などの基本的な医療分野の要求を満たす様々なアプリケーションのための、あなたの材料ソリューションです。このシリーズはPPおよびPEへの接着性を特徴としています。これらのコンパウンドは半透明色で提供され、また多様な方法による着色が可能です。このコンパウンドは医療用途専用の設備で生産されています。]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="fre">
+     <![CDATA[La série MC/tl est votre solution matière pour diverses applications nécessitant des certifications médicales telles que ISO10993-5. La série se caractérise par son adhérence avec les PP et les PE. Les compounds sont disponibles en translucide et peuvent être colorés de différentes manières. Les compounds sont produits exclusivement sur une unité médicale spéciale.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="eng">
+     <![CDATA[<P>The MC/tl series is your material solution for various applications requiring basic medical approvals such as ISO 10993-5. The series is characterized by its adhesion to PP and PE. The compounds are available in translucent colors and can be colored in many different ways. The compounds are produced exclusively on a special medical unit.</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="ger">
+     <![CDATA[<P>Die MC/tl-Reihe ist Ihre Materiallösung für vielseitige Anwendungen, die medizinische Basiszulassungen, wie ISO 10993-5 benötigen. Sie zeichnet sich durch ihre Haftung zu PP und PE aus.  Die transluzenten Materialien lassen sich vielfältig einfärben. Sie werden ausschließlich auf einem speziellen Medizinalaggregat produziert.</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="pol">
+     <![CDATA[Zastosowania medyczne i farmaceutyczne, adhezja do PP oraz PE, materiały prześwitujące]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="ita">
+     <![CDATA[<P>Per applicazioni medicali e farmaceutiche; adesione a PP e a PE; colore traslucente.</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="ger">
+     <![CDATA[Medizinische und pharmazeutische Anwendungen; Haftung zu PP und PE; transluzent<br/>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="eng">
+     <![CDATA[Medical and pharmaceutical applications; adhesion to PP and PE; translucent<br/>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="spa">
+     <![CDATA[<P>Aplicaciones médicas y farmacéuticas; adhesión a PP y PE; translúcido</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="chi">
+     <![CDATA[医疗和制药应用；包胶 PP 和 PE；半透明]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="kor">
+     <![CDATA[의료 및 제약 어플리케이션; PP 및 PE 접착; 반투명]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="jpn">
+     <![CDATA[PPおよびPEへの接着性を要する医療および製薬用アプリケーション、半透明グレード]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="fre">
+     <![CDATA[Applications médicales et pharmaceutiques; adhérence sur PP et PE; translucide]]>
+    </DESCRIPTION_LONG>
+   </DESCRIPTIONS_LONG>
+   <CLASSIFICATION>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_001_SERIAL">
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">Serie</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">series</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+     <VALUE>
+      TPE-200000000000253
+      <VALUE_TEXTS>
+       <VALUE_TEXT lang="chi">MC/tl</VALUE_TEXT>
+       <VALUE_TEXT lang="kor">MC/tl</VALUE_TEXT>
+       <VALUE_TEXT lang="ger">MC/tl</VALUE_TEXT>
+       <VALUE_TEXT lang="eng">MC/tl</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">MC/tl</VALUE_TEXT>
+       <VALUE_TEXT lang="ita">MC/tl</VALUE_TEXT>
+       <VALUE_TEXT lang="jpn">MC/tl</VALUE_TEXT>
+       <VALUE_TEXT lang="pol">MC/tl</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">MC/tl</VALUE_TEXT>
+      </VALUE_TEXTS>
+     </VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_002_BRAND">
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">Brand</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+     <VALUE>
+      TPE-200000000000294
+      <VALUE_TEXTS>
+       <VALUE_TEXT lang="chi">热塑宝 M</VALUE_TEXT>
+       <VALUE_TEXT lang="tha">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="kor">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="rum">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="slv">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="hrv">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="may">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="ukr">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="est">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="ara">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="heb">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="cze">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="ger">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="eng">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="gre">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="hun">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="ita">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="jpn">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="dan">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="pol">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="chi">热塑宝 M</VALUE_TEXT>
+       <VALUE_TEXT lang="dut">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="nor">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="por">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="slo">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="rus">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="tur">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="fin">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="swe">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="bul">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="lit">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="lav">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="ice">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="srp">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="ind">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="hin">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="vie">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="mac">THERMOLAST® M</VALUE_TEXT>
+       <VALUE_TEXT lang="alb">THERMOLAST® M</VALUE_TEXT>
+      </VALUE_TEXTS>
+     </VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_010_REGION">
+     <VALUE>TPE-300000000007010</VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_4000_001">
+     <VALUE>TPE-300000000004675</VALUE>
+     <VALUE>TPE-300000000004690</VALUE>
+     <VALUE>TPE-300000000004688</VALUE>
+     <VALUE>TPE-300000000004691</VALUE>
+     <VALUE>TPE-300000000004692</VALUE>
+     <VALUE>TPE-300000000006472</VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_4000_002">
+     <VALUE>TPE-300000000004799</VALUE>
+     <VALUE>TPE-300000000004737</VALUE>
+     <VALUE>TPE-300000000004746</VALUE>
+     <VALUE>TPE-300000000004806</VALUE>
+     <VALUE>TPE-300000000006822</VALUE>
+     <VALUE>TPE-300000000004793</VALUE>
+     <VALUE>TPE-300000000004764</VALUE>
+     <VALUE>TPE-300000000005113</VALUE>
+    </ATTRIBUTE>
+   </CLASSIFICATION>
+  </NODE>
+ </NODES>
+</CATALOG>
+                                                                                                                                                                      

@@ -1,0 +1,59 @@
+<?php
+if ($this->contact['type'] == 'private') {
+    $shortname = $this->contact['firstname'];
+		
+	$title = '';
+	if (false === empty($this->contact['title'])) {
+		$title .= ' ' . $this->contact['title'];
+	}
+	
+	$name = $this->contact['firstname'] . ' ' . $this->contact['name'];
+} else {
+    $name = $shortname = $this->contact['name'];
+}
+?>
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+    	<li class="ncw-option-tab"><a href="javascript: ncw.contacts.contact.loadContact(<?php print $this->contact_id; ?>);"><?php print T_('Back') ; ?></a></li>
+        <li class="ncw-main-tab"><a href="#"><?php echo T_('Edit groups of ' . $name); ?></a></li>
+    </ul>
+    <div class="ncw-main-tab-contents">
+
+        <div class="ncw-main-tab-content">
+
+            <?php print $this->form->input("id", array('type' => 'hidden', 'value' => $this->contact_id)); ?>
+
+			<?php if (count($this->arr_options) > 0) {?>
+                <span><?php echo T_('Choose a group to which this contact should be added'); ?></span><br /><br />
+                <?php print $this->form->input('contactgroup', array('type' => 'select', 'options' => $this->arr_options, 'title' => T_('Groups'), 'class' => 'ncw-select', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Groups')))); ?>
+                <a id="ncw-add-contactgroup" class="ncw-action" href="javascript: void(0);"><?php print T_('Add'); ?></a>
+                <br class="ncw-clear" />
+            <?php } else { ?>
+                <span><?php echo T_('All groups are added'); ?>!</span>
+            <?php }?>
+            <h2><?php echo T_('Groups');?></h2>
+            <table class="ncw-table">
+                <thead>
+                    <tr>
+                        <th><?php echo T_('Groups');?></th>
+                        <th><?php echo T_('Options');?></th>
+                    </tr>
+                </thead>
+                <tbody id="ncw-contactgroups">
+                <?php if (true === is_array($this->arr_all_contact_groups)) { ?>
+                    <?php foreach ($this->arr_all_contact_groups as $obj_group) { ?>
+                        <tr id="ncw-added-contactgroup-<?php print $obj_group->getId(); ?>">
+                            <td><?php print $obj_group->Group->getName(); ?></td>
+                            <td class="ncw-table-td-icons">
+                                <a href="javascript: ncw.contacts.contact.removeContactgroup(<?php print $obj_group->getId(); ?>);"><?php print $this->html->image("icons/16px/cross.png", false, array('alt' => T_('Delete'), 'title' => T_('Delete'))); ?></a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                <?php } ?>
+                </tbody>
+            </table>
+
+		</div>
+    </div>
+</div>
+

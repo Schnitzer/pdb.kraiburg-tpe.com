@@ -1,0 +1,59 @@
+<script type="text/javascript">
+ncw.wcms.tinymce.languageCode = '<?php print $this->language_code; ?>';
+ncw.wcms.newslanguages.loadTinyMCE();
+</script>
+<div class="ncw-left">
+    <div class="ncw-accordion">
+        <h3 class="ncw-accordion-header current"><?php print T_('Options'); ?></h3>
+        <div class="ncw-accordion-content ncw-accordion-current">
+            <p class="ncw-accordion-content-part-dark">
+                <?php print $this->html->link(T_('Back'), array('controller' => 'news', 'action' => 'edit', 'id' => $this->news_id), array('class' => 'ncw_text_button_back')); ?>
+            </p>
+            <?php if (true === $this->permissions['/wcms/newslanguage/new']) { ?>
+                <p class="ncw-accordion-content-part-dark">
+                    <?php print $this->html->link(T_('New term translation'), array('action' => 'new', 'id' => $this->news_id), array('class' => 'ncw_text_button_add')); ?>
+                </p>
+            <?php } ?>
+        </div>
+    </div>
+</div>
+<div class="ncw-right">
+    <?php print $this->form->create('ncw-newslanguage'); ?>
+    <?php print $this->form->input("id", array('type' => 'hidden', 'value' => $this->newslanguage_id)); ?>
+    <?php print $this->form->input("news_id", array('type' => 'hidden', 'value' => $this->news_id)); ?>
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+            <li class="ncw-main-tab"><a href="#"><?php print T_('Edit translation'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <?php print $this->form->input('language_id', array('type' => 'hidden')); ?>
+                <h2><?php print T_('Term')?></h2>
+                <?php print $this->form->input('headline', array('type' => 'textarea', 'label' => false, 'class' => 'ncw-wysiwyg-small', 'maxlength' => 100)); ?>
+                <h2><?php print T_('Body')?></h2>
+                <?php print $this->form->input('body', array('type' => 'textarea', 'label' => false, 'class' => 'ncw-wysiwyg')); ?>
+            </div>
+        </div>
+    </div>
+    <div class="ncw-status-action-bar">
+        <div class="ncw-status-message"></div>
+        <ul class="ncw-actions">
+            <?php
+            if (true === $this->permissions['/wcms/newslanguage/unpublish']
+                && ($this->newslanguage_status === 'published'
+                || $this->newslanguage_status === 'modified')
+            ) {
+            ?>
+                <li class="ncw-action"><a href="#" rel="newslanguage" class="ncw-unpublish-trigger ncw_unpublish_icon"><?php print T_('Unpublish'); ?></a></li>
+            <?php } ?>
+            <?php if (true === $this->permissions['/wcms/newslanguage/publish']) { ?>
+                <li class="ncw-action"><a href="#" rel="newslanguage" class="ncw-publish-trigger ncw_publish_icon"><?php print T_('Publish'); ?></a></li>
+            <?php } ?>
+            <?php if (true === $this->permissions['/wcms/newslanguage/delete']) { ?>
+                <li class="ncw-action"><a href="<?php print $this->html->url(array('action' => 'delete', 'id' => $this->newslanguage_id, $this->news_id)); ?>" class="ncw-delete-trigger ncw_delete_icon" rel="#ncw-delete"><?php print T_('Delete'); ?></a></li>
+            <?php } ?>
+            <li class="ncw-action"><a href="#" class="ncw-save-trigger ncw_save_icon"><?php print T_('Save'); ?></a></li>
+        </ul>
+    </div>
+    <?php print $this->form->end(); ?>
+</div>

@@ -1,0 +1,16 @@
+<table style="padding-left: 10px;padding-top:10px">
+	<?php foreach ($this->recently_added_contacts as $contact) { ?>
+		<tr>
+    		<td style="width: 53px;">
+    			<a href="javascript: ncw.contacts.contact.loadContact(<?php print $contact['id']; ?>);">
+    				<image src="<?php print $contact['image']; ?>" width="53" height="53" />
+    			</a>
+    		</td>
+    		<td>
+    			<a href="javascript: ncw.contacts.contact.loadContact(<?php print $contact['id']; ?>);">
+    				<div style="width: 115px; overflow: hidden" title="<?php print $contact['full_name']; ?>"><?php print $contact['full_name']; ?></div>
+    			</a>
+    		</td>
+		</tr>
+	<?php } ?>
+</table>

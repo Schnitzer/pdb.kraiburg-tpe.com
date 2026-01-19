@@ -1,0 +1,61 @@
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+        <li class="ncw-main-tab"><a href="#"><?php print $this->dir; ?></a></li>
+    </ul>
+    <div class="ncw-main-tab-contents">
+        <div class="ncw-main-tab-content">
+            <table class="ncw-table">
+                <thead>
+                    <tr>
+                        <th><?php print T_('Preview') ?></th>
+                        <th><?php print T_('Name'); ?></th>
+                        <th><?php print T_('Download'); ?></th>
+                        <th><?php print T_('Date'); ?></th>
+                        <th><?php print T_('Size'); ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($this->files as $file) { ?>
+                    <tr>
+                        <td class="ncw-table-td-icons">
+                            <?php if (true === in_array($file['type'] , $this->arr_thumbs_formats)) { ?>
+                                <a href="<?php print $this->base . DS . $file['path']; ?>" target="_blank">
+                                    <img src="<?php echo $this->base . DS . $file['path']; ?>" width="96" style="border:1px solid #000;"/>
+                                </a>
+                            <?php } else if (true === in_array($file['type'] , $this->arr_html_formats)) {?>
+                                <a href="<?php print $this->base . DS . $file['path']; ?>" target="_blank">
+                                    <img src="<?php echo $this->base . '/' . $this->theme_path; ?>/web/images/icons/16px/html.png"/>
+                                </a>
+                            <?php } else if (true === in_array($file['type'] , $this->arr_formats)) {?>
+                                <a href="<?php print $this->base . DS . $file['path']; ?>" target="_blank">
+                                    <img src="<?php echo $this->base . '/' . $this->theme_path; ?>/web/images/icons/64px/<?php print $file['type']; ?>.png"/>
+                                </a>
+                            <?php } else { ?>
+                                <a href="<?php print $this->base . DS . $file['path']; ?>" target="_blank">
+                                    <img src="<?php echo $this->base . '/' . $this->theme_path; ?>/web/images/icons/64px/default.png"/>
+                                </a>
+                            <?php } ?>
+                        </td>
+                        <td>
+                           <a href="<?php print $this->base . DS . $file['path']; ?>" target="_blank">
+                                <?php print $file['name']; ?>
+                           </a>
+                        </td>
+                        <td class="ncw-table-td-icons">
+                            <a href="<?php print $this->base . DS . $file['path']; ?>" target="_blank">
+                                <?php print $this->html->image('icons/16px/drive_go.png', false, array('alt' => T_("Download"), 'title' => T_("Download"))); ?>
+                            </a>
+                        </td>
+                        <td class="ncw-table-td-icons">
+                            <?php print $file['last_modified']; ?>
+                        </td>
+                        <td class="ncw-table-td-icons">
+                            <?php print $file['size']; ?> bytes
+                        </td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

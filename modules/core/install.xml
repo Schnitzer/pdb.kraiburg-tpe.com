@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="System Management" de_DE="Systemverwaltung" version="1.0"  url="core/usergroup/all" permission_name="core">
+
+    <addAco alias="core" name="Core Module" />
+    <addAco alias="core/user" name="User Management" />
+    <addAco alias="core/edit" name="Edit User" />
+    <addAco alias="core/new" name="New User" />
+    <addAco alias="core/profile" name="User Profile" />
+    <addAco alias="core/usergroup" name="Usergroup Management" />
+    <addAco alias="core/usergroup/edit" name="Edit Usergroup" />
+    <addAco alias="core/usergroup/delete" name="Delete Usergroup" />
+    <addAco alias="core/usergroup/new" name="New Usergroup" />
+    <addAco alias="core/modules" name="Modules Management" />
+    <addAco alias="core/language" name="Language Management" />
+    <addAco alias="core/feed" name="Feed Management" />
+    <addAco alias="core/feed/edit" name="Edit Feed" />
+    <addAco alias="core/feed/delete" name="Delete User" />
+    <addAco alias="core/feed/new" name="New Feed" />
+    
+    <addUsergroup group="Administrator" parent="root">
+
+    </addUsergroup>
+    
+    <addRoute url="" with_prefix="1">
+    array(
+        'module' => 'core',
+        'controller' => 'user',
+        'action' => 'login'
+    )
+    </addRoute>
+    <addRoute url="profile" with_prefix="1">
+    array(
+        'module' => 'core',
+        'controller' => 'user',
+        'action' => 'profile'
+    )
+    </addRoute>
+    <addRoute url="logout" with_prefix="1">
+    array(
+        'module' => 'core',
+        'controller' => 'user',
+        'action' => 'logout'
+    )
+    </addRoute>
+    <addRoute url="feed">
+    array(
+        'module' => 'core',
+        'controller' => 'feed',
+        'action' => 'feed',
+    )
+    </addRoute>
+
+</module>

@@ -1,0 +1,412 @@
+ncw.dialogs.fileSearch = {};
+
+ncw.dialogs.fileSearch.dialogApi = null;
+ncw.dialogs.fileSearch.files = {};
+ncw.dialogs.fileSearch.onlyTypes = '';
+ncw.dialogs.fileSearch.callback = function (file) {
+    alert(file.id);
+};
+
+ncw.dialogs.fileSearch.init = function () {
+	ncw.dialogs.fileSearch.dialogApi = null;
+	ncw.dialogs.fileSearch.files = {};
+	ncw.dialogs.fileSearch.onlyTypes = '';
+};
+
+ncw.dialogs.fileSearch.show = function (file_select_callback, only_types) {
+	
+    if (typeof(file_select_callback) == 'function') {
+        ncw.dialogs.fileSearch.callback = file_select_callback;
+    }
+    if (typeof(only_types) != 'undefined') {
+        ncw.dialogs.fileSearch.onlyTypes = only_types;
+    }	
+	
+	var tsTimeStamp= new Date().getTime();
+	
+	$.get(
+		ncw.url('/files/folder/dialog?t=' + tsTimeStamp + '&ot=' + ncw.dialogs.fileSearch.onlyTypes),
+		function (html) {
+			$('body').prepend(
+	    		'<div id="ncw-choose-file-dialog" rel="#ncw-choose-file-dialog" class="ncw-form-dialog" style="width: 680px;height:480px;left:50%;margin-left:-340px;">'
+	    		+ '<h2><?php print T_('File Search'); ?></h2>'
+	    		+ html
+	    		+ '</div>'
+	    	);
+	    	
+			ncw.dialogs.fileSearch.dialogApi = $("#ncw-choose-file-dialog").overlay(
+			    {
+			        expose: {
+			            color: '#666',
+			            loadSpeed: 200,
+			            opacity: 0.9,
+			            zIndex: 990000,
+			        },
+			        api: true,
+			        onLoad: function() {
+			            ncw.dialogs.fileSearch.folder();
+			            if (true == ncw.dialogs.fileSearch.folder.tree.permissions.file.addNew) {
+	            			ncw.dialogs.fileSearch.file.addNew();
+	            		}
+			        },
+			        onClose: function() {
+			        	$('#ncw-choose-file-dialog').remove();
+			            this.close();
+			        }
+			    }
+			);
+			ncw.dialogs.fileSearch.dialogApi.load();	    	
+		},
+		'html'
+	);	
+};
+
+ncw.dialogs.fileSearch.close = function () {
+    ncw.dialogs.fileSearch.dialogApi.close();
+};
+
+ncw.dialogs.fileSearch.chooseFile = function (file_id) {
+    ncw.dialogs.fileSearch.callback(ncw.dialogs.fileSearch.files[file_id]);
+    ncw.dialogs.fileSearch.close();
+};
+
+/**
+ * Initialize
+ */
+ncw.dialogs.fileSearch.folder = function () {    
+    ncw.dialogs.fileSearch.folder.tree.load();
+};
+
+ncw.dialogs.fileSearch.folder.id = 1;
+
+/**
+ * folders tree
+ */
+ncw.dialogs.fileSearch.folder.tree = function () {
+    if ($(".ncw-folders-dialog-tree").length > 0) {
+        $(".ncw-folders-dialog-tree").tree(
+            {                
+                ui : {
+                    theme_name : "apple"
+                },
+                callback : {
+                    onselect : function(NODE, TREE_OBJ) {    
+						var id = $(NODE).attr("id");
+                        id = id.replace('ncw-folder-', '');                              
+                        ncw.dialogs.fileSearch.folder.id = id;
+                        ncw.dialogs.fileSearch.file.load();
+                    },
+                    beforeclose : function (NODE, TREE_OBJ) {
+                        if ($(NODE).attr("rel") != 'root') {
+                            return true;
+                        }
+                        return false;
+                    }   
+                },            
+                types : {            	
+                    "default" : {
+                        deletable : false,
+                        renameable : false,
+                        draggable : false,
+                        icon : { 
+                            image : ncw.image('icons/16px/folder_image.png')
+                        }                             
+                    },
+                    "ftp" : {
+                        deletable : false,
+                        renameable : false,
+                        draggable : false,   
+                        icon : { 
+                            image : ncw.image('icons/16px/folder.png')
+                        }
+                    }
+                }                 
+            }
+        ); 
+        $.tree.reference(".ncw-folders-dialog-tree").open_branch('#ncw-folder-1');
+        $.tree.reference(".ncw-folders-dialog-tree").select_branch('#ncw-folder-1');         
+    }
+};
+
+/**
+ * Load the tree
+ * @param language_id
+ * @param language_code
+ */
+ncw.dialogs.fileSearch.folder.tree.load = function () {
+    var tsTimeStamp= new Date().getTime();
+
+    $('.ncw-folders-dialog-tree').load(
+        ncw.url('/files/folder/tree/?_=' + tsTimeStamp),
+        null,
+        function () {
+            ncw.dialogs.fileSearch.folder.tree();
+        }
+    );  
+};
+
+/**
+ * Initialize
+ */
+ncw.dialogs.fileSearch.file = {};
+
+/**
+ * load files
+ */
+ncw.dialogs.fileSearch.file.load = function (url, search_string) {
+    if ($(".ncw-folders-dialog-tree").length > 0 ) {
+
+	    if (typeof(url) == 'undefined'
+	    	|| url == null
+	    ) {
+	        url = 'files/file/all.js';
+	    }    	
+    	
+	    if (typeof(search_string) == 'undefined') {
+	        search_string = '';
+	    }    	
+    	
+    	folder_id = '';
+    	if (search_string.length == 0) {
+    		folder_id = '/' + ncw.dialogs.fileSearch.folder.id;
+    	}
+    	
+	    var limit = 6;
+	    var url_append = '';
+	    if (ncw.dialogs.fileSearch.onlyTypes != '') {
+	        url_append += '&o=' + ncw.dialogs.fileSearch.onlyTypes;
+	    }    	
+    	
+		$.get(
+	        ncw.url(
+	            url
+	            + folder_id
+	            + '/limit:6'
+	            + '/?s=' + search_string 
+	            + url_append
+	        ),
+	        null,
+	        function (data) {
+	
+	            var prev_page = '';
+	            if (true == data.paging.prevPage) {
+	                prev_page = '<a onclick="ncw.dialogs.fileSearch.file.load(this.rel, \'' + search_string + '\'); event.returnValue = false; return false;" id="ncw-choose-file-dialog-prevPage" rel="files/file/all.js/page:1" href="#">&lt;&lt;</a> '
+	                    + '<a onclick="ncw.dialogs.fileSearch.file.load(this.rel, \'' + search_string + '\'); event.returnValue = false; return false;" id="ncw-choose-file-dialog-firstPage" rel="files/file/all.js/page:' + (data.paging.page - 1) + '" href="#">&lt;</a>';
+	            }
+	
+	            var paging_text = '<?php print T_('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%');?>';
+	            if (data.paging.page > 0) {
+	                var start = ((data.paging.page - 1) * data.paging.options.limit) + 1;
+	                var end = start + data.paging.current - 1;
+	            } else {
+	                var start = 0;
+	                var end = 0;
+	            }
+	            paging_text = paging_text.replace('%page%', data.paging.page).replace('%pages%', data.paging.pageCount)
+	                .replace('%current%', data.paging.current).replace('%count%', data.paging.count)
+	                .replace('%start%', start).replace('%end%', end);
+	
+	            var next_page = '';
+	            if (true == data.paging.nextPage) {
+	                next_page = '<a onclick="ncw.dialogs.fileSearch.file.load(this.rel, \'' + search_string + '\'); event.returnValue = false; return false;" id="ncw-choose-file-dialog-nextPage" rel="files/file/all.js/page:' + (data.paging.page + 1) + '" href="#">&gt;</a> '
+	                    + '<a onclick="ncw.dialogs.fileSearch.file.load(this.rel, \'' + search_string + '\'); event.returnValue = false; return false;" id="ncw-choose-file-dialog-lastPage" rel="files/file/all.js/page:' + (data.paging.pageCount) + '" href="#">&gt;&gt;</a>';
+	            }
+	
+	            sort_directions = {
+	                'name' : 'asc',
+	                'created' : 'asc',
+	                'size' : 'asc'
+	            };
+	            $.each(
+	                sort_directions,
+	                function (name, value) {
+	                    if (typeof(data.paging.options.order['File.' + name]) != 'undefined') {
+	                        switch (data.paging.options.order['File.' + name]) {
+	                        case 'asc':
+	                            sort_directions[name] = 'desc';
+	                            break;
+	
+	                        case 'desc':
+	                            sort_directions[name] = 'asc';
+	                            break;
+	                        }
+	                    }
+	                }
+	            );
+	
+	            $('#ncw_files_dialog_table').html('');
+	            
+	            var html = '';
+	            	
+	            html += '<div class="ncw-page-controls">'
+	                + '<div class="left_controls">'
+	                + prev_page
+	                + '</div>'
+	                + paging_text
+	                + '<div class="right_controls">'
+	                + next_page
+	                + '</div>'
+	                + '</div>'
+	                + '<table class="ncw-table" cellpadding="0" cellspacing="0">'
+	                + '<thead>'
+	                + '<tr>'
+	                + '<th style="width: 80px"><?php print T_('Preview'); ?></th>'
+	                + '<th style="width: 260px"><a onclick="ncw.dialogs.fileSearch.file.load(this.rel, \'' + search_string + '\'); event.returnValue = false; return false;" href="#" rel="files/file/all.js/page:' + (data.paging.page) + '/sort:File.name/direction:' + sort_directions['name'] + '"><?php print T_('Name'); ?></a></th>'
+	                + '<th style="width: 90px"><a onclick="ncw.dialogs.fileSearch.file.load(this.rel, \'' + search_string + '\'); event.returnValue = false; return false;" href="#" rel="files/file/all.js/page:' + (data.paging.page) + '/sort:File.created/direction:' + sort_directions['created'] + '"><?php print T_('Date'); ?></a></th>'
+	                + '<th style="width: 70px"><a onclick="ncw.dialogs.fileSearch.file.load(this.rel, \'' + search_string + '\'); event.returnValue = false; return false;" href="#" rel="files/file/all.js/page:' + (data.paging.page) + '/sort:File.size/direction:' + sort_directions['size'] + '"><?php print T_('Size'); ?></a></th>'
+	                + '</tr></thead><tbody>';
+	            
+	            $.each(
+	                data.search_result,
+	                function (i, item) {
+	                    ncw.dialogs.fileSearch.files[item.id] = item;
+	                    html += '<tr>'
+	                    + '<td>'
+	                    + '<a href="javascript: ncw.dialogs.fileSearch.chooseFile(' + item.id + ');">'
+	                    + '<img src="' + item.preview + '" style="border: 1px solid rgb(0, 0, 0); width: 32px; height: 32px" />'
+	                    + '</a>'
+	                    + '</td>'
+	                    + '<td>'
+	                    + '<a href="javascript: ncw.dialogs.fileSearch.chooseFile(' + item.id + ');">'
+	                    + '<div style="overflow: hidden; width: 250px;" title="' + item.name + '.' + item.type + '">' + item.name + '.' + item.type + '</div>'
+	                    + '</a>'
+	                    + '</td>'
+	                    + '<td>'
+	                    + item.date
+	                    + '</td>'
+	                    + '<td>'
+	                    + item.size
+	                    + '</td>'
+	                    + '</tr>';
+	                }
+	            );
+				
+				html += '</tbody>'
+	                + '</table>';
+	
+	            $('#ncw_files_dialog_table').append(html);
+	        },
+	        'json'
+	    );    	
+    };
+};
+
+/**
+ * save new folder
+ */
+ncw.dialogs.fileSearch.file.addNew = function () {
+    var element = this;
+
+	var extensions = new Array();
+	var types = ncw.dialogs.fileSearch.onlyTypes.split(',');
+	$.each(
+		types,
+		function (i, type) {
+			extensions.push('*.' + type);
+		}		
+	);
+	extensions = extensions.join(';');
+
+    $('#fileupload').fileupload({
+        url: ncw.url('files/file/upload/' + ncw.dialogs.fileSearch.folder.id),
+        dataType: 'json',
+        autoUpload: true
+    }).on('fileuploadadd', function (e, data) {
+    	data.url = ncw.url('files/file/upload/' + ncw.dialogs.fileSearch.folder.id);
+        data.context = $('<div/>').appendTo('#files');
+        $('#progress .progress-bar').css(
+            'width',
+            0 + '%'
+        );        
+        $.each(data.files, function (index, file) {
+            var node = $('<p/>')
+                    .append($('<span/>').text(file.name));
+            node.appendTo(data.context);
+        });
+    }).on('fileuploadprocessalways', function (e, data) {
+        var index = data.index,
+            file = data.files[index],
+            node = $(data.context.children()[index]);
+        if (file.preview) {
+            node
+                .prepend('<br>')
+                .prepend(file.preview);
+        }
+        if (file.error) {
+            node
+                .append('<br>')
+                .append($('<span class="text-danger"/>').text(file.error));
+        }
+    }).on('fileuploadprogressall', function (e, data) {
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        $('#progress .progress-bar').css(
+            'width',
+            progress + '%'
+        );
+    }).on('fileuploaddone', function (e, data) {
+        $.each(data.result.files, function (index, file) {
+            if (file.url) {
+                ncw.layout.dialogs.saveNotify('<?php print T_('Uploaded'); ?>', '<?php print T_('Your file has been uploaded successfully'); ?>');
+                ncw.dialogs.fileSearch.file.load();                
+            } else if (file.error) {
+                var error = $('<span class="text-danger"/>').text(file.error);
+                $(data.context.children()[index])
+                    .append('<br>')
+                    .append(error);
+            }
+        });
+    }).on('fileuploadfail', function (e, data) {
+        $.each(data.files, function (index) {
+            var error = $('<span class="text-danger"/>').text('File upload failed.');
+            $(data.context.children()[index])
+                .append('<br>')
+                .append(error);
+        });
+    }).prop('disabled', !$.support.fileInput)
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+
+    /*$('#ncw-uploadify').uploadify(
+        {
+            'uploader': ncw.BASE + '/themes/default/web/javascript/lib/uploadify/uploadify.swf',
+            'script': ncw.url('files/file/upload/' + ncw.dialogs.fileSearch.folder.id),
+            'folder': ncw.BASE + '/assets/files/uploads',
+            'cancelImg': ncw.image('icons/16px/cancel.png'),
+            'buttonText'  : '<?php print T_('BROWSE'); ?>',
+            'multi': 'true',
+            'queueSizeLimit' : 1,
+            'fileExt' : extensions,
+            'fileDesc'    : ncw.dialogs.fileSearch.onlyTypes,
+            'onAllComplete': function () {
+                ncw.layout.dialogs.saveNotify('<?php print T_('Uploaded'); ?>', '<?php print T_('Your file has been uploaded successfully'); ?>');
+                ncw.dialogs.fileSearch.file.load();
+            },
+            'onError': function (a, b, c, d) {
+                if (d.status == 404) {
+                   alert('Could not find upload script. Use a path relative to: '+'<?= getcwd() ?>');
+                } else if (d.type === "HTTP") {
+                   alert('error '+d.type+": "+d.status);
+                } else if (d.type ==="File Size") {
+                   alert(c.name+' '+d.type+' Limit: '+Math.round(d.sizeLimit/1024)+'KB');
+                } else {
+                   alert('error '+d.type+": "+d.text + ' ' + c.name + ' ' + c.type + ' ' + c.size);
+                }
+            }
+        }
+    );*/ 
+};
+
+ncw.dialogs.fileSearch.file.addNew.upload = null;
+
+/**
+ * Upload file
+ */
+ncw.dialogs.fileSearch.file.addNew.submit = function () {
+    $('#ncw-uploadify').uploadifyUpload();
+};
+
+/**
+ * clear file list
+ */
+ncw.dialogs.fileSearch.file.addNew.clear = function () {
+    $('#ncw-uploadify').uploadifyClearQueue();
+};

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CATALOG>
+ <HEAD>
+  <ID>PORTFOLIO</ID>
+  <DESCRIPTIONS_SHORT>
+   <DESCRIPTION_SHORT lang="chi">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="kor">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ger">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="eng">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="fre">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ita">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="jpn">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="pol">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="spa">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+  </DESCRIPTIONS_SHORT>
+ </HEAD>
+ <NODES>
+  <NODE ID="0000000001-0000000022" type="SERIE" internal_id="0000000022">
+   <DRAWING_NUMBER/>
+   <VALID_FROM>00000000</VALID_FROM>
+   <VALID_TO>00000000</VALID_TO>
+   <DESCRIPTIONS_SHORT>
+    <DESCRIPTION_SHORT lang="chi">
+     <![CDATA[EX/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="kor">
+     <![CDATA[EX/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="ger">
+     <![CDATA[EX/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="eng">
+     <![CDATA[EX/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="fre">
+     <![CDATA[EX/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="ita">
+     <![CDATA[EX/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="jpn">
+     <![CDATA[EX/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="pol">
+     <![CDATA[EX/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="spa">
+     <![CDATA[EX/UV]]>
+    </DESCRIPTION_SHORT>
+   </DESCRIPTIONS_SHORT>
+   <DESCRIPTIONS_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="pol">
+     <![CDATA[Seria EX/UV to rozwiązania materiałowe przystosowane do wytłaczania, dla zastosowań wymagających najwyższych odporności na promieniowanie UV. Tworzywa tej serii dostępne są w kolorach czarnym, szarym i naturalnym. Materiały naturalne mogą być barwione na dowolne kolory koncentratami barwiącymi. Wybrane materiały z tej serii są zgodnie z wymaganiami RAL GZ 716 i/lub CSTB QB36.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="ita">
+     <![CDATA[La serie EX/UV è la soluzione ideale per applicazioni di estrusione con requisiti più elevati di resistenza ai raggi UV. Le mescole sono disponibili nei colori nero, grigio e naturale. Le varianti di colore naturale possono essere colorate in molti modi diversi. Alcune mescole della serie sono omologate secondo RAL GZ 716 e/o CSTB QB36.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="spa">
+     <![CDATA[La serie EX/UV es su solución para aplicaciones de extrusión que requieren una mayor resistencia a los rayos UV. Los compuestos están disponibles en color negro, gris y natural. Los productos de color natural pueden ser coloreados de diferentes maneras. Algunos compuestos de la serie están homologados según RAL GZ 716 y/o CSTB QB36.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="kor">
+     <![CDATA[EX/UV 계열은 UV 내성이 요구되는 압출 어플리케이션에 적합한 소재 솔루션입니다. 이 소재에는 내추럴 컬러와 회색, 검정색이 있습니다. 내추럴 컬러는 다양한 색상으로 착색 가능합니다. 이 계열의 소재 중에서는 RAL GZ 716과 CSTB QB36 혹은 두가지 모두 승인받은 제품이 있습니다.<tab/> <tab/> <tab/> ]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="chi">
+     <![CDATA[EX/UV 系列材料解决方案适用于在抗紫外线方面要求很高的挤塑应用。这类化合物可选黑色、灰色和本色。本色产品系列可用多种不同方式着色。本系列的部分化合物符合 RAL GZ 716 和/或 CSTB QB36 标准。]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="jpn">
+     <![CDATA[EX/UVシリーズは、高い耐UV性能を必要とする押出成形アプリケーションのための、あなたの材料ソリューションです。このコンパウンドは黒、灰色およびナチュラル色で提供されます。ナチュラル色は多様な方法による着色が可能です。このシリーズには、RAL GZ 716およびCSTB QB36の認定コンパウンドを含みます。]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="fre">
+     <![CDATA[La série EX/UV est votre solution matière pour les applications d'extrusion avec des exigences accrues en matière de résistance aux UV. Les compounds sont disponibles en noir, gris et en couleur naturelle. Les références naturelles peuvent être colorées de différentes façons. Certains compounds de la série sont homologués selon RAL GZ 716 et/ou CSTB QB36.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="ger">
+     <![CDATA[Die EX/UV-Reihe ist Ihre Materiallösung für Extrusionsanwendungen mit gesteigerten Anforderungen an die UV-Beständigkeit. Die Compounds sind in schwarz, grau und naturfarben erhältlich. Naturfarbene Varianten lassen sich vielfältig einfärben. Einzelne Compounds der Reihe sind nach RAL GZ 716 und/oder CSTB QB36 zugelassen.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="eng">
+     <![CDATA[The EX/UV series is your material solution for extrusion applications with increased requirements for UV resistance. The compounds are available in black, grey and natural colors. Natural color variants can be colored in many different ways. Some compounds of the series are approved according to RAL GZ 716 and/or CSTB QB36.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="pol">
+     <![CDATA[Materiały do wytłaczania, wysoka odporność UV]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="ita">
+     <![CDATA[Estrusione profili e resistenza ai raggi UV]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="ger">
+     <![CDATA[Extrusionsanwendungen mit erhöhten Anforderungen an die UV-Beständigkeit<br/>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="eng">
+     <![CDATA[Extrusion applications with increased requirements for UV resistance]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="spa">
+     <![CDATA[Aplicaciones de extrusión que requieren alta resistencia a la UV]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="kor">
+     <![CDATA[높은 UV 내성을 요구하는 압출 성형 어플리케이션]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="chi">
+     <![CDATA[要求高抗紫外线的挤塑应用]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="jpn">
+     <![CDATA[より高度な耐紫外線を求める押出成形アプリケーション]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="fre">
+     <![CDATA[Applications d'extrusion avec des exigences accrues en matière de résistance aux UV]]>
+    </DESCRIPTION_LONG>
+   </DESCRIPTIONS_LONG>
+   <DOCUMENTS>
+    <DOCUMENT usage="" lang="" type="CRD">
+     <VALUE>C:\Users\kos1407\OneDrive-KRAIBURGTPEGmbH&amp;Co.KG\KTD-ProduktmanagementEMEA\04_SalesSupport\01_Produktdatenbank\05_Additionaldocuments\CSTBcertificates\SERIE_20250801100827_KRAIBURG-TPE-QB36_12-2024.pdf</VALUE>
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">KRAIBURG-TPE-QB36_12-2024</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">KRAIBURG-TPE-QB36_12-2024</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">KRAIBURG-TPE-QB36_12-2024</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">KRAIBURG-TPE-QB36_12-2024</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">KRAIBURG-TPE-QB36_12-2024</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">KRAIBURG-TPE-QB36_12-2024</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">KRAIBURG-TPE-QB36_12-2024</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">KRAIBURG-TPE-QB36_12-2024</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">KRAIBURG-TPE-QB36_12-2024</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+    </DOCUMENT>
+   </DOCUMENTS>
+   <CLASSIFICATION>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_001_SERIAL">
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">Serie</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">series</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+     <VALUE>
+      TPE-200000000000270
+      <VALUE_TEXTS>
+       <VALUE_TEXT lang="chi">EX/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="kor">EX/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="ger">EX/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="eng">EX/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">EX/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="ita">EX/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="jpn">EX/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="pol">EX/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">EX/UV</VALUE_TEXT>
+      </VALUE_TEXTS>
+     </VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_002_BRAND">
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">Brand</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+     <VALUE>
+      TPE-200000000000295
+      <VALUE_TEXTS>
+       <VALUE_TEXT lang="chi">热塑宝 K</VALUE_TEXT>
+       <VALUE_TEXT lang="tha">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="kor">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="rum">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="slv">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="hrv">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="may">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ukr">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="est">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ara">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="heb">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="cze">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ger">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="eng">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="gre">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="hun">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ita">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="jpn">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="dan">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="pol">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="chi">热塑宝 K</VALUE_TEXT>
+       <VALUE_TEXT lang="dut">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="nor">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="por">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="slo">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="rus">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="tur">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="fin">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="swe">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="bul">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="lit">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="lav">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ice">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="srp">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ind">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="hin">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="vie">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="mac">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="alb">THERMOLAST® K</VALUE_TEXT>
+      </VALUE_TEXTS>
+     </VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_010_REGION">
+     <VALUE>TPE-300000000007010</VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_4000_001">
+     <VALUE>TPE-300000000004706</VALUE>
+     <VALUE>TPE-300000000004704</VALUE>
+     <VALUE>TPE-300000000006363</VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_4000_002">
+     <VALUE>TPE-300000000004736</VALUE>
+     <VALUE>TPE-300000000004763</VALUE>
+     <VALUE>TPE-300000000004795</VALUE>
+     <VALUE>TPE-300000000004784</VALUE>
+     <VALUE>TPE-300000000004787</VALUE>
+     <VALUE>TPE-300000000004766</VALUE>
+     <VALUE>TPE-300000000004741</VALUE>
+     <VALUE>TPE-300000000006371</VALUE>
+    </ATTRIBUTE>
+   </CLASSIFICATION>
+  </NODE>
+ </NODES>
+</CATALOG>
+                                                                                                                                                                                                                      

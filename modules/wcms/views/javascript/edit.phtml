@@ -1,0 +1,30 @@
+<div class="ncw-right">
+    <?php print $this->form->create(); ?>
+    <?php print $this->form->input("id", array('type' => 'hidden', 'value' => $this->javascript_id)); ?>
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+        	<li class="ncw-option-tab"><?php print $this->html->link(T_('Back'), array('action' => 'all')); ?></li>
+            <li class="ncw-main-tab"><a href="#"><?php echo T_('edit Javascript'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <?php print $this->form->input("name", array('maxlength' => 100, 'title' => T_('Name'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Name')))); ?>
+                <?php print $this->form->input("code", array("type" => "hidden")); ?>
+                <div class="codemirror">
+                    <?php print $this->form->input("Codemirror.js.editor", array("type" => "textarea", 'cols' => 20, 'rows' => 30, 'label' => false, "value" => $this->code)); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ncw-status-action-bar">
+        <div class="ncw-status-message"></div>
+        <ul class="ncw-actions">
+            <li class="ncw-action"><a href="<?php print $this->html->url(array('action' => 'delete', 'id' => $this->javascript_id)); ?>" class="ncw-delete-trigger ncw_delete_icon" rel="#ncw-delete"><?php echo T_('Delete'); ?></a></li>
+            <li class="ncw-action"><a href="#" class="ncw-javascript-save-trigger ncw_save_icon"><?php print T_('Save'); ?></a></li>
+        </ul>
+    </div>
+    <?php print $this->form->end(); ?>
+</div>
+<script type="text/javascript">
+ncw.wcms.extras.codemirror_type = 'js';
+</script>

@@ -1,0 +1,1322 @@
+@CHARSET "UTF-8";
+
+/*
+ * VARS
+ */
+
+@ncw_blue: #009DE0;
+
+/*
+ */
+ 
+html, body, a {
+    outline-color: invert;
+    outline-style: none;
+    outline-width: 0;
+    text-rendering: optimizeSpeed
+}
+
+img {
+    image-rendering: optimizeQuality;
+    -ms-interpolation-mode: bicubic
+}
+
+    img[src$=".gif"] {
+        image-rendering: -moz-crisp-edges;
+        -ms-interpolation-mode: nearest-neighbor
+    }
+	
+ul {
+    list-style-type: none;
+}
+::-moz-selection {
+  	color: orange;
+  	background: #000
+}
+
+::selection {
+  	color: orange;
+  	background: #000
+}
+
+a::-moz-selection {
+    color: #fff
+}
+
+a::selection {
+    color: #fff
+}
+
+.ncw {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 12px !important;
+    color: #000 !important;
+    line-height: normal !important;
+    text-align: left !important;
+    margin: 0;
+    background: #EEEEEE;
+}
+
+.ncw img, #ncw-header img, .ncw-left img, .ncw-right img, #ncw-footer ncw {
+    border: none
+}
+
+#ncw-section {
+    padding: 5px;
+}
+
+    .ncw-section-background {
+        background: #EEEEEE;
+    }
+
+    .ncw-left {
+        float: left;
+        width: 205px;
+        height: inherit;
+        margin-right: 5px;
+        overflow: auto
+    }
+    
+        .ncw-accordion {
+            border-bottom: 1px solid #aaa;
+        }
+        
+            .ncw-accordion-header, .ncw-side-menu-header {
+                height: 19px;
+                margin: 0;
+                padding: 4px 0 0 5px;
+                background: #494A57;     
+                font-family: Arial, Helvetica, sans-serif !important;
+                font-size: 13px !important;
+                color: #fff !important;
+                line-height: normal !important;
+                cursor: pointer;   
+                text-align: left !important;
+                font-weight: 700 !important;
+                float: none !important;
+				-moz-border-radius-topleft: 5px;
+                -webkit-border-top-left-radius: 5px;
+                 border-topleft-radius: 5px;
+                -moz-border-radius-bottomleft: 2px;
+                -webkit-border-bottom-left-radius: 2px;
+                 border-bottomleft-radius: 2px;
+				 border-top: 1px solid #aaa;
+            }
+            
+            .ncw-accordion .current {
+                /*padding-left: 24px;
+                background-image: url('../images/accordion-header-highlight.jpg');*/
+                background-repeat: no-repeat
+            }
+
+            .ncw-accordion-content, .ncw-side-menu-content {
+                float: none !important;
+                position: relative;
+                background: #fff;   
+                text-align: left !important;
+                font-family: Arial, Helvetica, sans-serif !important;
+                font-size: 12px !important;
+                color: #000 !important;
+                line-height: normal !important;
+                border-left: 1px solid #aaa;
+                border-right: 1px solid #aaa;
+            }  
+            
+                .ncw-accordion-content a , .ncw-side-menu-content a {
+                    font-family: Arial, Helvetica, sans-serif !important;
+                    font-size: 12px !important;
+                    color: #000 !important;
+                    line-height: normal !important;
+                    text-decoration: underline !important
+                }
+            
+            .ncw-accordion-content {
+                position: relative;
+                display: none;
+                overflow: auto
+            }
+            
+                .ncw-accordion-content-part, .ncw-accordion-content-part-dark {
+                    margin: 0 !important;
+                    min-height: 13px;
+                    border-bottom: 1px solid #AAAAAA;
+                    padding: 5px 0 5px 5px;
+                    font-family: Arial, Helvetica, sans-serif !important;
+                    font-size: 12px !important;
+                    color: #000 !important;
+                    line-height: normal !important
+                }
+                
+                .ncw-accordion-content-part-dark {
+                    background: #eee;
+                }
+                
+                .ncw_text_button_overview {
+                    padding: 0 0 0 20px !important;
+                    background: url('../../themes/default/web/images/icons/16px/application_view_columns.png') no-repeat 0 center transparent !important
+                }                
+                
+                .ncw_text_button_search {
+                    padding: 0 0 0 20px !important;
+                    background: url('../../themes/default/web/images/icons/16px/find.png') no-repeat 0 center transparent !important
+                }                  
+                
+                .ncw_text_button_add {
+                    padding: 0 0 0 20px !important;
+                    background: url('../../themes/default/web/images/icons/16px/add.png') no-repeat 0 center transparent !important
+                }
+                
+                .ncw_text_button_back {
+                    padding: 0 0 0 20px !important;
+                    background: url('../../themes/default/web/images/icons/16px/arrow_left.png') no-repeat 0 center transparent !important
+                }
+				
+                .ncw_text_button_dashboard {
+                    padding: 0 0 0 20px !important;
+                    background: url('../../themes/default/web/images/icons/16px/application_view_tile.png') no-repeat 0 center transparent !important
+                }                   
+            
+            .ncw-accordion-current {
+                display: block
+            }
+            
+        .ncw-side-menu {
+            margin-bottom: 10px
+        }
+   
+    .ncw-right {
+        position: relative;
+        float: left;
+        height: inherit
+    }
+    
+        .ncw-right a {
+            color: #0074C6 !important;
+            text-decoration: none !important;
+            font-family: Arial, Helvetica, sans-serif !important;
+            font-size: 12px !important;  
+            font-weight: normal !important;
+            line-height: normal !important; 
+            text-align: left !important
+        }    
+        
+        .ncw-right h2, .ncw-right h3 {
+            margin-top: 20px !important;
+            font-family: Arial, Helvetica, sans-serif !important;
+            font-size: 12px !important;  
+            font-weight: 700 !important;
+            line-height: normal !important; 
+            text-align: left !important;      
+            color: #000 !important;   
+            margin-bottom: 8px !important;
+            float: none !important;
+            background: none !important;
+            padding: 0 !important;
+            height: 14px !important
+        }
+        
+        .ncw-right h3 {
+            font-size: 11px !important; 
+            font-weight: normal !important; 
+        }        
+
+        .ncw-right p {
+            margin-top: 12px !important;
+            margin-bottom: 12px !important;
+            font-family: Arial, Helvetica, sans-serif !important;
+            font-size: 12px !important;  
+            font-weight: normal !important;
+            line-height: normal !important; 
+            text-align: left !important;      
+            color: #000 !important
+        }
+    
+        .ncw-throbber-big {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -30px 0 0 -30px;
+            z-index: 989999;
+        }
+        
+        .ncw-throbber-big-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 989998;
+            opacity: 0.9; 
+            background-color: rgb(51, 51, 51);
+        }
+    
+        .ncw-main-tabs, .ncw-tabs, .ncw-sub-tabs {
+            padding: 0;
+        }
+    
+            .ncw-main-tabs-container, .ncw-tabs-container, .ncw-sub-tabs-container {
+                height: 24px;
+                margin: 0;
+                padding: 0;
+                list-style-type: none;
+                border-bottom: 1px solid #AAA;
+            }
+            
+                .ncw-main-tab, .ncw-tab, .ncw-option-tab, .ncw-sub-tab {
+                    float: left;
+                    height: 24px;
+                    margin-right: 8px;
+                    cursor: pointer
+                }
+               
+                .ncw-main-tab a, .ncw-tab a, .ncw-option-tab a, .ncw-sub-tab a {
+                    display: block;
+                    padding: 5px 16px 0 16px;                
+                    background: #EEE;
+                    color: #8f8f8f !important;
+                    font-family: Arial, Helvetica, sans-serif !important;
+                    font-size: 12px !important;
+                    line-height: normal !important; 
+                    text-align: left !important;                    
+                    font-weight: 700 !important;
+                    text-decoration: none !important;
+                    -moz-border-radius-topleft: 3px;
+                    -webkit-border-top-left-radius: 3px;
+                    border-topleft-radius: 3px;
+                    -moz-border-radius-topright: 3px;
+                    -webkit-border-top-right-radius: 3px;
+                    border-topright-radius: 3px;
+                    text-transform: uppercase;
+                }
+                
+                .ncw-main-tab a, .ncw-tab a, .ncw-option-tab a, .ncw-sub-tab a {
+                    height: 18px;
+                    border: 1px solid #AAA;
+                }
+                
+                .ncw-main-tab  a.current, .ncw-tab a.current, .ncw-sub-tab a.current {
+                    color: @ncw_blue !important;
+                    background: #FFF;
+                }      
+                             
+                .ncw-main-tab a.current, .ncw-tab a.current, .ncw-sub-tab a.current {
+                     height: 19px;
+                     border-bottom: none
+                }
+           
+            .ncw-main-tab-contents, .ncw-tab-contents, .ncw-sub-tab-contents {
+
+            }
+            
+                .ncw-main-tab-content, .ncw-tab-content, .ncw-sub-tab-content {
+                    display: none;
+                    padding: 16px;
+                    background: #FFF;
+                    border: 1px solid #AAA;
+                    border-top: none;
+                    font-family: Arial, Helvetica, sans-serif !important;
+                    font-size: 12px !important;
+                    line-height: normal !important; 
+                    text-align: left !important;      
+                    color: #000 !important
+                }
+                
+                    .ncw-main-tab-content, .ncw-tab-content p, .ncw-sub-tab-content p {
+                        font-family: Arial, Helvetica, sans-serif !important;
+                        font-size: 12px !important;
+                        line-height: normal !important; 
+                        text-align: left !important;      
+                        color: #000 !important
+                    }
+                
+                .ncw-main-tab-content {
+                     overflow: auto
+                }
+                
+                .ncw-tab-content, .ncw-sub-tab-content {
+                    display: none;
+                    padding: 16px;                
+                }
+                
+                .ncw-tab-content-full {
+                    overflow: auto
+                }               
+            
+        .ncw-status-action-bar {
+            position: relative;
+            height: 28px;
+            background: #494A57;
+        }
+            
+            .ncw-status-message {
+                display: none;
+                position: absolute;
+                top: 2px;
+                left: 2px;
+                padding: 6px 40px 0px 40px;
+                height: 18px;
+                /*background: url(../images/status-message-arrow.jpg) right top no-repeat @ncw_blue;*/
+                background: @ncw_blue;
+                font-family: Arial, Helvetica, sans-serif !important;
+                font-size: 10px !important;
+                font-weight: 700 !important;
+                line-height: normal !important; 
+                text-align: left !important;      
+                color: #fff !important
+            }
+                
+                .ncw-throbber {
+                    position: absolute;
+                    top: 2px;
+                    left: 8px
+                }
+                
+            .ncw-actions {
+                position: absolute;
+                top: 2px;
+                right: 2px;
+                height: 24px;
+                margin: 0;
+                padding: 0;
+                list-style-type: none
+            }
+            
+                .ncw-action {
+                    float: left;
+                    font-family: Arial, Helvetica, sans-serif !important;
+                    font-size: 10px !important;
+                    font-weight: 700 !important;
+                    line-height: normal !important; 
+                    text-align: left !important;      
+                    color: #fff !important;   
+                    cursor: pointer;
+                    text-decoration: none !important;
+                    background: #eee;
+                }
+                
+                li.ncw-action, .ncw-action-with-margin {
+                    margin-left: 4px !important
+                }
+                
+                a.ncw-action {
+                    height: 18px;
+                    float: left;
+                    padding: 6px 16px 0 16px !important;
+                    background: #aaa;
+                    color: #fff !important; 
+                    font-family: Arial, Helvetica, sans-serif !important;
+                    font-size: 10px !important;  
+                    font-weight: 700 !important;
+                    line-height: normal !important;                                       
+                }
+                
+                a.ncw-action-icon {
+                    height: 18px;
+                    float: left;
+                    padding: 6px 16px 0 32px !important;
+                    background: #aaa;
+                    color: #000 !important; 
+                    font-family: Arial, Helvetica, sans-serif !important;
+                    font-size: 10px !important;  
+                    font-weight: 700 !important;
+                    line-height: normal !important;
+					margin: 0 5px 0 0;                                     
+                }
+				
+                .ncw-action a {
+                    height: 18px;
+                    float: left;
+                    padding: 6px 16px 0 32px !important;
+                    color: #000 !important;
+                    text-decoration: none !important;
+                    font-family: Arial, Helvetica, sans-serif !important;
+                    font-size: 10px !important;
+                    font-weight: 700 !important;
+                    line-height: normal !important; 
+                    text-align: left !important
+                }
+                
+                    .ncw-action a:hover,
+                    .ncw-action a:focus,
+                    a.ncw-action:hover,
+					a.ncw-action-icon:hover {
+                        background-color: @ncw_blue !important;
+                        color: #fff !important;
+                    }
+                    
+                .ncw_publish_icon {
+                    background: url('../../themes/default/web/images/icons/16px/world.png') no-repeat 9px center #eee !important
+                }
+
+                .ncw_unpublish_icon {
+                    background: url('../../themes/default/web/images/icons/16px/world_delete.png') no-repeat 9px center #eee !important
+                }
+
+                .ncw_copy_icon {
+                    background: url('../../themes/default/web/images/icons/16px/page_copy.png') no-repeat 9px center #eee !important
+                }
+
+                .ncw_send_email_icon {
+                    background: url('../../themes/default/web/images/icons/16px/email_go.png') no-repeat 9px center #eee !important
+                }     
+                
+                .ncw_abort_email_icon {
+                    background: url('../../themes/default/web/images/icons/16px/email_delete.png') no-repeat 9px center #eee !important
+                } 
+
+                .ncw_delete_icon {
+                    background: url('../../themes/default/web/images/icons/16px/delete.png') no-repeat 9px center #eee !important
+                }
+
+                .ncw_save_icon {
+                    background: url('../../themes/default/web/images/icons/16px/disk.png') no-repeat 9px center #eee !important
+                }
+				
+                .ncw_add_icon {
+                    background: url('../../themes/default/web/images/icons/16px/add.png') no-repeat 9px center #eee !important
+                }
+				
+                .ncw_cancel_icon {
+                    background: url('../../themes/default/web/images/icons/16px/cross.png') no-repeat 9px center #eee !important
+                }
+				
+                .ncw_search_icon {
+                    background: url('../../themes/default/web/images/icons/16px/find.png') no-repeat 9px center #eee !important
+                }
+				
+                .ncw_calculator_icon {
+                    background: url('../../themes/default/web/images/icons/16px/calculator.png') no-repeat 9px center #eee !important
+                }
+				
+                .ncw_calculator_add_icon {
+                    background: url('../../themes/default/web/images/icons/16px/calculator_add.png') no-repeat 9px center #eee !important
+                }
+
+                .ncw_print_icon {
+                    background: url('../../themes/default/web/images/icons/16px/printer.png') no-repeat 9px center #eee !important
+                }
+
+                .ncw_eye_icon {
+                    background: url('../../themes/default/web/images/icons/16px/eye.png') no-repeat 9px center #eee !important
+                }
+				
+                .ncw_door_in {
+                    background: url('../../themes/default/web/images/icons/16px/door_in.png') no-repeat 9px center #eee !important
+                }
+				
+                .ncw_door_out {
+                    background: url('../../themes/default/web/images/icons/16px/door_out.png') no-repeat 9px center #eee !important
+                }
+                
+                .ncw_car {
+                    background: url('../../themes/default/web/images/icons/16px/car.png') no-repeat 9px center #eee !important
+                }
+                
+                .ncw_lorry {
+                    background: url('../../themes/default/web/images/icons/16px/lorry.png') no-repeat 9px center #eee !important
+                }
+                
+                .ncw_newspaper {
+                    background: url('../../themes/default/web/images/icons/16px/newspaper.png') no-repeat 9px center #eee !important
+                }
+.ncw-input-left{
+	width: 50%;
+	float: left;
+	margin: 0 0 5px 0;
+}            
+.ncw-input-right{
+	background: #E9E9E9;
+    width: 50%;
+    float: left;
+}
+
+.ncw-button-container {
+    width: 100%;
+    height: 24px;
+    margin: 5px 0 5px 0;
+    background: #494A57;
+    clear: both;
+}
+
+#ncw-livesearch-preview {
+    max-height: 200px;
+    padding: 5px;
+	z-index: 2;
+	background: #fff;
+	display: none;
+	border: 1px solid #AAAAAA;
+}
+#ncw-livesearch-preview:hout {
+    display: none;
+}
+
+
+.ncw-livesearch-results{
+	width: 100%;
+}
+
+.ncw-livesearch-preview-result{
+	cursor: pointer;
+    width: 100%;
+}
+
+.ncw-livesearch-preview-result:hover {
+    background: #eee;
+}
+
+
+#ncw-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 30px;
+    width: 100%;
+    z-index: 900010;
+    -moz-box-shadow: -10px 0 10px 0 #000
+}
+
+    .ncw-footer-background {
+        background: #494A57;
+    }
+
+    #ncw-menu {
+        margin: 0;
+        padding: 0;
+        list-style-type: none
+    }
+    
+        .ncw-menu-node {
+            float: left;
+            font: 700 11px Arial, Helvetica, sans-serif !important;
+            color: #fff !important;
+            line-height: normal !important;
+            text-align: left !important
+        }
+        
+        .ncw-menu-node a {
+            height: 21px;
+            float: left;
+            padding: 9px 0 0 16px;
+            font: 700 11px Arial, Helvetica, sans-serif !important;
+            line-height: normal !important;
+            color: #fff !important;
+            text-decoration: none !important
+        }
+        
+            .ncw-menu-node a:hover,
+            .ncw-menu-node a:focus,
+            .ncw-menu-node a.opened {
+                color: @ncw_blue !important
+            }
+
+            #ncw-menu-node-user a {
+                color: #fff !important
+                }
+
+        #ncw-menu-node-applications {
+            /*padding-right: 25px;
+            background: url('../images/menu-applications-arrow.jpg') no-repeat right top #1f1f1f;*/
+            padding-right: 16px;
+        }
+        
+        #ncw-menu-node-application {
+            /*padding-right: 25px;
+            background: url('../images/menu-application-arrow.jpg') no-repeat right top #3f3f3f;*/
+            padding-right: 16px;
+            background: #6F707B;
+        }
+        
+        #ncw-menu-node-user {
+            float: none;
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding-right: 16px;
+            /*background: url('../images/menu-user-arrow.jpg') no-repeat left top #009de0;*/
+            background: @ncw_blue;
+        }
+    
+    .ncw-sub-menu {
+        display: none;
+        position: absolute;
+        bottom: 30px;
+        left: 5px;
+        width: 216px;     
+        min-height: 30px;
+        margin: 0;
+        padding: 0;
+        list-style-type: none;   
+        z-index: 900011;
+        background: #eee;
+        border: 1px solid #aaa;
+        border-bottom: 0
+    }
+    
+        .ncw-sub-menu-node {
+           height: 22px;
+           padding: 8px 0 0 20px !important;
+           color: #000 !important;
+           font: 700 12px Arial, Helvetica, sans-serif !important;
+           border-left: 5px solid #aaa;
+           border-bottom: 1px solid #aaa;
+           cursor: pointer;
+           text-align: left !important
+        }
+        
+            .ncw-sub-menu-node a {
+                font: 700 12px Arial, Helvetica, sans-serif !important;
+                line-height: inherit !important;
+                color: #000 !important;
+                text-decoration: none !important
+            }
+            
+        .ncw-sub-menu-node-hover {
+            border-left: 5px solid @ncw_blue;
+            background: #aaa
+        }
+        
+        .ncw-sub-menu-node-hover a {
+            color: #fff !important
+            }
+        
+#ncw-history {
+    position: fixed;
+    top: 0px;
+    right: 5px;
+    height: 17px;
+    width: 123px;
+    z-index: 900010;
+    -moz-box-shadow: -6px 6px 6px 0 #333
+}
+
+    .ncw-history-background {
+		background: url('../../themes/default/web/images/icons/16px/application_view_tile.png') no-repeat 20px center #494A57;
+		color: #fff;
+		font-size: 12px;
+		font-weight: 700;
+		text-align: center;
+		padding: 8px 6px 4px 6px;
+    }
+    #ncw-history:hover, #ncw-history:focus {
+        background: url('../../themes/default/web/images/icons/16px/application_view_tile.png') no-repeat 20px center #383946;
+		color: @ncw_blue !important
+    }
+    #ncw-history:hover .ncw-history-menu, #ncw-history:focus .ncw-history-menu, .ncw-history-menu:hover{
+        display: block;
+    }
+    .ncw-history-menu {
+        display: none;
+        position: absolute;
+        top: 29px;
+        left: -83px;
+        width: 216px;     
+        min-height: 30px;
+        margin: 0;
+        padding: 0;
+        list-style-type: none;   
+        z-index: 900111;
+        background: #eee;
+        border: 1px solid #aaa;
+        border-bottom: 0
+    }
+	    
+        .ncw-history-menu-node {
+           height: 22px;
+           padding: 8px 0 0 20px !important;
+           color: #000 !important;
+           font: 700 12px Arial, Helvetica, sans-serif !important;
+           border-left: 5px solid #aaa;
+           border-bottom: 1px solid #aaa;
+           cursor: pointer;
+           text-align: left !important
+        }
+        
+            .ncw-history-menu-node a {
+                font: 700 12px Arial, Helvetica, sans-serif !important;
+                line-height: inherit !important;
+                color: #000 !important;
+                text-decoration: none !important
+            }
+            
+        .ncw-history-menu-node-hover {
+            border-left: 5px solid @ncw_blue;
+            background: #aaa
+        }
+        
+        .ncw-history-menu-node-hover a {
+            color: #fff !important
+            }
+
+#ncw-sub-menu-overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    z-index: 900001
+}
+
+/*
+ * DIALOGS
+ */
+#ncw-delete, #ncw-confirm, #ncw-options, #ncw-alert {
+    position: absolute;
+    z-index: 990002;
+    background: url('../../themes/default/web/images/icons/64px/warning.png') no-repeat 8px 43px #fff;
+    display: none;
+    width: 350px;
+    color: @ncw_blue !important;
+    font: 12px Arial, Helvetica, sans-serif !important;
+    text-align: left !important;
+    border: 2px solid #333;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -moz-box-shadow: 0 0 10px #F57900;
+    -webkit-box-shadow: 0 0 10px #F57900;
+    color: #000 !important
+}
+
+    #ncw-delete h2, #ncw-confirm h2, #ncw-options h2, #ncw-alert h2 {
+        margin: 0 !important;
+        font: 700 16px Arial, Helvetica, sans-serif !important;
+        line-height: normal !important;
+        text-align: left !important;
+        text-transform: uppercase;
+        color: #F57900;
+        float: none !important;
+        border-bottom: 2px solid #494A57;
+        background: #494A57 !important;
+        padding: 7px 10px !important
+    }
+
+    #ncw-delete p, #ncw-confirm p, #ncw-options p, #ncw-alert p {
+        margin: 13px 13px 13px 81px;
+        font: 12px Arial, Helvetica, sans-serif !important;
+    }
+
+    #ncw-delete button, #ncw-confirm button, #ncw-options button, #ncw-alert button {
+        height: 24px;
+        padding: 0 16px 0 16px;
+        background: #5c5c5c;
+        font-family: Arial, Helvetica, sans-serif !important;
+        font-size: 10px !important;
+        font-weight: 700 !important;
+        line-height: normal !important;
+        text-align: left !important;
+        color: #fff !important;
+        font-weight: normal !important;
+        border: none;
+        cursor: pointer
+    }
+
+    #ncw-delete button:hover, #ncw-confirm button:hover, #ncw-alert button:hover
+    #ncw-delete button:focus, #ncw-confirm button:focus, #ncw-alert button:focus {
+        background: #F57900
+    }
+    
+    
+#ncw-options {
+    background: url('../../themes/default/web/images/icons/64px/checkbox.png') no-repeat 6px 44px #fff;
+    -moz-box-shadow: 0 0 10px #4B96CC;
+    -webkit-box-shadow: 0 0 10px #4B96CC;
+}
+
+    #ncw-options h2 {
+        color: #4B96CC !important;
+    }
+
+    #ncw-options p {
+        margin: 13px 13px 13px 81px;
+    }
+
+    #ncw-options button:hover,
+    #ncw-options button:focus {
+        background: #4B96CC
+    }
+    
+    #ncw-options form div {
+      width: 100%;
+      height: 18px;
+      float: left;
+      margin: 0 0 10px 0
+      }
+    
+    #ncw-options input {
+        width: 20px;
+        float: left;
+        margin: 0 10px 0 0
+    }
+    
+    #ncw-options label {
+        width: 220px;
+        float: left;
+        cursor: pointer
+        }
+        
+    #ncw-options label:hover {
+        color: #4B96CC
+        }       
+    
+#ncw-notify, #ncw-save, #ncw-error {
+    background: url('../../themes/default/web/images/icons/64px/warning.png') no-repeat 9px 46px #fff;
+    display: none;
+    width: 350px;
+    color: @ncw_blue !important;
+    font: 12px Arial, Helvetica, sans-serif !important;
+    text-align: left !important;
+    border: 2px solid #333;
+    -moz-border-radius: 0 0 6px 6px;
+    -webkit-border-radius: 0 0 6px 6px;
+    border-radius: 0 0 6px 6px;
+    -moz-box-shadow: 0 0 10px #4B96CC;
+    -webkit-box-shadow: 0 0 10px #4B96CC;
+    color: #000 !important;
+    position: fixed;
+    top: 0px;
+    right: 5px;
+    z-index: 990001;
+}
+
+    #ncw-notify h2, #ncw-save h2, #ncw-error h2 {
+        margin: 0 !important;
+        font: 700 16px Arial, Helvetica, sans-serif !important;
+        line-height: normal !important;
+        text-align: left !important;
+        text-transform: uppercase;
+        color: #4B96CC;
+        float: none !important;
+        border-bottom: 2px solid #494A57;
+        background: #494A57 !important;
+        padding: 7px 10px !important
+    }
+    
+    #ncw-notify h2 {
+        color: #4B96CC !important;
+    }
+
+    #ncw-notify p, #ncw-save p, #ncw-error p {
+        margin: 33px 0 31px 81px;
+        font: 12px Arial, Helvetica, sans-serif !important;
+    }
+
+#ncw-save {
+    background: url('../../themes/default/web/images/icons/64px/success.png') no-repeat 9px 46px #fff;
+    -moz-box-shadow: 0 0 10px #86CF1F;
+    -webkit-box-shadow: 0 0 10px #86CF1F;
+}
+
+    #ncw-save h2 {
+        color: #86CF1F !important;
+    }
+
+#ncw-error {
+    background: url('../../themes/default/web/images/icons/64px/error.png') no-repeat 8px 44px #fff;
+    -moz-box-shadow: 0 0 10px #CF1111;
+    -webkit-box-shadow: 0 0 10px #CF1111;
+}
+
+    #ncw-error h2 {
+        color: #CF1111 !important;
+    }
+    
+#ncw-custom {
+    position: absolute;
+    z-index: 990001;   
+}
+    
+.ncw-form-dialog {
+    background: #fff;
+    display: none;
+    width: 600px;
+    color: @ncw_blue !important;
+    font: 12px Arial, Helvetica, sans-serif !important;
+    text-align: left !important;
+    border: 2px solid #333;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -moz-box-shadow: 0 0 10px #4B96CC;
+    -webkit-box-shadow: 0 0 10px #4B96CC;
+    color: #000 !important;
+    padding-bottom: 12px; 
+}
+
+    .ncw-form-dialog h2 {
+        margin: 0 !important;
+        font: 700 16px Arial, Helvetica, sans-serif !important;
+        line-height: normal !important;
+        text-align: left !important;
+        text-transform: uppercase;
+        color: #4B96CC !important;
+        float: none !important;
+        border-bottom: 2px solid #494A57;
+        background: #494A57 !important;
+        padding: 7px 10px !important
+    }
+        
+    .ncw-form-dialog p, .ncw-form-dialog form {
+        padding: 0 5px 0 5px !important;
+        margin-top: 12px !important;
+        font: 12px Arial, Helvetica, sans-serif !important;
+    }
+
+    .ncw-form-dialog button {
+        height: 24px;
+        padding: 0 16px 0 16px;
+        background: #5c5c5c;
+        font-family: Arial, Helvetica, sans-serif !important;
+        font-size: 10px !important;
+        font-weight: 700 !important;
+        line-height: normal !important;
+        text-align: left !important;
+        color: #fff !important;
+        font-weight: normal !important;
+        border: none
+    }    
+    
+#ncw-loading-overlay, #ncw-dialog-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #666;
+    z-index: 990000;
+    opacity: 0.9; 
+}
+
+#ncw-dialog-overlay {
+    display: none;
+}
+    
+#ncw-loading-throbber {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -30px 0 0 -30px;
+    z-index: 990001;
+}    
+
+/*
+ 
+ */
+
+.ncw-clear {
+    clear: both
+}
+
+hr {
+    border: 0;                         
+    background-color: #E9E9E9;
+    color: #eee;
+    height: 1px;
+    margin: 8px 0px 8px 8px;
+}
+
+/*
+ FORMS
+ */
+
+.ncw-form {
+    
+}
+
+    .ncw-input-container, .ncw-input-container-nobackground, .ncw-input-container-dialog {
+        min-height: 40px !important;
+        margin-bottom: 6px !important;
+        background: #E9E9E9;
+        padding: 2px 4px 4px 4px;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+    }    
+    
+    .ncw-input-container-nobackground {
+        background: transparent;
+        min-height: 30px !important;
+    }
+    
+    .ncw-input-container-dialog {
+        
+    }    
+                
+        .ncw-label, .ncw-label-dialog {
+            display: block !important;
+            height: 16px !important;
+            color: #666 !important;
+            font-family: Arial, Helvetica, sans-serif !important;
+            line-height: normal !important;
+            cursor: pointer
+        }
+        
+        .ncw-input-container label {
+            color: #666 !important;
+            font-family: Arial, Helvetica, sans-serif !important;
+            line-height: normal !important
+        }        
+        
+        .ncw-input, .ncw-textarea, .ncw-select,
+        .ncw-input-dialog, .ncw-textarea-dialog, .ncw-select-dialog {
+            float: none !important; 
+            width: inherit;
+            height: 16px !important;
+            padding: 3px 4px 0 4px !important;
+            margin: 0 !important;
+            border: 1px solid #AAA !important;
+            background: #fff !important;
+            font-family: Arial, Helvetica, sans-serif !important;
+            font-size: 12px !important;
+            color: #000 !important;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+        }   
+        
+        .ncw-file  {
+            height: 19px !important;
+            padding: 5px 4px 0 4px !important;
+            margin: 0 !important;
+            border-width: 1px !important;
+            border-style: solid !important;
+            background: #fff !important;
+            font-family: Arial, Helvetica, sans-serif !important;
+            font-size: 12px !important;
+            color: #000 !important
+        }
+        
+        .ncw-input-dialog, .ncw-textarea-dialog, .ncw-select-dialog {
+            width: 572px !important
+        }
+        
+        .ncw-input[disabled='disabled'], .ncw-textarea[disabled='disabled'], .ncw-select[disabled='disabled'] {
+            color: #ccc !important;
+            cursor: default !important
+        }        
+                   
+        .ncw-textarea, .ncw-textarea-dialog {
+            height: 85px !important;
+        }       
+        
+        .ncw-select, .ncw-select-dialog {
+            height: 24px !important;
+            padding: 2px 2px 2px 2px !important;
+	        -moz-border-radius: 3px;
+	        -webkit-border-radius: 3px;
+	        border-radius: 3px;
+        }
+        
+        .ncw-select-dialog {
+            width: 582px !important
+        }
+        
+        .ncw-checkbox {
+            margin: 3px 0 0 4px !important
+        }
+        
+        .ncw-radio {
+            margin: 3px 4px 0 4px !important
+        }
+
+    .ncw-radios-checkbox {
+        height: 22px !important;
+        padding: 2px 4px 0 4px !important;
+    }
+    
+    .ncw-disabled {
+        height: 20px !important;
+        padding: 4px 4px 0 4px !important;
+        color: #000 !important;
+        font-family: Arial, Helvetica, sans-serif !important;
+        font-size: 12px !important;  
+        font-weight: normal !important;
+        line-height: normal !important; 
+        text-align: left !important
+    }
+            
+     /*.ncw-input-tooltip, .ncw-textarea-tooltip {
+        display: none; 
+        padding: 6px 8px 6px 8px !important; 
+        width: 216px !important;           
+        min-height: 38px !important;
+        background-color: #AAA !important; 
+        border-left: 4px solid #494A57 !important;
+        color: #fff !important;
+        font-family: Arial, Helvetica, sans-serif !important;
+        font-size: 12px !important;  
+        font-weight: normal !important;
+        line-height: normal !important; 
+        text-align: left !important;    
+        z-index: 990000
+    }   
+    
+    .ncw-textarea-tooltip {
+        min-height: 102px !important
+    }*/
+        
+    .ncw-wysiwyg {
+        width: 100% !important;
+        height: 100% !important
+    }      
+    
+    .ncw-right span.error {
+        display: block !important;
+        margin: 4px 0 4px 0 !important;
+        font-family: Arial, Helvetica, sans-serif !important;
+        font-size: 12px !important;  
+        font-weight: normal !important;
+        line-height: normal !important; 
+        text-align: left !important;      
+        color: red !important
+    }            
+            
+    .ncw-input-container-small {
+        position: relative !important;
+        background: #E9E9E9;
+        padding: 2px 4px 4px 4px;
+        /*border-bottom: 1px solid #AAA;*/        
+    }                  
+            
+        .ncw-label-small {
+            width: 197px !important;
+            height: 20px !important;
+            color: #666 !important;
+            font-family: Arial, Helvetica, sans-serif !important;
+            line-height: normal !important
+        }            
+                    
+        .ncw-input-small, .ncw-textarea-small, .ncw-select-small, .ncw-select-small-xl {
+            width: 184px !important;
+            height: 17px !important;
+            padding: 5px 4px 0 4px !important;
+            margin: 0 0 0 0 !important;
+            border: 1px solid #AAA !important;
+            background: #fff !important;
+            font-family: Arial, Helvetica, sans-serif !important;
+            font-size: 12px !important;
+            color: #000 !important;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+        }
+        
+        .ncw-select-small {
+            width: 194px !important;
+            height: 17px !important;
+            padding: 2px !important;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+        }        
+        .ncw-select-small-xl {
+            width: 250px !important;
+            height: 24px !important;
+            padding: 2px !important;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+        } 
+/*
+ TABLES
+ */
+
+.ncw-table {
+    border-collapse: collapse !important;
+    width: 100% !important
+}
+
+    .ncw-table-tr-odd {
+        /*background: #3f3f3f !important*/
+    }
+    
+    .ncw-table-tr-even {
+        /*background: #5c5c5c !important*/
+    }
+
+    .ncw-table th {
+        height: 24px !important;
+        padding-left: 8px !important;
+        background: #EEE !important;
+        border: 1px solid #AAA !important;
+        border-bottom: none;
+        text-align: left !important;
+        color: #7f7f7f !important;
+        font-family: Arial, Helvetica, sans-serif !important;
+        font-size: 12px !important;
+        line-height: normal !important;
+        text-align: left !important;
+        font-weight: 700 !important;
+        vertical-align: middle !important
+    }
+    
+        .ncw-table th a {
+            font-weight: 700 !important;
+        }
+        
+    .ncw-table td {
+        height: 24px !important;
+        padding-left: 8px !important;
+        border: 1px solid #AAA !important;
+        border-top: none;
+        color: #000 !important;
+        font-family: Arial, Helvetica, sans-serif !important;
+        font-size: 12px !important;
+        line-height: normal !important;
+    }
+    
+    .ncw-table-td-icons {
+        width: 100px !important
+    }
+    
+        .ncw-table td a {
+            color: #000 !important;
+            text-decoration: underline !important;
+        }       
+    
+    .ncw-table-td-small {   
+       width: 30px !important
+    }
+
+.ncw-page-controls, .ncw-page-controls-bottom {
+    position: relative;
+    background: #EEE;
+    height: 17px;
+    padding: 5px 0 0;
+    margin-bottom: 8px;
+    color: #000 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    line-height: normal !important; 
+    text-align: center !important;    
+    border: 1px solid #AAA;
+}
+
+    .ncw-page-controls .current, .ncw-page-controls-bottom .current {
+
+    }
+    
+    .ncw-page-controls .right_controls, .ncw-page-controls-bottom .right_controls {
+        position: absolute;
+        right: 8px;
+        top: 5px;
+    }  
+    
+    .ncw-page-controls .left_controls, .ncw-page-controls-bottom .left_controls {
+        position: absolute;
+        left: 8px;
+        top: 5px;
+    }  
+
+.ncw-page-controls-bottom {
+    margin-top: 8px;
+    margin-bottom: 0
+}
+
+    .ncw-page-controls a, .ncw-page-controls-bottom a {
+        
+        font-weight: 700 !important;
+        text-decoration: none !important
+    }

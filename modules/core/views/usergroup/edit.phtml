@@ -1,0 +1,48 @@
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+    	<li class="ncw-option-tab"><a href="javascript: ncw.core.user.load();"><?php print T_('Users of group') . ': ' . $this->usergroup_name; ?></a></li>
+        <li class="ncw-main-tab"><a href="#"><?php print T_('Edit Usergroup'); ?></a></li>
+    </ul>
+    <div class="ncw-main-tab-contents">
+    	<div class="ncw-main-tab-content">
+	    	<ul class="ncw-tabs-container">
+	    		<li class="ncw-tab"><a href="#"><?php print T_('Main'); ?></a></li>
+				<li class="ncw-tab"><a href="#"><?php print T_('Permissions'); ?></a></li>
+	    	</ul>
+	    	<?php print $this->form->create('ncw-usergroup'); ?>
+			<div class="ncw-tab-contents">
+		    	<div class="ncw-tab-content ncw-tab-content-full">	    	
+		            <?php print $this->form->input("id", array('type' => 'hidden', 'value' => $this->usergroup_id)); ?>
+		            <?php print $this->form->input("name", array('maxlength' => 255, 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Name')))); ?>
+		            <div class="ncw-input-container">
+		                <label class="ncw-label" for="usergroup_parent_id"><?php print T_('Parent usergroup'); ?></label>
+		                <select id="usergroup_parent_id" name="data[Usergroup][parent_id]" class="ncw-select">
+		                    <?php foreach ($this->arr_options as $option) { ?>
+			                    <option value="<?php print $option->getId(); ?>"<?php if ($this->parent_id == $option->getId()) {?> selected="selected"<?php }?>>
+			                    	<?php 
+			                    	if ($option->getId() > 1) {
+			                    		print str_repeat('--', $option->getLevel()) . ' ';
+			                    	}
+			                    	?>
+			                    	<?php print $option->getName(); ?>
+			                    </option>
+		                    <?php } ?>
+		                </select>
+		            </div>
+		        </div>
+		        <div class="ncw-tab-content ncw-tab-content-full">
+		            <br />
+		            <?php print $this->acos_tree; ?>
+		        </div>
+			</div>
+			<?php print $this->form->end(); ?>
+	    </div>
+    </div>
+</div>
+<div class="ncw-status-action-bar">
+    <div class="ncw-status-message"></div>
+    <ul class="ncw-actions">
+        <li class="ncw-action"><a href="#" rel="core/usergroup" class="ncw-delete-trigger-ajax ncw_delete_icon"><?php print T_('Delete'); ?></a></li>
+        <li class="ncw-action"><a href="#" rel="core/usergroup" class="ncw-save-trigger-ajax ncw_save_icon"><?php print T_('Save'); ?></a></li>
+    </ul>
+</div>

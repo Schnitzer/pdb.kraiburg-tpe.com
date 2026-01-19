@@ -1,0 +1,84 @@
+<?php print $this->element('transfer_menu'); ?>
+<div class="ncw-right">
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+        	<li class="ncw-option-tab"><?php echo $this->html->link(T_('Back'), array('controller' => 'transfer', 'action' => 'importCsv')); ?></li>
+            <li class="ncw-main-tab"><a href="#"><?php print T_('Import-profiles'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+            	
+				<?php echo $this->html->link(T_('New Profile'), array('controller' => 'transfer', 'action' => 'new'), array('class' => 'ncw-action')); ?>            	
+            	<br class="ncw-clear" /><br class="ncw-clear" />
+            	
+                <div class="ncw-page-controls">
+                    <div class="left_controls">
+                        <?php print $this->paginator->first('<<'); ?>
+                        <?php print $this->paginator->prev('<'); ?>
+                    </div>
+                    <?php
+                    print $this->paginator->counter(
+                        array(
+                            'format' => 'Page %page% of %pages%,
+                                         showing %current% records out of %count% total,
+                                         starting on record %start%, ending on %end%'
+                        )
+                    );
+                    ?>
+                    <?php if ($this->paginator->hasPage(2)) { ?>
+                        (<?php print $this->paginator->numbers(); ?>)
+                    <?php } ?>
+                    <div class="right_controls">
+                        <?php print $this->paginator->next('>'); ?>
+                        <?php print $this->paginator->last('>>'); ?>
+                    </div>
+                </div>
+                <table class="ncw-table">
+                    <thead>
+                        <tr>
+                            <th><?php print $this->paginator->sort(T_('Name'), 'Setting.name'); ?></th>
+                            <th><?php print T_('Options'); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+							if (true === is_array($this->transfersettings)) { ?>
+                            <?php foreach ($this->transfersettings as $transfersetting) { ?>
+                                <tr>
+                                    <td><?php print $this->html->link($transfersetting->getName(), array("action" => "edit", "id" => $transfersetting->getId())); ?></td>
+                                    <td class="ncw-table-td-icons">
+                                        <?php print $this->html->link($this->html->image("icons/16px/pencil.png", false, array('alt' => T_('Edit'), 'title' => T_('Edit'))), array("action" => "edit", "id" => $transfersetting->getId()), null, false, false); ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        <?php } ?>
+                    </tbody>
+                </table>
+                <?php if ($this->paginator->hasPage(2)) { ?>
+	                <div class="ncw-page-controls-bottom">
+	                    <div class="left_controls">
+	                        <?php print $this->paginator->first('<<'); ?>
+	                        <?php print $this->paginator->prev('<'); ?>
+	                    </div>
+	                    <?php
+	                    print $this->paginator->counter(
+	                        array(
+	                            'format' => 'Page %page% of %pages%,
+	                                         showing %current% records out of %count% total,
+	                                         starting on record %start%, ending on %end%'
+	                        )
+	                    );
+	                    ?>
+	                    <?php if ($this->paginator->hasPage(2)) { ?>
+	                        (<?php print $this->paginator->numbers(); ?>)
+	                    <?php } ?>
+	                    <div class="right_controls">
+	                        <?php print $this->paginator->next('>'); ?>
+	                        <?php print $this->paginator->last('>>'); ?>
+	                    </div>
+	                </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="ncw-left">
+    <div class="ncw-accordion">
+        <h3 class="ncw-accordion-header current"><?php print T_('Language Management'); ?></h3>
+        <div class="ncw-accordion-content ncw-accordion-current">
+            <p class="ncw-accordion-content-part-dark">
+                <?php print $this->html->link(T_('New language'), array('action' => 'new')); ?>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="ncw-right">
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+            <li class="ncw-main-tab"><a href="#"><?php print T_('Languages'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <table class="ncw-table">
+                    <thead>
+                        <tr>
+                            <th><?php print T_('Name'); ?></th>
+                            <th><?php print T_('Shorcuts'); ?></th>
+                            <th><?php print T_('Options'); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (true === is_array($this->arr_all_languages)) { ?>
+                            <?php foreach ($this->arr_all_languages as $obj_language) { ?>
+                                <tr>
+                                    <td><?php print $this->html->link($obj_language->getNameEncoded(), array("action" => "edit", "id" => $obj_language->getId())); ?></td>
+                                    <td class="ncw-table-td-icons"><?php print $obj_language->getShortcutEncoded(); ?></td>
+                                    <td class="ncw-table-td-icons">
+                                        <?php print $this->html->link($this->html->image("icons/16px/pencil.png", false, array('alt' => _EDIT, 'title' => _EDIT)), array("action" => "edit", "id" => $obj_language->getId()), null, false, false); ?>
+                                        <?php // print $this->html->image("icons/16px/delete.png", false, array('alt' => _DELETE, 'title' => _DELETE, 'class' => 'ncw3-delete', 'id' => $obj_language->getId())); ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

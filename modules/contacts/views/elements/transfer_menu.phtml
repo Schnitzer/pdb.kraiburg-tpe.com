@@ -1,0 +1,13 @@
+<div class="ncw-left">
+    <div class="ncw-accordion">
+        <h3 class="ncw-accordion-header current"><?php print T_('Contacts'); ?></h3>
+        <div class="ncw-accordion-content ncw-accordion-current">
+			<p class="ncw-accordion-content-part-dark">
+				<?php echo $this->html->link(T_('Import CSV-File'), array('controller' => 'transfer', 'action' => 'importCsv')); ?>
+            </p>
+            <p class="ncw-accordion-content-part-dark">
+            	<?php echo $this->html->link(T_('Export as CSV-File'), array('controller' => 'transfer', 'action' => 'exportCsv')); ?>
+            </p>         
+        </div>
+    </div>
+</div>

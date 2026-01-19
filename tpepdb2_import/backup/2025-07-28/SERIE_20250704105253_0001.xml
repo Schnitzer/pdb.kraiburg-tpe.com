@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CATALOG>
+ <HEAD>
+  <ID>PORTFOLIO</ID>
+  <DESCRIPTIONS_SHORT>
+   <DESCRIPTION_SHORT lang="chi">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="kor">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ger">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="eng">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="fre">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ita">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="jpn">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="pol">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="spa">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+  </DESCRIPTIONS_SHORT>
+ </HEAD>
+ <NODES>
+  <NODE ID="0000000001-0000000008" type="SERIE" internal_id="0000000008">
+   <DRAWING_NUMBER/>
+   <VALID_FROM>00000000</VALID_FROM>
+   <VALID_TO>00000000</VALID_TO>
+   <DESCRIPTIONS_SHORT>
+    <DESCRIPTION_SHORT lang="chi">
+     <![CDATA[FC/S]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="kor">
+     <![CDATA[FC/S]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="ger">
+     <![CDATA[FC/S]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="eng">
+     <![CDATA[FC/S]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="fre">
+     <![CDATA[FC/S]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="ita">
+     <![CDATA[FC/S]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="jpn">
+     <![CDATA[FC/S]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="pol">
+     <![CDATA[FC/S]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="spa">
+     <![CDATA[FC/S]]>
+    </DESCRIPTION_SHORT>
+   </DESCRIPTIONS_SHORT>
+   <DESCRIPTIONS_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="pol">
+     <![CDATA[Seria FC/S to tworzywa o bardzo niskich twardościach, do zastosowań wymagających dopuszczenia do kontaktu z żywnością, i oferujące bardzo wysokie właściwości jeżeli chodzi o jakość powierzchni detali (jedwabisty, suchy dotyk) . Materiały te występuję jako prześwitujące i mogą być barwione na dowolne kolory.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="ita">
+     <![CDATA[La serie FC/S è la souzione ideale per realizzare applicazioni in versione super soft di uso comune che necessitano di requisiti normativi caratterizzati da una superficie asciutta e piacevole al tatto. I materiali sono disponibili in colore traslucente e possono essere colorati in molti modi diversi.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="spa">
+     <![CDATA[La serie FC/S es su solución de material supersuave para aplicaciones de la vida cotidiana con requisitos reglamentarios y superficies hápticas excepcionalmente secas y agradables. Los compuestos están disponibles en translúcido y se pueden colorear de muchas maneras diferentes.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="chi">
+     <![CDATA[FC/S 系列符合权威法规要求，表面触感舒适、干燥，是日常生活应用不可缺少的超软材料解决方案。该系列化合物颜色为半透明色，可提供多种着色方式。]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="kor">
+     <![CDATA[FC/S 시리즈는 규정을 준수하며 매우 매트하고 매끈한 표면감이 특징으로 일상 생활 어플리케이션의 초연질 소재 솔루션입니다. 제품은 반투명 색상으로 제공하며 착색 가능합니다.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="jpn">
+     <![CDATA[FC/Sシリーズは各種の規制要求を満たし、非常に優れたドライで快適な表面の触感を備えた、日用品アプリケーション向けのスーパーソフト材料ソリューションです。これらのコンパウンドは半透明色で提供され、また多様な方法による着色が可能です。]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="fre">
+     <![CDATA[La série FC/S est votre solution de matière super soft pour les applications de la vie quotidienne avec des exigences réglementaires et présentant un toucher sec et soyeux. Les compounds sont disponibles en translucide ou peuvent être teintés masse.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="ger">
+     <![CDATA[<P>Die FC/S-Reihe ist Ihre super-weiche Materiallösung für Anwendungen des täglichen Lebens mit regulatorischen Anforderungen. Sie zeichnen sich insbesondere durch Ihre trockene, sehr angenehme Oberflächenhaptik aus. Die Compounds sind in transluzent erhältlich und lassen sich vielfältig einfärben.</P><P></P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="eng">
+     <![CDATA[The FC/S series is your supersoft material solution for everyday life applications with regulatory requirements and outstanding dry and pleasant surface haptics. The compounds are available in translucent and can be colored in many different ways.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="pol">
+     <![CDATA[Bardzo miękkie materiały dla zastosowań konsumenckich.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="eng">
+     <![CDATA[<P>Very soft materials for applications of Consumer daily life with regulatory requirements.</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="ita">
+     <![CDATA[Materiali molto morbidi per contatto con alimenti ed applicazioni consumer con requisiti normative.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="ger">
+     <![CDATA[Sehr weiche Materialien für Anwendungen des täglichen Lebens mit regulatorischen Anforderungen.<br/>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="spa">
+     <![CDATA[Materiales muy blandos para aplicaciones de consumo diario que cumplen la reglamentación]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="kor">
+     <![CDATA[매우 부드러운 촉감이 요구되는 일상 소비재 어플리케이션<br/>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="chi">
+     <![CDATA[材质非常柔软，符合监管法规要求的日常消费应用]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="jpn">
+     <![CDATA[安全規格への適合を求める消費者向け日用品アプリケーション用の、非常にソフトな材料]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="fre">
+     <![CDATA[Matériaux très souples pour les applications Grande Consommation avec exigences réglementaires.]]>
+    </DESCRIPTION_LONG>
+   </DESCRIPTIONS_LONG>
+   <CLASSIFICATION>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_001_SERIAL">
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">Serie</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">series</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+     <VALUE>
+      TPE-200000000000243
+      <VALUE_TEXTS>
+       <VALUE_TEXT lang="chi">FC/S</VALUE_TEXT>
+       <VALUE_TEXT lang="kor">FC/S</VALUE_TEXT>
+       <VALUE_TEXT lang="ger">FC/S</VALUE_TEXT>
+       <VALUE_TEXT lang="eng">FC/S</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">FC/S</VALUE_TEXT>
+       <VALUE_TEXT lang="ita">FC/S</VALUE_TEXT>
+       <VALUE_TEXT lang="jpn">FC/S</VALUE_TEXT>
+       <VALUE_TEXT lang="pol">FC/S</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">FC/S</VALUE_TEXT>
+      </VALUE_TEXTS>
+     </VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_002_BRAND">
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">Brand</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+     <VALUE>
+      TPE-300000000005735
+      <VALUE_TEXTS>
+       <VALUE_TEXT lang="chi">热塑宝 S</VALUE_TEXT>
+       <VALUE_TEXT lang="tha">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="kor">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="rum">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="slv">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="hrv">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="may">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="ukr">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="est">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="ara">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="heb">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="cze">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="ger">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="eng">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="gre">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="hun">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="ita">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="jpn">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="dan">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="pol">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="chi">热塑宝 S</VALUE_TEXT>
+       <VALUE_TEXT lang="dut">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="nor">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="por">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="slo">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="rus">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="tur">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="fin">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="swe">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="bul">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="lit">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="lav">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="ice">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="srp">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="ind">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="hin">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="vie">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="mac">THERMOLAST® S</VALUE_TEXT>
+       <VALUE_TEXT lang="alb">THERMOLAST® S</VALUE_TEXT>
+      </VALUE_TEXTS>
+     </VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_010_REGION">
+     <VALUE>TPE-300000000007010</VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_4000_001">
+     <VALUE>TPE-300000000004687</VALUE>
+     <VALUE>TPE-300000000004686</VALUE>
+     <VALUE>TPE-300000000004648</VALUE>
+     <VALUE>TPE-300000000004649</VALUE>
+     <VALUE>TPE-300000000004657</VALUE>
+     <VALUE>TPE-300000000004685</VALUE>
+     <VALUE>TPE-300000000004681</VALUE>
+     <VALUE>TPE-300000000004684</VALUE>
+     <VALUE>TPE-300000000004675</VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_4000_002">
+     <VALUE>TPE-300000000005293</VALUE>
+     <VALUE>TPE-300000000005294</VALUE>
+     <VALUE>TPE-300000000005754</VALUE>
+     <VALUE>TPE-300000000004800</VALUE>
+     <VALUE>TPE-300000000004801</VALUE>
+     <VALUE>TPE-300000000004799</VALUE>
+     <VALUE>TPE-300000000004745</VALUE>
+     <VALUE>TPE-300000000004749</VALUE>
+     <VALUE>TPE-300000000004750</VALUE>
+     <VALUE>TPE-300000000004769</VALUE>
+    </ATTRIBUTE>
+   </CLASSIFICATION>
+  </NODE>
+ </NODES>
+</CATALOG>
+                                                                                                                          

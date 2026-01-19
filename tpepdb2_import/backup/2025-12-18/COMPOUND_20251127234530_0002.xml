@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CATALOG>
+ <HEAD>
+  <ID>NONPORTFOL</ID>
+  <DESCRIPTIONS_SHORT>
+   <DESCRIPTION_SHORT lang="chi">
+    <![CDATA[Non Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="kor">
+    <![CDATA[Non Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ger">
+    <![CDATA[Non Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="eng">
+    <![CDATA[Non Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="fre">
+    <![CDATA[Non Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ita">
+    <![CDATA[Non Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="jpn">
+    <![CDATA[Non Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="pol">
+    <![CDATA[Non Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="spa">
+    <![CDATA[Non Portfolio]]>
+   </DESCRIPTION_SHORT>
+  </DESCRIPTIONS_SHORT>
+ </HEAD>
+ <NODES>
+  <NODE ID="0000000002-0000000028">
+   <ITEMS>
+    <ITEM>
+     <MATERIAL_NUMBER>BX7IDZ</MATERIAL_NUMBER>
+     <CLASSIFICATION>
+      <ATTRIBUTE type="char" internal_id="TPE_RD_1000_002_BRAND">
+       <VALUE>
+        TPE-200000000000289
+        <VALUE_TEXTS>
+         <VALUE_TEXT lang="chi">高温宝</VALUE_TEXT>
+         <VALUE_TEXT lang="tha">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="kor">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="rum">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="slv">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="hrv">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="may">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="ukr">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="est">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="ara">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="heb">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="cze">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="ger">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="eng">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="fre">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="gre">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="hun">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="ita">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="jpn">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="dan">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="pol">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="chi">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="dut">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="nor">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="por">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="slo">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="rus">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="spa">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="tur">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="fin">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="swe">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="bul">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="lit">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="lav">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="ice">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="srp">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="ind">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="hin">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="vie">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="spa">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="fre">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="mac">HIPEX®</VALUE_TEXT>
+         <VALUE_TEXT lang="alb">HIPEX®</VALUE_TEXT>
+        </VALUE_TEXTS>
+       </VALUE>
+      </ATTRIBUTE>
+      <ATTRIBUTE type="char" internal_id="TPE_RD_2000_005_COLOR">
+       <DESCRIPTIONS_SHORT>
+        <DESCRIPTION_SHORT lang="chi">color data sheet</DESCRIPTION_SHORT>
+        <DESCRIPTION_SHORT lang="kor">color data sheet</DESCRIPTION_SHORT>
+        <DESCRIPTION_SHORT lang="ger">Farbe Datenblatt</DESCRIPTION_SHORT>
+        <DESCRIPTION_SHORT lang="eng">color data sheet</DESCRIPTION_SHORT>
+        <DESCRIPTION_SHORT lang="fre">color data sheet</DESCRIPTION_SHORT>
+        <DESCRIPTION_SHORT lang="ita">color data sheet</DESCRIPTION_SHORT>
+        <DESCRIPTION_SHORT lang="jpn">color data sheet</DESCRIPTION_SHORT>
+        <DESCRIPTION_SHORT lang="pol">color data sheet</DESCRIPTION_SHORT>
+        <DESCRIPTION_SHORT lang="spa">color data sheet</DESCRIPTION_SHORT>
+       </DESCRIPTIONS_SHORT>
+       <VALUE>
+        TPE-200000000000199
+        <VALUE_TEXTS>
+         <VALUE_TEXT lang="chi">黑色</VALUE_TEXT>
+         <VALUE_TEXT lang="kor">검정색</VALUE_TEXT>
+         <VALUE_TEXT lang="ger">schwarz</VALUE_TEXT>
+         <VALUE_TEXT lang="eng">black</VALUE_TEXT>
+         <VALUE_TEXT lang="fre">Noir</VALUE_TEXT>
+         <VALUE_TEXT lang="ita">Nero</VALUE_TEXT>
+         <VALUE_TEXT lang="jpn">黑色</VALUE_TEXT>
+         <VALUE_TEXT lang="pol">czarny</VALUE_TEXT>
+         <VALUE_TEXT lang="spa">Negro</VALUE_TEXT>
+        </VALUE_TEXTS>
+       </VALUE>
+      </ATTRIBUTE>
+      <ATTRIBUTE type="char" internal_id="TPE_RD_3000_001_SDS">
+       <DESCRIPTIONS_SHORT>
+        <DESCRIPTION_SHORT lang="chi">SDS</DESCRIPTION_SHORT>
+        <DESCRIPTION_SHORT lang="kor">SDS</DESCRIPTION_SHORT>
+        <DESCRIPTION_SHORT lang="ger">SDB</DESCRIPTION_SHORT>
+        <DESCRIPTION_SHORT lang="eng">SDS</DESCRIPTION_SHORT>
+        <DESCRIPTION_SHORT lang="fre">SDS</DESCRIPTION_SHORT>
+        <DESCRIPTION_SHORT lang="ita">SDS</DESCRIPTION_SHORT>
+        <DESCRIPTION_SHORT lang="jpn">SDS</DESCRIPTION_SHORT>
+        <DESCRIPTION_SHORT lang="pol">SDS</DESCRIPTION_SHORT>
+        <DESCRIPTION_SHORT lang="spa">SDS</DESCRIPTION_SHORT>
+       </DESCRIPTIONS_SHORT>
+       <VALUE>
+        TPE-200000000000505
+        <VALUE_TEXTS>
+         <VALUE_TEXT lang="chi">S4 HIPEX</VALUE_TEXT>
+         <VALUE_TEXT lang="kor">S4 HIPEX</VALUE_TEXT>
+         <VALUE_TEXT lang="ger">S4 HIPEX</VALUE_TEXT>
+         <VALUE_TEXT lang="eng">S4 HIPEX</VALUE_TEXT>
+         <VALUE_TEXT lang="fre">S4 HIPEX</VALUE_TEXT>
+         <VALUE_TEXT lang="ita">S4 HIPEX</VALUE_TEXT>
+         <VALUE_TEXT lang="jpn">S4 HIPEX</VALUE_TEXT>
+         <VALUE_TEXT lang="pol">S4 HIPEX</VALUE_TEXT>
+         <VALUE_TEXT lang="spa">S4 HIPEX</VALUE_TEXT>
+        </VALUE_TEXTS>
+       </VALUE>
+      </ATTRIBUTE>
+      <ATTRIBUTES>
+       <ATTRIBUTE type="char" internal_id="00000103" sort_id="001">
+        <VALUE>73</VALUE>
+        <UNITS>
+         <UNIT lang="ger">Shore A</UNIT>
+         <UNIT lang="eng">Shore A</UNIT>
+         <UNIT lang="fre">Shore A</UNIT>
+         <UNIT lang="ita">Shore A</UNIT>
+         <UNIT lang="spa">Shore A</UNIT>
+        </UNITS>
+        <ATTRIBUTE type="char" internal_id="QPMK_BEZEICHNUNG">
+         <VALUE>001</VALUE>
+        </ATTRIBUTE>
+        <ATTRIBUTE type="char" internal_id="QPMK_NORM">
+         <VALUE>001</VALUE>
+        </ATTRIBUTE>
+       </ATTRIBUTE>
+       <ATTRIBUTE type="char" internal_id="00000077" sort_id="002">
+        <VALUE>1.070</VALUE>
+        <UNITS>
+         <UNIT lang="ger">g/cm3</UNIT>
+         <UNIT lang="eng">g/cm3</UNIT>
+         <UNIT lang="fre">g/cm3</UNIT>
+         <UNIT lang="ita">g/cm3</UNIT>
+         <UNIT lang="spa">g/cm3</UNIT>
+        </UNITS>
+        <ATTRIBUTE type="char" internal_id="QPMK_BEZEICHNUNG">
+         <VALUE>002</VALUE>
+        </ATTRIBUTE>
+        <ATTRIBUTE type="char" internal_id="QPMK_NORM">
+         <VALUE>004</VALUE>
+        </ATTRIBUTE>
+       </ATTRIBUTE>
+       <ATTRIBUTE type="char" internal_id="00000242" sort_id="003">
+        <VALUE>7.7</VALUE>
+        <UNITS>
+         <UNIT lang="ger">MPa</UNIT>
+         <UNIT lang="eng">MPa</UNIT>
+         <UNIT lang="fre">MPa</UNIT>
+         <UNIT lang="ita">MPa</UNIT>
+         <UNIT lang="spa">MPa</UNIT>
+        </UNITS>
+        <ATTRIBUTE type="char" internal_id="QPMK_BEZEICHNUNG">
+         <VALUE>003</VALUE>
+        </ATTRIBUTE>
+        <ATTRIBUTE type="char" internal_id="QPMK_FOOTER">
+         <VALUE>242</VALUE>
+        </ATTRIBUTE>
+        <ATTRIBUTE type="char" internal_id="QPMK_NORM">
+         <VALUE>005</VALUE>
+        </ATTRIBUTE>
+       </ATTRIBUTE>
+       <ATTRIBUTE type="char" internal_id="00000087" sort_id="004">
+        <VALUE>331</VALUE>
+        <UNITS>
+         <UNIT lang="ger">%</UNIT>
+         <UNIT lang="eng">%</UNIT>
+         <UNIT lang="fre">%</UNIT>
+         <UNIT lang="ita">%</UNIT>
+         <UNIT lang="spa">%</UNIT>
+        </UNITS>
+        <ATTRIBUTE type="char" internal_id="QPMK_BEZEICHNUNG">
+         <VALUE>004</VALUE>
+        </ATTRIBUTE>
+        <ATTRIBUTE type="char" internal_id="QPMK_FOOTER">
+         <VALUE>87</VALUE>
+        </ATTRIBUTE>
+        <ATTRIBUTE type="char" internal_id="QPMK_NORM">
+         <VALUE>005</VALUE>
+        </ATTRIBUTE>
+       </ATTRIBUTE>
+       <ATTRIBUTE type="char" internal_id="00000232" sort_id="005">
+        <VALUE>20.1</VALUE>
+        <UNITS>
+         <UNIT lang="ger">N/mm</UNIT>
+         <UNIT lang="eng">N/mm</UNIT>
+         <UNIT lang="fre">N/mm</UNIT>
+         <UNIT lang="ita">N/mm</UNIT>
+         <UNIT lang="spa">N/mm</UNIT>
+        </UNITS>
+        <ATTRIBUTE type="char" internal_id="QPMK_BEZEICHNUNG">
+         <VALUE>005</VALUE>
+        </ATTRIBUTE>
+        <ATTRIBUTE type="char" internal_id="QPMK_NORM">
+         <VALUE>007</VALUE>
+        </ATTRIBUTE>
+       </ATTRIBUTE>
+      </ATTRIBUTES>
+     </CLASSIFICATION>
+     <PROCESSING class="TPE_RD_2000_001_PROC_INSTR_IM">
+      <ATTRIBUTE atnam="VAH_ZYLINDERTEMPERATUR">
+       <VALUE char_id="VAH_ZYLINDERTEMPERATUR-0010" SORT_ORD="002"/>
+      </ATTRIBUTE>
+      <ATTRIBUTE atnam="VAH_HEISSKANAL">
+       <VALUE char_id="VAH_HEISSKANAL-0007" SORT_ORD="003"/>
+      </ATTRIBUTE>
+      <ATTRIBUTE atnam="VAH_EINSPRITZDRUCK">
+       <VALUE char_id="VAH_EINSPRITZDRUCK-0002" SORT_ORD="004"/>
+      </ATTRIBUTE>
+      <ATTRIBUTE atnam="VAH_EINSPRITZGESCHWINDIGKEIT">
+       <VALUE char_id="VAH_EINSPRITZGESCHWINDIGKEIT-0001" SORT_ORD="005"/>
+      </ATTRIBUTE>
+      <ATTRIBUTE atnam="VAH_NACHDRUCK">
+       <VALUE char_id="VAH_NACHDRUCK-0001" SORT_ORD="006"/>
+      </ATTRIBUTE>
+      <ATTRIBUTE atnam="VAH_STAUDRUCK">
+       <VALUE char_id="VAH_STAUDRUCK-0001" SORT_ORD="007"/>
+      </ATTRIBUTE>
+      <ATTRIBUTE atnam="VAH_SCHNECKENRUECKZUG">
+       <VALUE char_id="VAH_SCHNECKENRUECKZUG-0002" SORT_ORD="008"/>
+      </ATTRIBUTE>
+      <ATTRIBUTE atnam="VAH_WERKZEUGTEMPERATUR">
+       <VALUE char_id="VAH_WERKZEUGTEMPERATUR-0003" SORT_ORD="009"/>
+      </ATTRIBUTE>
+      <ATTRIBUTE atnam="VAH_VORTROCKNEN">
+       <VALUE char_id="VAH_VORTROCKNEN-0002" SORT_ORD="010"/>
+      </ATTRIBUTE>
+      <ATTRIBUTE atnam="VAH_NADELVERSCHLUSS">
+       <VALUE char_id="VAH_NADELVERSCHLUSS-0002" SORT_ORD="011"/>
+      </ATTRIBUTE>
+      <ATTRIBUTE atnam="VAH_SCHNECKENGEOMETRIE">
+       <VALUE char_id="VAH_SCHNECKENGEOMETRIE-0001" SORT_ORD="012"/>
+      </ATTRIBUTE>
+      <ATTRIBUTE atnam="VAH_VERWEILZEITEN">
+       <VALUE char_id="VAH_VERWEILZEITEN-0001" SORT_ORD="014"/>
+      </ATTRIBUTE>
+      <ATTRIBUTE atnam="VAH_REINIGUNGSEMPFEHLUNG">
+       <VALUE char_id="VAH_REINIGUNGSEMPFEHLUNG-0001" SORT_ORD="015"/>
+      </ATTRIBUTE>
+      <ATTRIBUTE atnam="VAH_SONSTIGE_HINWEISE">
+       <VALUE char_id="VAH_SONSTIGE_HINWEISE-0001" SORT_ORD="016"/>
+      </ATTRIBUTE>
+     </PROCESSING>
+    </ITEM>
+   </ITEMS>
+  </NODE>
+ </NODES>
+</CATALOG>
+                                  

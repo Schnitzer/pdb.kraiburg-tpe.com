@@ -1,0 +1,22 @@
+<div class="ncw-left">
+    <div class="ncw-accordion">
+        <h3 class="ncw-accordion-header current"><?php print T_('User Management'); ?></h3>
+        <div class="ncw-accordion-content ncw-accordion-current">
+            <?php print $this->form->create('ncw-user-search', array('onsubmit' => 'ncw.core.user.search(); return false;')); ?>
+            <?php print $this->form->input('User.search', array('class' => 'ncw-input-small', 'div' => array('class' => 'ncw-input-container-small'), 'label' => array('class' => 'ncw-label-small', 'text' => T_('Search for a username')))); ?>
+            <input type="submit" style="display: none;"/>
+            <p class="ncw-accordion-content-part-dark">
+                <a href="javascript: ncw.core.user.search();" class="ncw_text_button_search"><?php print T_('Search'); ?></a>
+            </p>
+            <?php echo $this->form->end(); ?>
+            <p class="ncw-accordion-content-part-dark">
+                <a href="javascript: ncw.core.usergroup.loadNew();" class="ncw_text_button_add"><?php print T_('New Usergroup'); ?></a>
+            </p>                 
+            <p class="ncw-accordion-content-part-dark">
+                <a href="javascript: ncw.core.user.loadNew();" class="ncw_text_button_add"><?php print T_('New User'); ?></a>
+            </p>                   	
+            <div class="ncw-groups-tree ncw-tree"></div>
+        </div>
+    </div>
+</div>
+<div class="ncw-right"></div>

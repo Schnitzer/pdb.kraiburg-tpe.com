@@ -1,0 +1,532 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-06 12:28+0200\n"
+"PO-Revision-Date: 2012-04-06 12:28+0100\n"
+"Last-Translator: Thomas Hinterecker <t.hinterecker@netzcraftwerk.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: Germany\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: controllers/UserController.php:200
+#: controllers/UserController.php:201
+#: controllers/UserController.php:202
+msgid "Check your Password(s)"
+msgstr "Kontrollieren Sie ihr Passwort"
+
+#: controllers/UserController.php:366
+#: controllers/UserController.php:367
+#: controllers/UserController.php:368
+msgid "Check your Password(s)!"
+msgstr "Kontrollieren Sie ihr Passwort!"
+
+#: ModuleController.php:38
+msgid "Applications"
+msgstr "Anwendungen"
+
+#: ModuleController.php:39
+msgid "Logout"
+msgstr "Abmelden"
+
+#: ModuleController.php:40
+msgid "Profile"
+msgstr "Profil"
+
+#: ModuleController.php:41
+msgid "Other"
+msgstr "Andere"
+
+#: ModuleController.php:70
+msgid "System Management"
+msgstr "Systemverwaltung"
+
+#: ModuleController.php:71
+#: views/usergroup/all.phtml:3
+msgid "User Management"
+msgstr "Benutzerverwaltung"
+
+#: ModuleController.php:72
+#: views/modules/index.phtml:3
+msgid "Module Management"
+msgstr "Modulverwaltung"
+
+#: ModuleController.php:76
+#: views/feed/edit.phtml:3
+#: views/feed/new.phtml:3
+#: views/feed/all.phtml:3
+msgid "Feed Management"
+msgstr "Feedverwaltung"
+
+#: ModuleController.php:77
+#: views/language/edit.phtml:3
+#: views/language/new.phtml:3
+#: views/language/all.phtml:3
+msgid "Language Management"
+msgstr "Sprachverwaltung"
+
+#: views/language/edit.phtml:6
+#: views/language/new.phtml:6
+#: views/language/new.phtml:15
+#: views/language/all.phtml:6
+msgid "New language"
+msgstr "Neue Sprache"
+
+#: views/language/edit.phtml:14
+#: views/language/new.phtml:14
+#: views/feed/edit.phtml:14
+#: views/feed/new.phtml:14
+#: views/modules/deinstall.phtml:14
+#: views/modules/install.phtml:14
+#: views/usergroup/new.phtml:3
+#: views/user/edit.phtml:3
+#: views/user/new.phtml:3
+msgid "Back"
+msgstr "Zurück"
+
+#: views/language/edit.phtml:15
+msgid "Edit language"
+msgstr "Sprache bearbeiten"
+
+#: views/language/edit.phtml:21
+#: views/language/new.phtml:20
+#: views/language/all.phtml:21
+#: views/feed/all.phtml:41
+#: views/modules/index.phtml:22
+#: views/modules/showDeinstalledModules.phtml:22
+#: views/usergroup/edit.phtml:16
+#: views/usergroup/new.phtml:9
+#: views/user/edit.phtml:16
+#: views/user/edit.phtml:55
+#: views/user/new.phtml:9
+#: views/user/all.phtml:36
+msgid "Name"
+msgstr "Name"
+
+#: views/language/edit.phtml:22
+#: views/language/new.phtml:21
+msgid "Shortcut"
+msgstr "Kürzel"
+
+#: views/language/all.phtml:14
+msgid "Languages"
+msgstr "Sprachen"
+
+#: views/language/all.phtml:22
+msgid "Shorcuts"
+msgstr "Kürzel"
+
+#: views/language/all.phtml:23
+#: views/feed/all.phtml:42
+#: views/user/edit.phtml:56
+#: views/user/all.phtml:42
+msgid "Options"
+msgstr "Optionen"
+
+#: views/feed/edit.phtml:6
+#: views/feed/new.phtml:6
+#: views/feed/new.phtml:15
+#: views/feed/all.phtml:6
+msgid "New Feed"
+msgstr "Neuer Feed"
+
+#: views/feed/edit.phtml:15
+msgid "Edit Feed"
+msgstr "Feed bearbeiten"
+
+#: views/feed/edit.phtml:20
+#: views/usergroup/edit.phtml:9
+#: views/user/edit.phtml:9
+msgid "Main"
+msgstr "Hauptdaten"
+
+#: views/feed/edit.phtml:21
+msgid "Feed options"
+msgstr "Feed Optionen"
+
+#: views/feed/edit.phtml:22
+msgid "Data stream options"
+msgstr "Data stream optionen"
+
+#: views/feed/edit.phtml:28
+#: views/feed/new.phtml:21
+msgid "Name of the feed"
+msgstr "Name des Feeds"
+
+#: views/feed/edit.phtml:31
+msgid "Title"
+msgstr "Titel"
+
+#: views/feed/edit.phtml:32
+msgid "Description"
+msgstr "Beschreibung"
+
+#: views/feed/edit.phtml:33
+#: views/user/edit.phtml:17
+#: views/user/profile.phtml:11
+#: views/user/new.phtml:10
+#: views/user/all.phtml:40
+msgid "Language"
+msgstr "Sprache"
+
+#: views/feed/edit.phtml:34
+msgid "Publish date"
+msgstr "Datum der Veröffentlichung"
+
+#: views/feed/edit.phtml:35
+msgid "Generator"
+msgstr "Generator"
+
+#: views/feed/edit.phtml:36
+msgid "Managing editor"
+msgstr "Managing editor"
+
+#: views/feed/edit.phtml:37
+msgid "Web master"
+msgstr "Web master"
+
+#: views/feed/edit.phtml:40
+#: views/modules/deinstall.phtml:19
+#: views/modules/install.phtml:19
+msgid "Module"
+msgstr "Module"
+
+#: views/feed/edit.phtml:41
+msgid "Controller"
+msgstr "Controller"
+
+#: views/feed/edit.phtml:42
+msgid "Params"
+msgstr "Params"
+
+#: views/feed/edit.phtml:52
+#: views/usergroup/edit.phtml:45
+#: views/user/edit.phtml:65
+#: views/user/edit.phtml:80
+msgid "Delete"
+msgstr "Löschen"
+
+#: views/feed/edit.phtml:53
+#: views/feed/new.phtml:30
+#: views/usergroup/edit.phtml:46
+#: views/usergroup/new.phtml:32
+#: views/user/edit.phtml:81
+#: views/user/profile.phtml:37
+#: views/user/new.phtml:31
+msgid "Save"
+msgstr "Speichern"
+
+#: views/feed/all.phtml:14
+msgid "Feeds"
+msgstr "Feeds"
+
+#: views/feed/all.phtml:26
+#: views/feed/all.phtml:67
+#: views/user/all.phtml:21
+#: views/user/all.phtml:84
+msgid "Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%"
+msgstr "Seite %page% von %pages%, zeige %current% Einträge von insgesamt %count%, gezeigt werden die Einträge %start% bis %end%"
+
+#: views/feed/all.phtml:53
+#: views/user/all.phtml:69
+msgid "Edit"
+msgstr "Ändern"
+
+#: views/modules/deinstall.phtml:3
+#: views/modules/install.phtml:3
+#: views/modules/showDeinstalledModules.phtml:3
+msgid "Modules"
+msgstr "Module"
+
+#: views/modules/deinstall.phtml:6
+#: views/modules/install.phtml:6
+#: views/modules/showDeinstalledModules.phtml:6
+msgid "Show installed modules"
+msgstr "Zeige installierte Module"
+
+#: views/modules/deinstall.phtml:15
+msgid "Deinstall module"
+msgstr "Modul deinstallieren"
+
+#: views/modules/deinstall.phtml:19
+msgid "deinstalled"
+msgstr "deinstalliert"
+
+#: views/modules/index.phtml:6
+msgid "Install new Module"
+msgstr "Neues Modul installieren"
+
+#: views/modules/index.phtml:14
+msgid "Installed Modules"
+msgstr "Installierte Module"
+
+#: views/modules/index.phtml:23
+#: views/modules/showDeinstalledModules.phtml:23
+msgid "Version"
+msgstr "Version"
+
+#: views/modules/index.phtml:24
+msgid "Deinstall"
+msgstr "Deinstallieren"
+
+#: views/modules/index.phtml:39
+#: views/modules/showDeinstalledModules.phtml:37
+msgid "Install module"
+msgstr "Modul installieren"
+
+#: views/modules/index.phtml:42
+msgid "Required by"
+msgstr "Wird benötigt von"
+
+#: views/modules/index.phtml:50
+msgid "No modules are installed"
+msgstr "Es sind keine Module installiert"
+
+#: views/modules/install.phtml:15
+#: views/modules/showDeinstalledModules.phtml:14
+msgid "Install modules"
+msgstr "Module installieren"
+
+#: views/modules/install.phtml:19
+msgid "installed"
+msgstr "installiert"
+
+#: views/modules/showDeinstalledModules.phtml:24
+msgid "Requires Module(s)"
+msgstr "Benötigt Modul(e)"
+
+#: views/modules/showDeinstalledModules.phtml:25
+msgid "Install"
+msgstr "Installieren"
+
+#: views/modules/showDeinstalledModules.phtml:40
+msgid "First you have to install module(s)"
+msgstr "Zuerst müssen Sie folgende(s) Modul(e) installieren"
+
+#: views/modules/showDeinstalledModules.phtml:48
+msgid "All modules are installed"
+msgstr "Alle Module sind installiert"
+
+#: views/usergroup/edit.phtml:3
+#: views/user/all.phtml:4
+msgid "Users of group"
+msgstr "Benutzer von Gruppen"
+
+#: views/usergroup/edit.phtml:4
+#: views/user/all.phtml:8
+msgid "Edit Usergroup"
+msgstr "Benutzergruppen"
+
+#: views/usergroup/edit.phtml:10
+msgid "Permissions"
+msgstr "Berechtigungen"
+
+#: views/usergroup/edit.phtml:18
+#: views/usergroup/new.phtml:11
+msgid "Parent usergroup"
+msgstr "Neue Benutzergruppe"
+
+#: views/usergroup/new.phtml:4
+#: views/usergroup/all.phtml:13
+#: views/user/edit.phtml:42
+msgid "New Usergroup"
+msgstr "Neue Benutzergruppe"
+
+#: views/usergroup/all.phtml:6
+msgid "Search for a username"
+msgstr "Suche nach Usernamen"
+
+#: views/usergroup/all.phtml:9
+msgid "Search"
+msgstr "Suchen"
+
+#: views/usergroup/all.phtml:16
+#: views/user/new.phtml:4
+msgid "New User"
+msgstr "Neuer Benutzer"
+
+#: views/usergroup/tree.phtml:4
+#: views/user/all.phtml:4
+msgid "All users"
+msgstr "Alle Benutzer"
+
+#: views/user/edit.phtml:4
+msgid "Edit User"
+msgstr "Benutzer bearbeiten"
+
+#: views/user/edit.phtml:10
+#: views/user/edit.phtml:51
+msgid "Usergroups"
+msgstr "Benutzergruppen"
+
+#: views/user/edit.phtml:23
+msgid "Go to contact"
+msgstr "Zum Kontakt"
+
+#: views/user/edit.phtml:26
+#: views/user/profile.phtml:17
+#: views/user/new.phtml:13
+#: views/user/all.phtml:38
+msgid "Contact"
+msgstr "Kontakt"
+
+#: views/user/edit.phtml:29
+#: views/user/new.phtml:15
+#: views/user/all.phtml:41
+msgid "Activated"
+msgstr "Aktiviert"
+
+#: views/user/edit.phtml:32
+#: views/user/new.phtml:19
+msgid "Entry point"
+msgstr "Einstiegspunkt"
+
+#: views/user/edit.phtml:34
+#: views/user/edit.phtml:35
+#: views/user/profile.phtml:27
+#: views/user/new.phtml:21
+#: views/user/new.phtml:22
+#: views/user/login.phtml:4
+msgid "Password"
+msgstr "Passwort"
+
+#: views/user/edit.phtml:36
+#: views/user/profile.phtml:28
+#: views/user/new.phtml:23
+msgid "Repeat Password"
+msgstr "Passwort wiederholen"
+
+#: views/user/edit.phtml:37
+#: views/user/profile.phtml:29
+msgid "Old Password"
+msgstr "altes Passwort"
+
+#: views/user/edit.phtml:49
+msgid "Add"
+msgstr "Hinzufügen"
+
+#: views/user/profile.phtml:4
+msgid "Profile of"
+msgstr "Das Profil von"
+
+#: views/user/profile.phtml:8
+msgid "This is your profile page. You can set a new profile password if you want to."
+msgstr "Sie sind auf ihrer Profilseite,"
+
+#: views/user/profile.phtml:25
+msgid "Password:"
+msgstr "Passwort:"
+
+#: views/user/profile.phtml:27
+msgid "The new password must contain at least 6 characters. One of them must be a number or a special character"
+msgstr "Das Password muss mindestens 6 Zeichen lang sein und eins davon muss eine Zahl oder ein Sonderzeichen sein."
+
+#: views/user/denied.phtml:1
+msgid "We are sorry"
+msgstr "Es tut uns leid"
+
+#: views/user/denied.phtml:3
+msgid "Permission denied!"
+msgstr "Zugang verweigert"
+
+#: views/user/all.phtml:61
+msgid "Not activated"
+msgstr "Nicht aktiviert"
+
+#: views/user/all.phtml:63
+msgid "Yes"
+msgstr "Ja"
+
+#: views/user/login.phtml:2
+msgid "Username"
+msgstr "Benutzer"
+
+#: views/user/login.phtml:7
+msgid "Login"
+msgstr "Login"
+
+#: views/user/logout.phtml:1
+msgid "Successfully logged out!"
+msgstr "Sie haben sich erfolgreich ausgeloggt!"
+
+#~ msgid "Alert"
+#~ msgstr "Achtung"
+
+#~ msgid "Choose your options!"
+#~ msgstr "Wähle deine Optionen!"
+
+#~ msgid "Confirm"
+#~ msgstr "Bestätigen"
+
+#~ msgid "Make a decision!"
+#~ msgstr "Treffe eine Wahl!"
+
+#~ msgid "Do you really want to delete this object?"
+#~ msgstr "Wollen sie dieses Objekt wirklich löschen?"
+
+#~ msgid "Saved"
+#~ msgstr "Gespeichert"
+
+#~ msgid "Your data has been saved successfully."
+#~ msgstr "Die Daten wurden erfolgreich gespeichert."
+
+#~ msgid "Error"
+#~ msgstr "Fehler"
+
+#~ msgid "An error has occurred!"
+#~ msgstr "Ein Fehler ist aufgetreten"
+
+#~ msgid "Notify"
+#~ msgstr "Benachrichtigung"
+
+#~ msgid "Be aware that..."
+#~ msgstr "Beachten Sie, dass ..."
+
+#~ msgid "Custom"
+#~ msgstr "Meldung"
+
+#~ msgid "Saving..."
+#~ msgstr "Speichern..."
+
+#~ msgid "Deleting..."
+#~ msgstr "Löschen..."
+
+#~ msgid "The item has been deleted successfully"
+#~ msgstr "Das Objekt wurden erfolgreich gelöscht."
+
+#~ msgid "Users"
+#~ msgstr "Benutzer"
+
+#~ msgid "Show Users"
+#~ msgstr "Benutzerübersicht"
+
+#~ msgid "the user name must contain at least 4 characters"
+#~ msgstr "Der Benutzernamen muss aus mindestens 4 Zeichen bestehen"
+
+#~ msgid ""
+#~ "After the user has logged in he will be redirected to the entry point "
+#~ "(must be a valid url)."
+#~ msgstr ""
+#~ "Nach dem sich der Benutzer eingeloggt hat, wird er auf diese URL "
+#~ "weitergeleitet."
+
+#~ msgid "Repeat the new password"
+#~ msgstr "Passwort wiederholen"
+
+#~ msgid ""
+#~ "The password must contain at least 6 characters. One of them must be a "
+#~ "number or a special character"
+#~ msgstr ""
+#~ "Das Password muss mindestens 6 Zeichen lang sein und eins davon muss eine "
+#~ "Zahl oder ein Sonderzeichen sein."
+
+#~ msgid "Show Usergroups"
+#~ msgstr "Benutzerübersicht"
+
+#~ msgid "where this usergroup will be located"
+#~ msgstr "Unter welcher Benutzergruppe diese angelegt ist"

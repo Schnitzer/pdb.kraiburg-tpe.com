@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CATALOG>
+ <HEAD>
+  <ID>PORTFOLIO</ID>
+  <DESCRIPTIONS_SHORT>
+   <DESCRIPTION_SHORT lang="chi">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="kor">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ger">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="eng">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="fre">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ita">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="jpn">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="pol">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="spa">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+  </DESCRIPTIONS_SHORT>
+ </HEAD>
+ <NODES>
+  <NODE ID="0000000001-0000000111" type="SERIE" internal_id="0000000111">
+   <DRAWING_NUMBER/>
+   <VALID_FROM>00000000</VALID_FROM>
+   <VALID_TO>00000000</VALID_TO>
+   <DESCRIPTIONS_SHORT>
+    <DESCRIPTION_SHORT lang="chi">
+     <![CDATA[VS/FC/CR]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="kor">
+     <![CDATA[VS/FC/CR]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="ger">
+     <![CDATA[VS/FC/CR]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="eng">
+     <![CDATA[VS/FC/CR]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="fre">
+     <![CDATA[VS/FC/CR]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="ita">
+     <![CDATA[VS/FC/CR]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="jpn">
+     <![CDATA[VS/FC/CR]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="pol">
+     <![CDATA[VS/FC/CR]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="spa">
+     <![CDATA[VS/FC/CR]]>
+    </DESCRIPTION_SHORT>
+   </DESCRIPTIONS_SHORT>
+   <DESCRIPTIONS_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="spa">
+     <![CDATA[<P>La serie VS/FC/CR es su solución en aplicaciones para envases. Los materiales se caracterizan por su resistencia química a las sustancias comercialmente disponibles en los productos cosméticos, especialmente el isododecano. Los compuestos están disponibles en colores naturales y pueden colorearse de diversas maneras.</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="ita">
+     <![CDATA[<P>La serie VS/FC/CR è la soluzione ideale per realizzare packaging per il settore della cosmetica. Il materiale è resistente alle sostanze presenti comunemente nei prodotti cosmetici, in particolare all'isodecano. I compound sono disponibili in colore naturale e possono essere colorati in molti modi diversi.</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="pol">
+     <![CDATA[<P>Seria VS/FC/CR to tworzywa do zastosowań opakowaniowych. Materiały te charakteryzują się odpornością na działanie substancji stosowanych w produktach kosmetycznych, w szczególności na izododekan. Tworzywa te  są dostępne w kolorze naturalnym i mogą być barwione na dowolne kolory.</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="chi">
+     <![CDATA[<P>VS/FC/CR系列是包装应用的材料解决方案。 该化合物对化妆品中的常见物质具有耐受性，尤其是异十二烷。 这类化合物的颜色为自然色，也可通过多种方式着色。</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="jpn">
+     <![CDATA[<P>VS/FC/CR シリーズは包装用アプリケーションのための、あなたの材料ソリューションです。この材料は化粧品に一般的に使用される化学物質、特にイソドデカンへの耐久性を備えています。これらのコンパウンドはナチュラル色で提供され、また多様な方法による着色が可能です。</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="kor">
+     <![CDATA[<P>VS/FC/CR 시리즈는 포장 용기 어플리케이션을 위한 소재 솔루션입니다. 이 제품은 특히 이소도데칸과 같은 화장품 내용물에의 저항성이 특징입니다. 제품은 내추럴 색상으로 제공하며 다양한 색상으로 채색 가능합니다.</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="fre">
+     <![CDATA[<P>La série VS/FC/CR est votre solution matière pour les applications packaging. La matière résiste aux substances courantes des produits cosmétiques, en particulier l’isododécane. Les compounds sont disponibles en couleur naturelle et peuvent être teintées de différentes façons.</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="ger">
+     <![CDATA[<P>Die VS/FC/CR-Reihe ist Ihre Materiallösung für Verpackungsanwendungen. Die Materialien zeichnen sich durch eine chemische Beständigkeit gegenüber marktüblichen Substanzen in Kosmetikprodukten aus, insbesondere Isododekan. Die Compounds sind in naturfarben erhältlich und lassen sich vielfältig einfärben.</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="eng">
+     <![CDATA[<P>The VS/FC/CR series is your material solution for packaging applications. The material is resistant to common substances in cosmetic products, especially isododecane. The compounds are available in natural colors and can be colored in many different ways.</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="ger">
+     <![CDATA[Verpackungsanwendungen mit chemischer Beständigkeit gegenüber Isododekan]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="eng">
+     <![CDATA[<P>Packaging applications with chemical resistance to isododecane</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="fre">
+     <![CDATA[<P>Applications packaging avec résistance à l'isododécane</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="spa">
+     <![CDATA[<P>Aplicaciones para envases con resistencia química al isododecano</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="ita">
+     <![CDATA[<P>Packaging per il settore della cosmetica con resistenza chimica all'isododecano</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="pol">
+     <![CDATA[<P>Zastosowania opakowaniowe wymagające odporności chemicznej na działanie izododekanu.</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="chi">
+     <![CDATA[<P>对异十二烷具有耐受性的包装应用</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="jpn">
+     <![CDATA[<P>イソドデカンへの耐薬品性を必要とする包装用アプリケーション</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="kor">
+     <![CDATA[<P>이소도데칸 내화학성의 포장 용기 어플리케이션</P><P></P>]]>
+    </DESCRIPTION_LONG>
+   </DESCRIPTIONS_LONG>
+   <CLASSIFICATION>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_001_SERIAL">
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">Serie</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">series</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+     <VALUE>
+      TPE-300000000006433
+      <VALUE_TEXTS>
+       <VALUE_TEXT lang="chi">VS/FC/CR</VALUE_TEXT>
+       <VALUE_TEXT lang="kor">VS/FC/CR</VALUE_TEXT>
+       <VALUE_TEXT lang="ger">VS/FC/CR</VALUE_TEXT>
+       <VALUE_TEXT lang="eng">VS/FC/CR</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">VS/FC/CR</VALUE_TEXT>
+       <VALUE_TEXT lang="ita">VS/FC/CR</VALUE_TEXT>
+       <VALUE_TEXT lang="jpn">VS/FC/CR</VALUE_TEXT>
+       <VALUE_TEXT lang="pol">VS/FC/CR</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">VS/FC/CR</VALUE_TEXT>
+      </VALUE_TEXTS>
+     </VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_002_BRAND">
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">Brand</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+     <VALUE>
+      TPE-200000000000291
+      <VALUE_TEXTS>
+       <VALUE_TEXT lang="chi">科柔宝®</VALUE_TEXT>
+       <VALUE_TEXT lang="tha">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="kor">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="rum">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="slv">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="hrv">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="may">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="ukr">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="est">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="ara">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="heb">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="cze">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="ger">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="eng">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="gre">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="hun">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="ita">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="jpn">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="dan">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="pol">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="chi">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="dut">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="nor">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="por">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="slo">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="rus">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="tur">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="fin">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="swe">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="bul">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="lit">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="lav">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="ice">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="srp">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="ind">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="hin">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="vie">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="mac">COPEC®</VALUE_TEXT>
+       <VALUE_TEXT lang="alb">COPEC®</VALUE_TEXT>
+      </VALUE_TEXTS>
+     </VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_010_REGION">
+     <VALUE>TPE-300000000007010</VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_4000_001">
+     <VALUE>TPE-300000000004689</VALUE>
+     <VALUE>TPE-300000000004721</VALUE>
+     <VALUE>TPE-300000000006429</VALUE>
+     <VALUE>TPE-300000000006430</VALUE>
+     <VALUE>TPE-300000000006431</VALUE>
+     <VALUE>TPE-300000000006428</VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_4000_002">
+     <VALUE>TPE-300000000004763</VALUE>
+     <VALUE>TPE-300000000004744</VALUE>
+     <VALUE>TPE-300000000004757</VALUE>
+     <VALUE>TPE-300000000004799</VALUE>
+     <VALUE>TPE-300000000004754</VALUE>
+     <VALUE>TPE-300000000004760</VALUE>
+     <VALUE>TPE-300000000004801</VALUE>
+     <VALUE>TPE-300000000006426</VALUE>
+     <VALUE>TPE-300000000006425</VALUE>
+    </ATTRIBUTE>
+   </CLASSIFICATION>
+  </NODE>
+ </NODES>
+</CATALOG>
+                                                                         

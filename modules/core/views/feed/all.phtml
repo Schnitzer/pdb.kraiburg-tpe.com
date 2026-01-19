@@ -1,0 +1,79 @@
+<div class="ncw-left">
+	<div class="ncw-accordion">
+        <h3 class="ncw-accordion-header current"><?php print T_('Feed Management'); ?></h3>
+        <div class="ncw-accordion-content ncw-accordion-current">
+            <p class="ncw-accordion-content-part-dark">
+                <a href="<?php print $this->html->url(array('action' => 'new')); ?>" class="ncw_text_button_add"><?php print T_('New Feed'); ?></a>
+            </p>   
+        </div>
+    </div>	
+</div>
+<div class="ncw-right">
+	<div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+            <li class="ncw-main-tab"><a href="#"><?php print T_('Feeds'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+	            <div class="ncw-page-controls">
+	                <div class="left_controls">
+	                    <?php print $this->paginator->first('<<'); ?>
+	                    <?php print $this->paginator->prev('<'); ?>
+	                </div>
+	                <?php
+	                print $this->paginator->counter(
+	                    array(
+	                        'format' => T_('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%')
+	                    )
+	                );
+	                ?>
+	                <?php if ($this->paginator->hasPage(2)) { ?>
+	                    (<?php print $this->paginator->numbers(); ?>)
+	                <?php } ?>
+	                <div class="right_controls">
+	                    <?php print $this->paginator->next('>'); ?>
+	                    <?php print $this->paginator->last('>>'); ?>
+	                </div>
+	            </div>            	
+                <table class="ncw-table">
+                    <thead>
+                        <tr>
+                            <th><?php print T_('Name'); ?></th>
+                            <th><?php print T_('Options'); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (true === is_array($this->feeds)) { ?>
+                            <?php foreach ($this->feeds as $feed) { ?>
+                                <tr>
+                                    <td>
+                                    	<?php print $this->html->link($feed->getNameEncoded(), array("action" => "edit", "id" => $feed->getId())); ?>
+                                    </td>
+                                    <td class="ncw-table-td-icons">
+                                    	<?php print $this->html->link($this->html->image("icons/16px/pencil.png", false, array('alt' => T_('Edit'), 'title' => T_('Edit'))), array("action" => "edit", "id" => $feed->getId()), null, false, false); ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        <?php } ?>
+                    </tbody>
+                </table>
+	            <?php if ($this->paginator->hasPage(2)) { ?>
+	                <div class="ncw-page-controls-bottom">
+	                    <div class="left_controls">
+	                        <?php print $this->paginator->first('<<'); ?>
+	                        <?php print $this->paginator->prev('<'); ?>
+	                    </div>
+	                    <?php print $this->paginator->counter(array(
+	                        'format' => T_('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%')
+	                    )); ?>
+	                    (<?php print $this->paginator->numbers(); ?>)
+	                    <div class="right_controls">
+	                        <?php print $this->paginator->next('>'); ?>
+	                        <?php print $this->paginator->last('>>'); ?>
+	                    </div>
+	                </div>
+	            <?php } ?>                
+            </div>
+        </div>
+    </div>
+</div>

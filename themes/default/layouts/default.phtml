@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN"
+        "http://www.w3.org/TR/html4/frameset.dtd">
+<html lang="en">
+    <head>
+        <?php print $this->html->charset(Ncw_Configure::read('App.encoding')); ?>
+        <meta http-equiv="Content-language" content="<?php print Ncw_Configure::read('App.language'); ?>" />
+        <title><?php print $this->page_title; ?> :: Netzcraftwerk 3.0</title>
+        <?php print $this->html->css('layout.less', null, array('media' => 'screen'), false); ?>
+        <?php print $this->html->css('dateTimePicker', null, array('media' => 'screen'), false); ?>
+        <?php print $this->html->css('jquery.timepicker', null, array('media' => 'screen'), false); ?>
+        <?php print $this->html->css('bootstrap', null, array('media' => 'screen'), false); ?>
+        <?php print $this->html->css('query.fileupload', null, array('media' => 'screen'), false); ?>
+        <?php print $this->asset->css(); ?>
+        <?php print $this->html->meta('icon', 'favicon.ico', array('type' => 'icon')); ?>
+        <?php //print $this->javascript->link('lib/jquery-1.4.2.min.js'); ?>
+        <?php print $this->javascript->link('lib/jquery-1.10.2.min.js'); ?>
+        <?php print $this->javascript->link('lib/jquery-migrate-1.2.1.min.js'); ?>
+        <?php print $this->element('javascript', false); ?>
+        <?php print $this->js(); ?>
+    </head>
+    <body class="ncw">
+        <div id="ncw-shell">
+            <div id="ncw-section" class="ncw-section-background">
+                <?php print $this->view; ?>
+            </div>
+            <?php include_once $this->partial('footer', false); ?>
+            <?php print $this->element('container', false); ?>
+            <?php print $this->element('debug', false); ?>
+        </div>
+    </body>
+</html>

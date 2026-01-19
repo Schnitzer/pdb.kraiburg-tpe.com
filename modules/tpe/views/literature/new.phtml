@@ -1,0 +1,32 @@
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+        <li class="ncw-option-tab"><a href="javascript: ncw.tpe.literature.load();"><?php print T_('Back'); ?></a></li>      
+        <li class="ncw-main-tab"><a href="#"><?php print T_('New literature'); ?></a></li>
+    </ul>
+    <div class="ncw-main-tab-contents">
+        <div class="ncw-main-tab-content">
+            <?php print $this->form->create('ncw-literature'); ?>
+            <?php print $this->form->input("name", array('maxlength' => 25, 'title' => T_("Name"), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_("Name")))); ?>
+
+            <div class="ncw-input-container">
+                <label class="ncw-label">Show on which website translations?</label>
+                <?php $counter = 1; ?>
+                <?php foreach ($this->wcms_languages as $language) { ?>
+                    <?php print $this->form->input("LiteratureWcmslanguage." . $counter . ".language_id", array('type' => 'hidden', 'value' => $language->getId())); ?>                
+                    <? print $this->html->image('country_flags/' . $language->getShortcut() . '.gif', false, array('alt' => $language->getNameEncoded(), 'title' => $language->getNameEncoded()) ); ?>
+                    <?php print $this->form->input("LiteratureWcmslanguage." . $counter . ".checked", array('type' => 'checkbox', 'value' => 1, 'div' => false, 'label' => false)); ?>
+                    &nbsp;&nbsp;
+                    <?php ++$counter; ?>
+                <?php } ?>
+            </div>
+
+            <?php print $this->form->end(); ?>
+        </div>
+    </div>
+</div>
+<div class="ncw-status-action-bar">
+    <div class="ncw-status-message"></div>
+    <ul class="ncw-actions">
+        <li class="ncw-action"><a href="#" rel="tpe/literature" class="ncw-new-trigger-ajax ncw_save_icon"><?php print T_('Save'); ?></a></li>
+    </ul>
+</div>

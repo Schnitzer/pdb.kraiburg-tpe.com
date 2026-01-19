@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CATALOG>
+ <HEAD>
+  <ID>PORTFOLIO</ID>
+  <DESCRIPTIONS_SHORT>
+   <DESCRIPTION_SHORT lang="chi">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="kor">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ger">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="eng">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="fre">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ita">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="jpn">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="pol">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="spa">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+  </DESCRIPTIONS_SHORT>
+ </HEAD>
+ <NODES>
+  <NODE ID="0000000001-0000000026" type="SERIE" internal_id="0000000026">
+   <DRAWING_NUMBER/>
+   <VALID_FROM>00000000</VALID_FROM>
+   <VALID_TO>00000000</VALID_TO>
+   <DESCRIPTIONS_SHORT>
+    <DESCRIPTION_SHORT lang="chi">
+     <![CDATA[AD/PA]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="kor">
+     <![CDATA[AD/PA]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="ger">
+     <![CDATA[AD/PA]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="eng">
+     <![CDATA[AD/PA]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="fre">
+     <![CDATA[AD/PA]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="ita">
+     <![CDATA[AD/PA]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="jpn">
+     <![CDATA[AD/PA]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="pol">
+     <![CDATA[AD/PA]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="spa">
+     <![CDATA[AD/PA]]>
+    </DESCRIPTION_SHORT>
+   </DESCRIPTIONS_SHORT>
+   <DESCRIPTIONS_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="pol">
+     <![CDATA[Seria AD/PA to rozwiązanie materiałowe dla zastosowań wymagających adhezji do PA. Tworzywa tej serii dostępne są w kolorach czarnym i naturalnym. Materiały naturalne mogą być barwione na dowolne kolory koncentratami barwiącymi.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="ita">
+     <![CDATA[La serie AD/PA è la soluzione ideale per applicazioni con adesione su PA. Le mescole sono disponibili nei colori nero e naturale. Le varianti di colore naturale possono essere colorate in molti modi diversi.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="spa">
+     <![CDATA[La serie AD/PA es su solución para aplicaciones con adhesión a PA. Los compuestos están disponibles en color negro y natural. Los productos de color natural pueden ser coloreados de diferentes maneras.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="kor">
+     <![CDATA[AD/PA 계열은 PA와 접착력이 우수한 어플리케이션용의 소재 솔루션입니다. 이 소재에는 내추럴 컬러와 검정색이 있습니다. 내추럴 컬러는 다양한 색상으로 착색 가능합니다.<tab/> <tab/> <tab/> ]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="chi">
+     <![CDATA[AD/PA 系列材料解决方案适用于包胶 PA 应用。这类化合物可选黑色和本色。本色产品系列可用多种不同方式着色。]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="jpn">
+     <![CDATA[AD/PAシリーズは、PAへの接着性を必要とするアプリケーションのための、あなたの材料ソリューションです。このコンパウンドは黒およびナチュラル色で提供されます。ナチュラル色は多様な方法による着色が可能です。]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="fre">
+     <![CDATA[La série AD/PA est votre solution matière pour les applications avec adhérence au PA. Les compounds sont disponibles en noir et en couleur naturelle. Les références naturelles peuvent être colorées de différentes façons.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="eng">
+     <![CDATA[The AD/PA series is your material solution for applications with adhesion to PA. The compounds are available in black and natural colors. Natural color variants can be colored in many different ways.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="ger">
+     <![CDATA[Die AD/PA-Reihe ist Ihre Materiallösung für Anwendungen mit Haftung zu PA. Die Compounds sind in schwarz und naturfarben erhältlich. Naturfarbene Varianten lassen sich vielfältig einfärben.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="pol">
+     <![CDATA[Zastosowania wymagające adhezji do PA]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="ita">
+     <![CDATA[Adesione a PA]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="eng">
+     <![CDATA[Applications with adhesion to PA<br/>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="ger">
+     <![CDATA[Anwendungen mit Haftung zu PA<br/>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="spa">
+     <![CDATA[Aplicaciones con adhesión a PA]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="chi">
+     <![CDATA[包胶 PA 应用]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="kor">
+     <![CDATA[PA와 접착되는 어플리케이션]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="jpn">
+     <![CDATA[PAへの接着性を要するアプリケーション]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="fre">
+     <![CDATA[Applications avec adhérence au PA]]>
+    </DESCRIPTION_LONG>
+   </DESCRIPTIONS_LONG>
+   <CLASSIFICATION>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_001_SERIAL">
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">Serie</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">series</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+     <VALUE>
+      TPE-200000000000275
+      <VALUE_TEXTS>
+       <VALUE_TEXT lang="chi">AD/PA</VALUE_TEXT>
+       <VALUE_TEXT lang="kor">AD/PA</VALUE_TEXT>
+       <VALUE_TEXT lang="ger">AD/PA</VALUE_TEXT>
+       <VALUE_TEXT lang="eng">AD/PA</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">AD/PA</VALUE_TEXT>
+       <VALUE_TEXT lang="ita">AD/PA</VALUE_TEXT>
+       <VALUE_TEXT lang="jpn">AD/PA</VALUE_TEXT>
+       <VALUE_TEXT lang="pol">AD/PA</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">AD/PA</VALUE_TEXT>
+      </VALUE_TEXTS>
+     </VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_002_BRAND">
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">Brand</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+     <VALUE>
+      TPE-200000000000295
+      <VALUE_TEXTS>
+       <VALUE_TEXT lang="chi">热塑宝 K</VALUE_TEXT>
+       <VALUE_TEXT lang="tha">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="kor">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="rum">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="slv">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="hrv">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="may">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ukr">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="est">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ara">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="heb">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="cze">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ger">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="eng">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="gre">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="hun">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ita">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="jpn">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="dan">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="pol">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="chi">热塑宝 K</VALUE_TEXT>
+       <VALUE_TEXT lang="dut">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="nor">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="por">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="slo">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="rus">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="tur">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="fin">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="swe">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="bul">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="lit">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="lav">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ice">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="srp">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ind">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="hin">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="vie">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="mac">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="alb">THERMOLAST® K</VALUE_TEXT>
+      </VALUE_TEXTS>
+     </VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_010_REGION">
+     <VALUE>TPE-300000000007010</VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_4000_001">
+     <VALUE>TPE-300000000004649</VALUE>
+     <VALUE>TPE-300000000004648</VALUE>
+     <VALUE>TPE-300000000004659</VALUE>
+     <VALUE>TPE-300000000004671</VALUE>
+     <VALUE>TPE-300000000006571</VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_4000_002">
+     <VALUE>TPE-300000000004768</VALUE>
+     <VALUE>TPE-300000000004774</VALUE>
+     <VALUE>TPE-300000000004731</VALUE>
+     <VALUE>TPE-300000000004729</VALUE>
+     <VALUE>TPE-300000000004800</VALUE>
+     <VALUE>TPE-300000000004795</VALUE>
+    </ATTRIBUTE>
+   </CLASSIFICATION>
+  </NODE>
+ </NODES>
+</CATALOG>
+                                                                                                                                                                                                                                    

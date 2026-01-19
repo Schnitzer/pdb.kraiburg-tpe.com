@@ -1,0 +1,84 @@
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+    	<li class="ncw-option-tab"><a href="javascript: ncw.core.user.load();"><?php print T_('Back'); ?></a></li>
+        <li class="ncw-main-tab"><a href="#"><?php print T_('Edit User') . ': ' . $this->user_name; ?></a></li>
+    </ul>
+    <div class="ncw-main-tab-contents">
+        <div class="ncw-main-tab-content">
+            <ul class="ncw-tabs-container">
+                <li class="ncw-tab"><a href="#"><?php print T_('Main'); ?></a></li>
+                <li class="ncw-tab"><a href="#"><?php print T_('Usergroups'); ?></a></li>
+            </ul>
+            <div class="ncw-tab-contents">
+                <div class="ncw-tab-content ncw-tab-content-full">    	
+                    <?php print $this->form->create('ncw-user', array('onsubmit' => 'return false;')); ?>
+                    <?php print $this->form->input("id", array('type' => 'hidden', 'value' => $this->user_id)); ?>
+                    <?php print $this->form->input("name", array('maxlength' => 255, 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Name')))); ?>
+                    <?php print $this->form->input("language_id", array("type" => "select", "options" => $this->languages, 'class' => 'ncw-select', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Language')))); ?>
+                    <?php if (true === $this->contact_module) { ?>
+                        <?php print $this->form->input("contact_id", array("type" => "hidden")); ?>
+                        <?php
+                        $contact_label = '';
+                        if ($this->contact_id > 0) {
+                            $contact_label = ' | ' . $this->html->link(T_('Go to contact'), array('module' => 'contacts', 'controller' => 'group', 'action' => 'all', '?' => 'c_id=' . $this->contact_id));
+                        }
+                        ?>
+                        <?php print $this->form->input("Contact.name", array('value' => $this->contact_name, 'maxlength' => 100, 'title' => T_('Contact'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Contact') . $contact_label))); ?>
+                    <?php } ?>
+                    <div class="ncw-input-container">
+                        <label class="ncw-label" for="user_activated"><?php print T_('Activated'); ?></label>
+                        <?php print $this->form->input("activated", array('type' => 'checkbox', 'class' => 'ncw-checkbox', 'div' => array('class' => 'ncw-radios-checkbox'), 'label' => FALSE)); ?>
+                    </div>
+                    <?php print $this->form->input("email", array('maxlength' => 100, 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('email')))); ?>
+                    <?php print $this->form->input("entry_point", array('maxlength' => 255, 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Entry point')))); ?>
+                    
+                    <h2><?php print T_('Password'); ?></h2>
+                    <?php print $this->form->input("password", array('type' => 'password', 'maxlength' => 20, 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Password')))); ?>
+                    <?php print $this->form->input("password2", array('type' => 'password', 'maxlength' => 20, 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Repeat Password')))); ?>
+                    <?php print $this->form->input("password3", array('type' => 'password', 'maxlength' => 20, 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Old Password')))); ?>
+                    <?php print $this->form->end(); ?>
+                </div>
+                <div class="ncw-tab-content ncw-tab-content-full">
+                    <div  class="ncw-input-container">
+                        <label for="user_usergroup" class="ncw-label"><?php print T_('New Usergroup');?></label>
+                        <select id="user_usergroup" title="add the user to a new usergroup" class="ncw-select">
+                            <?php foreach ($this->usergroups_list as $option) { ?>
+                            <option value="<?php print $option->getId(); ?>"><?php print str_repeat('--', $option->getLevel() - 1) . ' ' . $option->getName(); ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <a id="ncw-add-usergroup" class="ncw-action" href="javascript: void(0);"><?php print T_('Add'); ?></a>
+                    <br class="ncw-clear" />
+                    <h2><?php print T_('Usergroups'); ?></h2>
+                    <table class="ncw-table">
+                        <thead>
+                            <tr>
+                                <th><?php print T_('Name'); ?></th>
+                                <th><?php print T_('Options'); ?></th>
+                            </tr>
+                        </thead>
+                        <tbody id="ncw-usergroups">
+                            <?php if (true === is_array($this->usergroups)) { ?>
+                                <?php foreach ($this->usergroups as $usergroup) { ?>
+                                    <tr id="ncw-added-usergroup-<?php print $usergroup->getId(); ?>">
+                                        <td><?php print $usergroup->Usergroup->getNameEncoded(); ?></td>
+                                        <td class="ncw-table-td-icons">
+                                            <a href="javascript: ncw.core.usergroup.remove(<?php print $usergroup->getId(); ?>);"><?php print $this->html->image("icons/16px/cross.png", false, array('alt' => T_('Delete'), 'title' => T_('Delete'))); ?></a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ncw-status-action-bar">
+    <div class="ncw-status-message"></div>
+    <ul class="ncw-actions">
+        <li class="ncw-action"><a href="#" rel="core/user" class="ncw-delete-trigger-ajax ncw_delete_icon"><?php print T_('Delete'); ?></a></li>
+        <li class="ncw-action"><a href="#" rel="core/user" class="ncw-save-trigger-ajax ncw_save_icon"><?php print T_('Save')?></a></li>
+    </ul>
+</div>

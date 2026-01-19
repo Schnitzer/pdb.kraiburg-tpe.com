@@ -1,0 +1,193 @@
+ncw.dialogs.siteSearch = {};
+ncw.dialogs.siteSearch.dialogApi = null;
+ncw.dialogs.siteSearch.files = {};
+ncw.dialogs.siteSearch.onlyTypes = false;
+ncw.dialogs.openFileDialogOnClose = false;
+ncw.dialogs.siteSearch.callback = function (site) {
+    alert(site.id);
+};
+
+ncw.dialogs.siteSearch.show = function (site_select_callback, only_types) {
+    if (typeof(site_select_callback) == 'function') {
+        ncw.dialogs.siteSearch.callback = site_select_callback;
+    }
+    if (typeof(only_types) != 'undefined') {
+        ncw.dialogs.siteSearch.onlyTypes = only_types;
+    }
+
+    $('body').prepend(
+        '<div id="ncw-choose-site-dialog" rel="#ncw-choose-site-dialog" class="ncw-form-dialog">'
+        + '<h2><?php print T_('Site search'); ?></h2>'
+        + '<?php print $this->form->create('', array('onsubmit' => 'ncw.dialogs.siteSearch.search(); return false;')); ?>'
+        + '<?php print $this->form->input('search', array('title' => T_('Search'), 'class' => 'ncw-input-dialog', 'div' => array('class' => 'ncw-input-container-dialog'), 'label' => array('class' => 'ncw-label-dialog', 'text' => T_('Search')))); ?>'
+        + '<?php print $this->form->end(); ?>'
+        + '<p>'
+        + '<div class="ncw-button-container">'
+        + '<ul>'
+        + '<li class="ncw-action">'
+        + '<a href="javascript: ncw.dialogs.siteSearch.search();" class="ncw-action ncw_search_icon">'
+        + '<?php print T_('Search'); ?>'
+        + '</a>'
+        + '</li>'
+        + '<li class="ncw-action">'
+        + '<a href="javascript: ncw.dialogs.siteSearch.close();" class="ncw-action ncw-action-with-margin ncw_cancel_icon">'
+        + '<?php print T_('Cancel'); ?>'
+        + '</a>'
+        + '</li>'
+        + '<li class="ncw-action">'
+        + '<a href="javascript: ncw.dialogs.siteSearch.fileDialog();" class="ncw-action ncw-action-with-margin ncw_search_icon">'
+        + '<?php print T_('Search Files'); ?>'
+        + '</a>'
+        + '</li>'        
+        + '</ul>'
+        + '</div>'
+        + '</p>'
+        + '</div>'
+    );
+    ncw.dialogs.siteSearch.dialogApi = $("#ncw-choose-site-dialog").overlay(
+        {
+            expose: {
+                color: '#666',
+                loadSpeed: 200,
+                opacity: 0.9,
+                zIndex: 990000
+            },
+            api: true,
+            onLoad: function() {
+                $('#file_search').focus();
+            },
+            onClose: function() {
+                this.close();
+                if (true == ncw.dialogs.openFileDialogOnClose) {
+                	ncw.dialogs.openFileDialogOnClose = false;
+                	delete(ncw.dialogs.fileSearch);
+					if (typeof(ncw.dialogs.fileSearch) == 'undefined') {
+						$.getScript(
+					    	ncw.url('files/file/searchDialog.js'),
+					        function (data) {
+					            ncw.dialogs.fileSearch.show(ncw.dialogs.siteSearch.callback);
+					        }
+					    );
+					}
+                }
+            }
+        }
+    );
+    ncw.dialogs.siteSearch.dialogApi.load();
+};
+
+ncw.dialogs.siteSearch.close = function () {
+    ncw.dialogs.siteSearch.dialogApi.close();
+};
+
+ncw.dialogs.siteSearch.fileDialog = function () {
+	ncw.dialogs.openFileDialogOnClose = true;
+	ncw.dialogs.siteSearch.close();	
+};
+
+ncw.dialogs.siteSearch.choose = function (file_id) {
+    ncw.dialogs.siteSearch.callback(ncw.dialogs.siteSearch.files[file_id]);
+    ncw.dialogs.siteSearch.close();
+};
+
+ncw.dialogs.siteSearch.search = function (url) {
+    var s = $('#site_search').val();
+    var limit = 6;
+    if (typeof(url) == 'undefined') {
+        url = 'wcms/site/searchDialogSearch.js';
+    }
+    var url_append = '';
+    if (false != ncw.dialogs.siteSearch.onlyTypes) {
+        url_append += '&o=' + ncw.dialogs.siteSearch.onlyTypes;
+    }
+    $.get(
+        ncw.url(
+            url + '/limit:' + limit + '/?s=' + s + url_append
+        ),
+        null,
+        function (data) {
+
+            var prev_page = '';
+            if (true == data.paging.prevPage) {
+                prev_page = '<a onclick="ncw.dialogs.siteSearch.search(this.rel); event.returnValue = false; return false;" id="ncw-choose-site-dialog-prevPage" rel="wcms/site/searchDialogSearch.js/page:1" href="#">&lt;&lt;</a> '
+                    + '<a onclick="ncw.dialogs.siteSearch.search(this.rel); event.returnValue = false; return false;" id="ncw-choose-site-dialog-firstPage" rel="wcms/site/searchDialogSearch.js/page:' + (data.paging.page - 1) + '" href="#">&lt;</a>';
+            }
+
+            var paging_text = T_('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%');
+            if (data.paging.page > 0) {
+                var start = ((data.paging.page - 1) * data.paging.options.limit) + 1;
+                var end = start + data.paging.current - 1;
+            } else {
+                var start = 0;
+                var end = 0;
+            }
+            paging_text = paging_text.replace('%page%', data.paging.page).replace('%pages%', data.paging.pageCount)
+                .replace('%current%', data.paging.current).replace('%count%', data.paging.count)
+                .replace('%start%', start).replace('%end%', end);
+
+            var next_page = '';
+            if (true == data.paging.nextPage) {
+                next_page = '<a onclick="ncw.dialogs.siteSearch.search(this.rel); event.returnValue = false; return false;" id="ncw-choose-site-dialog-nextPage" rel="wcms/site/searchDialogSearch.js/page:' + (data.paging.page + 1) + '" href="#">&gt;</a> '
+                    + '<a onclick="ncw.dialogs.siteSearch.search(this.rel); event.returnValue = false; return false;" id="ncw-choose-site-dialog-lastPage" rel="wcms/site/searchDialogSearch.js/page:' + (data.paging.pageCount) + '" href="#">&gt;&gt;</a>';
+            }
+
+            sort_directions = {
+                'name' : 'asc',
+            };
+            $.each(
+                sort_directions,
+                function (name, value) {
+                    if (typeof(data.paging.options.order['Site.' + name]) != 'undefined') {
+                        switch (data.paging.options.order['Site.' + name]) {
+                        case 'asc':
+                            sort_directions[name] = 'desc';
+                            break;
+
+                        case 'desc':
+                            sort_directions[name] = 'asc';
+                            break;
+                        }
+                    }
+                }
+            );
+
+            $('#ncw-choose-site-dialog-table').remove()
+            $('#ncw-choose-site-dialog').append(
+                '<div id="ncw-choose-site-dialog-table" style="padding: 0 5px 0 5px; clear: both;">'
+                + '<br />'
+                + '<div class="ncw-page-controls">'
+                + '<div class="left_controls">'
+                +  prev_page
+                + '</div>'
+                + paging_text //+ ' (<span class="current">1</span> | <span>2</span>)'
+                + '<div class="right_controls">'
+                + next_page
+                + '</div>'
+                + '</div>'
+                + '<table class="ncw-table" cellpadding="0" cellspacing="0">'
+                + '<thead>'
+                + '<tr>'
+                + '<th><a onclick="ncw.dialogs.siteSearch.search(this.rel); event.returnValue = false; return false;" href="#" rel="wcms/site/searchDialogSearch.js/page:' + (data.paging.page) + '/sort:File.name/direction:' + sort_directions['name'] + '"><?php print T_('Name'); ?></a></th>'
+                + '</tr></thead><tbody></tbody>'
+                + '</table></div>'
+            );
+            var html = '';
+            $.each(
+                data.search_result,
+                function (i, item) {
+                    ncw.dialogs.siteSearch.files[item.id] = item;
+                    html += '<tr>'
+                    + '<td>'
+                    + '<a href="javascript: ncw.dialogs.siteSearch.choose(' + item.id + ');">'
+                    + item.name
+                    + '</a>'
+                    + '</td>'
+                    + '</tr>';
+                }
+            );
+
+            $('#ncw-choose-site-dialog-table tbody').append(html);
+        },
+        'json'
+    );
+};

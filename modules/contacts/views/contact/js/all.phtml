@@ -1,0 +1,39 @@
+{
+    "paging" : <?php print json_encode($this->paginator->params()); ?>,
+    "search_result": [
+    <?php
+    $items = array();
+    foreach ($this->arr_all_contacts as $obj_contact) { 
+        if (false === $this->contact_permissions['/contacts/contact/objects/' . $obj_contact->getId()]) {
+        	continue;
+        }    	
+        $json = '{
+            "id" : ' . trim($obj_contact->getId()) . ',
+            "type" : "' . trim($obj_contact->getType()) . '",
+            "name" : "' . trim($obj_contact->getName()) . '",';
+
+        if ($obj_contact->getType() == 'private') {
+            $json .= '"title" : "' . trim($obj_contact->getTitle()) . '",';
+            $json .= '"firstname" : "' . trim($obj_contact->getFirstname()) . '",';
+			if ($obj_contact->Member->getContactId() > 0) {
+				$json .= '"is_member" : 1,';
+				$json .= '"parent_id" : ' . $obj_contact->Member->getContactId() . ',';
+				$json .= '"member_name" : "' . trim($obj_contact->Contacts_Contact->getName()) . '",';
+			} else {
+				$json .= '"is_member" : 0,';
+			}
+        }
+
+        $email = trim($obj_contact->Email->getEmail());
+        $json .= '"email" : "' . $email . '",';
+
+        $phone = trim($obj_contact->Phone->getPhone());
+        $json .= '"phone" : "' . $phone . '"';
+
+        $json .= '}';
+        $items[] = $json;
+    }
+    print implode(',', $items);
+    ?>
+    ]
+}

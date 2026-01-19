@@ -1,0 +1,7 @@
+## PDB ##
+tmp/*
+assets/files/*
+assets/tpepdb2/imported_documents/*
+assets/tpepdb2/pdfs/*
+.htaccess
+assets/wcms/.htaccess

@@ -1,0 +1,128 @@
+<?php if (true === $this->pagination) { ?>
+	<?php print $this->paginator->options(array('update' => '.ncw-right', 'url' => array($this->group_id, '?' => 's=' . $this->search_str), 'callback' => 'ncw.contacts.contact.loadPage();')); ?>
+<?php } ?>
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+        <li class="ncw-main-tab"><a href="#"><?php if ($this->group_id <=1) { if (false === empty($this->search_str)) { print T_('Search results'); } else { print T_('All contacts'); } } else { if (false === empty($this->search_str)) { print T_('Search results in group') . ': ' . $this->group_name;; } else { print T_('Contacts of group') . ': '. $this->group_name; } } ?></a></li>
+        <?php if ($this->group_id > 1 && true === $this->permissions['/contacts/group/edit']) { ?> 
+        	<li class="ncw-option-tab"><a href="javascript: ncw.contacts.group.loadEdit();"><?php print T_('Edit group'); ?></a></li>
+        <?php } ?>
+    </ul>
+    <div class="ncw-main-tab-contents">
+        <div class="ncw-main-tab-content">
+        	<?php if (true === $this->pagination) { ?>
+	            <div class="ncw-page-controls">
+	                <div class="left_controls">
+	                    <?php print $this->paginator->first('<<'); ?>
+	                    <?php print $this->paginator->prev('<'); ?>
+	                </div>
+	                <?php print $this->paginator->counter(array(
+	                    'format' => T_('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%')
+	                )); ?>
+	                (<?php print $this->paginator->numbers(); ?>)
+	                <div class="right_controls">
+	                    <?php print $this->paginator->next('>'); ?>
+	                    <?php print $this->paginator->last('>>'); ?>
+	                </div>
+	            </div>
+            <?php } ?>
+            <div id="ncw-contacts-all-list">
+            	<?php $count = count($this->arr_all_contacts); ?>
+            	<?php if (false === $this->pagination && $count > 20) { ?>
+            		<h2><?php print T_('Too many results. Please specify your search.'); ?></h2>
+            	<?php } ?> 
+                <table class="ncw-table">
+                    <thead>
+                        <tr>
+                        	<?php if (true === $this->pagination) { ?>
+	                        	<th><?php echo $this->paginator->sort(T_('Type'), 'Contact.type'); ?></th>
+	                            <th><?php echo $this->paginator->sort(T_('Name'), 'Contact.name'); ?></th>
+
+                                <th><?php echo $this->paginator->sort('Inhaber', 'Member.Contact.owner_name'); ?></th>
+                                
+	                            <th><?php echo $this->paginator->sort(T_('at') . ' ' . T_('Company'), 'Member.contact_id'); ?></th>
+	                            <th><?php echo $this->paginator->sort(T_('Email'), 'Email.email'); ?></th>
+	                            <th><?php echo $this->paginator->sort(T_('Phone'), 'Phone.phone'); ?></th>
+							 <?php } else { ?>
+	                        	<th><?php echo T_('Type'); ?></th>
+	                            <th><?php echo T_('Name'); ?></th>
+                                <th><?php echo 'Inhaber'; ?></th>
+	                            <th><?php echo T_('at') . ' ' . T_('Company'); ?></th>
+	                            <th><?php echo T_('Email'); ?></th>
+	                            <th><?php echo T_('Phone'); ?></th>
+                            <?php } ?>							 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($this->arr_all_contacts as $obj_contact) { ?>
+	                        <?php 
+	                        if (false === $this->contact_permissions['/contacts/contact/objects/' . $obj_contact->getId()]) {
+	                        	continue;
+	                        }
+	                        ?>                            	
+                            <tr>
+                                <?php
+                                switch($obj_contact->getType()) {
+                                case 'private':
+                                ?>
+                                	<td class="ncw-table-td-small"><a href="javascript: ncw.contacts.contact.loadContact(<?php print $obj_contact->getId(); ?>);"><?php print $this->html->image('icons/16px/user.png', false, array('alt' => T_('Person'), 'title' => T_('Person'))); ?></a></td>  
+                                	<td><a href="javascript: ncw.contacts.contact.loadContact(<?php print $obj_contact->getId(); ?>);"><?php print $obj_contact->getTitle() . ' ' . $obj_contact->getFirstname() . ' ' . $obj_contact->getName(); ?></a></td>
+                                <?php
+                                    break;
+                                default:
+                                ?>
+                                	<td class="ncw-table-td-small"><a href="javascript: ncw.contacts.contact.loadContact(<?php print $obj_contact->getId(); ?>);"><?php echo $this->html->image('icons/16px/building.png', false, array('alt' => T_('Company'), 'title' => T_('Company'))); ?></a></td> 
+                                  	<td><a href="javascript: ncw.contacts.contact.loadContact(<?php print $obj_contact->getId(); ?>);"><?php echo $obj_contact->getName(); ?></a></td>
+                                  	
+                                <?php
+                                }
+                                ?>
+                                <td><a href="javascript: ncw.contacts.contact.loadContact(<?php print $obj_contact->getId(); ?>);"><?php echo $obj_contact->getOwnerFirstName(); ?> <?php echo $obj_contact->getOwnerName(); ?></a></td>
+                                <td>
+                                    <?php
+                                    if ($obj_contact->getType() == 'private' && $obj_contact->Member->getContactId() > 0) {
+                                    ?>     
+                                    	<?php print $obj_contact->Member->getDescription(). ' ' . T_('at'); ?>                          	
+                                        <a href="javascript: ncw.contacts.contact.loadContact(<?php print $obj_contact->Member->getContactId(); ?>);">
+                                        	<?php if (true === $this->pagination) { ?>
+												<?php print $obj_contact->Contacts_Contact->getName(); ?>
+                                        	<?php } else { ?>
+                                        		<?php print $obj_contact->Member->Contact->getName(); ?>	
+                                        	<?php } ?>
+                                        </a>
+                                    <?php
+                                    }
+                                    ?>                                        
+                                </td>                                    
+                                <td>
+                                    <a href="mailto:<?php print $obj_contact->Email->getEmail(); ?>">
+                                       <?php print $obj_contact->Email->getEmail(); ?>
+                                    </a>
+                                </td>
+                                <td><?php print $obj_contact->Phone->getPhone(); ?></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+            <?php if (true === $this->pagination) { ?>
+				<?php if ($this->paginator->hasPage(2)) { ?>
+				<div class="ncw-page-controls-bottom">
+				    <div class="left_controls">
+				        <?php print $this->paginator->first('<<'); ?>
+				        <?php print $this->paginator->prev('<'); ?>
+				    </div>
+				    <?php print $this->paginator->counter(array(
+				        'format' => T_('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%')
+				    )); ?>
+				    (<?php print $this->paginator->numbers(); ?>)
+				    <div class="right_controls">
+				        <?php print $this->paginator->next('>'); ?>
+				        <?php print $this->paginator->last('>>'); ?>
+				    </div>
+				</div>
+	        	<?php } ?>
+        	<?php } ?>
+    	</div>
+	</div>
+</div>

@@ -1,0 +1,171 @@
+ncw.dialogs.folderSearch = {};
+
+ncw.dialogs.folderSearch.dialogApi = null;
+ncw.dialogs.folderSearch.folders = {};
+ncw.dialogs.folderSearch.onlyTypes = false;
+ncw.dialogs.folderSearch.callback = function (folder) {
+    alert(folder.id);
+};
+
+ncw.dialogs.folderSearch.show = function (folder_select_callback, only_types) {
+    if (typeof(folder_select_callback) == 'function') {
+        ncw.dialogs.folderSearch.callback = folder_select_callback;
+    }
+    if (typeof(only_types) != 'undefined') {
+        ncw.dialogs.folderSearch.onlyTypes = only_types;
+    }
+
+    $('body').prepend(
+        '<div id="ncw-choose-folder-dialog" rel="#ncw-choose-folder-dialog" class="ncw-form-dialog">'
+        + '<h2><?php print T_('Folder search'); ?></h2>'
+        + '<?php print $this->form->create('', array('onsubmit' => 'ncw.dialogs.folderSearch.search(); return false;')); ?>'
+        + '<?php print $this->form->input('search', array('title' => T_('Search'), 'class' => 'ncw-input-dialog', 'div' => array('class' => 'ncw-input-container-dialog'), 'label' => array('class' => 'ncw-label-dialog', 'text' => T_('Search')))); ?>'
+        + '<?php print $this->form->end(); ?>'
+        + '<p>'
+        + '<div class="ncw-button-container">'
+        + '<ul>'
+        + '<li class="ncw-action">'
+        + '<a href="javascript: ncw.dialogs.folderSearch.search();" class="ncw-action ncw_search_icon">'
+        + '<?php print T_('Search'); ?>'
+        + '</a>'
+        + '</li>'
+        + '<li class="ncw-action">'
+        + '<a href="javascript: ncw.dialogs.folderSearch.close();" class="ncw-action ncw-action-with-margin ncw_cancel_icon">'
+        + '<?php print T_('Cancel'); ?>'
+        + '</a>'
+        + '</li>'
+        + '</ul>'
+        + '</div>'
+        + '</p>'
+        + '</div>'
+    );
+    ncw.dialogs.folderSearch.dialogApi = $("#ncw-choose-folder-dialog").overlay(
+        {
+            expose: {
+                color: '#666',
+                loadSpeed: 200,
+                opacity: 0.9,
+                zIndex: 990000
+            },
+            api: true,
+            onLoad: function() {
+                $('#folder_search').focus();
+            },
+            onClose: function() {
+                this.close();
+            }
+        }
+    );
+    ncw.dialogs.folderSearch.dialogApi.load();
+};
+
+ncw.dialogs.folderSearch.close = function () {
+    ncw.dialogs.folderSearch.dialogApi.close();
+};
+
+ncw.dialogs.folderSearch.choose = function (folder_id) {
+    ncw.dialogs.folderSearch.callback(ncw.dialogs.folderSearch.folders[folder_id]);
+    ncw.dialogs.folderSearch.close();
+};
+
+ncw.dialogs.folderSearch.search = function (url) {
+    var s = $('#folder_search').val();
+    var limit = 6;
+    if (typeof(url) == 'undefined') {
+        url = 'files/folder/search.js';
+    }
+    var url_append = '';
+    if (false != ncw.dialogs.folderSearch.onlyTypes) {
+        url_append += '&o=' + ncw.dialogs.folderSearch.onlyTypes;
+    }
+    $.get(
+        ncw.url(
+            url + '/limit:' + limit + '/?s=' + s + url_append
+        ),
+        null,
+        function (data) {
+
+            var prev_page = '';
+            if (true == data.paging.prevPage) {
+                prev_page = '<a onclick="ncw.dialogs.folderSearch.search(this.rel); event.returnValue = false; return false;" id="ncw-choose-folder-dialog-prevPage" rel="files/folder/search.js/page:1" href="#">&lt;&lt;</a> '
+                    + '<a onclick="ncw.dialogs.folderSearch.search(this.rel); event.returnValue = false; return false;" id="ncw-choose-folder-dialog-firstPage" rel="files/folder/search.js/page:' + (data.paging.page - 1) + '" href="#">&lt;</a>';
+            }
+
+            var paging_text = T_('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%');
+            if (data.paging.page > 0) {
+                var start = ((data.paging.page - 1) * data.paging.options.limit) + 1;
+                var end = start + data.paging.current - 1;
+            } else {
+                var start = 0;
+                var end = 0;
+            }
+            paging_text = paging_text.replace('%page%', data.paging.page).replace('%pages%', data.paging.pageCount)
+                .replace('%current%', data.paging.current).replace('%count%', data.paging.count)
+                .replace('%start%', start).replace('%end%', end);
+
+            var next_page = '';
+            if (true == data.paging.nextPage) {
+                next_page = '<a onclick="ncw.dialogs.folderSearch.search(this.rel); event.returnValue = false; return false;" id="ncw-choose-folder-dialog-nextPage" rel="files/folder/search.js/page:' + (data.paging.page + 1) + '" href="#">&gt;</a> '
+                    + '<a onclick="ncw.dialogs.folderSearch.search(this.rel); event.returnValue = false; return false;" id="ncw-choose-folder-dialog-lastPage" rel="files/folder/search.js/page:' + (data.paging.pageCount) + '" href="#">&gt;&gt;</a>';
+            }
+
+            sort_directions = {
+                'name' : 'asc'
+            };
+            $.each(
+                sort_directions,
+                function (name, value) {
+                    if (typeof(data.paging.options.order['Folder.' + name]) != 'undefined') {
+                        switch (data.paging.options.order['Folder.' + name]) {
+                        case 'asc':
+                            sort_directions[name] = 'desc';
+                            break;
+
+                        case 'desc':
+                            sort_directions[name] = 'asc';
+                            break;
+                        }
+                    }
+                }
+            );
+
+            $('#ncw-choose-folder-dialog-table').remove()
+            $('#ncw-choose-folder-dialog').append(
+                '<div id="ncw-choose-folder-dialog-table" style="padding: 0 5px 0 5px; clear: both;">'
+                + '<br />'
+                + '<div class="ncw-page-controls">'
+                + '<div class="left_controls">'
+                +  prev_page
+                + '</div>'
+                + paging_text //+ ' (<span class="current">1</span> | <span>2</span>)'
+                + '<div class="right_controls">'
+                + next_page
+                + '</div>'
+                + '</div>'
+                + '<table class="ncw-table" cellpadding="0" cellspacing="0">'
+                + '<thead>'
+                + '<tr>'
+                + '<th><a onclick="ncw.dialogs.folderSearch.search(this.rel); event.returnValue = false; return false;" href="#" rel="files/folder/search.js/page:' + (data.paging.page) + '/sort:Folder.name/direction:' + sort_directions['name'] + '"><?php print T_('Name'); ?></a></th>'
+                + '</tr></thead><tbody></tbody>'
+                + '</table></div>'
+            );
+            var html = '';
+            $.each(
+                data.search_result,
+                function (i, item) {
+                    ncw.dialogs.folderSearch.folders[item.id] = item;
+                    html += '<tr>'
+                    + '<td>'                  	
+                    + '<a href="javascript: ncw.dialogs.folderSearch.choose(' + item.id + ');">'
+                    + item.name
+                    + '</a>'
+                    + '</td>'
+                    + '</tr>';
+                }
+            );
+
+            $('#ncw-choose-folder-dialog-table tbody').append(html);
+        },
+        'json'
+    );
+};

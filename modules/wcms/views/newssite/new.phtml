@@ -1,0 +1,39 @@
+<div class="ncw-left">
+    <div class="ncw-accordion">
+        <h3 class="ncw-accordion-header current">Options</h3>
+        <div class="ncw-accordion-content ncw-accordion-current">
+            <p class="ncw-accordion-content-part-dark">
+                <?php print $this->html->link(_BACK, array('controller' => 'news', 'action' => 'edit', 'id' => $this->news_id)); ?>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="ncw-right">
+    <?php print $this->form->create(); ?>
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+            <li class="ncw-main-tab"><a href="#"><?php print _ADD_TO_SITE; ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <?php if (count($this->arr_options) > 0) {?>
+                    <div id="newssite_site_id" class="ncw-input-container">
+                        <label for="newssite_site_id_input" class="ncw-label"><?php echo _SITE;?></label>
+                        <select id="newssite_site_id_input" class="ncw-select" title="site on which the news will be displayed" name="data[Newssite][site_id]">
+                            <?php foreach ($this->arr_options as $option) { ?>
+                            <option value="<?php print $option->getId(); ?>"><?php print str_repeat('--', $option->getLevel() - 1) . ' ' . $option->getName(); ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+    <div class="ncw-status-action-bar">
+        <div class="ncw-status-message"></div>
+        <ul class="ncw-actions">
+            <li class="ncw-action"><a href="#" class="ncw-newssite-save-trigger ncw_save_icon">Save</a></li>
+        </ul>
+    </div>
+    <?php print $this->form->end(); ?>
+</div>

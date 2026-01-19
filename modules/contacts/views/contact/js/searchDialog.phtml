@@ -1,0 +1,341 @@
+ncw.dialogs.contactSearch = {};
+
+ncw.dialogs.contactSearch.dialogApi = null;
+ncw.dialogs.contactSearch.contacts = {};
+ncw.dialogs.contactSearch.callback = function (contact) {
+    alert(contact.id);
+};
+ncw.dialogs.contactSearch.parent_contact_id = 0;
+ncw.dialogs.contactSearch.type = 0;
+
+ncw.dialogs.contactSearch.show = function (contact_select_callback) {
+    if (typeof(contact_select_callback) == 'function') {
+        ncw.dialogs.contactSearch.callback = contact_select_callback;
+    }
+
+    $('body').append(
+        '<div id="ncw-choose-contact-dialog" rel="#ncw-choose-contact-dialog" class="ncw-form-dialog">'
+        + '<h2><?php print T_('Contact search'); ?></h2>'
+        + '<?php print $this->form->create('', array('onsubmit' => 'ncw.dialogs.contactSearch.search(); return false;')); ?>'
+        + '<?php print $this->form->end(); ?>'
+        + '<p id="ncw-choose-contact-dialog-buttons"></p>'
+        + '<div class="ncw-button-container">'
+        + '<ul>'
+        + '<li class="ncw-action">'
+        + '<a href="javascript: ncw.dialogs.contactSearch.search();" class="ncw-action ncw_search_icon">'
+        + '<?php print T_('Search'); ?>'
+        + '</a>'
+        + '</li>'
+        + '<li class="ncw-action">'
+        + '<a href="javascript: ncw.dialogs.contactSearch.close();" class="ncw-action ncw-action-with-margin ncw_cancel_icon">'
+        + '<?php print T_('Cancel'); ?>'
+        + '</a>'
+        + '</li>'
+        + '</ul>'
+        + '</div>'
+        + '</div>'
+    );
+
+    ncw.dialogs.contactSearch.normalSearch();
+
+	$('#ncw-choose-contact-dialog-table').remove();
+    $('#ncw-choose-contact-dialog-table tbody').append('');
+
+    ncw.dialogs.contactSearch.dialogApi = $("#ncw-choose-contact-dialog").overlay(
+        {
+            expose: {
+                color: '#666',
+                loadSpeed: 200,
+                opacity: 0.9,
+                zIndex: 990000
+            },
+            api: true,
+            onLoad: function() {
+
+            },
+            onClose: function() {
+                this.close();
+            }
+        }
+    );
+    ncw.dialogs.contactSearch.dialogApi.load();
+};
+
+ncw.dialogs.contactSearch.close = function () {
+    ncw.dialogs.contactSearch.dialogApi.close();
+};
+
+ncw.dialogs.contactSearch.searchType = 'normal';
+
+ncw.dialogs.contactSearch.normalSearch = function () {
+    $('#ncw-choose-contact-dialog form').html(
+        '<?php print $this->form->input('search_normal', array('class' => 'ncw-input-dialog', 'div' => array('class' => 'ncw-input-container-dialog'), 'label' => array('class' => 'ncw-label-dialog', 'text' => T_('Find someone by typing their name')))); ?>'
+        + ncw.dialogs.contactSearch.groupSelect()
+    );
+
+    /* $('#ncw-choose-contact-dialog-buttons').html(
+        '<a href="javascript: ncw.dialogs.contactSearch.detailSearch();" class="ncw-action">'
+        + '<?php print T_('Detail search'); ?>'
+        + '</a>'
+    ); */
+   $('#ncw-choose-contact-dialog-buttons').remove();
+
+    $('#contact_normal_search').focus();
+
+    ncw.dialogs.contactSearch.searchType = 'normal';
+};
+
+ncw.dialogs.contactSearch.detailSearch = function () {
+    ncw.dialogs.contactSearch.clearList();
+
+    $('#ncw-choose-contact-dialog-buttons').html(
+        '<a href="javascript: ncw.dialogs.contactSearch.optionList();" class="ncw-action">'
+        + '<?php print T_('Add option'); ?>'
+        + '</a>'
+        + '<a href="javascript: ncw.dialogs.contactSearch.clearList();" class="ncw-action ncw-action-with-margin">'
+        + '<?php print T_('Reset'); ?>'
+        + '</a>'
+        + '<a href="javascript: ncw.dialogs.contactSearch.normalSearch();" class="ncw-action ncw-action-with-margin">'
+        + '<?php print T_('Normal search'); ?>'
+        + '</a>'
+    );
+
+    ncw.dialogs.contactSearch.searchType = 'detail';
+};
+
+ncw.dialogs.contactSearch.groupSelect = function () {
+    return '<div class="ncw-input-container-dialog">'
+        + '<label class="ncw-label-dialog" for="group_id"><?php print T_('Group'); ?></label>'
+        + '<select id="contact_search_group" class="ncw-select-dialog" title="<?php print T_('Group'); ?>" name="g">'
+        + '<option value="0"><?php print T_('Show all'); ?></option>'
+        <?php 
+            if (false == isset($selected) ) {
+                $selected = '';
+            }
+        ?>
+        <?php foreach ($this->arr_groups as $label => $value) { ?>
+        + '<option value="<?php print $value; ?>"<?php print $selected; ?>><?php print $label; ?></option>'
+        <?php } ?>
+        + '</select></div>';
+};
+
+ncw.dialogs.contactSearch.clearList = function () {
+    $('#ncw-choose-contact-dialog form').html(
+        ncw.dialogs.contactSearch.groupSelect()
+    );
+    ncw.dialogs.contactSearch.optionList();
+};
+
+ncw.dialogs.contactSearch.optionList = function () {
+    var fields = {
+        'Contact.name' : '<?php print T_('Name'); ?>',
+        'Contact.firstname' : '<?php print T_('Firstname'); ?>',
+        'Email.email' : '<?php print T_('Email'); ?>',
+        'Phone.phone' :'<?php print T_('Phone'); ?>',
+        'Messenger.messenger' :'<?php print T_('Messenger'); ?>',
+        'Address.street' : '<?php print T_('Street'); ?>',
+        'Website.website' : '<?php print T_('Website'); ?>',
+        'City.name': '<?php print T_('City'); ?>',
+        'City.state': '<?php print T_('State'); ?>',
+        'City.postcode' : '<?php print T_('Postcode'); ?>'
+    };
+
+    var str = '<select id="ncw-contact-detail-search-'
+        + ncw.dialogs.contactSearch.optionList.counter
+        + '">';
+
+    $.each(
+        fields,
+        function(key, field) {
+            str += '<option value="' + key + '">' + field + '</option>';
+        }
+    );
+
+    str += '</select>';
+
+    str += '<input type="text" id="ncw-contact-detail-search-field-'
+        + ncw.dialogs.contactSearch.optionList.counter
+        + '" />';
+
+    str += '<br />';
+
+    $('#ncw-choose-contact-dialog form').append(str);
+    ncw.dialogs.contactSearch.optionList.counter++;
+};
+
+ncw.dialogs.contactSearch.optionList.counter = 0;
+
+ncw.dialogs.contactSearch.choose = function (contact_id) {
+    ncw.dialogs.contactSearch.callback(ncw.dialogs.contactSearch.contacts[contact_id]);
+    ncw.dialogs.contactSearch.close();
+};
+
+ncw.dialogs.contactSearch.search = function(url) {
+    if (ncw.dialogs.contactSearch.searchType == 'normal') {
+        var url_append = '/?s=' + escape($('#contact_search_normal').val());
+    } else if (ncw.dialogs.contactSearch.searchType == 'detail') {
+        var url_append = '';
+        var post = {};
+        var hit = 0;
+        for (count = 0 ; count < ncw.dialogs.contactSearch.optionList.counter; count++) {
+            var unit = $('#ncw-contact-detail-search-field-' + count).val();
+            post["data[search][" + $('#ncw-contact-detail-search-' + count).val() + "]"] = unit;
+            if (unit.length > 1) {
+                hit++;
+            }
+        }
+    };
+
+    url_append += '&g=' + $('#contact_search_group').val();
+    url_append += '&p=' + ncw.dialogs.contactSearch.parent_contact_id;
+	url_append += '&t=' + ncw.dialogs.contactSearch.type;
+
+    var limit = 6;
+    if (typeof(url) == 'undefined') {
+        url = 'contacts/contact/all.js';
+    }
+
+    $.post(
+        ncw.url(url + '/limit:' + limit + url_append),
+        post,
+        function (data) {
+	
+	        var prev_page = '';
+	        if (true == data.paging.prevPage) {
+	            prev_page = '<a onclick="ncw.dialogs.contactSearch.search(this.rel); event.returnValue = false; return false;" id="ncw-choose-file-dialog-prevPage" rel="contacts/contact/all.js/page:1" href="#">&lt;&lt;</a> '
+	                + '<a onclick="ncw.dialogs.contactSearch.search(this.rel); event.returnValue = false; return false;" id="ncw-choose-file-dialog-firstPage" rel="contacts/contact/all.js/page:' + (data.paging.page - 1) + '" href="#">&lt;</a>';
+	        }
+	
+	        var paging_text = T_('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%');
+	        if (data.paging.page > 0) {
+	            var start = ((data.paging.page - 1) * data.paging.options.limit) + 1;
+	            var end = start + data.paging.current - 1;
+	        } else {
+	            var start = 0;
+	            var end = 0;
+	        }
+	        paging_text = paging_text.replace('%page%', data.paging.page).replace('%pages%', data.paging.pageCount)
+	            .replace('%current%', data.paging.current).replace('%count%', data.paging.count)
+	            .replace('%start%', start).replace('%end%', end);
+	
+	        var next_page = '';
+	        if (true == data.paging.nextPage) {
+	            next_page = '<a onclick="ncw.dialogs.contactSearch.search(this.rel); event.returnValue = false; return false;" id="ncw-choose-file-dialog-nextPage" rel="contacts/contact/all.js/page:' + (data.paging.page + 1) + '" href="#">&gt;</a> '
+	                + '<a onclick="ncw.dialogs.contactSearch.search(this.rel); event.returnValue = false; return false;" id="ncw-choose-file-dialog-lastPage" rel="contacts/contact/all.js/page:' + (data.paging.pageCount) + '" href="#">&gt;&gt;</a>';
+	        }
+	
+	        sort_directions = {
+	        	'Contact.type' : 'asc',
+	            'Contact.name' : 'asc',
+	            'Email.email' : 'asc',
+	            'Phone.phone' : 'asc'
+	        };
+	        $.each(
+	            sort_directions,
+	            function (name, value) {
+	                if (typeof(data.paging.options.order[name]) != 'undefined') {
+	                    switch (data.paging.options.order[name]) {
+	                    case 'asc':
+	                        sort_directions[name] = 'desc';
+	                        break;
+	
+	                    case 'desc':
+	                        sort_directions[name] = 'asc';
+	                        break;
+	                    }
+	                }                               
+	            }
+	        );
+	
+	        $('#ncw-choose-contact-dialog-table').remove();
+	        var html = '<div id="ncw-choose-contact-dialog-table" class="ncw-dialog-right" style="padding: 0 5px 0 5px; clear: both;">'
+	        + '<br />'
+	        + '<div class="ncw-page-controls">'
+	        + '<div class="left_controls">'
+	        +  prev_page
+	        + '</div>'
+	        + paging_text //+ ' (<span class="current">1</span> | <span>2</span>)'
+	        + '<div class="right_controls">'
+	        + next_page
+	        + '</div>'
+	        + '</div>'
+	        + '<table class="ncw-table" cellpadding="0" cellspacing="0">'
+	        + '<thead>'
+	        + '<tr>'
+	        + '<th style="width: 35px"><a onclick="ncw.dialogs.contactSearch.search(this.rel); event.returnValue = false; return false;" href="#" rel="contacts/contact/all.js/page:' + (data.paging.page) + '/sort:Contact.type/direction:' + sort_directions['Contact.type'] + '"><?php print T_('Type'); ?></a></th>'            	
+	        + '<th><a onclick="ncw.dialogs.contactSearch.search(this.rel); event.returnValue = false; return false;" href="#" rel="contacts/contact/all.js/page:' + (data.paging.page) + '/sort:Contact.name/direction:' + sort_directions['Contact.name'] + '"><?php print T_('Name'); ?></a></th>';
+	        
+	        if (ncw.dialogs.contactSearch.type != 2) {
+	        	html += '<th style="width: 140px"><a onclick="ncw.dialogs.contactSearch.search(this.rel); event.returnValue = false; return false;" href="#" rel="contacts/contact/all.js/page:' + (data.paging.page) + '/sort:Member.contact_id/direction:' + sort_directions['Member.contact_id'] + '"><?php print T_('at') . ' ' . T_('Company'); ?></a></th>';
+	        }
+	        
+	        html += '<th style="width: 220px"><a onclick="ncw.dialogs.contactSearch.search(this.rel); event.returnValue = false; return false;" href="#" rel="contacts/contact/all.js/page:' + (data.paging.page) + '/sort:Email.email/direction:' + sort_directions['Email.email'] + '"><?php print T_('Email'); ?></a></th>'
+	        // + '<th style="width: 40px"><a onclick="ncw.dialogs.contactSearch.search(this.rel); event.returnValue = false; return false;" href="#" rel="contacts/contact/all.js/page:' + (data.paging.page) + '/sort:Phone.phone/direction:' + sort_directions['Phone.phone'] + '"><?php print T_('Phone'); ?></a></th>'
+	        + '</tr></thead><tbody></tbody>'
+	        + '</table></div>';
+	        $('#ncw-choose-contact-dialog').append(
+				html
+	        );
+	        var html = '';
+	        $.each(
+	            data.search_result,
+	            function (i, item) {
+	                ncw.dialogs.contactSearch.contacts[item.id] = item;
+	
+	                if (item.type == 'business') {
+	                    var image = 'building';
+	                    var name = item.name;
+	                } else {
+	                    var image = 'user';
+	                    var name = item.firstname + ' ' + item.name;
+	                }
+	
+	                html += '<tr>'
+	                + '<td>'
+	                + '<a href="javascript: ncw.dialogs.contactSearch.choose(' + item.id + ');">'
+	                + '<img src="' + ncw.image('icons/16px/' + image + '.png') + '" />'
+	                + '</a> '
+	                + '</td>'
+	                + '<td>'
+	                + '<a href="javascript: ncw.dialogs.contactSearch.choose(' + item.id + ');">'
+	                + name
+	                + '</a>'
+	                + '</td>';
+	                
+	                if (ncw.dialogs.contactSearch.type != 2) {
+		                html += '<td>';
+		                	
+			                if (item.type == 'private' && item.is_member == 1) {
+			                	if (ncw.dialogs.contactSearch.type == 0) {
+			                		parent = {
+			                			'id' : item.parent_id,
+			                			'type' : 'business',
+			                			'name' : item.member_name,
+			                		}
+			                		ncw.dialogs.contactSearch.contacts[item.parent_id] = parent;
+				                	html += '<a href="javascript: ncw.dialogs.contactSearch.choose(' + item.parent_id + ');">';
+				                }
+				                html += item.member_name;
+				                if (ncw.dialogs.contactSearch.type == 0) {
+				                	html += '</a>';
+				                }
+			                }
+			            html += '</td>';
+		           	}
+	                                
+	                html += '<td class="ncw-table-td-icons">'
+	                + item.email
+	                + '</td>'
+	               /* + '<td class="ncw-table-td-icons">'
+	                + item.phone
+	                + '</td>'*/
+	                + '</tr>';
+	            }
+	        );
+	
+	        $('#ncw-choose-contact-dialog-table tbody').append(html);
+
+        },
+        'json'
+    );
+};

@@ -1,0 +1,22 @@
+<?php print $this->element('transfer_menu'); ?>
+<div class="ncw-right">
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+        	<li class="ncw-option-tab"><?php echo $this->html->link(T_('Back'), array('controller' => 'transfer', 'action' => 'all')); ?></li>
+            <li class="ncw-main-tab"><a href="#"><?php print T_('New Import-Profile'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+               <?php print $this->form->create('ncw-transfer'); ?>
+               <?php print $this->form->input('name', array('title' => T_('Profilname'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Profilename')))); ?>
+               <?php print $this->form->end(); ?>
+            </div>
+        </div>
+    </div>
+    <div class="ncw-status-action-bar">
+        <div class="ncw-status-message"></div>
+        <ul class="ncw-actions">
+            <li class="ncw-action"><a href="#" rel="contacts/transfer" class="ncw-save-trigger-ajax ncw_save_icon">Save</a></li>
+        </ul>
+    </div>
+</div>

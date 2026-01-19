@@ -1,0 +1,25 @@
+<div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+        	<li class="ncw-option-tab"><a href="javascript: ncw.files.file.load();"><?php print T_('Back'); ?></a></li>
+            <li class="ncw-main-tab"><a href="#"><?php print T_('New Folder'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <?php print $this->form->create('ncw-folder', array('onsubmit' => 'return false;')); ?>
+                <?php print $this->form->input("name", array('maxlength' => 100, 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Name')))); ?>
+                <div class="ncw-input-container">
+                    <label for="folder_parent_id" class="ncw-label"><?php print T_('Parent Folder'); ?></label>
+                    <select id="folder_parent_id" name="data[Folder][parent_id]" class="ncw-select">
+                        <?php print $this->folders_options; ?>
+                    </select>
+                </div>
+                <?php print $this->form->end(); ?>
+        </div>
+    </div>
+</div>
+<div class="ncw-status-action-bar">
+    <div class="ncw-status-message"></div>
+    <ul class="ncw-actions">
+        <li class="ncw-action"><a href="#" rel="files/folder" class="ncw-new-trigger-ajax ncw_save_icon"><?php print T_('Save'); ?></a></li>
+    </ul>
+</div>

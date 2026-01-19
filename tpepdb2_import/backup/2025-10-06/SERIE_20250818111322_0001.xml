@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CATALOG>
+ <HEAD>
+  <ID>PORTFOLIO</ID>
+  <DESCRIPTIONS_SHORT>
+   <DESCRIPTION_SHORT lang="chi">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="kor">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ger">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="eng">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="fre">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ita">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="jpn">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="pol">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="spa">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+  </DESCRIPTIONS_SHORT>
+ </HEAD>
+ <NODES>
+  <NODE ID="0000000001-0000000074" type="SERIE" internal_id="0000000074">
+   <DRAWING_NUMBER/>
+   <VALID_FROM>00000000</VALID_FROM>
+   <VALID_TO>00000000</VALID_TO>
+   <DESCRIPTIONS_SHORT>
+    <DESCRIPTION_SHORT lang="chi">
+     <![CDATA[DW/H]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="kor">
+     <![CDATA[DW/H]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="ger">
+     <![CDATA[DW/H]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="eng">
+     <![CDATA[DW/H]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="fre">
+     <![CDATA[DW/H]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="ita">
+     <![CDATA[DW/H]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="jpn">
+     <![CDATA[DW/H]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="pol">
+     <![CDATA[DW/H]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="spa">
+     <![CDATA[DW/H]]>
+    </DESCRIPTION_SHORT>
+   </DESCRIPTIONS_SHORT>
+   <DESCRIPTIONS_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="pol">
+     <![CDATA[Seria DW/H to materiały do produkcji węży prysznicowych, końcówek dyszy prysznicowych i innych zastosowań wymagających dopuszczenia do kontaktu z wodą pitną. Tworzywa te posiadają dopuszczenia wg najważniejszych europejskich standardów, występują jako materiały prześwitujące i mogą być dostępne w różnorodnych kolorach barwione w masie.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="chi">
+     <![CDATA[DW/H 系列材料解决方案适用于接触饮用水的软管、喷头和其他应用领域。这类化合物符合欧洲主要的几大饮用水标准。这些化合物的颜色为半透明，可根据要求通过多种方式着色。]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="eng">
+     <![CDATA[The DW/H series is your material solution for hoses, jet former and other applications in contact with drinking water. The compounds are approved according to important European drinking water standards. They are translucent and are available in many different colors on request.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="kor">
+     <![CDATA[DW/H 시리즈는 호즈, 제트 분사 및 음용수 관련 어플리케이션을 위한 소재 솔루션입니다. 제품은 유럽 음용수 규정에 따라 승인되었습니다. 반투명으로 제공하며 다양한 색상으로 착색 가능합니다.<tab/> <tab/> ]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="fre">
+     <![CDATA[La série DW/H est votre solution compounds TPE pour les tuyaux, les gicleurs et autres applications en contact avec l’eau potable. Ces compounds sont approuvés conformément aux principales normes européennes en matière d'eau potable. Ils sont translucides et sont disponibles dans de nombreuses couleurs différentes sur demande.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="ita">
+     <![CDATA[La serie DW/H è la soluzione ideale per la produzione di tubi, soffioni doccia e per le altre applicazioni a contatto con l'acqua potabile. I compound sono approvati secondo i più importanti standard europei per il contatto con l'acqua potabile. Sono di colore traslucente e possono essere colorati su richiesta.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="jpn">
+     <![CDATA[このコンパウンドはナチュラル色で提供され、また様々な方法による着色が可能です。この材料は、欧州での重要な飲料水向け基準の承認を受けています。これらは半透明色で、ご要望により様々な色調への着色が可能です。]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="spa">
+     <![CDATA[La serie DW/H es la solución para mangueras, aspersores y otras aplicaciones en contacto con agua potable. Estos compuestos están aprobados de acuerdo a las principales normativas europeas para agua potable. Los compuestos son translúcidos y están disponibles en diferentes colores bajo petición.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="ger">
+     <![CDATA[Die DW/H-Reihe ist Ihre Materiallösung für Schläuche, Strahlbildner und andere Anwendungen mit Trinkwasserkontakt. Die Compounds sind nach wichtigen europäischen Trinkwassernormen zugelassen. Die Compounds sind transluzent und auf Anfrage in vielen anderen Farben erhältlich.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="pol">
+     <![CDATA[Zastosowania wymagające dopuszczenia do kontaktu z wodą pitną np.: węże elastyczne]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="ger">
+     <![CDATA[Anwendungen im Trinkwasserbereich; Schlauchanwendungen]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="chi">
+     <![CDATA[饮用水领域的应用；软管应用]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="kor">
+     <![CDATA[음용수 시스템에 적용되는 호스용 소재 어플리케이션]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="eng">
+     <![CDATA[Applications in the drinking water sector; hose applications]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="fre">
+     <![CDATA[Applications dans le secteur de l'eau potable ; applications pour tuyaux flexibles]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="ita">
+     <![CDATA[Estrusione di tubi flessibili per acqua potabile]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="jpn">
+     <![CDATA[飲料水接触分野のアプリケーション、ホース類のアプリケーション]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="spa">
+     <![CDATA[Aplicaciones para sistemas de agua potable; material para mangueras]]>
+    </DESCRIPTION_LONG>
+   </DESCRIPTIONS_LONG>
+   <DOCUMENTS>
+    <DOCUMENT usage="" lang="" type="CRD">
+     <VALUE>O:\MV\MV_PM\Products\Produktdatenbank\RelatedDocuments\DW-Reihen\DW-H\SERIE_20250818111322_WRAS-TF5WHA-TF8WHA.pdf</VALUE>
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">WRAS-TF5WHA-TF8WHA</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">WRAS-TF5WHA-TF8WHA</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">WRAS-TF5WHA-TF8WHA</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">WRAS-TF5WHA-TF8WHA</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">WRAS-TF5WHA-TF8WHA</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">WRAS-TF5WHA-TF8WHA</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">WRAS-TF5WHA-TF8WHA</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">WRAS-TF5WHA-TF8WHA</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">WRAS-TF5WHA-TF8WHA</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+    </DOCUMENT>
+    <DOCUMENT usage="" lang="" type="CRD">
+     <VALUE>O:\MV\MV_PM\Products\Produktdatenbank\RelatedDocuments\DW-Reihen\DW-H\SERIE_20250818111322_ACS_TF5WHA-TF8WHA_2020-2025.pdf</VALUE>
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">ACS_TF5WHA-TF8WHA</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">ACS_TF5WHA-TF8WHA</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">ACS_TF5WHA-TF8WHA</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">ACS_TF5WHA-TF8WHA</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">ACS_TF5WHA-TF8WHA</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">ACS_TF5WHA-TF8WHA</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">ACS_TF5WHA-TF8WHA</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">ACS_TF5WHA-TF8WHA</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">ACS_TF5WHA-TF8WHA</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+    </DOCUMENT>
+   </DOCUMENTS>
+   <CLASSIFICATION>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_001_SERIAL">
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">Serie</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">series</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+     <VALUE>
+      TPE-200000000000510
+      <VALUE_TEXTS>
+       <VALUE_TEXT lang="chi">DW/H</VALUE_TEXT>
+       <VALUE_TEXT lang="kor">DW/H</VALUE_TEXT>
+       <VALUE_TEXT lang="ger">DW/H</VALUE_TEXT>
+       <VALUE_TEXT lang="eng">DW/H</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">DW/H</VALUE_TEXT>
+       <VALUE_TEXT lang="ita">DW/H</VALUE_TEXT>
+       <VALUE_TEXT lang="jpn">DW/H</VALUE_TEXT>
+       <VALUE_TEXT lang="pol">DW/H</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">DW/H</VALUE_TEXT>
+      </VALUE_TEXTS>
+     </VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_002_BRAND">
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">Brand</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+     <VALUE>
+      TPE-200000000000295
+      <VALUE_TEXTS>
+       <VALUE_TEXT lang="chi">热塑宝 K</VALUE_TEXT>
+       <VALUE_TEXT lang="tha">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="kor">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="rum">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="slv">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="hrv">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="may">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ukr">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="est">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ara">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="heb">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="cze">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ger">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="eng">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="gre">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="hun">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ita">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="jpn">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="dan">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="pol">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="chi">热塑宝 K</VALUE_TEXT>
+       <VALUE_TEXT lang="dut">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="nor">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="por">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="slo">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="rus">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="tur">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="fin">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="swe">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="bul">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="lit">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="lav">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ice">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="srp">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ind">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="hin">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="vie">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="mac">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="alb">THERMOLAST® K</VALUE_TEXT>
+      </VALUE_TEXTS>
+     </VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_010_REGION">
+     <VALUE>TPE-300000000007010</VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_4000_001">
+     <VALUE>TPE-300000000004652</VALUE>
+     <VALUE>TPE-300000000005298</VALUE>
+     <VALUE>TPE-300000000004689</VALUE>
+     <VALUE>TPE-300000000004676</VALUE>
+     <VALUE>TPE-300000000004716</VALUE>
+     <VALUE>TPE-300000000004717</VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_4000_002">
+     <VALUE>TPE-300000000004736</VALUE>
+     <VALUE>TPE-300000000004744</VALUE>
+     <VALUE>TPE-300000000005297</VALUE>
+     <VALUE>TPE-300000000005296</VALUE>
+     <VALUE>TPE-300000000005293</VALUE>
+     <VALUE>TPE-300000000004752</VALUE>
+     <VALUE>TPE-300000000004741</VALUE>
+     <VALUE>TPE-300000000004804</VALUE>
+    </ATTRIBUTE>
+   </CLASSIFICATION>
+  </NODE>
+ </NODES>
+</CATALOG>
+                                             

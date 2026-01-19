@@ -1,0 +1,53 @@
+<?php print $this->element('transfer_menu'); ?>
+<div class="ncw-right">
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+            <li class="ncw-main-tab"><a href="#"><?php print T_('Import CSV-File'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+
+                <?php print $this->form->create('ncw-contact-importcsv', array('onsubmit' => 'return false;', 'enctype' => 'multipart/form-data', 'action' => $this->html->url(array('action' => 'uploadCsv')))); ?>
+                
+                <input id="contact_upload" type="file" maxlength="25" value="" name="data[Contact][upload]"/>
+                
+                <h2><?php print T_('Choose your Importprofile'); ?></h2>
+                <?php print $this->form->input("Transfer.profile_id", array('type' => 'select','id' => 'profile_id', 'options' => $this->profiles, 'class' => 'ncw-select', 'label' => false)); ?><br />
+                <?php echo $this->html->link(T_('Edit Profiles'), array('controller' => 'transfer', 'action' => 'all'), array('class' => 'ncw-action')); ?>
+                <br class="ncw-clear" />
+                
+                <h2><?php echo T_('Add to groups'); ?></h2>
+                <?php if (false === empty($this->arr_all_groups)) { ?>
+                <table class="ncw-table">
+                    <thead>
+                        <tr>
+                            <th><?php echo T_('Name'); ?></th>
+                            <th><?php echo T_('Select'); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($this->arr_all_groups as $obj_group) { ?>
+                            <tr>
+                                <td>
+                                    <?php print $this->html->link($obj_group->getNameEncoded(), array('controller' => 'group', 'action' => 'edit', "id" => $obj_group->getId())); ?>
+                                </td>
+                                <td>
+                                    <?php print $this->form->input('Group.' . $obj_group->getId(), array('type' => 'checkbox', 'class' => 'ncw-checkbox', 'label' => FALSE)); ?>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+                <?php } ?>
+                <?php print $this->form->end(); ?>
+            </div>
+        </div>
+    </div>
+    <div class="ncw-status-action-bar">
+        <div class="ncw-status-message"></div>
+        <ul class="ncw-actions">
+        	<li class="ncw-action"><a href="javascript: ncw.contacts.transfer.showImportPreview();"><?php echo T_('Preview'); ?></a></li>
+            <li class="ncw-action"><a href="javascript: $('#ncw-contact-importcsv_form').submit(); " class="ncw_import_icon"><?php echo T_('Import'); ?></a></li>
+        </ul>
+    </div>    
+</div>

@@ -1,0 +1,24 @@
+<ul class="ltr">
+    <li id="ncw-folder-1" rel="root" class="open"> <!-- ncw-tree-root -->
+        <a href="#" class="ncw-tree-leaf">
+           <ins>&nbsp;</ins>
+            <?php print T_('Root'); ?>
+        </a>
+        <?php print $this->tree; ?>
+    </li>
+    <?php
+    $count = 0;
+    foreach ($this->ftp_folder as $folder) {
+    ?>
+    <li rel="ftp" name="<?php print $folder; ?>" class="open ncw-tree-ftp-folder">
+        <a href="#" class="ncw-tree-leaf">
+           <ins>&nbsp;</ins>
+            <?php print T_('Local:') . ' ' . $folder; ?>
+        </a>
+        <?php print $this->ftp_tree[$count]; ?>
+    </li>
+    <?php
+        ++$count;
+    }
+    ?>
+</ul>

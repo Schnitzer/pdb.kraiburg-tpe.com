@@ -1,0 +1,304 @@
+.ncw-contact-container {
+    background: #E9E9E9 none repeat scroll 0 0;
+    margin-bottom: 8px !important;
+    padding: 2px 4px 4px;
+}
+
+.ncw-contacts-relations-parents {
+    top: 40px;
+    text-align: center;
+    width: 100%;
+    height: 44px;
+    position: relative;
+    //background: #ccc;
+	clear: both;
+}
+.ncw-contacts-relations-siblings {
+    top: 140px;
+    text-align: center;
+    width: 100%;
+    height: 44px;
+    position: relative;
+    //background: #ccc;
+	clear: both;
+}
+.ncw-contacts-relations-childs {
+    top: 240px;
+	text-align: center;
+    width: 100%;
+    height: 44px;
+	position: relative;
+	//background: #ccc;
+	clear: both;
+}
+
+.ncw-contacts-relations-contact {
+	position: absolute;
+	left: 50%;
+    background: #fff;
+    width: 160px;
+	height: 25px;
+	border: 1px solid #d3d3d3;
+	font-size: 13px;
+	text-align: left;
+	height: 102px;
+}
+.ncw-contacts-relations-contact-active {
+        color: #4a81ca !important;
+    }
+
+	.ncw-contacts-relations-contact-options {
+		float: left;
+		padding: 2px 0 0 1px;
+		width: 20px;
+		overflow: hidden;
+	}
+    .ncw-contacts-relations-contact-name {
+    	margin-left: 5px;
+        float: left;
+        padding: 2px 0 0 0;
+		width: 130px;
+		overflow: hidden;
+		font-size: 11px;
+    }
+	
+.ncw-contacts-relations-contact-controls-left {
+    display: none;
+	position: absolute;
+	left: 10px;
+	font-size: 18px;
+}
+.ncw-contacts-relations-contact-controls-right {
+    display: none;
+    position: absolute;
+    right: 10px;
+	font-size: 18px;
+}
+
+
+/*
+ *
+ */
+#ncw-contact-left {
+    float: left;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    width: 70%;
+}
+ 
+    #ncw-contact-left .col {
+        border: medium none;
+        margin-right: 8px;    
+        padding-right: 60px;
+    }
+ 
+        #ncw-contact-left textarea {
+            width: 100%;
+            height: 60px;
+        }  
+ 
+        #ncw-contact-left .ncw-files-file {
+            clear: both;
+            height: 20px;
+        }
+ 
+        #ncw-contact-left .ncw-files-file:hover .ncw-files-file-remove {
+            display: inline;
+        } 
+        
+        #ncw-contact-left .ncw-files-file .ncw-files-file-remove {
+            display: none;
+        }
+ 
+        #ncw-contact-left .note {
+            -moz-border-radius: 10px 10px 10px 10px;
+            border: 2px solid #E7E7E7;
+            padding: 10px 0 0 15px;
+            position: relative;
+        } 
+        
+        #ncw-contact-left .edit-note {
+            height: 130px;
+            background: #F5F5F5;
+            padding: 5px 5px 0 5px;
+        } 
+        
+            #ncw-contact-left .edit-note textarea {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                width: 95%;
+            }        
+        
+            #ncw-contact-left .note:hover .icons {
+                display: block;
+            }
+        
+            #ncw-contact-left .note .icons {
+                display: none;
+                position: absolute;
+                right: 4px;
+                top: 4px;
+            }            
+        
+            #ncw-contact-left .note .body {
+                padding-right: 15px;
+                font-size: 12px;
+                line-height: 18px;
+                padding: 0 0 1px;
+            }        
+            
+                #ncw-contact-left .note .body p {
+                    font-size: 13px;
+                    margin: 12px 0;
+                }            
+ 
+#ncw-contact-right {
+    float: left;
+    margin: 0 0 0;
+    padding: 0;
+    text-align: left;
+    width: 30%;
+}
+
+#ncw-contact-preview-person table tr td {
+    vertical-align: top;    
+    font-size: 13px;
+    line-height: 18px;
+    padding: 2px 0 0 10px;    
+}
+
+#ncw-contact-preview-person table tr td.icon {
+    padding: 0;   
+}
+
+    #ncw-contact-preview-person table tr td h1 {
+        color: #000000;
+        font-size: 22px;
+        letter-spacing: -1px;
+        line-height: 1.1em;
+        margin: 0 0 7px;
+        padding: 0;
+    }
+
+#ncw-contact-preview-data .module {
+    background: none repeat scroll 0 0 #F5F5F5;
+    border-bottom: 1px solid #BBBBBB;
+    border-right: 1px solid #CCCCCC;
+    clear: left;
+    margin-bottom: 8px;
+    overflow: hidden;
+}
+
+    #ncw-contact-preview-data .inner {
+        padding: 5px 8px 10px 10px;   
+    }
+    
+       #ncw-contact-preview-data .inner h4 {
+            background: none repeat scroll 0 0 transparent;
+            border: medium none;
+            color: #333333;
+            font-size: 12px;
+            font-weight: bold;
+            margin: 0;
+            padding: 0 0 8px;    
+        }
+        
+        #ncw-contact-preview-data .inner table {
+            margin-bottom: 7px;
+            border-collapse: collapse;        
+        }
+
+            #ncw-contact-preview-data .inner table th {
+                font-weight: normal;
+                padding:2px 0 0;
+                text-align: right;
+                vertical-align: top;
+                white-space: nowrap;
+                width: 45px;
+            }
+            
+            #ncw-contact-preview-data .inner table td {
+                font-size: 12px;
+                font-weight: normal;
+                letter-spacing: normal;
+                line-height: 140%;
+                padding: 0 0 3px 6px;
+            }    
+            
+                #ncw-contact-preview-data .inner table td span {
+                    color: #888888;
+                    font-size: 10px;
+                }
+                
+                    
+        #ncw-contact-preview-data .inner .dates p {
+            margin: 0 0 3px !important;
+            padding: 0 !important;
+            font-size: 12px !important;
+            line-height: 1.4em !important;            
+        }
+		.ncw-contacts-preview-bank-label {
+			vertical-align: top !important;
+		}
+                
+/*
+ * contact stuff
+ */
+.ncw-container-contact-stuff {
+    padding: 1px;   
+}
+
+.ncw-container-contact-stuff input {
+    width: 300px;   
+}
+
+.ncw-container-contact-stuff input.street {
+    width: 450px;   
+}
+
+.ncw-container-contact-stuff input.city {
+    width: 200px;   
+}
+
+.ncw-container-contact-stuff input.state {
+    width: 150px;   
+}
+
+.ncw-container-contact-stuff input.postcode {
+    width: 83px;   
+}
+
+#ncw-notes .note {
+    width: 500px;
+    height: 100px;   
+}
+
+.ncw-contact-stuff-remove {
+    cursor: pointer;
+    height: 16px;
+    line-height: 16px;
+    vertical-align: middle;
+    width: 16px;
+    display: inline-block;
+    position: relative;    
+}
+
+.ncw_import_icon {
+	background: url("../../themes/default/web/images/icons/16px/drive_go.png") no-repeat scroll 9px center #EEEEEE !important
+}
+
+.ncw_text_button_building_add {
+	background:url(../../themes/default/web/images/icons/16px/building_add.png) no-repeat 0 center transparent!important; 
+	padding:0 0 0 20px !important;
+}
+
+.ncw_text_button_person_add {
+	background:url(../../themes/default/web/images/icons/16px/user_add.png) no-repeat 0 center transparent!important; 
+	padding:0 0 0 20px !important;
+}
+
+.ncw_text_button_group_add {
+	background:url(../../themes/default/web/images/icons/16px/group_add.png) no-repeat 0 center transparent!important; 
+	padding:0 0 0 20px !important;
+}

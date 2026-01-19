@@ -1,0 +1,30 @@
+{
+    "paging" : <?php print json_encode($this->paginator->params()); ?>,
+    "search_result": [
+    <?php
+    $items = array();
+    foreach ($this->sites as $site) {
+        	
+		/*	
+        $site_url = $this->base . '/assets/files/uploads/' . $this->text->cleanForUrl($site->getName()) . '_' . $site->getId() . '.' . $site->getType();
+        if (true === in_array($site->getType() , $this->arr_thumbs_formats)) {
+            $preview = $this->base . '/assets/files/thumbnails/' . $this->text->cleanForUrl($site->getName()) . '_' . $site->getId() . '_96.' . $site->getType();
+        } else if (true === in_array($site->getType() , $this->arr_html_formats)) {
+            $preview = $this->base . '/' . $this->theme_path . '/web/images/icons/16px/html.png';
+        } else if (true === in_array($site->getType() , $this->arr_formats)) {
+            $preview = $this->base . '/' . $this->theme_path . '/web/images/icons/64px/' . $site->getType() . '.png';
+        } else {
+            $preview = $this->base . '/' . $this->theme_path . '/web/images/icons/64px/default.png';
+        }
+		*/
+
+        $items[] = '{
+            "id" : ' . $site['id'] . ',
+            "name" : "' . $site['name'] . '",
+            "url" : "' . $site['url'] . '"
+        }';
+    }
+    print implode(',', $items);
+    ?>
+    ]
+}

@@ -1,0 +1,34 @@
+<div class="ncw-left">
+    <div class="ncw-accordion">
+        <h3 class="ncw-accordion-header current"><?php print T_('Language Management'); ?></h3>
+        <div class="ncw-accordion-content ncw-accordion-current">
+            <p class="ncw-accordion-content-part-dark">
+                <?php print $this->html->link(T_('New language'), array('action' => 'new')); ?>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="ncw-right">
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+        	<li class="ncw-option-tab"><?php print $this->html->link(T_('Back'), array('action' => 'all')); ?></li>
+            <li class="ncw-main-tab"><a href="#"><?php print T_('Edit language'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <?php print $this->form->create('ncw-language', array('onsubmit' => 'return false;')); ?>
+                <?php print $this->form->input("id", array('type' => 'hidden', 'value' => $this->language_id)); ?>
+                <?php print $this->form->input("name", array('maxlength' => 100, 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Name')))); ?>
+                <?php print $this->form->input("shortcut", array('maxlength' => 5, 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Shortcut')))); ?>
+                <?php print $this->form->end(); ?>
+            </div>
+        </div>
+    </div>
+    <div class="ncw-status-action-bar">
+        <div class="ncw-status-message"></div>
+        <ul class="ncw-actions">
+            <li class="ncw-action"><a href="#" rel="core/language" class="ncw-delete-trigger-ajax ncw_delete_icon">Delete</a></li>
+            <li class="ncw-action"><a href="#" rel="core/language" class="ncw-save-trigger-ajax ncw_save_icon">Save</a></li>
+        </ul>
+    </div>
+</div>

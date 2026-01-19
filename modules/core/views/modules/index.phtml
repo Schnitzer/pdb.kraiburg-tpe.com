@@ -1,0 +1,81 @@
+<div class="ncw-left">
+    <div class="ncw-accordion">
+        <h3 class="ncw-accordion-header current"><?php print T_('Module Management'); ?></h3>
+        <div class="ncw-accordion-content ncw-accordion-current">               
+            <p class="ncw-accordion-content-part-dark">
+                <a href="<?php print $this->html->url(array('action' => 'index')); ?>" class="ncw_text_button_overview"><?php print T_('Installed modules'); ?></a>
+            </p>
+            <p class="ncw-accordion-content-part-dark">
+                <a href="<?php print $this->html->url(array('action' => 'showUninstalledModules')); ?>" class="ncw_text_button_add"><?php print T_('Install Module'); ?></a>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="ncw-right">
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+            <li class="ncw-main-tab"><a href="#"><?php print T_('Installed Modules'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">    
+            <?php if (true === is_array($this->modules) && count($this->modules) > 0) { ?>
+            <table class="ncw-table">
+            <thead>
+                <tr>
+                <th><?php print T_('Id'); ?></th>
+                <th><?php print T_('Name'); ?></th>
+                <th><?php print T_('Version'); ?></th>
+                <th><?php print T_('Active'); ?></th>
+                <th><?php print T_('Update'); ?></th>
+                <th><?php print T_('Deinstall'); ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($this->modules as $module_name => $module_values) { ?>
+                <?php if ($module_name == 'core') {
+                    //continue;
+                }
+                ?>
+                <tr>
+                    <td><?php print $module_values['folder_name']; ?></td>
+                    <td><?php print $module_values['name']; ?></td>
+                    <td class="ncw-table-td-icons"><?php print $module_values['version']; ?></td>
+                    <td>
+                        <?php
+                        if ($module_name != 'core') {
+                            if (true == $module_values['active']) { 
+                                $checked = 'checked="checked"';
+                            } else {
+                                $checked = '';
+                            } 
+                            ?>
+                            <input type="checkbox" value="1" class="ncw-module-active" <?php print $checked; ?> data="<?php print $module_values['id']; ?>">
+                        <?php } ?>
+                    </td>
+                        <td class="ncw-table-td-icons">
+                        <a href="javascript: ncw.core.modules.update('<?php print $module_values['id']; ?>');">
+                            <?php print T_('Update'); ?>
+                        </a>
+                    </td>
+                    <td class="ncw-table-td-icons">
+                        <?php if ($module_name != 'core') { ?>
+                            <?php if (false === isset($this->module_requirements[$module_name])) { ?>
+                            <a href="javascript: ncw.core.modules.deinstall('<?php print $this->html->url(array("controller" => "install", "action" => "deinstallModule", 'id' => $module_values['id'])); ?>');">
+                                <?php print $this->html->image("icons/16px/delete.png", false, array('alt' => T_('Install module'), 'title' => T_('Install module'))); ?>
+                            </a>
+                            <?php } else { ?>
+                                <?php print T_('Required by') . ': ' . implode(', ', $this->module_requirements[$module_name]); ?>
+                            <?php } ?>
+                        <?php } ?>
+                    </td>
+                </tr>
+                <?php } ?>
+            </tbody>
+            </table>
+        <?php } else { ?>
+            <?php print T_('No modules are installed'); ?>
+        <?php } ?>
+        </div>
+    </div>
+    </div>
+</div>

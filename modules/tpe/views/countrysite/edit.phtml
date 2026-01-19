@@ -1,0 +1,39 @@
+<div class="ncw-left">
+    <div class="ncw-accordion">
+        <h3 class="ncw-accordion-header current">Options</h3>
+        <div class="ncw-accordion-content ncw-accordion-current">
+            <p class="ncw-accordion-content-part-dark">
+                <?php print $this->html->link(T_('Back'), array('controller' => 'region', 'action' => 'edit', 'id' => $this->region_id)); ?>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="ncw-right">
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+            <li class="ncw-main-tab"><a href="#">edit country <?php print $this->country_name; ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <?php print $this->form->create(); ?>
+                <?php if (count($this->arr_options) > 0) {?>
+                    <div class="ncw-input-container">
+                        <label for="countrysite_site_id" class="ncw-label"><?php echo T_('Site');?></label>
+                        <select id="countrysite_site_id" class="ncw-select" name="data[Countrysite][site_id]">
+                            <?php foreach ($this->arr_options as $option) { ?>
+                                <option <?php if ($option->getId() == $this->countrysite_siteId) {echo 'selected'; } ?> value="<?php print $option->getId(); ?>"  ><?php echo $option->getName(); ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                <?php } ?>
+                <?php print $this->form->end(); ?>
+            </div>
+        </div>
+    </div>
+    <div class="ncw-status-action-bar">
+        <div class="ncw-status-message"></div>
+        <ul class="ncw-actions">
+            <li class="ncw-action"><a href="#" class="ncw-save-trigger ncw_save_icon">Save</a></li>
+        </ul>
+    </div>
+</div>

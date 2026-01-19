@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CATALOG>
+ <HEAD>
+  <ID>PORTFOLIO</ID>
+  <DESCRIPTIONS_SHORT>
+   <DESCRIPTION_SHORT lang="chi">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="kor">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ger">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="eng">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="fre">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ita">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="jpn">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="pol">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="spa">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+  </DESCRIPTIONS_SHORT>
+ </HEAD>
+ <NODES>
+  <NODE ID="0000000001-0000000128" type="SERIE" internal_id="0000000128">
+   <DRAWING_NUMBER/>
+   <VALID_FROM>00000000</VALID_FROM>
+   <VALID_TO>00000000</VALID_TO>
+   <DESCRIPTIONS_SHORT>
+    <DESCRIPTION_SHORT lang="chi">
+     <![CDATA[DW/CS2]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="kor">
+     <![CDATA[DW/CS2]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="ger">
+     <![CDATA[DW/CS2]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="eng">
+     <![CDATA[DW/CS2]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="fre">
+     <![CDATA[DW/CS2]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="ita">
+     <![CDATA[DW/CS2]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="jpn">
+     <![CDATA[DW/CS2]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="pol">
+     <![CDATA[DW/CS2]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="spa">
+     <![CDATA[DW/CS2]]>
+    </DESCRIPTION_SHORT>
+   </DESCRIPTIONS_SHORT>
+   <DESCRIPTIONS_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="ger">
+     <![CDATA[Die DW/CS2-Reihe ist Ihre Materiallösung für Anwendungen mit Trinkwasserkontakt wie Dichtungen, Strahlbildner, Fitting-, Membran- und Design-Anwendungen. Die Compounds erfüllen die Anforderungen der wichtigsten europäischen Trinkwassernormen und sind nach KTW-BWGL für Kalt-, Warm- und Heißwasser für P1- und P2-Anwendungen zertifiziert. Die Compounds sind transluzent und auf Anfrage in vielen anderen Farben erhältlich.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="eng">
+     <![CDATA[The DW/CS2 series is your material solution in contact with drinking water for gasket, shower head jet former, fitting, membrane and design applications. The compounds meet the requirements of the most important European drinking water standards and are certified for P1 and P2 applications acc. to KTW-BWGL for cold, warm and hot water. They are translucent and are available in many different colors on request.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="fre">
+     <![CDATA[La série DW/CS2 est votre solution matière en contact avec l’eau potable pour les applications de joints, de pommeaux de douche, de raccords, de membranes et de design. Les compounds répondent aux exigences des normes européennes les plus importantes en matière d’eau potable et sont certifiés pour les applications P1 et P2 selon KTW-BWGL pour l’eau froide, tiède et chaude. Ils sont translucides et sont disponibles dans de nombreuses couleurs sur demande.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="spa">
+     <![CDATA[La serie DW/CS2 es la solución para aplicaciones de juntas en contacto con agua potable, formadores de chorros de duchas, grifería y membranas. Los compuestos cumplen los requisitos de las normas europeas más importantes sobre agua potable y están certificados para aplicaciones P1 y P2 según KTW-BWGL para agua fría, templada y caliente. Son translúcidos y están disponibles en muchos colores diferentes, bajo pedido.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="pol">
+     <![CDATA[<P>Seria DW/CS2 to rozwiązanie materiałowe do różnorodnych detali mających kontakt z wodą pitną, takich jak uszczelki, złącza, membrany czy dysze natryskowe. Tworzywa te spełniają wymagania najważniejszych europejskich norm dotyczących wody pitnej i są certyfikowane do zastosowań P1 i P2 zgodnie z KTW-BWGL dla zimnej, ciepłej i gorącej wody. Materiały są prześwitujące i mogą być barwione w masie na dowolne kolory.</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="chi">
+     <![CDATA[DW/CS2 系列适用于各种与饮用水接触的密封垫、淋浴头射流器、配件、膜和设计应用，是绝佳的材料解决方案。这些化合物符合欧洲饮用水标准要求，并获得了针对冷、温和热水的 P1 和 P2 应用的 KTW-BWGL 认证。该化合物呈半透明色，并可根据要求提供多种不同的颜色。]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="jpn">
+     <![CDATA[<P>DW/CS2シリーズは、ガスケット、シャワーヘッドジェットフォーマー、フィッティング、メンブレン、デザイン用途の飲料水と接触する用途のための、あなたの材料ソリューションです。このコンパウンドは、最も重要な欧州飲料水規格の要求事項を満たし、冷水、温水、温水用のKTW-BWGLに準拠したP1およびP2用途に認定されています。これらは半透明色で、ご要望により様々な色調への着色が可能です。</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="kor">
+     <![CDATA[<P>DW/CS2 시리즈는 개스킷, 샤워 헤드 제트 포머, 피팅, 멤브레인 및 설계 어플리케이션을 위해 음용수와 접촉하는 소재 솔루션입니다. 이 제품은 가장 중요한 유럽 음용수 표준의 요구 사항을 충족하며 냉수, 온수 및 온수에 대한 KTW-BWGL에 따라 P1 및 P2 어플리케이션에 대한 인증을 받았습니다. 반투명으로 제공하며 요청 시 다양한 색상으로 제공됩니다.</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="ita">
+     <![CDATA[La serie DW/CS2 è la soluzione per realizzare componenti funzionali a contatto con l'acqua potabile come  guarnizioni, getti per soffioni doccia, raccordi, membrane e applicazioni di design. I compound soddisfano i requisiti dei più importanti standard europei sull'acqua potabile e sono certificati per applicazioni P1 e P2 secondo KTW-BWGL per acqua fredda, calda e calda. Sono traslucidi e sono disponibili in molti colori diversi su richiesta]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="ger">
+     <![CDATA[Anwendungen im Trinkwasserbereich; Dichtungen und Funktionselemente; Kalt-, Warm- und Heißwasser]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="eng">
+     <![CDATA[Applications in the drinking water sector; gaskets and functional elements; for cold, warm and hot water]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="spa">
+     <![CDATA[Aplicaciones en el sector del agua potable; juntas y elementos funcionales; para agua fría, templada y caliente]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="fre">
+     <![CDATA[Applications dans le secteur de l’eau potable; joints et éléments fonctionnels; pour l’eau froide, tiède et chaude]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="pol">
+     <![CDATA[<P>Zastosowania wymagające kontaktu z wodą pitną, uszczelki i elementy funkcjonalne, do zimnej, ciepłej i gorącej wody.</P><P></P>]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="chi">
+     <![CDATA[饮用水领域的各种应用；密封垫和功能元件；适用于冷、温和热水]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="jpn">
+     <![CDATA[飲料水分野での用途；ガスケットおよび機能部品；冷水、温水、熱水用]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="kor">
+     <![CDATA[음용수 부문의 어플리케이션; 개스킷 및 기능 부품; 냉수, 온수 및 뜨거운 물용]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="ita">
+     <![CDATA[Applicazioni nel settore dell'acqua potabile; guarnizioni ed elementi funzionali; per acqua fredda, calda e molto calda]]>
+    </DESCRIPTION_LONG>
+   </DESCRIPTIONS_LONG>
+   <DOCUMENTS>
+    <DOCUMENT usage="" lang="" type="CRD">
+     <VALUE>C:\Users\kos1407\OneDrive-KRAIBURGTPEGmbH&amp;Co.KG\KTD-ProduktmanagementEMEA\04_SalesSupport\01_Produktdatenbank\05_Additionaldocuments\RelatedDocuments\DW-Reihen\DW-CS2\SERIE_20250708114349_KIWA-23-DW-10386-2.pdf</VALUE>
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">KIWA-23-DW-10386-2</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">KIWA-23-DW-10386-2</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">KIWA-23-DW-10386-2</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">KIWA-23-DW-10386-2</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">KIWA-23-DW-10386-2</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">KIWA-23-DW-10386-2</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">KIWA-23-DW-10386-2</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">KIWA-23-DW-10386-2</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">KIWA-23-DW-10386-2</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+    </DOCUMENT>
+   </DOCUMENTS>
+   <CLASSIFICATION>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_001_SERIAL">
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">Serie</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">series</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+     <VALUE>
+      TPE-300000000006924
+      <VALUE_TEXTS>
+       <VALUE_TEXT lang="chi">DW/CS2</VALUE_TEXT>
+       <VALUE_TEXT lang="kor">DW/CS2</VALUE_TEXT>
+       <VALUE_TEXT lang="ger">DW/CS2</VALUE_TEXT>
+       <VALUE_TEXT lang="eng">DW/CS2</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">DW/CS2</VALUE_TEXT>
+       <VALUE_TEXT lang="ita">DW/CS2</VALUE_TEXT>
+       <VALUE_TEXT lang="jpn">DW/CS2</VALUE_TEXT>
+       <VALUE_TEXT lang="pol">DW/CS2</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">DW/CS2</VALUE_TEXT>
+      </VALUE_TEXTS>
+     </VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_002_BRAND">
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">Brand</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+     <VALUE>
+      TPE-300000000006551
+      <VALUE_TEXTS>
+       <VALUE_TEXT lang="chi">热塑宝 DW</VALUE_TEXT>
+       <VALUE_TEXT lang="tha">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="kor">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="rum">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="slv">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="hrv">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="may">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="ukr">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="est">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="ara">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="heb">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="cze">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="ger">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="eng">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="gre">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="hun">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="ita">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="jpn">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="dan">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="pol">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="chi">热塑宝 DW</VALUE_TEXT>
+       <VALUE_TEXT lang="dut">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="nor">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="por">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="slo">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="rus">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="tur">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="fin">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="swe">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="bul">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="lit">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="lav">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="ice">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="srp">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="ind">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="hin">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="vie">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="mac">THERMOLAST® DW</VALUE_TEXT>
+       <VALUE_TEXT lang="alb">THERMOLAST® DW</VALUE_TEXT>
+      </VALUE_TEXTS>
+     </VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_010_REGION">
+     <VALUE>TPE-300000000007010</VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_4000_001">
+     <VALUE>TPE-300000000004690</VALUE>
+     <VALUE>TPE-300000000004691</VALUE>
+     <VALUE>TPE-300000000006923</VALUE>
+     <VALUE>TPE-300000000005298</VALUE>
+     <VALUE>TPE-300000000004676</VALUE>
+     <VALUE>TPE-300000000004689</VALUE>
+     <VALUE>TPE-300000000005546</VALUE>
+     <VALUE>TPE-300000000005524</VALUE>
+     <VALUE>TPE-300000000005522</VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_4000_002">
+     <VALUE>TPE-300000000006399</VALUE>
+     <VALUE>TPE-300000000005296</VALUE>
+     <VALUE>TPE-300000000004750</VALUE>
+     <VALUE>TPE-300000000004737</VALUE>
+     <VALUE>TPE-300000000004760</VALUE>
+     <VALUE>TPE-300000000005633</VALUE>
+     <VALUE>TPE-300000000006406</VALUE>
+     <VALUE>TPE-300000000004744</VALUE>
+     <VALUE>TPE-300000000004743</VALUE>
+     <VALUE>TPE-300000000004757</VALUE>
+     <VALUE>TPE-300000000004768</VALUE>
+    </ATTRIBUTE>
+   </CLASSIFICATION>
+  </NODE>
+ </NODES>
+</CATALOG>
+                                                                                                              

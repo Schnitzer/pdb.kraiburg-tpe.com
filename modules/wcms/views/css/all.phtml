@@ -1,0 +1,34 @@
+<div class="ncw-right">
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+            <li class="ncw-main-tab"><a href="#"><?php echo T_('CSS Files');?></a></li>
+            <li class="ncw-option-tab"><?php print $this->html->link(T_('New CSS'), array('action' => 'new')); ?></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <table class="ncw-table">
+                    <thead>
+                        <tr>
+                            <th><?php echo T_('Name'); ?></th>
+                            <th><?php echo T_('Filename'); ?></th>
+                            <th><?php echo T_('Options'); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (true === is_array($this->all_css)) { ?>
+                            <?php foreach ($this->all_css as $obj_css) { ?>
+                                <tr>
+                                    <td><?php print $this->html->link($obj_css->getNameEncoded(), array("action" => "edit", "id" => $obj_css->getId())); ?></td>
+                                    <td><?php print $this->html->link($obj_css->getFilenameEncoded(), array("action" => "edit", "id" => $obj_css->getId())); ?></td>
+                                    <td class="ncw-table-td-icons">
+                                        <?php print $this->html->link($this->html->image("icons/16px/pencil.png", false, array('alt' => T_('edit'), 'title' => T_('edit'))), array("action" => "edit", "id" => $obj_css->getId()), null, false, false); ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

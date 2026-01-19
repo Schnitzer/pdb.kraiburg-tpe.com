@@ -1,0 +1,842 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-08-03 10:03+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ModuleController.php:38
+msgid "Applications"
+msgstr ""
+
+#: ModuleController.php:39 controllers/ContactController.php:691
+#: controllers/ContactController.php:700
+#: controllers/ContactController.php:1006
+#: controllers/ContactController.php:1015
+#: controllers/ContactController.php:1020
+#: controllers/ContactController.php:1025
+#: controllers/ContactController.php:1038
+#: controllers/ContactController.php:1084
+#: controllers/ContactController.php:1586
+#: controllers/ContactController.php:1596
+#: controllers/ContactController.php:1602
+#: controllers/ContactController.php:1608
+#: controllers/ContactController.php:1621
+#: controllers/ContactController.php:1629
+msgid "Other"
+msgstr ""
+
+#: ModuleController.php:40
+msgid "Logout"
+msgstr ""
+
+#: ModuleController.php:41
+msgid "Profile"
+msgstr ""
+
+#: ModuleController.php:43
+msgid "Alert"
+msgstr ""
+
+#: ModuleController.php:44
+msgid "Choose your options!"
+msgstr ""
+
+#: ModuleController.php:45
+msgid "Confirm"
+msgstr ""
+
+#: ModuleController.php:46
+msgid "Make a decision!"
+msgstr ""
+
+#: ModuleController.php:47
+msgid "Do you really want to delete this object?"
+msgstr ""
+
+#: ModuleController.php:48
+msgid "Saved"
+msgstr ""
+
+#: ModuleController.php:49
+msgid "Your data has been saved successfully."
+msgstr ""
+
+#: ModuleController.php:50
+msgid "Error"
+msgstr ""
+
+#: ModuleController.php:51
+msgid "An error has occurred!"
+msgstr ""
+
+#: ModuleController.php:52
+msgid "Notify"
+msgstr ""
+
+#: ModuleController.php:53
+msgid "Be aware that..."
+msgstr ""
+
+#: ModuleController.php:54
+msgid "Custom"
+msgstr ""
+
+#: ModuleController.php:55
+msgid "Saving..."
+msgstr ""
+
+#: ModuleController.php:56
+msgid "Deleting..."
+msgstr ""
+
+#: ModuleController.php:57
+msgid "The item has been deleted successfully"
+msgstr ""
+
+#: ModuleController.php:86 views/group/all.phtml:3
+#: views/elements/transfer_menu.phtml:3
+msgid "Contacts"
+msgstr ""
+
+#: ModuleController.php:87 views/contact/index.phtml:3
+#: views/group/tree.phtml:4
+msgid "Overview"
+msgstr ""
+
+#: ModuleController.php:92
+msgid "Import/Export"
+msgstr ""
+
+#: controllers/GroupController.php:236
+msgid "First level"
+msgstr ""
+
+#: controllers/TransferController.php:472 views/contact/all.phtml:6
+msgid "All contacts"
+msgstr ""
+
+#: controllers/ContactController.php:689 controllers/ContactController.php:694
+#: controllers/ContactController.php:1004
+#: controllers/ContactController.php:1009
+#: controllers/ContactController.php:1018
+#: controllers/ContactController.php:1584
+#: controllers/ContactController.php:1590
+#: controllers/ContactController.php:1606
+msgid "Work"
+msgstr ""
+
+#: controllers/ContactController.php:690 controllers/ContactController.php:698
+#: controllers/ContactController.php:1005
+#: controllers/ContactController.php:1013
+#: controllers/ContactController.php:1585
+#: controllers/ContactController.php:1594
+msgid "Home"
+msgstr ""
+
+#: controllers/ContactController.php:695
+#: controllers/ContactController.php:1010
+#: controllers/ContactController.php:1591 views/transfer/edit.phtml:30
+#: views/transfer/previewCsv.phtml:75
+msgid "Mobile"
+msgstr ""
+
+#: controllers/ContactController.php:696
+#: controllers/ContactController.php:1011
+#: controllers/ContactController.php:1592
+msgid "Fax"
+msgstr ""
+
+#: controllers/ContactController.php:697
+#: controllers/ContactController.php:1012
+#: controllers/ContactController.php:1593
+msgid "Pager"
+msgstr ""
+
+#: controllers/ContactController.php:699
+#: controllers/ContactController.php:1014
+#: controllers/ContactController.php:1033
+#: controllers/ContactController.php:1595
+#: controllers/ContactController.php:1616
+msgid "Skype"
+msgstr ""
+
+#: controllers/ContactController.php:729 views/contact/new.phtml:28
+#: views/contact/editContact.phtml:39 views/transfer/edit.phtml:18
+#: views/transfer/previewCsv.phtml:31
+msgid "Title"
+msgstr ""
+
+#: controllers/ContactController.php:735
+#: views/contact/js/searchDialog.phtml:132 views/contact/new.phtml:29
+#: views/transfer/edit.phtml:21 views/transfer/previewCsv.phtml:35
+msgid "Firstname"
+msgstr ""
+
+#: controllers/ContactController.php:741 views/contact/new.phtml:30
+#: views/transfer/edit.phtml:22 views/transfer/previewCsv.phtml:39
+msgid "Lastname"
+msgstr ""
+
+#: controllers/ContactController.php:1019
+#: controllers/ContactController.php:1607
+msgid "Personal"
+msgstr ""
+
+#: controllers/ContactController.php:1023
+#: controllers/ContactController.php:1600
+msgid "Business"
+msgstr ""
+
+#: controllers/ContactController.php:1024
+#: controllers/ContactController.php:1601
+msgid "Private"
+msgstr ""
+
+#: controllers/ContactController.php:1028
+#: controllers/ContactController.php:1611
+msgid "AIM"
+msgstr ""
+
+#: controllers/ContactController.php:1029
+#: controllers/ContactController.php:1612
+msgid "MSN"
+msgstr ""
+
+#: controllers/ContactController.php:1030
+#: controllers/ContactController.php:1613
+msgid "ICQ"
+msgstr ""
+
+#: controllers/ContactController.php:1031
+#: controllers/ContactController.php:1614
+msgid "Habber"
+msgstr ""
+
+#: controllers/ContactController.php:1032
+#: controllers/ContactController.php:1615
+msgid "Yahoo"
+msgstr ""
+
+#: controllers/ContactController.php:1034
+#: controllers/ContactController.php:1617
+msgid "QQ"
+msgstr ""
+
+#: controllers/ContactController.php:1035
+#: controllers/ContactController.php:1618
+msgid "Sametime"
+msgstr ""
+
+#: controllers/ContactController.php:1036
+#: controllers/ContactController.php:1619
+msgid "Gadu-Gadu"
+msgstr ""
+
+#: controllers/ContactController.php:1037
+#: controllers/ContactController.php:1620
+msgid "Google Talk"
+msgstr ""
+
+#: controllers/ContactController.php:1079
+#: controllers/ContactController.php:1624
+msgid "Birthday"
+msgstr ""
+
+#: controllers/ContactController.php:1080
+#: controllers/ContactController.php:1625
+msgid "Anniversary"
+msgstr ""
+
+#: controllers/ContactController.php:1081
+#: controllers/ContactController.php:1626
+msgid "First met"
+msgstr ""
+
+#: controllers/ContactController.php:1082
+#: controllers/ContactController.php:1627
+msgid "Hired"
+msgstr ""
+
+#: controllers/ContactController.php:1083
+#: controllers/ContactController.php:1628
+msgid "Fired"
+msgstr ""
+
+#: views/contact/editDates.phtml:17 views/contact/editInfo.phtml:17
+#: views/contact/new.phtml:3 views/contact/editContact.phtml:17
+#: views/contact/editGroups.phtml:17 views/group/new.phtml:3
+#: views/transfer/edit.phtml:5 views/transfer/new.phtml:5
+#: views/transfer/all.phtml:5
+msgid "Back"
+msgstr ""
+
+#: views/contact/editDates.phtml:18 views/contact/editInfo.phtml:18
+msgid "Edit dates of "
+msgstr ""
+
+#: views/contact/editDates.phtml:27
+msgid "Add new date"
+msgstr ""
+
+#: views/contact/editDates.phtml:30
+msgid "New date"
+msgstr ""
+
+#: views/contact/editDates.phtml:33 views/contact/showContact.phtml:114
+#: views/contact/editGroups.phtml:29
+msgid "Add"
+msgstr ""
+
+#: views/contact/editDates.phtml:36
+msgid "Dates"
+msgstr ""
+
+#: views/contact/editDates.phtml:40 views/contact/editDates.phtml:41
+msgid "Date"
+msgstr ""
+
+#: views/contact/editDates.phtml:43 views/contact/editContact.phtml:201
+#: views/contact/showContact.phtml:97 views/contact/showContact.phtml:128
+#: views/contact/editGroups.phtml:48 views/group/edit.phtml:25
+msgid "Delete"
+msgstr ""
+
+#: views/contact/editDates.phtml:57 views/contact/editInfo.phtml:36
+#: views/contact/new.phtml:167 views/contact/editContact.phtml:203
+#: views/group/edit.phtml:27 views/group/new.phtml:23
+#: views/transfer/edit.phtml:40
+msgid "Save"
+msgstr ""
+
+#: views/contact/editInfo.phtml:27 views/contact/showContact.phtml:294
+msgid "Background info"
+msgstr ""
+
+#: views/contact/index.phtml:14 views/group/all.phtml:30
+msgid "Favorites"
+msgstr ""
+
+#: views/contact/index.phtml:19 views/group/all.phtml:32
+msgid "Recently viewed"
+msgstr ""
+
+#: views/contact/index.phtml:24 views/group/all.phtml:34
+msgid "Recently added"
+msgstr ""
+
+#: views/contact/js/searchDialog.phtml:18
+msgid "Contact search"
+msgstr ""
+
+#: views/contact/js/searchDialog.phtml:26 views/group/all.phtml:7
+#: views/group/all.phtml:8 views/group/all.phtml:12
+msgid "Search"
+msgstr ""
+
+#: views/contact/js/searchDialog.phtml:31
+msgid "Cancel"
+msgstr ""
+
+#: views/contact/js/searchDialog.phtml:72
+msgid "Find someone by typing their name"
+msgstr ""
+
+#: views/contact/js/searchDialog.phtml:78
+msgid "Detail search"
+msgstr ""
+
+#: views/contact/js/searchDialog.phtml:93
+msgid "Add option"
+msgstr ""
+
+#: views/contact/js/searchDialog.phtml:96
+msgid "Reset"
+msgstr ""
+
+#: views/contact/js/searchDialog.phtml:99
+msgid "Normal search"
+msgstr ""
+
+#: views/contact/js/searchDialog.phtml:108
+#: views/contact/js/searchDialog.phtml:109
+msgid "Group"
+msgstr ""
+
+#: views/contact/js/searchDialog.phtml:110
+msgid "Show all"
+msgstr ""
+
+#: views/contact/js/searchDialog.phtml:131
+#: views/contact/js/searchDialog.phtml:266 views/contact/showContact.phtml:391
+#: views/contact/all.phtml:39 views/contact/all.phtml:46
+#: views/group/edit.phtml:10 views/group/new.phtml:9
+#: views/transfer/importCsv.phtml:24 views/transfer/edit.phtml:12
+#: views/transfer/all.phtml:39
+msgid "Name"
+msgstr ""
+
+#: views/contact/js/searchDialog.phtml:133
+#: views/contact/js/searchDialog.phtml:272 views/contact/new.phtml:92
+#: views/contact/editContact.phtml:93 views/contact/showContact.phtml:192
+#: views/contact/showContact.phtml:393 views/contact/all.phtml:41
+#: views/contact/all.phtml:48 views/transfer/edit.phtml:31
+#: views/transfer/previewCsv.phtml:79
+msgid "Email"
+msgstr ""
+
+#: views/contact/js/searchDialog.phtml:134
+#: views/contact/js/searchDialog.phtml:273 views/contact/new.phtml:69
+#: views/contact/editContact.phtml:76 views/contact/showContact.phtml:176
+#: views/contact/showContact.phtml:394 views/contact/all.phtml:42
+#: views/contact/all.phtml:49
+msgid "Phone"
+msgstr ""
+
+#: views/contact/js/searchDialog.phtml:135 views/contact/new.phtml:115
+#: views/contact/editContact.phtml:110
+msgid "Messenger"
+msgstr ""
+
+#: views/contact/js/searchDialog.phtml:136 views/transfer/edit.phtml:23
+#: views/transfer/previewCsv.phtml:47
+msgid "Street"
+msgstr ""
+
+#: views/contact/js/searchDialog.phtml:137 views/contact/showContact.phtml:208
+msgid "Website"
+msgstr ""
+
+#: views/contact/js/searchDialog.phtml:138 views/transfer/edit.phtml:25
+#: views/transfer/previewCsv.phtml:55
+msgid "City"
+msgstr ""
+
+#: views/contact/js/searchDialog.phtml:139 views/transfer/edit.phtml:26
+#: views/transfer/previewCsv.phtml:59
+msgid "State"
+msgstr ""
+
+#: views/contact/js/searchDialog.phtml:140 views/transfer/edit.phtml:24
+#: views/transfer/previewCsv.phtml:51
+msgid "Postcode"
+msgstr ""
+
+#: views/contact/js/searchDialog.phtml:265 views/contact/showContact.phtml:390
+#: views/contact/all.phtml:38 views/contact/all.phtml:45
+#: views/transfer/edit.phtml:17
+msgid "Type"
+msgstr ""
+
+#: views/contact/js/searchDialog.phtml:269 views/contact/new.phtml:56
+#: views/contact/editContact.phtml:63 views/contact/showContact.phtml:63
+#: views/contact/all.phtml:40 views/contact/all.phtml:47
+#: views/contact/all.phtml:81
+msgid "at"
+msgstr ""
+
+#: views/contact/js/searchDialog.phtml:269 views/contact/new.phtml:22
+#: views/contact/new.phtml:32 views/contact/editContact.phtml:28
+#: views/contact/all.phtml:40 views/contact/all.phtml:47
+#: views/contact/all.phtml:72 views/transfer/edit.phtml:28
+#: views/transfer/previewCsv.phtml:67
+msgid "Company"
+msgstr ""
+
+#: views/contact/new.phtml:6 views/group/all.phtml:22
+msgid "New person"
+msgstr ""
+
+#: views/contact/new.phtml:8 views/group/all.phtml:25
+msgid "New company"
+msgstr ""
+
+#: views/contact/new.phtml:20 views/contact/editContact.phtml:26
+#: views/contact/showContact.phtml:403 views/contact/all.phtml:66
+msgid "Person"
+msgstr ""
+
+#: views/contact/new.phtml:27 views/contact/editContact.phtml:38
+msgid "Mr."
+msgstr ""
+
+#: views/contact/new.phtml:27 views/contact/editContact.phtml:38
+msgid "Mrs."
+msgstr ""
+
+#: views/contact/new.phtml:41 views/contact/editContact.phtml:51
+msgid "Choose Image"
+msgstr ""
+
+#: views/contact/new.phtml:49 views/contact/editContact.phtml:57
+msgid "Member of Companies"
+msgstr ""
+
+#: views/contact/new.phtml:59 views/contact/editContact.phtml:66
+msgid "Remove related company"
+msgstr ""
+
+#: views/contact/new.phtml:65 views/contact/editContact.phtml:72
+msgid "Add company"
+msgstr ""
+
+#: views/contact/new.phtml:83 views/contact/editContact.phtml:84
+msgid "Remove phone"
+msgstr ""
+
+#: views/contact/new.phtml:89 views/contact/editContact.phtml:90
+msgid "Add phone"
+msgstr ""
+
+#: views/contact/new.phtml:106 views/contact/editContact.phtml:101
+#: views/contact/editContact.phtml:184
+msgid "Remove email"
+msgstr ""
+
+#: views/contact/new.phtml:112 views/contact/editContact.phtml:107
+msgid "Add email"
+msgstr ""
+
+#: views/contact/new.phtml:118 views/contact/editContact.phtml:125
+msgid "Add messenger"
+msgstr ""
+
+#: views/contact/new.phtml:121 views/contact/editContact.phtml:128
+msgid "Websites"
+msgstr ""
+
+#: views/contact/new.phtml:124 views/contact/editContact.phtml:142
+msgid "Add website"
+msgstr ""
+
+#: views/contact/new.phtml:127 views/contact/editContact.phtml:145
+msgid "Address"
+msgstr ""
+
+#: views/contact/new.phtml:141 views/contact/editContact.phtml:153
+msgid "Remove address"
+msgstr ""
+
+#: views/contact/new.phtml:152 views/contact/editContact.phtml:164
+msgid "Add address"
+msgstr ""
+
+#: views/contact/new.phtml:155 views/contact/showContact.phtml:268
+msgid "Bank"
+msgstr ""
+
+#: views/contact/new.phtml:158
+msgid "Add bank"
+msgstr ""
+
+#: views/contact/editContact.phtml:18
+msgid "Edit contact "
+msgstr ""
+
+#: views/contact/editContact.phtml:119
+msgid "Remove messenger"
+msgstr ""
+
+#: views/contact/editContact.phtml:136
+msgid "Remove website"
+msgstr ""
+
+#: views/contact/editContact.phtml:167
+msgid "Bank account"
+msgstr ""
+
+#: views/contact/editContact.phtml:190
+msgid "Add bank account"
+msgstr ""
+
+#: views/contact/showContact.phtml:30
+msgid "Members"
+msgstr ""
+
+#: views/contact/showContact.phtml:50
+msgid "Remove from favorites"
+msgstr ""
+
+#: views/contact/showContact.phtml:52
+msgid "Add to favorites"
+msgstr ""
+
+#: views/contact/showContact.phtml:78
+msgid "Files"
+msgstr ""
+
+#: views/contact/showContact.phtml:81
+msgid "Add new file"
+msgstr ""
+
+#: views/contact/showContact.phtml:109
+msgid "Add new note about"
+msgstr ""
+
+#: views/contact/showContact.phtml:111
+msgid "New note"
+msgstr ""
+
+#: views/contact/showContact.phtml:118
+msgid "notes"
+msgstr ""
+
+#: views/contact/showContact.phtml:127 views/contact/showContact.phtml:168
+#: views/contact/showContact.phtml:298 views/contact/showContact.phtml:315
+#: views/contact/showContact.phtml:334 views/transfer/all.phtml:50
+msgid "Edit"
+msgstr ""
+
+#: views/contact/showContact.phtml:147 views/contact/all.phtml:20
+#: views/contact/all.phtml:113
+msgid ""
+"Page %page% of %pages%, showing %current% records out of %count% total, "
+"starting on record %start%, ending on %end%"
+msgstr ""
+
+#: views/contact/showContact.phtml:164
+msgid "Contact"
+msgstr ""
+
+#: views/contact/showContact.phtml:224
+msgid "IM"
+msgstr ""
+
+#: views/contact/showContact.phtml:230
+msgid "on"
+msgstr ""
+
+#: views/contact/showContact.phtml:259
+msgid "Bank accounts"
+msgstr ""
+
+#: views/contact/showContact.phtml:270
+msgid "Bank code"
+msgstr ""
+
+#: views/contact/showContact.phtml:272
+msgid "Account number"
+msgstr ""
+
+#: views/contact/showContact.phtml:275
+msgid "IBAN"
+msgstr ""
+
+#: views/contact/showContact.phtml:279
+msgid "BIC"
+msgstr ""
+
+#: views/contact/showContact.phtml:311
+msgid "Dates to remember"
+msgstr ""
+
+#: views/contact/showContact.phtml:330
+msgid "In groups"
+msgstr ""
+
+#: views/contact/showContact.phtml:359
+msgid "Add Person"
+msgstr ""
+
+#: views/contact/showContact.phtml:360
+msgid "Add new Person"
+msgstr ""
+
+#: views/contact/showContact.phtml:392
+msgid "Description"
+msgstr ""
+
+#: views/contact/showContact.phtml:395 views/contact/all.phtml:43
+#: views/contact/all.phtml:50
+msgid "Created at"
+msgstr ""
+
+#: views/contact/showContact.phtml:396 views/contact/editGroups.phtml:39
+#: views/transfer/all.phtml:40
+msgid "Options"
+msgstr ""
+
+#: views/contact/showContact.phtml:421
+msgid "Remove member"
+msgstr ""
+
+#: views/contact/all.phtml:6
+msgid "Search results"
+msgstr ""
+
+#: views/contact/all.phtml:6
+msgid "Search results in group"
+msgstr ""
+
+#: views/contact/all.phtml:6 views/group/edit.phtml:3
+msgid "Contacts of group"
+msgstr ""
+
+#: views/contact/all.phtml:8 views/group/edit.phtml:4
+msgid "Edit group"
+msgstr ""
+
+#: views/contact/all.phtml:32
+msgid "Too many results. Please specify your search."
+msgstr ""
+
+#: views/contact/editGroups.phtml:18
+msgid "Edit groups of "
+msgstr ""
+
+#: views/contact/editGroups.phtml:27
+msgid "Choose a group to which this contact should be added"
+msgstr ""
+
+#: views/contact/editGroups.phtml:28 views/contact/editGroups.phtml:34
+#: views/contact/editGroups.phtml:38 views/transfer/exportCsv.phtml:12
+msgid "Groups"
+msgstr ""
+
+#: views/contact/editGroups.phtml:32
+msgid "All groups are added"
+msgstr ""
+
+#: views/group/edit.phtml:12
+msgid "Parent Folder"
+msgstr ""
+
+#: views/group/edit.phtml:13 views/group/new.phtml:12
+msgid "Where this group will be located"
+msgstr ""
+
+#: views/group/new.phtml:4 views/group/all.phtml:17
+msgid "New group"
+msgstr ""
+
+#: views/group/new.phtml:11
+msgid "Parent Group"
+msgstr ""
+
+#: views/transfer/uploadCsv.phtml:5 views/transfer/importCsv.phtml:50
+#: views/transfer/previewCsv.phtml:5
+msgid "Import"
+msgstr ""
+
+#: views/transfer/uploadCsv.phtml:10
+msgid "Import successful"
+msgstr ""
+
+#: views/transfer/importCsv.phtml:5 views/elements/transfer_menu.phtml:6
+msgid "Import CSV-File"
+msgstr ""
+
+#: views/transfer/importCsv.phtml:14
+msgid "Choose your Importprofile"
+msgstr ""
+
+#: views/transfer/importCsv.phtml:16
+msgid "Edit Profiles"
+msgstr ""
+
+#: views/transfer/importCsv.phtml:19
+msgid "Add to groups"
+msgstr ""
+
+#: views/transfer/importCsv.phtml:25
+msgid "Select"
+msgstr ""
+
+#: views/transfer/importCsv.phtml:49 views/transfer/previewCsv.phtml:15
+msgid "Preview"
+msgstr ""
+
+#: views/transfer/edit.phtml:6
+msgid "Edit Import-profile"
+msgstr ""
+
+#: views/transfer/edit.phtml:13
+msgid "Defaultprofile"
+msgstr ""
+
+#: views/transfer/edit.phtml:13
+msgid "DefaultProfile"
+msgstr ""
+
+#: views/transfer/edit.phtml:14
+msgid "Remove Apostrophes"
+msgstr ""
+
+#: views/transfer/edit.phtml:15
+msgid "Generate Relationships"
+msgstr ""
+
+#: views/transfer/edit.phtml:16
+msgid "Separator"
+msgstr ""
+
+#: views/transfer/edit.phtml:19 views/transfer/previewCsv.phtml:43
+msgid "Anrede"
+msgstr ""
+
+#: views/transfer/edit.phtml:20
+msgid "Info"
+msgstr ""
+
+#: views/transfer/edit.phtml:27 views/transfer/previewCsv.phtml:63
+msgid "Country"
+msgstr ""
+
+#: views/transfer/edit.phtml:29 views/transfer/previewCsv.phtml:71
+msgid "Telephone"
+msgstr ""
+
+#: views/transfer/new.phtml:6
+msgid "New Import-Profile"
+msgstr ""
+
+#: views/transfer/new.phtml:11
+msgid "Profilname"
+msgstr ""
+
+#: views/transfer/new.phtml:11
+msgid "Profilename"
+msgstr ""
+
+#: views/transfer/all.phtml:6
+msgid "Import-profiles"
+msgstr ""
+
+#: views/transfer/all.phtml:11
+msgid "New Profile"
+msgstr ""
+
+#: views/transfer/exportCsv.phtml:5 views/elements/transfer_menu.phtml:9
+msgid "Export as CSV-File"
+msgstr ""
+
+#: views/transfer/exportCsv.phtml:11
+msgid "Which group do you want to export?"
+msgstr ""
+
+#: views/transfer/exportCsv.phtml:21
+msgid "Export"
+msgstr ""
+
+#: views/transfer/previewCsv.phtml:10
+msgid "Import csv file"
+msgstr ""
+
+#: views/transfer/previewCsv.phtml:26
+msgid "Profilfield"
+msgstr ""
+
+#: views/transfer/previewCsv.phtml:27
+msgid "Listdata"
+msgstr ""

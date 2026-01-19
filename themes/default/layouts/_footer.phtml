@@ -1,0 +1,55 @@
+<?php if (true === Ncw_Components_Session::checkInAll('user')) { ?>
+    <?php if (true === isset($this->history_menu) && true === is_array($this->history_menu)) { ?>
+        <div id="ncw-history" class="ncw-history-background">History
+            <ul id="ncw-history-menu" class="ncw-history-menu">
+            <?php foreach ($this->history_menu as $node) { ?>
+                <li class="ncw-history-menu-node"><?php print $node; ?></li>
+            <?php } ?>
+            </ul>
+        </div>
+    <?php } ?>
+    <div id="ncw-footer" class="ncw-footer-background">
+        <ul id="ncw-menu">
+            <li id="ncw-menu-node-applications" class="ncw-menu-node"><a href="#" rel="#ncw-applications-menu"><?php print T_('Applications'); ?></a></li>
+            <?php
+            $application = true;
+            if (true === isset($this->menu) && true === is_array($this->menu)) {
+                foreach ($this->menu as $node) { ?>
+                    <li <?php if (true === $application) { $application = false; ?>id="ncw-menu-node-application"<?php } ?> class="ncw-menu-node"><?php print $node; ?></li>
+            <?php
+                }
+            }
+            ?>
+            <?php if (true === isset($this->extras_menu) && true === is_array($this->extras_menu)) { ?>
+                <li class="ncw-menu-node"><a href="#" rel="#ncw-extras-menu"><?php print T_('Other'); ?></a></li>
+            <?php } ?>
+            <li id="ncw-menu-node-user" class="ncw-menu-node">
+                <a href="#" rel="#ncw-user-menu">
+                    <?php
+                    if (true === Ncw_Components_Session::checkInAll('user')) {
+                        $user = Ncw_Components_Session::readInAll('user');
+                    ?>
+                        <?php print $user['name']; ?>
+                    <?php } ?>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <ul id="ncw-applications-menu" class="ncw-sub-menu">
+        <?php foreach ($this->applications as $application) {  ?>
+            <li class="ncw-sub-menu-node"><a href="<?php print $this->html->url($application['url']); ?>"><?php print $application['name']; ?></a></li>
+        <?php } ?>
+    </ul>
+    <?php if (true === isset($this->extras_menu) && true === is_array($this->extras_menu)) { ?>
+        <ul id="ncw-extras-menu" class="ncw-sub-menu">
+        <?php foreach ($this->extras_menu as $node) { ?>
+            <li class="ncw-sub-menu-node"><?php print $node; ?></li>
+        <?php } ?>
+        </ul>
+    <?php } ?>
+    <ul id="ncw-user-menu" class="ncw-sub-menu">
+        <li class="ncw-sub-menu-node"><?php print $this->html->link(T_('Profile'), 'profile'); ?></li>
+        <li class="ncw-sub-menu-node"><?php print $this->html->link(T_('Logout'), 'logout'); ?></li>
+    </ul>
+    <div id="ncw-sub-menu-overlay"></div>
+<?php } ?>

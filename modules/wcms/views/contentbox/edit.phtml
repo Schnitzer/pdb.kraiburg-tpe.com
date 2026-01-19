@@ -1,0 +1,49 @@
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+        <li class="ncw-option-tab"><a href="javascript: ncw.wcms.contentbox.load();"><?php print T_('Back'); ?></a></li>
+        <li class="ncw-main-tab"><a href="#"><?php echo T_('Edit Content Box'); ?></a></li>
+        <li class="ncw-option-tab"><a href="javascript: ncw.wcms.contentboxlanguage.loadNew(<?php print $this->contentbox_id; ?>);"><?php print T_('New Content Box translation'); ?></a></li>
+    </ul>
+    <div class="ncw-main-tab-contents">
+        <div class="ncw-main-tab-content">
+            <?php print $this->form->create('ncw-contentbox'); ?>
+            <?php print $this->form->input("id", array('type' => 'hidden', 'value' => $this->contentbox_id)); ?>
+            <?php print $this->form->input("name", array('maxlength' => 100, 'title' => 'name of the contentbox', 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Name')))); ?>
+            <div class="ncw-input-container">
+                <label for="contentboxgroup_id" class="ncw-label"><?php print T_('Contentbox group'); ?></label>
+                <select id="contentboxgroup_id" name="data[Contentbox][contentboxgroup_id]" class="ncw-select">
+                    <?php print $this->groups; ?>
+                </select>
+            </div>
+            <?php print $this->form->end(); ?>
+            
+            <h2><?php print T_('Languages'); ?></h2>
+            <?php if (true === is_array($this->arr_all_languages)) { ?>
+                <table class="ncw-table">
+                    <thead>
+                        <tr>
+                            <th><?php echo T_('Languages'); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($this->arr_all_languages as $obj_language) { ?>
+                        <tr>
+                            <td>
+                                <a href="javascript: ncw.wcms.contentboxlanguage.loadEdit(<?php print $this->contentbox_id; ?>, <?php print $obj_language->getId(); ?>);"><?php print $this->html->image("country_flags/" . $obj_language->Language->getShortcut() . ".gif", false); ?></a>
+                                <a href="javascript: ncw.wcms.contentboxlanguage.loadEdit(<?php print $this->contentbox_id; ?>, <?php print $obj_language->getId(); ?>);"><?php print $obj_language->Language->getName(); ?></a>
+                            </td>
+                        </tr>
+                    <?php }?>
+                    </tbody>
+                </table>
+            <?php }?>
+        </div>
+    </div>
+</div>
+<div class="ncw-status-action-bar">
+    <div class="ncw-status-message"></div>
+    <ul class="ncw-actions">
+        <li class="ncw-action"><a href="#" rel="wcms/contentbox" class="ncw-delete-trigger-ajax ncw_delete_icon"><?php print T_('Delete'); ?></a></li>
+        <li class="ncw-action"><a href="#" rel="wcms/contentbox" class="ncw-save-trigger-ajax ncw_save_icon"><?php print T_('Save'); ?></a></li>
+    </ul>
+</div>

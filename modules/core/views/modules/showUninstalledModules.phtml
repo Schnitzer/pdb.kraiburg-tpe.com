@@ -1,0 +1,58 @@
+<div class="ncw-left">
+    <div class="ncw-accordion">
+        <h3 class="ncw-accordion-header current"><?php print T_('Module Management'); ?></h3>
+        <div class="ncw-accordion-content ncw-accordion-current">               
+            <p class="ncw-accordion-content-part-dark">
+                <a href="<?php print $this->html->url(array('action' => 'index')); ?>" class="ncw_text_button_overview"><?php print T_('Installed modules'); ?></a>
+            </p>
+            <p class="ncw-accordion-content-part-dark">
+                <a href="<?php print $this->html->url(array('action' => 'showUninstalledModules')); ?>" class="ncw_text_button_add"><?php print T_('Install Module'); ?></a>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="ncw-right">
+	<div class="ncw-main-tabs">
+	    <ul class="ncw-main-tabs-container">
+	        <li class="ncw-main-tab"><a href="#"><?php print T_('Install modules'); ?></a></li>
+	    </ul>
+	    <div class="ncw-main-tab-contents">
+	    	<div class="ncw-main-tab-content">	
+	    		<?php if (true === is_array($this->modules) && count($this->modules) > 0) { ?>
+					<table class="ncw-table">
+						<thead>
+							<tr>
+								<th><?php print T_('Id'); ?></th>
+								<th><?php print T_('Name'); ?></th>
+								<th><?php print T_('Version'); ?></th>
+								<th><?php print T_('Requires Module(s)'); ?></th>
+								<th><?php print T_('Install'); ?></th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php foreach ($this->modules as $module) { ?>
+								<tr>
+									<td><?php print $module['folder_name']; ?></td>
+									<td><?php print $module['name']; ?></td>
+									<td class="ncw-table-td-icons"><?php print $module['version']; ?></td>
+									<td><?php print $module['requires']; ?></td>
+									<td class="ncw-table-td-icons">
+										<?php if (true === $module['can_install']) { ?>
+											<a href="javascript: ncw.core.modules.install('<?php print $this->html->url(array("controller" => "install", "action" => "installModule", '?' => 'm=' . $module['folder_name'])); ?>');">
+												<?php print $this->html->image("icons/16px/add.png", false, array('alt' => T_('Install module'), 'title' => T_('Install module'))); ?>
+											</a>
+										<?php } else { ?>
+											<?php print T_('First you have to install module(s)') . ': ' . $module['missing_requirements']; ?>
+										<?php } ?>
+									</td>
+								</tr>
+							<?php } ?>
+						</tbody>
+					</table>
+				<?php } else { ?>
+					<?php print T_('All modules are installed'); ?>	
+				<?php } ?>
+			</div>
+		</div>
+	</div>
+</div>

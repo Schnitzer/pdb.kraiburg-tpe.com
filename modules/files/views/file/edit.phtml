@@ -1,0 +1,44 @@
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+    	<li class="ncw-option-tab"><a href="javascript: ncw.files.file.load();"><?php print T_('Back'); ?></a></li>
+        <li class="ncw-main-tab"><a href="#"><?php print T_('Edit'); ?>: <?php print $this->file_name; ?></a></li>
+    </ul>
+    <div class="ncw-main-tab-contents">
+        <div class="ncw-main-tab-content">
+            <?php print $this->form->create('ncw-file', array('onsubmit' => 'return false;')); ?>
+            <?php print $this->form->input("id", array('type' => 'hidden', 'value' => $this->file_id)); ?>
+            <?php print $this->form->input('name', array('maxlength' => 100, 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Name')))); ?>
+            <div class="ncw-input-container">
+                <label for="file_folder_id" class="ncw-label"><?php print T_('Folder'); ?></label>
+                <select id="file_folder_id" name="data[File][folder_id]" class="ncw-select" title="Folder">
+                    <?php print $this->folders_options; ?>
+                </select>
+            </div>
+            <?php print $this->form->input('tags', array('type' => 'textarea', 'maxlength' => 255, 'class' => 'ncw-textarea', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Tags internal')))); ?>
+            <a href="<?php print $this->file_path; ?>" target="_blank">
+            <?php if (true === $this->is_image) { ?>
+                <img src="<?php print $this->file_path; ?>" alt="file preview" title="file preview" />
+            <?php } else { ?>
+                <?php if (true === in_array($this->filetype_name , $this->arr_html_formats)) {?>
+                    <img src="<?php echo $this->base . '/' . $this->theme_path; ?>/web/images/icons/16px/html.png"/>
+                <?php } else if (true === in_array($this->filetype_name , $this->arr_formats)) {?>
+                    <img src="<?php echo $this->base . '/' . $this->theme_path; ?>/web/images/icons/64px/<?php print $this->filetype_name; ?>.png"/>
+                <?php } else { ?>
+                    <img src="<?php echo $this->base . '/' . $this->theme_path; ?>/web/images/icons/64px/default.png"/>
+                <?php } ?>
+            <?php } ?>
+            </a>
+    		<?php print $this->form->end(); ?>
+    	</div>  	
+    </div>
+</div>
+<div class="ncw-status-action-bar">
+    <div class="ncw-status-message"></div>
+    <ul class="ncw-actions">
+    	<li class="ncw-action"><a href="<?php print $this->file_path; ?>" class="ncw_download_icon" target="blank"><?php print T_('Download file'); ?></a></li>
+        <?php if (true === $this->permissions['/files/file/delete']) { ?>
+            <li class="ncw-action"><a href="#" rel="files/file" class="ncw-delete-trigger-ajax ncw_delete_icon"><?php print T_('Delete'); ?></a></li>
+        <?php } ?>
+        <li class="ncw-action"><a href="#" rel="files/file" class="ncw-save-trigger-ajax ncw_save_icon"><?php print T_('Save'); ?></a></li>
+    </ul>
+</div>

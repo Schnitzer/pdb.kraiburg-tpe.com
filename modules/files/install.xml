@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="Files" de_DE="Dateien" version="1.0" requires=""  url="files/folder/all" permission_name="files" assets_folder_name="files">
+    
+    <mkdir dir="thumbnails" />
+    <mkdir dir="uploads" />
+    <mkfile file=".htaccess">
+        <![CDATA[
+        <IfModule mod_rewrite.c>
+            RewriteEngine On
+            RewriteCond %{REQUEST_FILENAME} !-d
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteRule ^(.*)$ ../../index.php?url=$1&%{QUERY_STRING} [QSA,L]
+        </IfModule>
+        ]]>
+    </mkfile>
+    
+    <addAco alias="file" name="Files" />
+    <addAco alias="file/new" name="New File" />
+    <addAco alias="file/edit" name="Edit File" />
+    <addAco alias="file/delete" name="Delete File" />
+    <addAco alias="file/objects" name="File Objects" />
+    <addAco alias="folder" name="Folders" />
+    <addAco alias="folder/new" name="New Folder" />
+    <addAco alias="folder/edit" name="Edit Folder" />
+    <addAco alias="folder/delete" name="Delete Folder" />
+    
+    <addUsergroup group="Files Module" parent="root">
+        <permission aco="/files" access="1" />
+    </addUsergroup>
+
+</module>

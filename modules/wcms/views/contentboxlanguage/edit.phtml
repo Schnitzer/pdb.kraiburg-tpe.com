@@ -1,0 +1,23 @@
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+        <li class="ncw-option-tab"><a href="javascript: ncw.wcms.contentbox.loadEdit(<?php print $this->contentbox_id; ?>);"><?php print T_('Back'); ?></a></li>
+        <li class="ncw-main-tab"><a href="#"><?php print T_('Edit contentbox translation'); ?></a></li>
+    </ul>
+    </ul>
+    <div class="ncw-main-tab-contents">
+        <div class="ncw-main-tab-content">
+            <?php print $this->form->create('ncw-contentboxlanguage'); ?>
+            <?php print $this->form->input("id", array('type' => 'hidden', 'value' => $this->contentboxlanguage_id)); ?>
+            <?php print $this->form->input('language_id', array('type' => 'hidden')); ?>
+            <?php print $this->form->input('body', array('type' => 'textarea', 'label' => false, 'class' => 'ncw-wysiwyg')); ?>
+            <?php print $this->form->end(); ?>
+        </div>
+    </div>
+</div>
+<div class="ncw-status-action-bar">
+    <div class="ncw-status-message"></div>
+    <ul class="ncw-actions">
+        <li class="ncw-action"><a href="#" rel="wcms/contentboxlanguage" class="ncw-delete-trigger-ajax ncw_delete_icon"><?php print T_('Delete'); ?></a></li>
+        <li class="ncw-action"><a href="#" rel="wcms/contentboxlanguage" class="ncw-save-trigger-ajax ncw_save_icon"><?php print T_('Save'); ?></a></li>
+    </ul>
+</div>

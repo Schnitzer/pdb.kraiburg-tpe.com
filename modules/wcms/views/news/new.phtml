@@ -1,0 +1,41 @@
+<div class="ncw-left">
+    <div class="ncw-accordion">
+        <h3 class="ncw-accordion-header current"><?php print T_('Options'); ?></h3>
+        <div class="ncw-accordion-content ncw-accordion-current">
+            <p class="ncw-accordion-content-part-dark">
+                <?php print $this->html->link(T_('Show news'), array('action' => 'all'), array('class' => 'ncw_text_button_overview')); ?>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="ncw-right">
+    <?php print $this->form->create('ncw-news'); ?>
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+            <li class="ncw-main-tab"><a href="#"><?php print T_('New Term'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <?php print $this->form->input("name", array('maxlength' => 100, 'title' => T_('Name of the news. Only for internal use'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Name')))); ?>
+                <?php if ($this->num_languages > 1) { ?>
+                    <div class="ncw-input-container">
+                        <label class="ncw-label"><?php print T_('Add in following languages'); ?></label>
+                        <div class="ncw-radios-checkbox">
+                        <?php foreach ($this->languages as $language) { ?>
+                        <input type="checkbox" checked="checked" value="1" name="data[Newslanguage][languages][<?php print $language['id']; ?>]" id="newslanguage_languages_<?php print $language['id']; ?>"/>
+                        <label for="newslanguage_languages_<?php print $language['id']; ?>"><?php print $language['name']; ?></label>
+                        <?php } ?>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+    <div class="ncw-status-action-bar">
+        <div class="ncw-status-message"></div>
+        <ul class="ncw-actions">
+            <li class="ncw-action"><a href="#" class="ncw-save-trigger ncw_save_icon"><?php print T_('Save'); ?></a></li>
+        </ul>
+    </div>
+    <?php print $this->form->end(); ?>
+</div>

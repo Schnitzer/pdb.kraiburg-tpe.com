@@ -1,0 +1,402 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-06 12:28+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: controllers/UserController.php:200 controllers/UserController.php:201
+#: controllers/UserController.php:202
+msgid "Check your Password(s)"
+msgstr ""
+
+#: controllers/UserController.php:366 controllers/UserController.php:367
+#: controllers/UserController.php:368
+msgid "Check your Password(s)!"
+msgstr ""
+
+#: ModuleController.php:38
+msgid "Applications"
+msgstr ""
+
+#: ModuleController.php:39
+msgid "Logout"
+msgstr ""
+
+#: ModuleController.php:40
+msgid "Profile"
+msgstr ""
+
+#: ModuleController.php:41
+msgid "Other"
+msgstr ""
+
+#: ModuleController.php:70
+msgid "System Management"
+msgstr ""
+
+#: ModuleController.php:71 views/usergroup/all.phtml:3
+msgid "User Management"
+msgstr ""
+
+#: ModuleController.php:72 views/modules/index.phtml:3
+msgid "Module Management"
+msgstr ""
+
+#: ModuleController.php:76 views/feed/edit.phtml:3 views/feed/new.phtml:3
+#: views/feed/all.phtml:3
+msgid "Feed Management"
+msgstr ""
+
+#: ModuleController.php:77 views/language/edit.phtml:3
+#: views/language/new.phtml:3 views/language/all.phtml:3
+msgid "Language Management"
+msgstr ""
+
+#: views/language/edit.phtml:6 views/language/new.phtml:6
+#: views/language/new.phtml:15 views/language/all.phtml:6
+msgid "New language"
+msgstr ""
+
+#: views/language/edit.phtml:14 views/language/new.phtml:14
+#: views/feed/edit.phtml:14 views/feed/new.phtml:14
+#: views/modules/deinstall.phtml:14 views/modules/install.phtml:14
+#: views/usergroup/new.phtml:3 views/user/edit.phtml:3 views/user/new.phtml:3
+msgid "Back"
+msgstr ""
+
+#: views/language/edit.phtml:15
+msgid "Edit language"
+msgstr ""
+
+#: views/language/edit.phtml:21 views/language/new.phtml:20
+#: views/language/all.phtml:21 views/feed/all.phtml:41
+#: views/modules/index.phtml:22 views/modules/showDeinstalledModules.phtml:22
+#: views/usergroup/edit.phtml:16 views/usergroup/new.phtml:9
+#: views/user/edit.phtml:16 views/user/edit.phtml:55 views/user/new.phtml:9
+#: views/user/all.phtml:36
+msgid "Name"
+msgstr ""
+
+#: views/language/edit.phtml:22 views/language/new.phtml:21
+msgid "Shortcut"
+msgstr ""
+
+#: views/language/all.phtml:14
+msgid "Languages"
+msgstr ""
+
+#: views/language/all.phtml:22
+msgid "Shorcuts"
+msgstr ""
+
+#: views/language/all.phtml:23 views/feed/all.phtml:42
+#: views/user/edit.phtml:56 views/user/all.phtml:42
+msgid "Options"
+msgstr ""
+
+#: views/feed/edit.phtml:6 views/feed/new.phtml:6 views/feed/new.phtml:15
+#: views/feed/all.phtml:6
+msgid "New Feed"
+msgstr ""
+
+#: views/feed/edit.phtml:15
+msgid "Edit Feed"
+msgstr ""
+
+#: views/feed/edit.phtml:20 views/usergroup/edit.phtml:9
+#: views/user/edit.phtml:9
+msgid "Main"
+msgstr ""
+
+#: views/feed/edit.phtml:21
+msgid "Feed options"
+msgstr ""
+
+#: views/feed/edit.phtml:22
+msgid "Data stream options"
+msgstr ""
+
+#: views/feed/edit.phtml:28 views/feed/new.phtml:21
+msgid "Name of the feed"
+msgstr ""
+
+#: views/feed/edit.phtml:31
+msgid "Title"
+msgstr ""
+
+#: views/feed/edit.phtml:32
+msgid "Description"
+msgstr ""
+
+#: views/feed/edit.phtml:33 views/user/edit.phtml:17
+#: views/user/profile.phtml:11 views/user/new.phtml:10 views/user/all.phtml:40
+msgid "Language"
+msgstr ""
+
+#: views/feed/edit.phtml:34
+msgid "Publish date"
+msgstr ""
+
+#: views/feed/edit.phtml:35
+msgid "Generator"
+msgstr ""
+
+#: views/feed/edit.phtml:36
+msgid "Managing editor"
+msgstr ""
+
+#: views/feed/edit.phtml:37
+msgid "Web master"
+msgstr ""
+
+#: views/feed/edit.phtml:40 views/modules/deinstall.phtml:19
+#: views/modules/install.phtml:19
+msgid "Module"
+msgstr ""
+
+#: views/feed/edit.phtml:41
+msgid "Controller"
+msgstr ""
+
+#: views/feed/edit.phtml:42
+msgid "Params"
+msgstr ""
+
+#: views/feed/edit.phtml:52 views/usergroup/edit.phtml:45
+#: views/user/edit.phtml:65 views/user/edit.phtml:80
+msgid "Delete"
+msgstr ""
+
+#: views/feed/edit.phtml:53 views/feed/new.phtml:30
+#: views/usergroup/edit.phtml:46 views/usergroup/new.phtml:32
+#: views/user/edit.phtml:81 views/user/profile.phtml:37
+#: views/user/new.phtml:31
+msgid "Save"
+msgstr ""
+
+#: views/feed/all.phtml:14
+msgid "Feeds"
+msgstr ""
+
+#: views/feed/all.phtml:26 views/feed/all.phtml:67 views/user/all.phtml:21
+#: views/user/all.phtml:84
+msgid ""
+"Page %page% of %pages%, showing %current% records out of %count% total, "
+"starting on record %start%, ending on %end%"
+msgstr ""
+
+#: views/feed/all.phtml:53 views/user/all.phtml:69
+msgid "Edit"
+msgstr ""
+
+#: views/modules/deinstall.phtml:3 views/modules/install.phtml:3
+#: views/modules/showDeinstalledModules.phtml:3
+msgid "Modules"
+msgstr ""
+
+#: views/modules/deinstall.phtml:6 views/modules/install.phtml:6
+#: views/modules/showDeinstalledModules.phtml:6
+msgid "Show installed modules"
+msgstr ""
+
+#: views/modules/deinstall.phtml:15
+msgid "Deinstall module"
+msgstr ""
+
+#: views/modules/deinstall.phtml:19
+msgid "deinstalled"
+msgstr ""
+
+#: views/modules/index.phtml:6
+msgid "Install new Module"
+msgstr ""
+
+#: views/modules/index.phtml:14
+msgid "Installed Modules"
+msgstr ""
+
+#: views/modules/index.phtml:23 views/modules/showDeinstalledModules.phtml:23
+msgid "Version"
+msgstr ""
+
+#: views/modules/index.phtml:24
+msgid "Deinstall"
+msgstr ""
+
+#: views/modules/index.phtml:39 views/modules/showDeinstalledModules.phtml:37
+msgid "Install module"
+msgstr ""
+
+#: views/modules/index.phtml:42
+msgid "Required by"
+msgstr ""
+
+#: views/modules/index.phtml:50
+msgid "No modules are installed"
+msgstr ""
+
+#: views/modules/install.phtml:15
+#: views/modules/showDeinstalledModules.phtml:14
+msgid "Install modules"
+msgstr ""
+
+#: views/modules/install.phtml:19
+msgid "installed"
+msgstr ""
+
+#: views/modules/showDeinstalledModules.phtml:24
+msgid "Requires Module(s)"
+msgstr ""
+
+#: views/modules/showDeinstalledModules.phtml:25
+msgid "Install"
+msgstr ""
+
+#: views/modules/showDeinstalledModules.phtml:40
+msgid "First you have to install module(s)"
+msgstr ""
+
+#: views/modules/showDeinstalledModules.phtml:48
+msgid "All modules are installed"
+msgstr ""
+
+#: views/usergroup/edit.phtml:3 views/user/all.phtml:4
+msgid "Users of group"
+msgstr ""
+
+#: views/usergroup/edit.phtml:4 views/user/all.phtml:8
+msgid "Edit Usergroup"
+msgstr ""
+
+#: views/usergroup/edit.phtml:10
+msgid "Permissions"
+msgstr ""
+
+#: views/usergroup/edit.phtml:18 views/usergroup/new.phtml:11
+msgid "Parent usergroup"
+msgstr ""
+
+#: views/usergroup/new.phtml:4 views/usergroup/all.phtml:13
+#: views/user/edit.phtml:42
+msgid "New Usergroup"
+msgstr ""
+
+#: views/usergroup/all.phtml:6
+msgid "Search for a username"
+msgstr ""
+
+#: views/usergroup/all.phtml:9
+msgid "Search"
+msgstr ""
+
+#: views/usergroup/all.phtml:16 views/user/new.phtml:4
+msgid "New User"
+msgstr ""
+
+#: views/usergroup/tree.phtml:4 views/user/all.phtml:4
+msgid "All users"
+msgstr ""
+
+#: views/user/edit.phtml:4
+msgid "Edit User"
+msgstr ""
+
+#: views/user/edit.phtml:10 views/user/edit.phtml:51
+msgid "Usergroups"
+msgstr ""
+
+#: views/user/edit.phtml:23
+msgid "Go to contact"
+msgstr ""
+
+#: views/user/edit.phtml:26 views/user/profile.phtml:17
+#: views/user/new.phtml:13 views/user/all.phtml:38
+msgid "Contact"
+msgstr ""
+
+#: views/user/edit.phtml:29 views/user/new.phtml:15 views/user/all.phtml:41
+msgid "Activated"
+msgstr ""
+
+#: views/user/edit.phtml:32 views/user/new.phtml:19
+msgid "Entry point"
+msgstr ""
+
+#: views/user/edit.phtml:34 views/user/edit.phtml:35
+#: views/user/profile.phtml:27 views/user/new.phtml:21 views/user/new.phtml:22
+#: views/user/login.phtml:4
+msgid "Password"
+msgstr ""
+
+#: views/user/edit.phtml:36 views/user/profile.phtml:28
+#: views/user/new.phtml:23
+msgid "Repeat Password"
+msgstr ""
+
+#: views/user/edit.phtml:37 views/user/profile.phtml:29
+msgid "Old Password"
+msgstr ""
+
+#: views/user/edit.phtml:49
+msgid "Add"
+msgstr ""
+
+#: views/user/profile.phtml:4
+msgid "Profile of"
+msgstr ""
+
+#: views/user/profile.phtml:8
+msgid ""
+"This is your profile page. You can set a new profile password if you want to."
+msgstr ""
+
+#: views/user/profile.phtml:25
+msgid "Password:"
+msgstr ""
+
+#: views/user/profile.phtml:27
+msgid ""
+"The new password must contain at least 6 characters. One of them must be a "
+"number or a special character"
+msgstr ""
+
+#: views/user/denied.phtml:1
+msgid "We are sorry"
+msgstr ""
+
+#: views/user/denied.phtml:3
+msgid "Permission denied!"
+msgstr ""
+
+#: views/user/all.phtml:61
+msgid "Not activated"
+msgstr ""
+
+#: views/user/all.phtml:63
+msgid "Yes"
+msgstr ""
+
+#: views/user/login.phtml:2
+msgid "Username"
+msgstr ""
+
+#: views/user/login.phtml:7
+msgid "Login"
+msgstr ""
+
+#: views/user/logout.phtml:1
+msgid "Successfully logged out!"
+msgstr ""

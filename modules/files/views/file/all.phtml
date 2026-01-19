@@ -1,0 +1,150 @@
+<?php print $this->paginator->options(array('update' => '.ncw-right', 'url' => array($this->folder_id, '?' => 's=' . $this->search_value), 'callback' => 'ncw.files.file.loadPage();')); ?>
+<div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+            <li class="ncw-main-tab"><a href="#"><?php if (false === $this->search) { print T_('Files of folder:') . ' ' . $this->folder_name; } else { print T_('Found Files'); } ?></a></li>
+            <?php
+            if (false === $this->search
+                && true === $this->permissions['/files/file/new']
+            ) {
+              ?>
+                <li class="ncw-main-tab"><a href="#"><?php print T_('New File'); ?></a></li>
+            <?php } ?>
+            <?php
+            if (false === $this->search
+            	&& $this->folder_id != 1
+                && true === $this->permissions['/files/folder/edit']
+            ) {
+              ?>            
+           		<li class="ncw-option-tab"><a href="javascript: ncw.files.folder.loadEdit();"><?php print T_('Edit Folder'); ?></a></li>
+            <?php } ?>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <div class="ncw-page-controls">
+                    <div class="left_controls">
+                        <?php print $this->paginator->first('<<'); ?>
+                        <?php print $this->paginator->prev('<'); ?>
+                    </div>
+                    <?php print $this->paginator->counter(array(
+                        'format' => T_('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%')
+                    )); ?>
+                    (<?php print $this->paginator->numbers(); ?>)
+                    <div class="right_controls">
+                        <?php print $this->paginator->next('>'); ?>
+                        <?php print $this->paginator->last('>>'); ?>
+                    </div>
+                </div>
+                <table class="ncw-table">
+                    <thead>
+                        <tr>
+                            <th><?php print T_('Preview') ?></th>
+                            <th><?php print $this->paginator->sort(T_('Name'), 'File.name'); ?></th>
+                            <th><?php print T_('Download'); ?></th>
+                            <th><?php print $this->paginator->sort(T_('Date'), 'File.created'); ?></th>
+                            <th><?php print $this->paginator->sort(T_('Size'), 'File.size'); ?></th>
+                            <th><?php print T_('Options'); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($this->files as $file) { ?>
+                        <tr>
+                            <td class="ncw-table-td-icons">
+                                <?php if (true === in_array($file->getType() , $this->arr_thumbs_formats)) { ?>
+                                    <?php
+                                    if (true === $this->window_mode) {
+                                        $drag_class = 'class="ncw-image-draggable"';
+                                    } else {
+                                        $drag_class = '';
+                                    ?>
+                                        <?php if (true === $this->permissions['/files/file/edit']) { ?><a href="javascript: ncw.files.file.loadEdit(<?php print $file->getId(); ?>);"><?php } ?>
+                                    <?php } ?>
+                                        <img src="<?php echo $this->base . '/assets/files/thumbnails/' . $this->text->cleanForUrl($file->getName()) . '_' . $file->getId() . '_32.' . $file->getType(); ?>"<?php print $drag_class; ?> style="border:1px solid #000;"/>
+                                    <?php if (false === $this->window_mode) { ?>
+                                        <?php if (true === $this->permissions['/files/file/edit']) { ?></a><?php } ?>
+                                    <?php } ?>
+                                <?php } else if (true === in_array($file->getType() , $this->arr_html_formats)) {?>
+                                	<?php if (true === $this->permissions['/files/file/edit']) { ?><a href="javascript: ncw.files.file.loadEdit(<?php print $file->getId(); ?>);"><?php } ?>
+                                        <img src="<?php echo $this->base . '/' . $this->theme_path; ?>/web/images/icons/16px/html.png"/>
+                                    <?php if (true === $this->permissions['/files/file/edit']) { ?></a><?php } ?>
+                                <?php } else if (true === in_array($file->getType() , $this->arr_formats)) {?>
+                                    <?php if (true === $this->permissions['/files/file/edit']) { ?><a href="javascript: ncw.files.file.loadEdit(<?php print $file->getId(); ?>);"><?php } ?>
+                                        <img src="<?php echo $this->base . '/' . $this->theme_path; ?>/web/images/icons/64px/<?php print $file->getType(); ?>.png"/>
+                                    <?php if (true === $this->permissions['/files/file/edit']) { ?></a><?php } ?>
+                                <?php } else { ?>
+                                    <?php if (true === $this->permissions['/files/file/edit']) { ?><a href="javascript: ncw.files.file.loadEdit(<?php print $file->getId(); ?>);"><?php } ?>
+                                        <img src="<?php echo $this->base . '/' . $this->theme_path; ?>/web/images/icons/64px/default.png"/>
+                                    <?php if (true === $this->permissions['/files/file/edit']) { ?></a><?php } ?>
+                                <?php } ?>
+                            </td>
+                            <td>
+                               <?php if (true === $this->permissions['/files/file/edit']) { ?><a href="javascript: ncw.files.file.loadEdit(<?php print $file->getId(); ?>);"><?php } ?>
+                                    <?php print $file->getNameEncoded() . '.' . $file->getType(); ?>
+                               <?php if (true === $this->permissions['/files/file/edit']) { ?></a><?php } ?>
+                            </td>
+                            <td class="ncw-table-td-icons">
+                                <a href="<?php print $this->base . '/' . ASSETS . '/' . 'files/uploads' . '/' . $this->text->cleanForUrl($file->getName()) . '_' . $file->getId() . '.' . $file->getType(); ?>" target="_blank">
+                                    <?php print $this->html->image('icons/16px/drive_go.png', false, array('alt' => T_("Download"), 'title' => T_("Download"))); ?>
+                                </a>
+                            </td>
+                            <td class="ncw-table-td-icons">
+                                <?php echo $file->getCreated(); ?>
+                            </td>
+                            <td class="ncw-table-td-icons">
+                                <?php echo number_format($file->getSize() / 1024, 1, ',', '.'); ?> kb
+                            </td>
+                            <td class="ncw-table-td-icons">
+                                <?php if (true === $this->permissions['/files/file/edit']) { ?>
+                                    <a href="javascript: ncw.files.file.loadEdit(<?php print $file->getId(); ?>);"><?php echo $this->html->image("icons/16px/pencil.png", false, array('alt' => T_('Edit'), 'title' => T_('Edit'))); ?></a>
+                                <?php } ?>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+                <?php if ($this->paginator->hasPage(2)) { ?>
+                    <div class="ncw-page-controls-bottom">
+                        <div class="left_controls">
+                            <?php print $this->paginator->first('<<'); ?>
+                            <?php print $this->paginator->prev('<'); ?>
+                        </div>
+                        <?php print $this->paginator->counter(array(
+                            'format' => T_('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%')
+                        )); ?>
+                        (<?php print $this->paginator->numbers(); ?>)
+                        <div class="right_controls">
+                            <?php print $this->paginator->next('>'); ?>
+                            <?php print $this->paginator->last('>>'); ?>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        <?php
+        if (false === $this->search
+            && true === $this->permissions['/files/file/new']
+        ) {
+        ?>
+            <div class="ncw-main-tab-content">
+                <p>
+                    <?php print T_('To upload files click on the BROWSE button'); ?>
+                </p>
+
+                <!-- The fileinput-button span is used to style the file input field as button -->
+                <span class="btn btn-success fileinput-button">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span><?php print T_('Add file(s) ...'); ?></span>
+                    <!-- The file input field used as target for the file upload widget -->
+                    <input id="fileupload" type="file" name="files[]" multiple>
+                </span>
+                <br>
+                <br>
+                <!-- The global progress bar -->
+                <div id="progress" class="progress">
+                    <div class="progress-bar progress-bar-success"></div>
+                </div>
+                <!-- The container for the uploaded files -->
+                <div id="files" class="files"></div>
+                <br>                
+            </div>
+        <?php } ?>
+    </div>
+</div>

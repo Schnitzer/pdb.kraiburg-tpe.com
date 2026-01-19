@@ -1,0 +1,2833 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 01.\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-09-29 15:18+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: sfasa <asdf@dfad.de>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: Germany\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: ModuleController.php:38
+msgid "Applications"
+msgstr "Applicazioni"
+
+#: ModuleController.php:39
+#: views/compound/edit.phtml:14
+msgid "Other"
+msgstr "altri"
+
+#: ModuleController.php:40
+msgid "Logout"
+msgstr "logout"
+
+#: ModuleController.php:41
+msgid "Profile"
+msgstr "profilo"
+
+#: ModuleController.php:43
+msgid "Alert"
+msgstr "Attenzione"
+
+#: ModuleController.php:44
+msgid "Choose your options!"
+msgstr "Sceglie la Sua opzione"
+
+#: ModuleController.php:45
+msgid "Confirm"
+msgstr "confermare"
+
+#: ModuleController.php:46
+msgid "Make a decision!"
+msgstr "Fa la Sua decisione"
+
+#: ModuleController.php:47
+msgid "Do you really want to delete this object?"
+msgstr "Vuole veramente cancellare questo oggetto ?"
+
+#: ModuleController.php:48
+msgid "Saved"
+msgstr "memorizzato"
+
+#: ModuleController.php:49
+msgid "Your data has been saved successfully."
+msgstr "I vostri dati sono stati memorizzati con successo"
+
+#: ModuleController.php:50
+msgid "Error"
+msgstr "errore"
+
+#: ModuleController.php:51
+msgid "An error has occurred!"
+msgstr "c´era un errore"
+
+#: ModuleController.php:52
+msgid "Notify"
+msgstr "informazione"
+
+#: ModuleController.php:53
+msgid "Be aware that..."
+msgstr "Nota che"
+
+#: ModuleController.php:54
+msgid "Custom"
+msgstr "annuncio"
+
+#: ModuleController.php:55
+msgid "Saving..."
+msgstr "memorizzare..."
+
+#: ModuleController.php:56
+msgid "Deleting..."
+msgstr "annulare..."
+
+#: ModuleController.php:57
+msgid "The item has been deleted successfully"
+msgstr "L´oggetto é stato annulato con successo."
+
+#: ModuleController.php:67
+msgid "Abrasion"
+msgstr "abrasione"
+
+#: ModuleController.php:68
+msgid "Clarity"
+msgstr "Trasparente"
+
+#: ModuleController.php:69
+msgid "Compression set"
+msgstr "Compression set "
+
+#: ModuleController.php:70
+#: controllers/CompoundController.php:1469
+#: controllers/CompoundController.php:1515
+#: views/compound/edit.phtml:247
+#: views/compound/edit.phtml:267
+#: views/compound/edit.phtml:291
+#: views/compound/edit.phtml:303
+#: views/compound/generateHtml.phtml:252
+#: views/compound/generateHtml.phtml:306
+msgid "Density"
+msgstr "Densità"
+
+#: ModuleController.php:71
+msgid "Dielectrical strength"
+msgstr "Durchschlagfestigkeit"
+
+#: ModuleController.php:72
+msgid "Dissipation factor"
+msgstr "Fattore di perdita"
+
+#: ModuleController.php:73
+#: controllers/CompoundController.php:1461
+#: controllers/CompoundController.php:1507
+#: controllers/CompoundController.php:1549
+#: views/compound/edit.phtml:245
+#: views/compound/edit.phtml:265
+#: views/compound/edit.phtml:289
+#: views/compound/edit.phtml:301
+#: views/compound/edit.phtml:318
+#: views/compound/edit.phtml:327
+#: views/compound/generateHtml.phtml:244
+#: views/compound/generateHtml.phtml:298
+#: views/compound/generateHtml.phtml:348
+msgid "Elongation at break"
+msgstr "Allungamento a rottura"
+
+#: ModuleController.php:74
+msgid "Fogging"
+msgstr "Fogging"
+
+#: ModuleController.php:75
+#: controllers/CompoundController.php:1465
+#: controllers/CompoundController.php:1511
+#: views/compound/edit.phtml:246
+#: views/compound/edit.phtml:266
+#: views/compound/edit.phtml:290
+#: views/compound/edit.phtml:302
+#: views/compound/generateHtml.phtml:248
+#: views/compound/generateHtml.phtml:302
+msgid "Hardness"
+msgstr "Durezza"
+
+#: ModuleController.php:76
+msgid "Haze"
+msgstr "Haze (opacità)"
+
+#: ModuleController.php:77
+msgid "Melting temperature"
+msgstr "temperatura di liquefazione"
+
+#: ModuleController.php:78
+msgid "MFI"
+msgstr "MFI"
+
+#: ModuleController.php:79
+#: controllers/CompoundController.php:1481
+#: views/compound/edit.phtml:250
+#: views/compound/edit.phtml:270
+#: views/compound/generateHtml.phtml:264
+msgid "Module"
+msgstr "Modulo"
+
+#: ModuleController.php:80
+msgid "Odour"
+msgstr "Odore"
+
+#: ModuleController.php:81
+msgid "Relative permittivity"
+msgstr "permeabilità relativa"
+
+#: ModuleController.php:82
+msgid "Residence dwell time at processing temperature"
+msgstr "Resistenzen Verweildauer bei Verarbeitungstemperatur"
+
+#: ModuleController.php:83
+msgid "Rest elongation"
+msgstr "allungamento residuo"
+
+#: ModuleController.php:84
+msgid "Shrinkage"
+msgstr "Ritiro"
+
+#: ModuleController.php:85
+msgid "Spiral Flow"
+msgstr "Spiral Flow"
+
+#: ModuleController.php:86
+msgid "Surface resistance"
+msgstr "resistenza della superficie"
+
+#: ModuleController.php:87
+#: views/compound/edit.phtml:244
+#: views/compound/edit.phtml:264
+#: views/compound/edit.phtml:288
+#: views/compound/edit.phtml:300
+#: views/compound/edit.phtml:317
+#: views/compound/edit.phtml:326
+msgid "Tear resistance"
+msgstr "Resistenza allo strappo"
+
+#: ModuleController.php:88
+msgid "Tensile strength"
+msgstr "Resistenza alla trazione"
+
+#: ModuleController.php:89
+msgid "Tracking resistance (KC)"
+msgstr "Kriechstromfestigkeit (KC)"
+
+#: ModuleController.php:90
+msgid "Transmission"
+msgstr "trasmissione"
+
+#: ModuleController.php:91
+msgid "Viscosity at processing temperature"
+msgstr "viscositá alla temperatura di lavorazione"
+
+#: ModuleController.php:92
+msgid "Volume resistivity"
+msgstr "Durchgangswiderstand"
+
+#: ModuleController.php:118
+msgid "TPE - Product Database"
+msgstr "TPE Product Database"
+
+#: ModuleController.php:119
+#: views/index/index.phtml:8
+msgid "Compounds"
+msgstr "Compounds"
+
+#: ModuleController.php:120
+#: views/index/index.phtml:9
+#: views/compound/edit.phtml:15
+#: views/compound/edit.phtml:54
+#: views/attribute/edit.phtml:28
+#: views/attribute/edit.phtml:40
+#: views/elements/sideBarSeries.phtml:3
+msgid "Series"
+msgstr "Serie"
+
+#: ModuleController.php:124
+msgid "Settings"
+msgstr "regolazioni"
+
+#: ModuleController.php:125
+msgid "Attributes"
+msgstr "attributo"
+
+#: ModuleController.php:126
+msgid "Standardisations"
+msgstr "standardizzazione"
+
+#: ModuleController.php:127
+msgid "Conditions"
+msgstr "condizioni"
+
+#: ModuleController.php:128
+#: views/compound/generateHtml.phtml:634
+msgid "Related Documents"
+msgstr "documenti relativi"
+
+#: ModuleController.php:129
+msgid "MSDS"
+msgstr "MSDS"
+
+#: ModuleController.php:130
+#: views/compound/edit.phtml:40
+#, fuzzy
+msgid "Safetydata"
+msgstr "Sicherheitsdaten"
+
+#: ModuleController.php:131
+msgid "Colors"
+msgstr "Colore"
+
+#: ModuleController.php:132
+msgid "Tpe Types"
+msgstr "tipi di TPE"
+
+#: ModuleController.php:133
+msgid "Brands"
+msgstr "marche"
+
+#: ModuleController.php:134
+msgid "Environments"
+msgstr "ambiente"
+
+#: ModuleController.php:135
+#: controllers/CompoundController.php:1453
+#: views/compound/edit.phtml:242
+#: views/compound/edit.phtml:262
+#: views/compound/generateHtml.phtml:236
+msgid "Medium"
+msgstr "media"
+
+#: ModuleController.php:136
+#, fuzzy
+msgid "Processing information"
+msgstr "Ordner Verarbeitungshinweise"
+
+#: ModuleController.php:137
+msgid "Certifications"
+msgstr "certificati"
+
+#: ModuleController.php:138
+#: controllers/CompoundController.php:1624
+#: views/compound/generateHtml.phtml:431
+msgid "Conformities"
+msgstr "conformitá"
+
+#: ModuleController.php:139
+#: controllers/CompoundController.php:1646
+#: views/compound/generateHtml.phtml:450
+msgid "Remarks"
+msgstr "nota"
+
+#: controllers/CompoundController.php:157
+msgid "-- Select Color --"
+msgstr ""
+
+#: controllers/CompoundController.php:167
+msgid "-- Select Brand --"
+msgstr ""
+
+#: controllers/CompoundController.php:177
+msgid "-- Select Environment --"
+msgstr ""
+
+#: controllers/CompoundController.php:187
+msgid "-- Select TPE Type --"
+msgstr ""
+
+#: controllers/CompoundController.php:193
+msgid "-- Select Status --"
+msgstr ""
+
+#: controllers/CompoundController.php:203
+msgid "-- Select Safety data --"
+msgstr ""
+
+#: controllers/CompoundController.php:213
+msgid "-- Select Msds --"
+msgstr ""
+
+#: controllers/CompoundController.php:231
+msgid "-- Select Extrusion processing guideline      --"
+msgstr ""
+
+#: controllers/CompoundController.php:246
+msgid "-- Select Injection processing guideline --"
+msgstr ""
+
+#: controllers/CompoundController.php:267
+#: controllers/CompoundController.php:317
+#: controllers/CompoundController.php:349
+#: controllers/CompoundController.php:371
+#: controllers/CompoundController.php:387
+#: controllers/CompoundController.php:409
+#: controllers/CompoundController.php:438
+msgid "-- Select Type --"
+msgstr ""
+
+#: controllers/CompoundController.php:292
+#: controllers/AttributeController.php:121
+msgid "-- Select Standardisation --"
+msgstr ""
+
+#: controllers/CompoundController.php:297
+msgid "-- Select Quality --"
+msgstr ""
+
+#: controllers/CompoundController.php:341
+msgid "-- Select Medium --"
+msgstr ""
+
+#: controllers/CompoundController.php:458
+msgid "-- Select Series --"
+msgstr ""
+
+#: controllers/CompoundController.php:480
+#, fuzzy
+msgid "-- Select Document --"
+msgstr "Verknüpfte Dokumente"
+
+#: controllers/CompoundController.php:502
+msgid "-- Select Certification --"
+msgstr ""
+
+#: controllers/CompoundController.php:525
+msgid "-- Select Conformity --"
+msgstr ""
+
+#: controllers/CompoundController.php:548
+msgid "-- Select Remark --"
+msgstr ""
+
+#: controllers/CompoundController.php:573
+msgid "-- Select Processingmethod --"
+msgstr ""
+
+#: controllers/CompoundController.php:606
+msgid "-- Select Relation --"
+msgstr ""
+
+#: controllers/CompoundController.php:1250
+msgid "Datasheet"
+msgstr "scheda technica"
+
+#: controllers/CompoundController.php:1255
+#: views/compound/generateHtml.phtml:11
+msgid "Compound name"
+msgstr "codice del compound"
+
+#: controllers/CompoundController.php:1259
+#: views/compound/edit.phtml:28
+#: views/compound/generateHtml.phtml:15
+msgid "Development name"
+msgstr "codice di sviluppo"
+
+#: controllers/CompoundController.php:1276
+#: views/compound/generateHtml.phtml:32
+msgid "Compound series"
+msgstr "serie"
+
+#: controllers/CompoundController.php:1294
+#: views/compound/edit.phtml:31
+#: views/compound/generateHtml.phtml:49
+msgid "Compound status"
+msgstr "status del compound"
+
+#: controllers/CompoundController.php:1308
+#: views/compound/edit.phtml:33
+#: views/compound/generateHtml.phtml:65
+msgid "Color"
+msgstr "Colore"
+
+#: controllers/CompoundController.php:1326
+msgid "Processing method"
+msgstr "metodo di lavorazione"
+
+#: controllers/CompoundController.php:1366
+#: controllers/CompoundController.php:1579
+#: views/compound/edit.phtml:168
+#: views/compound/edit.phtml:341
+#: views/compound/edit.phtml:357
+#: views/compound/generateHtml.phtml:130
+#: views/compound/generateHtml.phtml:386
+msgid "Requirements"
+msgstr "fabbisogno"
+
+#: controllers/CompoundController.php:1366
+#: views/compound/edit.phtml:169
+#: views/compound/generateHtml.phtml:130
+msgid "Grade"
+msgstr "grado"
+
+#: controllers/CompoundController.php:1368
+#: views/compound/edit.phtml:171
+#: views/compound/generateHtml.phtml:132
+msgid "From"
+msgstr "da"
+
+#: controllers/CompoundController.php:1368
+#: views/compound/edit.phtml:172
+#: views/compound/generateHtml.phtml:132
+msgid "to"
+msgstr "a"
+
+#: controllers/CompoundController.php:1426
+#: views/compound/generateHtml.phtml:197
+msgid "Hard-/soft with"
+msgstr "duro/morbido con"
+
+#: controllers/CompoundController.php:1450
+#: views/compound/edit.phtml:228
+#: views/compound/edit.phtml:240
+#: views/compound/generateHtml.phtml:231
+msgid "Media resistance"
+msgstr "resistenza a sostanze"
+
+#: controllers/CompoundController.php:1457
+#: controllers/CompoundController.php:1503
+#: controllers/CompoundController.php:1545
+#: views/compound/generateHtml.phtml:240
+#: views/compound/generateHtml.phtml:294
+#: views/compound/generateHtml.phtml:344
+msgid "Tear Resistance"
+msgstr "Resistenza allo strappo"
+
+#: controllers/CompoundController.php:1473
+#: controllers/CompoundController.php:1519
+#: views/compound/edit.phtml:248
+#: views/compound/edit.phtml:268
+#: views/compound/edit.phtml:292
+#: views/compound/edit.phtml:304
+#: views/compound/generateHtml.phtml:256
+#: views/compound/generateHtml.phtml:310
+msgid "Weight"
+msgstr "peso"
+
+#: controllers/CompoundController.php:1477
+#: controllers/CompoundController.php:1523
+#: views/compound/edit.phtml:249
+#: views/compound/edit.phtml:269
+#: views/compound/edit.phtml:293
+#: views/compound/edit.phtml:305
+#: views/compound/generateHtml.phtml:260
+#: views/compound/generateHtml.phtml:314
+msgid "Volume"
+msgstr "volume"
+
+#: controllers/CompoundController.php:1485
+#: controllers/CompoundController.php:1527
+#: views/compound/edit.phtml:13
+#: views/compound/edit.phtml:137
+#: views/compound/edit.phtml:257
+#: views/compound/edit.phtml:277
+#: views/compound/edit.phtml:294
+#: views/compound/edit.phtml:306
+#: views/compound/generateHtml.phtml:268
+#: views/compound/generateHtml.phtml:318
+#: views/attribute/edit.phtml:10
+msgid "General"
+msgstr "normalmente"
+
+#: controllers/CompoundController.php:1500
+#: views/compound/edit.phtml:229
+#: views/compound/edit.phtml:285
+#: views/compound/generateHtml.phtml:289
+msgid "Hot air ageing"
+msgstr "invecchiamento con aria calda "
+
+#: controllers/CompoundController.php:1542
+#: views/compound/edit.phtml:230
+#: views/compound/edit.phtml:314
+#: views/compound/generateHtml.phtml:339
+msgid "Weathering"
+msgstr "disgregazione"
+
+#: controllers/CompoundController.php:1553
+#: views/compound/edit.phtml:319
+#: views/compound/edit.phtml:328
+#: views/compound/generateHtml.phtml:352
+msgid "Delta E"
+msgstr "Delta E"
+
+#: controllers/CompoundController.php:1557
+#: views/compound/edit.phtml:320
+#: views/compound/edit.phtml:329
+#: views/compound/generateHtml.phtml:356
+msgid "Greyscale"
+msgstr "scalini di grigio"
+
+#: controllers/CompoundController.php:1572
+#: views/compound/edit.phtml:231
+#: views/compound/edit.phtml:337
+#: views/compound/generateHtml.phtml:377
+msgid "Burning rate"
+msgstr "velocità di combustione"
+
+#: controllers/CompoundController.php:1575
+#: views/compound/edit.phtml:218
+#: views/compound/edit.phtml:340
+#: views/compound/edit.phtml:356
+#: views/compound/generateHtml.phtml:382
+msgid "Value"
+msgstr "valore"
+
+#: controllers/CompoundController.php:1583
+#: views/compound/generateHtml.phtml:390
+msgid "Comment"
+msgstr "commento"
+
+#: controllers/CompoundController.php:1602
+#: views/compound/generateHtml.phtml:412
+msgid "Certifications and Approvals"
+msgstr "certificazioni e omologazioni"
+
+#: controllers/CompoundController.php:1664
+#: views/compound/edit.phtml:39
+#: views/compound/generateHtml.phtml:467
+msgid "Indoor/outdoor"
+msgstr "all´interno/all´esterno"
+
+#: controllers/CompoundController.php:1678
+#: views/compound/generateHtml.phtml:483
+msgid "Info"
+msgstr "informazione"
+
+#: controllers/CompoundController.php:1691
+#: views/compound/edit.phtml:19
+#: views/compound/edit.phtml:107
+#: views/compound/generateHtml.phtml:494
+msgid "Remark"
+msgstr "appunto"
+
+#: controllers/CompoundController.php:1694
+msgid ""
+"The information provided in this documentation corresponds to our knowledge on the subject at the date of its publication.\n"
+"                            This information may be subject to revision as new knowledge and experience becomes available. The results of our tests\n"
+"                            are determined by sample check and mean only a technical description of our products. It shall not absolve the customer of\n"
+"                            the responsibility to make tests for his intended process or purpose. Therefore, KRAIBURG TPE makes no warranties and\n"
+"                            assumes no liability in connection with any use of this information."
+msgstr ""
+
+#: controllers/CompoundController.php:1702
+#: views/compound/generateHtml.phtml:508
+msgid "&copy; 2010 by KRAIBURG TPE GmbH &amp; Co. KG, 23.09.2010"
+msgstr "&copy; 2010 by KRAIBURG TPE GmbH & Co. KG, 29.09.2010"
+
+#: controllers/CompoundController.php:1705
+#: views/compound/generateHtml.phtml:511
+msgid "Subject to change and error."
+msgstr "salvo modifiche e errore"
+
+#: controllers/AttributeController.php:98
+msgid "-- Select Condition --"
+msgstr ""
+
+#: views/index/index.phtml:4
+msgid "Overview"
+msgstr "riassunto"
+
+#: views/index/index.phtml:10
+msgid "..."
+msgstr "..."
+
+#: views/series/edit.phtml:5
+#: views/environment/edit.phtml:5
+#, fuzzy
+msgid "Edit Series"
+msgstr "News bearbeiten"
+
+#: views/series/edit.phtml:11
+#: views/series/new.phtml:13
+#: views/color/new.phtml:13
+#: views/safetydata/edit.phtml:13
+#: views/safetydata/edit.phtml:52
+#: views/safetydata/edit.phtml:57
+#: views/safetydata/edit.phtml:94
+#: views/safetydata/edit.phtml:99
+#: views/safetydata/edit.phtml:136
+#: views/safetydata/edit.phtml:141
+#: views/safetydata/edit.phtml:178
+#: views/safetydata/edit.phtml:183
+#: views/safetydata/edit.phtml:220
+#: views/safetydata/edit.phtml:225
+#: views/safetydata/edit.phtml:262
+#: views/safetydata/edit.phtml:267
+#: views/safetydata/edit.phtml:304
+#: views/safetydata/edit.phtml:309
+#: views/safetydata/edit.phtml:346
+#: views/safetydata/edit.phtml:351
+#: views/safetydata/edit.phtml:388
+#: views/safetydata/edit.phtml:393
+#: views/safetydata/new.phtml:13
+#: views/condition/edit.phtml:11
+#: views/condition/edit.phtml:12
+#: views/condition/new.phtml:13
+#: views/compound/new.phtml:11
+#: views/standardisation/new.phtml:13
+#: views/processingset/edit.phtml:14
+#: views/processingset/new.phtml:13
+#: views/attribute/new.phtml:13
+#: views/brand/edit.phtml:11
+#: views/brand/edit.phtml:12
+#: views/brand/edit.phtml:13
+#: views/brand/edit.phtml:14
+#: views/brand/edit.phtml:15
+#: views/brand/edit.phtml:16
+#: views/brand/new.phtml:13
+#: views/document/edit.phtml:13
+#: views/document/edit.phtml:52
+#: views/document/edit.phtml:57
+#: views/document/edit.phtml:94
+#: views/document/edit.phtml:99
+#: views/document/edit.phtml:136
+#: views/document/edit.phtml:141
+#: views/document/edit.phtml:178
+#: views/document/edit.phtml:183
+#: views/document/edit.phtml:220
+#: views/document/edit.phtml:225
+#: views/document/edit.phtml:262
+#: views/document/edit.phtml:267
+#: views/document/edit.phtml:304
+#: views/document/edit.phtml:309
+#: views/document/edit.phtml:346
+#: views/document/edit.phtml:351
+#: views/document/edit.phtml:388
+#: views/document/edit.phtml:393
+#: views/document/new.phtml:13
+#: views/msds/edit.phtml:13
+#: views/msds/edit.phtml:52
+#: views/msds/edit.phtml:57
+#: views/msds/edit.phtml:94
+#: views/msds/edit.phtml:99
+#: views/msds/edit.phtml:136
+#: views/msds/edit.phtml:141
+#: views/msds/edit.phtml:178
+#: views/msds/edit.phtml:183
+#: views/msds/edit.phtml:220
+#: views/msds/edit.phtml:225
+#: views/msds/edit.phtml:262
+#: views/msds/edit.phtml:267
+#: views/msds/edit.phtml:304
+#: views/msds/edit.phtml:309
+#: views/msds/edit.phtml:346
+#: views/msds/edit.phtml:351
+#: views/msds/edit.phtml:388
+#: views/msds/edit.phtml:393
+#: views/msds/new.phtml:13
+#: views/processingcategory/edit.phtml:15
+#: views/processingcategory/new.phtml:13
+#: views/seriescategory/edit.phtml:11
+#: views/seriescategory/new.phtml:13
+#: views/certification/new.phtml:13
+#: views/setting/index.phtml:10
+#: views/setting/index.phtml:11
+#: views/setting/index.phtml:12
+#: views/setting/index.phtml:13
+msgid "name"
+msgstr "nome"
+
+#: views/series/new.phtml:5
+#: views/compound/edit.phtml:60
+#: views/elements/sideBarSeries.phtml:20
+#, fuzzy
+msgid "New Series"
+msgstr "Neue Seite"
+
+#: views/series/all.phtml:5
+#: views/elements/sideBarSeries.phtml:17
+#, fuzzy
+msgid "Show Series"
+msgstr "Newsübersicht"
+
+#: views/series/all.phtml:34
+#: views/color/all.phtml:34
+#: views/safetydata/all.phtml:34
+#: views/condition/edit.phtml:11
+#: views/condition/edit.phtml:12
+#: views/condition/new.phtml:13
+#: views/condition/all.phtml:34
+#: views/compound/edit.phtml:27
+#: views/compound/all.phtml:34
+#: views/standardisation/edit.phtml:11
+#: views/standardisation/new.phtml:13
+#: views/standardisation/all.phtml:34
+#: views/conformity/all.phtml:34
+#: views/processingset/all.phtml:34
+#: views/attribute/all.phtml:34
+#: views/environment/all.phtml:34
+#: views/brand/all.phtml:34
+#: views/document/all.phtml:34
+#: views/msds/all.phtml:34
+#: views/tpetype/all.phtml:34
+#: views/processingcategory/all.phtml:34
+#: views/remark/all.phtml:34
+#: views/seriescategory/all.phtml:34
+#: views/processingmethod/all.phtml:34
+#: views/certification/all.phtml:34
+#: views/medium/all.phtml:34
+msgid "Name"
+msgstr "nome"
+
+#: views/series/all.phtml:35
+#: views/color/all.phtml:35
+#: views/safetydata/edit.phtml:37
+#: views/safetydata/edit.phtml:79
+#: views/safetydata/edit.phtml:121
+#: views/safetydata/edit.phtml:163
+#: views/safetydata/edit.phtml:205
+#: views/safetydata/edit.phtml:247
+#: views/safetydata/edit.phtml:289
+#: views/safetydata/edit.phtml:331
+#: views/safetydata/edit.phtml:373
+#: views/safetydata/all.phtml:35
+#: views/condition/all.phtml:35
+#: views/compound/all.phtml:35
+#: views/standardisation/all.phtml:35
+#: views/conformity/all.phtml:35
+#: views/processingset/all.phtml:35
+#: views/attribute/all.phtml:35
+#: views/environment/all.phtml:35
+#: views/brand/all.phtml:35
+#: views/document/edit.phtml:37
+#: views/document/edit.phtml:79
+#: views/document/edit.phtml:121
+#: views/document/edit.phtml:163
+#: views/document/edit.phtml:205
+#: views/document/edit.phtml:247
+#: views/document/edit.phtml:289
+#: views/document/edit.phtml:331
+#: views/document/edit.phtml:373
+#: views/document/all.phtml:35
+#: views/msds/edit.phtml:37
+#: views/msds/edit.phtml:79
+#: views/msds/edit.phtml:121
+#: views/msds/edit.phtml:163
+#: views/msds/edit.phtml:205
+#: views/msds/edit.phtml:247
+#: views/msds/edit.phtml:289
+#: views/msds/edit.phtml:331
+#: views/msds/edit.phtml:373
+#: views/msds/all.phtml:35
+#: views/tpetype/all.phtml:35
+#: views/elements/sideBarAttribute.phtml:3
+#: views/elements/sideBarConformity.phtml:3
+#: views/elements/sideBarTpetype.phtml:3
+#: views/elements/sideBarCondition.phtml:3
+#: views/elements/sideBarCertification.phtml:3
+#: views/elements/sideBarCompound.phtml:3
+#: views/elements/sideBarBrand.phtml:3
+#: views/elements/sideBarMedium.phtml:3
+#: views/elements/sideBarMsds.phtml:3
+#: views/elements/sideBarRemark.phtml:3
+#: views/elements/sideBarColor.phtml:3
+#: views/elements/sideBarEnvironment.phtml:3
+#: views/elements/sideBarStandardisation.phtml:3
+#: views/elements/sideBarDocument.phtml:3
+#: views/elements/sideBarSafetydata.phtml:3
+#: views/processingcategory/all.phtml:35
+#: views/remark/all.phtml:35
+#: views/seriescategory/all.phtml:35
+#: views/processingmethod/all.phtml:35
+#: views/certification/all.phtml:35
+#: views/medium/all.phtml:35
+msgid "Options"
+msgstr "opzione"
+
+#: views/series/all.phtml:44
+#: views/color/all.phtml:44
+#: views/safetydata/all.phtml:44
+#: views/condition/all.phtml:44
+#: views/compound/all.phtml:44
+#: views/standardisation/all.phtml:44
+#: views/conformity/all.phtml:44
+#: views/processingset/all.phtml:44
+#: views/attribute/all.phtml:44
+#: views/environment/all.phtml:44
+#: views/brand/all.phtml:44
+#: views/document/all.phtml:44
+#: views/msds/all.phtml:44
+#: views/tpetype/all.phtml:44
+#: views/processingcategory/all.phtml:44
+#: views/remark/all.phtml:44
+#: views/seriescategory/all.phtml:44
+#: views/processingmethod/all.phtml:44
+#: views/certification/all.phtml:44
+#: views/medium/all.phtml:44
+msgid "edit"
+msgstr "cambiare"
+
+#: views/color/edit.phtml:5
+#, fuzzy
+msgid "Edit Color"
+msgstr "Bearbeitungsmodus"
+
+#: views/color/edit.phtml:11
+#, fuzzy
+msgid "English"
+msgstr "in Liste anzeigen"
+
+#: views/color/edit.phtml:12
+#, fuzzy
+msgid "German"
+msgstr "Permanent"
+
+#: views/color/edit.phtml:13
+msgid "French"
+msgstr ""
+
+#: views/color/edit.phtml:14
+msgid "Spanish"
+msgstr ""
+
+#: views/color/edit.phtml:15
+msgid "Italian"
+msgstr ""
+
+#: views/color/edit.phtml:16
+#, fuzzy
+msgid "Chinese"
+msgstr "Name in der URL"
+
+#: views/color/new.phtml:5
+#: views/elements/sideBarColor.phtml:20
+#, fuzzy
+msgid "New Color"
+msgstr "Neue CSS"
+
+#: views/color/all.phtml:5
+#: views/elements/sideBarColor.phtml:17
+#, fuzzy
+msgid "Show Colors"
+msgstr "Zeige Css"
+
+#: views/safetydata/edit.phtml:5
+#, fuzzy
+msgid "Edit related safetydata"
+msgstr "Verknüpfte Dokumente"
+
+#: views/safetydata/edit.phtml:6
+#: views/document/edit.phtml:6
+#: views/msds/edit.phtml:6
+#, fuzzy
+msgid "Files"
+msgstr "Dateien"
+
+#: views/safetydata/edit.phtml:18
+#: views/document/edit.phtml:18
+#: views/msds/edit.phtml:18
+msgid "Files english"
+msgstr ""
+
+#: views/safetydata/edit.phtml:19
+#: views/document/edit.phtml:19
+#: views/msds/edit.phtml:19
+msgid "Files german"
+msgstr ""
+
+#: views/safetydata/edit.phtml:20
+#: views/document/edit.phtml:20
+#: views/msds/edit.phtml:20
+msgid "Files french"
+msgstr ""
+
+#: views/safetydata/edit.phtml:21
+#: views/document/edit.phtml:21
+#: views/msds/edit.phtml:21
+#, fuzzy
+msgid "Files italian"
+msgstr "Name in der URL"
+
+#: views/safetydata/edit.phtml:22
+#: views/document/edit.phtml:22
+#: views/msds/edit.phtml:22
+msgid "Files spanish"
+msgstr ""
+
+#: views/safetydata/edit.phtml:23
+#: views/document/edit.phtml:23
+#: views/msds/edit.phtml:23
+#, fuzzy
+msgid "Files chinese"
+msgstr "Name in der URL"
+
+#: views/safetydata/edit.phtml:24
+#: views/document/edit.phtml:24
+#: views/msds/edit.phtml:24
+msgid "Files czech"
+msgstr ""
+
+#: views/safetydata/edit.phtml:25
+#: views/document/edit.phtml:25
+#: views/msds/edit.phtml:25
+msgid "Files romanian"
+msgstr ""
+
+#: views/safetydata/edit.phtml:26
+#: views/document/edit.phtml:26
+#: views/msds/edit.phtml:26
+msgid "Files hungarian"
+msgstr ""
+
+#: views/safetydata/edit.phtml:31
+#: views/safetydata/edit.phtml:73
+#: views/safetydata/edit.phtml:115
+#: views/safetydata/edit.phtml:157
+#: views/safetydata/edit.phtml:199
+#: views/safetydata/edit.phtml:241
+#: views/safetydata/edit.phtml:283
+#: views/safetydata/edit.phtml:325
+#: views/safetydata/edit.phtml:367
+#: views/document/edit.phtml:31
+#: views/document/edit.phtml:73
+#: views/document/edit.phtml:115
+#: views/document/edit.phtml:157
+#: views/document/edit.phtml:199
+#: views/document/edit.phtml:241
+#: views/document/edit.phtml:283
+#: views/document/edit.phtml:325
+#: views/document/edit.phtml:367
+#: views/msds/edit.phtml:31
+#: views/msds/edit.phtml:73
+#: views/msds/edit.phtml:115
+#: views/msds/edit.phtml:157
+#: views/msds/edit.phtml:199
+#: views/msds/edit.phtml:241
+#: views/msds/edit.phtml:283
+#: views/msds/edit.phtml:325
+#: views/msds/edit.phtml:367
+#, fuzzy
+msgid "Add File"
+msgstr "Zu einer Seite hinzufügen"
+
+#: views/safetydata/edit.phtml:32
+#: views/safetydata/edit.phtml:74
+#: views/safetydata/edit.phtml:116
+#: views/safetydata/edit.phtml:158
+#: views/safetydata/edit.phtml:200
+#: views/safetydata/edit.phtml:242
+#: views/safetydata/edit.phtml:284
+#: views/safetydata/edit.phtml:326
+#: views/safetydata/edit.phtml:368
+#: views/document/edit.phtml:32
+#: views/document/edit.phtml:74
+#: views/document/edit.phtml:116
+#: views/document/edit.phtml:158
+#: views/document/edit.phtml:200
+#: views/document/edit.phtml:242
+#: views/document/edit.phtml:284
+#: views/document/edit.phtml:326
+#: views/document/edit.phtml:368
+#: views/msds/edit.phtml:32
+#: views/msds/edit.phtml:74
+#: views/msds/edit.phtml:116
+#: views/msds/edit.phtml:158
+#: views/msds/edit.phtml:200
+#: views/msds/edit.phtml:242
+#: views/msds/edit.phtml:284
+#: views/msds/edit.phtml:326
+#: views/msds/edit.phtml:368
+#, fuzzy
+msgid "Added Files"
+msgstr "Dateien"
+
+#: views/safetydata/edit.phtml:36
+#: views/safetydata/edit.phtml:78
+#: views/safetydata/edit.phtml:120
+#: views/safetydata/edit.phtml:162
+#: views/safetydata/edit.phtml:204
+#: views/safetydata/edit.phtml:246
+#: views/safetydata/edit.phtml:288
+#: views/safetydata/edit.phtml:330
+#: views/safetydata/edit.phtml:372
+#: views/document/edit.phtml:36
+#: views/document/edit.phtml:78
+#: views/document/edit.phtml:120
+#: views/document/edit.phtml:162
+#: views/document/edit.phtml:204
+#: views/document/edit.phtml:246
+#: views/document/edit.phtml:288
+#: views/document/edit.phtml:330
+#: views/document/edit.phtml:372
+#: views/msds/edit.phtml:36
+#: views/msds/edit.phtml:78
+#: views/msds/edit.phtml:120
+#: views/msds/edit.phtml:162
+#: views/msds/edit.phtml:204
+#: views/msds/edit.phtml:246
+#: views/msds/edit.phtml:288
+#: views/msds/edit.phtml:330
+#: views/msds/edit.phtml:372
+#, fuzzy
+msgid "File"
+msgstr "Dateien"
+
+#: views/safetydata/edit.phtml:63
+#: views/safetydata/edit.phtml:105
+#: views/safetydata/edit.phtml:147
+#: views/safetydata/edit.phtml:189
+#: views/safetydata/edit.phtml:231
+#: views/safetydata/edit.phtml:273
+#: views/safetydata/edit.phtml:315
+#: views/safetydata/edit.phtml:357
+#: views/safetydata/edit.phtml:399
+#: views/document/edit.phtml:63
+#: views/document/edit.phtml:105
+#: views/document/edit.phtml:147
+#: views/document/edit.phtml:189
+#: views/document/edit.phtml:231
+#: views/document/edit.phtml:273
+#: views/document/edit.phtml:315
+#: views/document/edit.phtml:357
+#: views/document/edit.phtml:399
+#: views/msds/edit.phtml:63
+#: views/msds/edit.phtml:105
+#: views/msds/edit.phtml:147
+#: views/msds/edit.phtml:189
+#: views/msds/edit.phtml:231
+#: views/msds/edit.phtml:273
+#: views/msds/edit.phtml:315
+#: views/msds/edit.phtml:357
+#: views/msds/edit.phtml:399
+#, fuzzy
+msgid "remove"
+msgstr "Entfernen"
+
+#: views/safetydata/new.phtml:5
+#, fuzzy
+msgid "New Related Safetydata"
+msgstr "Verknüpfte Dokumente"
+
+#: views/safetydata/new.phtml:22
+#: views/document/new.phtml:22
+#: views/msds/new.phtml:22
+msgid "save"
+msgstr "memorizzare"
+
+#: views/safetydata/all.phtml:5
+#: views/elements/sideBarSafetydata.phtml:17
+#, fuzzy
+msgid "Show Safetydatas"
+msgstr "Sicherheitsdaten"
+
+#: views/condition/edit.phtml:5
+#, fuzzy
+msgid "Edit Condition"
+msgstr "Inhalt bearbeiten"
+
+#: views/condition/new.phtml:5
+#: views/attribute/edit.phtml:33
+#: views/elements/sideBarCondition.phtml:20
+#, fuzzy
+msgid "New Condition"
+msgstr "Neue Übersetzung"
+
+#: views/condition/all.phtml:5
+#: views/elements/sideBarCondition.phtml:17
+#, fuzzy
+msgid "Show Conditions"
+msgstr "Auf allen Seiten anzeigen"
+
+#: views/compound/edit.phtml:6
+msgid "Main data of Compound "
+msgstr "dati principali del compound"
+
+#: views/compound/edit.phtml:7
+#: views/compound/generateHtml.phtml:656
+msgid "Properties"
+msgstr "proprietà "
+
+#: views/compound/edit.phtml:8
+#: views/compound/edit.phtml:140
+msgid "Resistances"
+msgstr "Resistenza"
+
+#: views/compound/edit.phtml:16
+msgid "Related Docs"
+msgstr "documenti relativi"
+
+#: views/compound/edit.phtml:17
+#: views/compound/edit.phtml:82
+msgid "Certification"
+msgstr "certificati"
+
+#: views/compound/edit.phtml:18
+#: views/compound/edit.phtml:95
+msgid "Conformity"
+msgstr "conformità"
+
+#: views/compound/edit.phtml:20
+#, fuzzy
+msgid "Processing info"
+msgstr "Ordner Verarbeitungshinweise"
+
+#: views/compound/edit.phtml:29
+msgid "Brand"
+msgstr "marche"
+
+#: views/compound/edit.phtml:30
+msgid "Visible"
+msgstr "pubblico"
+
+#: views/compound/edit.phtml:32
+msgid "TPE Types"
+msgstr "tipi di TPE"
+
+#: views/compound/edit.phtml:38
+msgid "Header data sheet"
+msgstr ""
+
+#: views/compound/edit.phtml:41
+msgid "Msds"
+msgstr "MSDS"
+
+#: views/compound/edit.phtml:42
+msgid "Info German"
+msgstr ""
+
+#: views/compound/edit.phtml:43
+#, fuzzy
+msgid "Info English"
+msgstr "in Liste anzeigen"
+
+#: views/compound/edit.phtml:44
+msgid "Info French"
+msgstr ""
+
+#: views/compound/edit.phtml:45
+msgid "Info Italian"
+msgstr ""
+
+#: views/compound/edit.phtml:46
+msgid "Info Spanish"
+msgstr ""
+
+#: views/compound/edit.phtml:47
+msgid "Info Chinese"
+msgstr ""
+
+#: views/compound/edit.phtml:56
+#: views/compound/edit.phtml:61
+msgid "Series Name"
+msgstr ""
+
+#: views/compound/edit.phtml:57
+#, fuzzy
+msgid "Delete this Series"
+msgstr "Seite löschen"
+
+#: views/compound/edit.phtml:68
+msgid "Document"
+msgstr "documento"
+
+#: views/compound/edit.phtml:70
+#: views/compound/edit.phtml:75
+msgid "Document Name"
+msgstr "nome del documento"
+
+#: views/compound/edit.phtml:71
+#, fuzzy
+msgid "Delete this Document"
+msgstr "Seite löschen"
+
+#: views/compound/edit.phtml:74
+#: views/elements/sideBarDocument.phtml:20
+#, fuzzy
+msgid "New Document"
+msgstr "Verknüpfte Dokumente"
+
+#: views/compound/edit.phtml:84
+#: views/compound/edit.phtml:89
+#, fuzzy
+msgid "Certification Name"
+msgstr "Name in der Navigation"
+
+#: views/compound/edit.phtml:85
+#, fuzzy
+msgid "Delete this Certification"
+msgstr "Seite löschen"
+
+#: views/compound/edit.phtml:88
+#: views/elements/sideBarCertification.phtml:20
+#: views/certification/new.phtml:5
+#, fuzzy
+msgid "New Certification"
+msgstr "Neue Übersetzung"
+
+#: views/compound/edit.phtml:97
+#: views/compound/edit.phtml:101
+msgid "Conformity Name"
+msgstr ""
+
+#: views/compound/edit.phtml:98
+#, fuzzy
+msgid "Delete this Conformity"
+msgstr "Seite löschen"
+
+#: views/compound/edit.phtml:100
+#: views/compound/edit.phtml:112
+#: views/conformity/new.phtml:5
+#: views/elements/sideBarConformity.phtml:20
+msgid "New Conformity"
+msgstr ""
+
+#: views/compound/edit.phtml:109
+#: views/compound/edit.phtml:113
+msgid "Remark Name"
+msgstr ""
+
+#: views/compound/edit.phtml:110
+#, fuzzy
+msgid "Delete this Remark"
+msgstr "Seite löschen"
+
+#: views/compound/edit.phtml:119
+#, fuzzy
+msgid "Processingmethod"
+msgstr "Verarbeitungshinweise"
+
+#: views/compound/edit.phtml:121
+#: views/compound/edit.phtml:125
+msgid "Processingmethod Name"
+msgstr ""
+
+#: views/compound/edit.phtml:122
+#, fuzzy
+msgid "Delete this Processingmethod"
+msgstr "Seite löschen"
+
+#: views/compound/edit.phtml:124
+#: views/elements/sideBarProcessing.phtml:59
+#: views/processingmethod/new.phtml:5
+msgid "New Processingmethod"
+msgstr ""
+
+#: views/compound/edit.phtml:127
+#, fuzzy
+msgid "Processing information guidelines"
+msgstr "Ordner Verarbeitungshinweise"
+
+#: views/compound/edit.phtml:128
+msgid "Extrusion processing guideline"
+msgstr ""
+
+#: views/compound/edit.phtml:129
+msgid "Injection processing guideline"
+msgstr ""
+
+#: views/compound/edit.phtml:138
+msgid "Mechanical"
+msgstr "mechanico"
+
+#: views/compound/edit.phtml:139
+msgid "Flow behaviour"
+msgstr "fluidità"
+
+#: views/compound/edit.phtml:141
+msgid "Transparence quality"
+msgstr "Transparenza"
+
+#: views/compound/edit.phtml:142
+msgid "Electrical"
+msgstr "elettrico"
+
+#: views/compound/edit.phtml:143
+#: views/compound/edit.phtml:206
+msgid "Adhesion"
+msgstr "adesione"
+
+#: views/compound/edit.phtml:208
+#: views/compound/edit.phtml:216
+msgid "Type"
+msgstr "tipo"
+
+#: views/compound/edit.phtml:209
+#: views/compound/edit.phtml:217
+#: views/attribute/edit.phtml:12
+msgid "Standardisation"
+msgstr "standardizzazione"
+
+#: views/compound/edit.phtml:210
+msgid "value"
+msgstr "valore"
+
+#: views/compound/edit.phtml:211
+#: views/compound/edit.phtml:219
+msgid "Quality"
+msgstr "qualità"
+
+#: views/compound/edit.phtml:212
+#, fuzzy
+msgid "Delete this Adhesion"
+msgstr "Seite löschen"
+
+#: views/compound/edit.phtml:215
+#, fuzzy
+msgid "New Adhesion"
+msgstr "Neue News"
+
+#: views/compound/edit.phtml:243
+#: views/compound/edit.phtml:263
+#: views/compound/edit.phtml:287
+#: views/compound/edit.phtml:299
+#: views/compound/edit.phtml:316
+#: views/compound/edit.phtml:325
+#: views/compound/edit.phtml:339
+#: views/compound/edit.phtml:355
+#: views/attribute/edit.phtml:11
+msgid "Condition"
+msgstr "condizioni"
+
+#: views/compound/edit.phtml:252
+#: views/compound/edit.phtml:272
+msgid "Specimen before migration"
+msgstr ""
+
+#: views/compound/edit.phtml:252
+#: views/compound/edit.phtml:255
+#: views/compound/edit.phtml:272
+#: views/compound/edit.phtml:275
+#, fuzzy
+msgid "Choose Image"
+msgstr "Wählen Sie eine Seite"
+
+#: views/compound/edit.phtml:255
+#: views/compound/edit.phtml:275
+msgid "Specimen after migration"
+msgstr ""
+
+#: views/compound/edit.phtml:258
+#, fuzzy
+msgid "Delete this Media resistance"
+msgstr "Seite löschen"
+
+#: views/compound/edit.phtml:261
+msgid "New Media resistance"
+msgstr ""
+
+#: views/compound/edit.phtml:295
+msgid "Delete this Hot air ageing"
+msgstr ""
+
+#: views/compound/edit.phtml:298
+msgid "New Hot air ageing"
+msgstr ""
+
+#: views/compound/edit.phtml:320
+#: views/compound/edit.phtml:329
+msgid "-- Select Greyscale --"
+msgstr ""
+
+#: views/compound/edit.phtml:321
+#, fuzzy
+msgid "Delete this Weathering"
+msgstr "Seite löschen"
+
+#: views/compound/edit.phtml:324
+msgid "New Weathering"
+msgstr ""
+
+#: views/compound/edit.phtml:343
+#: views/compound/edit.phtml:359
+#, fuzzy
+msgid "Comment German"
+msgstr "Inhaltsbereich"
+
+#: views/compound/edit.phtml:344
+#: views/compound/edit.phtml:360
+msgid "Comment English"
+msgstr ""
+
+#: views/compound/edit.phtml:345
+#: views/compound/edit.phtml:361
+#, fuzzy
+msgid "Comment French"
+msgstr "Inhaltsbereich"
+
+#: views/compound/edit.phtml:346
+#: views/compound/edit.phtml:362
+msgid "Comment Spanish"
+msgstr ""
+
+#: views/compound/edit.phtml:347
+#: views/compound/edit.phtml:363
+msgid "Comment Italian"
+msgstr ""
+
+#: views/compound/edit.phtml:348
+#: views/compound/edit.phtml:364
+msgid "Comment Chinese"
+msgstr ""
+
+#: views/compound/edit.phtml:350
+#, fuzzy
+msgid "Delete this Burning rate"
+msgstr "Seite löschen"
+
+#: views/compound/edit.phtml:353
+msgid "New Burning rate"
+msgstr ""
+
+#: views/compound/new.phtml:5
+#: views/elements/sideBarCompound.phtml:20
+#, fuzzy
+msgid "New Compound"
+msgstr "Neuer Baustein"
+
+#: views/compound/all.phtml:5
+#: views/elements/sideBarCompound.phtml:17
+#, fuzzy
+msgid "Show Compounds"
+msgstr "Übersicht der Bausteine"
+
+#: views/compound/generateHtml.phtml:2
+msgid "Datasheet of Compound"
+msgstr "scheda technica"
+
+#: views/compound/generateHtml.phtml:83
+#: views/elements/sideBarProcessing.phtml:42
+msgid "Processing methods"
+msgstr "metodo di lavorazione"
+
+#: views/compound/generateHtml.phtml:499
+msgid ""
+"The information provided in this documentation corresponds to our knowledge on the subject at the date of its publication.\n"
+"                        This information may be subject to revision as new knowledge and experience becomes available. The results of our tests\n"
+"                        are determined by sample check and mean only a technical description of our products. It shall not absolve the customer of\n"
+"                        the responsibility to make tests for his intended process or purpose. Therefore, KRAIBURG TPE makes no warranties and\n"
+"                        assumes no liability in connection with any use of this information."
+msgstr "Le informazioni contenute nel presente documento corrispondono al  nostro livelloo di conoscenza al momento della pubblicazione. Non è escluso che queste ultime possano cambiare sulla scorta di ulteriori ricerche e studi. I nostri rapporti si basano su misurazioni effettuate su campioni e vogliono fornire semplicemente una descrizione tecnica dei nostri prodotti. Non hanno pertanto valore di certificazioni officiali e non esimono il cliente dalla responsabilità di condurre prove sui prodotti finiti al fine di stabilirne l´idoneità. Di conseguenza, la KRAIBURG TPE non si assume alcuna responsabilità in relazione all´uso di queste informazioni."
+
+#: views/compound/generateHtml.phtml:526
+msgid "Product-Database search"
+msgstr "ricerca nel nella banca dei dati sui prodotti"
+
+#: views/compound/generateHtml.phtml:536
+msgid "Product-Info"
+msgstr "informazioni sul prodotto"
+
+#: views/compound/generateHtml.phtml:538
+msgid "Download Datasheet PDF"
+msgstr "scheda di sicurezza"
+
+#: views/compound/generateHtml.phtml:542
+msgid "Safety Data"
+msgstr "Safety Data"
+
+#: views/compound/generateHtml.phtml:564
+msgid "Material Safety Data"
+msgstr "MSDS"
+
+#: views/compound/generateHtml.phtml:590
+msgid "Processing Instruction"
+msgstr "indicazioni di lavorazione"
+
+#: views/compound/generateHtml.phtml:606
+msgid "Extrusion Molding"
+msgstr "Estrusione"
+
+#: views/compound/generateHtml.phtml:623
+msgid "Injection Molding"
+msgstr "iniezione"
+
+#: views/standardisation/edit.phtml:5
+#, fuzzy
+msgid "Edit Standardisation"
+msgstr "Newsübersetzung bearbeiten"
+
+#: views/standardisation/edit.phtml:12
+msgid "Unit"
+msgstr "Einheit"
+
+#: views/standardisation/edit.phtml:13
+msgid "Standard"
+msgstr "Standard"
+
+#: views/standardisation/new.phtml:5
+#: views/attribute/edit.phtml:45
+#: views/elements/sideBarStandardisation.phtml:20
+#, fuzzy
+msgid "New Standardisation"
+msgstr "Neue Übersetzung"
+
+#: views/standardisation/all.phtml:5
+#: views/elements/sideBarStandardisation.phtml:17
+#, fuzzy
+msgid "Show Standardisations"
+msgstr "Neue Übersetzung"
+
+#: views/conformity/edit.phtml:5
+msgid "Edit Conformity"
+msgstr ""
+
+#: views/conformity/edit.phtml:11
+#: views/conformity/new.phtml:13
+#: views/environment/edit.phtml:11
+#: views/environment/new.phtml:13
+#: views/tpetype/edit.phtml:11
+#: views/tpetype/new.phtml:13
+#: views/remark/edit.phtml:11
+#: views/remark/new.phtml:13
+#: views/processingmethod/edit.phtml:11
+#: views/processingmethod/new.phtml:13
+#: views/medium/edit.phtml:11
+#: views/medium/new.phtml:13
+msgid "name english"
+msgstr ""
+
+#: views/conformity/edit.phtml:11
+#: views/conformity/new.phtml:13
+#: views/environment/edit.phtml:11
+#: views/environment/new.phtml:13
+#: views/brand/edit.phtml:11
+#: views/tpetype/edit.phtml:11
+#: views/tpetype/new.phtml:13
+#: views/remark/edit.phtml:11
+#: views/remark/new.phtml:13
+#: views/processingmethod/edit.phtml:11
+#: views/medium/edit.phtml:11
+#: views/medium/new.phtml:13
+msgid "Name English"
+msgstr ""
+
+#: views/conformity/edit.phtml:12
+#: views/environment/edit.phtml:12
+#: views/tpetype/edit.phtml:12
+#: views/remark/edit.phtml:12
+#: views/processingmethod/edit.phtml:12
+#: views/medium/edit.phtml:12
+msgid "name german"
+msgstr ""
+
+#: views/conformity/edit.phtml:12
+#: views/environment/edit.phtml:12
+#: views/brand/edit.phtml:12
+#: views/tpetype/edit.phtml:12
+#: views/remark/edit.phtml:12
+#: views/processingmethod/edit.phtml:12
+#: views/medium/edit.phtml:12
+msgid "Name German"
+msgstr ""
+
+#: views/conformity/edit.phtml:13
+#: views/environment/edit.phtml:13
+#: views/tpetype/edit.phtml:13
+#: views/remark/edit.phtml:13
+#: views/processingmethod/edit.phtml:13
+#: views/medium/edit.phtml:13
+msgid "name french"
+msgstr ""
+
+#: views/conformity/edit.phtml:13
+#: views/environment/edit.phtml:13
+#: views/brand/edit.phtml:13
+#: views/tpetype/edit.phtml:13
+#: views/remark/edit.phtml:13
+#: views/processingmethod/edit.phtml:13
+#: views/medium/edit.phtml:13
+msgid "Name French"
+msgstr ""
+
+#: views/conformity/edit.phtml:14
+#: views/environment/edit.phtml:14
+#: views/tpetype/edit.phtml:14
+#: views/remark/edit.phtml:14
+#: views/processingmethod/edit.phtml:14
+#: views/medium/edit.phtml:14
+msgid "name italian"
+msgstr ""
+
+#: views/conformity/edit.phtml:14
+#: views/environment/edit.phtml:14
+#: views/brand/edit.phtml:14
+#: views/tpetype/edit.phtml:14
+#: views/remark/edit.phtml:14
+#: views/processingmethod/edit.phtml:14
+#: views/medium/edit.phtml:14
+#, fuzzy
+msgid "Name Italian"
+msgstr "Name in der URL"
+
+#: views/conformity/edit.phtml:15
+#: views/environment/edit.phtml:15
+#: views/tpetype/edit.phtml:15
+#: views/remark/edit.phtml:15
+#: views/processingmethod/edit.phtml:15
+#: views/medium/edit.phtml:15
+msgid "name spanish"
+msgstr ""
+
+#: views/conformity/edit.phtml:15
+#: views/environment/edit.phtml:15
+#: views/brand/edit.phtml:15
+#: views/tpetype/edit.phtml:15
+#: views/remark/edit.phtml:15
+#: views/processingmethod/edit.phtml:15
+#: views/medium/edit.phtml:15
+msgid "Name Spanish"
+msgstr ""
+
+#: views/conformity/edit.phtml:16
+#: views/environment/edit.phtml:16
+#: views/tpetype/edit.phtml:16
+#: views/remark/edit.phtml:16
+#: views/processingmethod/edit.phtml:16
+#: views/medium/edit.phtml:16
+msgid "name chinese"
+msgstr ""
+
+#: views/conformity/edit.phtml:16
+#: views/environment/edit.phtml:16
+#: views/brand/edit.phtml:16
+#: views/tpetype/edit.phtml:16
+#: views/remark/edit.phtml:16
+#: views/processingmethod/edit.phtml:16
+#: views/medium/edit.phtml:16
+#, fuzzy
+msgid "Name Chinese"
+msgstr "Name in der URL"
+
+#: views/conformity/all.phtml:5
+msgid "Show Conformity"
+msgstr ""
+
+#: views/processingset/edit.phtml:5
+msgid "Edit Processing Set"
+msgstr ""
+
+#: views/processingset/edit.phtml:15
+#: views/processingset/new.phtml:14
+#, fuzzy
+msgid "Category"
+msgstr "Neue Kategorie"
+
+#: views/processingset/new.phtml:5
+#: views/elements/sideBarProcessing.phtml:9
+#, fuzzy
+msgid "New Processing Set"
+msgstr "Verarbeitungshinweise"
+
+#: views/processingset/all.phtml:5
+#: views/elements/sideBarProcessing.phtml:6
+msgid "Show Processing Sets"
+msgstr ""
+
+#: views/attribute/edit.phtml:5
+#, fuzzy
+msgid "Edit Attribute"
+msgstr "Website bearbeiten"
+
+#: views/attribute/edit.phtml:18
+#: views/attribute/edit.phtml:19
+#: views/certification/edit.phtml:11
+#, fuzzy
+msgid "text"
+msgstr "Text"
+
+#: views/attribute/edit.phtml:20
+msgid "is default"
+msgstr ""
+
+#: views/attribute/edit.phtml:21
+msgid "has 1 value"
+msgstr ""
+
+#: views/attribute/edit.phtml:22
+msgid "has second value"
+msgstr ""
+
+#: views/attribute/edit.phtml:23
+#, fuzzy
+msgid "has relation"
+msgstr "Übersetzungen"
+
+#: views/attribute/edit.phtml:30
+#: views/attribute/edit.phtml:34
+#, fuzzy
+msgid "Condition Name"
+msgstr "Name in der Navigation"
+
+#: views/attribute/edit.phtml:31
+msgid "Delete Condition"
+msgstr ""
+
+#: views/attribute/edit.phtml:42
+#: views/attribute/edit.phtml:46
+#, fuzzy
+msgid "Standardisation Name"
+msgstr "Name in der Navigation"
+
+#: views/attribute/edit.phtml:43
+msgid "Delete Standardisation"
+msgstr ""
+
+#: views/attribute/new.phtml:5
+#: views/elements/sideBarAttribute.phtml:20
+#, fuzzy
+msgid "New Attribute"
+msgstr "Neue Seite"
+
+#: views/attribute/all.phtml:5
+#: views/elements/sideBarCertification.phtml:17
+#: views/certification/all.phtml:5
+msgid "Show Certifications"
+msgstr ""
+
+#: views/environment/new.phtml:5
+#: views/elements/sideBarEnvironment.phtml:20
+#, fuzzy
+msgid "New Environment"
+msgstr "Neuer Baustein"
+
+#: views/environment/all.phtml:5
+#: views/elements/sideBarEnvironment.phtml:17
+#, fuzzy
+msgid "Show Environments"
+msgstr "Übersicht der Bausteine"
+
+#: views/brand/edit.phtml:5
+#, fuzzy
+msgid "Edit Brand"
+msgstr "Bearbeitungsmodus"
+
+#: views/brand/new.phtml:5
+#: views/elements/sideBarBrand.phtml:20
+msgid "New Brand"
+msgstr ""
+
+#: views/brand/all.phtml:5
+#: views/elements/sideBarBrand.phtml:17
+#, fuzzy
+msgid "Show Brands"
+msgstr "Newsübersicht"
+
+#: views/document/edit.phtml:5
+#, fuzzy
+msgid "Edit related document"
+msgstr "Verknüpfte Dokumente"
+
+#: views/document/new.phtml:5
+#, fuzzy
+msgid "New Related Document"
+msgstr "Verknüpfte Dokumente"
+
+#: views/document/all.phtml:5
+#: views/elements/sideBarDocument.phtml:17
+#, fuzzy
+msgid "Show Documents"
+msgstr "Übersicht der Bausteine"
+
+#: views/msds/edit.phtml:5
+#, fuzzy
+msgid "Edit related msds"
+msgstr "Verknüpfte Dokumente"
+
+#: views/msds/new.phtml:5
+#, fuzzy
+msgid "New Related Msds"
+msgstr "Verknüpfte Dokumente"
+
+#: views/msds/all.phtml:5
+#, fuzzy
+msgid "Show Msds"
+msgstr "Newsübersicht"
+
+#: views/tpetype/edit.phtml:5
+#, fuzzy
+msgid "Edit Tpetype"
+msgstr "Website bearbeiten"
+
+#: views/tpetype/new.phtml:5
+#, fuzzy
+msgid "New Tpetype"
+msgstr "Neue Seite"
+
+#: views/tpetype/all.phtml:5
+#, fuzzy
+msgid "Show Tpetype"
+msgstr "Zeite Seitenvorlagen"
+
+#: views/elements/sideBarAttribute.phtml:7
+msgid "Find Attributes by typing their name"
+msgstr ""
+
+#: views/elements/sideBarAttribute.phtml:8
+#: views/elements/sideBarAttribute.phtml:12
+#: views/elements/sideBarConformity.phtml:8
+#: views/elements/sideBarConformity.phtml:12
+#: views/elements/sideBarTpetype.phtml:8
+#: views/elements/sideBarTpetype.phtml:12
+#: views/elements/sideBarCondition.phtml:8
+#: views/elements/sideBarCondition.phtml:12
+#: views/elements/sideBarProcessing.phtml:47
+#: views/elements/sideBarProcessing.phtml:51
+#: views/elements/sideBarCertification.phtml:8
+#: views/elements/sideBarCertification.phtml:12
+#: views/elements/sideBarCompound.phtml:8
+#: views/elements/sideBarCompound.phtml:12
+#: views/elements/sideBarBrand.phtml:8
+#: views/elements/sideBarBrand.phtml:12
+#: views/elements/sideBarMedium.phtml:8
+#: views/elements/sideBarMedium.phtml:12
+#: views/elements/sideBarMsds.phtml:8
+#: views/elements/sideBarMsds.phtml:12
+#: views/elements/sideBarRemark.phtml:8
+#: views/elements/sideBarRemark.phtml:12
+#: views/elements/sideBarColor.phtml:8
+#: views/elements/sideBarColor.phtml:12
+#: views/elements/sideBarEnvironment.phtml:8
+#: views/elements/sideBarEnvironment.phtml:12
+#: views/elements/sideBarStandardisation.phtml:8
+#: views/elements/sideBarStandardisation.phtml:12
+#: views/elements/sideBarSeries.phtml:8
+#: views/elements/sideBarSeries.phtml:12
+#: views/elements/sideBarDocument.phtml:8
+#: views/elements/sideBarDocument.phtml:12
+#: views/elements/sideBarSafetydata.phtml:8
+#: views/elements/sideBarSafetydata.phtml:12
+msgid "Search"
+msgstr "ricerca"
+
+#: views/elements/sideBarAttribute.phtml:17
+#, fuzzy
+msgid "Show Attributes"
+msgstr "Zeite Seitenvorlagen"
+
+#: views/elements/sideBarConformity.phtml:7
+msgid "Find Conformities by typing their name"
+msgstr ""
+
+#: views/elements/sideBarConformity.phtml:17
+#, fuzzy
+msgid "Show Conformities"
+msgstr "Auf allen Seiten anzeigen"
+
+#: views/elements/sideBarTpetype.phtml:7
+msgid "Find Tpe Types by typing their name"
+msgstr ""
+
+#: views/elements/sideBarTpetype.phtml:17
+msgid "Show Tpe Types"
+msgstr "fa vedere i tipi di TPE"
+
+#: views/elements/sideBarTpetype.phtml:20
+msgid "New Tpe Type"
+msgstr ""
+
+#: views/elements/sideBarCondition.phtml:7
+msgid "Find Conditions by typing their name"
+msgstr ""
+
+#: views/elements/sideBarProcessing.phtml:3
+#, fuzzy
+msgid "Processing sets"
+msgstr "Verarbeitungssets"
+
+#: views/elements/sideBarProcessing.phtml:46
+msgid "Find Processingmethods by typing their name"
+msgstr ""
+
+#: views/elements/sideBarProcessing.phtml:56
+#: views/processingmethod/all.phtml:5
+msgid "Show Processingmethods"
+msgstr ""
+
+#: views/elements/sideBarCertification.phtml:7
+msgid "Find Certifications by typing their name"
+msgstr ""
+
+#: views/elements/sideBarCompound.phtml:7
+msgid "Find compounds by typing their name"
+msgstr ""
+
+#: views/elements/sideBarBrand.phtml:7
+msgid "Find Brands by typing their name"
+msgstr ""
+
+#: views/elements/sideBarMedium.phtml:7
+msgid "Find Medium by typing their name"
+msgstr ""
+
+#: views/elements/sideBarMedium.phtml:17
+#: views/medium/all.phtml:5
+msgid "Show Medium"
+msgstr "fa vedere le sostanze"
+
+#: views/elements/sideBarMedium.phtml:20
+#: views/medium/new.phtml:5
+msgid "New Medium"
+msgstr ""
+
+#: views/elements/sideBarMsds.phtml:7
+msgid "Find Msdss by typing their name"
+msgstr ""
+
+#: views/elements/sideBarMsds.phtml:17
+#, fuzzy
+msgid "Show all Msds"
+msgstr "Newsübersicht"
+
+#: views/elements/sideBarMsds.phtml:20
+#, fuzzy
+msgid "New Msds"
+msgstr "Msds"
+
+#: views/elements/sideBarRemark.phtml:7
+msgid "Find Remarks by typing their name"
+msgstr ""
+
+#: views/elements/sideBarRemark.phtml:17
+#: views/remark/all.phtml:5
+msgid "Show Remarks"
+msgstr "fa vedere gli appunti"
+
+#: views/elements/sideBarRemark.phtml:20
+#: views/remark/new.phtml:5
+msgid "New Remark"
+msgstr ""
+
+#: views/elements/sideBarColor.phtml:7
+msgid "Find Colors by typing their name"
+msgstr ""
+
+#: views/elements/sideBarEnvironment.phtml:7
+msgid "Find Environments by typing their name"
+msgstr ""
+
+#: views/elements/sideBarStandardisation.phtml:7
+msgid "Find Standardisations by typing their name"
+msgstr ""
+
+#: views/elements/sideBarSeries.phtml:7
+msgid "Find Series by typing their name"
+msgstr ""
+
+#: views/elements/sideBarSeries.phtml:24
+msgid "Categories"
+msgstr "categorie"
+
+#: views/elements/sideBarSeries.phtml:27
+msgid "Show Categories"
+msgstr "fa vedere le categorie "
+
+#: views/elements/sideBarSeries.phtml:30
+msgid "New Category"
+msgstr "nuova categoria"
+
+#: views/elements/sideBarDocument.phtml:7
+msgid "Find Documents by typing their name"
+msgstr ""
+
+#: views/elements/sideBarSafetydata.phtml:7
+msgid "Find Safetydatas by typing their name"
+msgstr ""
+
+#: views/elements/sideBarSafetydata.phtml:20
+#, fuzzy
+msgid "New Safetydata"
+msgstr "Sicherheitsdaten"
+
+#: views/processingcategory/edit.phtml:5
+msgid "Edit Processing Category"
+msgstr ""
+
+#: views/processingcategory/edit.phtml:16
+#: views/processingcategory/new.phtml:14
+msgid "Parent"
+msgstr "superiore"
+
+#: views/processingcategory/new.phtml:5
+msgid "New Processing Category"
+msgstr ""
+
+#: views/processingcategory/all.phtml:5
+msgid "Show Processing Categories"
+msgstr ""
+
+#: views/remark/edit.phtml:5
+msgid "Edit Remark"
+msgstr "adattare appunto"
+
+#: views/seriescategory/edit.phtml:5
+msgid "Edit Series Category"
+msgstr ""
+
+#: views/seriescategory/new.phtml:5
+msgid "New Series Category"
+msgstr ""
+
+#: views/seriescategory/all.phtml:5
+msgid "Show Series Categories"
+msgstr ""
+
+#: views/processingmethod/edit.phtml:5
+msgid "Edit Processingmethod"
+msgstr ""
+
+#: views/certification/edit.phtml:5
+msgid "Edit Certification"
+msgstr "adattare certificati "
+
+#: views/medium/edit.phtml:5
+msgid "Edit Medium"
+msgstr "adattare sostanze"
+
+#: views/setting/index.phtml:4
+msgid "Product-Database Settings"
+msgstr ""
+
+#: views/setting/index.phtml:10
+msgid "Folder Related Documents"
+msgstr ""
+
+#: views/setting/index.phtml:11
+msgid "Folder MSDS"
+msgstr ""
+
+#: views/setting/index.phtml:12
+msgid "Folder Safety Data"
+msgstr ""
+
+#: views/setting/index.phtml:13
+msgid "Folder Processinginformation"
+msgstr "raccoglitore indicazioni di lavorazione"
+
+#: views/setting/index.phtml:14
+msgid "Website uri"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Furhter data"
+#~ msgstr "Seitendaten"
+
+#, fuzzy
+#~ msgid "Furhter data 2"
+#~ msgstr "Seitendaten"
+
+#, fuzzy
+#~ msgid "Furhter data 3"
+#~ msgstr "Seitendaten"
+
+#~ msgid "development name"
+#~ msgstr "Entwicklungsname"
+
+#~ msgid "unit"
+#~ msgstr "Einheit"
+
+#~ msgid "standard"
+#~ msgstr "Standard"
+
+#~ msgid "Processing Files"
+#~ msgstr "Verarbeitungsdateien"
+
+#, fuzzy
+#~ msgid "Edit Processing Item"
+#~ msgstr "Website bearbeiten"
+
+#, fuzzy
+#~ msgid "Czech"
+#~ msgstr "Zwischenspeichern"
+
+#, fuzzy
+#~ msgid "Polish"
+#~ msgstr "Veröffentlichen"
+
+#, fuzzy
+#~ msgid "New Processing Item"
+#~ msgstr "Verarbeitungshinweise"
+
+#, fuzzy
+#~ msgid "Show Processing Items"
+#~ msgstr "Verarbeitungshinweise"
+
+#~ msgid "Processing Item"
+#~ msgstr "Verarbeitungsitems"
+
+#~ msgid "Processing Category"
+#~ msgstr "Verarbeitungskategorien"
+
+#~ msgid "Processing Data"
+#~ msgstr "Verarbeitungsdaten"
+
+#~ msgid "Processingmethodes"
+#~ msgstr "Verarbeitungsmethoden"
+
+#~ msgid "Publishing..."
+#~ msgstr "Veröffentlichen..."
+
+#~ msgid "Published"
+#~ msgstr "Veröffentlicht"
+
+#~ msgid "The item has been published successfully."
+#~ msgstr "Das Objekt wurde erfolgreich veröffentlicht."
+
+#~ msgid "Unpublishing..."
+#~ msgstr "Unveröffentlichen..."
+
+#~ msgid "Unpublished"
+#~ msgstr "Unveröffentlicht"
+
+#~ msgid "The item has been unpublished successfully."
+#~ msgstr "Das Objekt wurden erfolgreich unveröffentlicht."
+
+#~ msgid "Copied"
+#~ msgstr "Kopiert"
+
+#~ msgid "The item has been copied successfully."
+#~ msgstr "Das Objekt wurde erfolgreich kopiert."
+
+#~ msgid "Do you really want to move this site?"
+#~ msgstr "Wollen sie diese Seite wirklich verschieben?"
+
+#~ msgid "Moved"
+#~ msgstr "Verschoben"
+
+#~ msgid "The site has been moved successfully"
+#~ msgstr "Die Seite wurde erfolgreich verschoben"
+
+#~ msgid "Do you really want to rename this site?"
+#~ msgstr "Wollen sie diese Seite wirklich umbenennen?"
+
+#~ msgid "Renamed"
+#~ msgstr "Umbenannt"
+
+#~ msgid "The site has been renamed successfully"
+#~ msgstr "Die Seite wurde erfolgreich umbenannt"
+
+#~ msgid "Do you want to save before the editor is closed?"
+#~ msgstr "Wollen sie speichern bevor der Editor geschlossen wird?"
+
+#~ msgid "Site Structure"
+#~ msgstr "Seitenstruktur"
+
+#~ msgid "Languages"
+#~ msgstr "Sprachen"
+
+#~ msgid "Site templates"
+#~ msgstr "Seitenvorlagen"
+
+#~ msgid "Navigation templates"
+#~ msgstr "Navigationsvorlagen"
+
+#~ msgid "Javascript"
+#~ msgstr "Javascript"
+
+#~ msgid "CSS"
+#~ msgstr "CSS"
+
+#~ msgid "Contentboxes"
+#~ msgstr "Contentboxes"
+
+#~ msgid "News"
+#~ msgstr "News"
+
+#~ msgid "root"
+#~ msgstr "Ordnerstruktur"
+
+#~ msgid "Open in this window / frame"
+#~ msgstr "Im gleichen Fenstern / Frame öffnen"
+
+#~ msgid "Open in new window (_blank)"
+#~ msgstr "In einem neuen Fenster öffnen (_blank)"
+
+#~ msgid "Open in new parent window / frame (_parent)"
+#~ msgstr "In einem neuen, übergeordnetem Fenster / Frame öffnen (_parent)"
+
+#~ msgid "Open in top frame (replaces all frames) (_top)"
+#~ msgstr "In dem Top-Frame öffnen (ersetzt alle Frames) (_top)"
+
+#~ msgid "Always"
+#~ msgstr "Immer"
+
+#~ msgid "Hourly"
+#~ msgstr "Stündlich"
+
+#~ msgid "Dialy"
+#~ msgstr "Täglich"
+
+#~ msgid "Weekly"
+#~ msgstr "Wöchentlich"
+
+#~ msgid "Monthly"
+#~ msgstr "Monatlich"
+
+#~ msgid "Yearly"
+#~ msgstr "Jährlich"
+
+#~ msgid "Never"
+#~ msgstr "Nie"
+
+#~ msgid "No Content"
+#~ msgstr "Kein Inhalt"
+
+#~ msgid "Site type"
+#~ msgstr "Seitentyp"
+
+#~ msgid "Site status"
+#~ msgstr "Status"
+
+#~ msgid "Home site"
+#~ msgstr "Ist diese Seite eine Startseite?"
+
+#~ msgid "Is private"
+#~ msgstr "Diese Seite ist private"
+
+#~ msgid "Site schedule status is"
+#~ msgstr "Terminierungsstatus dieser Seite"
+
+#~ msgid "Show site in live mode"
+#~ msgstr "Zeige diese Seite im Livemodus"
+
+#~ msgid "You cannot show this site in live mode"
+#~ msgstr "Sie können diese Seite nicht im Livemodus betrachten"
+
+#~ msgid "Live Mode"
+#~ msgstr "Livemodus"
+
+#~ msgid "Show site in preview mode"
+#~ msgstr "Zeige diese Seite im Vorschaumodus"
+
+#~ msgid "Preview Mode"
+#~ msgstr "Vorschaumodus"
+
+#~ msgid "Show site in edit mode"
+#~ msgstr "Zeige diese Seite im Bearbeitungsmodus"
+
+#~ msgid "Opens the site window"
+#~ msgstr "Öffnet das Seitenfenster"
+
+#~ msgid "Edit"
+#~ msgstr "Ändern"
+
+#~ msgid "Publish the site"
+#~ msgstr "Zeitpunkt der Veröffentlichung"
+
+#~ msgid "Refresh the site"
+#~ msgstr "Aussehen der Seite"
+
+#~ msgid "Refresh"
+#~ msgstr "Neu Laden"
+
+#~ msgid "More"
+#~ msgstr "Mehr"
+
+#~ msgid "Copy the site"
+#~ msgstr "Seite kopieren"
+
+#~ msgid "Copy"
+#~ msgstr "Kopieren"
+
+#~ msgid "Unpublish the site"
+#~ msgstr "Zeitpunkt der Veröffentlichung"
+
+#~ msgid "Unpublish"
+#~ msgstr "Unveröffentlichen"
+
+#~ msgid "first position"
+#~ msgstr "An erster Position"
+
+#~ msgid "after "
+#~ msgstr "nach"
+
+#~ msgid "New sitetemplate"
+#~ msgstr "Neue Seitenvorlage"
+
+#~ msgid "Edit sitetemplate"
+#~ msgstr "Seitenvorlage bearbeiten"
+
+#~ msgid "Save"
+#~ msgstr "Speichern"
+
+#~ msgid "Sitetemplates"
+#~ msgstr "Seitenvorlagen"
+
+#~ msgid "Filename"
+#~ msgstr "Dateiname"
+
+#~ msgid "Content"
+#~ msgstr "Inhalt"
+
+#~ msgid "container"
+#~ msgstr "Behälter"
+
+#~ msgid "data"
+#~ msgstr "Daten"
+
+#~ msgid "Language"
+#~ msgstr "Sprache"
+
+#~ msgid "Current language"
+#~ msgstr "Aktuelle Sprache"
+
+#~ msgid "Main"
+#~ msgstr "Hauptdaten"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Status"
+#~ msgstr "Status"
+
+#~ msgid "Internal name of the component. Will not be used on the website."
+#~ msgstr "Interner Name des Bausteins. Wird nicht auf der Website angezeigt"
+
+#~ msgid "Appearance"
+#~ msgstr "Erscheinung"
+
+#~ msgid "Site"
+#~ msgstr "Seite"
+
+#~ msgid "In which content area must this component be"
+#~ msgstr "In welchem Inhaltsbereich soll dieser Baustein erscheinen"
+
+#~ msgid "Parent component"
+#~ msgstr "Übergeordneter Baustein"
+
+#~ msgid "-- No parent component --"
+#~ msgstr "Keine übergeordneter Baustein"
+
+#~ msgid "Position of the component within a content area"
+#~ msgstr "Bausteinposition innerhalb des Inhaltbereichs"
+
+#~ msgid "Should this component be permanent?"
+#~ msgstr "Ist dieser Baustein permanent sichtbar?"
+
+#~ msgid "Do you want to schedule this component?"
+#~ msgstr "Wollen Sie diesen Baustein terminieren?"
+
+#~ msgid "On which date the component will be viewable"
+#~ msgstr "Ab welchen Datum ist dieser Baustein sichtbar"
+
+#~ msgid "Publish date"
+#~ msgstr "Datum der Veröffentlichung"
+
+#~ msgid "On which time the component will be viewable"
+#~ msgstr "Ab welchen Zeitpunkt ist dieser Baustein sichtbar"
+
+#~ msgid "Publish time"
+#~ msgstr "Zeitpunkt der Veröffentlichung"
+
+#~ msgid "On which date the component will expire"
+#~ msgstr "Ab welchen Datum ist dieser Baustein abgelaufen"
+
+#~ msgid "Expire date"
+#~ msgstr "Ablaufdatum"
+
+#~ msgid "On which time the component will expire"
+#~ msgstr "Ab welchen Zeitpunkt ist dieser Baustein abgelaufen"
+
+#~ msgid "Expire time"
+#~ msgstr "Ablaufzeitpunkt"
+
+#~ msgid "Only for internal use needed"
+#~ msgstr "Nur für interne Zwecke"
+
+#~ msgid "How many components?"
+#~ msgstr "Wie viele Bausteine?"
+
+#~ msgid "How many of this components must be created"
+#~ msgstr "Wie viele von diesem Baustein sollen erstellt werden."
+
+#~ msgid "Look and functionality of the component"
+#~ msgstr "Aussehen und Funktion des Bausteins"
+
+#~ msgid "Component type"
+#~ msgstr "Bausteintyp"
+
+#~ msgid "Add in following languages"
+#~ msgstr "In folgenden Sprachen anlegen"
+
+#~ msgid "Cancel"
+#~ msgstr "Abbrechen"
+
+#~ msgid "Components of"
+#~ msgstr "Baustein von"
+
+#~ msgid "Template"
+#~ msgstr "Vorlage"
+
+#~ msgid "Area"
+#~ msgstr "Inhaltsbereich"
+
+#~ msgid "This component is permanent"
+#~ msgstr "Dieser Baustein ist permanent sichtbar"
+
+#~ msgid "edit Content Box"
+#~ msgstr "Contentbox bearbeiten"
+
+#~ msgid "edit Content Box Translation"
+#~ msgstr "Übersetzung der Contenbox bearbeiten"
+
+#~ msgid "delete"
+#~ msgstr "Löschen"
+
+#~ msgid "Name of the news. Only for internal use"
+#~ msgstr "Newsname. Nur für interne Zwecke"
+
+#~ msgid "Do you want to schedule this news?"
+#~ msgstr "Wollen Sie diese News terminieren"
+
+#~ msgid "On which date the site will be viewable"
+#~ msgstr "Ab welchen Datum ist diese Seite sichtbar"
+
+#~ msgid "On which time the site will be viewable"
+#~ msgstr "Ab welchen Zeitpunkt ist diese Seite sichtbar"
+
+#~ msgid "On which date the site will expire"
+#~ msgstr "Ab welchen Datum ist diese Seite abgelaufen"
+
+#~ msgid "On which time the site will expire"
+#~ msgstr "Ab welchen Zeitpunkt ist diese Seite abgelaufen"
+
+#~ msgid "new"
+#~ msgstr "neu"
+
+#~ msgid "modified"
+#~ msgstr "verändert"
+
+#~ msgid "published"
+#~ msgstr "veröffentlicht"
+
+#~ msgid "URL"
+#~ msgstr "URL"
+
+#~ msgid "Show languages"
+#~ msgstr "Zeige Sprachen"
+
+#~ msgid "New language"
+#~ msgstr "Neue Sprache"
+
+#~ msgid "Edit language"
+#~ msgstr "Sprache bearbeiten"
+
+#~ msgid "The full language name"
+#~ msgstr "Der komplette Name der Sprache"
+
+#~ msgid "Shortcut of the language name"
+#~ msgstr "Sprachkürzel"
+
+#~ msgid "Shortcut"
+#~ msgstr "Sprachkürzel"
+
+#~ msgid "Is this language active (live)?"
+#~ msgstr "Ist diese Sprache aktiv (live)?"
+
+#~ msgid ""
+#~ "If not then the language and all it's translations will not be displayed "
+#~ "on the website"
+#~ msgstr ""
+#~ "Wenn diese Option nicht angewählt ist, dann wird die Sprache und all ihre "
+#~ "Übersetzungen nicht auf der Webseite angezeigt"
+
+#~ msgid "Copies content from the master language?"
+#~ msgstr "Inhalt von der Mastersprache kopieren?"
+
+#~ msgid "Active"
+#~ msgstr "Aktiv"
+
+#~ msgid "Navigation Headline"
+#~ msgstr "Überschrift in der Navigation"
+
+#~ msgid "Navigation Description"
+#~ msgstr "Beschreibung in der Navigation"
+
+#~ msgid "show Content Boxes"
+#~ msgstr "Übersicht der Contentboxen"
+
+#~ msgid "new Content Box"
+#~ msgstr "neue Contentbox"
+
+#~ msgid "Edit Content Box"
+#~ msgstr "Content Box bearbeiten"
+
+#~ msgid "Css"
+#~ msgstr "CSS"
+
+#~ msgid "Translation Data"
+#~ msgstr "Daten der Übersetzung"
+
+#~ msgid "Edit site container"
+#~ msgstr "Seitenbehälter bearbeiten"
+
+#~ msgid "Belongs to site container"
+#~ msgstr "Gehört zum Seitenbehälter"
+
+#~ msgid "This is the name which is shown in a navigation"
+#~ msgstr "Dieser Name wird in der Navigation angezeigt"
+
+#~ msgid ""
+#~ "This text is shown in the browser bar and is used as title text of a "
+#~ "search result of any search engine"
+#~ msgstr ""
+#~ "Dieser Text wird in der Browserleiste angezeigt und als Überschrift in "
+#~ "einem Suchmaschinenergebnis."
+
+#~ msgid "Title"
+#~ msgstr "Titel"
+
+#~ msgid "Is home site?"
+#~ msgstr "Ist diese Seite eine Startseite?"
+
+#~ msgid ""
+#~ "keywords are used by meta data search engines. Google does not look at "
+#~ "keywords anymore (negligible)"
+#~ msgstr ""
+#~ "Schlüsselwörter werden von Metadaten-Suchmaschinen verwendet. Google "
+#~ "verwendet sie nicht mehr (also vernachlässigbar)."
+
+#~ msgid "Keywords"
+#~ msgstr "Schlüsselwörter"
+
+#~ msgid ""
+#~ "The description is used by search engines. It will be displayed after the "
+#~ "title text of a search result"
+#~ msgstr ""
+#~ "The Beschreibung wird von Suchmaschinen verwendet. Sie wird unter der "
+#~ "Überschrift von einem Suchmaschinenergebnis angezeigt."
+
+#~ msgid "Description"
+#~ msgstr "Beschreibung"
+
+#~ msgid "Author of the document. Used by some search engines (negligible)"
+#~ msgstr ""
+#~ "Der Autor dieser Seite. Wird von manchen Suchmaschinen verwendet "
+#~ "(vernachlässigbar)"
+
+#~ msgid "Author"
+#~ msgstr "Autor"
+
+#~ msgid ""
+#~ "Changefrequency of the site. Beware that wrong information may not have "
+#~ "any effect"
+#~ msgstr ""
+#~ "Dieser Wert gibt an, wie oft sich diese Seite ungefähr verändert. Falsche "
+#~ "Einstellungen werden keine Nutzen haben."
+
+#~ msgid "Changefreq"
+#~ msgstr "Wir oft ändert sich diese Seite?"
+
+#~ msgid ""
+#~ "Priority of the site. Beware that wrong information may not have any "
+#~ "effect"
+#~ msgstr ""
+#~ "Gibt die Wichtigkeit dieser Seite an. Falsche Informationen werden keinen "
+#~ "Nutzen haben."
+
+#~ msgid "Priority"
+#~ msgstr "Wichtigkeit"
+
+#~ msgid "Back"
+#~ msgstr "Zurück"
+
+#~ msgid "Language of the site"
+#~ msgstr "Seitensprache"
+
+#~ msgid "All translations are already added!"
+#~ msgstr "Diese Seite wurde bereits in alle Sprachen übersetzt!"
+
+#~ msgid "Edit Image Meta"
+#~ msgstr "Bilder-Metadaten bearbeiten"
+
+#~ msgid "Alternative text"
+#~ msgstr "Alternativer Text"
+
+#~ msgid "Link"
+#~ msgstr "Link"
+
+#~ msgid "Target"
+#~ msgstr "Ziel"
+
+#~ msgid "Javascript Files"
+#~ msgstr "Javascriptdatein"
+
+#~ msgid "new Javascript"
+#~ msgstr "neues Javascript"
+
+#~ msgid "edit Javascript"
+#~ msgstr "Javascript bearbeiten"
+
+#~ msgid "Translation data"
+#~ msgstr "Übersetzungsdaten"
+
+#~ msgid "New componentlanguage"
+#~ msgstr "Neue Bausteinübersetzung"
+
+#~ msgid "Choose File"
+#~ msgstr "Wählen Sie eine Datei"
+
+#~ msgid "Alternative text of the file"
+#~ msgstr "Alternativer Text dieser Datei"
+
+#~ msgid "Alt"
+#~ msgstr "Alternativer Text"
+
+#~ msgid "Title of the file"
+#~ msgstr "Titel der Datei"
+
+#~ msgid "Url which is opened when the file is clicked"
+#~ msgstr "Bei Klick auf die Datei, wird diese URL geöffnet"
+
+#~ msgid "Copies the internal url into the link field"
+#~ msgstr "Kopiert die interne URL in das obere Feld."
+
+#~ msgid "Must the link be opened in a new window or not?"
+#~ msgstr "Muss der Link in einem neuen Fenster aufgehen?"
+
+#~ msgid "Language of the component translation"
+#~ msgstr "Sprache der Bausteinübersetzung"
+
+#~ msgid "New navtemplates"
+#~ msgstr "Neue Navigationsvorlage"
+
+#~ msgid "Edit navtemplate"
+#~ msgstr "Navigationsvorlage bearbeiten"
+
+#~ msgid "New navtemplate"
+#~ msgstr "Neue Navigationsvorlage"
+
+#~ msgid "Navtemplates"
+#~ msgstr "Navigationsvorlagen"
+
+#~ msgid "show Component Templates"
+#~ msgstr "Übersicht der Bausteinvorlagen"
+
+#~ msgid "new Component Template"
+#~ msgstr "neue Bausteinvorlage"
+
+#~ msgid "Template Generator"
+#~ msgstr "Vorlagengenerator"
+
+#~ msgid "edit Component Template"
+#~ msgstr "Bausteinvorlage bearbeiten"
+
+#~ msgid "edit Sitearea"
+#~ msgstr "Seitenbereich bearbeiten"
+
+#~ msgid "Component Templates"
+#~ msgstr "Bausteinvorlagen"
+
+#~ msgid "in List"
+#~ msgstr "in Liste anzeigen"
+
+#~ msgid "Componenttemplate Tags"
+#~ msgstr "Bausteinvorlagen Tags"
+
+#~ msgid "Sitetemplate Tags"
+#~ msgstr "Seitenvorlagen Tags"
+
+#~ msgid "Rewrite"
+#~ msgstr "Überschreiben"
+
+#~ msgid "Master language"
+#~ msgstr "Master-Sprache"
+
+#~ msgid ""
+#~ "Should slave languages copy content from the master language, if they "
+#~ "have no own content?"
+#~ msgstr ""
+#~ "Sollen die Slave-Sprachen den Inhalt der Master-Sprache kopieren, wenn "
+#~ "sie keinen eigenen Inhalt besitzt?"
+
+#~ msgid "The robots txt content"
+#~ msgstr "Die Robots-Txt"
+
+#~ msgid "Site container data"
+#~ msgstr "Daten des Seitenbehälters"
+
+#~ msgid "Access"
+#~ msgstr "Zugriff"
+
+#~ msgid "For example: /en/<strong>home</strong>"
+#~ msgstr "Zum Beispiel: /de/<strong>home</strong>"
+
+#~ msgid "Miscellaneous"
+#~ msgstr "Verschiedenes"
+
+#~ msgid "Type & look"
+#~ msgstr "Typ & Aussehen"
+
+#~ msgid ""
+#~ "Choose a sitetype. For example redirect if you want this site to redirect "
+#~ "to a other site"
+#~ msgstr ""
+#~ "Wählen Sie einen Seitentyp aus. Zum Beispiel eine Weiterleitung für diese "
+#~ "Seite auf eine andere Seite weiterleiten soll."
+
+#~ msgid "Look of the site"
+#~ msgstr "Aussehen der Seite"
+
+#~ msgid "Site template"
+#~ msgstr "Seitenvorlage"
+
+#~ msgid "Navigations"
+#~ msgstr "Navigationen"
+
+#~ msgid "Where this site will be located"
+#~ msgstr "Unter welche Seite diese angezeigt wird"
+
+#~ msgid "Schedule"
+#~ msgstr "Terminieren"
+
+#~ msgid "Do you want to schedule this site?"
+#~ msgstr "Wollen Sie diese Seite terminieren"
+
+#~ msgid "Cache exparation"
+#~ msgstr "Wann der Zwischenspeicher veraltet ist"
+
+#~ msgid "Permalink?"
+#~ msgstr "Permalink?"
+
+#~ msgid "Site is only viewable for"
+#~ msgstr "Diese Seite ist nur sichtbar für"
+
+#~ msgid "logged in users"
+#~ msgstr "eingeloggte Benutzer"
+
+#~ msgid "From groups"
+#~ msgstr "Von den Gruppen"
+
+#~ msgid "Groups"
+#~ msgstr "Gruppen"
+
+#~ msgid "Usergroup which will be allowed to access this site"
+#~ msgstr "Benutzergruppe der es erlaubt ist, diese Seite anzusehen."
+
+#~ msgid "Add"
+#~ msgstr "Hinzufügen"
+
+#~ msgid "All groups are added"
+#~ msgstr "Alle Gruppen sind bereits hinzugefügt"
+
+#~ msgid "Title and navigation name of the translation(s)"
+#~ msgstr "Titel und Name in der Navigation von dieser Übersetzung"
+
+#~ msgid "Notify search engines"
+#~ msgstr "Suchmaschinen benachrichtigen"
+
+#~ msgid "Search engines notified"
+#~ msgstr "Die Suchmaschinen wurden benachrichtigt"
+
+#~ msgid "Site container"
+#~ msgstr "Seitenbehälter"
+
+#~ msgid "not translated yet"
+#~ msgstr "noch nicht übersetzt"
+
+#~ msgid "Please choose a site from the left side."
+#~ msgstr "Bitte wählen Sie eine Seite aus der linken Seitenstruktur"
+
+#~ msgid "New newstranslation"
+#~ msgstr "Neue Newsübersetzung"
+
+#~ msgid "Headline of the news"
+#~ msgstr "Newsüberschrift"
+
+#~ msgid "Body text of the news"
+#~ msgstr "Newsinhalt"

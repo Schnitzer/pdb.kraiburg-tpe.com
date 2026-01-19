@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CATALOG>
+ <HEAD>
+  <ID>PORTFOLIO</ID>
+  <DESCRIPTIONS_SHORT>
+   <DESCRIPTION_SHORT lang="chi">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="kor">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ger">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="eng">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="fre">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ita">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="jpn">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="pol">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="spa">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+  </DESCRIPTIONS_SHORT>
+ </HEAD>
+ <NODES>
+  <NODE ID="0000000001-0000000080" type="SERIE" internal_id="0000000080">
+   <DRAWING_NUMBER/>
+   <VALID_FROM>00000000</VALID_FROM>
+   <VALID_TO>00000000</VALID_TO>
+   <DESCRIPTIONS_SHORT>
+    <DESCRIPTION_SHORT lang="chi">
+     <![CDATA[VS/AD/HM]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="kor">
+     <![CDATA[VS/AD/HM]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="ger">
+     <![CDATA[VS/AD/HM]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="eng">
+     <![CDATA[VS/AD/HM]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="fre">
+     <![CDATA[VS/AD/HM]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="ita">
+     <![CDATA[VS/AD/HM]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="jpn">
+     <![CDATA[VS/AD/HM]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="pol">
+     <![CDATA[VS/AD/HM]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="spa">
+     <![CDATA[VS/AD/HM]]>
+    </DESCRIPTION_SHORT>
+   </DESCRIPTIONS_SHORT>
+   <DESCRIPTIONS_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="eng">
+     <![CDATA[The VS/AD/HM series is your material solution for applications with velvety surfaces and high wear resistance requirements. It convinces by its adhesion properties to polar thermoplastics as well as by its resistance to nonpolar substances, especially sebum skin grease and skin oils. The compounds are available in black and natural colors. Natural color variants can be colored in many different ways.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="fre">
+     <![CDATA[La série VS/AD/HM est votre solution matière pour les applications avec des surfaces soyeuses et des exigences de résistance élevées. Les matières offrent des propriétés d’adhérence aux thermoplastiques polaires ainsi qu'une très bonne résistance aux substances non polaires, en particulier le sébum et les huiles pour la peau. Les compounds sont disponibles en noir et en couleur naturelle. Les références naturelles peuvent être colorées de différentes manières.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="jpn">
+     <![CDATA[VS/AD/HMシリーズは、ベルベット調の表面品質および高い耐摩耗性を必要とするアプリケーションのための、あなたの材料ソリューションです。この材料は非極性物質、特に皮脂やスキンオイルへの耐性を有すると共に、極性基を持つ熱可塑性プラスチックへの良好な接着性を発揮します。このコンパウンドは黒およびナチュラル色で提供されます。ナチュラル色は多様な方法による着色が可能です。]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="chi">
+     <![CDATA[VS/AD/HM 系列材料解决方案适用于要求绒面触感和高度耐磨性应用。包胶极性热塑性塑料材料 具有包胶性，对非极性物质（尤其是皮肤油脂和护肤油）具有耐受性。该系列化合物有黑色和本色可选。本色产品系列可用多种不同方式着色。]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="ita">
+     <![CDATA[La serie VS/AD/HM è la soluzione per applicazioni con superfice gradevole al tatto e requisiti di elevata resistenza all'usura. Convince per le sue proprietà di adesione ai materiali termoplastici polari e per la sua resistenza alle sostanze non polari, in particolare il sebo, il grasso e gli oli della pelle. Le mescole sono disponibili nei colori nero e naturale. Le varianti di colore naturale possono essere colorate in molti modi diversi.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="ger">
+     <![CDATA[Die VS/AD/HM-Reihe ist Ihre Materiallösung für Anwendungen mit samtiger Oberfläche und hohen Anforderungen an die Verschleißfestigkeit. Sie überzeugt durch ihre Haftungseigenschaften zu polaren Thermoplasten sowie durch Beständigkeit gegen unpolare Medien, insbesondere gegen Hautfett und Hautcremes. Die Compounds sind in schwarz und naturfarben erhältlich. Naturfarbene Varianten lassen sich vielfältig einfärben.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="kor">
+     <![CDATA[VS/AD/HM 시리즈는 벨벳 표면과 우수한 내마모성이 요구되는 어플리케이션을 위한 소재 솔루션입니다. 제품은 극성 열가소성 수지와 접착하며 무극성 물질, 특히 피지와 피부 오일에의 내화학성이 특징입니다. 제품은 검정색과 내추럴 색상으로 제공합니다. 내추럴 색상은 다양한 색상으로 착색 가능합니다.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="spa">
+     <![CDATA[La serie VS/AD/HM es su solución de material para aplicaciones con superficies aterciopeladas y requisitos de alta resistencia al desgaste. Convence por sus propiedades de adherencia a termoplásticos polares, así como por su resistencia a sustancias no polares, especialmente grasa y aceites de la piel. Los compuestos están disponibles en negro y color natural. Las variantes de color natural pueden colorearse de muchas formas diferentes.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="pol">
+     <![CDATA[Seria VS/AD/HM to rozwiązanie materiałowe dla detali wymagających najwyższej jakości powierzchni zewnętrznej i odporności użytkowej na ścieranie i zarysowania. Tworzywa tej serii charakteryzują się adhezją do termoplastów polarnych i odpornością na działanie substancji chemicznych niepolarnych, w szczególności łoju i lipidów naskórka. Materiały występują w kolorach czarnym i naturalnym, tworzywa naturalne mogą być barwione w masie lub z zastosowaniem koncentratów barwiących.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="kor">
+     <![CDATA[벨벳 표면과 우수한 내마모성이 요구되는 어플리케이션; 극성 열가소성 수지와 접착]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="fre">
+     <![CDATA[Applications avec des surfaces au toucher soyeux et des exigences élevées en matière de résistance à l’usure; Adhérence aux thermoplastiques polaires]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="pol">
+     <![CDATA[Zastosowania wymagające najwyższej jakości powierzchni zewnętrznej i odporności na ścieranie; adhezja do termoplastów polarnych.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="ita">
+     <![CDATA[Applicazioni con superfice gradevole al tatto ed elevati requisiti di resistenza all'usura; adesione ai termoplastici polari]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="spa">
+     <![CDATA[Aplicaciones con superficies aterciopeladas y elevados requisitos de resistencia al desgaste. Para piezas con adhesión a termoplásticos polares.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="eng">
+     <![CDATA[Applications with velvety surfaces and high requirements for wear resistance; adhesion to polar thermoplastics]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="jpn">
+     <![CDATA[ベルベット調の表面と、高い耐摩耗性および極性基を持つ熱可塑性プラスチックへの接着性を要するアプリケーション]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="chi">
+     <![CDATA[要求绒面触感和高度耐磨性的应用；包胶极性热塑性塑料材料]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="ger">
+     <![CDATA[Anwendungen mit samtiger Oberfläche und hohen Anforderungen an die Verschleißfestigkeit; Haftung zu polaren Thermoplasten]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM2" lang="ger">
+     <![CDATA[TC6CEN hat Hautirritationstests gemäß ISO 10993-10 bestanden.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM2" lang="eng">
+     <![CDATA[TC6CEN passed tests for skin irritation according to ISO 10993-10.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM2" lang="spa">
+     <![CDATA[TC6CEN ha superado las pruebas de irritación de la piel según la norma ISO 10993-10.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM2" lang="ita">
+     <![CDATA[Il TC6CEN ha superato il test Skin Irritation secondo ISO 10993-10.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM2" lang="pol">
+     <![CDATA[Materiał TC6CEN spełnia wymagania testu na podrażnienie skóry wg ISO 10993-10.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM2" lang="fre">
+     <![CDATA[La référence TC6CEN a passé avec succès les tests d’irritation de la peau conformément à la norme ISO 10993-10.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM2" lang="chi">
+     <![CDATA[TC6CEN通过了 ISO 10993-10 的皮肤刺激性测试。]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM2" lang="jpn">
+     <![CDATA[TC6CENは、ISO 10993-10準拠の皮層感作性試験に合格しています。]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM2" lang="kor">
+     <![CDATA[TC6CEN은 ISO 10993-10에 따라 피부 염증 테스트를 통과했습니다.]]>
+    </DESCRIPTION_LONG>
+   </DESCRIPTIONS_LONG>
+   <CLASSIFICATION>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_001_SERIAL">
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">Serie</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">series</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+     <VALUE>
+      TPE-200000000000511
+      <VALUE_TEXTS>
+       <VALUE_TEXT lang="chi">VS/AD/HM</VALUE_TEXT>
+       <VALUE_TEXT lang="kor">VS/AD/HM</VALUE_TEXT>
+       <VALUE_TEXT lang="ger">VS/AD/HM</VALUE_TEXT>
+       <VALUE_TEXT lang="eng">VS/AD/HM</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">VS/AD/HM</VALUE_TEXT>
+       <VALUE_TEXT lang="ita">VS/AD/HM</VALUE_TEXT>
+       <VALUE_TEXT lang="jpn">VS/AD/HM</VALUE_TEXT>
+       <VALUE_TEXT lang="pol">VS/AD/HM</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">VS/AD/HM</VALUE_TEXT>
+      </VALUE_TEXTS>
+     </VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_002_BRAND">
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">Brand</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+     <VALUE>
+      TPE-200000000000295
+      <VALUE_TEXTS>
+       <VALUE_TEXT lang="chi">热塑宝 K</VALUE_TEXT>
+       <VALUE_TEXT lang="tha">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="kor">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="rum">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="slv">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="hrv">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="may">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ukr">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="est">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ara">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="heb">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="cze">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ger">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="eng">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="gre">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="hun">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ita">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="jpn">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="dan">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="pol">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="chi">热塑宝 K</VALUE_TEXT>
+       <VALUE_TEXT lang="dut">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="nor">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="por">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="slo">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="rus">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="tur">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="fin">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="swe">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="bul">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="lit">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="lav">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ice">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="srp">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ind">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="hin">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="vie">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="mac">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="alb">THERMOLAST® K</VALUE_TEXT>
+      </VALUE_TEXTS>
+     </VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_010_REGION">
+     <VALUE>TPE-300000000007010</VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_4000_001">
+     <VALUE>TPE-300000000004649</VALUE>
+     <VALUE>TPE-300000000004668</VALUE>
+     <VALUE>TPE-300000000004708</VALUE>
+     <VALUE>TPE-300000000004674</VALUE>
+     <VALUE>TPE-300000000004719</VALUE>
+     <VALUE>TPE-300000000004661</VALUE>
+     <VALUE>TPE-300000000004673</VALUE>
+     <VALUE>TPE-300000000004720</VALUE>
+     <VALUE>TPE-300000000006571</VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_4000_002">
+     <VALUE>TPE-300000000004801</VALUE>
+     <VALUE>TPE-300000000004797</VALUE>
+     <VALUE>TPE-300000000004783</VALUE>
+     <VALUE>TPE-300000000004755</VALUE>
+     <VALUE>TPE-300000000004754</VALUE>
+     <VALUE>TPE-300000000004730</VALUE>
+     <VALUE>TPE-300000000004744</VALUE>
+     <VALUE>TPE-300000000004733</VALUE>
+    </ATTRIBUTE>
+   </CLASSIFICATION>
+  </NODE>
+ </NODES>
+</CATALOG>
+                                                                           

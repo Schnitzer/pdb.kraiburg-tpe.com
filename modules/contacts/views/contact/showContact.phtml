@@ -1,0 +1,462 @@
+<?php
+if ($this->contact['type'] == 'private') {
+    $shortname = $this->contact['firstname'];
+    
+    /*$gender_titles = array(
+        'male' => T_('Mr.'),
+        'female' => T_('Mrs.'),
+    );
+    $title = $gender_titles[$this->contact['gender']];*/
+    
+    $title = '';
+    if (false === empty($this->contact['title'])) {
+        $title .= ' ' . $this->contact['title'];
+    }
+    
+    $name_without_title = $this->contact['firstname'] . ' ' . $this->contact['name'];
+    $name = $title . ' ' . $name_without_title;
+} else {
+    $name_without_title = $name = $shortname = $this->contact['name'];
+}
+?>
+<?php print $this->paginator->options(array('update' => '.ncw-right', 'url' => array('id' => $this->contact['id']), 'callback' => 'ncw.contacts.contact.loadPage();')); ?>
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+        <?php /* ?><li class="ncw-option-tab">
+            <a href="javascript: ncw.contacts.contact.load();"><?php print T_('Back'); ?></a>
+        </li><?php */ ?>
+        <li class="ncw-main-tab"><a href="#"><?php print $name_without_title; ?></a></li>    
+        <?php if ($this->contact['type'] == 'business') { ?>
+            <li class="ncw-main-tab"><a href="#"><?php echo T_('Members'); ?></a></li>
+        <?php } ?>
+    </ul>
+    <div class="ncw-main-tab-contents">
+
+        <div class="ncw-main-tab-content" id="ncw-contact-preview">
+            <?php print $this->form->input("id", array('type' => 'hidden', 'value' => $this->contact['id'])); ?>
+            <div id="ncw-contact-left">
+                <div class="col">
+                    <div id="ncw-contact-preview-person">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="icon">
+                                        <img src="<?php print $this->image;?>" width="53" height="53" />
+                                    </td>
+                                    <td>
+                                        <h1>
+                                            <?php print $name; ?>
+                                            <?php if (true === $this->is_favorite) { ?>
+                                                <a href="javascript: ncw.contacts.contact.removeFromFavorite(<?php print $this->favorite_id; ?>);"><?php print $this->html->image("icons/16px/star_full.png", false, array('style' => 'cursor: pointer;', 'class' => 'ncw-remove-from-favorites', 'alt' => T_('Remove from favorites'), 'title' => T_('Remove from favorites'))); ?></a>
+                                            <?php } else { ?>
+                                                <a href="javascript: ncw.contacts.contact.addToFavorite(<?php print $this->contact['id']; ?>);"><?php print $this->html->image("icons/16px/star_half.png", false, array('style' => 'cursor: pointer;', 'class' => 'ncw-add-to-favorites', 'alt' => T_('Add to favorites'), 'title' => T_('Add to favorites'))); ?></a>
+                                            <?php } ?>
+                                        </h1>
+                                        <?php
+                                        if ($this->contact['type'] == 'private') {
+                                            $parents = array();
+                                            foreach ($this->parents as $parent) {
+                                                $text = '<span style="color: #333; font-size: 12px;">';
+                                                if (false == empty($parent['member_description'])) {
+                                                    $text .= $parent['member_description'] . ' ';
+                                                } 
+                                                $text .= T_('at') . ' '
+                                                    . '<a href="javascript: ncw.contacts.contact.loadContact(' . $parent['id'] . ');">' . $parent['name'] . '</a>';
+                                                $text .= '</span>';    
+                                                $parents[] = $text;    
+                                            }
+                                            print implode(', ', $parents);
+                                        }
+                                        ?>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            
+                    <div>
+                        <h2><?php print T_('Files'); ?></h2>
+                        <?php if (true === $this->permissions['/contacts/contact/file']) { ?>
+                            <a href="javascript: void(0);" id="ncw-file-new" class="ncw-action">
+                                <?php print T_('Add new file'); ?>
+                            </a>
+                            <br class="ncw-clear" /><br />
+                        <?php } ?>
+            
+                        <div id="ncw-files">
+                            <?php foreach ($this->files as $file) { ?>
+                                <div class="ncw-files-file" id="ncw-file-<?php print $file['file']['id']; ?>">
+                                    <div style="float: left;">
+                                        - <a href="<?php print Files_File::makeImageUrl($file['real_file']['id'], $file['real_file']['name'], $file['real_file']['type']); ?>" target="_blank">
+                                            <?php print $file['real_file']['name'] . '.' . $file['real_file']['type']; ?>
+                                        </a>
+                                    </div>
+                                    <?php if (true === $this->permissions['/contacts/contact/file']) { ?>
+                                        <div style="float: left;margin-left: 4px;" class="ncw-files-file-remove">
+                                            <a href="javascript: void(0);" class="ncw-files-file-remove" rel="<?php print $file['file']['id']; ?>">
+                                                <?php print $this->html->image('icons/16px/cross.png', false, array('title' => T_('Delete'), 'alt' => T_('Delete'))); ?>
+                                            </a>
+                                        </div>
+                                    <?php } ?>
+                                    <br />
+                                </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+            
+                    <div id="ncw-contact-preview-notes">
+                        <?php if (true === $this->permissions['/contacts/contact/note']) { ?>
+                            <h2><?php print T_('Add new note about') . ' ' . $shortname; ?></h2>
+                            <div>
+                                <textarea name="<?php print time(); ?>" id="ncw-new-contact-note" title="<?php print T_('New note'); ?>"></textarea>
+                            </div>
+                            <a href="javascript: void(0);" id="ncw-note-new" class="ncw-action">
+                                <?php print T_('Add'); ?>
+                            </a>
+                            <br class="ncw-clear" />
+                        <?php } ?>
+                        <h2><?php print $shortname . '\'s ' . T_('notes'); ?></h2>
+                        <?php foreach ($this->notes as $note) { ?>
+                            <div class="note" id="ncw-note-<?php print $note->getId(); ?>">
+                                <?php 
+                                $date = explode('-', $note->getCreated());
+                                ?>
+                                <strong><?php print date('F d, Y', @mktime(0, 0, 0, $date[1], $date[2], $date[0])); ?></strong>
+                                <?php if (true === $this->permissions['/contacts/contact/note']) { ?>
+                                    <div class="icons">
+                                        <a href="javascript: void(0);" class="ncw-note-edit" rel="<?php print $note->getId(); ?>"><?php print $this->html->image('icons/16px/pencil.png', false, array('title' => T_('Edit'), 'alt' => T_('Edit'))); ?></a>
+                                        <a href="javascript: void(0);" class="ncw-note-delete" rel="<?php print $note->getId(); ?>"><?php print $this->html->image('icons/16px/cross.png', false, array('title' => T_('Delete'), 'alt' => T_('Delete'))); ?></a>
+                                    </div>
+                                <?php } ?>
+                                <div class="body"><p><?php print $note->getBody(); ?></p></div>
+                            </div><br />
+                        <?php } ?>
+                        <?php 
+                        $options['model'] = 'Note';
+                        $options['url']['model'] = 'Note';
+                        $options['url']['id'] = $this->contact['id'];
+                        $this->paginator->setDefaultModel('Note');
+                        ?>
+                        <?php if ($this->paginator->hasPage('Note', 2)) { ?>
+                        <div class="ncw-page-controls-bottom">
+                            <div class="left_controls">
+                                <?php print $this->paginator->first('<<', $options); ?>
+                                <?php print $this->paginator->prev('<', $options); ?>
+                            </div>
+                            <?php print $this->paginator->counter(array(
+                                'format' => T_('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%')
+                            )); ?>
+                            (<?php print $this->paginator->numbers($options); ?>)
+                            <div class="right_controls">
+                                <?php print $this->paginator->next('>', $options); ?>
+                                <?php print $this->paginator->last('>>', $options); ?>
+                            </div>
+                        </div>
+                        <br />
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+            <div id="ncw-contact-right">
+                <div id="ncw-contact-preview-data">
+                    <div class="module">
+                        <div class="inner">
+                            <h4 style="float: left;">
+                                <?php print T_('Contact'); ?> 
+                                <?php print $shortname;?>
+                                <?php if ($this->contact['type'] == 'business') { ?>
+                                    <br />
+                                    <?php print 'Inh: ' . $this->contact['owner_firstname'] . ' ' . $this->contact['owner_name'] ; ?>
+                                <?php } ?>
+                               </h4>
+                            <div style="float: left; margin-left: 5px">
+                                <?php if (true === $this->permissions['/contacts/contact/edit']) { ?>
+                                    <a href="javascript: ncw.contacts.contact.loadEditContact(<?php print $this->contact['id']; ?>);">
+                                        <?php print $this->html->image("icons/16px/pencil.png", false, array('alt' => T_('Edit'), 'title' => T_('Edit'), 'style' => 'width: 12px;height:12px')); ?>
+                                    </a>
+                                <?php } ?>
+                            </div>
+                            <div class="ncw-clear">
+                                <?php if (count($this->phones) > 0) { ?>
+                                <table>
+                                    <tbody>
+                                        <?php $label = T_('Phone'); ?>
+                                        <?php foreach ($this->phones as $item) { ?>
+                                        <tr>
+                                            <th><?php print $label; $label = ''; ?></th>
+                                            <td>
+                                                <?php print $item['phone']; ?>
+                                                <span><?php print $this->phone_locations[$item['location']]; ?></span>
+                                            </td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                                <?php } ?>
+                                <?php if (count($this->emails) > 0) { ?>
+                                <table>
+                                    <tbody>
+                                        <?php $label = T_('Email'); ?>
+                                        <?php foreach ($this->emails as $item) { ?>
+                                        <tr>
+                                            <th><?php print $label; $label = ''; ?></th>
+                                            <td>
+                                                <a href="mailto:<?php print $item['email']; ?>"><?php print $item['email']; ?></a>
+                                                <span><?php print $this->locations[$item['location']]; ?></span>
+                                            </td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                                <?php } ?>
+                                <?php if (count($this->websites) > 0) { ?>
+                                <table>
+                                    <tbody>
+                                        <?php $label = T_('Website'); ?>
+                                        <?php foreach ($this->websites as $item) { ?>
+                                        <tr>
+                                            <th><?php print $label; $label = ''; ?></th>
+                                            <td>
+                                                <a href="<?php print $item['website']; ?>" target="_blank"><?php print $item['website']; ?></a>
+                                                <span><?php print $this->messenger_locations[$item['location']]; ?></span>
+                                            </td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                                <?php } ?>
+                                <?php if (count($this->messengers) > 0) { ?>
+                                <table>
+                                    <tbody>
+                                        <?php $label = T_('IM'); ?>
+                                        <?php foreach ($this->messengers as $item) { ?>
+                                        <tr>
+                                            <th><?php print $label; $label = ''; ?></th>
+                                            <td>
+                                                <?php print $item['messenger']; ?>
+                                                <span><?php print T_('on') . ' ' . $this->messenger_protocols[$item['protocol']] . ', ' .  $this->messenger_locations[$item['location']]; ?></span>
+                                            </td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                                <?php } ?>
+                                <?php foreach ($this->addresses as $item) { ?>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <th><?php print $this->locations[$item['address']['location']]; ?></th>
+                                            <td>
+                                                <?php print $item['address']['street']; ?><br />
+                                                <?php print $item['city']['postcode']; ?> <?php print $item['city']['name']; ?> <?php print $item['city']['state']; ?><br />
+                                                <?php print $item['country']; ?>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Bank -->
+                    <?php if (count($this->banks) > 0) { ?>
+                    <div class="module">
+                        <div class="inner">
+                            <h4><?php print T_('Bank accounts'); ?></h4>
+                            <div>
+                                <table>
+                                    <tbody>
+                                        <?php foreach ($this->banks as $item) { ?>
+                                        <?php $label = $this->bank_locations[$item['location']]; ?>
+                                        <tr>
+                                            <td class="ncw-contacts-preview-bank-label"><span><?php echo $label; $label = ''; ?></span></td>
+                                            <td>
+                                                <?php echo T_('Bank') . ': ' .  $item['name']; ?>
+                                                <br />
+                                                <?php echo T_('Bank code') . ': ' . $item['bankcode']; ?>
+                                                <br />
+                                                <?php echo T_('Account number') . ': ' . $item['accountnumber']; ?>
+                                                <br />
+                                                <?php if (false === empty($item['iban'])) { ?>
+                                                    <?php echo T_('IBAN') . ': ' . $item['iban']; ?>
+                                                    <br />
+                                                <?php } ?>
+                                                <?php if (false === empty($item['bic'])) { ?>
+                                                    <?php echo T_('BIC') . ': ' . $item['bic']; ?>
+                                                <?php } ?>
+                                            </td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <?php } ?>            
+            
+                    <!-- Background Info -->
+                    <div class="module">
+                        <div class="inner">
+                            <h4 style="float: left;"><?php print T_('Background info'); ?></h4>
+                            <div style="float: left; margin-left: 5px">
+                                <?php if (true === $this->permissions['/contacts/contact/edit']) { ?>
+                                    <a href="javascript: ncw.contacts.contact.loadEditInfo(<?php print $this->contact['id']; ?>);">
+                                        <?php print $this->html->image("icons/16px/pencil.png", false, array('alt' => T_('Edit'), 'title' => T_('Edit'), 'style' => 'width: 12px;height:12px')); ?>
+                                    </a>
+                                <?php } ?>
+                            </div>                                    
+                            <div class="ncw-clear">
+                                <?php print str_replace("\n", "<br />", $this->contact['info']); ?>                                
+                            </div>                        
+                        </div>
+                    </div>            
+            
+                    <!-- Dates -->
+                    <div class="module">
+                        <div class="inner">
+                            <h4 style="float: left;"><?php print T_('Dates to remember'); ?></h4>
+                            <div style="float: left; margin-left: 5px">
+                                <?php if (true === $this->permissions['/contacts/contact/edit']) { ?>
+                                    <a href="javascript: ncw.contacts.contact.loadEditDates(<?php print $this->contact['id']; ?>);">
+                                        <?php print $this->html->image("icons/16px/pencil.png", false, array('alt' => T_('Edit'), 'title' => T_('Edit'), 'style' => 'width: 12px;height:12px')); ?>
+                                    </a>
+                                <?php } ?>
+                            </div>                                    
+                            <div class="dates ncw-clear">
+                                <?php foreach ($this->dates as $item) { ?>
+                                    <p><?php print $this->date_descriptions[$item['description']] . ': ' . date('F d, Y', $item['date']); ?></p>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Groups -->
+                    <div class="module">
+                        <div class="inner">
+                            <h4 style="float: left;"><?php print T_('In groups'); ?></h4>
+                            <div style="float: left; margin-left: 5px">
+                                <?php if (true === $this->permissions['/contacts/contact/edit']) { ?>
+                                    <a href="javascript: ncw.contacts.contact.loadEditGroups(<?php print $this->contact['id']; ?>);">
+                                        <?php print $this->html->image("icons/16px/pencil.png", false, array('alt' => T_('Edit'), 'title' => T_('Edit'), 'style' => 'width: 12px;height:12px')); ?>
+                                    </a>
+                                <?php } ?>
+                            </div>                            
+                            <div class="dates ncw-clear">
+                                <?php foreach ($this->groups as $item) { ?>
+                                    <p><?php print $item['name']; ?></p>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <?php if ($this->contact['type'] == 'business') { ?>
+            <?php 
+            $options['model'] = 'Member';
+            $options['url']['id'] = $this->contact['id'];
+            $options['url']['model'] = 'Member';
+            $this->paginator->setDefaultModel('Member');
+            ?>            
+            <div class="ncw-main-tab-content">
+                
+                <?php if (true === $this->permissions['/contacts/contact/edit']) { ?>
+                    <a href="javascript: ncw.contacts.contact.detailSearch('addMember', 0, 1);" class="ncw-action"><?php echo T_('Add Person'); ?></a>
+                    <a href="javascript: ncw.contacts.contact.loadNew('private', <?php print $this->contact['id']; ?>);" class="ncw-action ncw-action-with-margin"><?php echo T_('Add new Person'); ?></a>
+                    <br /><br />
+                <?php } ?>
+                
+                <div class="ncw-page-controls">
+                    <div class="left_controls">
+                        <?php print $this->paginator->first('<<', $options); ?>
+                        <?php print $this->paginator->prev('<', $options); ?>
+                    </div>
+                    <?php
+                    print $this->paginator->counter(
+                        array(
+                            'format' => 'Page %page% of %pages%,
+                                         showing %current% records out of %count% total,
+                                         starting on record %start%, ending on %end%',
+                            'model' => 'Member'
+                        )
+                    );
+                    ?>
+                    <?php if ($this->paginator->hasPage('Member', 2)) { ?>
+                        (<?php print $this->paginator->numbers($options); ?>)
+                    <?php } ?>
+                    <div class="right_controls">
+                        <?php print $this->paginator->next('>', $options); ?>
+                        <?php print $this->paginator->last('>>', $options); ?>
+                    </div>
+                </div>                 
+                <table class="ncw-table">
+                    <thead>
+                        <tr>
+                            <th><?php echo $this->paginator->sort(T_('Type'), 'Contact.type', $options); ?></th>
+                            <th><?php echo $this->paginator->sort(T_('Name'), 'Contact.name', $options); ?></th>
+                            <th><?php echo $this->paginator->sort(T_('Description'), 'Member.description', $options); ?></th>
+                            <th><?php echo $this->paginator->sort(T_('Email'), 'Email.email', $options); ?></th>
+                            <th><?php echo $this->paginator->sort(T_('Phone'), 'Phone.phone', $options); ?></th>
+                            <th><?php echo $this->paginator->sort(T_('Created at'), 'Contact.created', $options); ?></th>
+                            <th><?php echo T_('Options'); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>            
+                    <?php foreach ($this->members as $member) { ?>
+                        <tr>
+                            <td class="ncw-table-td-small">
+                                <a href="javascript: ncw.contacts.contact.loadContact(<?php print $member->Contact->getId(); ?>);"><?php print $this->html->image('icons/16px/user.png', false, array('alt' => T_('Person'), 'title' => T_('Person'))); ?></a>
+                            </td>
+                            <td>
+                                <a href="javascript: ncw.contacts.contact.loadContact(<?php print $member->Contact->getId(); ?>);">
+                                    <?php print $member->Contact->getTitle() . ' ' . $member->Contact->getFirstname() . ' ' . $member->Contact->getName(); ?>
+                                </a> 
+                            </td>
+                            <td>
+                                <?php print $member->getDescription(); ?>
+                            </td>
+                            <td>
+                                <a href="mailto: <?php print $member->Email->getEmail(); ?>"><?php print $member->Email->getEmail() ?></a>
+                            </td>
+                            <td><?php print $member->Phone->getPhone(); ?></td>
+                            <td><?php print $member->Contact->getCreated(); ?></td>
+                            <td>
+                                <?php if (true === $this->permissions['/contacts/contact/edit']) { ?>
+                                    <a href="javascript: ncw.contacts.contact.removeMember(<?php print $member->getId(); ?>);">
+                                        <?php print $this->html->image('icons/16px/cross.png', false, array('title' => T_('Remove member'), 'alt' => T_('Remove member'))); ?>
+                                    </a>
+                                <?php } ?>
+                            </td>
+                        </tr>
+                       <?php } ?>
+                       </tbody>
+                </table>
+                <?php if ($this->paginator->hasPage('Member', 2)) { ?>
+                    <div class="ncw-page-controls-bottom">
+                        <div class="left_controls">
+                            <?php print $this->paginator->first('<<', $options); ?>
+                            <?php print $this->paginator->prev('<', $options); ?>
+                        </div>
+                        <?php
+                        print $this->paginator->counter(
+                            array(
+                                'format' => 'Page %page% of %pages%,
+                                             showing %current% records out of %count% total,
+                                             starting on record %start%, ending on %end%',
+                                'model' => 'Member'
+                            )
+                        );
+                        ?>
+                        (<?php print $this->paginator->numbers($options); ?>)
+                        <div class="right_controls">
+                            <?php print $this->paginator->next('>', $options); ?>
+                            <?php print $this->paginator->last('>>', $options); ?>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+         <?php } ?>
+    </div>
+</div>

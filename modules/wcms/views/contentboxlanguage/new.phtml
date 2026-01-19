@@ -1,0 +1,20 @@
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+    	<li class="ncw-option-tab"><a href="javascript: ncw.wcms.contentbox.loadEdit(<?php print $this->contentbox_id; ?>);"><?php print T_('Back'); ?></a></li>
+        <li class="ncw-main-tab"><a href="#"><?php print T_('New Content Box translation'); ?></a></li>
+    </ul>        
+    <div class="ncw-main-tab-contents">
+        <div class="ncw-main-tab-content">
+            <?php print $this->form->create('ncw-contentboxlanguage'); ?>
+            <?php print $this->form->input("contentbox_id", array('type' => 'hidden', 'value' => $this->contentbox_id)); ?>
+            <?php print $this->form->input('language_id', array('type' => 'select', 'options' => $this->arr_languages, 'title' => 'language of the contentbox translation', 'class' => 'ncw-select', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Language')))); ?>
+            <?php print $this->form->end(); ?>
+        </div>
+    </div>
+</div>
+<div class="ncw-status-action-bar">
+    <div class="ncw-status-message"></div>
+    <ul class="ncw-actions">
+        <li class="ncw-action"><a href="#" rel="wcms/contentboxlanguage" class="ncw-new-trigger-ajax ncw_save_icon"><?php print T_('Save'); ?></a></li>
+    </ul>
+</div>

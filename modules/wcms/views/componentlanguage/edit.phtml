@@ -1,0 +1,112 @@
+<script type="text/javascript">
+ncw.wcms.tinymce.languageCode = '<?php print $this->language_code; ?>';
+</script>
+<?php if (false === $this->window_mode) { ?>
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+        <li class="ncw-main-tab"><a href="#"><?php print T_('Translation data'); ?></a></li>
+    </ul>
+    <div class="ncw-main-tab-contents">
+        <div class="ncw-main-tab-content">
+            <p>
+                <a href="javascript: ncw.wcms.component.loadEdit(<?php print $this->component_id; ?>);" class="ncw-action">
+                    <?php print T_('Back'); ?>
+                </a>
+            </p>
+            <?php if (true === $this->permissions['/wcms/componentlanguage/new']) { ?>
+                <p>
+                    <a href="javascript: ncw.wcms.componentlanguage.loadNew(<?php print $this->component_id ?>); ">
+                        <div class="ncw-action ncw-action-with-margin"><?php print T_('New componentlanguage'); ?></div>
+                    </a>
+                </p>
+            <?php } ?>
+            <br class="ncw-clear" />
+<?php } ?>
+            <?php if (false === $this->window_mode) { ?>
+                <?php print $this->form->create('ncw-componentlanguage', array('onsubmit' => 'return false;')); ?>
+                <?php print $this->form->input("id", array('type' => 'hidden', 'value' => $this->componentlanguage_id)); ?>
+                <?php print $this->form->input("component_id", array('type' => 'hidden')); ?>
+                <?php print $this->form->input("language_code", array("type" => "hidden", 'value' => $this->language_code)); ?>
+            <?php } ?>
+            <?php if (true === isset($this->componenttexts[0])) { ?>
+                <?php $count = 0; ?>
+                <?php foreach ($this->componenttexts as $componenttext) { ?>
+                    <h2><?php print $this->names['text']['label'][$count]; ?></h2>
+                    <p>
+                        <?php print $this->names['text']['description'][$count]; ?>
+                    </p>
+                    <?php print $this->form->input("Componenttext." . $count . ".id", array('type' => 'hidden', 'value' => $componenttext->getId())); ?>
+                    <?php print $this->form->input("Componenttext." . $count . ".content", array('type' => 'textarea', 'label' => false, 'class' => 'ncw-wysiwyg', 'value' => $componenttext->getContent())); ?>
+                    <?php ++$count; ?>
+                    <br />
+                <?php } ?>
+            <?php } ?>
+            <?php if (true === isset($this->componentshorttexts[0])) { ?>
+                <?php $count = 0; ?>
+                <?php foreach ($this->componentshorttexts as $componentshorttext) { ?>
+                    <h2><?php print $this->names['shorttext']['label'][$count]; ?></h2>
+                    <p>
+                        <?php print $this->names['shorttext']['description'][$count]; ?>
+                    </p>
+                    <?php print $this->form->input("Componentshorttext." . $count . ".id", array('type' => 'hidden', 'value' => $componentshorttext->getId())); ?>
+                    <?php print $this->form->input("Componentshorttext." . $count . ".content", array('type' => 'textarea', 'label' => false, 'class' => 'ncw-wysiwyg-small', 'value' => $componentshorttext->getContent())); ?>
+                    <?php ++$count; ?>
+                    <br />
+                <?php } ?>
+            <?php } ?>
+            <?php if (false === empty($this->componentfiles)) { ?>
+                <?php $count = 0; ?>
+                <?php foreach ($this->componentfiles as $componentfile) { ?>
+                    <h2><?php print $this->names['file']['label'][$count]; ?></h2>
+                    <p>
+                        <?php print $this->names['file']['description'][$count]; ?>
+                    </p>
+                    <?php print $this->form->input("Componentfile." . $count . ".id", array('type' => 'hidden', 'value' => $componentfile->getId())); ?>
+                    <?php print $this->form->input("Componentfile." . $count . ".file_id", array('type' => 'hidden', 'value' => $componentfile->getFileId())); ?>
+                    <div>
+                        <?php $filetype = $componentfile->Files_File->getType(); ?>
+                        <p>
+                            <?php if (false == $componentfile->Files_File->getName()) { ?>
+                                <img id="ncw-componentfile-<?php print $count; ?>" src="<?php print MODULES . '/files/web/images/example.jpg' ?>" />
+                            <?php } else if (true === in_array($filetype, array('jpg', 'jpeg', 'gif', 'png'))) { ?>
+                                <img id="ncw-componentfile-<?php print $count; ?>" src="<?php print $this->base . '/' . ASSETS . '/files/thumbnails/' . $this->text->cleanForUrl($componentfile->Files_File->getName()) . '_' . $componentfile->getFileId() . '_96.' . $filetype; ?>" />
+                            <?php } else { ?>
+                                <img id="ncw-componentfile-<?php print $count; ?>" src="<?php print $this->base . '/' . $this->theme_path . '/web/images/icons/64px/' . $filetype . '.png'; ?>" />
+                            <?php } ?>
+                        </p>
+                    </div>
+                    <p>
+                        <a href="#" rel="<?php print $count; ?>" class="ncw-choose-file"><?php print T_('Choose File'); ?></a>
+                    </p>
+                    <?php print $this->form->input("Componentfile." . $count . ".alt", array('maxlength' => 100, 'value' => $componentfile->getAlt(), 'title' => T_('Alternative text of the file'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Alt')))); ?>
+                    <?php print $this->form->input("Componentfile." . $count . ".title", array('maxlength' => 100, 'value' => $componentfile->getTitle(), 'title' => T_('Title of the file'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Title')))); ?>
+                    <?php print $this->form->input("Componentfile." . $count . ".link", array('maxlength' => 255, 'value' => $componentfile->getLink(), 'title' => T_('Url which is opened when the file is clicked'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Link')))); ?>
+                    <div class="ncw-input-container">
+                        <label for="componentfile_<?php print $count?>_internal" class="ncw-label"><?php print T_('Internal'); ?></label>
+                        <select id="componentfile_<?php print $count?>_internal" title="<?php print T_('Copies the internal url into the link field'); ?>" class="ncw-select ncw-componentfile-internal">
+                            <option>---</option>
+                            <?php foreach ($this->linklist as $link => $values) { ?>
+                            <option value="<?php print $link; ?>"<?php if ($componentfile->getLink() === $link) { ?> selected="selected"<?php } ?>><?php print $values['prefix'] . ' ' . $values['name']; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <?php print $this->form->input("Componentfile." . $count . ".target", array('type' => 'select', 'options' => $this->targets, 'value' => $componentfile->getTarget(), 'title' => T_('Must the link be opened in a new window or not?'), 'class' => 'ncw-select', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Target')))); ?>
+                    <br />
+                    <?php ++$count; ?>
+                <?php } ?>
+            <?php } ?>
+<?php if (false === $this->window_mode) { ?>
+            <?php print $this->form->end(); ?>
+        </div>
+    </div>
+</div>
+<div class="ncw-status-action-bar">
+    <div class="ncw-status-message"></div>
+    <ul class="ncw-actions">
+        <?php if (true === $this->permissions['/wcms/componentlanguage/delete']) { ?>
+            <li class="ncw-action"><a href="#" rel="wcms/componentlanguage" class="ncw-delete-trigger-ajax ncw_delete_icon"><?php print T_('Delete'); ?></a></li>
+        <?php } ?>
+        <li class="ncw-action"><a href="#" rel="wcms/componentlanguage" class="ncw-save-trigger-ajax ncw_save_icon"><?php print T_('Save'); ?></a></li>
+    </ul>
+</div>
+<?php } ?>

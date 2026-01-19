@@ -1,0 +1,506 @@
+.ncw-wysiwyg-toolbar, .ncw-sortable-item-handle {
+    position: absolute;
+    z-index: 299900;
+    top: 0;
+    left: 0;
+    width: 16px !important;
+    height: 16px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: none !important;
+    border: none !important
+}
+
+.ncw-wysiwyg-toolbar img, .ncw-sortable-item-handle img, .ncw-sortable-item-delete img {
+    cursor: pointer;    
+    width: 16px !important;
+    height: 16px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: none !important;
+    border: none !important;
+    float: none !important
+}
+
+.ncw-sortable-item-handle img {
+    height: 15px !important
+}
+
+.ncw-sortable-item-handle img {
+    cursor: move
+}
+    
+#ncw-wysiwyg-container, #ncw-wysiwyg-options, .ncw-mceAdvanced, .ncw-mceSimple {
+    position: absolute;
+    z-index: 299900;
+    display: none
+}
+
+#ncw-wysiwyg-options img {
+    margin-bottom: 5px;
+    cursor: pointer
+}
+
+.ncw-add-component-button {
+    cursor: pointer;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 16px !important;
+    height: 16px !important;
+}
+
+.ncw-add-component-button-container {
+    width: inherit;
+}
+
+.ncw-image-draggable {
+    cursor: move
+}
+
+.ncw-drop-here {
+    position: absolute;
+    background: red;
+    height: 15px !important;
+    width: 100px !important;
+    font: 700 16px Arial, Helvetica, sans-serif !important;
+    margin: 5px !important;
+    padding: 6px 0 10px 10px !important;
+    border: 2px dotted white !important;
+    color: #fff !important;
+    z-index: 800001
+}
+
+.ncw-empty-sortable {
+    clear: both;
+    height: 18px;
+    padding: 7px 10px 10px;
+    min-width: 200px;
+    color: #f00;
+    font: 700 16px Arial, Helvetica, sans-serif !important;
+    border: 2px dotted red;
+    background: #eee;
+    cursor: default;
+    overflow: hidden;
+    opacity: 0.5
+}
+
+.ncw-area-clear {
+    clear: both;
+    height: 0
+}
+
+.ncw-componentlanguage-edit-file {
+    margin-left:150px
+}
+
+.ncw-image-droppable {
+    cursor:pointer
+}
+    
+.ncw-window-component-template {
+    background: #eee;
+    border: 1px dashed #333;
+    padding: 4px
+}
+
+.ncw-mce-advanced, .ncw-mce-simple {
+    display: none
+}
+
+
+/*
+ * TOOLBARS
+ */
+
+#ncw-editbar {
+    width: 100%;
+    height: 30px;
+    font: 14px Arial, sans-sarif !important;
+    line-height: 20px !important;
+    position: fixed !important;
+    bottom: 30px;
+    left: 0;
+    z-index: 900010;
+    }
+
+    #ncw-editbar span {
+        float: left;
+        margin: 0 16px 0 0;
+        padding: 4px 0 0;
+        color: #fff !important;
+        font-size: 11px !important;
+        font-weight: 700 !important;
+        text-decoration: none !important;
+        text-align: left !important;
+        font-family: Arial, sans-sarif !important;
+        line-height: 20px !important;
+        }
+
+    #ncw-wrap {
+        width: 926px;
+        height: 30px;
+        margin: auto;
+        padding: 0 25px;
+        -moz-border-radius: 8px 8px 0 0;
+        -webkit-border-radius: 8px 8px 0 0;
+        border-radius: 8px 8px 0 0;
+        background: url(../../themes/default/web/images/bg_toolbar.png) repeat-x 0 0 #8F8F8F !important;
+        -moz-box-shadow: 0 0 10px 0 #666;
+        -webkit-box-shadow: 0 0 10px 0 #666;
+        position: relative;
+        font-family: Arial, sans-sarif !important;
+        line-height: 20px !important;
+        }
+
+        #ncw-wrap span,
+        #ncw-wrap ul {
+            /*float: left;*/
+            margin: 0
+            }
+
+        #ncw-wrap li {
+            float: left;
+            list-style: none
+            }
+
+            #ncw-editbar-sitename {
+                position: relative;
+                width: 100px;
+                color: #ccc !important;
+                }
+
+            #ncw-editbar-sitename div {
+                position: absolute;
+                top: 4px;
+                left: 26px;
+                width: 72px;
+                overflow: hidden !important;
+                display: block !important;
+                color: #fff !important;
+                font-style: italic !important;        
+                white-space: nowrap !important;
+                font-family: Arial, sans-sarif !important;
+                font-size: 11px !important;      
+                font-weight: 700 !important;    
+                line-height: 20px !important;      
+            }
+
+            .ncw-editmenu-node {
+                float: left
+                }
+
+                .ncw-editmenu-node a, .ncw-editmenu-node div {
+                    height: 25px;
+                    float: left;
+                    margin: 0;
+                    padding: 5px 10px 0 26px;
+                    color: #fff !important;
+                    font-size: 11px !important;
+                    font-weight: 700 !important;
+                    text-decoration: none !important;
+                    font-family: Arial, sans-sarif !important;
+                    line-height: 20px !important;
+                    }
+
+                    .ncw-editmenu-node a:hover,
+                    .ncw-editmenu-node a:focus, 
+                    .ncw-editmenu-node-clicked {
+                        background-color: #009DE0 !important
+                        }
+                        
+                 .ncw-editmenu-node-deactiv {
+                    text-decoration: line-through !important;
+                    color: #ccc !important;
+                 }
+                 
+                #ncw-editbar-language {
+                    border-left: 1px solid #666;
+                }
+
+                    #ncw-editmenu-languages {
+                        padding: 0;
+                        margin: 0;
+                        border: 0;  
+                    }
+                    
+                    #ncw-editmenu-languages li a {
+                        border-left: 1px solid #666;
+                        padding: 9px 10px 0 10px;
+                        height: 21px;
+                        font-family: Arial, sans-sarif !important;
+                        line-height: 20px !important;
+                    }                    
+                    
+                    #ncw-editmenu-languages:hover ul {
+                        display: block
+                        }
+
+                    #ncw-edit-languages-menu {
+                        width: 100px;
+                        display: none;
+                        position: absolute !important;
+                        bottom: 30px;
+                        left: 115px;
+                        margin: 0;
+                        padding: 0;
+                        overflow: hidden;
+                        border-top: 1px solid #008AC5;
+                        border-bottom: 1px solid #008AC5;                        
+                        }
+                        
+                        #ncw-edit-languages-menu li  {
+                            width: 100%;
+                            clear: both;
+                            margin: 0;
+                            padding: 0;
+                            text-align: left;
+                            cursor: pointer;
+                            font-family: Arial, sans-sarif !important;
+                            }
+
+                            #ncw-edit-languages-menu li a {
+                                width: 94px;    
+                                margin: 0;
+                                padding: 2px;                            
+                                height: 14px;
+                                color: #fff !important;
+                                font: 700 12px Arial, Helvetica, sans-serif !important;
+                                background: #494A57 !important;
+                                border-left: 1px solid #008AC5;
+                                border-right: 1px solid #008AC5;
+                                text-decoration: none !important;
+                                font-family: Arial, sans-sarif !important;
+                                line-height: 20px !important;
+                                }
+                                
+                            #ncw-edit-languages-menu li a img {
+                                border: none;
+                            }
+
+                                #ncw-edit-languages-menu li a:hover,
+                                #ncw-edit-languages-menu li a:focus {
+                                    background: #008AC5 !important
+                                    }                    
+
+                #ncw-editbar-type-site {
+                    border-left: 1px solid #666;
+                    background: url('../../themes/default/web/images/icons/16px/page.png') no-repeat 7px center
+                    }
+                    
+                #ncw-editbar-type-redirect {
+                    border-left: 1px solid #666;
+                    background: url('../../themes/default/web/images/icons/16px/page_go.png') no-repeat 7px center
+                    }                        
+                    
+                #ncw-editbar-type-archive {
+                    border-left: 1px solid #666;
+                    background: url('../../themes/default/web/images/icons/16px/book.png') no-repeat 7px center
+                    }                          
+                    
+                #ncw-editbar-type-article {
+                    border-left: 1px solid #666;
+                    background: url('../../themes/default/web/images/icons/16px/page_red.png') no-repeat 7px center
+                    }    
+                    
+                #ncw-editbar-type-formular {
+                    border-left: 1px solid #666;
+                    background: url('../../themes/default/web/images/icons/16px/application_form.png') no-repeat 7px center
+                    }    
+
+                #ncw-editbar-status-published {
+                    background: url('../../themes/default/web/images/icons/16px/world.png') no-repeat 7px center
+                    }
+                    
+                #ncw-editbar-status-unpublished {
+                    background: url('../../themes/default/web/images/icons/16px/world_delete.png') no-repeat 7px center
+                    }    
+
+                #ncw-editbar-status-modified {
+                    background: url('../../themes/default/web/images/icons/16px/wrench.png') no-repeat 7px center
+                    }  
+                    
+                #ncw-editbar-status-new {
+                    background: url('../../themes/default/web/images/icons/16px/star.png') no-repeat 7px center
+                    }                      
+
+                #ncw-editbar-home {
+                    padding-right: 4px !important;
+                    background: url('../../themes/default/web/images/icons/16px/house.png') no-repeat 7px center
+                    }
+                    
+                #ncw-editbar-private {
+                    padding-right: 4px !important;
+                    background: url('../../themes/default/web/images/icons/16px/lock.png') no-repeat 7px center
+                    }                    
+
+                #ncw-editbar-visible {
+                    padding-right: 4px !important;
+                    background: url('../../themes/default/web/images/icons/16px/clock.png') no-repeat 7px center
+                    }
+                    
+                #ncw-editbar-invisible {
+                    padding-right: 4px !important;
+                    background: url('../../themes/default/web/images/icons/16px/clock_red.png') no-repeat 7px center
+                    } 
+
+                #ncw-editbar-live_mode {
+                    border-left: 1px solid #666;
+                    background: url('../../themes/default/web/images/icons/16px/page_white_world.png') no-repeat 7px center
+                    }
+
+                #ncw-editbar-preview_mode {
+                    background: url('../../themes/default/web/images/icons/16px/page_white_find.png') no-repeat 7px center
+                    }
+
+                #ncw-editbar-edit_mode {
+                    border-right: 1px solid #666;
+                    background: url('../../themes/default/web/images/icons/16px/page_white_edit.png') no-repeat 7px center
+                    }
+                    
+                #ncw-editbar-edit-content_mode {
+                    background: url('../../themes/default/web/images/icons/16px/pencil.png') no-repeat 7px center
+                    }
+
+                #ncw-editbar-publish {
+                    background: url('../../themes/default/web/images/icons/16px/world.png') no-repeat 7px center
+                    }
+
+                #ncw-editbar-unpublish {
+                    background: url('../../themes/default/web/images/icons/16px/world_delete.png') no-repeat 7px center
+                    }
+                    
+                #ncw-editbar-refresh {
+                    border-right: 1px solid #666;
+                    background: url('../../themes/default/web/images/icons/16px/arrow_refresh.png') no-repeat 7px center
+                    }                       
+
+                #ncw_editmenu-more-link {
+                    -moz-border-radius: 0 8px 0 0;
+                    -webkit-border-radius: 0 8px 0 0;
+                    border-radius: 0 8px 0 0;
+                    background: url('../../themes/default/web/images/icons/16px/add.png') no-repeat 7px center;
+                    cursor: pointer
+                    }
+
+                #ncw-editmenu-more {
+                    padding: 0;
+                    position: absolute !important;
+                    top: 0;
+                    right: 0
+                    }
+
+                    #ncw-editmenu-more:hover ul {
+                        display: block
+                        }
+
+                    #ncw-edit-more-menu {
+                        display: none;
+                        position: absolute !important;
+                        bottom: 30px;
+                        left: 0;
+                        overflow: hidden
+                        }
+                        
+                        #ncw-edit-more-menu li  {
+                            width: 100%;
+                            float: left;
+                            margin: 0 0 0;
+                            text-align: left;
+                            cursor: pointer
+                            }
+
+                            #ncw-edit-more-menu li a {
+                                width: 100%;
+                                height: 22px;
+                                float: left;
+                                padding: 8px 0 0 20px;
+                                color: #000;
+                                font: 700 12px Arial, Helvetica, sans-serif !important;
+                                border-left: 5px solid #aaa;
+                                border-bottom: 1px solid #aaa;
+                                background: #eee;
+                                text-decoration: none
+                                }
+
+                                #ncw-edit-more-menu li a:hover,
+                                #ncw-edit-more-menu li a:focus {
+                                    border-left: 5px solid #009DE0;
+                                    color: #fff !important;
+                                    background: #aaa
+                                    }
+
+.ncw-toolbar {
+    float: left;
+    position: absolute;
+    z-index: 900000;
+    }
+
+  .ncw-toolbar-first {
+      width: 14px;
+      height: 20px;
+      float: left;
+      padding: 4px 10px 0 0;
+      color: #fff;
+      font: 700 12px Arial, Helvetica, sans-serif !important;
+      text-decoration: none;
+      text-indent: 25px;
+      white-space: nowrap;
+      border: 2px solid #009DE0;
+      -moz-border-radius: 20px;
+      -webkit-border-radius: 20px;
+      border-radius: 20px;
+      background: url('../../themes/default/web/images/icons/16px/add.png') no-repeat 4px center #494A57;
+      -moz-box-shadow: 0 0 10px 0 #000;
+      -webkit-box-shadow: 0 0 10px 0 #000;
+      box-shadow: 0 0 10px 0 #000;
+      z-index: 2;
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden
+      }
+
+      .ncw-toolbar-first:hover,
+      .ncw-toolbar-first:focus {
+          width: 55px;
+          border: 2px solid #494A57;
+          background-color: #009DE0
+          }
+
+      .ncw-toolbar ul {
+          width: 24px;
+          margin: 0;
+          padding: 16px 0 0;
+          text-align: center;
+          border: 2px solid #009DE0;
+          -moz-border-radius: 0 0 12px 12px;
+          -webkit-border-radius: 0 0 12px 12px;
+          border-radius: 0 0 12px 12px;
+          background: #494A57;
+          -moz-box-shadow: 0 0 10px 0 #666;
+          -webkit-box-shadow: 0 0 10px 0 #666;
+          box-shadow: 0 0 10px 0 #666;
+          overflow: hidden;
+          z-index: 1;
+          position: absolute;
+          top: 12px;
+          left: 0;
+          display: none
+          }
+
+          .ncw-toolbar li {
+              width: 24px;
+              height: 20px;
+              float: left;
+              padding: 4px 0 0;
+              list-style: none;
+              color: #fff;
+              font: 700 12px Arial, Helvetica, sans-serif !important;
+              text-decoration: none;
+              cursor: pointer
+              }
+
+              .ncw-toolbar li:hover {
+                  background: #009DE0
+                  }

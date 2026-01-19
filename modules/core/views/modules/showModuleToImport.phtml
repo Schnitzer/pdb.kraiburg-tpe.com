@@ -1,0 +1,53 @@
+<div class="ncw-left">
+    <div class="ncw-accordion">
+        <h3 class="ncw-accordion-header current"><?php print T_('Module Management'); ?></h3>
+        <div class="ncw-accordion-content ncw-accordion-current">               
+            <p class="ncw-accordion-content-part-dark">
+                <a href="<?php print $this->html->url(array('action' => 'index')); ?>" class="ncw_text_button_overview"><?php print T_('Installed modules'); ?></a>
+            </p>
+            <p class="ncw-accordion-content-part-dark">
+                <a href="<?php print $this->html->url(array('action' => 'showUninstalledModules')); ?>" class="ncw_text_button_add"><?php print T_('Install Module'); ?></a>
+            </p>
+            <p class="ncw-accordion-content-part-dark">
+                <a href="<?php print $this->html->url(array('action' => 'showModuleToImport')); ?>" class="ncw_text_button_add"><?php print T_('Import Module'); ?></a>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="ncw-right">
+	<div class="ncw-main-tabs">
+	    <ul class="ncw-main-tabs-container">
+	        <li class="ncw-main-tab"><a href="#"><?php print T_('Import module'); ?></a></li>
+	    </ul>
+	    <div class="ncw-main-tab-contents">
+	    	<div class="ncw-main-tab-content">	
+				<?php if (count($this->modules) > 0) { ?>
+					<table class="ncw-table">
+						<thead>
+							<tr>
+								<th><?php print T_('Id'); ?></th>
+								<th><?php print T_('Version'); ?></th>
+								<th><?php print T_('Import'); ?></th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php foreach ($this->modules as $module) { ?>
+								<tr>
+									<td><?php print $module['name']; ?></td>
+									<td class="ncw-table-td-icons"><?php print $module['version']; ?></td>
+									<td class="ncw-table-td-icons">
+										<a href="javascript: ncw.core.modules.importModule('<?php print $module['name']; ?>');">
+											<?php print T_('Import'); ?>
+										</a>
+									</td>
+								</tr>
+							<?php } ?>
+						</tbody>
+					</table>
+				<?php } else { ?>
+					<?php print T_('No modules to import'); ?>	
+				<?php } ?>
+			</div>
+		</div>
+	</div>
+</div>

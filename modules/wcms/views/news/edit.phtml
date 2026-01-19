@@ -1,0 +1,147 @@
+<div class="ncw-left">
+    <div class="ncw-accordion">
+        <h3 class="ncw-accordion-header current"><?php print T_('Options'); ?></h3>
+        <div class="ncw-accordion-content ncw-accordion-current">
+            <p class="ncw-accordion-content-part-dark">
+                <?php print $this->html->link(T_('Show'), array('action' => 'all'), array('class' => 'ncw_text_button_overview')); ?>
+            </p>
+            <?php if (true === $this->permissions['/wcms/news/new']) { ?>
+                <p class="ncw-accordion-content-part-dark">
+                    <?php print $this->html->link(T_('New'), array('action' => 'new'), array('class' => 'ncw_text_button_add')); ?>
+                </p>
+            <?php } ?>
+        </div>
+    </div>
+</div>
+<div class="ncw-right">
+    <?php print $this->form->create('ncw-news'); ?>
+    <?php print $this->form->input("id", array('type' => 'hidden', 'value' => $this->news_id)); ?>
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+            <li class="ncw-main-tab"><a href="#"><?php print T_('Edit'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <ul class="ncw-tabs-container">
+                    <li class="ncw-tab"><a href="#"><?php print T_('Main'); ?></a></li>
+                    <!--<li class="ncw-tab"><a href="#"><?php print T_('Sites'); ?></a></li>-->
+                </ul>
+                <div class="ncw-tab-contents">
+                    <div class="ncw-tab-content ncw-tab-content-full">
+                        <?php print $this->form->input("name", array('maxlength' => 100, 'title' => T_('Name. Only for internal use'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Name')))); ?>
+                        <div class="ncw-input-container" style="display: none;">
+                            <label class="ncw-label" for="news_schedule"><?php print T_('Do you want to schedule this news?'); ?></label>
+                            <?php print $this->form->input("schedule", array('type' => 'checkbox', 'class' => 'ncw-checkbox', 'div' => array('class' => 'ncw-radios-checkbox ncw-schedule-check'), 'label' => FALSE)); ?>
+                        </div>
+                        <div class="ncw-schedule<?php if (true === $this->schedule) { ?> ncw-schedule-show<?php } ?>">
+                            <?php print $this->form->input('publish_date', array('title' => T_('On which date the site will be viewable'), 'class' => 'ncw-input ncw-datepick', 'value' => $this->news_publish[0], 'div' => array('class' => 'ncw-input-container datepick publish'), 'label' => array('class' => 'ncw-label', 'text' => T_('Publish date')))); ?>
+                            <?php print $this->form->input('publish_time', array('title' => T_('On which time the site will be viewable'), 'class' => 'ncw-input ncw-timepick', 'value' => substr($this->news_publish[1], 0, 5), 'div' => array('class' => 'ncw-input-container timepick publish_time'), 'label' => array('class' => 'ncw-label', 'text' => T_('Publish time')))); ?>
+                            <?php print $this->form->input('expire_date', array('title' => T_('On which date the site will expire'), 'class' => 'ncw-input ncw-datepick', 'value' => $this->news_expire[0], 'div' => array('class' => 'ncw-input-container datepick expire'), 'label' => array('class' => 'ncw-label', 'text' => T_('Expire date')))); ?>
+                            <?php print $this->form->input('expire_time', array('title' => T_('On which time the site will expire'), 'class' => 'ncw-input ncw-timepick', 'value' => substr($this->news_expire[1], 0, 5), 'div' => array('class' => 'ncw-input-container timepick expire_time'), 'label' => array('class' => 'ncw-label', 'text' => T_('Expire time')))); ?>
+                        </div>
+                        <h2><?php echo T_('Languages'); ?></h2>
+                        <?php if (true === $this->permissions['/wcms/newslanguage/new']) { ?>
+                            <p>
+                                <a href="<?php print $this->html->url(array('controller' => 'Newslanguage', 'action' => 'new', 'id' => $this->news_id )); ?>" class="ncw-action">
+                                    <?php print T_('Add translation'); ?>
+                                </a>
+                            </p>
+                        <?php } ?>
+                        <br class="ncw-clear" />
+                        <p>
+                            <span class="ncw-new"><?php echo T_('new'); ?></span>
+                            <span class="ncw-modified"><?php echo T_('modified'); ?></span>
+                            <span class="ncw-published"><?php echo T_('published'); ?></span>
+                        </p>
+                        <?php if (true === is_array($this->arr_all_languages)) { ?>
+                        <table class="ncw-table">
+                            <thead>
+                                <tr>
+                                    <th><?php echo T_('Language'); ?></th>
+                                    <th><?php echo T_('Headline'); ?></th>
+                                    <th><?php print T_('Options'); ?></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($this->arr_all_languages as $obj_language) { ?>
+                                <tr>
+                                    <td>
+                                        <?php print $this->html->link($this->html->image("country_flags/" . $obj_language->Language->getShortcut() . ".gif", false, array("alt" => $obj_language->Language->getName(), "title" => $obj_language->Language->getNameEncoded())), array('controller' => 'newslanguage', 'action' => 'edit', 'id' => $this->news_id, $obj_language->getId()), null, false, false); ?>
+                                        <?php echo $this->html->link($obj_language->Language->getName(), array('controller' => 'newslanguage', 'action' => 'edit', 'id' => $this->news_id, $obj_language->getId()), array('class' => 'ncw-' . $obj_language->getStatus())); ?>
+                                    </td>
+                                    <td><?php print $obj_language->getHeadline(); ?></td>
+                                    <td class="ncw-table-td-icons">
+                                        <?php if (true === $this->permissions['/wcms/newslanguage/edit']) { ?>
+                                            <?php echo $this->html->link($this->html->image("icons/16px/pencil.png", false, array('alt' => T_('edit'), 'title' => T_('edit'))), array('controller' => 'newslanguage', 'action' => 'edit', 'id' => $this->news_id, $obj_language->getId()), null, false, false); ?>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                            <?php }?>
+                            </tbody>
+                        </table>
+                        <?php }?>
+                    </div>
+                    <div class="ncw-tab-content ncw-tab-content-full">
+                        <div class="ncw-input-container">
+                            <label class="ncw-label" for="news_allsites"><?php print T_('Show on all sites');?></label>
+                            <?php print $this->form->input("allsites", array('type' => 'checkbox', 'class' => 'ncw-checkbox', 'div' => array('class' => 'ncw-radios-checkbox'), 'label' => FALSE)); ?>
+                        </div>
+                        <h2><?php print T_('Sites');?></h2>
+                        <?php if (true === $this->permissions['/wcms/newssite/new']) { ?>
+                            <p>
+                                <a href="<?php print $this->html->url(array('controller' => 'Newssite', 'action' => 'new', 'id' => $this->news_id )); ?>" class="ncw-action">
+                                    <?php print T_('Add to site'); ?>
+                                </a>
+                            </p>
+                        <?php } ?>
+                        <br class="ncw-clear" /><br />
+                        <?php if (true === is_array($this->arr_all_sites)) { ?>
+                        <table class="ncw-table">
+                            <thead>
+                                <tr>
+                                    <th><?php print T_('Sites'); ?></th>
+                                    <th><?php print T_('Options'); ?></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach ($this->arr_all_sites as $obj_site) { ?>
+                                <tr>
+                                    <td><?php print $obj_site->Site->getName(); ?></td>
+                                    <td class="ncw-table-td-icons">
+                                        <?php if (true === $this->permissions['/wcms/newssite/delete']) { ?>
+                                            <?php print $this->html->link($this->html->image("icons/16px/delete.png", false, array('alt' => T_('Remove'), 'title' => T_('Remove'), 'class' => 'ncw3-delete')), array('controller' => 'newssite', 'action' => 'delete', 'id' => $obj_site->getId()), array($this->news_id)); ?>
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                            <?php }?>
+                            </tbody>
+                        </table>
+                        <?php }?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+ 
+ 
+    <div class="ncw-status-action-bar">
+        <div class="ncw-status-message"></div>
+        <ul class="ncw-actions">
+            <?php
+            if (true === $this->permissions['/wcms/news/unpublish']
+                && ($this->news_status === 'published'
+                || $this->news_status === 'modified')
+            ) {
+            ?>
+                <li class="ncw-action"><a href="#" rel="news" class="ncw-unpublish-trigger ncw_unpublish_icon"><?php print T_('Unpublish'); ?></a></li>
+            <?php } ?>
+            <?php if (true === $this->permissions['/wcms/news/publish']) { ?>
+                <li class="ncw-action"><a href="#" rel="news" class="ncw-publish-trigger ncw_publish_icon"><?php print T_('Publish'); ?></a></li>
+            <?php } ?>
+            <li class="ncw-action"><a href="<?php print $this->html->url(array('action' => 'delete', 'id' => $this->news_id)); ?>" class="ncw-delete-trigger ncw_delete_icon" rel="#ncw-delete"><?php print T_('Delete'); ?></a></li>
+            <li class="ncw-action"><a href="#" class="ncw-save-trigger ncw_save_icon"><?php print T_('Save'); ?></a></li>
+        </ul>
+    </div>
+    <?php print $this->form->end(); ?>
+</div>

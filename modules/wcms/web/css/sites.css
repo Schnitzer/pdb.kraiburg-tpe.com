@@ -1,0 +1,29 @@
+/* SITE TREE */
+
+.ncw-tree-language {
+    cursor: pointer
+}
+
+.ncw-states {
+    position: absolute;
+    padding: 5px !important;
+    margin: 0px !important;
+    bottom: 0px;   
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 12px !important;
+    line-height: normal !important
+}
+
+.ncw-language-node {
+    font-style: italic !important
+}
+
+/* NEW SITE */
+#ncw-site-meta-name {
+    color: #009de0 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 12px !important;  
+    font-weight: normal !important;
+    line-height: normal !important; 
+    text-align: left !important
+}

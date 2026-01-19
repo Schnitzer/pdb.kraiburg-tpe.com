@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="Contacts" de_DE="Kontakte" version="1.0" requires="files"  url="contacts/group/all" permission_name="contacts">
+    
+    <addAco alias="contact" name="Contacts" />
+    <addAco alias="contact/new" name="New Contact" />
+    <addAco alias="contact/edit" name="Edit Contact" />
+    <addAco alias="contact/file" name="Contact Files" />
+    <addAco alias="contact/note" name="Contact Notes" />
+    <addAco alias="contact/delete" name="Delete Contact" />
+    <addAco alias="contact/objects" name="Contact Objects" />
+    <addAco alias="group" name="Groups" />
+    <addAco alias="group/new" name="New Group" />
+    <addAco alias="group/edit" name="Edit Group" />
+    <addAco alias="group/delete" name="Delete Group" />
+    <addAco alias="transfer" name="Export/Import" />
+    <addAco alias="transfer/import" name="Import" />
+    <addAco alias="transfer/export" name="Export" />
+    
+    <addUsergroup group="Contacts Module" parent="root">
+        <permission aco="/contacts" access="1" />
+    </addUsergroup>
+</module>

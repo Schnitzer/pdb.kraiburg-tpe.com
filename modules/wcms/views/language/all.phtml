@@ -1,0 +1,62 @@
+<div class="ncw-right">
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+            <li class="ncw-main-tab"><a href="#"><?php print T_('Languages'); ?></a></li>
+            <li class="ncw-option-tab"><?php print $this->html->link(T_('New language'), array('action' => 'new')); ?></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <table class="ncw-table">
+                    <thead>
+                        <tr>
+                            <th><?php print T_('Name'); ?></th>
+                            <th><?php print T_('Active'); ?></th>
+                            <th><?php print T_('Copies'); ?></th>
+                            <th><?php print T_('Shortcut'); ?></th>
+                            <th><?php print T_('Options'); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (true === is_array($this->arr_all_languages)) { ?>
+                            <?php foreach ($this->arr_all_languages as $obj_language) { ?>
+                                <tr>
+                                    <td><?php print $this->html->link($obj_language->getNameEncoded(), array("action" => "edit", "id" => $obj_language->getId())); ?></td>
+                                    <td class="ncw-table-td-icons">
+                                        <?php
+                                            if ($obj_language->getActive() == 1) {
+                                                echo $this->html->image("icons/16px/tick.png", false);
+                                            } else {
+                                                ?>
+                                                &nbsp;
+                                                <?php
+                                            }
+                                        ?>
+                                    </td>
+                                    <td class="ncw-table-td-icons">
+                                        <?php
+                                            if ($obj_language->getCopies() == 1) {
+                                                echo $this->html->image("icons/16px/tick.png", false);
+                                            } else {
+                                                ?>
+                                                &nbsp;
+                                                <?php
+                                            }
+                                        ?>
+                                    </td>
+                                    <td class="ncw-table-td-icons">
+                                      <?php
+                                          echo $this->html->image("country_flags/" . $obj_language->getShortcut() . ".gif", false, array("alt" => $obj_language->getNameEncoded(), "title" => $obj_language->getNameEncoded()));
+                                      ?>
+                                    </td>
+                                    <td class="ncw-table-td-icons">
+                                        <?php print $this->html->link($this->html->image("icons/16px/pencil.png", false, array('alt' => T_('edit'), 'title' => T_('edit'))), array("action" => "edit", "id" => $obj_language->getId()), null, false, false); ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

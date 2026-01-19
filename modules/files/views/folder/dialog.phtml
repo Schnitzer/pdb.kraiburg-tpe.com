@@ -1,0 +1,45 @@
+<div style="padding-left: 6px;padding-top: 12px;">
+	<div class="ncw-dialog-left" style="float:left; width: 150px;">
+		<div>
+			<strong><?php print T_('Search for a file'); ?></strong>
+	        <?php print $this->form->create('', array('onsubmit' => 'ncw.dialogs.fileSearch.file.load(null, $("#file_search").val()); return false;')); ?>
+	        <?php print $this->form->input('File.search', array('title' => T_('Search'), 'class' => 'ncw-input-dialog', 'style' => 'width: 130px !important; paddin: 0 !important; margin: 0 0 5px 0 !important', 'div' => false, 'label' => false)); ?>
+	        <?php print $this->form->end(); ?>
+	        <a href="javascript: ncw.dialogs.fileSearch.file.load(null, $('#file_search').val());" class="ncw-link"><?php print T_('Search'); ?></a>
+	        <br class="ncw-clear" />
+	        <hr />
+	    </div>
+		<div class="ncw-folders-dialog-tree ncw-tree" style="height: 290px"></div>
+	</div>
+	<div class="ncw-dialog-right" style="float:left;margin-left: 15px; width: 500px;">
+	    <?php if (true == $this->permissions['/files/file/new']) { ?>
+			<?php print T_('To upload a file click on the BROWSE button'); ?>
+			<br /><br />
+            <!-- The fileinput-button span is used to style the file input field as button -->
+            <span class="btn btn-success fileinput-button">
+                <i class="glyphicon glyphicon-plus"></i>
+                <span><?php print T_('Add file(s) ...'); ?></span>
+                <!-- The file input field used as target for the file upload widget -->
+                <input id="fileupload" type="file" name="files[]" accept="<?php print $this->only_types; ?>" multiple>
+            </span>
+            <br>
+            <br>
+            <!-- The global progress bar -->
+            <div id="progress" class="progress">
+                <div class="progress-bar progress-bar-success"></div>
+            </div>
+            <!-- The container for the uploaded files -->
+            <div id="files" class="files"></div>			
+			<hr />
+		<?php } ?>  
+		<div id="ncw_files_dialog_table">
+			
+		</div>
+
+	</div>
+</div>
+<script type="text/javascript">
+ncw.dialogs.fileSearch.folder.tree.permissions = {};
+ncw.dialogs.fileSearch.folder.tree.permissions.file = {};
+ncw.dialogs.fileSearch.folder.tree.permissions.file.addNew = <?php print ($this->permissions['/files/file/new'] ? 'true' : 'false'); ?>;
+</script>

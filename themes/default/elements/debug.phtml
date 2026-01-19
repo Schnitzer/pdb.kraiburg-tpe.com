@@ -1,0 +1,37 @@
+<?php if (Ncw_Configure::read('debug_mode') > 3) { ?>
+<div style="position: absolute; right: 1px; font-size: 10px"><?php Ncw_Bootstrap::$timer->setMarker('action'); print Ncw_Bootstrap::$timer->timeElapsed() * 1000; ?> ms <a href="javascript: var n = $('#ncw3-debug-area').toggle();" style="font-size: 10px;">+</a></div><br /><br /><br />
+<div id="ncw3-debug-area">
+    <h2>Time Benchmark</h2>
+    <br />
+    <?php print Ncw_Bootstrap::$timer->display(); ?>
+    <h2>Memory Usage</h2>
+    <br />
+    <p>
+        Memory allocation - highest Value: <?php
+                    print round(memory_get_peak_usage() / 1024 / 1024, 3);
+                    ?> Mb.
+        <br />
+        Memory allocation - last Value: <?php
+                    print round(memory_get_usage() / 1024 / 1024, 3);
+                    ?> Mb.
+    </p>
+    <?php if (Ncw_Configure::read('debug_mode') > 1) { ?>
+    <h2>Queries sent</h2>
+    <br />
+    <?php foreach (Ncw_Database::getLoggedQueries() as $query) { ?>
+        <p>
+            <?php
+            print $query['query'];
+            ?>
+            <br />
+            <em>Execution time: <?php
+            print $query['execution_time'];
+            ?> millisec.</em>
+        </p>
+        <br />
+    <?php } } ?>
+    <br />
+    <br />
+    <br />
+</div>
+<?php } ?>

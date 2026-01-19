@@ -1,0 +1,8 @@
+<?php print $this->form->create("login"); ?>
+<?php print $this->form->input("name", array('maxlength' => 100, 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => strtoupper(T_('Username'))))); ?>
+<div style="clear: both;"></div>
+<?php print $this->form->input("password", array('type' => 'password', 'maxlength' => 100, 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => strtoupper(T_('Password'))))); ?>
+<div style="clear: both;"></div>
+<div class="ncw-hidden-submit"><?php print $this->form->submit(); ?></div>
+<input type="submit" class="ncw-submit" onclick="$('.form').submit();" value="<?php print T_('Login'); ?>" />
+<?php print $this->form->end(); ?>

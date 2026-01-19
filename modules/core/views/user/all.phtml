@@ -1,0 +1,103 @@
+<?php print $this->paginator->options(array('update' => '.ncw-right', 'url' => array($this->usergroup_id, '?' => 's=' . $this->search_value), 'callback' => 'ncw.core.user.loadPage();')); ?>
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+        <li class="ncw-main-tab"><a href="#"><?php if ($this->usergroup_id == 1) { print T_('All users'); } else { print T_('Users of group') . ': ' . $this->usergroup_name; } ?></a></li>
+        <?php
+        if ($this->usergroup_id != 1) {
+          ?>            
+       		<li class="ncw-option-tab"><a href="javascript: ncw.core.usergroup.loadEdit();"><?php print T_('Edit Usergroup'); ?></a></li>
+        <?php } ?>        
+    </ul>
+    <div class="ncw-main-tab-contents">
+        <div class="ncw-main-tab-content">
+            <div class="ncw-page-controls">
+                <div class="left_controls">
+                    <?php print $this->paginator->first('<<', array('url' => array('id' => $this->usergroup_id))); ?>
+                    <?php print $this->paginator->prev('<', array('url' => array('id' => $this->usergroup_id))); ?>
+                </div>
+                <?php
+                print $this->paginator->counter(
+                    array(
+                        'format' => T_('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%')
+                    )
+                );
+                ?>
+                <?php if ($this->paginator->hasPage(2)) { ?>
+                    (<?php print $this->paginator->numbers(array('url' => array('id' => $this->usergroup_id))); ?>)
+                <?php } ?>
+                <div class="right_controls">
+                    <?php print $this->paginator->next('>', array('url' => array('id' => $this->usergroup_id))); ?>
+                    <?php print $this->paginator->last('>>', array('url' => array('id' => $this->usergroup_id))); ?>
+                </div>
+            </div>
+            <table class="ncw-table">
+                <thead>
+                    <tr>
+                        <th style="width:200px"><?php print $this->paginator->sort(T_('Name'), 'User.name', array('url' => array('id' => $this->usergroup_id))); ?></th>
+                        <?php if (true === $this->contact_module) { ?>
+                        	<th><?php print $this->paginator->sort(T_('Contact'), 'User.contact_id', array('url' => array('id' => $this->usergroup_id))); ?></th>
+                        <?php } ?>
+												<th style="width:100px"><?php print $this->paginator->sort(T_('email'), 'User.email', array('url' => array('id' => $this->usergroup_id))); ?></th>
+                        <th style="width:100px"><?php print $this->paginator->sort(T_('Language'), 'User.language_id', array('url' => array('id' => $this->usergroup_id))); ?></th>
+                        <th style="width:100px"><?php print $this->paginator->sort(T_('Activated'), 'User.activated', array('url' => array('id' => $this->usergroup_id))); ?></th>
+                        <th><?php print T_('Options'); ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (true === is_array($this->arr_all_users)) { ?>
+                        <?php foreach ($this->arr_all_users as $obj_user) { ?>
+                            <tr>
+                                <td>
+                                	<a href="javascript: ncw.core.user.loadEdit(<?php print $obj_user->getId(); ?>);">
+                                		<?php print $obj_user->getNameEncoded(); ?>
+                                	</a>
+                                </td>
+                                <?php if (true === $this->contact_module) { ?>
+                                	<td><?php print $this->arr_contacts[$obj_user->getId()]; ?></td>
+                                <?php } ?>    
+																<td>
+                                	<a href="javascript: ncw.core.user.loadEdit(<?php print $obj_user->getId(); ?>);">
+                                		<?php print $obj_user->getEmailEncoded(); ?>
+                                	</a>
+															  </td>
+                                <td><?php print $obj_user->Language->getNameEncoded(); ?></td>
+
+
+                                <td>
+                                	<?php 
+                                	if (false === (boolean) $obj_user->getActivated()) {
+                                		print T_('Not activated');
+									} else {
+										print T_('Yes');
+									}
+                                	?>
+                                </td>                                        
+                                <td class="ncw-table-td-icons">
+                                	<a href="javascript: ncw.core.user.loadEdit(<?php print $obj_user->getId(); ?>);">
+                                    	<?php print $this->html->image("icons/16px/pencil.png", false, array('alt' => T_('Edit'), 'title' => T_('Edit'))); ?>
+                                   </a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    <?php } ?>
+                </tbody>
+            </table>
+            <?php if ($this->paginator->hasPage(2)) { ?>
+                <div class="ncw-page-controls-bottom">
+                    <div class="left_controls">
+                        <?php print $this->paginator->first('<<', array('url' => array('id' => $this->usergroup_id))); ?>
+                        <?php print $this->paginator->prev('<', array('url' => array('id' => $this->usergroup_id))); ?>
+                    </div>
+                    <?php print $this->paginator->counter(array(
+                        'format' => T_('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%')
+                    )); ?>
+                    (<?php print $this->paginator->numbers(array('url' => array('id' => $this->usergroup_id))); ?>)
+                    <div class="right_controls">
+                        <?php print $this->paginator->next('>', array('url' => array('id' => $this->usergroup_id))); ?>
+                        <?php print $this->paginator->last('>>', array('url' => array('id' => $this->usergroup_id))); ?>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+</div>

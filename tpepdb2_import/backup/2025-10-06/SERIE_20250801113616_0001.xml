@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CATALOG>
+ <HEAD>
+  <ID>PORTFOLIO</ID>
+  <DESCRIPTIONS_SHORT>
+   <DESCRIPTION_SHORT lang="chi">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="kor">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ger">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="eng">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="fre">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ita">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="jpn">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="pol">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="spa">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+  </DESCRIPTIONS_SHORT>
+ </HEAD>
+ <NODES>
+  <NODE ID="0000000001-0000000125" type="SERIE" internal_id="0000000125">
+   <DRAWING_NUMBER/>
+   <VALID_FROM>00000000</VALID_FROM>
+   <VALID_TO>00000000</VALID_TO>
+   <DESCRIPTIONS_SHORT>
+    <DESCRIPTION_SHORT lang="chi">
+     <![CDATA[RC/PCR2]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="kor">
+     <![CDATA[RC/PCR2]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="ger">
+     <![CDATA[RC/PCR2]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="eng">
+     <![CDATA[RC/PCR2]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="fre">
+     <![CDATA[RC/PCR2]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="ita">
+     <![CDATA[RC/PCR2]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="jpn">
+     <![CDATA[RC/PCR2]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="pol">
+     <![CDATA[RC/PCR2]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="spa">
+     <![CDATA[RC/PCR2]]>
+    </DESCRIPTION_SHORT>
+   </DESCRIPTIONS_SHORT>
+   <DESCRIPTIONS_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="chi">
+     <![CDATA[RC/PCR2 含有超过 70％ 的消费后回收物，适用于各种可与PP包胶的应用或单一组件部件，是绝佳的材料解决方案。这些化合物提供本色，并可以以许多不同的方式着色。]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="jpn">
+     <![CDATA[RC/PCR2シリーズは、PPへの接着性を要し、または単一部品としての用途に対応する、ポストコンシューマー・リサイクル材を70%以上含む、あなたの材料ソリューションです。これらのコンパウンドはナチュラル色で提供され、また多様な方法による着色が可能です。]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="kor">
+     <![CDATA[RC/PCR2 시리즈는 PP 접착 또는 단품 사출 부품으로 다양한 어플리케이션에 적용 가능하며 재활용 함량이 > 70%인 소재 솔루션입니다. 이 제품은 내추럴 색상으로 제공되며 다양한 색상으로 착색 가능합니다.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="ger">
+     <![CDATA[Die RC/PCR2-Reihe mit einem Post-Consumer Recycling-Anteil von > 70 % ist für eine Vielzahl von Anwendungen mit Haftung zu PP oder Einkomponentenbauteile geeignet. Die Compounds sind in naturfarben erhältlich und lassen sich vielfältig einfärben.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="eng">
+     <![CDATA[The RC/PCR2 series is your material solution with a post consumer recycled content of > 70% for a variety of applications with adhesion to PP or single component parts. The compounds are available in natural colors and can be colored in many different ways.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="fre">
+     <![CDATA[La série RC/PCR2 est votre solution matière contenant un minimum de 70% de Recyclé Post Consumer (PCR) pour diverses applications avec adhésion sur PP. Les compounds sont disponibles en couleur naturelle et sont colorables de différentes manières.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="spa">
+     <![CDATA[La serie RC/PCR2 es su solución de material con un contenido reciclado postconsumo > 70% para una variedad de aplicaciones con adhesión a PP o piezas de un solo componente. Los compuestos están disponibles en colores naturales y se pueden colorear de muchas formas diferentes.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="ita">
+     <![CDATA[La serie RC/PCR2 è la soluzione di TPE con un contenuto riciclato post-consumer > 70% per una varietà di applicazioni con adesione a PP o parti mono componente. I compound sono disponibili in colore naturale e possono essere colorati in molti modi diversi.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="pol">
+     <![CDATA[Seria RC/PCR2 to tworzywa z zawartością surowców wtórnych PCR >70% do różnorodnych zastosowań wymagających doskonałej adhezji z PP bądź do produkcji detali 1-komponentowych. Tworzywa te są dostępne w wersji naturalnej, mogą być również barwione na dowolne  kolory różnymi sposobami.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="fre">
+     <![CDATA[TPE avec contenu recyclé en adhésion PP ; contenu PCR]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="spa">
+     <![CDATA[Contiene TPE reciclado con adhesión de PP; contiene PCR]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="ita">
+     <![CDATA[Con contenuto di materia prima riciclata. Per adesione a PP. Contiene PCR]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="pol">
+     <![CDATA[Materiały na bazie surowców wtórnych z adhezją do PP; zawartość surowców PCR]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="ger">
+     <![CDATA[Recycling Content TPE mit PP-Haftung; PCR-Anteil]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="eng">
+     <![CDATA[Recycling Content TPE with PP adhesion; PCR content]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="chi">
+     <![CDATA[含有回收材料的热塑性弹性体（TPE）与PP具有良好的包胶性能，并且含有PCR材料]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="jpn">
+     <![CDATA[PPへの接着性を備えたリサイクル材含有TPE、PCR含有]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="kor">
+     <![CDATA[PP 접착력의 재활용 원재료 함유 TPE; PCR 함량]]>
+    </DESCRIPTION_LONG>
+   </DESCRIPTIONS_LONG>
+   <CLASSIFICATION>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_001_SERIAL">
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">Serie</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">series</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+     <VALUE>
+      TPE-300000000006875
+      <VALUE_TEXTS>
+       <VALUE_TEXT lang="chi">RC/PCR2</VALUE_TEXT>
+       <VALUE_TEXT lang="kor">RC/PCR2</VALUE_TEXT>
+       <VALUE_TEXT lang="ger">RC/PCR2</VALUE_TEXT>
+       <VALUE_TEXT lang="eng">RC/PCR2</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">RC/PCR2</VALUE_TEXT>
+       <VALUE_TEXT lang="ita">RC/PCR2</VALUE_TEXT>
+       <VALUE_TEXT lang="jpn">RC/PCR2</VALUE_TEXT>
+       <VALUE_TEXT lang="pol">RC/PCR2</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">RC/PCR2</VALUE_TEXT>
+      </VALUE_TEXTS>
+     </VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_002_BRAND">
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">Brand</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+     <VALUE>
+      TPE-300000000006154
+      <VALUE_TEXTS>
+       <VALUE_TEXT lang="chi">凯柏胶宝® R</VALUE_TEXT>
+       <VALUE_TEXT lang="tha">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="kor">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="rum">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="slv">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="hrv">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="may">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="ukr">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="est">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="ara">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="heb">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="cze">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="ger">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="eng">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="gre">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="hun">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="ita">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="jpn">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="dan">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="pol">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="chi">凯柏胶宝® R</VALUE_TEXT>
+       <VALUE_TEXT lang="dut">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="nor">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="por">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="slo">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="rus">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="tur">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="fin">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="swe">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="bul">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="lit">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="lav">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="ice">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="srp">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="ind">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="hin">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="vie">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="mac">THERMOLAST® R</VALUE_TEXT>
+       <VALUE_TEXT lang="alb">THERMOLAST® R</VALUE_TEXT>
+      </VALUE_TEXTS>
+     </VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_010_REGION">
+     <VALUE>TPE-300000000007010</VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_4000_001">
+     <VALUE>TPE-300000000004649</VALUE>
+     <VALUE>TPE-300000000004680</VALUE>
+     <VALUE>TPE-300000000004681</VALUE>
+     <VALUE>TPE-300000000004689</VALUE>
+     <VALUE>TPE-300000000005521</VALUE>
+     <VALUE>TPE-300000000006908</VALUE>
+     <VALUE>TPE-300000000006909</VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_4000_002">
+     <VALUE>TPE-300000000004736</VALUE>
+     <VALUE>TPE-300000000004763</VALUE>
+     <VALUE>TPE-300000000004768</VALUE>
+     <VALUE>TPE-300000000005511</VALUE>
+     <VALUE>TPE-300000000005984</VALUE>
+     <VALUE>TPE-300000000006911</VALUE>
+     <VALUE>TPE-300000000004807</VALUE>
+     <VALUE>TPE-300000000007062</VALUE>
+    </ATTRIBUTE>
+   </CLASSIFICATION>
+  </NODE>
+ </NODES>
+</CATALOG>
+          

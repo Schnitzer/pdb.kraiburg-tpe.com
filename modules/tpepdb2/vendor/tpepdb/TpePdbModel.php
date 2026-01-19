@@ -1,0 +1,2362 @@
+<?php
+
+class TpePdbModel extends Ncw_Model {
+
+    /**
+     * @param string $search_value
+     * @param string $language
+     * @param int $region_id
+     * @param boolean $with_templates
+     * @return string,array
+     */
+	
+    public function search ($search_value, $language, $region_id = null, $with_template = true, $language_id = false, $brand = false)
+    {
+			
+        $search_value = html_entity_decode((string) $search_value);
+        
+                    //$search_value = str_replace('+', '', $search_value);
+        						//$search_value = str_replace(' ', '', $search_value);
+        						
+        						$search_value = trim ($search_value);
+        						//echo 's=' . $search_value;
+
+        
+        $name_lower = strtolower($this->name);
+        $region = false;
+
+        $condition_string = $this->name . ".name LIKE '%" . $search_value . "%'";
+        if (true === $brand) {
+            $condition_string = "(" . $condition_string. " || " . "Brand.name LIKE '%" . $search_value. "%' || " . "Brand.name LIKE '%" . str_replace(" ", "® ", $search_value). "%')";
+        }
+        $conditions = array(
+            $condition_string
+        );
+        if (true === is_int($region_id) && $region_id > 0) {
+            $region = true;
+            $conditions[] = "SerieRegion.region_id = " . $region_id;
+        }
+        if (false == TpePdbWeb::rights()) {
+            $conditions[] = $this->name . ".status = 'portfolio'";
+        }
+
+        if ($name_lower == "serie") {
+            $order = "brand_id";
+        } else {
+            $order = "serie_id";
+        }
+//var_dump($conditions) ; // SERIE SUCHE Start
+        ${$name_lower . "s"} = $this->_readAllOf(
+            $this->name,
+            $language,
+            $conditions,
+            $region,
+            array($this->name . "." . $order, $this->name . ".name"),
+            "700"
+        );
+
+        if (true === $with_template) {
+            ob_start();
+            include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "search_templates" . DS . $name_lower . "_search.phtml";
+            return ob_get_clean();
+        }
+
+      //  return ${$name_lower . "s"};
+    }
+
+		/*
+		* Gibt die Farbe des Compounds zurück
+		*/
+		public function getCompoundColor($compound_id, $language_id = 0)
+		{
+			$obj_db = new Tpepdb2_Label();
+			$db_language = $this->_language_3stellen($language_id);
+			$str_query = "
+				SELECT 
+				DISTINCT
+				color
+				
+				
+				FROM ncw_tpepdb2_compound_color As co
+				
+
+				
+				WHERE compound_id='".$compound_id."'
+				AND lang='" . $db_language . "'
+	
+			";
+		
+			//echo '  ' . $str_query;
+			
+			$dbquery = $obj_db->db->prepare($str_query);
+			$dbquery->execute();
+			$arr_get = $dbquery->fetchAll();
+			
+			$arr_tmp = array();
+			foreach ($arr_get As $item) {
+				$arr_tmp[] = $item['color'];
+			}
+			//var_dump($arr_get);
+			
+			return $arr_tmp;
+		}
+	
+			/*
+		* Gibt die Beschreibung der Serie zurück Wird im Prinzip nur bei top400 Benötigt
+		*/
+		public function getSerieDescription($serie_id, $language_id = 0)
+		{
+			$obj_db = new Tpepdb2_Label();
+			$db_language = $this->_language_2stellen($language_id);
+			$str_query = "
+				SELECT 
+				DISTINCT
+				description				
+				FROM ncw_tpepdb2_serie_values As co	
+				WHERE serie_id='".$serie_id."'
+				AND language='" . $db_language . "'
+				";
+		
+			
+			$dbquery = $obj_db->db->prepare($str_query);
+			$dbquery->execute();
+			$arr_get = $dbquery->fetchAll();
+			
+			$arr_tmp = array();
+			foreach ($arr_get As $item) {
+				$arr_tmp[] = $item['description'];
+			}
+			// Wenn der Text nicht in der gewählten Spraceh verfügbar ist, nimm eng
+			if (strlen($arr_tmp[0]) < 1) {
+				$str_query = "
+					SELECT 
+					DISTINCT
+					description
+					FROM ncw_tpepdb2_serie_values As co
+					WHERE serie_id='".$serie_id."'
+					AND language='en'
+				";
+				
+				$dbquery = $obj_db->db->prepare($str_query);
+				$dbquery->execute();
+				$arr_get = $dbquery->fetchAll();
+
+				$arr_tmp = array();
+				foreach ($arr_get As $item) {
+					$arr_tmp[] = $item['description'];
+				}
+			}
+			return $arr_tmp[0];
+		}
+			/*
+		* Gibt die Beschreibung des Compounds zurück Wird im Prinzip nur bei top400 Benötigt
+		*/
+		public function getCompoundDescription($compound_id, $language_id = 0)
+		{
+		
+			$obj_db = new Tpepdb2_Label();
+			$db_language = $this->_language_3stellen($language_id);
+			$str_query = "
+				SELECT 
+				DISTINCT
+				description				
+				FROM ncw_tpepdb2_compounddescription As co	
+				WHERE compound_id='".$compound_id."'
+				AND lang='" . $db_language . "'
+				";
+		
+		//return '  ' . $str_query;
+			$dbquery = $obj_db->db->prepare($str_query);
+			$dbquery->execute();
+			$arr_get = $dbquery->fetchAll();
+			
+			$arr_tmp = array();
+			foreach ($arr_get As $item) {
+				$arr_tmp[] = $item['description'];
+			}
+			
+			// Wenn der Text nicht in der gewählten Sprache verfügbar ist, nimm eng
+			if (strlen(@$arr_tmp[0]) < 1) {
+				$str_query = "
+					SELECT 
+					DISTINCT
+					description
+					FROM ncw_tpepdb2_compounddescription As co
+					WHERE compound_id='".$compound_id."'
+					AND lang='eng'
+				";
+			//	echo '  ' . $str_query;
+				$dbquery = $obj_db->db->prepare($str_query);
+				$dbquery->execute();
+				$arr_get = $dbquery->fetchAll();
+
+				$arr_tmp = array();
+				foreach ($arr_get As $item) {
+					$arr_tmp[] = $item['description'];
+				}
+			}
+			return @$arr_tmp[0];
+		}
+	
+		/*
+		* Gibt die zusätzliche Beschreibung des Compounds zurück Wird im Prinzip nur bei top400 Benötigt
+		*/
+		public function getCompoundDescription400($compound_id, $language_id = 0)
+		{
+		
+			$obj_db = new Tpepdb2_Label();
+			$db_language = $this->_language_3stellen($language_id);
+			$str_query = "
+				SELECT 
+				DISTINCT
+				description				
+				FROM ncw_tpepdb2_compoundtextextra400 As co	
+				WHERE compound_id='".$compound_id."'
+				AND lang='" . $db_language . "'
+				";
+		
+		//return '  ' . $str_query;
+			$dbquery = $obj_db->db->prepare($str_query);
+			$dbquery->execute();
+			$arr_get = $dbquery->fetchAll();
+			
+			$arr_tmp = array();
+			foreach ($arr_get As $item) {
+				$arr_tmp[] = $item['description'];
+			}
+			
+			// Wenn der Text nicht in der gewählten Sprache verfügbar ist, nimm eng
+			if (strlen($arr_tmp[0]) < 1) {
+				$str_query = "
+					SELECT 
+					DISTINCT
+					description
+					FROM ncw_tpepdb2_compounddescription400 As co
+					WHERE compound_id='".$compound_id."'
+					AND lang='eng'
+				";
+			//	echo '  ' . $str_query;
+				$dbquery = $obj_db->db->prepare($str_query);
+				$dbquery->execute();
+				$arr_get = $dbquery->fetchAll();
+
+				$arr_tmp = array();
+				foreach ($arr_get As $item) {
+					$arr_tmp[] = $item['description'];
+				}
+			}
+			return trim(strip_tags($arr_tmp[0]));
+		}
+
+			/*
+		* Gibt die den Brandname des Compound in en und zh zurück
+		*/
+		public function getCompoundBrandname($compound_id)
+		{
+			$obj_db = new Tpepdb2_Label();
+
+			$str_query = "
+				SELECT 
+				
+				brandnameen,
+				brandnamezh
+				FROM ncw_tpepdb2_compound
+				WHERE id='".$compound_id."'
+				";
+		//echo $str_query;
+			
+			$dbquery = $obj_db->db->prepare($str_query);
+			$dbquery->execute();
+			$arr_get = $dbquery->fetchAll();
+			//var_dump($arr_get);
+
+			return $arr_get[0];
+		}
+	
+			/*
+		* Gibt die den Brandname in en und zh zurück
+		*/
+		public function getBrandname($brand_id)
+		{
+			$obj_db = new Tpepdb2_Label();
+
+			$str_query = "
+				SELECT 
+				
+				name brandnameen,
+				name_zh brandnamezh
+				FROM ncw_tpepdb2_brand
+				WHERE id='".$brand_id."'
+				";
+
+			
+			$dbquery = $obj_db->db->prepare($str_query);
+			$dbquery->execute();
+			$arr_get = $dbquery->fetchAll();
+
+			return $arr_get[0];
+		}
+		/*
+		* Gibt die Regionen zurück
+		*/
+		public function getCompoundRegion20($compound_id, $language_id = 0)
+		{
+		
+			$obj_db = new Tpepdb2_Label();
+			$db_language = $this->_language_3stellen($language_id);
+			$str_query = "
+				SELECT 
+				DISTINCT
+				description				
+				FROM  ncw_tpepdb2_compound_region20 As co	
+				WHERE compound_id='".$compound_id."'
+				AND lang='" . $db_language . "'
+				";
+//return $str_query;
+			$dbquery = $obj_db->db->prepare($str_query);
+			$dbquery->execute();
+			$arr_get = $dbquery->fetchAll();
+			
+			$arr_tmp = array();
+			foreach ($arr_get As $item) {
+				$arr_tmp[] = $item['description'];
+			}
+			
+			// Wenn der Text nicht in der gewählten Sprache verfügbar ist, nimm eng
+			if (strlen(@$arr_tmp[0]) < 1) {
+				$str_query = "
+					SELECT 
+					DISTINCT
+					description
+					FROM  ncw_tpepdb2_compound_region20 As co
+					WHERE compound_id='".$compound_id."'
+					AND lang='eng'
+				";
+
+				//return $str_query;
+
+				$dbquery = $obj_db->db->prepare($str_query);
+				$dbquery->execute();
+				$arr_get = $dbquery->fetchAll();
+				
+				$arr_tmp = array();
+				foreach ($arr_get As $item) {
+					$arr_tmp[] = $item['description'];
+				}
+			}
+
+			
+			if (count($arr_tmp) == 3) {
+				return 'GLOBAL';
+			}
+			$str_tmp = implode(', ', $arr_tmp);
+			//var_dump($str_tmp);
+			return trim(strip_tags($str_tmp));
+		}
+		/*
+		* Gibt das Herstellungsland zurück
+		*/
+		public function getCompoundCOrigin($compound_id, $language_id = 0)
+		{
+		
+			$obj_db = new Tpepdb2_Label();
+			$db_language = $this->_language_3stellen($language_id);
+			$str_query = "
+				SELECT 
+				DISTINCT
+				description				
+				FROM  ncw_tpepdb2_compound_corigin As co	
+				WHERE compound_id='".$compound_id."'
+				AND lang='" . $db_language . "'
+				";
+//return $str_query;
+			$dbquery = $obj_db->db->prepare($str_query);
+			$dbquery->execute();
+			$arr_get = $dbquery->fetchAll();
+			
+			$arr_tmp = array();
+			foreach ($arr_get As $item) {
+				$arr_tmp[] = $item['description'];
+			}
+			
+			// Wenn der Text nicht in der gewählten Sprache verfügbar ist, nimm eng
+			if (strlen(@$arr_tmp[0]) < 1) {
+				$str_query = "
+					SELECT 
+					DISTINCT
+					description
+					FROM  ncw_tpepdb2_compound_corigin As co
+					WHERE compound_id='".$compound_id."'
+					AND lang='eng'
+				";
+
+				//return $str_query;
+
+				$dbquery = $obj_db->db->prepare($str_query);
+				$dbquery->execute();
+				$arr_get = $dbquery->fetchAll();
+				
+				$arr_tmp = array();
+				foreach ($arr_get As $item) {
+					$arr_tmp[] = $item['description'];
+				}
+			}
+
+			
+
+			$str_tmp = implode(', ', $arr_tmp);
+			//var_dump($str_tmp);
+			return trim(strip_tags($str_tmp));
+		}
+		/*
+		* Gibt die Materialvorteile zurück
+		* Aufruf aus serie_headline.phtml
+		* Gibt diese von allen compounds der Serie zurück
+		*/
+		public function getSerieMaterialadvantages($serie_id, $language_id = 0)
+		{
+			$obj_db = new Tpepdb2_Label();
+			$db_language = $this->_language_3stellen($language_id);
+			$str_query = "
+				SELECT 
+				DISTINCT
+				label.translation,
+				ta.label_id 
+				
+				FROM ncw_tpepdb2_compound_materialadvantages As ta
+				
+				INNER JOIN ncw_tpepdb2_compound As compound
+				ON compound.id = ta.compound_id
+				
+				LEFT JOIN ncw_tpepdb2_label As label
+				ON label.attribute = ta.label_id
+				
+				WHERE compound.serie_id='".$serie_id."'
+				AND label.language='" . $db_language . "'
+				ORDER by sort_id;
+			";
+		
+			//echo '  ' . $str_query;
+			
+			$dbquery = $obj_db->db->prepare($str_query);
+			$dbquery->execute();
+			$arr_get = $dbquery->fetchAll();
+			
+			$arr_tmp = array();
+			foreach ($arr_get As $item) {
+				$arr_tmp[] = $item['translation'];
+			}
+			//var_dump($arr_get);
+			
+			return $arr_tmp;
+		}
+	
+		/*
+		* Gibt die Materialvorteile zurück
+		* Aufruf aus compound_headline.phtml
+		*/
+		public function getCompoundMaterialadvantages($compound_id, $language_id = 0)
+		{
+			$obj_db = new Tpepdb2_Label();
+			$db_language = $this->_language_3stellen($language_id);
+			$str_query = "
+				SELECT 
+				
+				label.translation,
+				cm.label_id 
+				
+				FROM ncw_tpepdb2_compound_materialadvantages As cm
+				
+				LEFT JOIN ncw_tpepdb2_label As label
+				ON label.attribute = cm.label_id
+				
+				WHERE compound_id='".$compound_id."'
+				AND label.language='" . $db_language . "'
+				ORDER by sort_id;
+			";
+		
+			//echo '  ' . $str_query;
+			
+			$dbquery = $obj_db->db->prepare($str_query);
+			$dbquery->execute();
+			$arr_get = $dbquery->fetchAll();
+			
+			$arr_tmp = array();
+			foreach ($arr_get As $item) {
+				$arr_tmp[] = $item['translation'];
+			}
+			//var_dump($arr_get);
+			
+			return $arr_tmp;
+		}
+	
+		/*
+		* Gibt die Typischen Anwendungen zurück
+		* Aufruf aus serie_headline.phtml
+		* Gibt diese von allen compounds der Serie zurück
+		*/
+		public function getSerieTypicalapplication($serie_id, $language_id = 0)
+		{
+			$obj_db = new Tpepdb2_Label();
+			$db_language = $this->_language_3stellen($language_id);
+			$str_query = "
+				SELECT 
+				DISTINCT 
+				label.translation translation,
+				ta.label_id label_id
+				
+				FROM ncw_tpepdb2_compound_typicalapplication As ta
+				
+				INNER JOIN ncw_tpepdb2_compound As compound
+				ON compound.id = ta.compound_id
+				
+				INNER JOIN ncw_tpepdb2_label As label
+				ON label.attribute = ta.label_id
+				
+				WHERE compound.serie_id='".$serie_id."'
+				AND label.language='" . $db_language . "'
+				ORDER by sort_id;
+			";
+		
+			
+			//echo $str_query;
+			
+			$dbquery = $obj_db->db->prepare($str_query);
+			$dbquery->execute();
+			$arr_get = $dbquery->fetchAll();
+			
+			//var_dump($arr_get);
+			$arr_tmp = array();
+			foreach ($arr_get As $item) {
+				$arr_tmp[] = $item['translation'];
+			}
+			//var_dump($arr_tmp);
+			
+			return $arr_tmp;
+		}
+	
+		/*
+		* Gibt die Typischen Anwendungen zurück
+		* Aufruf aus compound_headline.phtml
+		*/
+		public function getCompoundTypicalapplication($compound_id, $language_id = 0)
+		{
+			$obj_db = new Tpepdb2_Label();
+			$db_language = $this->_language_3stellen($language_id);
+			$str_query = "
+				SELECT 
+				
+				label.translation translation,
+				ta.label_id label_id
+				
+				FROM ncw_tpepdb2_compound_typicalapplication As ta
+				
+				INNER JOIN ncw_tpepdb2_label As label
+				ON label.attribute = ta.label_id
+				
+				WHERE compound_id='".$compound_id."'
+				AND label.language='" . $db_language . "'
+				ORDER by sort_id;
+			";
+		
+			$dbquery = $obj_db->db->prepare($str_query);
+			$dbquery->execute();
+			$arr_get = $dbquery->fetchAll();
+			
+			//var_dump($arr_get);
+			$arr_tmp = array();
+			foreach ($arr_get As $item) {
+				$arr_tmp[] = $item['translation'];
+			}
+			//var_dump($arr_tmp);
+			
+			return $arr_tmp;
+		}
+	
+	public function getSerieColor($serie_id, $language_id = 0)
+	{
+			$obj_db = new Tpepdb2_Label();
+			$db_language = $this->_language_3stellen($language_id);
+			$str_query = "
+				SELECT 
+				DISTINCT
+				colordb.color color
+
+				
+				FROM ncw_tpepdb2_compound_color As colordb
+				
+				INNER JOIN ncw_tpepdb2_compound As compound
+				ON compound.id = colordb.compound_id
+				
+
+				
+				WHERE compound.serie_id='".$serie_id."'
+				AND colordb.lang='" . $db_language . "'
+
+			";
+		//echo $str_query;
+		//return $str_query;
+					$dbquery = $obj_db->db->prepare($str_query);
+			$dbquery->execute();
+			$arr_get = $dbquery->fetchAll();
+			
+			$arr_tmp = array();
+			foreach ($arr_get As $item) {
+				$arr_tmp[] = $item['color'];
+			}
+			//var_dump($arr_tmp);
+			
+			return $arr_tmp;
+	}
+	
+		/*
+		* Gibt die Verordnungen zurück
+		* Aufruf aus serie_headline.phtml
+		Gibt diese von allen compounds der Serie zurück
+		*/
+		public function getSerieApproval($serie_id, $language_id = 0)
+		{
+			$obj_db = new Tpepdb2_Label();
+			$db_language = $this->_language_3stellen($language_id);
+			$str_query = "
+				SELECT 
+				DISTINCT
+				label.translation translation,
+				ap.label_id label_id
+				
+				FROM ncw_tpepdb2_compound_approval As ap
+				
+				INNER JOIN ncw_tpepdb2_compound As compound
+				ON compound.id = ap.compound_id
+				
+				LEFT JOIN ncw_tpepdb2_label As label
+				ON label.attribute = ap.label_id
+				
+				WHERE compound.serie_id='".$serie_id."'
+				AND label.language='" . $db_language . "'
+				ORDER by sort_id;
+			";
+		
+			$dbquery = $obj_db->db->prepare($str_query);
+			$dbquery->execute();
+			$arr_get = $dbquery->fetchAll();
+			
+			$arr_tmp = array();
+			foreach ($arr_get As $item) {
+				$arr_tmp[] = $item['translation'];
+			}
+			//var_dump($arr_tmp);
+			
+			return $arr_tmp;
+			
+		}
+		
+		/*
+		* Gibt die Verordnungen zurück
+		* Aufruf aus compound_headline.phtml
+		*/
+		public function getCompoundApproval($compound_id, $language_id = 0)
+		{
+			$obj_db = new Tpepdb2_Label();
+			$db_language = $this->_language_3stellen($language_id);
+			$str_query = "
+				SELECT 
+				
+				label.translation translation,
+				ap.label_id label_id
+				
+				FROM ncw_tpepdb2_compound_approval As ap
+				
+				LEFT JOIN ncw_tpepdb2_label As label
+				ON label.attribute = ap.label_id
+				
+				WHERE compound_id='".$compound_id."'
+				AND label.language='" . $db_language . "'
+				ORDER by ap.sort_id;
+			";
+		//echo $str_query;
+			$dbquery = $obj_db->db->prepare($str_query);
+			$dbquery->execute();
+			$arr_get = $dbquery->fetchAll();
+			
+			$arr_tmp = array();
+			foreach ($arr_get As $item) {
+				$arr_tmp[] = $item['translation'];
+			}
+			//var_dump($arr_tmp);
+			
+			return $arr_tmp;
+			
+		}
+	
+	
+		/*
+		* Gibt die Verarbeitungshinweise zurück
+		* Aufruf aus serie_headline.phtml
+		Gibt diese von allen compounds der Serie zurück
+		*/
+		public function getSerieProcessing($serie_id, $language_id = 0)
+		{
+			$obj_db = new Tpepdb2_Label();
+			$db_language = $this->_language_3stellen($language_id);
+			$str_query = "
+				SELECT 
+				label.type type,
+				label.translation translation,
+				ap.label_id label_id
+				
+				FROM ncw_tpepdb2_compound_processings As ap
+				
+				INNER JOIN ncw_tpepdb2_compound As compound
+				ON compound.id = ap.compound_id
+				
+				LEFT JOIN ncw_tpepdb2_label As label
+				ON label.attribute = ap.label_id AND label.type = ap.type
+				
+				WHERE compound.serie_id='".$serie_id."'
+				AND label.language='" . $db_language . "'
+				ORDER by label.type, ap.sort_id;
+			";
+		
+			$dbquery = $obj_db->db->prepare($str_query);
+			$dbquery->execute();
+			$arr_get = $dbquery->fetchAll();
+			
+			$arr_tmp = array();
+			foreach ($arr_get As $item) {
+			  $arr_tmp[$item['type']][] = array(
+					'translation' => $item['translation'],
+					'type' => $item['type'],
+					'label_id' => $this->_getProcessingLabelDescription($item['label_id'], $db_language)
+				);
+			}
+			//var_dump($arr_tmp);
+			
+			return $arr_tmp;
+			
+		}
+		/*
+		* Gibt die Verarbeitungshinweise zurück
+		* Aufruf aus compound_headline.phtml
+		*/
+		public function getCompoundProcessing($compound_id, $language_id = 0)
+		{
+			$obj_db = new Tpepdb2_Label();
+			$db_language = $this->_language_3stellen($language_id);
+			$str_query = "
+				SELECT 
+				label.type type,
+				label.translation translation,
+				ap.label_id label_id
+				
+				FROM ncw_tpepdb2_compound_processings As ap
+				
+				LEFT JOIN ncw_tpepdb2_label As label
+				ON label.attribute = ap.label_id AND label.type = ap.type
+				
+				WHERE compound_id='".$compound_id."'
+				AND label.language='" . $db_language . "'
+				ORDER by label.type, ap.sort_id;
+			";
+
+			$dbquery = $obj_db->db->prepare($str_query);
+			$dbquery->execute();
+			$arr_get = $dbquery->fetchAll();
+			
+			
+			
+			$arr_tmp = array();
+			$language_flag = false;
+			foreach ($arr_get As $item) {
+			  $arr_tmp[$item['type']][] = array(
+					'translation' => $item['translation'],
+					'type' => $item['type'],
+					'label_id' => $this->_getProcessingLabelDescription($item['label_id'], $db_language)
+				);
+				$language_flag = true;
+			}
+			// Wenn in der gewählten Sprache nichts zu finden ist
+			if ($language_flag == false) {
+				$str_query = "
+					SELECT 
+					label.type type,
+					label.translation translation,
+					ap.label_id label_id
+
+					FROM ncw_tpepdb2_compound_processings As ap
+
+					LEFT JOIN ncw_tpepdb2_label As label
+					ON label.attribute = ap.label_id AND label.type = ap.type
+
+					WHERE compound_id='".$compound_id."'
+					AND label.language='eng'
+					ORDER by label.type, ap.sort_id;
+				";
+			
+				
+						if (Ncw_Configure::read('developer_internal_ip') == $_SERVER['REMOTE_ADDR'] ) {
+							//echo $str_query;
+							//exit;
+
+						//	var_dump($_GET);
+						} 		
+				
+				
+				$dbquery = $obj_db->db->prepare($str_query);
+				$dbquery->execute();
+				$arr_get = $dbquery->fetchAll();
+
+				$arr_tmp = array();
+				$language_flag = false;
+				foreach ($arr_get As $item) {
+					$arr_tmp[$item['type']][] = array(
+						'translation' => $item['translation'],
+						'type' => $item['type'],
+						'label_id' => $this->_getProcessingLabelDescription($item['label_id'], $db_language)
+					);
+					$language_flag = true;
+				}
+			}
+			
+			return $arr_tmp;
+			
+		}
+	
+		/*
+		* Sucht anhand des Ausdrucks VAH_NACHDRUCK-0001
+		in der Label Datentabellen nach dem Passenden Ausdruck 
+		VAH_NACHDRUCK_DESCRIPTION (Das ist die erste Spalte der Verabeitungshinweise)
+		*/
+		protected function _getProcessingLabelDescription ($str_search, $db_language)
+		{
+			// -0001 vom Suchstring abtrennen
+		  $arr_search = explode('-', $str_search);
+			$str_search = $arr_search[0] . '_DESCRIPTION';
+			
+			
+			$obj_db = new Tpepdb2_Label();
+			if (strlen($db_language) < 2) {
+				$db_language = $this->_language_3stellen($language_id);
+			}
+			
+			$str_query = "
+				SELECT 
+				label.type type,
+				label.translation translation
+
+				FROM ncw_tpepdb2_label As label
+				
+				
+				WHERE label.attribute='".$str_search."'
+				AND label.language='" . $db_language . "'
+				ORDER by label.type;
+			";
+			$dbquery = $obj_db->db->prepare($str_query);
+			$dbquery->execute();
+			$arr_get = $dbquery->fetchAll();
+						if (Ncw_Configure::read('developer_internal_ip') == $_SERVER['REMOTE_ADDR'] ) {
+							//echo $str_query;
+							//exit;
+
+						//	var_dump($_GET);
+						} 	
+			foreach ($arr_get As $item) {
+			  return $item['translation'];
+			}
+		}
+	
+	
+		public function getCompoundValues($compound_id, $language_id = 0)
+		{
+			$obj_db = new Tpepdb2_CompoundValues20();
+			$db_language = $this->_language_3stellen($language_id);
+			$str_query = "
+				SELECT 
+				
+				*
+				
+				FROM ncw_tpepdb2_compound_values20
+				
+				WHERE compound_id='".$compound_id."'
+				AND value != '-'
+				ORDER by sort_id;
+			";
+		
+			$dbquery = $obj_db->db->prepare($str_query);
+			$dbquery->execute();
+			$arr_get = $dbquery->fetchAll();
+			
+			$arr_tmp = array();
+			foreach ($arr_get As $item) {
+				$arr_tmp[] = array(
+					'bezeichnung' => $this->_getLabel($item['bezeichnung_id'], 'QPMK_BEZEICHNUNG', $language_id),
+					'value' => $item['value'],
+					'einheit' => $item['einheit'],
+					'standard' => $this->_getLabel($item['norm_id'], 'QPMK_NORM', $language_id),
+					'footer' => $this->_getLabel($item['footer_id'], 'QPMK_FOOTER', $language_id)
+					);
+			}
+
+			
+			return $arr_tmp;
+		}
+	
+	
+
+	
+		/*
+		* Gibt die Headline der Serie zurück
+		*/
+	
+		public $arr_controle_serie_headline = array();
+		public function getSerieHeadline($serie, $language_id = 0)
+		{
+			$obj_serie = new Tpepdb2_Serie();
+			$obj_serie->setId($serie['id']);
+			$obj_serie->read();
+			$obj_db = new Tpepdb2_CompoundValues20();
+			$db_language = $this->_language_3stellen($language_id);
+			$str_query = "
+				SELECT 
+				DISTINCT
+				*
+				
+				FROM ncw_tpepdb2_compound As compound
+				
+				LEFT JOIN ncw_tpepdb2_compound_values20 As coval
+				ON coval.compound_id = compound.id
+				
+				WHERE internal_serie_id='".$obj_serie->getInternalId()."'
+				ORDER by compound.haerte, compound.name, coval.compound_id, coval.sort_id, coval.internal_id
+			
+			";
+		
+				if (Ncw_Configure::read('developer_internal_ip') == $_SERVER['REMOTE_ADDR'] ) {
+					echo $str_query;
+				} 
+				
+				
+			$dbquery = $obj_db->db->prepare($str_query);
+			$dbquery->execute();
+			$arr_get = $dbquery->fetchAll();
+			
+		
+			$arr_headline = array();
+			$arr_controle = array();
+			$this->arr_controle_serie_headline = array();
+			
+			$item_104 = false; // Shore D
+			$item_103 = false; // Shore A
+			
+			foreach ($arr_get As $item) {
+				if ($item['internal_id'] == '00000104') {
+					if (trim($item['value']) != '-') {
+						$item_104 = true; 
+					}
+				}
+				if ($item['internal_id'] == '00000103') {
+					if (trim($item['value']) != '-') {
+						$item_103 = true; 
+					}
+				}
+			}
+
+			$countMax = 11000;
+			$countEr = 0;
+			foreach ($arr_get As $item) {
+				if ($countMax > $countEr) {
+					if (false == in_array($item['internal_id'], $arr_controle)) {
+						//in_array ( mixed $needle , array $haystack [, bool $strict = FALSE ] ) : bool
+						$arr_controle[] = $item['internal_id'];
+						//$arr_controle_serie_headline
+						$this->arr_controle_serie_headline[] = $item['internal_id'];
+							if ( ( $item['internal_id'] != '00000104' || $item_104 == true ) && ( $item['internal_id'] != '00000103' || $item_103 == true  )) {
+								$arr_headline[] = array(
+								'name' => substr($this->_getLabel($item['bezeichnung_id'], 'QPMK_BEZEICHNUNG', $language_id), 0, 160),
+								'norm' => substr($this->_getLabel($item['norm_id'], 'QPMK_NORM', $language_id), 0, 300),
+								'einheit' => substr($item['einheit'] ,0, 150),
+								'footer' => $this->_getLabel($item['footer_id'], 'QPMK_FOOTER', $language_id)
+							);
+						}
+						
+						//var_dump($arr_controle);
+						$countEr++;
+					}
+				}
+				
+			}
+
+			return $arr_headline;
+		}
+	
+		/*
+		* Gibt die Werte der Compounds zurück
+		PDBB2.0
+		*/
+		public function getSerieValues($serie, $language_id = 0)
+		{
+			
+			$obj_serie = new Tpepdb2_Serie();
+			$obj_serie->setId($serie['id']);
+			$obj_serie->read();
+			$obj_db = new Tpepdb2_CompoundValues20();
+			$db_language = $this->_language_3stellen($language_id);
+			$str_query = "
+				SELECT 
+				compound.id compound_compound_id,
+				compound.name,
+				compound.serie_id,
+				compound.recyclinganteil,
+				compound.bioanteil,
+				coval.*
+				
+				FROM ncw_tpepdb2_compound As compound
+				
+				LEFT JOIN ncw_tpepdb2_compound_values20 As coval
+				ON coval.compound_id = compound.id
+				
+				WHERE internal_serie_id='".$obj_serie->getInternalId()."'
+				ORDER by compound.haerte, compound.name, coval.compound_id, coval.sort_id, coval.internal_id
+			
+			";
+		
+			if (Ncw_Configure::read('developer_internal_ip') == $_SERVER['REMOTE_ADDR'] ) {
+				//echo $str_query;
+			} 
+				
+			$dbquery = $obj_db->db->prepare($str_query);
+			$dbquery->execute();
+			$arr_get = $dbquery->fetchAll();
+			
+			$arr_tmp = array();
+			$compounds = array();
+			$tmp_compound_name = '';
+			
+			$arr_headline = array();
+
+			$item_104 = false; // Shore D
+			$item_103 = false; // Shore A
+			
+			foreach ($arr_get As $item) {
+				if ($item['internal_id'] == '00000104') {
+					if (trim($item['value']) != '-') {
+						$item_104 = true; 
+					}
+				}
+				if ($item['internal_id'] == '00000103') {
+					if (trim($item['value']) != '-') {
+						$item_103 = true; 
+					}
+				}
+			}
+			
+		
+			
+			
+			$countMax = 11000;
+			$countEr = 0;
+			$all_internal_ids = array();
+			foreach ($arr_get As $item) {
+				if ($countMax > $countEr) {
+					if ( ( $item['internal_id'] != '00000104' || $item_104 == true ) && ( $item['internal_id'] != '00000103' || $item_103 == true  )) {
+						$arr_tmp[$item['name']][] = array(
+							'serie_id' => $item['serie_id'],
+							'compound_name' => $item['name'],
+							'compound_id' => $item['compound_compound_id'],
+							'compound_recyclinganteil' => $item['recyclinganteil'],
+							'compound_bioanteil' => $item['bioanteil'],
+							'internal_id' => $item['internal_id'],
+							'sort_id' => $item['sort_id'],
+							'value' => $item['value'],
+							'einheit' => $item['einheit'],
+							'norm' => $this->_getLabel($item['norm_id'], 'QPMK_NORM', $language_id),
+							'bezeichnung' => $this->_getLabel($item['bezeichnung_id'], 'QPMK_BEZEICHNUNG', $language_id),
+							'footer' => $this->_getLabel($item['footer_id'], 'QPMK_FOOTER', $language_id),
+						);
+						if (false == in_array($item['internal_id'], $all_internal_ids) ) {
+							$all_internal_ids[] = $item['internal_id'];
+						}
+						$countEr++;
+					}
+				}
+				
+			}
+
+				if (Ncw_Configure::read('developer_internal_ip') == $_SERVER['REMOTE_ADDR'] ) {
+					//var_dump($all_internal_ids);
+				} 
+				//	echo '<pre>';
+			//var_dump($arr_tmp);
+			//echo '</pre>';
+				
+//var_dump($this->arr_controle_serie_headline);
+			
+			// Array auffüllen wenn kein Eintrag vorhanden
+			$arr_neu = array();
+			$ct_compounds = 0;
+			
+			$arr_tmp_new = array();
+			foreach ($arr_tmp As $tmp_row) {
+				$all_internal_ids_tmp = $all_internal_ids;
+				//echo '<br /><br /><br />';
+				foreach ($tmp_row As $werte) {
+					foreach ($werte As $items) {
+						$arr_tmp_new[$item['name']][$werte] = $items;
+					}
+					
+					if (Ncw_Configure::read('developer_internal_ip') == $_SERVER['REMOTE_ADDR'] ) {
+						
+						//var_dump($werte['internal_id']);
+					} 
+				}
+			}
+			//$arr_tmp = $arr_tmp_new;
+			
+			foreach ($arr_tmp As $tmp_row) {
+				$save_compound_name = '';
+				$save_compound_id = '';
+				$save_serie_id = '';
+				$korfaktor = 0;
+				for ($i = 0; $i < count($this->arr_controle_serie_headline); $i++) {
+
+					if ($tmp_row[$i-$korfaktor]['internal_id'] == $this->arr_controle_serie_headline[$i]) {
+						$arr_neu[$tmp_row[$i-$korfaktor]['compound_name']][] = $tmp_row[$i-$korfaktor];
+						$save_compound_name = $tmp_row[$i-$korfaktor]['compound_name'];
+						$save_compound_id = $tmp_row[$i-$korfaktor]['compound_compound_id'];
+						$save_serie_id = $tmp_row[$i-$korfaktor]['serie_id'];
+					} else {
+						$korfaktor++;
+						$arr_neu[$save_compound_name][]  =  array(
+							'serie_id' => $save_serie_id,
+							'compound_name' => $save_compound_name,
+							'compound_id' => $save_compound_id,
+							'internal_id' => $this->arr_controle_serie_headline[$i],
+							'sort_id' => '',
+							'value' => '-',
+							'einheit' => '',
+							'norm' => '-',
+							'bezeichnung' => '-',
+							'footer' => '',
+						);
+					}
+				}
+				$ct_compounds++;
+			}
+			//$arr_tmp = $arr_neu;
+			//echo '<pre>';
+			//var_dump($arr_tmp);
+			//echo '</pre>';
+			
+			return $arr_tmp;
+		}
+	
+		/*
+		* Gibt die Farbe des Compounds anhand er IN zurück
+		*/
+		public function getColorNameById($str, $language_id)
+		{
+			//$arr_str = explode('-', $str);
+			$str = trim(Ncw_Library_Sanitizer::escape($str));
+			$db_language = $this->_language_3stellen($language_id);
+			$str_search = "
+				SELECT 
+				DISTINCT
+				
+				colortable.color
+				
+				FROM ncw_tpepdb2_compound_color As colortable
+				
+				WHERE compound_id = '". $str . "'
+				AND lang = '" . $db_language . "'
+
+			";
+			
+			//return $str_search;
+
+			$db = Ncw_Database::getInstance();
+			$sth = $db->prepare( $str_search);
+			$sth->execute();
+			$results = $sth->fetchAll();
+			if ( strlen($results[0]['color']) > 1) {
+				return ucfirst($results[0]['color']);
+			}
+	
+			$str_search = "
+				SELECT 
+				DISTINCT
+				
+				colortable.color
+				
+				FROM ncw_tpepdb2_compound_color As colortable
+				
+				WHERE compound_id = '". $str . "'
+				AND lang = 'eng'
+
+			";
+			
+			$sth = $db->prepare( $str_search);
+			$sth->execute();
+			$results = $sth->fetchAll();
+			if ( strlen($results[0]['color']) > 1) {
+				return ucfirst($results[0]['color']);
+			}
+			
+			return '';
+		}
+		
+			/*
+		* Gibt die ID aller Serien zurück (Katalog)
+		*/
+		public function getAllSeries()
+		{
+
+			$str_search = "
+				SELECT 
+								
+				id, name
+				
+				FROM ncw_tpepdb2_serie As series
+				
+				ORDER by name
+				
+
+			";
+			
+			//return $str_search;
+
+			$db = Ncw_Database::getInstance();
+			$sth = $db->prepare( $str_search);
+			$sth->execute();
+			$results = $sth->fetchAll();
+//var_dump($results);
+	
+			
+			return $results;
+		}
+			/*
+		* Gibt die User Email zurück
+		*/
+		public function getUserEmail()
+		{
+			//var_dump($_SESSION['user']['id']);
+			if (Ncw_Configure::read('developer_internal_ip') == $_SERVER['REMOTE_ADDR'] ) {
+				//return	$_SESSION['user']['id'];
+				//var_dump($_SESSION['user']);
+			} 
+			
+			$user_id = Ncw_Library_Sanitizer::escape($_SESSION['user']['id']);
+			$obj = new Core_User();
+			$obj->setId($user_id);
+			$obj->read();
+			$email = $obj->getEmail();
+			//return $user_id;
+			if (strlen($email) > 0) {
+				return $email;
+			}
+			return false;
+		}
+	
+		/*
+		* Gibt das Label zurück
+		*/
+		protected function _getLabel($internal_id, $type, $language_id = 0)
+		{
+			$obj_db = new Tpepdb2_Label();
+			$db_language = $this->_language_3stellen($language_id);
+			
+			
+			$internal_id = str_replace('0000', '', $internal_id);
+			
+			$str_query = "
+				SELECT 
+				
+				label.translation translation
+				
+				FROM  ncw_tpepdb2_label As label
+			
+				WHERE type='".$type."'
+				AND label.attribute='" . $internal_id . "'
+				AND label.language='" . $db_language . "'
+				
+
+			";
+
+			//echo $str_query;
+			$dbquery = $obj_db->db->prepare($str_query);
+			$dbquery->execute();
+			$arr_get = $dbquery->fetchAll();
+
+			$arr_tmp = array();
+
+				if (Ncw_Configure::read('developer_internal_ip') == $_SERVER['REMOTE_ADDR'] ) {
+			//if ($internal_id == 'QPMK_FOOTER') {
+				//echo $str_query;
+				//var_dump($arr_get);	
+			//}
+				} 
+			
+			foreach ($arr_get As $item) {
+				return $item['translation'];
+			}
+			//var_dump($arr_tmp);
+
+			return false;
+		}
+	
+    /**
+     * @param string $language
+     * @param mixed $template
+     * @return string
+     */
+    public function template ($language, $language_id, $template = "", $sessid = "", $sid = false)
+    {
+        if ($this->getId() > 0) {
+            $compound = $serie = $brand = $compounds = $processingnote = $labels = array();
+if ($sid == false) {
+	 list($data, $languages) = $this->_readData($this->name, $this->getId(), $language);
+} else {
+	 list($data, $languages) = $this->_readData($this->name, $sid, $language);
+}
+           
+
+            if ($data['name'] == '') {
+                return;
+            }
+			// EDIT: Winni am 15.05 _0 für was ist diese Abfrage gut???
+			// Warum hier not_avalible
+            if ($data['language'] == '' && $data['status'] == "non_portfolio_O") {
+                include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "not_available.phtml";
+                return;
+            } else if ($data['language'] == '') {
+                $language_us = false;
+                if ($language == "us") {
+                    $language_us = true;
+                }
+                //list($data, $languages, $language) = $this->_getExistingLanguage($this->name);
+            }
+            
+            //if (false == strstr($_SERVER['HTTP_USER_AGENT'],'Android') && false == strstr($_SERVER['HTTP_USER_AGENT'],'iPhone') && false == strstr($_SERVER['HTTP_USER_AGENT'],'iPad')){
+                if ($data['status'] == 'non_portfolio' && false == TpePdbWeb::rights()) {
+                    if (strlen($sessid) < 10) {
+											$freigabe = false;
+											if ( isset($_SESSION['u']) ) {
+												
+												$hashcode = Ncw_Library_Sanitizer::escape($_SESSION['u']);
+												
+												// Hashode in der DB lesen
+												$nowtime = time();
+												
+												$obj_save_hash = new Tpepdb2_Sharefile();
+												$obj_save_hash->setHashcode($hashcode);
+												$arr_hash = $obj_save_hash->fetch('All', array('Conditions' => array('hashcode' => $hashcode)));
+												//var_dump($arr_hash);
+												//echo $hashcode;
+												foreach ($arr_hash as $hash) {
+													$hashtime = $hash->getStartzeit() + $hash->getLaufzeit();
+													//echo $hashtime . $nowtime;
+													if ($hashtime >= $nowtime)  {
+														$freigabe = true;
+													} else {
+														$obj_save_hash = new Tpepdb2_Sharefile();
+														$obj_save_hash->setId($hash->getId());
+														$obj_save_hash->delete();
+													}
+												}
+			
+											}
+											
+											if ($freigabe != true ) {
+												include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "permission_denied.phtml";
+												return;
+											}
+
+                    }
+                }
+            //}
+
+            $processingnotes = array();
+
+            if ($language == 'de' || $language == 'fr' || $language == 'it' || $language == 'en' || $language == 'pl') {
+            	$orderlanguage = $language;
+            } else {
+            	$orderlanguage = 'en';
+            }
+
+            
+            switch ($this->name) {
+                case "Compound":
+                    $compound = $data;
+
+
+                    list($serie) = $this->_readData("Serie", $compound["serie_id"], $language);
+                    list($brand) = $this->_readData("Brand", $compound["brand_id"], $language);
+                    break;
+                case "Serie":
+                    $serie = $data;
+
+                    $compounds = $this->_readAllOf(
+                        "Compound",
+                        $language,
+                        array(
+                            "Compound.serie_id" => $this->getId()
+                        ),
+                        false,
+                        array("CompoundValues.104 ASC", "Compound.name", "CompoundValues.103")
+                    );
+
+                    $processingnote = new Tpepdb2_Processingnote();
+                    $processingnotes_obj = $processingnote->fetch(
+                        "all",
+                        array(
+                            "fields" => array(
+                                "Processingnote." . $language . "_type",
+                                "Processingnote." . $language . "_name",
+                                "Processingnote." . $language . "_text",
+                                "Processingnote.en_type"
+                            ),
+                            "conditions" => array(
+                                "Compound.serie_id" => $this->getId(),
+                            ),
+                            "order" => array("Processingnote.en_type ASC", "Processingnote.num ASC")
+                        )
+                    );
+                    if (false !== $processingnotes_obj) {
+                        $processingnotes = array();
+                        foreach ($processingnotes_obj as $processingnote) {
+                            $processingnotes[$processingnote->data[$orderlanguage . "_type"]][$processingnote->data[$language ."_name"]] = $processingnote->data[$language ."_text"];
+                        }
+                    }
+
+                    list($brand) = $this->_readData("Brand", $serie["brand_id"], $language);
+                    break;
+            }
+            unset($data);
+
+            $all_values = array_merge($compound, $serie, $brand);
+            $labels = $this->_loadLabels($language, $all_values);
+            unset($all_values);
+
+            if (false !== $template) {
+                if (true === empty($template)) {
+                    $template = "item_templates" . DS . strtolower($this->name);
+                }
+                ob_start();
+                include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . $template . ".phtml";
+                return ob_get_clean();
+            } else {
+                return array($compound, $serie, $brand, $processingnotes, $compounds, $labels);
+            }
+        }
+		}
+	
+		/*Das war die originale template mit allen Inhalten*/
+    public function template__ ($language, $language_id, $template = "", $sessid = "")
+    {
+        if ($this->getId() > 0) {
+            $compound = $serie = $brand = $compounds = $processingnote = $labels = array();
+
+            list($data, $languages) = $this->_readData($this->name, $this->getId(), $language);
+
+            if ($data['name'] == '') {
+                return;
+            }
+			// EDIT: Winni am 15.05 _0 für was ist diese Abfrage gut???
+			// Warum hier not_avalible
+            if ($data['language'] == '' && $data['status'] == "non_portfolio_O") {
+                include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "not_available.phtml";
+                return;
+            } else if ($data['language'] == '') {
+                $language_us = false;
+                if ($language == "us") {
+                    $language_us = true;
+                }
+                list($data, $languages, $language) = $this->_getExistingLanguage($this->name);
+            }
+            
+            //if (false == strstr($_SERVER['HTTP_USER_AGENT'],'Android') && false == strstr($_SERVER['HTTP_USER_AGENT'],'iPhone') && false == strstr($_SERVER['HTTP_USER_AGENT'],'iPad')){
+                if ($data['status'] == 'non_portfolio' && false == TpePdbWeb::rights()) {
+                    if (strlen($sessid) < 10) {
+											$freigabe = false;
+											if ( isset($_SESSION['u']) ) {
+												
+												$hashcode = Ncw_Library_Sanitizer::escape($_SESSION['u']);
+												
+												// Hashode in der DB lesen
+												$nowtime = time();
+												
+												$obj_save_hash = new Tpepdb2_Sharefile();
+												$obj_save_hash->setHashcode($hashcode);
+												$arr_hash = $obj_save_hash->fetch('All', array('Conditions' => array('hashcode' => $hashcode)));
+												//var_dump($arr_hash);
+												//echo $hashcode;
+												foreach ($arr_hash as $hash) {
+													$hashtime = $hash->getStartzeit() + $hash->getLaufzeit();
+													//echo $hashtime . $nowtime;
+													if ($hashtime >= $nowtime)  {
+														$freigabe = true;
+													} else {
+														$obj_save_hash = new Tpepdb2_Sharefile();
+														$obj_save_hash->setId($hash->getId());
+														$obj_save_hash->delete();
+													}
+												}
+			
+											}
+											
+											if ($freigabe != true ) {
+												include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "permission_denied.phtml";
+												return;
+											}
+
+                    }
+                }
+            //}
+
+            $processingnotes = array();
+
+            if ($language == 'de' || $language == 'fr' || $language == 'it' || $language == 'en' || $language == 'pl') {
+            	$orderlanguage = $language;
+            } else {
+            	$orderlanguage = 'en';
+            }
+
+            
+            switch ($this->name) {
+                case "Compound":
+                    $compound = $data;
+                    
+                    $processingnote = new Tpepdb2_Processingnote();
+                    $processingnotes_obj = $processingnote->fetch(
+                        "all",
+                        array(
+                            "fields" => array(
+                                "Processingnote." . $language . "_type",
+                                "Processingnote." . $language . "_name",
+                                "Processingnote." . $language . "_text",
+                                "Processingnote.en_type"
+                            ),
+                            "conditions" => array(
+                                "Processingnote.compound_id" => $this->getId(),
+                            ),
+                            "order" => array("Processingnote.en_type ASC", "Processingnote.num ASC")
+                        )
+                    );
+                    if (count($processingnotes_obj) < 1) {
+                        $processingnote = new Tpepdb2_Processingnote();
+                        $processingnotes_obj = $processingnote->fetch(
+                            "all",
+                            array(
+                                "fields" => array(
+                                    "Processingnote." . $language . "_type",
+                                    "Processingnote." . $language . "_name",
+                                    "Processingnote." . $language . "_text",
+                                    "Processingnote.en_type"
+                                ),
+                                "conditions" => array(
+                                    "Compound.serie_id" => $this->getId(),
+                                ),
+                                "order" => array("Processingnote.en_type ASC", "Processingnote.num ASC")
+                            )
+                        );
+                    }
+                    if (false !== $processingnotes_obj) {
+                        $processingnotes = array();
+                        foreach ($processingnotes_obj as $processingnote) {
+                            $processingnotes[$processingnote->data[$orderlanguage ."_type"]][$processingnote->data[$language ."_name"]] = $processingnote->data[$language ."_text"];
+                        }
+                    }
+
+                    list($serie) = $this->_readData("Serie", $compound["serie_id"], $language);
+                    list($brand) = $this->_readData("Brand", $compound["brand_id"], $language);
+                    break;
+                case "Serie":
+                    $serie = $data;
+
+                    $compounds = $this->_readAllOf(
+                        "Compound",
+                        $language,
+                        array(
+                            "Compound.serie_id" => $this->getId()
+                        ),
+                        false,
+                        array("CompoundValues.104 ASC", "Compound.name", "CompoundValues.103")
+                    );
+
+                    $processingnote = new Tpepdb2_Processingnote();
+                    $processingnotes_obj = $processingnote->fetch(
+                        "all",
+                        array(
+                            "fields" => array(
+                                "Processingnote." . $language . "_type",
+                                "Processingnote." . $language . "_name",
+                                "Processingnote." . $language . "_text",
+                                "Processingnote.en_type"
+                            ),
+                            "conditions" => array(
+                                "Compound.serie_id" => $this->getId(),
+                            ),
+                            "order" => array("Processingnote.en_type ASC", "Processingnote.num ASC")
+                        )
+                    );
+                    if (false !== $processingnotes_obj) {
+                        $processingnotes = array();
+                        foreach ($processingnotes_obj as $processingnote) {
+                            $processingnotes[$processingnote->data[$orderlanguage . "_type"]][$processingnote->data[$language ."_name"]] = $processingnote->data[$language ."_text"];
+                        }
+                    }
+
+                    list($brand) = $this->_readData("Brand", $serie["brand_id"], $language);
+                    break;
+            }
+            unset($data);
+
+            $all_values = array_merge($compound, $serie, $brand);
+           // $labels = $this->_loadLabels($language, $all_values);
+            unset($all_values);
+
+            if (false !== $template) {
+                if (true === empty($template)) {
+                    $template = "item_templates" . DS . strtolower($this->name);
+                }
+                ob_start();
+                include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . $template . ".phtml";
+                return ob_get_clean();
+            } else {
+                return array($compound, $serie, $brand, $processingnotes, $compounds, $labels);
+            }
+        }
+    }
+
+    /**
+     * @return array
+     */
+    protected function _getExistingLanguage_ ($model_name, $en = true)
+    {
+        $this->unbindModel('all');
+        $this->bindModel(
+            array(
+                'has_one' => array(
+                    $model_name . "Values"
+                )
+            )
+        );
+
+        $conditions = array($model_name . '.id' => $this->getId());
+        if (true === $en) {
+            $conditions[$model_name . "Values.language"] = "en";
+        }
+
+        $found = $this->fetch(
+            'first',
+            array(
+                'fields' => array(
+                    $model_name . "Values.language"
+                ),
+                'conditions' => $conditions,
+                'order' => array($model_name . "Values.language")
+            )
+        );
+        if (false !== $found) {
+            $language = $found->{$model_name . "Values"}->getLanguage();
+
+            $return = $this->_readData($this->name, $this->getId(), $language);
+            $return[] = $language;
+            return $return;
+        } else {
+            if (true === $en) {
+                return $this->_getExistingLanguage($model_name, false);
+            }
+            return null;
+        }
+    }
+	
+		protected function _language_3stellen($language_id)
+		{
+			if ($language_id > 0) {
+				if ($language_id == '1') {
+					return 'eng';
+				}
+				if ($language_id == '2') {
+					return 'ger';
+				}
+				if ($language_id == '5') {
+					return 'fre';
+				}
+				if ($language_id == '8') {
+					return 'ita';
+				}
+				if ($language_id == '11') {
+					return 'pol';
+				}
+				if ($language_id == '9') {
+					return 'por';
+				}
+
+				if ($language_id == '4') {
+					return 'spa';
+				}
+				if ($language_id == '7') {
+					return 'jpn';
+				}
+				if ($language_id == '3') {
+					return 'chi';
+				}
+				if ($language_id == '10') {
+					return 'kor';
+				}
+			} else {
+				if ($_SESSION['language'] == 'en') {
+					return 'eng';
+				}
+				if ($_SESSION['language'] == 'de') {
+					return 'ger';
+				}
+				if ($_SESSION['language'] == 'fr') {
+					return 'fre';
+				}
+				if ($_SESSION['language'] == 'it') {
+					return 'ita';
+				}
+				if ($_SESSION['language'] == 'pl') {
+					return 'pol';
+				}
+				if ($_SESSION['language'] == 'pt') {
+					return 'por';
+				}
+
+				if ($_SESSION['language'] == 'sp') {
+					return 'spa';
+				}
+				if ($_SESSION['language'] == 'es') {
+					return 'spa';
+				}
+				if ($_SESSION['language'] == 'jp') {
+					return 'jpn';
+				}
+				if ($_SESSION['language'] == 'zh') {
+					return 'chi';
+				}
+				if ($_SESSION['language'] == 'kr') {
+					return 'kor';
+				}
+			}
+
+			return 'eng';
+		}
+	
+			protected function _language_2stellen($language_id)
+		{
+			if ($language_id > 0) {
+				if ($language_id == '1') {
+					return 'en';
+				}
+				if ($language_id == '2') {
+					return 'de';
+				}
+				if ($language_id == '5') {
+					return 'fr';
+				}
+				if ($language_id == '8') {
+					return 'it';
+				}
+				if ($language_id == '11') {
+					return 'po';
+				}
+				if ($language_id == '9') {
+					return 'pt';
+				}
+
+				if ($language_id == '4') {
+					return 'es';
+				}
+				if ($language_id == '7') {
+					return 'jp';
+				}
+				if ($language_id == '3') {
+					return 'zh';
+				}
+				if ($language_id == '10') {
+					return 'kr';
+				}
+			} else {
+				if ($_SESSION['language'] == 'en') {
+					return 'en';
+				}
+				if ($_SESSION['language'] == 'de') {
+					return 'de';
+				}
+				if ($_SESSION['language'] == 'fr') {
+					return 'fr';
+				}
+				if ($_SESSION['language'] == 'it') {
+					return 'it';
+				}
+				if ($_SESSION['language'] == 'pl') {
+					return 'pl';
+				}
+				if ($_SESSION['language'] == 'pt') {
+					return 'pt';
+				}
+				if ($_SESSION['language'] == 'es') {
+					return 'es';
+				}
+				if ($_SESSION['language'] == 'sp') {
+					return 'sp';
+				}
+				if ($_SESSION['language'] == 'jp') {
+					return 'sp';
+				}
+				if ($_SESSION['language'] == 'zh') {
+					return 'ch';
+				}
+				if ($_SESSION['language'] == 'kr') {
+					return 'kr';
+				}
+			}
+
+			return 'eng';
+		}
+
+		protected function _languagestrtoid($language_str)
+		{
+			//if ($language_str > 0) {
+				if ($language_str == 'en') {
+					return '1';
+				}
+				if ($language_str == 'de') {
+					return '2';
+				}
+				if ($language_str == 'fr') {
+					return '5';
+				}
+				if ($language_str == 'it') {
+					return '8';
+				}
+				if ($language_str == 'po') {
+					return '11';
+				}
+				if ($language_str == 'pt') {
+					return '9';
+				}
+
+				if ($language_str == 'es') {
+					return '4';
+				}
+				if ($language_str == 'jp') {
+					return '7';
+				}
+				if ($language_str == 'zh') {
+					return '3';
+				}
+				if ($language_str == 'kr') {
+					return '10';
+				}
+			//}
+
+			return 'eng';
+		}
+	
+    /**
+     * @param string $model_name
+     * @param int $id
+     * @param string $language
+     * @return array
+     */
+    protected function _readData ($model_name, $id, $language)
+    {
+        $class_name = "Tpepdb2_" . $model_name;
+        $model = new $class_name();
+        $model->setId($id);
+        $model->unbindModel("all");
+        if ($model_name != "Brand") {
+            $model->bindModel(
+                array(
+                    "has_many" => array(
+                        $model_name . "Region"
+                    )
+                )
+            );
+        }
+        $model->read();
+        $data = $model->data();
+
+        $languages = array();
+        if ($model_name != "Brand") {
+            list($values, $languages) = $this->_readValues($model_name, $id, $language);
+            foreach ($values as $key => $value) {
+                $data[$key] = $value;
+            }
+
+            foreach ($this->_readAdditionalTables($model_name, $id, $language) as $key => $values) {
+                $data[$key] = $values;
+            }
+            $data["id"] = $id;
+
+            $data["regions"] = array();
+            if ($data["status"] == "portfolio") {
+                foreach ($model->{$model_name . "Region"} as $region) {
+                    $data["regions"][] = $region->data();
+                }
+            }
+
+
+            $data["documents"] = $this->_readDocuments($model_name, $id, $language);
+        }
+
+        return array($data, $languages);
+    }
+
+    /**
+     * @param string $model_name
+     * @param int $id
+     * @param string $language
+     * @return array
+     */
+    protected function _readValues ($model_name, $id, $language)
+    {
+        $class_name = "Tpepdb2_" . $model_name . "Values";
+        $values_model = new $class_name();
+
+        $values_en = $values_model->fetch(
+            "first",
+            array(
+                "conditions" => array(
+                    $model_name . "Values." . strtolower($model_name) . "_id" => $id,
+                    $model_name . "Values.language" => "en"
+                )
+            )
+        );
+
+        $values = $values_model->fetch(
+            "first",
+            array(
+                "conditions" => array(
+                    $model_name . "Values." . strtolower($model_name) . "_id" => $id,
+                    $model_name . "Values.language" => $language
+                )
+            )
+        );
+        if (false !== $values) {
+            foreach ($values->data() as $key => $value) {
+                if (strstr($key, "unit") && true === empty($value)) {
+                    $values->data[$key] = $values_en->data[$key];
+                }
+            }
+            $values_model->data($values->data());
+        }
+
+        $languages = array();
+        $results = $values_model->db->query(
+            "SELECT l.language, w_l.name FROM " . $values_model->db_table_name . " AS l"
+            . " LEFT JOIN ncw_wcms_language AS w_l ON l.language=w_l.shortcut"
+            . " WHERE l." . strtolower($model_name) . "_id = " . $id
+        );
+        if (false !== $results) {
+            foreach ($results->fetchAll() as $result) {
+                $languages[$result['name']] = $result["language"];
+            }
+        }
+
+        return array($values_model->data(), $languages);
+    }
+
+    /**
+     * @param int $id
+     * @param string $language
+     * @return array
+     */
+    protected function _readDocuments ($model_name, $id, $language)
+    {
+        $model_name_lower = strtolower($model_name);
+        if ($model_name_lower == "brand") {
+            return null;
+        }
+        $documents = array();
+        $class_name = "Tpepdb2_" . $model_name . "Document";
+        $model = new $class_name();
+        $found_documents = $model->fetch(
+            "all",
+            array(
+                "fields" => array(
+                    "Document.id",
+                    "Document.name",
+                    "Document.headline",
+                    "Document.text",
+                    "Document.language",
+                     $model_name . "Document.type",
+                ),
+                "conditions" => array(
+                    $model_name . "Document." . $model_name_lower . "_id" => $id,
+                    "(Document.language = '" . $language . "' || Document.language = '')"
+                ),
+                "order" => $model_name . "Document.id"
+            )
+        );
+        if (false !== $found_documents) {
+            foreach ($found_documents as $document) {
+                $path = Ncw_Configure::read('Project.url') . DS . ASSETS . DS . "tpepdb2" . DS . "imported_documents";
+                if ($document->Document->getLanguage() != "") {
+                    $path .=  DS . $document->Document->getLanguage();
+                }
+                $path .= DS . $document->Document->getName();
+                $documents[] = array(
+                    "id" => $document->Document->getId(),
+                    "name" => $document->Document->getName(),
+                    "headline" => $document->Document->getHeadline(),
+                    "text" => $document->Document->getText(),
+                    "language" => $document->Document->getLanguage(),
+                    "type" => $document->getType(),
+                    "path" => $path
+                );
+            }
+        }
+        return $documents;
+    }
+
+    /**
+     * @param int $id
+     * @param string $language
+     * @return array
+     */
+    protected function _readAdditionalTables ($model_name, $id, $language)
+    {
+        $vars = $db_tables = array();
+        $model_name = strtolower($model_name);
+        $db_table_prefix = $this->db->getConfig("prefix") . "tpepdb2_";
+
+        $additionals = array("anwendungsbereiche", "markets", "materialvorteile");
+        foreach ($additionals as $additional) {
+            $sql = "SELECT t1." . $language . " FROM " . $db_table_prefix . "" . $additional . " AS t1"
+            . " INNER JOIN " . $db_table_prefix . "serie_" . $additional . " AS t2 ON t2." . $additional. "_id = t1.id"
+            . " WHERE serie_id = " . $id . ""
+            . " ORDER BY t1." . $language . "";
+					
+					//echo $sql;
+            $result = $this->db->query($sql);
+
+            if (false !== $result) {
+                foreach ($result->fetchAll() as $row) {
+                    $vars[$additional][] = $row[$language];
+                }
+            }
+        }
+
+        return $vars;
+    }
+
+    /**
+     * @param string $language
+     * @param array $values
+     * @return string
+     */
+    protected function _loadLabels ($language, $values)
+    {
+        $label = new Tpepdb2_Label();
+        $found_labels = $label->fetch(
+            "all",
+            array(
+                "fields" => array(
+                    "Label.type",
+                    "Label.attribute",
+                    "Label.translation",
+                ),
+                "conditions" => array(
+                    "Label.language" => $language
+                )
+            )
+        );
+				/*
+        $found_labels_en = $label->fetch(
+            "all",
+            array(
+                "fields" => array(
+                    "Label.type",
+                    "Label.attribute",
+                    "Label.translation",
+                ),
+                "conditions" => array(
+                    "Label.language" => 'en',
+                    "Label.type" => 
+                )
+            )
+        );*/
+
+
+				//var_dump($values);
+
+        $labels = array();
+        foreach ($values as $key => $value) {
+            if (false === isset($labels[$key])) {
+                $labels["compound"][$key] = "";
+            }
+        }
+        foreach ($found_labels as $label) {
+        	//var_dump($label);
+            $labels[$label->getType()][$label->getAttribute()] = $label->getTranslation();
+            $str_split_attribute = explode('_', $label->getAttribute());
+            $labels[$label->getType()][$str_split_attribute[0]] = $label->getTranslation();
+        }
+				//echo '<pre>';
+        //var_dump($labels);
+        //echo '</pre>';
+				
+        return $labels;
+    }
+
+    /**
+     * @param string $model_name
+     * @param string $language
+     * @param array $given_conditions
+     * @param boolean $region
+     * @return array
+     */
+    protected function _readAllOf ($model_name, $language, $given_conditions = array(), $region = false, $order = array(), $limit = null)
+    {
+        $model_name = (string) $model_name;
+        $language = (string) $language;
+
+
+        $data = array();
+
+
+
+        $class_name = "Tpepdb2_" . $model_name;
+        $model = new $class_name();
+        $model->unbindModel("all");
+
+        if (false === $this->_checkIfLanguageExists($model_name, $language)) {
+            $language = "en";
+        }
+
+        $belongs_to = array();
+        $has_one = array($model_name . "Values");
+
+        if ($model_name == "Compound") {
+            $belongs_to[] = "Serie";
+        }
+        $belongs_to["Brand"] = array(
+            "join_condition" => $model_name.".brand_id=Brand.id"
+        );
+        $model->bindModel(
+            array(
+                "belongs_to" => $belongs_to,
+                "has_one" => $has_one,
+            )
+        );
+        $has_one = array();
+        if (true === $region) {
+            $has_one["SerieRegion"] = array("join_condition" => "Serie.id=SerieRegion.serie_id");
+        }
+
+        $model->bindModel(
+            array(
+                "has_one" => $has_one,
+            )
+        );
+
+        // such conditions
+        $conditions = array_merge(
+            $given_conditions,
+            array(
+                "(" . $model_name . "Values.language = '". $language . "'"
+                . " || " . $model_name . "Values.language IS NULL)"
+            )
+        );
+
+        $found_items = $model->fetch(
+            "all",
+            array(
+                "conditions" => $conditions,
+                'order' => $order,
+                'limit' => $limit
+            )
+        );
+
+        $values_en = null;
+        if (false !== $found_items) {
+            foreach ($found_items as $item) {
+                if ($model_name == "Compound") {
+                    $serie = $item->{"Serie"}->data();
+
+                } else {
+                    $serie = array();
+                }
+                $brand = $item->{"Brand"}->data();
+
+                $data_array = array();
+                foreach ($item->{$model_name . "Values"}->data() as $key => $value) {
+                    if (strstr($key, "unit") && true === empty($value)) {
+                        if ($values_en == null) {
+                            $compound_values = new Tpepdb2_CompoundValues();
+                            $values_en = $compound_values->fetch(
+                                "first",
+                                array(
+                                    "conditions" => array(
+                                        "CompoundValues." . "compound_id" => $item->getId(),
+                                        "CompoundValues.language" => "en"
+                                    )
+                                )
+                            );
+                        }
+                        if (false !== $values_en && $values_en != null) {
+                            if (true === isset($values_en->data[$key])) {
+                                $item->{$model_name . "Values"}->data[$key] = $value = $values_en->data[$key];
+                            }
+                        }
+                    }
+
+                    $data_array[(string) $key.""] = $value;
+                }
+                foreach ($item->data() as $key => $value) {
+                    $data_array[(string) $key.""] = $value;
+                }
+                $data_array["serie"] = $serie;
+                $data_array["brand"] = $brand;
+                $data[] = $data_array;
+            }
+        }
+
+        return $data;
+    }
+
+    /**
+     * @param string $language
+     * @return array
+     */
+    public function makePdf ($language, $language_id, $str_sessid = '', $allseries = false)
+    {
+        $pdf_created = (boolean) $this->readField("pdf_created");
+
+        include_once MODULES . DS . "tpepdb2" . DS . "vendor" . DS . "tpepdb" . DS . "TpePdbPdf.php";
+
+        $name = $this->readField("name");
+        $model_name = strtolower($this->name);
+			//$arr_series = array(5,5);
+			//foreach ($arr_series As $as) {
+				
+				 list($compound, $serie, $brand, $processingnotes, $compounds, $labels) = $this->template($language, $language_id, false, $str_sessid, $as);
+			//}
+       
+
+        $pdf_name = str_replace(array(" ", "/"), "-", $name);
+				$pdf_name_tmp = $pdf_name;
+        $dir = ASSETS . DS . "tpepdb2" . DS . "pdfs" . DS . $model_name . DS . $language;
+
+        $author = "Kraiburg TPE";
+        if (${$model_name}['status'] == 'portfolio') {
+          //  $subject = Wcms_ContentboxController::getContenbox('pdb---datasheet---datasheet', $language_id);
+					$subject = Wcms_ContentboxController::getContenbox('label-prodctinformation', $language_id);
+        } else {
+            //$subject = str_replace('-', '_', Wcms_ContentboxController::getContenbox('pdb---datasheet---test-report', $language_id));
+            $subject = Wcms_ContentboxController::getContenbox('pdb---datasheet---datasheet', $language_id);
+        }
+        $pdf_name =  $subject . '_' . $pdf_name;
+        if ($model_name == "serie") {
+            $pdf_name .= "_" . Wcms_ContentboxController::getContenbox('pdb---series', $language_id);
+           // $subject = $author . " " . Wcms_ContentboxController::getContenbox('pdb---series', $language_id) . " " . $subject;
+					$subject = Wcms_ContentboxController::getContenbox('label-prodctinformation', $language_id);
+        } else {
+            $subject = $author . " " . Wcms_ContentboxController::getContenbox('pdb---compound', $language_id) . " " . $subject;
+        }
+        $pdf_title = $pdf_name;
+        $pdf_name .= '.pdf';
+
+        $pdf_file = $dir . DS . $pdf_name;
+
+        //if (false === $pdf_created || false === is_file($pdf_file)) {
+            $pdf = new TpePdbPdf($author, str_replace("_", " ", $pdf_title), $subject, $language, $language_id);
+
+            ob_start();
+						include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "pdf_templates" . DS . $model_name . "_pdf.phtml";
+						if ($model_name == "serie") {
+							$pdf->addPage();
+						
+						
+							include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "pdf_templates" . DS . "page3" . ".phtml";
+						}
+            
+            ob_get_clean();
+
+
+			
+			
+            if (false == is_dir($dir)) {
+                @mkdir($dir);
+            }
+            $pdf_file = str_replace(' ', '', $pdf_file);
+            $pdf_file = str_replace(' ', '-', $pdf_file);
+						$pdf_file = str_replace('assets', '', $pdf_file);
+						$pdf_file = str_replace('tpep', '', $pdf_file);
+						$pdf_file = str_replace('db2', '', $pdf_file);
+						$pdf_file = str_replace('pdfs', '', $pdf_file);
+						$pdf_file = str_replace('serie', '', $pdf_file);
+						$pdf_file = str_replace('compound', '', $pdf_file);
+						$pdf_file = str_replace('_Serie', '', $pdf_file);
+			
+
+			
+						if (true == isset($_SESSION['allseries2'])) {
+							//$pdf_file = '/kraibn/public_html/pdb/assets/tpepdb2/pdfs/katalog/katdeDatenblatt_AD1_Reihe.pdf';
+							@mkdir(ASSETS . DS . "tpepdb2" . DS ."pdfs" . DS . "katalog" . DS . $language);
+							$nametmp = $name;
+            	$nametmp = str_replace(' ', '', $nametmp);
+            	$nametmp = str_replace(' ', '-', $nametmp);
+							$nametmp = str_replace('/', '-',$nametmp);
+							
+							$pdf_file = ASSETS . DS . "tpepdb2" . DS ."pdfs" . DS . "katalog" . DS . $language . DS ."kat".$nametmp . '.pdf';
+							$pdf->Output($pdf_file, "F");
+							//echo 'fertig';
+							exit;
+						} else {
+							
+				if ( $_SESSION['datasheetmode'] == 'pg' ) {
+					$pdf_file = Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-guideline', $language_id) . '-' . $pdf_name_tmp .'.pdf';
+					$pdf_file = str_replace('eacute', 'e', $pdf_file);
+					//$pdf_file = 'processing.pdf';
+					//$pdf->SetTitle($pdf_file);
+					//$pdf->SetSubject($pdf_file);
+				}
+							
+
+							
+							$pdf->Output($pdf_file, "I");
+							
+							
+							
+						}
+            
+            //$this->setPdfCreated(true);
+            //$this->saveField("pdf_created");
+        //}
+
+        return array($pdf_name, $pdf_file);
+    }
+
+    /**
+     * @param string $type
+     * @param string $language
+     */
+    protected function _checkIfLanguageExists ($type, $language)
+    {
+        $db = Ncw_Database::getInstance();
+
+        $sth = $db->prepare(
+            "SELECT count(1) AS count
+            FROM `ncw_tpepdb2_" . strtolower($type) . "_values` AS v
+            WHERE v.language=:langauge
+            LIMIT 1
+            "
+        );
+        $sth->bindValue(":langauge", $language);
+        $sth->execute();
+        $result = $sth->fetch();
+
+        if (true === isset($result['count']) && $result['count'] > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+}
+?>

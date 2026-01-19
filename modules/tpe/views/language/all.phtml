@@ -1,0 +1,83 @@
+ <?php print $this->paginator->options(array('update' => '.ncw-right', 'url' => array('?' => 's=' . $this->search_str), 'callback' => 'ncw.tpe.language.loadPage();')); ?>
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+            <li class="ncw-main-tab"><a href="#"><?php print T_('Lanuages'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <div class="ncw-page-controls">
+                    <div class="left_controls">
+                        <?php print $this->paginator->first('<<'); ?>
+                        <?php print $this->paginator->prev('<'); ?>
+                    </div>
+                    <?php
+                    print $this->paginator->counter(
+                        array(
+                            'format' => 'Page %page% of %pages%,
+                                         showing %current% records out of %count% total,
+                                         starting on record %start%, ending on %end%'
+                        )
+                    );
+                    ?>
+                    <?php if ($this->paginator->hasPage(2)) { ?>
+                        (<?php print $this->paginator->numbers(); ?>)
+                    <?php } ?>
+                    <div class="right_controls">
+                        <?php print $this->paginator->next('>'); ?>
+                        <?php print $this->paginator->last('>>'); ?>
+                    </div>
+                </div>              
+                <table class="ncw-table">
+                    <thead>
+                        <tr>
+                            <th><?php print $this->paginator->sort(T_('Name'), 'name'); ?></th>
+                            <th style="width: 130px"><?php print $this->paginator->sort(T_('Created at'), 'created'); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (true === is_array($this->all_items)) { ?>
+                            <?php foreach ($this->all_items as $item) { ?>
+                                <?php 
+                                /*if (false === $this->container_permissions['/newsletter/container/objects/' . $obj_container->getId()]) {
+                                    continue;
+                                }*/
+                                ?>
+                                <tr>
+                                    <td>
+                                        <a href="javascript: ncw.tpe.language.loadShow(<?php print $item->getId(); ?>);"><? print $this->html->image('country_flags/' . $item->getShortcut() . '.gif', false, array('alt' => $item->getNameEncoded(), 'title' => $item->getNameEncoded()) ); ?></a> 
+                                        <a href="javascript: ncw.tpe.language.loadShow(<?php print $item->getId(); ?>);"><?php print $item->getNameEncoded(); ?></a>  
+                                    </td>
+                                    <td><?php print $item->getCreated(); ?></td>                                
+                                </tr>
+                            <?php } ?>
+                        <?php } ?>
+                    </tbody>
+                </table>
+                <?php if ($this->paginator->hasPage(2)) { ?>
+                    <div class="ncw-page-controls-bottom">
+                        <div class="left_controls">
+                            <?php print $this->paginator->first('<<'); ?>
+                            <?php print $this->paginator->prev('<'); ?>
+                        </div>
+                        <?php
+                        print $this->paginator->counter(
+                            array(
+                                'format' => 'Page %page% of %pages%,
+                                             showing %current% records out of %count% total,
+                                             starting on record %start%, ending on %end%'
+                            )
+                        );
+                        ?>
+                        <?php if ($this->paginator->hasPage(2)) { ?>
+                            (<?php print $this->paginator->numbers(); ?>)
+                        <?php } ?>
+                        <div class="right_controls">
+                            <?php print $this->paginator->next('>'); ?>
+                            <?php print $this->paginator->last('>>'); ?>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>   
+</div>

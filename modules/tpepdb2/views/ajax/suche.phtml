@@ -1,0 +1,60 @@
+<?php 
+
+$website_url = 'https://www.kraiburg-tpe.com';
+
+?>
+
+<?php
+
+        $values = array();
+//var_dump($_SESSION);
+        if (count($this->results) > 0) {
+          ?>
+<input type="hidden" id="is_compound_search" value="<?php echo count($this->results)?>" />
+<?php
+
+            
+            
+            foreach ($this->results as $result) {
+              ?>
+                <div class="treffercompound paragraph clearfix paragraph--type--download paragraph--view-mode--default color-scheme-blue light-font col-md-12 col-sm-12 no_image" style="height: 57px;">
+                  <div class="clearfix">
+                        <div class="col-xs-18 download-info" style="background-image:url('<?php echo $website_url; ?>/sites/default/files/assets/pattern/blue.png')">
+                      <div class="icon kbtpe-icosn-download">
+                        <span class="download-title"><?php echo $result['compound_name']; ?></span><span class="download-title"></span>
+                        <?php 
+                        if (strlen($result['serie_name']) > 1) {
+                        ?>
+                         <span class="download-datum"><?php echo $result['serie_name']; ?> Series - <?php echo $result['brand_name']; ?></span><span class="download-title"></span>    
+                        <?php
+                        } else {
+                          //echo $language_id;
+                          if ($language_id == 3 || $_GET['ls'] == 'zh' || $_SESSION['language_id'] == '3') {
+                            $brandname = $result['brandnamezh'];
+                          } else {
+                            $brandname = $result['brandnameen'];
+                          }
+                          if (strlen($brandname) > 1) {
+                          ?>
+                            <span class="download-datum"><?php echo $brandname; ?></span><span class="download-title"></span>  
+                          <?php
+                          } else {
+                          ?>
+                            <span class="download-datum"><?php echo $result['brand_name']; ?></span><span class="download-title"></span>  
+                          <?php
+                          }
+                        }
+                        ?>
+                       
+                      </div>
+                    </div>
+                  </div>
+                  <a href="?cid=<?php echo $result['compound_id']; ?>" target="_self" class="clickhelper"><span class="hidden"></span></a>
+                </div>
+
+              <?php
+            }
+        }
+?>
+
+

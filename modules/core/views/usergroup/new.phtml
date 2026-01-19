@@ -1,0 +1,34 @@
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+    	<li class="ncw-option-tab"><a href="javascript: ncw.core.user.load();"><?php print T_('Back'); ?></a></li>
+        <li class="ncw-main-tab"><a href="#"><?php print T_('New Usergroup'); ?></a></li>
+    </ul>
+    <div class="ncw-main-tab-contents">
+        <div class="ncw-main-tab-content">
+            <?php print $this->form->create('ncw-usergroup'); ?>
+            <?php print $this->form->input("name", array('maxlength' => 25, 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Name')))); ?>
+            <div class="ncw-input-container">
+                <label for="usergroup_parent_id" class="ncw-label"><?php print T_('Parent usergroup'); ?></label>
+                <select id="usergroup_parent_id" name="data[Usergroup][parent_id]" class="ncw-select">
+                    <?php foreach ($this->arr_options as $option) { ?>
+	                    <option value="<?php print $option->getId(); ?>"<?php if ($option->getId() == $this->usergroup_id) { print 'selected="selected"'; } ?>>
+	                    	<?php 
+	                    	if ($option->getId() > 1) {
+	                    		print str_repeat('--', $option->getLevel()) . ' ';
+	                    	}
+	                    	?>
+	                    	<?php print $option->getName(); ?>
+	                    </option>
+                    <?php } ?>
+                </select>
+            </div>
+            <?php print $this->form->end(); ?>
+        </div>
+    </div>
+</div>
+<div class="ncw-status-action-bar">
+    <div class="ncw-status-message"></div>
+    <ul class="ncw-actions">
+        <li class="ncw-action"><a href="#" rel="core/usergroup" class="ncw-new-trigger-ajax ncw_save_icon"><?php print T_('Save'); ?></a></li>
+    </ul>
+</div>

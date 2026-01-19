@@ -1,0 +1,15 @@
+<?php foreach ($this->entries as $entry) { ?>
+	<div class="box_center">
+		<h2 style="font-size: 14px !important;"><?php print $entry->LiteratureLanguage->getTitle(); ?></h2>
+		<a href="<?php print Files_File::imageUrl($entry->LiteratureLanguage->getFileId()); ?>" target="_blank">
+			<img src="<?php print Files_File::imageUrl($entry->LiteratureLanguage->getPicId()); ?>" alt="" title="">
+		</a>
+		<div>
+		    <span style="overflow: hidden; display: block; line-height: 18px; height: 18px;"><?php print $entry->LiteratureLanguage->getDescription(); ?></span>
+		    <span style="margin-top: 3px; display: block;">
+			    <a href="<?php print Files_File::imageUrl($entry->LiteratureLanguage->getFileId()); ?>" target="_blank"><img src="../../assets/wcms/files/pfd_pic.jpg" alt="" title="" style="width: auto; height: auto; float: none;" /></a> 
+			    <a href="<?php print Files_File::imageUrl($entry->LiteratureLanguage->getFileId()); ?>" target="_blank"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---download-pdf', $this->wcms_language_id); ?></a>
+		    </span>
+		</div>
+	</div>
+<?php } ?>

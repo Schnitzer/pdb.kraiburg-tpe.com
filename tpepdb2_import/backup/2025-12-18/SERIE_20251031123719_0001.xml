@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CATALOG>
+ <HEAD>
+  <ID>PORTFOLIO</ID>
+  <DESCRIPTIONS_SHORT>
+   <DESCRIPTION_SHORT lang="chi">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="kor">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ger">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="eng">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="fre">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="ita">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="jpn">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="pol">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+   <DESCRIPTION_SHORT lang="spa">
+    <![CDATA[Portfolio]]>
+   </DESCRIPTION_SHORT>
+  </DESCRIPTIONS_SHORT>
+ </HEAD>
+ <NODES>
+  <NODE ID="0000000001-0000000092" type="SERIE" internal_id="0000000092">
+   <DRAWING_NUMBER/>
+   <VALID_FROM>00000000</VALID_FROM>
+   <VALID_TO>00000000</VALID_TO>
+   <DESCRIPTIONS_SHORT>
+    <DESCRIPTION_SHORT lang="chi">
+     <![CDATA[LW/CS/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="kor">
+     <![CDATA[LW/CS/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="ger">
+     <![CDATA[LW/CS/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="eng">
+     <![CDATA[LW/CS/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="fre">
+     <![CDATA[LW/CS/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="ita">
+     <![CDATA[LW/CS/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="jpn">
+     <![CDATA[LW/CS/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="pol">
+     <![CDATA[LW/CS/UV]]>
+    </DESCRIPTION_SHORT>
+    <DESCRIPTION_SHORT lang="spa">
+     <![CDATA[LW/CS/UV]]>
+    </DESCRIPTION_SHORT>
+   </DESCRIPTIONS_SHORT>
+   <DESCRIPTIONS_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="ger">
+     <![CDATA[Die LW/CS/UV-Reihe ist Ihre Materiallösung für gewichtsreduzierte Anwendungen mit höchsten Anforderungen an die Dichtungsperformance. Sie ist besonders für den Automobilaußeneinsatz geeignet. Die Compounds sind schwarz eingefärbt erhältlich.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="eng">
+     <![CDATA[The LW/CS/UV Series is your lightweight material solution for applications with superior requirements on sealing performance. The compounds are especially suited for automotive exterior applications. They are available in black colors.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="spa">
+     <![CDATA[La serie LW/CS/UV es la solución de materiales ligeros para aplicaciones con requerimientos de sellado. Especialmente indicados para aplicaciones de exterior en automoción. Los compuestos están disponibles en colores negros.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="ita">
+     <![CDATA[La serie LW/CS/UV è la soluzione per materiali leggeri per applicazioni con requisiti superiori in termini di resistenza a compressione. I compound sono particolarmente adatti per applicazioni automotive esterno vettura. Sono disponibili in colore nero.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="pol">
+     <![CDATA[Seria LW/CS/UV to ultra-lekkie materiały o bardzo niskiej gęstości do zastosowań wymagających bardzo dobrych właściwości uszczelniających. Tworzywa te są w szczególności dedykowane do zastosowań zewnętrznych w motoryzacji, występują w kolorze czarnym.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="fre">
+     <![CDATA[La Série LW/CS/UV est la solution matière avec basse densité pour les applications d'étanchéité. Les compounds sont particulièrement adaptés aux applications extérieur automobile. Les compounds sont disponibles en noir.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="chi">
+     <![CDATA[LW/CS/UV 系列具有轻质和高密封性的特点，是满足严格行业要求的理想材料选择。这些化合物尤其适用于汽车外观应用。可选黑色。]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="kor">
+     <![CDATA[LW/CS/UV 시리즈는 씰링에 탁월한 경량 제품이며 특히 자동차 외장재에 적용 가능합니다. 색상은 검정 색상이 있습니다.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-0001" lang="jpn">
+     <![CDATA[LW/CS/UVシリーズは、優れたシール性能を要求されるアプリケーションのための、あなたの軽量材料ソリューションです。このコンパウンドは特に自動車の外装アプリケーションに適しています。これらの材料は黒色で提供されます。]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="ger">
+     <![CDATA[Gewichtsreduzierte Dichtungsanwendungen mit hohen UV-Beständigkeitsanforderungen]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="eng">
+     <![CDATA[Lightweight sealing applications requiring high UV resistance]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="spa">
+     <![CDATA[Aplicaciones de bajo peso en sellado y con alta resistencia a UV]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="ita">
+     <![CDATA[Applicazioni a basso peso e tenuta a compressione che richiedono elevata resistenza ai raggi UV]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="pol">
+     <![CDATA[Zastosowania ultra-lekkie o bardzo niskich gęstościach wymagające bardzo dobrych właściwości uszczelniających i wysokiej odporności UV.]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="fre">
+     <![CDATA[Applications baisse densité pour l'éctanchéité avec haute résistance aux UV]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="chi">
+     <![CDATA[适合对抗紫外线性能要求高的轻质密封应用]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="kor">
+     <![CDATA[높은 자외선 차단이 필요한 경량 씰링 어플리케이션]]>
+    </DESCRIPTION_LONG>
+    <DESCRIPTION_LONG usage="" type="WLBM-ZCM1" lang="jpn">
+     <![CDATA[高い耐紫外線性能を要求される軽量シール用アプリケーション]]>
+    </DESCRIPTION_LONG>
+   </DESCRIPTIONS_LONG>
+   <CLASSIFICATION>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_001_SERIAL">
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">Serie</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">series</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">series</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+     <VALUE>
+      TPE-300000000005318
+      <VALUE_TEXTS>
+       <VALUE_TEXT lang="chi">LW/CS/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="kor">LW/CS/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="ger">LW/CS/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="eng">LW/CS/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">LW/CS/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="ita">LW/CS/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="jpn">LW/CS/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="pol">LW/CS/UV</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">LW/CS/UV</VALUE_TEXT>
+      </VALUE_TEXTS>
+     </VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_002_BRAND">
+     <DESCRIPTIONS_SHORT>
+      <DESCRIPTION_SHORT lang="chi">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="kor">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ger">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="eng">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="fre">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="ita">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="jpn">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="pol">Brand</DESCRIPTION_SHORT>
+      <DESCRIPTION_SHORT lang="spa">Brand</DESCRIPTION_SHORT>
+     </DESCRIPTIONS_SHORT>
+     <VALUE>
+      TPE-200000000000295
+      <VALUE_TEXTS>
+       <VALUE_TEXT lang="chi">热塑宝 K</VALUE_TEXT>
+       <VALUE_TEXT lang="tha">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="kor">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="rum">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="slv">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="hrv">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="may">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ukr">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="est">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ara">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="heb">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="cze">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ger">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="eng">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="gre">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="hun">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ita">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="jpn">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="dan">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="pol">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="chi">热塑宝 K</VALUE_TEXT>
+       <VALUE_TEXT lang="dut">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="nor">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="por">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="slo">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="rus">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="tur">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="fin">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="swe">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="bul">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="lit">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="lav">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ice">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="srp">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="ind">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="hin">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="vie">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="spa">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="fre">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="mac">THERMOLAST® K</VALUE_TEXT>
+       <VALUE_TEXT lang="alb">THERMOLAST® K</VALUE_TEXT>
+      </VALUE_TEXTS>
+     </VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_1000_010_REGION">
+     <VALUE>TPE-300000000007010</VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_4000_001">
+     <VALUE>TPE-300000000004675</VALUE>
+     <VALUE>TPE-300000000004648</VALUE>
+     <VALUE>TPE-300000000004707</VALUE>
+     <VALUE>TPE-300000000004657</VALUE>
+     <VALUE>TPE-300000000004693</VALUE>
+     <VALUE>TPE-300000000004702</VALUE>
+     <VALUE>TPE-300000000004724</VALUE>
+    </ATTRIBUTE>
+    <ATTRIBUTE type="char" internal_id="TPE_RD_4000_002">
+     <VALUE>TPE-300000000004736</VALUE>
+     <VALUE>TPE-300000000004763</VALUE>
+     <VALUE>TPE-300000000004743</VALUE>
+     <VALUE>TPE-300000000004746</VALUE>
+     <VALUE>TPE-300000000004759</VALUE>
+     <VALUE>TPE-300000000004749</VALUE>
+     <VALUE>TPE-300000000004787</VALUE>
+     <VALUE>TPE-300000000006713</VALUE>
+     <VALUE>TPE-300000000006714</VALUE>
+    </ATTRIBUTE>
+   </CLASSIFICATION>
+  </NODE>
+ </NODES>
+</CATALOG>
+                                                                                                                                                                      

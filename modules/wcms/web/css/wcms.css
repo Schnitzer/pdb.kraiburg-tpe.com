@@ -1,0 +1,241 @@
+/* SITE TREE */
+.ncw-tree {
+    padding: 5px;
+    overflow: auto;
+}
+
+.ncw-tree-root {
+    padding: 0 !important;
+    background: none !important
+}
+
+.ncw-tree-leaf,.ncw-tree-leaf:link,.ncw-tree-leaf:active,.ncw-tree-leaf:visited,.ncw-tree-leaf:hover,.ncw-tree-leaf:focus {
+    color: #000 !important;  
+    text-decoration: none !important
+}
+
+.ncw-new,.ncw-new:link,.ncw-new:active,.ncw-new:visited,.ncw-new:hover,.ncw-new:focus
+    {
+    color: #FFBF00 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 12px !important;
+    line-height: normal !important;
+    text-decoration: none !important
+}
+
+.ncw-modified,.ncw-modified:link,.ncw-modified:active,.ncw-modified:visited,.ncw-modified:hover,.ncw-modified:focus
+    {
+    color: green !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 12px !important;
+    line-height: normal !important;
+    text-decoration: none !important
+}
+
+.ncw-deleted,.ncw-deleted:link,.ncw-deleted:active,.ncw-deleted:visited,.ncw-deleted:hover,.ncw-deleted:focus
+    {
+    color: red !important;
+    text-decoration: line-through !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 12px !important;
+    line-height: normal !important
+}
+
+.ncw-unpublished,.ncw-unpublished:link,.ncw-unpublished:active,.ncw-unpublished:visited,.ncw-unpublished:hover,.ncw-unpublished:focus
+    {
+    color: orange !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 12px !important;
+    line-height: normal !important;
+    text-decoration: none !important
+}
+
+.ncw-published,.ncw-published:link,.ncw-published:active,.ncw-published:visited,.ncw-published:hover,.ncw-published:focus
+    {
+    color: black !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 12px !important;
+    line-height: normal !important;
+    text-decoration: none !important
+}
+
+.ncw-not-translated,.ncw-not-translated:link,.ncw-not-translated:active,.ncw-not-translated:visited,.ncw-not-translated:hover,.ncw-not-translated:focus
+    {
+    color: grey !important;
+    font-style: italic !important;
+    font-size: 9px !important;
+    line-height: normal !important;
+    text-decoration: none !important
+}
+
+#jstree-contextmenu {
+    display: none;
+    position: absolute !important;
+    z-index: 990000 !important;
+    list-style-type: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    left: -2000px;
+    top: -2000px
+}
+
+.tree-context {
+    margin: 20px !important;
+    padding: 0 !important;
+    width: 180px !important;
+    border: 1px solid #979797 !important;
+    padding: 2px !important;
+    background: #f5f5f5 !important;
+    list-style-type: none !important
+}
+
+.tree-context li {
+    height: 22px !important;
+    margin: 0 0 0 27px !important;
+    padding: 0 !important;
+    background: #fff !important;
+    border-left: 1px solid #e0e0e0 !important
+}
+
+.tree-context li a {
+    position: relative !important;
+    display: block !important;
+    height: 22px !important;
+    margin: 0 0 0 -28px !important;
+    text-decoration: none !important;
+    color: black !important;
+    padding: 0 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 12px !important;  
+    font-weight: normal !important;
+    text-align: left !important;      
+    color: #000 !important;  
+    line-height: 22px !important
+}
+
+.tree-context li a ins {
+    text-decoration: none !important;
+    float: left !important;
+    width: 16px !important;
+    height: 16px !important;
+    margin: 0 !important;
+    background-color: #f0f0f0 !important;
+    border: 1px solid #f0f0f0 !important;
+    border-width: 3px 5px 3px 6px !important;
+    line-height: 16px !important
+}
+
+.tree-context li a span {
+    display: block !important;
+    background: #f0f0f0 !important;
+    margin: 0 0 0 29px !important;
+    padding-left: 5px !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 12px !important;  
+    font-weight: normal !important;
+    text-align: left !important;      
+    color: #000 !important;  
+    line-height: 22px !important
+}
+
+.tree-context li.separator {
+    background: #f0f0f0 !important;
+    height: 2px !important;
+    line-height: 2px !important;
+    font-size: 1px !important;
+    border: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important
+}
+
+.tree-context li.separator span {
+    display: block !important;
+    margin: 0 0 0 27px !important;
+    height: 1px !important;
+    border-top: 1px solid #e0e0e0 !important;
+    border-left: 1px solid #e0e0e0 !important;
+    line-height: 1px !important;
+    font-size: 1px !important;
+    background: white !important
+}
+
+.tree-context li a:hover {
+    border: 1px solid #d8f0fa !important;
+    height: 20px !important;
+    line-height: 20px !important
+}
+
+.tree-context li a:hover span {
+    background: #e7f4f9 !important;
+    margin-left: 28px !important;
+    line-height: 20px !important
+}
+
+.tree-context li a:hover ins {
+    background-color: #e7f4f9 !important;
+    border-color: #e7f4f9 !important;
+    border-width: 2px 5px !important
+}
+
+.tree-context li a.disabled {
+    color: gray !important
+}
+
+.tree-context li a.disabled ins {
+    
+}
+
+.tree-context li a.disabled:hover {
+    border: 0 !important;
+    height: 22px !important;
+    line-height: 22px !important
+}
+
+.tree-context li a.disabled:hover span {
+    background: #f0f0f0 !important;
+    margin-left: 29px !important
+}
+
+.tree-context li a.disabled:hover ins {
+    border-color: #f0f0f0 !important;
+    background-color: #f0f0f0 !important;
+    border-width: 3px 5px 3px 6px !important
+}
+
+
+/*
+ * Schedule
+ */
+.ncw-schedule {
+    display: none;
+}
+.ncw-schedule-show {
+    display: block;
+}
+
+/*
+ * Codemirror
+ */
+.codemirror {
+    /*border: 1px solid black; */
+    background-color: #fff;   
+}
+
+.codemirror .input {
+    border: 1px solid black;
+}
+
+.CodeMirror-line-numbers {
+    width: 2.2em;
+    text-align: right;
+    padding: 0;
+    margin: .4em;
+    margin-left: 0;
+    margin-right:0.3em;
+    padding-right:0.3em;
+    font-family: monospace;
+    font-size: 10pt;
+
+    background-color:#EEEEEE;
+    color:#AAAAAA;
+} 

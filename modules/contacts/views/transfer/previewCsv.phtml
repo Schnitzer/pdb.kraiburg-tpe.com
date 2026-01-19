@@ -1,0 +1,91 @@
+<?php print $this->element('transfer_menu'); ?>
+<div class="ncw-right">
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+            <li class="ncw-main-tab"><a href="#"><?php print T_('Import'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <ul class="ncw-tabs-container">
+                    <li class="ncw-tab"><a href="#"><?php echo T_('Import csv file'); ?></a></li>
+                </ul>
+                <div class="ncw-tab-contents">
+                    <div class="ncw-tab-content ncw-tab-content-full">
+                        <?php $this->form->create('ncw-contact-import', array('onsubmit' => 'return false;', 'enctype' => 'multipart/form-data', 'action' => $this->html->url(array('action' => 'previewCsv')))); ?>
+                        <h2><?php print T_('Preview'); ?></h2>
+                        <?php print $this->previewTable; ?>
+                        Es befinden sich <strong><?php print $this->contactCounter; ?></strong> Kontakte in der Liste
+                        <br />
+                        <h2>&Uuml;bereinstimmung mit dem Profil</h2>
+                        <?php
+                        $rowcheck = $this->rowcheck;
+                        array_unshift($rowcheck, '');
+                        ?>
+                        <table class="ncw-table">
+                        	<thead>
+                        		<th><?php print T_('Profilfield'); ?></th>
+                        		<th><?php print T_('Listdata'); ?></th>
+                        	</thead>
+                        	<tbody>
+                        		<tr>
+                        			<td><?php print T_('Title'); ?></td>
+                        			<td><?php print $rowcheck[$this->profilesetting->getTitle()]; ?></td>
+                        		</tr>
+                        		<tr>
+                        			<td><?php print T_('Firstname'); ?></td>
+                        			<td><?php print $rowcheck[$this->profilesetting->getFirstname()]; ?></td>
+                        		</tr>
+                        		<tr>
+                        			<td><?php print T_('Lastname'); ?></td>
+                        			<td><?php print $rowcheck[$this->profilesetting->getLastname()]; ?></td>
+                        		</tr>
+                        		<tr>
+                        			<td><?php print T_('Anrede'); ?></td>
+                        			<td><?php print $rowcheck[$this->profilesetting->getGender()]; ?></td>
+                        		</tr>
+                        		<tr>
+                        			<td><?php print T_('Street'); ?></td>
+                        			<td><?php print $rowcheck[$this->profilesetting->getStreet()]; ?></td>
+                        		</tr>
+                        		<tr>
+                        			<td><?php print T_('Postcode'); ?></td>
+                        			<td><?php print $rowcheck[$this->profilesetting->getPostcode()]; ?></td>
+                        		</tr>
+                        		<tr>
+                        			<td><?php print T_('City'); ?></td>
+                        			<td><?php print $rowcheck[$this->profilesetting->getCity()]; ?></td>
+                        		</tr>
+                        		<tr>
+                        			<td><?php print T_('State'); ?></td>
+                        			<td><?php print $rowcheck[$this->profilesetting->getState()]; ?></td>
+                        		</tr>
+                        		<tr>
+                        			<td><?php print T_('Country'); ?></td>
+                        			<td><?php print $rowcheck[$this->profilesetting->getCountry()]; ?></td>
+                        		</tr>
+                        		<tr>
+                        			<td><?php print T_('Company'); ?></td>
+                        			<td><?php print $rowcheck[$this->profilesetting->getCompany()]; ?></td>
+                        		</tr>
+                        		<tr>
+                        			<td><?php print T_('Telephone'); ?></td>
+                        			<td><?php print $rowcheck[$this->profilesetting->getTelephone()]; ?></td>
+                        		</tr>
+                        		<tr>
+                        			<td><?php print T_('Mobile'); ?></td>
+                        			<td><?php print $rowcheck[$this->profilesetting->getMobile()]; ?></td>
+                        		</tr>
+                        		<tr>
+                        			<td><?php print T_('Email'); ?></td>
+                        			<td><?php print $rowcheck[$this->profilesetting->getEmail()]; ?></td>
+                        		</tr>
+                        	</tbody>
+                        </table>
+                        <br />
+                        <?php $this->form->end(); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

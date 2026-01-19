@@ -1,0 +1,38 @@
+<?php print $this->javascript->link('lib/jquery.tools.min.js'); ?>
+<?php print $this->javascript->link('lib/jquery.dialog.js'); ?>
+<?php print $this->javascript->link('lib/datejs/core.js'); ?>
+<?php print $this->javascript->link('lib/datejs/date.js'); ?>
+<?php print $this->javascript->link('lib/datejs/time.js'); ?>
+<?php print $this->javascript->link('lib/jquery.date_input.js'); ?>
+<?php print $this->javascript->link('lib/jquery.timepicker.min.js'); ?>
+<?php print $this->javascript->link('lib/jquery.timepicker.base.js'); ?>
+<?php print $this->javascript->link('lib/jquery.timePicker.js'); ?>
+<?php print $this->javascript->link('lib/jquery.cookie.js'); ?>
+<?php print $this->javascript->link('lib/Gettext.js'); ?>
+<?php print $this->javascript->link('lib/design_patterns.js'); ?>
+<?php print $this->javascript->link('ncw.js'); ?>
+<?php if (true === isset($this->jsload_tiny_mce) && true === $this->jsload_tiny_mce) { ?>
+	<?php print $this->javascript->link('lib/tiny_mce/tiny_mce_gzip.js'); ?>
+<?php } ?>
+<?php print $this->javascript->link('lib/jstree/jquery.tree.min.js'); ?>
+<?php print $this->javascript->link('lib/jstree/plugins/jquery.tree.contextmenu.js'); ?>
+<?php print $this->javascript->link('lib/jstree/plugins/jquery.tree.cookie.js'); ?>
+<?php //print $this->javascript->link('lib/uploadify/swfobject.js'); ?>
+<?php //print $this->javascript->link('lib/uploadify/jquery.uploadify.v2.1.0.min.js'); ?>
+<?php print $this->javascript->link('lib/jquery-file-upload/js/vendor/jquery.ui.widget.js'); ?>
+<?php print $this->javascript->link('lib/jquery-file-upload/js/jquery.iframe-transport.js'); ?>         
+<?php print $this->javascript->link('lib/jquery-file-upload/js/jquery.fileupload.js'); ?>  
+<?php print $this->javascript->link('lib/jquery-file-upload/js/jquery.fileupload-process.js'); ?>  
+<?php print $this->javascript->link('lib/jquery-file-upload/js/jquery.fileupload-validate.js'); ?>       
+<script type="text/javascript">
+ncw.BASE='<?php print $this->base; ?>';
+ncw.PREFIX='<?php print $this->prefix; ?>';
+ncw.THEME_PATH='<?php print $this->theme_path; ?>';
+ncw.REWRITE=<?php print (int) Ncw_Configure::read('App.rewrite'); ?>;
+</script>
+<?php print $this->javascript->link('ncw.layout.js'); ?>
+<?php print $this->javascript->link('ncw.layout.dialogs.js'); ?>
+<?php if (true === isset($this->jsload_google_charts) && true === $this->jsload_google_charts) { ?>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">google.load("visualization", "1", {packages:["corechart"]});</script>
+<?php } ?>

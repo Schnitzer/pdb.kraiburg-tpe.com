@@ -1,0 +1,123 @@
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+        <li class="ncw-main-tab"><a href="#"><?php print T_('Translation Data'); ?></a></li>
+        <?php foreach ($this->sitelanguagetype_tabs as $sitelanguagetype_main_tab_method => $sitelanguagetype_main_tab_options) { ?>
+            <?php
+            if ($sitelanguagetype_main_tab_method == 'data') {
+                continue;
+            }
+            ?>
+            <li class="ncw-main-tab"><a href="#"><?php print $sitelanguagetype_main_tab_options['name']; ?></a></li>
+        <?php } ?>
+    </ul>
+    <div class="ncw-main-tab-contents">
+        <div class="ncw-main-tab-content">
+            <ul class="ncw-tabs-container">
+                <li class="ncw-tab"><a href="#"><?php print T_('Main'); ?></a></li>
+                <li class="ncw-tab"><a href="#"><?php print T_('Meta data'); ?></a></li>
+                <?php if (true === isset($this->sitelanguagetype_tabs['data']['subtabs'])) { ?>
+                    <?php foreach ($this->sitelanguagetype_tabs['data']['subtabs'] as $sub_tab_options) { ?>
+                        <li class="ncw-tab"><a href="#"><?php print T_($sub_tab_options['name']); ?></a></li>
+                    <?php } ?>
+                <?php } ?>
+            </ul>
+            <?php print $this->form->create('ncw-sitelanguage', array('onsubmit' => 'return false;')); ?>
+            <?php print $this->form->input("id", array('type' => 'hidden', 'value' => $this->sitelanguage_id)); ?>
+            <div class="ncw-tab-contents">
+                <div class="ncw-tab-content ncw-tab-content-full">
+                    <?php if (true === $this->permissions['/wcms/site/edit']) { ?>
+                        <p>
+                            <a href="javascript: ncw.wcms.site(<?php print $this->site_id ?>);" class="ncw-action">
+                                <?php print T_('Edit site container'); ?>
+                            </a>
+                        </p>
+                    <?php } ?>
+                    <br class="ncw-clear" />
+                    <p>
+                        <?php print T_('ID');?>: <?php print $this->sitelanguage_id; ?><br />
+                        <?php print T_('Name');?>: <?php print $this->sitelanguage_name; ?><br />
+                        <?php print T_('Language');?>:
+                        <?php print $this->html->image('country_flags/' . $this->language_code . '.gif', false); ?>
+                        <?php print $this->language_name; ?><br />
+                        <?php print T_('URL'); ?>: <a href="<?php print $this->url; ?>"><?php print $this->url; ?></a><br />
+                        <?php print T_('Belongs to site container');?>:
+                        <a href="javascript: ncw.wcms.sitelanguage.loadSite(<?php print $this->site_id; ?>);"><?php print $this->site_name; ?></a>
+                    </p>
+                    <?php print $this->form->input("site_id", array('type' => 'hidden')); ?>
+                    <?php print $this->form->input("name", array('maxlength' => 100, 'title' => T_('This is the name which is shown in a navigation'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Navigation name')))); ?>
+                    <?php print $this->form->input("title", array('maxlength' => 100, 'title' => T_('This text is shown in the browser bar and is used as title text of a search result of any search engine'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Title')))); ?>
+                    <div class="ncw-input-container">
+                        <label class="ncw-label" for="site_home"><?php print T_('Is home site?');?></label>
+                        <?php print $this->form->input("home", array('type' => 'checkbox', 'class' => 'ncw-checkbox', 'div' => array('class' => 'ncw-radios-checkbox'), 'label' => FALSE)); ?>
+                    </div>
+
+                    <?php print $this->sitelanguagetype_content['data']['main']; ?>
+                </div>
+                <div class="ncw-tab-content ncw-tab-content-full">
+                    <?php print $this->form->input('keywords', array('type' => 'textarea', 'maxlength' => 255, 'title' => T_('keywords are used by meta data search engines. Google does not look at keywords anymore (negligible)'), 'class' => 'ncw-textarea', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Keywords')))); ?>
+                    <?php print $this->form->input('description', array('type' => 'textarea', 'maxlength' => 255, 'title' => T_('The description is used by search engines. It will be displayed after the title text of a search result'), 'class' => 'ncw-textarea', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Description')))); ?>
+                    <?php print $this->form->input("author", array('maxlength' => 100, 'title' => T_('Author of the document. Used by some search engines (negligible)'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Author')))); ?>
+                    <?php print $this->form->input('changefreq', array('type' => 'select', 'options' => $this->changefreq, 'title' => T_('Changefrequency of the site. Beware that wrong information may not have any effect'), 'class' => 'ncw-select', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Changefreq')))); ?>
+                    <?php print $this->form->input('priority', array('type' => 'select', 'options' => $this->priority, 'title' => T_('Priority of the site. Beware that wrong information may not have any effect'), 'class' => 'ncw-select', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Priority')))); ?>
+
+                    <?php print $this->sitelanguagetype_content['data']['meta']; ?>
+                </div>
+                <?php if (true === isset($this->sitelanguagetype_tabs['data']['subtabs'])) { ?>
+                    <?php foreach ($this->sitelanguagetype_tabs['data']['subtabs'] as $sub_tab_method => $sub_tab_options) { ?>
+                        <div class="ncw-tab-content ncw-tab-content-full">
+                            <?php print $this->sitelanguagetype_content['data'][$sub_tab_method]; ?>
+                        </div>
+                    <?php } ?>
+                <?php } ?>
+            </div>
+            <?php print $this->form->end(); ?>
+        </div>
+        <?php foreach ($this->sitelanguagetype_tabs as $sitelanguagetype_main_tab_method => $sitelanguagetype_main_tab_options) { ?>
+            <?php
+            if ($sitelanguagetype_main_tab_method == 'data') {
+                continue;
+            }
+            ?>
+            <div class="ncw-main-tab-content">
+            <?php if (true === isset($sitelanguagetype_main_tab_options['subtabs'])) { ?>
+                <ul class="ncw-tabs-container">
+                    <?php foreach ($sitelanguagetype_main_tab_options['subtabs'] as $sitelanguagetype_sub_tab_options) { ?>
+                        <li class="ncw-tab"><a href="#"><?php print T_($sitelanguagetype_sub_tab_options['name']); ?></a></li>
+                    <?php } ?>
+                </ul>
+                <div class="ncw-tab-contents">
+                    <?php foreach ($sitelanguagetype_main_tab_options['subtabs'] as $sitelanguagetype_sub_tab_method => $sitelanguagetype_sub_tab_options) { ?>
+                        <div class="ncw-tab-content ncw-tab-content-full">
+                            <?php print $this->sitelanguagetype_content[$sitelanguagetype_main_tab_method][$sitelanguagetype_sub_tab_method]; ?>
+                        </div>
+                    <?php } ?>
+                </div>
+            <?php
+            } else {
+                print $this->sitelanguagetype_content[$sitelanguagetype_main_tab_method];
+            }
+            ?>
+            </div>
+        <?php } ?>
+    </div>
+</div>
+<div class="ncw-status-action-bar">
+    <div class="ncw-status-message"></div>
+    <ul class="ncw-actions">
+        <?php
+        if (true === $this->permissions['/wcms/sitelanguage/unpublish']
+            && ($this->sitelanguage_status === 'published'
+            || $this->sitelanguage_status === 'modified')
+        ) {
+        ?>
+            <li class="ncw-action"><a href="#" rel="sitelanguage" class="ncw-unpublish-trigger ncw_unpublish_icon"><?php print T_('Unpublish'); ?></a></li>
+        <?php } ?>
+        <?php if (true === $this->permissions['/wcms/sitelanguage/publish']) { ?>
+            <li class="ncw-action"><a href="#" rel="sitelanguage" class="ncw-publish-trigger ncw_publish_icon"><?php print T_('Publish'); ?></a></li>
+        <?php } ?>
+        <?php if (true === $this->permissions['/wcms/sitelanguage/delete']) { ?>
+            <li class="ncw-action"><a href="#" rel="wcms/sitelanguage" class="ncw-delete-trigger-ajax ncw_delete_icon"><?php print T_('Delete'); ?></a></li>
+        <?php } ?>
+        <li class="ncw-action"><a href="#" rel="wcms/sitelanguage" class="ncw-save-trigger-ajax ncw_save_icon"><?php print T_('Save'); ?></a></li>
+    </ul>
+</div>

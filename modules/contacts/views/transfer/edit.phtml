@@ -1,0 +1,43 @@
+<?php print $this->element('transfer_menu'); ?>
+<div class="ncw-right">
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+        	<li class="ncw-option-tab"><?php echo $this->html->link(T_('Back'), array('controller' => 'transfer', 'action' => 'all')); ?></li>
+            <li class="ncw-main-tab"><a href="#"><?php print T_('Edit Import-profile'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+            <?php print $this->form->create("ncw-transfer"); ?>
+	            <?php print $this->form->input("id", array('type' => 'hidden'));?>
+	            <?php print $this->form->input("name", array('title' => T_('Name'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Name')))); ?>                	
+	            <?php print $this->form->input("default", array('type' => 'checkbox', 'title' => T_('Defaultprofile'), 'class' => 'ncw-checkbox', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('DefaultProfile')))); ?>
+	            <?php print $this->form->input("delete_apostrophe", array('type' => 'checkbox', 'title' => T_('Remove Apostrophes'), 'class' => 'ncw-checkbox', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Remove Apostrophes')))); ?>
+	            <?php print $this->form->input("member", array('type' => 'checkbox', 'class' => 'ncw-checkbox', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Generate Relationships')))); ?>
+	            <?php print $this->form->input("separator", array('title' => T_('Separator'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Separator')))); ?>                	
+				<?php print $this->form->input("type", array('title' => T_('Type'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Type')))); ?>
+	            <?php print $this->form->input("title", array('title' => T_('Title'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Title')))); ?>
+	            <?php print $this->form->input("gender", array('title' => T_('Anrede'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Anrede')))); ?>
+	            <?php print $this->form->input("info", array('class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Info')))); ?>
+	            <?php print $this->form->input("firstname", array('title' => T_('Firstname'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Firstname')))); ?>                	
+	           	<?php print $this->form->input("lastname", array('title' => T_('Lastname'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Lastname')))); ?>                	
+	           	<?php print $this->form->input("street", array('title' => T_('Street'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Street')))); ?>                	
+	           	<?php print $this->form->input("postcode", array('title' => T_('Postcode'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Postcode')))); ?>                	
+	           	<?php print $this->form->input("city", array('title' => T_('City'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('City')))); ?>                	
+	           	<?php print $this->form->input("state", array('title' => T_('State'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('State')))); ?>
+	           	<?php print $this->form->input("country", array('title' => T_('Country'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Country')))); ?>
+	           	<?php print $this->form->input("company", array('title' => T_('Company'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Company')))); ?>                	
+            	<?php print $this->form->input("telephone", array('title' => T_('Telephone'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Telephone')))); ?>
+            	<?php print $this->form->input("mobile", array('title' => T_('Mobile'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Mobile')))); ?>
+            	<?php print $this->form->input("email", array('title' => T_('Email'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Email')))); ?>
+	        <?php print $this->form->end(); ?>
+            </div>
+        </div>
+    </div>
+    <div class="ncw-status-action-bar">
+        <div class="ncw-status-message"></div>
+        <ul class="ncw-actions">
+            <li class="ncw-action"><a href="<?php print $this->html->url(array('action' => 'delete', 'id' => $this->transfersetting_id)); ?>" class="ncw-delete-trigger ncw_delete_icon" rel="#ncw-delete">Delete</a></li>
+            <li class="ncw-action"><a href="#" rel="contacts/transfer" class="ncw-save-trigger-ajax ncw_save_icon"><?php print T_('Save'); ?></a></li>
+        </ul>
+    </div>
+</div>

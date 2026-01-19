@@ -1,0 +1,15 @@
+{
+    "paging" : <?php print json_encode($this->paginator->params()); ?>,
+    "search_result": [
+    <?php
+    $items = array();
+    foreach ($this->folders as $folder) {
+        $items[] = '{
+            "id" : ' . $folder->getId() . ',
+            "name" : "' . $folder->getNameEncoded() . '"
+        }';
+    }
+    print implode(',', $items);
+    ?>
+    ]
+}

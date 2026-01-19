@@ -1,0 +1,24 @@
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+        <li class="ncw-option-tab"><a href="javascript: ncw.tpe.language.load();"><?php print T_('Back'); ?></a></li>    
+        <li class="ncw-main-tab"><a href="#"><?php print T_('Edit language'); ?></a></li>
+    </ul>
+    <div class="ncw-main-tab-contents">
+        <div class="ncw-main-tab-content">
+            <?php print $this->form->create('ncw-language'); ?>
+            <?php print $this->form->input("id", array('type' => 'hidden', 'value' => $this->id)); ?>
+            <?php print $this->form->input("name", array('maxlength' => 25, 'title' => T_("Name"), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_("Name")))); ?>
+            <?php print $this->form->input("shortcut", array('maxlength' => 25, 'title' => T_("Shortcut"), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_("Shortcut")))); ?>                    
+            <?php print $this->form->end(); ?>
+        </div>
+    </div>
+</div>
+<div class="ncw-status-action-bar">
+    <div class="ncw-status-message"></div>
+    <ul class="ncw-actions">
+        <?php //if (true === $this->permissions['/newsletter/group/delete']) { ?>
+            <li class="ncw-action"><a href="#" rel="tpe/language" class="ncw-delete-trigger-ajax ncw_delete_icon" rel="#ncw-delete"><?php echo T_('Delete'); ?></a></li>
+        <?php //} ?>
+        <li class="ncw-action"><a href="#" rel="tpe/language" class="ncw-save-trigger-ajax ncw_save_icon"><?php print T_('Save'); ?></a></li>        
+    </ul>
+</div>

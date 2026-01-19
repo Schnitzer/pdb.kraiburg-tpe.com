@@ -1,0 +1,48 @@
+<script type="text/javascript">
+ncw.wcms.tinymce.setup();
+</script>
+<div class="ncw-right">
+    <?php print $this->form->create(); ?>
+    <div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+			<li class="ncw-option-tab"><?php print $this->html->link(T_('Component Templates'), array('action' => 'all')); ?></li>
+            <li class="ncw-option-tab"><?php print $this->html->link(T_('New Component Template'), array('action' => 'new')); ?></li>        	
+            <li class="ncw-main-tab"><a href="#"><?php echo T_('Template Generator'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+                <?php print $this->form->input("name", array('maxlength' => 100, 'title' => T_('Name'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Name')))); ?>
+                <div class="ncw-input-container">
+                    <label class="ncw-label" for="componenttemplate_in_list">In list</label>
+                    <?php print $this->form->input("in_list", array('type' => 'checkbox', 'class' => 'ncw-checkbox', 'div' => array('class' => 'ncw-radios-checkbox'), 'label' => FALSE)); ?>
+                </div>
+                <h2><?php echo T_('Componenttemplate Tags'); ?></h2>
+                <p>
+                    {<em>text</em>.<em>0-9</em>}, {<em>shorttext</em>.<em>0-9</em>}, {file.<em>0-9</em>.alt}, {file.<em>0-9</em>.title}, {file.<em>0-9</em>.link}, {file.<em>0-9</em>.target}, {contentbox.<em>contentbox filename</em>}, <br />
+                    <br />
+                    {component.id}, {admin.class}, {admin.class.sub}, {admin.content.class}, {admin.image.class}<br />
+                    {area.<em>0-9</em>}, {area.<em>0-9</em>.id}, {area.<em>0-9</em>.noadmin}, {area.admin.class.sub}, <br />
+                    {<em>field</em>.<em>0-9</em>.id}, {<em>field</em>.<em>0-9</em>.width=<em>-0-9</em>}, {<em>field</em>.<em>0-9</em>.height=<em>-0-9</em>}, {<em>field</em>.<em>0-9</em>.background=<em>path to image</em>},<br />
+                    {<em>field</em>.<em>0-9</em>.mode=<em>simple|advanced</em>}, {<em>field</em>.<em>0-9</em>.button-top=<em>-0-9</em>}, {<em>field</em>.<em>0-9</em>.button-left=<em>-0-9</em>}, {<em>field</em>.<em>0-9</em>.text-top=<em>-0-9</em>},<br />
+                    {<em>field</em>.<em>0-9</em>.text-left=<em>-0-9</em>}<br/ >
+                </p>
+                <?php print $this->form->input('code', array('type' => 'textarea', 'label' => false, 'class' => 'ncw-wysiwyg')); ?>
+                <h2><?php echo T_('Sitetemplate Tags'); ?></h2>
+                <p>
+                    {site.id}, {site.title}, {site.keywords}, {site.description}, {site.language.code}, {site.author}, {site.modified}, {site.created}, <br />
+                    {css.<em>path to file</em>}, {jquery}, {javascript.<em>path to file</em>}, <br />
+                    {admin.css}, {admin.area}, {area.begin.<em>0-9</em>}, {area.contents.<em>0-9</em>}, {area.content}, {/area.contents}, {/area.begin}, {area.<em>0-9</em>}, {area.<em>0-9</em>.noadmin}, <br />
+                    {area.<em>0-9</em>.id}, {area.admin.class}, {area.admin.nocontent.clear}, {nav.<em>path to file</em>}, {project.url}, {if.admin}, {/if}, {news}, {news.head}, {news.body}, {/news}, {if.news}, <br />
+                    {languages}, {language.id}, {language.name}, {language.shortcut}, {/languages}, {path.files}, {path.css}, {path.javascript}, {path.base}, {path.site_url}, {path.site_file}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="ncw-status-action-bar">
+        <div class="ncw-status-message"></div>
+        <ul class="ncw-actions">
+            <li class="ncw-action"><a href="#" class="ncw-save-trigger ncw_save_icon"><?php echo T_('Save'); ?></a></li>
+        </ul>
+    </div>
+    <?php print $this->form->end(); ?>
+</div>

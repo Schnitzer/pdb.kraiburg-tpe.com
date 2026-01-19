@@ -1,0 +1,56 @@
+<div class="ncw-left">
+	<div class="ncw-accordion">
+        <h3 class="ncw-accordion-header current"><?php print T_('Feed Management'); ?></h3>
+        <div class="ncw-accordion-content ncw-accordion-current">
+            <p class="ncw-accordion-content-part-dark">
+                <a href="<?php print $this->html->url(array('action' => 'new')); ?>" class="ncw_text_button_add"><?php print T_('New Feed'); ?></a>
+            </p>   
+        </div>
+    </div>	
+</div>
+<div class="ncw-right">
+		<div class="ncw-main-tabs">
+        <ul class="ncw-main-tabs-container">
+        	<li class="ncw-option-tab"><a href="<?php print $this->html->url(array('action' => 'all')); ?>"><?php print T_('Back'); ?></a></li>
+            <li class="ncw-main-tab"><a href="#"><?php print T_('Edit Feed'); ?></a></li>
+        </ul>
+        <div class="ncw-main-tab-contents">
+            <div class="ncw-main-tab-content">
+	            <ul class="ncw-tabs-container">
+	                <li class="ncw-tab"><a href="#"><?php print T_('Main'); ?></a></li>
+	                <li class="ncw-tab"><a href="#"><?php print T_('Feed options'); ?></a></li>
+	                <li class="ncw-tab"><a href="#"><?php print T_('Data stream options'); ?></a></li>
+	            </ul>
+	            <?php print $this->form->create('ncw-feed'); ?>
+	            <div class="ncw-tab-contents">
+	                <div class="ncw-tab-content ncw-tab-content-full">            	
+            			<?php print $this->form->input("id", array('type' => 'hidden', 'value' => $this->feed_id)); ?>
+                		<?php print $this->form->input("name", array('maxlength' => 100, 'title' => T_('Name of the feed'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Name of the feed')))); ?>
+                	</div>
+                	<div class="ncw-tab-content ncw-tab-content-full">            	
+		        		<?php print $this->form->input("title", array('maxlength' => 100, 'title' => T_('Title'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Title')))); ?>
+		        		<?php print $this->form->input("description", array('type' => 'textarea', 'maxlength' => 255, 'title' => T_('Description'), 'class' => 'ncw-textarea', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Description')))); ?>
+		        		<?php print $this->form->input("language", array('maxlength' => 100, 'title' => T_('Language'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Language')))); ?>
+		        		<?php print $this->form->input("pub_date", array('maxlength' => 100, 'title' => T_('Publish date'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Publish date')))); ?>
+		        		<?php print $this->form->input("generator", array('maxlength' => 100, 'title' => T_('Generator'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Generator')))); ?>
+		        		<?php print $this->form->input("managing_editor", array('maxlength' => 100, 'title' => T_('Managing editor'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Managing editor')))); ?>
+		        		<?php print $this->form->input("web_master", array('maxlength' => 100, 'title' => T_('Web master'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Web master')))); ?>               
+		            </div>
+		            <div class="ncw-tab-content ncw-tab-content-full">            	    
+		                <?php print $this->form->input("module", array('maxlength' => 100, 'title' => T_('Module'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Module')))); ?>
+		                <?php print $this->form->input("controller", array('maxlength' => 100, 'title' => T_('Controller'), 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Controller')))); ?>
+		                <?php print $this->form->input("params", array('type' => 'textarea','maxlength' => 255, 'title' => T_('Params'), 'class' => 'ncw-textarea', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Params')))); ?>
+		            </div>
+		        </div>	
+            	<?php print $this->form->end(); ?>
+            </div>
+        </div>
+    </div>
+	<div class="ncw-status-action-bar">
+	    <div class="ncw-status-message"></div>
+	    <ul class="ncw-actions">
+	        <li class="ncw-action"><a href="#" rel="core/feed" class="ncw-delete-trigger-ajax ncw_delete_icon"><?php print T_('Delete'); ?></a></li>
+	        <li class="ncw-action"><a href="#" rel="core/feed" class="ncw-save-trigger-ajax ncw_save_icon"><?php print T_('Save')?></a></li>
+	    </ul>
+	</div>      
+</div>          	

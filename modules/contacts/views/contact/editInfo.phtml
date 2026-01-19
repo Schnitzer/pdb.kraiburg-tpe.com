@@ -1,0 +1,38 @@
+<?php
+if ($this->contact['type'] == 'private') {
+    $shortname = $this->contact['firstname'];
+		
+	$title = '';
+	if (false === empty($this->contact['title'])) {
+		$title .= ' ' . $this->contact['title'];
+	}
+	
+	$name = $this->contact['firstname'] . ' ' . $this->contact['name'];
+} else {
+    $name = $shortname = $this->contact['name'];
+}
+?>
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+    	<li class="ncw-option-tab"><a href="javascript: ncw.contacts.contact.loadContact(<?php print $this->contact_id; ?>);"><?php print T_('Back') ; ?></a></li>
+        <li class="ncw-main-tab"><a href="#"><?php echo T_('Edit dates of ' . $name); ?></a></li>
+    </ul>
+    <div class="ncw-main-tab-contents">
+
+        <div class="ncw-main-tab-content">
+
+			<?php print $this->form->create('ncw-contact'); ?>
+            <?php print $this->form->input("id", array('type' => 'hidden', 'value' => $this->contact_id)); ?>
+            <?php print $this->form->input("update", array('type' => 'hidden', 'value' => 'info')); ?>
+			<?php print $this->form->input("info", array("type" => "textarea", 'title' => T_('Background info'), 'class' => 'ncw-textarea', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Background info')))); ?>
+			<?php print $this->form->end(); ?>
+			
+		</div>
+    </div>
+</div>
+<div class="ncw-status-action-bar">
+    <div class="ncw-status-message"></div>
+    <ul class="ncw-actions">
+        <li class="ncw-action"><a href="#" rel="contacts/contact" class="ncw-save-trigger-ajax ncw_save_icon"><?php print T_('Save'); ?></a></li>
+    </ul>
+</div>

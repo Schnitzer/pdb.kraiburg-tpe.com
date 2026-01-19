@@ -1,0 +1,33 @@
+<div class="ncw-main-tabs">
+    <ul class="ncw-main-tabs-container">
+    	<li class="ncw-option-tab"><a href="javascript: ncw.core.user.load();"><?php print T_('Back'); ?></a></li>
+        <li class="ncw-main-tab"><a href="#"><?php print T_('New User'); ?></a></li>
+    </ul>
+    <div class="ncw-main-tab-contents">
+        <div class="ncw-main-tab-content">
+            <?php print $this->form->create('ncw-user', array('onsubmit' => 'return false;')); ?>
+            <?php print $this->form->input("name", array('maxlength' => 255, 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Name')))); ?>
+            <?php print $this->form->input("language_id", array("type" => "select", "options" => $this->languages, 'class' => 'ncw-select', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Language')))); ?>
+            <?php if (true === $this->contact_module) { ?>
+                <?php print $this->form->input("contact_id", array("type" => "hidden")); ?>
+                <?php print $this->form->input("Contact.name", array('maxlength' => 100, 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Contact')))); ?>
+                <div class="ncw-input-container">
+                    <label class="ncw-label" for="user_activated"><?php print T_('Activated'); ?></label>
+                    <?php print $this->form->input("activated", array('type' => 'checkbox', 'class' => 'ncw-checkbox', 'div' => array('class' => 'ncw-radios-checkbox'), 'label' => FALSE)); ?>
+                </div>
+            <?php } ?>
+            <?php print $this->form->input("entry_point", array('maxlength' => 255, 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Entry point')))); ?>
+            
+            <h2><?php print T_('Password'); ?></h2>
+            <?php print $this->form->input("password", array('type' => 'password', 'maxlength' => 20, 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Password')))); ?>
+            <?php print $this->form->input("password_repeat", array('type' => 'password', 'maxlength' => 20, 'class' => 'ncw-input', 'div' => array('class' => 'ncw-input-container'), 'label' => array('class' => 'ncw-label', 'text' => T_('Repeat Password')))); ?>
+            <?php print $this->form->end(); ?>
+        </div>
+    </div>
+</div>
+<div class="ncw-status-action-bar">
+    <div class="ncw-status-message"></div>
+    <ul class="ncw-actions">
+        <li class="ncw-action"><a href="#" rel="core/user" class="ncw-new-trigger-ajax ncw_save_icon"><?php print T_('Save'); ?></a></li>
+    </ul>
+</div>
