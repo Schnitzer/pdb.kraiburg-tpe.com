@@ -1,5 +1,6 @@
 <?php
 /* SVN FILE: $Id$ */
+
 /**
  * Contains the Tpepdb2_AjaxController class.
  *
@@ -20,6 +21,7 @@
  * @lastmodified    $LastChangedDate$
  * @license            http://www.netzcraftwerk.com/licenses/
  */
+
 /**
  * Tpepdb2_AjaxController class.
  *
@@ -27,20 +29,19 @@
  */
 class Tpepdb2_AjaxController extends Tpepdb2_ModuleController
 {
+	/**
+	 * @var object ACL component
+	 */
+	public $acl;
 
-    /**
-     * @var object ACL component
-     */
-    public $acl;
-
-    /**
-     * @var array
-     */
-    public $acl_publics = array(
-        "regions",
-        "markets",
-        "applications",
-        "advantages",
+	/**
+	 * @var array
+	 */
+	public $acl_publics = array(
+		'regions',
+		'markets',
+		'applications',
+		'advantages',
 		'countSuche',
 		'suche',
 		'shareFile',
@@ -48,889 +49,488 @@ class Tpepdb2_AjaxController extends Tpepdb2_ModuleController
 		'resetPasswordSendMail',
 		'resetPassword',
 		'helpListCompounds'
-    );
+	);
 
-    /**
-     * No model used
-     *
-     * @var boolean
-     */
-    public $has_model = false;
+	/**
+	 * No model used
+	 *
+	 * @var boolean
+	 */
+	public $has_model = false;
 
-	
-    /**
-     *
-     */
-    public function regionsAction ()
-    {
-        $this->view = false;
+	public function regionsAction()
+	{
+		$this->view = false;
 
-        if (false == isset($_GET["l"])) {
-            return null;
-        }
-        $language_id = (int) $_GET["l"];
-	
+		if (false == isset($_GET['l'])) {
+			return null;
+		}
+		$language_id = (int) $_GET['l'];
 
-        $values = array();
+		$values = array();
 
 		$values[] = Wcms_ContentboxController::getContenbox('pdb---search---region---emea', $language_id);
 		$values[] = Wcms_ContentboxController::getContenbox('pdb---search---region---americas', $language_id);
 		$values[] = Wcms_ContentboxController::getContenbox('pdb---search---region---asia-pacific', $language_id);
 
-        print json_encode($values);
-    }
+		print json_encode($values);
+	}
 
-	
-    /**
-     *
-     */
-    public function markets20Action ()
-    {
-        $this->view = false;
+	public function markets20Action()
+	{
+		$this->view = false;
 
-        if (false == isset($_GET["l"])) {
-            return null;
-        }
-        $language_id = (int) $_GET["l"];
-
-        if (false == isset($_GET["r"])) {
-            return null;
-        }
-        $region_id = (int) $_GET["r"];
-        $region = "";
-        if ($region_id > 0) {
-            $region = "INNER JOIN `ncw_tpepdb2_serie_region` AS sr ON sr.serie_id = s.id
-            WHERE sr.region_id=:region_id";
-        }
-
-        $db = Ncw_Database::getInstance();
-
-        $language = new Wcms_Language();
-        $language->setId($language_id);
-        $language = $language->readField("shortcut");
-
-        if (false === $this->_checkIfLanguageExists("markets", $language)) {
-            $language = "en";
-        }
-
-        $sth = $db->prepare(
-            "SELECT DISTINCT ma." . $language . ", ma.num
-            FROM `ncw_tpepdb2_markets` AS ma
-            INNER JOIN `ncw_tpepdb2_serie_markets` AS sma ON sma.markets_id = ma.id
-            INNER JOIN `ncw_tpepdb2_serie` AS s ON sma.serie_id = s.id
-            " . $region . "
-            ORDER BY ma." . $language . "
-            "
-        );
-        if ($region_id > 0) {
-            $sth->bindValue(":region_id", $region_id);
-        }
-        $sth->execute();
-
-        $results = $sth->fetchAll();
-
-        $values = array();
-        if (count($results) > 0) {
-            foreach ($results as $result) {
-                $values[] = array(str_replace(array("<P>", "</P>"), "", $result[$language]), $result["num"]);
-            }
-        } else {
-            return null;
-        }
-        print json_encode($values);
-    }
-	
-	
-		public function countCompoundSeries($series_id)
-		{
-			
-			$query = "SELECT COUNT(id)
-FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
-			
-			$db = Ncw_Database::getInstance();
-			
-			//echo $query;
-			
-			        $sth = $db->prepare($query);
-
-        $sth->execute();
-
-        $results = $sth->fetchAll();
-			//if ( $_SERVER['REMOTE_ADDR'] == Ncw_Configure::read('developer_internal_ip') ) {
-				$results = json_encode($results);
-				//echo '<br />ID=' . $series_id . '<br />';
-				//var_dump($results);
-				if ($results == '[{"COUNT(id)":"0","0":"0"]]') {
-					return 0;
-				}
-				//echo '<br /><br />';
-			//}
-			return 1;
+		if (false == isset($_GET['l'])) {
+			return null;
 		}
-	
-    /**
-     *
-     */
-    public function marketsAction ()
-    {
-        $this->view = false;
+		$language_id = (int) $_GET['l'];
 
-        if (false == isset($_GET["l"])) {
-            return null;
-        }
-        $language_id = (int) $_GET["l"];
+		if (false == isset($_GET['r'])) {
+			return null;
+		}
+		$region_id = (int) $_GET['r'];
+		$region = '';
+		if ($region_id > 0) {
+			$region = 'INNER JOIN `ncw_tpepdb2_serie_region` AS sr ON sr.serie_id = s.id
+            WHERE sr.region_id=:region_id';
+		}
 
-        if (false == isset($_GET["r"])) {
-            return null;
-        }
-        $region_id = (int) $_GET["r"];
-        $region = "";
-        if ($region_id > 0) {
-            $region = "INNER JOIN `ncw_tpepdb2_serie_region` AS sr ON sr.serie_id = s.id
-            WHERE sr.region_id=:region_id";
-        }
+		$db = Ncw_Database::getInstance();
 
-        $db = Ncw_Database::getInstance();
+		$language = new Wcms_Language();
+		$language->setId($language_id);
+		$language = $language->readField('shortcut');
 
-        $language = new Wcms_Language();
-        $language->setId($language_id);
-        $language = $language->readField("shortcut");
+		if (false === $this->_checkIfLanguageExists('markets', $language)) {
+			$language = 'en';
+		}
 
-        if (false === $this->_checkIfLanguageExists("markets", $language)) {
-            $language = "en";
-        }
-
-        $sth = $db->prepare(
-            "SELECT DISTINCT ma." . $language . ", ma.num
+		$sth = $db->prepare(
+			'SELECT DISTINCT ma.' . $language . ', ma.num
             FROM `ncw_tpepdb2_markets` AS ma
             INNER JOIN `ncw_tpepdb2_serie_markets` AS sma ON sma.markets_id = ma.id
             INNER JOIN `ncw_tpepdb2_serie` AS s ON sma.serie_id = s.id
-            " . $region . "
-            ORDER BY ma." . $language . "
-            "
-        );
-        if ($region_id > 0) {
-            $sth->bindValue(":region_id", $region_id);
-        }
-        $sth->execute();
+            ' . $region . '
+            ORDER BY ma.' . $language . '
+            '
+		);
+		if ($region_id > 0) {
+			$sth->bindValue(':region_id', $region_id);
+		}
+		$sth->execute();
 
-        $results = $sth->fetchAll();
+		$results = $sth->fetchAll();
 
-        $values = array();
-        if (count($results) > 0) {
-            foreach ($results as $result) {
-                $values[] = array(str_replace(array("<P>", "</P>"), "", $result[$language]), $result["num"]);
-            }
-        } else {
-            return null;
-        }
+		$values = array();
+		if (count($results) > 0) {
+			foreach ($results as $result) {
+				$values[] = array(str_replace(array('<P>', '</P>'), '', $result[$language]), $result['num']);
+			}
+		} else {
+			return null;
+		}
+		print json_encode($values);
+	}
 
-        print json_encode($values);
-    }
+	public function countCompoundSeries($series_id)
+	{
+		$query = "SELECT COUNT(id)
+FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 
-    /**
-     *
-     */
-    public function applicationsAction ()
-    {
-        $this->view = false;
+		$db = Ncw_Database::getInstance();
 
-        if (false == isset($_GET["l"])) {
-            return null;
-        }
-        $language_id = (int) $_GET["l"];
+		// echo $query;
 
-        if (false == isset($_GET["r"])) {
-            return null;
-        }
-        $region_id = (int) $_GET["r"];
-        $region_join = $region_clause = "";
-        if ($region_id > 0) {
-            $region_join = "INNER JOIN `ncw_tpepdb2_serie_region` AS sr ON sr.serie_id = s.id";
-            $region_clause = " && sr.region_id=:region_id";
-        }
+		$sth = $db->prepare($query);
 
-        if (false == isset($_GET["ma"])) {
-            return null;
-        }
+		$sth->execute();
 
-        $market = (int) $_GET["ma"];
+		$results = $sth->fetchAll();
+		// if ( $_SERVER['REMOTE_ADDR'] == Ncw_Configure::read('developer_internal_ip') ) {
+		$results = json_encode($results);
+		// echo '<br />ID=' . $series_id . '<br />';
+		// var_dump($results);
+		if ($results == '[{"COUNT(id)":"0","0":"0"]]') {
+			return 0;
+		}
+		// echo '<br /><br />';
+		// }
+		return 1;
+	}
 
-        $db = Ncw_Database::getInstance();
+	public function marketsAction()
+	{
+		$this->view = false;
 
-        $language = new Wcms_Language();
-        $language->setId($language_id);
-        $language = $language->readField("shortcut");
+		if (false == isset($_GET['l'])) {
+			return null;
+		}
+		$language_id = (int) $_GET['l'];
 
-        if (false === $this->_checkIfLanguageExists("anwendungsbereiche", $language)) {
-            $language = "en";
-        }
+		if (false == isset($_GET['r'])) {
+			return null;
+		}
+		$region_id = (int) $_GET['r'];
+		$region = '';
+		if ($region_id > 0) {
+			$region = 'INNER JOIN `ncw_tpepdb2_serie_region` AS sr ON sr.serie_id = s.id
+            WHERE sr.region_id=:region_id';
+		}
 
-        $sth = $db->prepare(
-            "SELECT DISTINCT aw." . $language . ", aw.num
+		$db = Ncw_Database::getInstance();
+
+		$language = new Wcms_Language();
+		$language->setId($language_id);
+		$language = $language->readField('shortcut');
+
+		if (false === $this->_checkIfLanguageExists('markets', $language)) {
+			$language = 'en';
+		}
+
+		$sth = $db->prepare(
+			'SELECT DISTINCT ma.' . $language . ', ma.num
+            FROM `ncw_tpepdb2_markets` AS ma
+            INNER JOIN `ncw_tpepdb2_serie_markets` AS sma ON sma.markets_id = ma.id
+            INNER JOIN `ncw_tpepdb2_serie` AS s ON sma.serie_id = s.id
+            ' . $region . '
+            ORDER BY ma.' . $language . '
+            '
+		);
+		if ($region_id > 0) {
+			$sth->bindValue(':region_id', $region_id);
+		}
+		$sth->execute();
+
+		$results = $sth->fetchAll();
+
+		$values = array();
+		if (count($results) > 0) {
+			foreach ($results as $result) {
+				$values[] = array(str_replace(array('<P>', '</P>'), '', $result[$language]), $result['num']);
+			}
+		} else {
+			return null;
+		}
+
+		print json_encode($values);
+	}
+
+	public function applicationsAction()
+	{
+		$this->view = false;
+
+		if (false == isset($_GET['l'])) {
+			return null;
+		}
+		$language_id = (int) $_GET['l'];
+
+		if (false == isset($_GET['r'])) {
+			return null;
+		}
+		$region_id = (int) $_GET['r'];
+		$region_join = $region_clause = '';
+		if ($region_id > 0) {
+			$region_join = 'INNER JOIN `ncw_tpepdb2_serie_region` AS sr ON sr.serie_id = s.id';
+			$region_clause = ' && sr.region_id=:region_id';
+		}
+
+		if (false == isset($_GET['ma'])) {
+			return null;
+		}
+
+		$market = (int) $_GET['ma'];
+
+		$db = Ncw_Database::getInstance();
+
+		$language = new Wcms_Language();
+		$language->setId($language_id);
+		$language = $language->readField('shortcut');
+
+		if (false === $this->_checkIfLanguageExists('anwendungsbereiche', $language)) {
+			$language = 'en';
+		}
+
+		$sth = $db->prepare(
+			'SELECT DISTINCT aw.' . $language . ', aw.num
             FROM `ncw_tpepdb2_anwendungsbereiche` AS aw
             INNER JOIN `ncw_tpepdb2_serie_anwendungsbereiche` AS saw ON saw.anwendungsbereiche_id = aw.id
             INNER JOIN `ncw_tpepdb2_serie` AS s ON saw.serie_id = s.id
-            " . $region_join . "
+            ' . $region_join . '
             INNER JOIN `ncw_tpepdb2_serie_markets` AS sma ON sma.serie_id = s.id
             INNER JOIN `ncw_tpepdb2_markets` AS ma ON sma.markets_id = ma.id
-            WHERE ma.num=:market " . $region_clause . "
-            ORDER BY aw." . $language . "
-            "
-        );
-        $sth->bindValue(":market", $market);
-        if ($region_id > 0) {
-            $sth->bindValue(":region_id", $region_id);
-        }
-       // $sth->execute();
+            WHERE ma.num=:market ' . $region_clause . '
+            ORDER BY aw.' . $language . '
+            '
+		);
+		$sth->bindValue(':market', $market);
+		if ($region_id > 0) {
+			$sth->bindValue(':region_id', $region_id);
+		}
+		// $sth->execute();
 
-        $results = $sth->fetchAll();
+		$results = $sth->fetchAll();
 
-        $values = array();
-        if (count($results) > 0) {
-            foreach ($results as $result) {
-                $values[] = array(str_replace(array("<P>", "</P>"), "", $result[$language]), $result["num"]);
-            }
-        } else {
-            return null;
-        }
+		$values = array();
+		if (count($results) > 0) {
+			foreach ($results as $result) {
+				$values[] = array(str_replace(array('<P>', '</P>'), '', $result[$language]), $result['num']);
+			}
+		} else {
+			return null;
+		}
 
-        print json_encode($values);
-    }
+		print json_encode($values);
+	}
 
-    /**
-     *
-     */
-    public function advantagesAction ()
-    {
-        $this->view = false;
+	public function advantagesAction()
+	{
+		$this->view = false;
 
-        if (false == isset($_GET["l"])) {
-            return null;
-        }
-        $language_id = (int) $_GET["l"];
+		if (false == isset($_GET['l'])) {
+			return null;
+		}
+		$language_id = (int) $_GET['l'];
 
-        if (false == isset($_GET["r"])) {
-            return null;
-        }
-        $region_id = (int) $_GET["r"];
-        $region_join = $region_clause = "";
-        if ($region_id > 0) {
-            $region_join = "INNER JOIN `ncw_tpepdb2_serie_region` AS sr ON sr.serie_id = s.id";
-            $region_clause = " && sr.region_id=:region_id";
-        }
+		if (false == isset($_GET['r'])) {
+			return null;
+		}
+		$region_id = (int) $_GET['r'];
+		$region_join = $region_clause = '';
+		if ($region_id > 0) {
+			$region_join = 'INNER JOIN `ncw_tpepdb2_serie_region` AS sr ON sr.serie_id = s.id';
+			$region_clause = ' && sr.region_id=:region_id';
+		}
 
-        if (false == isset($_GET["ap"])) {
-            return null;
-        }
+		if (false == isset($_GET['ap'])) {
+			return null;
+		}
 
-        $application = (int) $_GET["ap"];
+		$application = (int) $_GET['ap'];
 
-        $db = Ncw_Database::getInstance();
+		$db = Ncw_Database::getInstance();
 
-        $language = new Wcms_Language();
-        $language->setId($language_id);
-        $language = $language->readField("shortcut");
+		$language = new Wcms_Language();
+		$language->setId($language_id);
+		$language = $language->readField('shortcut');
 
-        if (false === $this->_checkIfLanguageExists("materialvorteile", $language)) {
-            $language = "en";
-        }
+		if (false === $this->_checkIfLanguageExists('materialvorteile', $language)) {
+			$language = 'en';
+		}
 
-        $sth = $db->prepare(
-            "SELECT DISTINCT mv." . $language . ", mv.num
+		$sth = $db->prepare(
+			'SELECT DISTINCT mv.' . $language . ', mv.num
             FROM `ncw_tpepdb2_materialvorteile` AS mv
             INNER JOIN `ncw_tpepdb2_serie_materialvorteile` AS smv ON smv.materialvorteile_id = mv.id
             INNER JOIN `ncw_tpepdb2_serie` AS s ON smv.serie_id = s.id
-            " . $region_join . "
+            ' . $region_join . '
             INNER JOIN `ncw_tpepdb2_serie_anwendungsbereiche` AS saw ON saw.serie_id = s.id
             INNER JOIN `ncw_tpepdb2_anwendungsbereiche` AS aw ON saw.anwendungsbereiche_id = aw.id
-            WHERE aw.num = :application " . $region_clause . "
-            ORDER BY mv." . $language . "
-            "
-        );
-        $sth->bindValue(":application", $application);
-        if ($region_id > 0) {
-            $sth->bindValue(":region_id", $region_id);
-        }
-       // $sth->execute();
+            WHERE aw.num = :application ' . $region_clause . '
+            ORDER BY mv.' . $language . '
+            '
+		);
+		$sth->bindValue(':application', $application);
+		if ($region_id > 0) {
+			$sth->bindValue(':region_id', $region_id);
+		}
+		// $sth->execute();
 
-        $results = $sth->fetchAll();
+		$results = $sth->fetchAll();
 
-        $values = array();
+		$values = array();
 
-        foreach ($results as $result) {
-            if ($result[$language] == NULL) {
-                continue;
-            }
-            $values[] = array(str_replace(array("<P>", "</P>"), "", $result[$language]), $result["num"]);
-        }
+		foreach ($results as $result) {
+			if ($result[$language] == NULL) {
+				continue;
+			}
+			$values[] = array(str_replace(array('<P>', '</P>'), '', $result[$language]), $result['num']);
+		}
 
-        print json_encode($values);
-    }
+		print json_encode($values);
+	}
 
-    /**
-     * @param string $type
-     * @param string $language
-     */
-    protected function _checkIfLanguageExists ($type, $language)
-    {
-        $db = Ncw_Database::getInstance();
+	/**
+	 * @param string $type
+	 * @param string $language
+	 */
+	protected function _checkIfLanguageExists($type, $language)
+	{
+		$db = Ncw_Database::getInstance();
 
-        $sth = $db->prepare(
-            "SELECT ma." . $language . "
-            FROM `ncw_tpepdb2_" . $type . "` AS ma
-            ORDER BY ma." . $language . " DESC
+		$sth = $db->prepare(
+			'SELECT ma.' . $language . '
+            FROM `ncw_tpepdb2_' . $type . '` AS ma
+            ORDER BY ma.' . $language . ' DESC
             LIMIT 1
-            "
-        );
-        $sth->execute();
+            '
+		);
+		$sth->execute();
 
-        $result = $sth->fetch();
-        if (true === isset($result[$language])) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-	
-	
-	    /**
-     * Cout der Suche
-     */
-    public function countSucheAction ()
-    {
-        $this->view = false;
-
-
-        if (false == isset($_GET["l"])) {
-         //   return null;
-        }
-        //$language_id = (int) $_GET["l"];
-				
-
-				$language = 'en';
-				$pre_where = '';
-			  $str_where = '';
-				if (false === Ncw_Components_Session::checkInAll('PDB')) {
-					if (true == strstr($str_where, 'WHERE')) {
-						$pre_where = ' AND compound.pdb20 = 1 AND';
-					} else {
-						$pre_where = ' WHERE compound.pdb20 = 1 AND';
-					}
-					$str_where .= $pre_where .' (compound.status =  "portfolio" OR compound.status =  "top400")';
-				}
-			
-
-				$arr_and = array();
-				$first_flag = false;
-				foreach ($this->params['url'] As $key => $item) {
-					$arr_not = array('ma','ap','ad','r','st','s', 'l','rangeHardnessMin','rangeHardnessMax','cbox_hardness', 'pdb2_search');
-					
-					if (false == in_array($key, $arr_not) && strlen($this->params['url']['pdb2_search']) < 1) {
-						//echo '' . $key . '<br />';
-						if (true == isset($this->params['url'][$key])) {
-							
-							$arr_m = explode('m_', Ncw_Library_Sanitizer::escape($key));
-							if (true == strstr($str_where, 'WHERE')) {
-								$pre_where = ' AND';
-							} else {
-								$pre_where = ' WHERE';
-							}
-							if ($arr_m[1] > 0) {
-								//if ($arr_m[1] == 22) {
-								//	$str_where .= $pre_where .' compound.id = 265 ';
-								//} else {
-								// $str_parameter ist zb. TPE-300000003456;TPE-3030000005667
-								$str_internal_ids_all = Ncw_Library_Sanitizer::escape($this->params['url']['m_' . $arr_m[1]]);
-								$arr_w = explode(';', $str_internal_ids_all);
-								$ct_label_id = 0;
-								$label_str = '';
-								foreach ($arr_w As $label_id) {
-									$pre_label_id = '';
-									if ($ct_label_id > 0) {
-										$pre_label_id = ' OR ';
-									}
-									//if ($first_flag == false) {
-										$label_str .= $pre_label_id . " compound.tags LIKE  '%" . $label_id . "%'";
-									//} else {
-										$arr_and[] = $str_internal_ids_all;
-									//}
-									
-									
-									$ct_label_id++;
-								}
-								if ($first_flag == false) {
-									$str_where .= $pre_where ." ( " . $label_str . " )";
-								} 
-									
-								//}
-							  //$first_flag = true;
-							}
-							
-						}
-					  
-					}
-					
-					if ($key == 'pdb2_search' && strlen($this->params['url']['pdb2_search']) > 1) {
-
-							if (true == strstr($str_where, 'WHERE')) {
-								$pre_where = ' AND ';
-							} else {
-								$pre_where = ' WHERE ';
-							}
-							$str_search = Ncw_Library_Sanitizer::escape($this->params['url'][$key]);
-
-						$str_search = str_replace(',', ' ', $str_search);
-						$arr_search_tmp = explode(' ' ,trim($str_search));
-					
-					// Build search conditions first
-					$search_conditions = '';
-					$ctarrtmp = 0;
-					//foreach( $arr_search_tmp As $str_search_tmp) {
-					//	$str_search_tmp = trim($str_search_tmp);
-					//	if (strlen($str_search_tmp) > 1 && strtolower($str_search_tmp) != 'zu' && strtolower($str_search_tmp) != 'to' && strtolower($str_search_tmp) != 'auf' && strtolower($str_search_tmp) != 'and') {
-							// Hier werden die Materailvorteile, Applications und die Approvals mit dem Suchbegriff verglichen, wenn ein Treffer vorleigt wird die CompoundID zurückgegeben.
-							$arr_compound_ids = $this->_getCompoudLabels($str_search);
-							//return implode(';', $arr_compounds);
-							$str_or_compound_id = '';
-							foreach ($arr_compound_ids As $compound_tmp) {
-								$str_or_compound_id .= ' OR compound.id ="'.$compound_tmp.'"';
-							}
-					//	}
-					//}
-					
-					foreach( $arr_search_tmp As $str_search_tmp) {
-						$str_search_tmp = trim($str_search_tmp);
-						// Mind 3 Buchstaben länge bzw. wenn nur 2 dann wird hinten ein Leerzeichen angehängt
-						if(strlen($str_search_tmp) < 3) {
-						//	$str_search_tmp =  $str_search_tmp . ' ';
-						}
-						
-						if (strlen($str_search_tmp) > 1 && strtolower($str_search_tmp) != 'zu ' && strtolower($str_search_tmp) != 'to ' && strtolower($str_search_tmp) != 'auf' && strtolower($str_search_tmp) != 'and') {
-							if ($ctarrtmp > 0) {
-								$search_conditions .= ') AND (';
-							}
-							if(strlen($str_search_tmp) < 3) {
-								$search_conditions .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
-								OR serie.name REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
-								OR serie_values.description REGEXP "[[:<:]]' . $str_search_tmp . ' [[:>:]]"
-								OR serie_values.text1 REGEXP "[[:<:]]' . $str_search_tmp . ' [[:>:]]"
-								OR serie_values.text2 REGEXP "[[:<:]]' . $str_search_tmp . ' [[:>:]]"
-								OR compounddescription.description LIKE "%' . $str_search_tmp . ' %"
-								)';
-							} else {
-								$search_conditions .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
-								OR serie.name REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
-								OR serie_values.description REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
-								OR serie_values.text1 REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
-								OR serie_values.text2 REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
-								OR compounddescription.description LIKE "%' . $str_search_tmp . '%"
-								)';
-							}
-
-							//	$search_conditions .= $str_or_compound_id;
-							/*
-								$search_conditions .= ' OR (compound.name REGEXP "[[:<:]]' . $str_search_tmp . ',[[:>:]]"
-								OR serie.name REGEXP "[[:<:]]' . $str_search_tmp . ',[[:>:]]"
-								OR serie_values.description REGEXP "[[:<:]]' . $str_search_tmp . ',[[:>:]]"
-								OR serie_values.text1 REGEXP "[[:<:]]' . $str_search_tmp . ',[[:>:]]"
-								OR serie_values.text2 REGEXP "[[:<:]]' . $str_search_tmp . ',[[:>:]]"
-								OR compounddescription.description LIKE "%' . $str_search_tmp . '%"
-								)';*/
-							/*
-								$search_conditions .= ' OR (compound.name LIKE "%' . $str_search_tmp . '%"
-								OR serie.name LIKE  "%' . $str_search_tmp . '%"
-								OR serie_values.description LIKE  "%' . $str_search_tmp . '%"
-								OR serie_values.text1 LIKE  "%' . $str_search_tmp . '%"
-								OR serie_values.text2 LIKE  "%' . $str_search_tmp . '%"
-								)';*/
-							
-								$search_conditions .= $str_or_compound_id;
-						}
-
-						$ctarrtmp++;
-					}
-					
-					// Only add WHERE clause if we have search conditions
-					if (!empty($search_conditions)) {
-						$str_where .= $pre_where .' ((' . $search_conditions . '))';
-					}
-						if (true == strstr($str_where, 'WHERE')) {
-							$pre_where = ' AND ';
-						} else {
-							$pre_where = ' WHERE ';
-						}
-						if (false === Ncw_Components_Session::checkInAll('PDB')) {
-							if (true == strstr($str_where, 'WHERE')) {
-								$pre_where = ' AND compound.pdb20 = 1 AND';
-							} else {
-								$pre_where = ' WHERE compound.pdb20 = 1 AND';
-							}
-							$str_where .= $pre_where .' (compound.status =  "portfolio" OR compound.status =  "top400")';
-						}
-						
-							$str_search_max = Ncw_Library_Sanitizer::escape($this->params['url']['rangeHardnessMax']);
-							$str_search_min = Ncw_Library_Sanitizer::escape($this->params['url']['rangeHardnessMin']);
-						  
-						  $str_where .= $pre_where .' (
-								(
-								va.value <  "' . $str_search_max . '"
-								AND va.value >  "' . $str_search_min . '"
-								)
-								AND (va.internal_id = "00000101" OR va.internal_id = "00000103")
-							)';
-					}
-					
-					if ($str_hard == 'supersoft') {
-						if (true == strstr($str_where, 'WHERE')) {
-							$pre_where = ' AND ';
-						} else {
-							$pre_where = ' WHERE ';
-						}
-						if (false === Ncw_Components_Session::checkInAll('PDB')) {
-							if (true == strstr($str_where, 'WHERE')) {
-								$pre_where = ' AND compound.pdb20 = 1 AND';
-							} else {
-								$pre_where = ' WHERE compound.pdb20 = 1 AND';
-							}
-							$str_where .= $pre_where .' (compound.status =  "portfolio" OR compound.status =  "top400")';
-						}
-						$str_where .= $pre_where .' (
-							va.value > "0"
-
-							AND va.internal_id = "00000106"
-						)';
-					}
-					
-					if ($str_hard == 'shored') {
-						if (true == strstr($str_where, 'WHERE')) {
-							$pre_where = ' AND ';
-						} else {
-							$pre_where = ' WHERE ';
-						}
-						if (false === Ncw_Components_Session::checkInAll('PDB')) {
-							if (true == strstr($str_where, 'WHERE')) {
-								$pre_where = ' AND compound.pdb20 = 1 AND';
-							} else {
-								$pre_where = ' WHERE compound.pdb20 = 1 AND';
-							}
-							$str_where .= $pre_where .' (compound.status =  "portfolio" OR compound.status =  "top400")';
-						}
-						$str_where .= $pre_where .' (
-							va.value > "0"
-							OR 
-							va.value > "0"
-						)
-						AND va.internal_id = "00000104"
-						';
-					}
-				}
-				
-		
-	
-	// Wenn eine Farbe gewählt wurde
-	if ( true == isset($this->params['url']['c_10']) ||  true == isset($this->params['url']['c_11']) || true == isset($this->params['url']['c_12']) || true == isset($this->params['url']['c_13']) ) {
-		if (true == strstr($str_where, 'WHERE')) {
-			$pre_where = ' AND ';
+		$result = $sth->fetch();
+		if (true === isset($result[$language])) {
+			return true;
 		} else {
-			$pre_where = ' WHERE ';
-		}
-		$color_conditions = '';
-		$color_or = '';
-		// Wenn eine Farbe 1 gewählt wurde
-		if ( true == isset($this->params['url']['c_10']) ) {
-			$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_10']);
-			if (!empty($search_color_id)) {
-				$color_conditions .=  $color_or . ' (
-					color.internal_id = "' . $search_color_id . '"
-				)';
-				$color_or = ' OR ';
-			}
-		}
-		// Wenn eine Farbe 2 gewählt wurde
-		if ( true == isset($this->params['url']['c_11']) ) {
-			$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_11']);
-			if (!empty($search_color_id)) {
-				$color_conditions .=  $color_or . ' (
-					color.internal_id = "' . $search_color_id . '"
-				)';
-				$color_or = ' OR ';
-			}
-		}
-		// Wenn eine Farbe 3 gewählt wurde
-		if ( true == isset($this->params['url']['c_12']) ) {
-			$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_12']);
-			if (!empty($search_color_id)) {
-				$color_conditions .=  $color_or . ' (
-					color.internal_id = "' . $search_color_id . '"
-				)';
-				$color_or = ' OR ';
-			}
-		}
-		// Wenn eine Farbe 4 gewählt wurde
-		if ( true == isset($this->params['url']['c_13']) ) {
-			$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_13']);
-			if (!empty($search_color_id)) {
-				$color_conditions .=  $color_or . ' (
-					color.internal_id = "' . $search_color_id . '"
-				)';
-				$color_or = ' OR ';
-			}
-		}
-		if (!empty($color_conditions)) {
-			$str_where .= $pre_where . ' ( ' . $color_conditions . ' ) ';
+			return false;
 		}
 	}
 
-		
-	// Wenn eine Region gewählt wurde
-	if ( true == isset($this->params['url']['r_10']) ||  true == isset($this->params['url']['r_11']) ||  true == isset($this->params['url']['r_12'])) {
-		if (true == strstr($str_where, 'WHERE')) {
-			$pre_where = ' AND ';
-		} else {
-			$pre_where = ' WHERE ';
+	/**
+	 * Cout der Suche
+	 */
+	public function countSucheAction()
+	{
+		$this->view = false;
+
+		if (false == isset($_GET['l'])) {
+			//   return null;
 		}
-		$region_conditions = '';
-		$region_or = '';
-		// Wenn eine Region 1 gewählt wurde
-		if ( true == isset($this->params['url']['r_10']) ) {
-			$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_10']);
-			if (!empty($search_region_str)) {
-				$search_region_id = 1;
-				$region_conditions .=  $region_or . ' (
-					serie_region.region_id = "' . $search_region_id . '"
-				)';
-				$region_or = ' OR ';
+		// $language_id = (int) $_GET["l"];
+
+		$language = 'en';
+		$pre_where = '';
+		$str_where = '';
+		if (false === Ncw_Components_Session::checkInAll('PDB')) {
+			if (true == strstr($str_where, 'WHERE')) {
+				$pre_where = ' AND compound.pdb20 = 1 AND';
+			} else {
+				$pre_where = ' WHERE compound.pdb20 = 1 AND';
 			}
+			$str_where .= $pre_where . ' (compound.status =  "portfolio" OR compound.status =  "top400")';
 		}
-		// Wenn eine Region 2 gewählt wurde
-		if ( true == isset($this->params['url']['r_11']) ) {
-			$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_11']);
-			if (!empty($search_region_str)) {
-				$search_region_id = 2;
-				$region_conditions .=  $region_or . ' (
-					serie_region.region_id = "' . $search_region_id . '"
-				)';
-				$region_or = ' OR ';
-			}
-		}
-		// Wenn eine Region 3 gewählt wurde
-		if ( true == isset($this->params['url']['r_12']) ) {
-			$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_12']);
-			if (!empty($search_region_str)) {
-				$search_region_id = 3;
-				$region_conditions .=  $region_or . ' (
-					serie_region.region_id = "' . $search_region_id . '"
-				)';
-				$region_or = ' OR ';
-			}
-		}
-		if (!empty($region_conditions)) {
-			$str_where .= $pre_where . ' ( ' . $region_conditions . ' ) ';
-		}
-	}
-			
 
+		$arr_and = array();
+		$first_flag = false;
+		foreach ($this->params['url'] As $key => $item) {
+			$arr_not = array('ma', 'ap', 'ad', 'r', 'st', 's', 'l', 'rangeHardnessMin', 'rangeHardnessMax', 'cbox_hardness', 'pdb2_search');
 
-			
-
-			// Hier wird der Count Suchquery zusammengebaut und geholt
-			$str_search = $this->_getQuerySearchCount($str_where);
-				if (Ncw_Configure::read('developer_internal_ip') == $_SERVER['REMOTE_ADDR'] ) {
-					//echo $str_search . '<br />';
-					//exit;
-
-				//	var_dump($_GET);
-				} 
-        $db = Ncw_Database::getInstance();
-        $sth = $db->prepare( $str_search);
-
-
-        $sth->execute();
-
-        $results = $sth->fetchAll();
-			
-				
-
-				if ($results[0][0] > 400) {
-					echo '> 400';
-				} else {
-					echo $results[0][0];
-				}
-				
-
-			
-    }
-	
-	
-	    /**
-     * Suche 
-     */
-    public function sucheAction ()
-    {
-        //$this->view = false;
-
-        if (false == isset($_GET["l"])) {
-         //   return null;
-        }
-        //$language_id = (int) $_GET["l"];
-				
-
-				$language = 'en';
-				$pre_where = '';
-			  	$str_where = '';
-				$str_where2 = '';
-				if (false === Ncw_Components_Session::checkInAll('PDB')) {
+			if (false == in_array($key, $arr_not) && strlen($this->params['url']['pdb2_search']) < 1) {
+				// echo '' . $key . '<br />';
+				if (true == isset($this->params['url'][$key])) {
+					$arr_m = explode('m_', Ncw_Library_Sanitizer::escape($key));
 					if (true == strstr($str_where, 'WHERE')) {
-						$pre_where = ' AND compound.pdb20 = 1 AND';
+						$pre_where = ' AND';
 					} else {
-						$pre_where = ' WHERE compound.pdb20 = 1 AND';
+						$pre_where = ' WHERE';
 					}
-					$str_where .= $pre_where .' (compound.status =  "portfolio" OR compound.status =  "top400")';
-				}
-			
-
-				$arr_and = array();
-				$first_flag = false;
-				foreach ($this->params['url'] As $key => $item) {
-					$arr_not = array('ma','ap','ad','r','st','s', 'l','rangeHardnessMin','rangeHardnessMax','cbox_hardness', 'pdb2_search');
-					
-					if (false == in_array($key, $arr_not) && strlen($this->params['url']['pdb2_search']) < 1) {
-						//echo '' . $key . '<br />';
-						if (true == isset($this->params['url'][$key])) {
-							
-							$arr_m = explode('m_', Ncw_Library_Sanitizer::escape($key));
-							if (true == strstr($str_where, 'WHERE')) {
-								$pre_where = ' AND';
-							} else {
-								$pre_where = ' WHERE';
+					if ($arr_m[1] > 0) {
+						// if ($arr_m[1] == 22) {
+						//	$str_where .= $pre_where .' compound.id = 265 ';
+						// } else {
+						// $str_parameter ist zb. TPE-300000003456;TPE-3030000005667
+						$str_internal_ids_all = Ncw_Library_Sanitizer::escape($this->params['url']['m_' . $arr_m[1]]);
+						$arr_w = explode(';', $str_internal_ids_all);
+						$ct_label_id = 0;
+						$label_str = '';
+						foreach ($arr_w As $label_id) {
+							$pre_label_id = '';
+							if ($ct_label_id > 0) {
+								$pre_label_id = ' OR ';
 							}
-						if (isset($arr_m[1]) && $arr_m[1] > 0) {
-				$str_internal_ids_all = Ncw_Library_Sanitizer::escape($this->params['url']['m_' . $arr_m[1]]);
-				$arr_w = explode(';', $str_internal_ids_all);
-				$ct_label_id = 0;
-				$label_str = '';
-				foreach ($arr_w As $label_id) {
-					$pre_label_id = '';
-					if ($ct_label_id > 0) {
-						$pre_label_id = ' OR ';
+							// if ($first_flag == false) {
+							$label_str .= $pre_label_id . " compound.tags LIKE  '%" . $label_id . "%'";
+							// } else {
+							$arr_and[] = $str_internal_ids_all;
+							// }
+
+							$ct_label_id++;
+						}
+						if ($first_flag == false) {
+							$str_where .= $pre_where . ' ( ' . $label_str . ' )';
+						}
+
+						// }
+						// $first_flag = true;
 					}
-	
-					$label_str .= $pre_label_id . " compound.tags LIKE  '%" . $label_id . "%'";
-					$arr_and[] = $str_internal_ids_all;
-
-					
-					$ct_label_id++;
 				}
-				if ($first_flag == false && !empty($label_str)) {
-					$str_where .= $pre_where ." ( " . $label_str . " )";
-				} 
-		// Insert term Suchbegriff speichern
-				$str_lang = Ncw_Library_Sanitizer::escape($_GET["l"]);
-			$str_insert_wcms_search = "INSERT INTO ncw_wcms_search (checkbox, term, type, lang, modified, vorgang_id) VALUES ('" . $str_internal_ids_all . "', '', '', '" . $str_lang . "', '" . date('Y-m-d H:i:s') . "', 0)";
-				$db = Ncw_Database::getInstance();
-				$sth = $db->prepare( $str_insert_wcms_search);
-			$sth->execute();
-			
-		}
-		
-	}
-  
-}
+			}
 
-		if ($key == 'pdb2_search' && strlen($this->params['url']['pdb2_search']) > 1) {
-
+			if ($key == 'pdb2_search' && strlen($this->params['url']['pdb2_search']) > 1) {
 				if (true == strstr($str_where, 'WHERE')) {
 					$pre_where = ' AND ';
 				} else {
 					$pre_where = ' WHERE ';
 				}
 				$str_search = Ncw_Library_Sanitizer::escape($this->params['url'][$key]);
-						//	if (strlen($str_search_tmp) > 1 && strtolower($str_search_tmp) != 'zu' && strtolower($str_search_tmp) != 'to' && strtolower($str_search_tmp) != 'auf' && strtolower($str_search_tmp) != 'and') {
-								// Hier werden die Materailvorteile, Applications und die Approvals mit dem Suchbegriff verglichen, wenn ein Treffer vorleigt wird die CompoundID zurückgegeben.
-								$arr_compound_ids = $this->_getCompoudLabels($str_search);
-								//return implode(';', $arr_compounds);
-								$str_or_compound_id = '';
-								foreach ($arr_compound_ids As $compound_tmp) {
-									$str_or_compound_id .= ' OR compound.id ="'.$compound_tmp.'"';
-								}
-						//	}
-						//}
-						
-						
-						// Insert term Suchbegriff speichern
-						$str_lang = Ncw_Library_Sanitizer::escape($_GET["l"]);
-			$str_insert_wcms_search = "INSERT INTO ncw_wcms_search (term, checkbox, type, lang, modified, vorgang_id) VALUES ('" . $str_search . "', '', '', '" . $str_lang . "', '" . date('Y-m-d H:i:s') . "', 0)";
-						
-					// Build search conditions first
-					$search_conditions = '';
-					$str_search = str_replace(',', ' ', $str_search);
-					$arr_search_tmp = explode(' ' ,trim($str_search));
-					$ctarrtmp = 0;
-					
-					foreach( $arr_search_tmp As $str_search_tmp) {
-						$str_search_tmp = trim($str_search_tmp);
 
-						$str_search_tmp = $this->suchbegriffReinigen($str_search_tmp);
+				$str_search = str_replace(',', ' ', $str_search);
+				$arr_search_tmp = explode(' ', trim($str_search));
 
-						// Mind 3 Buchstaben länge bzw. wenn nur 2 dann wird hinten ein Leerzeichen angehängt
-						if(strlen($str_search_tmp) < 3) {
-						//	$str_search_tmp = $str_search_tmp . ' ';
+				// Build search conditions first
+				$search_conditions = '';
+				$ctarrtmp = 0;
+				// foreach( $arr_search_tmp As $str_search_tmp) {
+				//	$str_search_tmp = trim($str_search_tmp);
+				//	if (strlen($str_search_tmp) > 1 && strtolower($str_search_tmp) != 'zu' && strtolower($str_search_tmp) != 'to' && strtolower($str_search_tmp) != 'auf' && strtolower($str_search_tmp) != 'and') {
+				// Hier werden die Materailvorteile, Applications und die Approvals mit dem Suchbegriff verglichen, wenn ein Treffer vorleigt wird die CompoundID zurückgegeben.
+				$arr_compound_ids = $this->_getCompoudLabels($str_search);
+				// return implode(';', $arr_compounds);
+				$str_or_compound_id = '';
+				foreach ($arr_compound_ids As $compound_tmp) {
+					$str_or_compound_id .= ' OR compound.id ="' . $compound_tmp . '"';
+				}
+				//	}
+				// }
+
+				foreach ($arr_search_tmp As $str_search_tmp) {
+					$str_search_tmp = trim($str_search_tmp);
+					// Mind 3 Buchstaben länge bzw. wenn nur 2 dann wird hinten ein Leerzeichen angehängt
+					if (strlen($str_search_tmp) < 3) {
+						//	$str_search_tmp =  $str_search_tmp . ' ';
+					}
+
+					if (strlen($str_search_tmp) > 1 && strtolower($str_search_tmp) != 'zu ' && strtolower($str_search_tmp) != 'to ' && strtolower($str_search_tmp) != 'auf' && strtolower($str_search_tmp) != 'and') {
+						if ($ctarrtmp > 0) {
+							$search_conditions .= ') AND (';
 						}
-						if (strlen($str_search_tmp) > 1 && strtolower($str_search_tmp) != 'zu' && strtolower($str_search_tmp) != 'to' && strtolower($str_search_tmp) != 'auf' && strtolower($str_search_tmp) != 'and') {
-							if ($ctarrtmp > 0) {
-								$search_conditions .= ') AND (';
-							}
-							if(strlen($str_search_tmp) < 3) {
-								$str_where2 .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
-								OR serie.name LIKE "%' . trim($str_search_tmp) . '%"
+						if (strlen($str_search_tmp) < 3) {
+							$search_conditions .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
+								OR serie.name REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
 								OR serie_values.description REGEXP "[[:<:]]' . $str_search_tmp . ' [[:>:]]"
 								OR serie_values.text1 REGEXP "[[:<:]]' . $str_search_tmp . ' [[:>:]]"
 								OR serie_values.text2 REGEXP "[[:<:]]' . $str_search_tmp . ' [[:>:]]"
 								OR compounddescription.description LIKE "%' . $str_search_tmp . ' %"
 								)';
-							} else {
-								$str_where2 .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
-								OR serie.name LIKE "%' . trim($str_search_tmp) . '%"
+						} else {
+							$search_conditions .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
+								OR serie.name REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
 								OR serie_values.description REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
 								OR serie_values.text1 REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
 								OR serie_values.text2 REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
 								OR compounddescription.description LIKE "%' . $str_search_tmp . '%"
 								)';
-							}
-						
-							// abgespeckte Version da die Obige sehr sehr langsam ist - Aufrufe sind teils 20 mal schneller mit der neuen Methode
-							if(strlen($str_search_tmp) < 3) {
-								$search_conditions .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
-								OR serie.name LIKE "%' . trim($str_search_tmp) . '%"
-								OR serie_values.description LIKE "%' . trim($str_search_tmp) . '%"
-								)';
-							} else {
-								$search_conditions .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
-								OR serie.name LIKE "%' . trim($str_search_tmp) . '%"
-								OR compounddescription.description LIKE "%' . $str_search_tmp . '%"
-								)';
-							}
-
-							$search_conditions .= $str_or_compound_id;
 						}
 
-						$ctarrtmp++;
-					}
-					
-					// Only add WHERE clause if we have search conditions
-					if (!empty($search_conditions)) {
-						$str_where .= $pre_where .' ((' . $search_conditions . '))';
-					}
-				}
-			}
-			
-			$testmode = isset($this->params['url']['testmode']) ? Ncw_Library_Sanitizer::escape($this->params['url']['testmode']) : '';
-		// Range Hardness
-		if (true == isset($this->params['url']['hard']) && strlen($this->params['url']['pdb2_search']) < 1) {
-			$str_hard = Ncw_Library_Sanitizer::escape($this->params['url']['hard']);
-			if ($str_hard == 'hardness') {
+						//	$search_conditions .= $str_or_compound_id;
 
+						/*
+						 * $search_conditions .= ' OR (compound.name REGEXP "[[:<:]]' . $str_search_tmp . ',[[:>:]]"
+						 * OR serie.name REGEXP "[[:<:]]' . $str_search_tmp . ',[[:>:]]"
+						 * OR serie_values.description REGEXP "[[:<:]]' . $str_search_tmp . ',[[:>:]]"
+						 * OR serie_values.text1 REGEXP "[[:<:]]' . $str_search_tmp . ',[[:>:]]"
+						 * OR serie_values.text2 REGEXP "[[:<:]]' . $str_search_tmp . ',[[:>:]]"
+						 * OR compounddescription.description LIKE "%' . $str_search_tmp . '%"
+						 * )';
+						 */
+
+						/*
+						 * $search_conditions .= ' OR (compound.name LIKE "%' . $str_search_tmp . '%"
+						 * OR serie.name LIKE  "%' . $str_search_tmp . '%"
+						 * OR serie_values.description LIKE  "%' . $str_search_tmp . '%"
+						 * OR serie_values.text1 LIKE  "%' . $str_search_tmp . '%"
+						 * OR serie_values.text2 LIKE  "%' . $str_search_tmp . '%"
+						 * )';
+						 */
+
+						$search_conditions .= $str_or_compound_id;
+					}
+
+					$ctarrtmp++;
+				}
+
+				// Only add WHERE clause if we have search conditions
+				if (!empty($search_conditions)) {
+					$str_where .= $pre_where . ' ((' . $search_conditions . '))';
+				}
 				if (true == strstr($str_where, 'WHERE')) {
 					$pre_where = ' AND ';
 				} else {
@@ -942,268 +542,618 @@ FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 					} else {
 						$pre_where = ' WHERE compound.pdb20 = 1 AND';
 					}
-					$str_where .= $pre_where .' (compound.status =  "portfolio" OR compound.status =  "top400")';
+					$str_where .= $pre_where . ' (compound.status =  "portfolio" OR compound.status =  "top400")';
 				}
 
-			$str_search_max = Ncw_Library_Sanitizer::escape($this->params['url']['rangeHardnessMax']);
-			$str_search_min = Ncw_Library_Sanitizer::escape($this->params['url']['rangeHardnessMin']);
-			$str_where .= $pre_where .' (
-					va.value <  "' . $str_search_max . '"
-					AND va.value >  "' . $str_search_min . '"
-					AND (va.internal_id = "00000101" OR va.internal_id = "00000103")
-			)';
-		}
-					
-					if ($str_hard == 'supersoft') {
-						if (true == strstr($str_where, 'WHERE')) {
-							$pre_where = ' AND ';
-						} else {
-							$pre_where = ' WHERE ';
-						}
-						if (false === Ncw_Components_Session::checkInAll('PDB')) {
-							if (true == strstr($str_where, 'WHERE')) {
-								$pre_where = ' AND compound.pdb20 = 1 AND';
-							} else {
-								$pre_where = ' WHERE compound.pdb20 = 1 AND';
-							}
-							$str_where .= $pre_where .' (compound.status =  "portfolio" OR compound.status =  "top400")';
-						}
-						$str_where .= $pre_where .' (
+				$str_search_max = Ncw_Library_Sanitizer::escape($this->params['url']['rangeHardnessMax']);
+				$str_search_min = Ncw_Library_Sanitizer::escape($this->params['url']['rangeHardnessMin']);
+
+				$str_where .= $pre_where . ' (
+								(
+								va.value <  "' . $str_search_max . '"
+								AND va.value >  "' . $str_search_min . '"
+								)
+								AND (va.internal_id = "00000101" OR va.internal_id = "00000103")
+							)';
+			}
+
+			if ($str_hard == 'supersoft') {
+				if (true == strstr($str_where, 'WHERE')) {
+					$pre_where = ' AND ';
+				} else {
+					$pre_where = ' WHERE ';
+				}
+				if (false === Ncw_Components_Session::checkInAll('PDB')) {
+					if (true == strstr($str_where, 'WHERE')) {
+						$pre_where = ' AND compound.pdb20 = 1 AND';
+					} else {
+						$pre_where = ' WHERE compound.pdb20 = 1 AND';
+					}
+					$str_where .= $pre_where . ' (compound.status =  "portfolio" OR compound.status =  "top400")';
+				}
+				$str_where .= $pre_where . ' (
 							va.value > "0"
 
 							AND va.internal_id = "00000106"
 						)';
+			}
+
+			if ($str_hard == 'shored') {
+				if (true == strstr($str_where, 'WHERE')) {
+					$pre_where = ' AND ';
+				} else {
+					$pre_where = ' WHERE ';
+				}
+				if (false === Ncw_Components_Session::checkInAll('PDB')) {
+					if (true == strstr($str_where, 'WHERE')) {
+						$pre_where = ' AND compound.pdb20 = 1 AND';
+					} else {
+						$pre_where = ' WHERE compound.pdb20 = 1 AND';
 					}
-					
-					if ($str_hard == 'shored') {
-						if (true == strstr($str_where, 'WHERE')) {
-							$pre_where = ' AND ';
-						} else {
-							$pre_where = ' WHERE ';
-						}
-						if (false === Ncw_Components_Session::checkInAll('PDB')) {
-							if (true == strstr($str_where, 'WHERE')) {
-								$pre_where = ' AND compound.pdb20 = 1 AND';
-							} else {
-								$pre_where = ' WHERE compound.pdb20 = 1 AND';
-							}
-							$str_where .= $pre_where .' (compound.status =  "portfolio" OR compound.status =  "top400")';
-						}
-						$str_where .= $pre_where .' (
+					$str_where .= $pre_where . ' (compound.status =  "portfolio" OR compound.status =  "top400")';
+				}
+				$str_where .= $pre_where . ' (
 							va.value > "0"
 							OR 
 							va.value > "0"
 						)
 						AND va.internal_id = "00000104"
 						';
+			}
+		}
+
+		// Wenn eine Farbe gewählt wurde
+		if (true == isset($this->params['url']['c_10']) || true == isset($this->params['url']['c_11']) || true == isset($this->params['url']['c_12']) || true == isset($this->params['url']['c_13'])) {
+			if (true == strstr($str_where, 'WHERE')) {
+				$pre_where = ' AND ';
+			} else {
+				$pre_where = ' WHERE ';
+			}
+			$color_conditions = '';
+			$color_or = '';
+			// Wenn eine Farbe 1 gewählt wurde
+			if (true == isset($this->params['url']['c_10'])) {
+				$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_10']);
+				if (!empty($search_color_id)) {
+					$color_conditions .= $color_or . ' (
+					color.internal_id = "' . $search_color_id . '"
+				)';
+					$color_or = ' OR ';
+				}
+			}
+			// Wenn eine Farbe 2 gewählt wurde
+			if (true == isset($this->params['url']['c_11'])) {
+				$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_11']);
+				if (!empty($search_color_id)) {
+					$color_conditions .= $color_or . ' (
+					color.internal_id = "' . $search_color_id . '"
+				)';
+					$color_or = ' OR ';
+				}
+			}
+			// Wenn eine Farbe 3 gewählt wurde
+			if (true == isset($this->params['url']['c_12'])) {
+				$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_12']);
+				if (!empty($search_color_id)) {
+					$color_conditions .= $color_or . ' (
+					color.internal_id = "' . $search_color_id . '"
+				)';
+					$color_or = ' OR ';
+				}
+			}
+			// Wenn eine Farbe 4 gewählt wurde
+			if (true == isset($this->params['url']['c_13'])) {
+				$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_13']);
+				if (!empty($search_color_id)) {
+					$color_conditions .= $color_or . ' (
+					color.internal_id = "' . $search_color_id . '"
+				)';
+					$color_or = ' OR ';
+				}
+			}
+			if (!empty($color_conditions)) {
+				$str_where .= $pre_where . ' ( ' . $color_conditions . ' ) ';
+			}
+		}
+
+		// Wenn eine Region gewählt wurde
+		if (true == isset($this->params['url']['r_10']) || true == isset($this->params['url']['r_11']) || true == isset($this->params['url']['r_12'])) {
+			if (true == strstr($str_where, 'WHERE')) {
+				$pre_where = ' AND ';
+			} else {
+				$pre_where = ' WHERE ';
+			}
+			$region_conditions = '';
+			$region_or = '';
+			// Wenn eine Region 1 gewählt wurde
+			if (true == isset($this->params['url']['r_10'])) {
+				$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_10']);
+				if (!empty($search_region_str)) {
+					$search_region_id = 1;
+					$region_conditions .= $region_or . ' (
+					serie_region.region_id = "' . $search_region_id . '"
+				)';
+					$region_or = ' OR ';
+				}
+			}
+			// Wenn eine Region 2 gewählt wurde
+			if (true == isset($this->params['url']['r_11'])) {
+				$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_11']);
+				if (!empty($search_region_str)) {
+					$search_region_id = 2;
+					$region_conditions .= $region_or . ' (
+					serie_region.region_id = "' . $search_region_id . '"
+				)';
+					$region_or = ' OR ';
+				}
+			}
+			// Wenn eine Region 3 gewählt wurde
+			if (true == isset($this->params['url']['r_12'])) {
+				$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_12']);
+				if (!empty($search_region_str)) {
+					$search_region_id = 3;
+					$region_conditions .= $region_or . ' (
+					serie_region.region_id = "' . $search_region_id . '"
+				)';
+					$region_or = ' OR ';
+				}
+			}
+			if (!empty($region_conditions)) {
+				$str_where .= $pre_where . ' ( ' . $region_conditions . ' ) ';
+			}
+		}
+
+		// Hier wird der Count Suchquery zusammengebaut und geholt
+		$str_search = $this->_getQuerySearchCount($str_where);
+		if (Ncw_Configure::read('developer_internal_ip') == $_SERVER['REMOTE_ADDR']) {
+			// echo $str_search . '<br />';
+			// exit;
+
+			//	var_dump($_GET);
+		}
+		$db = Ncw_Database::getInstance();
+		$sth = $db->prepare($str_search);
+
+		$sth->execute();
+
+		$results = $sth->fetchAll();
+
+		if ($results[0][0] > 400) {
+			echo '> 400';
+		} else {
+			echo $results[0][0];
+		}
+	}
+
+	/**
+	 * Suche
+	 */
+	public function sucheAction()
+	{
+		// $this->view = false;
+
+		if (false == isset($_GET['l'])) {
+			//   return null;
+		}
+		// $language_id = (int) $_GET["l"];
+
+		$language = 'en';
+		$pre_where = '';
+		$str_where = '';
+		$str_where2 = '';
+		if (false === Ncw_Components_Session::checkInAll('PDB')) {
+			if (true == strstr($str_where, 'WHERE')) {
+				$pre_where = ' AND compound.pdb20 = 1 AND';
+			} else {
+				$pre_where = ' WHERE compound.pdb20 = 1 AND';
+			}
+			$str_where .= $pre_where . ' (compound.status =  "portfolio" OR compound.status =  "top400")';
+		}
+
+		$arr_and = array();
+		$first_flag = false;
+		foreach ($this->params['url'] As $key => $item) {
+			$arr_not = array('ma', 'ap', 'ad', 'r', 'st', 's', 'l', 'rangeHardnessMin', 'rangeHardnessMax', 'cbox_hardness', 'pdb2_search');
+
+			if (false == in_array($key, $arr_not) && strlen($this->params['url']['pdb2_search']) < 1) {
+				// echo '' . $key . '<br />';
+				if (true == isset($this->params['url'][$key])) {
+					$arr_m = explode('m_', Ncw_Library_Sanitizer::escape($key));
+					if (true == strstr($str_where, 'WHERE')) {
+						$pre_where = ' AND';
+					} else {
+						$pre_where = ' WHERE';
+					}
+					if (isset($arr_m[1]) && $arr_m[1] > 0) {
+						$str_internal_ids_all = Ncw_Library_Sanitizer::escape($this->params['url']['m_' . $arr_m[1]]);
+						$arr_w = explode(';', $str_internal_ids_all);
+						$ct_label_id = 0;
+						$label_str = '';
+						foreach ($arr_w As $label_id) {
+							$pre_label_id = '';
+							if ($ct_label_id > 0) {
+								$pre_label_id = ' OR ';
+							}
+
+							$label_str .= $pre_label_id . " compound.tags LIKE  '%" . $label_id . "%'";
+							$arr_and[] = $str_internal_ids_all;
+
+							$ct_label_id++;
+						}
+						if ($first_flag == false && !empty($label_str)) {
+							$str_where .= $pre_where . ' ( ' . $label_str . ' )';
+						}
+						// Insert term Suchbegriff speichern
+						$str_lang = Ncw_Library_Sanitizer::escape($_GET['l']);
+						$str_insert_wcms_search = "INSERT INTO ncw_wcms_search (checkbox, term, type, lang, modified, vorgang_id) VALUES ('" . $str_internal_ids_all . "', '', '', '" . $str_lang . "', '" . date('Y-m-d H:i:s') . "', 0)";
+						$db = Ncw_Database::getInstance();
+						$sth = $db->prepare($str_insert_wcms_search);
+						$sth->execute();
 					}
 				}
-			
-			// Wenn eine Farbe gewählt wurde
-			if ( true == isset($this->params['url']['c_10']) ||  true == isset($this->params['url']['c_11']) || true == isset($this->params['url']['c_12']) || true == isset($this->params['url']['c_13']) ) {
-				// Insert term Suchbegriff speichern
-				if (true == isset($this->params['url']['c_10'])) {
-					$str_lang = Ncw_Library_Sanitizer::escape($_GET["l"]);
-					$str_insert_wcms_search = "INSERT INTO ncw_wcms_search (checkbox, term, type, lang, modified, vorgang_id) VALUES ('" . $this->params['url']['c_10'] . "', '', 'color', '" . $str_lang . "', '" . date('Y-m-d H:i:s') . "', 0)";
-	//echo $str_insert_wcms_search;
-					$db = Ncw_Database::getInstance();
-					$sth = $db->prepare( $str_insert_wcms_search);
-					$sth->execute();
-				}
-				if (true == isset($this->params['url']['c_11'])) {
-					$str_lang = Ncw_Library_Sanitizer::escape($_GET["l"]);
-					$str_insert_wcms_search = "INSERT INTO ncw_wcms_search (checkbox, term, type, lang, modified, vorgang_id) VALUES ('" . $this->params['url']['c_11'] . "', '', 'color', '" . $str_lang . "', '" . date('Y-m-d H:i:s') . "', 0)";
-	//echo $str_insert_wcms_search;
-					$db = Ncw_Database::getInstance();
-					$sth = $db->prepare( $str_insert_wcms_search);
-					$sth->execute();
-				}
-				if (true == isset($this->params['url']['c_12'])) {
-					$str_lang = Ncw_Library_Sanitizer::escape($_GET["l"]);
-					$str_insert_wcms_search = "INSERT INTO ncw_wcms_search (checkbox, term, type, lang, modified, vorgang_id) VALUES ('" . $this->params['url']['c_12'] . "', '', 'color', '" . $str_lang . "', '" . date('Y-m-d H:i:s') . "', 0)";
-	//echo $str_insert_wcms_search;
-					$db = Ncw_Database::getInstance();
-					$sth = $db->prepare( $str_insert_wcms_search);
-					$sth->execute();
-				}
-				if (true == isset($this->params['url']['c_13'])) {
-					$str_lang = Ncw_Library_Sanitizer::escape($_GET["l"]);
-					$str_insert_wcms_search = "INSERT INTO ncw_wcms_search (checkbox, term, type, lang, modified, vorgang_id) VALUES ('" . $this->params['url']['c_13'] . "', '', 'color', '" . $str_lang . "', '" . date('Y-m-d H:i:s') . "', 0)";
-//echo $str_insert_wcms_search;
-				$db = Ncw_Database::getInstance();
-					$sth = $db->prepare( $str_insert_wcms_search);
-					$sth->execute();
-				}
-				
+			}
+
+			if ($key == 'pdb2_search' && strlen($this->params['url']['pdb2_search']) > 1) {
 				if (true == strstr($str_where, 'WHERE')) {
 					$pre_where = ' AND ';
 				} else {
 					$pre_where = ' WHERE ';
 				}
-		$color_conditions = '';
-		$color_or = '';
-		// Wenn eine Farbe 1 gewählt wurde
-		if ( true == isset($this->params['url']['c_10']) ) {
-			$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_10']);
-			if (!empty($search_color_id)) {
-				$color_conditions .=  $color_or . ' (
-					color.internal_id = "' . $search_color_id . '"
-				)';
-				$color_or = ' OR ';
-			}
-		}
-		// Wenn eine Farbe 2 gewählt wurde
-		if ( true == isset($this->params['url']['c_11']) ) {
-			$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_11']);
-			if (!empty($search_color_id)) {
-				$color_conditions .=  $color_or . ' (
-					color.internal_id = "' . $search_color_id . '"
-				)';
-				$color_or = ' OR ';
-			}
-		}
-		// Wenn eine Farbe 3 gewählt wurde
-		if ( true == isset($this->params['url']['c_12']) ) {
-			$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_12']);
-			if (!empty($search_color_id)) {
-				$color_conditions .=  $color_or . ' (
-					color.internal_id = "' . $search_color_id . '"
-				)';
-				$color_or = ' OR ';
-			}
-		}
-		// Wenn eine Farbe 4 gewählt wurde
-		if ( true == isset($this->params['url']['c_13']) ) {
-			$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_13']);
-			if (!empty($search_color_id)) {
-				$color_conditions .=  $color_or . ' (
-					color.internal_id = "' . $search_color_id . '"
-				)';
-				$color_or = ' OR ';
-			}
-		}
-		if (!empty($color_conditions)) {
-			$str_where .= $pre_where . ' ( ' . $color_conditions . ' ) ';
-		}
-	}
-	
-	// Wenn eine Region gewählt wurde
-	if ( true == isset($this->params['url']['r_10']) ||  true == isset($this->params['url']['r_11']) ||  true == isset($this->params['url']['r_12'])) {
-		
-		// Insert term Suchbegriff speichern
-		$str_lang = Ncw_Library_Sanitizer::escape($_GET["l"]);
-		$str_insert_wcms_search = "INSERT INTO ncw_wcms_search (checkbox, term, type, lang, modified, vorgang_id) VALUES ('" . $this->params['url']['c_11'] . "', '', 'region', '" . $str_lang . "', '" . date('Y-m-d H:i:s') . "', 0)";
-		$db = Ncw_Database::getInstance();
-		$sth = $db->prepare( $str_insert_wcms_search);
-		$sth->execute();
-		
-		
-		if (true == strstr($str_where, 'WHERE')) {
-			$pre_where = ' AND ';
-		} else {
-			$pre_where = ' WHERE ';
-		}
-		$region_conditions = '';
-		$region_or = '';
-		// Wenn eine Region 1 gewählt wurde
-		if ( true == isset($this->params['url']['r_10']) ) {
-			$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_10']);
-			if (!empty($search_region_str)) {
-				$search_region_id = 1;
-				$region_conditions .=  $region_or . ' (
-					serie_region.region_id = "' . $search_region_id . '"
-				)';
-				$region_or = ' OR ';
-			}
-		}
-		// Wenn eine Region 2 gewählt wurde
-		if ( true == isset($this->params['url']['r_11']) ) {
-			$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_11']);
-			if (!empty($search_region_str)) {
-				$search_region_id = 2;
-				$region_conditions .=  $region_or . ' (
-					serie_region.region_id = "' . $search_region_id . '"
-				)';
-				$region_or = ' OR ';
-			}
-		}
-		// Wenn eine Region 3 gewählt wurde
-		if ( true == isset($this->params['url']['r_12']) ) {
-			$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_12']);
-			if (!empty($search_region_str)) {
-				$search_region_id = 3;
-				$region_conditions .=  $region_or . ' (
-					serie_region.region_id = "' . $search_region_id . '"
-				)';
-				$region_or = ' OR ';
-			}
-		}
-		if (!empty($region_conditions)) {
-			$str_where .= $pre_where . ' ( ' . $region_conditions . ' ) ';
-		}
-	}
-			// Hier wird der Suchstring geholt
-			$str_search = $this->_getQuerySearch($str_where);
-		
-			if (Ncw_Configure::read('developer_internal_ip') == $_SERVER['REMOTE_ADDR'] ) {
-				echo $str_search;
-				//exit;
-
-
-			} 
-
-        $db = Ncw_Database::getInstance();
-        $sth = $db->prepare( $str_search);
-        $sth->execute();
-        $results = $sth->fetchAll();
-		
-		$this->view->results = $results;
-
-    }
-	
-	
-		/*
-		* Sucht anhand der Labels in der Datenbank
-		*/
-		private function _getCompoudLabels($str_search)
-		{
-			 $str_search = strtolower($str_search);
-
-				$str_search = str_replace(' zu ', ' ', $str_search);
-			  $str_search = str_replace(' to', ' ', $str_search);
-			
-				$arr_compounds = array();
-			
-				$str_search = str_replace(',', ' ', $str_search);
-				$arr_search_tmp = explode(' ' ,trim($str_search));
-				$ct = 0;
-			
-$str_where = '';
-			
-				if (false === Ncw_Components_Session::checkInAll('PDB')) {
-					//if (true == strstr($str_where, 'WHERE')) {
-						$pre_where = ' AND ';
-					//} else {
-					//	$pre_where = ' WHERE ';
-					//}
-					$str_where .= $pre_where .' (compound.status =  "portfolio" OR compound.status =  "top400")';
+				$str_search = Ncw_Library_Sanitizer::escape($this->params['url'][$key]);
+				//	if (strlen($str_search_tmp) > 1 && strtolower($str_search_tmp) != 'zu' && strtolower($str_search_tmp) != 'to' && strtolower($str_search_tmp) != 'auf' && strtolower($str_search_tmp) != 'and') {
+				// Hier werden die Materailvorteile, Applications und die Approvals mit dem Suchbegriff verglichen, wenn ein Treffer vorleigt wird die CompoundID zurückgegeben.
+				$arr_compound_ids = $this->_getCompoudLabels($str_search);
+				// return implode(';', $arr_compounds);
+				$str_or_compound_id = '';
+				foreach ($arr_compound_ids As $compound_tmp) {
+					$str_or_compound_id .= ' OR compound.id ="' . $compound_tmp . '"';
 				}
-			
-			
-				foreach( $arr_search_tmp As $str_search_tmp) {
+				//	}
+				// }
+
+				// Insert term Suchbegriff speichern
+				$str_lang = Ncw_Library_Sanitizer::escape($_GET['l']);
+				$str_insert_wcms_search = "INSERT INTO ncw_wcms_search (term, checkbox, type, lang, modified, vorgang_id) VALUES ('" . $str_search . "', '', '', '" . $str_lang . "', '" . date('Y-m-d H:i:s') . "', 0)";
+
+				// Build search conditions first
+				$search_conditions = '';
+				$str_search = str_replace(',', ' ', $str_search);
+				$arr_search_tmp = explode(' ', trim($str_search));
+				$ctarrtmp = 0;
+
+				foreach ($arr_search_tmp As $str_search_tmp) {
 					$str_search_tmp = trim($str_search_tmp);
+
+					$str_search_tmp = $this->suchbegriffReinigen($str_search_tmp);
+
+					// Mind 3 Buchstaben länge bzw. wenn nur 2 dann wird hinten ein Leerzeichen angehängt
 					if (strlen($str_search_tmp) < 3) {
-						$str_search_tmp = ' ' . $str_search_tmp;
+						//	$str_search_tmp = $str_search_tmp . ' ';
 					}
-					$arrcontrole = array();
-					//$str_search_tmp = trim($str_search_tmp);
-					$str_search_tmp = str_replace('ul94', 'ul 94', $str_search_tmp);
-					$str_search_tmp = str_replace('pv3929', 'pv 3929', $str_search_tmp);
-					$str_search_tmp = str_replace('pv3930', 'pv 3930', $str_search_tmp);
-					$str_search_tmp = str_replace('vda270', 'vda 270', $str_search_tmp);
 					if (strlen($str_search_tmp) > 1 && strtolower($str_search_tmp) != 'zu' && strtolower($str_search_tmp) != 'to' && strtolower($str_search_tmp) != 'auf' && strtolower($str_search_tmp) != 'and') {
-						// Materialvorteile
-						$query_search ='
+						if ($ctarrtmp > 0) {
+							$search_conditions .= ') AND (';
+						}
+						if (strlen($str_search_tmp) < 3) {
+							$str_where2 .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
+								OR serie.name LIKE "%' . trim($str_search_tmp) . '%"
+								OR serie_values.description REGEXP "[[:<:]]' . $str_search_tmp . ' [[:>:]]"
+								OR serie_values.text1 REGEXP "[[:<:]]' . $str_search_tmp . ' [[:>:]]"
+								OR serie_values.text2 REGEXP "[[:<:]]' . $str_search_tmp . ' [[:>:]]"
+								OR compounddescription.description LIKE "%' . $str_search_tmp . ' %"
+								)';
+						} else {
+							$str_where2 .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
+								OR serie.name LIKE "%' . trim($str_search_tmp) . '%"
+								OR serie_values.description REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
+								OR serie_values.text1 REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
+								OR serie_values.text2 REGEXP "[[:<:]]' . $str_search_tmp . '[[:>:]]"
+								OR compounddescription.description LIKE "%' . $str_search_tmp . '%"
+								)';
+						}
+
+						// abgespeckte Version da die Obige sehr sehr langsam ist - Aufrufe sind teils 20 mal schneller mit der neuen Methode
+						if (strlen($str_search_tmp) < 3) {
+							$search_conditions .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
+								OR serie.name LIKE "%' . trim($str_search_tmp) . '%"
+								OR serie_values.description LIKE "%' . trim($str_search_tmp) . '%"
+								)';
+						} else {
+							$search_conditions .= ' (compound.name LIKE "%' . $str_search_tmp . '%"
+								OR serie.name LIKE "%' . trim($str_search_tmp) . '%"
+								OR compounddescription.description LIKE "%' . $str_search_tmp . '%"
+								)';
+						}
+
+						$search_conditions .= $str_or_compound_id;
+					}
+
+					$ctarrtmp++;
+				}
+
+				// Only add WHERE clause if we have search conditions
+				if (!empty($search_conditions)) {
+					$str_where .= $pre_where . ' ((' . $search_conditions . '))';
+				}
+			}
+		}
+
+		$testmode = isset($this->params['url']['testmode']) ? Ncw_Library_Sanitizer::escape($this->params['url']['testmode']) : '';
+		// Range Hardness
+		if (true == isset($this->params['url']['hard']) && strlen($this->params['url']['pdb2_search']) < 1) {
+			$str_hard = Ncw_Library_Sanitizer::escape($this->params['url']['hard']);
+			if ($str_hard == 'hardness') {
+				if (true == strstr($str_where, 'WHERE')) {
+					$pre_where = ' AND ';
+				} else {
+					$pre_where = ' WHERE ';
+				}
+				if (false === Ncw_Components_Session::checkInAll('PDB')) {
+					if (true == strstr($str_where, 'WHERE')) {
+						$pre_where = ' AND compound.pdb20 = 1 AND';
+					} else {
+						$pre_where = ' WHERE compound.pdb20 = 1 AND';
+					}
+					$str_where .= $pre_where . ' (compound.status =  "portfolio" OR compound.status =  "top400")';
+				}
+
+				$str_search_max = Ncw_Library_Sanitizer::escape($this->params['url']['rangeHardnessMax']);
+				$str_search_min = Ncw_Library_Sanitizer::escape($this->params['url']['rangeHardnessMin']);
+				$str_where .= $pre_where . ' (
+					va.value <  "' . $str_search_max . '"
+					AND va.value >  "' . $str_search_min . '"
+					AND (va.internal_id = "00000101" OR va.internal_id = "00000103")
+			)';
+			}
+
+			if ($str_hard == 'supersoft') {
+				if (true == strstr($str_where, 'WHERE')) {
+					$pre_where = ' AND ';
+				} else {
+					$pre_where = ' WHERE ';
+				}
+				if (false === Ncw_Components_Session::checkInAll('PDB')) {
+					if (true == strstr($str_where, 'WHERE')) {
+						$pre_where = ' AND compound.pdb20 = 1 AND';
+					} else {
+						$pre_where = ' WHERE compound.pdb20 = 1 AND';
+					}
+					$str_where .= $pre_where . ' (compound.status =  "portfolio" OR compound.status =  "top400")';
+				}
+				$str_where .= $pre_where . ' (
+							va.value > "0"
+
+							AND va.internal_id = "00000106"
+						)';
+			}
+
+			if ($str_hard == 'shored') {
+				if (true == strstr($str_where, 'WHERE')) {
+					$pre_where = ' AND ';
+				} else {
+					$pre_where = ' WHERE ';
+				}
+				if (false === Ncw_Components_Session::checkInAll('PDB')) {
+					if (true == strstr($str_where, 'WHERE')) {
+						$pre_where = ' AND compound.pdb20 = 1 AND';
+					} else {
+						$pre_where = ' WHERE compound.pdb20 = 1 AND';
+					}
+					$str_where .= $pre_where . ' (compound.status =  "portfolio" OR compound.status =  "top400")';
+				}
+				$str_where .= $pre_where . ' (
+							va.value > "0"
+							OR 
+							va.value > "0"
+						)
+						AND va.internal_id = "00000104"
+						';
+			}
+		}
+
+		// Wenn eine Farbe gewählt wurde
+		if (true == isset($this->params['url']['c_10']) || true == isset($this->params['url']['c_11']) || true == isset($this->params['url']['c_12']) || true == isset($this->params['url']['c_13'])) {
+			// Insert term Suchbegriff speichern
+			if (true == isset($this->params['url']['c_10'])) {
+				$str_lang = Ncw_Library_Sanitizer::escape($_GET['l']);
+				$str_insert_wcms_search = "INSERT INTO ncw_wcms_search (checkbox, term, type, lang, modified, vorgang_id) VALUES ('" . $this->params['url']['c_10'] . "', '', 'color', '" . $str_lang . "', '" . date('Y-m-d H:i:s') . "', 0)";
+				// echo $str_insert_wcms_search;
+				$db = Ncw_Database::getInstance();
+				$sth = $db->prepare($str_insert_wcms_search);
+				$sth->execute();
+			}
+			if (true == isset($this->params['url']['c_11'])) {
+				$str_lang = Ncw_Library_Sanitizer::escape($_GET['l']);
+				$str_insert_wcms_search = "INSERT INTO ncw_wcms_search (checkbox, term, type, lang, modified, vorgang_id) VALUES ('" . $this->params['url']['c_11'] . "', '', 'color', '" . $str_lang . "', '" . date('Y-m-d H:i:s') . "', 0)";
+				// echo $str_insert_wcms_search;
+				$db = Ncw_Database::getInstance();
+				$sth = $db->prepare($str_insert_wcms_search);
+				$sth->execute();
+			}
+			if (true == isset($this->params['url']['c_12'])) {
+				$str_lang = Ncw_Library_Sanitizer::escape($_GET['l']);
+				$str_insert_wcms_search = "INSERT INTO ncw_wcms_search (checkbox, term, type, lang, modified, vorgang_id) VALUES ('" . $this->params['url']['c_12'] . "', '', 'color', '" . $str_lang . "', '" . date('Y-m-d H:i:s') . "', 0)";
+				// echo $str_insert_wcms_search;
+				$db = Ncw_Database::getInstance();
+				$sth = $db->prepare($str_insert_wcms_search);
+				$sth->execute();
+			}
+			if (true == isset($this->params['url']['c_13'])) {
+				$str_lang = Ncw_Library_Sanitizer::escape($_GET['l']);
+				$str_insert_wcms_search = "INSERT INTO ncw_wcms_search (checkbox, term, type, lang, modified, vorgang_id) VALUES ('" . $this->params['url']['c_13'] . "', '', 'color', '" . $str_lang . "', '" . date('Y-m-d H:i:s') . "', 0)";
+				// echo $str_insert_wcms_search;
+				$db = Ncw_Database::getInstance();
+				$sth = $db->prepare($str_insert_wcms_search);
+				$sth->execute();
+			}
+
+			if (true == strstr($str_where, 'WHERE')) {
+				$pre_where = ' AND ';
+			} else {
+				$pre_where = ' WHERE ';
+			}
+			$color_conditions = '';
+			$color_or = '';
+			// Wenn eine Farbe 1 gewählt wurde
+			if (true == isset($this->params['url']['c_10'])) {
+				$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_10']);
+				if (!empty($search_color_id)) {
+					$color_conditions .= $color_or . ' (
+					color.internal_id = "' . $search_color_id . '"
+				)';
+					$color_or = ' OR ';
+				}
+			}
+			// Wenn eine Farbe 2 gewählt wurde
+			if (true == isset($this->params['url']['c_11'])) {
+				$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_11']);
+				if (!empty($search_color_id)) {
+					$color_conditions .= $color_or . ' (
+					color.internal_id = "' . $search_color_id . '"
+				)';
+					$color_or = ' OR ';
+				}
+			}
+			// Wenn eine Farbe 3 gewählt wurde
+			if (true == isset($this->params['url']['c_12'])) {
+				$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_12']);
+				if (!empty($search_color_id)) {
+					$color_conditions .= $color_or . ' (
+					color.internal_id = "' . $search_color_id . '"
+				)';
+					$color_or = ' OR ';
+				}
+			}
+			// Wenn eine Farbe 4 gewählt wurde
+			if (true == isset($this->params['url']['c_13'])) {
+				$search_color_id = Ncw_Library_Sanitizer::escape($this->params['url']['c_13']);
+				if (!empty($search_color_id)) {
+					$color_conditions .= $color_or . ' (
+					color.internal_id = "' . $search_color_id . '"
+				)';
+					$color_or = ' OR ';
+				}
+			}
+			if (!empty($color_conditions)) {
+				$str_where .= $pre_where . ' ( ' . $color_conditions . ' ) ';
+			}
+		}
+
+		// Wenn eine Region gewählt wurde
+		if (true == isset($this->params['url']['r_10']) || true == isset($this->params['url']['r_11']) || true == isset($this->params['url']['r_12'])) {
+			// Insert term Suchbegriff speichern
+			$str_lang = Ncw_Library_Sanitizer::escape($_GET['l']);
+			$str_insert_wcms_search = "INSERT INTO ncw_wcms_search (checkbox, term, type, lang, modified, vorgang_id) VALUES ('" . $this->params['url']['c_11'] . "', '', 'region', '" . $str_lang . "', '" . date('Y-m-d H:i:s') . "', 0)";
+			$db = Ncw_Database::getInstance();
+			$sth = $db->prepare($str_insert_wcms_search);
+			$sth->execute();
+
+			if (true == strstr($str_where, 'WHERE')) {
+				$pre_where = ' AND ';
+			} else {
+				$pre_where = ' WHERE ';
+			}
+			$region_conditions = '';
+			$region_or = '';
+			// Wenn eine Region 1 gewählt wurde
+			if (true == isset($this->params['url']['r_10'])) {
+				$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_10']);
+				if (!empty($search_region_str)) {
+					$search_region_id = 1;
+					$region_conditions .= $region_or . ' (
+					serie_region.region_id = "' . $search_region_id . '"
+				)';
+					$region_or = ' OR ';
+				}
+			}
+			// Wenn eine Region 2 gewählt wurde
+			if (true == isset($this->params['url']['r_11'])) {
+				$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_11']);
+				if (!empty($search_region_str)) {
+					$search_region_id = 2;
+					$region_conditions .= $region_or . ' (
+					serie_region.region_id = "' . $search_region_id . '"
+				)';
+					$region_or = ' OR ';
+				}
+			}
+			// Wenn eine Region 3 gewählt wurde
+			if (true == isset($this->params['url']['r_12'])) {
+				$search_region_str = Ncw_Library_Sanitizer::escape($this->params['url']['r_12']);
+				if (!empty($search_region_str)) {
+					$search_region_id = 3;
+					$region_conditions .= $region_or . ' (
+					serie_region.region_id = "' . $search_region_id . '"
+				)';
+					$region_or = ' OR ';
+				}
+			}
+			if (!empty($region_conditions)) {
+				$str_where .= $pre_where . ' ( ' . $region_conditions . ' ) ';
+			}
+		}
+		// Hier wird der Suchstring geholt
+		$str_search = $this->_getQuerySearch($str_where);
+
+		if (Ncw_Configure::read('developer_internal_ip') == $_SERVER['REMOTE_ADDR']) {
+			echo $str_search;
+			// exit;
+		}
+
+		$db = Ncw_Database::getInstance();
+		$sth = $db->prepare($str_search);
+		$sth->execute();
+		$results = $sth->fetchAll();
+
+		if (false == isset($_GET['json'])) {
+			$this->view->results = $results;
+		} else {
+			$this->view = false;
+			echo json_encode($results);
+		}
+	}
+
+	/*
+	 * Sucht anhand der Labels in der Datenbank
+	 */
+	private function _getCompoudLabels($str_search)
+	{
+		$str_search = strtolower($str_search);
+
+		$str_search = str_replace(' zu ', ' ', $str_search);
+		$str_search = str_replace(' to', ' ', $str_search);
+
+		$arr_compounds = array();
+
+		$str_search = str_replace(',', ' ', $str_search);
+		$arr_search_tmp = explode(' ', trim($str_search));
+		$ct = 0;
+
+		$str_where = '';
+
+		if (false === Ncw_Components_Session::checkInAll('PDB')) {
+			// if (true == strstr($str_where, 'WHERE')) {
+			$pre_where = ' AND ';
+			// } else {
+			//	$pre_where = ' WHERE ';
+			// }
+			$str_where .= $pre_where . ' (compound.status =  "portfolio" OR compound.status =  "top400")';
+		}
+
+		foreach ($arr_search_tmp As $str_search_tmp) {
+			$str_search_tmp = trim($str_search_tmp);
+			if (strlen($str_search_tmp) < 3) {
+				$str_search_tmp = ' ' . $str_search_tmp;
+			}
+			$arrcontrole = array();
+			// $str_search_tmp = trim($str_search_tmp);
+			$str_search_tmp = str_replace('ul94', 'ul 94', $str_search_tmp);
+			$str_search_tmp = str_replace('pv3929', 'pv 3929', $str_search_tmp);
+			$str_search_tmp = str_replace('pv3930', 'pv 3930', $str_search_tmp);
+			$str_search_tmp = str_replace('vda270', 'vda 270', $str_search_tmp);
+			if (strlen($str_search_tmp) > 1 && strtolower($str_search_tmp) != 'zu' && strtolower($str_search_tmp) != 'to' && strtolower($str_search_tmp) != 'auf' && strtolower($str_search_tmp) != 'and') {
+				// Materialvorteile
+				$query_search = '
 						SELECT 
 						DISTINCT 
 						cma.compound_id
@@ -1225,32 +1175,28 @@ $str_where = '';
 						)
 						' . $str_where;
 
-						//echo '<br /><br />' . $query_search . '<br /><br />';
-						if (Ncw_Configure::read('developer_internal_ip') == $_SERVER['REMOTE_ADDR'] ) {
-							echo $query_search;
+				// echo '<br /><br />' . $query_search . '<br /><br />';
+				if (Ncw_Configure::read('developer_internal_ip') == $_SERVER['REMOTE_ADDR']) {
+					echo $query_search;
+				}
 
-						} 			
-						
-						
-						$db = Ncw_Database::getInstance();
-						$sth = $db->prepare($query_search);
+				$db = Ncw_Database::getInstance();
+				$sth = $db->prepare($query_search);
 
-						$sth->execute();
-						$results = $sth->fetchAll();
-						foreach ($results As $row) {
-							if ($ct == 0) {
-								$arr_compounds[] = $row['compound_id'];
-								$arrcontrole[] = $row['compound_id'];
-							} else if ($ct > 0 && true == in_array($row['compound_id'] ,$arr_compounds)) {
-								$arrcontrole[] = $row['compound_id'];
-							}
-							
-							
-						}
+				$sth->execute();
+				$results = $sth->fetchAll();
+				foreach ($results As $row) {
+					if ($ct == 0) {
+						$arr_compounds[] = $row['compound_id'];
+						$arrcontrole[] = $row['compound_id'];
+					} else if ($ct > 0 && true == in_array($row['compound_id'], $arr_compounds)) {
+						$arrcontrole[] = $row['compound_id'];
+					}
+				}
 
-						// Anwendungsgebiete
-						$query_search ='';
-						$query_search ="
+				// Anwendungsgebiete
+				$query_search = '';
+				$query_search = "
 						SELECT 
 						DISTINCT 
 						cma.compound_id
@@ -1265,26 +1211,25 @@ $str_where = '';
 						OR label.translation LIKE '" . $str_search_tmp . "%'
 						";
 
-						//echo $query_search;
-						
-						$db = Ncw_Database::getInstance();
-						$sth = $db->prepare($query_search);
+				// echo $query_search;
 
-						$sth->execute();
-						$results = $sth->fetchAll();
-						foreach ($results As $row) {
-							if ($ct == 0) {
-								$arr_compounds[] = $row['compound_id'];
-								$arrcontrole[] = $row['compound_id'];
-							} else if ($ct > 0 && true == in_array($row['compound_id'] ,$arr_compounds)) {
-								$arrcontrole[] = $row['compound_id'];
-							}
-							
-						}
+				$db = Ncw_Database::getInstance();
+				$sth = $db->prepare($query_search);
 
-						// Regulations Approvals
-						$query_search ='';
-						$query_search ="
+				$sth->execute();
+				$results = $sth->fetchAll();
+				foreach ($results As $row) {
+					if ($ct == 0) {
+						$arr_compounds[] = $row['compound_id'];
+						$arrcontrole[] = $row['compound_id'];
+					} else if ($ct > 0 && true == in_array($row['compound_id'], $arr_compounds)) {
+						$arrcontrole[] = $row['compound_id'];
+					}
+				}
+
+				// Regulations Approvals
+				$query_search = '';
+				$query_search = "
 						SELECT 
 						DISTINCT 
 						cma.compound_id
@@ -1298,8 +1243,8 @@ $str_where = '';
 						WHERE  label.translation REGEXP '[[:<:]]" . $str_search_tmp . "[[:>:]]'
 						OR label.translation LIKE '%" . $str_search_tmp . "%'
 						";
-						
-						$query_search ="
+
+				$query_search = "
 						SELECT 
 						DISTINCT 
 						cma.compound_id
@@ -1313,44 +1258,40 @@ $str_where = '';
 						WHERE  label.translation LIKE '%" . $str_search . "%'
 		
 						";
-						
-						
-						if ($_SERVER['REMOTE_ADDR'] == '79.248.140.86') {
-							//echo $query_search;
-						}
-						
-						$db = Ncw_Database::getInstance();
-						$sth = $db->prepare($query_search);
 
-						$sth->execute();
-						$results = $sth->fetchAll();
-						foreach ($results As $row) {
-							if ($ct == 0) {
-								$arr_compounds[] = $row['compound_id'];
-								$arrcontrole[] = $row['compound_id'];
-							} else if ($ct > 0 && true == in_array($row['compound_id'] ,$arr_compounds)) {
-								$arrcontrole[] = $row['compound_id'];
-							}
-							
-						}
-						//var_dump($arr_compounds);
-						//echo '<br /><br />';
-						$ct++;
-						
-						$arr_compounds = array_intersect($arr_compounds, $arrcontrole);
+				if ($_SERVER['REMOTE_ADDR'] == '79.248.140.86') {
+					// echo $query_search;
+				}
+
+				$db = Ncw_Database::getInstance();
+				$sth = $db->prepare($query_search);
+
+				$sth->execute();
+				$results = $sth->fetchAll();
+				foreach ($results As $row) {
+					if ($ct == 0) {
+						$arr_compounds[] = $row['compound_id'];
+						$arrcontrole[] = $row['compound_id'];
+					} else if ($ct > 0 && true == in_array($row['compound_id'], $arr_compounds)) {
+						$arrcontrole[] = $row['compound_id'];
 					}
-				}			
-				return $arr_compounds;
+				}
+				// var_dump($arr_compounds);
+				// echo '<br /><br />';
+				$ct++;
+
+				$arr_compounds = array_intersect($arr_compounds, $arrcontrole);
+			}
 		}
-	
-		/*
-		* Baut den Suchstring zusammen für die eigentliche Suche
-		*/
-		private function _getQuerySearch($str_where)
-		{
-			
-			
-				$str_search = "
+		return $arr_compounds;
+	}
+
+	/*
+	 * Baut den Suchstring zusammen für die eigentliche Suche
+	 */
+	private function _getQuerySearch($str_where)
+	{
+		$str_search = '
 						SELECT 
 						DISTINCT
 						compound.id compound_id,
@@ -1386,22 +1327,22 @@ $str_where = '';
 						ON serie.brand_id = brand.id
 						
 						
-						" . $str_where . "
+						' . $str_where . '
 						
 						ORDER by compound.status, compound.name
 						LIMIT 0, 401
-            ";
-			//echo $str_search;
-			return $str_search;
-		}
-	
-	
-			/*
-		* Baut den Suchstring zusammen für dieTrefferanzeige
-		*/
-		private function _getQuerySearchCount($str_where)
-		{
-				$str_search = "
+            ';
+		// echo $str_search;
+		return $str_search;
+	}
+
+	/*
+	 * Baut den Suchstring zusammen für dieTrefferanzeige
+	 */
+
+	private function _getQuerySearchCount($str_where)
+	{
+		$str_search = '
 						SELECT count(DISTINCT(compound.id))
 					
 		
@@ -1430,92 +1371,90 @@ $str_where = '';
 						ON serie.brand_id = brand.id
 						
 						
-						" . $str_where . "
+						' . $str_where . '
 						
 						ORDER by compound.status, compound.name
 						
 						LIMIT 0, 401
-						";
-			
-			return $str_search;
-		}
-	
-		/*
-		* Speichert die Einträge in der DB zur Erfassung der Downloads
-		*/
-		public function	saveStatsAction(){
-			$this->view = false;
-			$s = Ncw_Library_Sanitizer::escape($this->params['url']['s']);
-			$lang = Ncw_Library_Sanitizer::escape($this->params['url']['lang']);
-			$mode = Ncw_Library_Sanitizer::escape($this->params['url']['mode']);
-			$type = Ncw_Library_Sanitizer::escape($this->params['url']['type']);
-			$sendtype = Ncw_Library_Sanitizer::escape($this->params['url']['sendtype']);
-			//$arr_browser = get_browser(null, true);
-			$platform = $_SERVER['HTTP_USER_AGENT'];
-			$browser = $arr_browser['browser'];
-			
-			
-			$ip = $_SERVER['REMOTE_ADDR'];
-			
-			// Die IP's werden in der config.php 
-			$internal_ips = Ncw_Configure::read('internal_ips');
-			$internal = 0;
-			if (in_array($_SERVER['REMOTE_ADDR'], $internal_ips)) {
-				$internal = 1;
-			}
+						';
 
-			
-			$str_insert = "
+		return $str_search;
+	}
+
+	/*
+	 * Speichert die Einträge in der DB zur Erfassung der Downloads
+	 */
+	public function saveStatsAction()
+	{
+		$this->view = false;
+		$s = Ncw_Library_Sanitizer::escape($this->params['url']['s']);
+		$lang = Ncw_Library_Sanitizer::escape($this->params['url']['lang']);
+		$mode = Ncw_Library_Sanitizer::escape($this->params['url']['mode']);
+		$type = Ncw_Library_Sanitizer::escape($this->params['url']['type']);
+		$sendtype = Ncw_Library_Sanitizer::escape($this->params['url']['sendtype']);
+		// $arr_browser = get_browser(null, true);
+		$platform = $_SERVER['HTTP_USER_AGENT'];
+		$browser = $arr_browser['browser'];
+
+		$ip = $_SERVER['REMOTE_ADDR'];
+
+		// Die IP's werden in der config.php
+		$internal_ips = Ncw_Configure::read('internal_ips');
+		$internal = 0;
+		if (in_array($_SERVER['REMOTE_ADDR'], $internal_ips)) {
+			$internal = 1;
+		}
+
+		$str_insert = "
 								INSERT INTO ncw_wcms_stats (file, type, mode, sendtype, lang, internal, platform, browser, date) VALUES ('" . $s . "', '" . $type . "', '" . $mode . "', '" . $sendtype . "', '" . $lang . "', '" . $internal . "', '" . $platform . "', '" . $browser . "', '" . date('Y-m-d H:i:s') . "');
 								";
 
-        $db = Ncw_Database::getInstance();
-        $sth = $db->prepare( $str_insert);
+		$db = Ncw_Database::getInstance();
+		$sth = $db->prepare($str_insert);
 
-        $sth->execute();
-		}
-	
-		/*
-		* Holt anahnad der internal_id (SAP code) den richtigen Begriff in der richtigen Sprache aus der db tabelle label
-		*/
-		public function getLabelName($str, $str_fallback , $language_id)
-		{
-			//$arr_str = explode('-', $str);
-			$str = trim(Ncw_Library_Sanitizer::escape($str));
-			$db_language = $this->_language_3stellen($language_id);
-			$str_search = "
+		$sth->execute();
+	}
+
+	/*
+	 * Holt anahnad der internal_id (SAP code) den richtigen Begriff in der richtigen Sprache aus der db tabelle label
+	 */
+	public function getLabelName($str, $str_fallback, $language_id)
+	{
+		// $arr_str = explode('-', $str);
+		$str = trim(Ncw_Library_Sanitizer::escape($str));
+		$db_language = $this->_language_3stellen($language_id);
+		$str_search = "
 				SELECT 
 				translation
 				
 				FROM ncw_tpepdb2_label As label
 				
-				WHERE attribute = '". $str . "'
+				WHERE attribute = '" . $str . "'
 				AND language = '" . $db_language . "'
 
 			";
-				
-			$db = Ncw_Database::getInstance();
-			$sth = $db->prepare( $str_search);
-			$sth->execute();
-			$results = $sth->fetchAll();
-			if (isset($results[0]) && is_array($results[0]) && isset($results[0]['translation']) && strlen($results[0]['translation']) > 1) {
-				return $results[0]['translation'];
-			}
-	
-			return $str_fallback;
-			
+
+		$db = Ncw_Database::getInstance();
+		$sth = $db->prepare($str_search);
+		$sth->execute();
+		$results = $sth->fetchAll();
+		if (isset($results[0]) && is_array($results[0]) && isset($results[0]['translation']) && strlen($results[0]['translation']) > 1) {
+			return $results[0]['translation'];
 		}
-		
-		/*
-		* Holt anahnad der internal_id (SAP code) den richtigen Begriff in der richtigen Sprache aus der db tabelle
-		* color
-		*/
-		public function getColorName($str, $str_fallback , $language_id)
-		{
-			//$arr_str = explode('-', $str);
-			$str = trim(Ncw_Library_Sanitizer::escape($str));
-			$db_language = $this->_language_3stellen($language_id);
-			$str_search = "
+
+		return $str_fallback;
+	}
+
+	/*
+	 * Holt anahnad der internal_id (SAP code) den richtigen Begriff in der richtigen Sprache aus der db tabelle
+	 * color
+	 */
+	public function getColorName($str, $str_fallback, $language_id)
+	{
+		// $arr_str = explode('-', $str);
+		$str = trim(Ncw_Library_Sanitizer::escape($str));
+		$db_language = $this->_language_3stellen($language_id);
+		$str_search = "
 				SELECT 
 				DISTINCT
 				
@@ -1523,23 +1462,23 @@ $str_where = '';
 				
 				FROM ncw_tpepdb2_compound_color As colortable
 				
-				WHERE internal_id = '". $str . "'
+				WHERE internal_id = '" . $str . "'
 				
 				AND lang = '" . $db_language . "'
 
 			";
-			
-			//return $str_search;
 
-			$db = Ncw_Database::getInstance();
-			$sth = $db->prepare( $str_search);
-			$sth->execute();
-			$results = $sth->fetchAll();
-			if ( strlen($results[0]['color']) > 1) {
-				return ucfirst($results[0]['color']);
-			}
-	
-			$str_search = "
+		// return $str_search;
+
+		$db = Ncw_Database::getInstance();
+		$sth = $db->prepare($str_search);
+		$sth->execute();
+		$results = $sth->fetchAll();
+		if (strlen($results[0]['color']) > 1) {
+			return ucfirst($results[0]['color']);
+		}
+
+		$str_search = "
 				SELECT 
 				DISTINCT
 				
@@ -1547,34 +1486,33 @@ $str_where = '';
 				
 				FROM ncw_tpepdb2_compound_color As colortable
 				
-				WHERE internal_id = '". $str . "'
+				WHERE internal_id = '" . $str . "'
 				AND lang = 'eng'
 
 			";
-			
-			$sth = $db->prepare( $str_search);
-			$sth->execute();
-			$results = $sth->fetchAll();
-			if ( strlen($results[0]['color']) > 1) {
-				return ucfirst($results[0]['color']);
-			}
-			
-			return $str_fallback;
 
+		$sth = $db->prepare($str_search);
+		$sth->execute();
+		$results = $sth->fetchAll();
+		if (strlen($results[0]['color']) > 1) {
+			return ucfirst($results[0]['color']);
 		}
-	
-		/*
-		* Passwort zusücksetzen
-		*/
-		public function resetPasswordAction ()
-		{
-			$this->view = false;
-			$password = Ncw_Library_Sanitizer::escape($this->params['url']['password']);
-			$hashcode = Ncw_Library_Sanitizer::escape($this->params['url']['hashcode']);
-			if (strlen($password) > 7) {
-				if (strlen($hashcode) == 32) {
-					$db = Ncw_Database::getInstance();
-					$str_search = "
+
+		return $str_fallback;
+	}
+
+	/*
+	 * Passwort zusücksetzen
+	 */
+	public function resetPasswordAction()
+	{
+		$this->view = false;
+		$password = Ncw_Library_Sanitizer::escape($this->params['url']['password']);
+		$hashcode = Ncw_Library_Sanitizer::escape($this->params['url']['hashcode']);
+		if (strlen($password) > 7) {
+			if (strlen($hashcode) == 32) {
+				$db = Ncw_Database::getInstance();
+				$str_search = "
 						SELECT
 						id,
 						passwordresettime,
@@ -1582,103 +1520,101 @@ $str_where = '';
 						
 						FROM ncw_core_user
 
-						WHERE passwordresethash = '". $hashcode . "'
+						WHERE passwordresethash = '" . $hashcode . "'
 
 					";
-					
-					$sth = $db->prepare( $str_search);
-					$sth->execute();
-					$results = $sth->fetchAll();
-					if ( strlen($results[0]['passwordresettime']) > 1) {
-						$user_id_tmp = $results[0]['id'];
-						$timediv = time() - $results[0]['passwordresettime'];	
-						if ($timediv > 86400) {
-							echo 'error_link_abgelaufen';
-							return false;
-						} else {
-							$crypter = new Ncw_Components_Crypter('zm5c538mv');
-							$passwort_verschluesselt = $crypter->encrypt($password);
-							
-							$str_set_code = "UPDATE ncw_core_user set password='" . $passwort_verschluesselt . "', passwordresethash='', passwordresettime='' WHERE id = '" . $user_id_tmp . "'";
-							
-							$sth = $db->prepare( $str_set_code );
-							$sth->execute();
-							$results = $sth->fetchAll();
-							
-							echo 'true';
-							return false;
-						}
-					} else {
+
+				$sth = $db->prepare($str_search);
+				$sth->execute();
+				$results = $sth->fetchAll();
+				if (strlen($results[0]['passwordresettime']) > 1) {
+					$user_id_tmp = $results[0]['id'];
+					$timediv = time() - $results[0]['passwordresettime'];
+					if ($timediv > 86400) {
 						echo 'error_link_abgelaufen';
 						return false;
+					} else {
+						$crypter = new Ncw_Components_Crypter('zm5c538mv');
+						$passwort_verschluesselt = $crypter->encrypt($password);
+
+						$str_set_code = "UPDATE ncw_core_user set password='" . $passwort_verschluesselt . "', passwordresethash='', passwordresettime='' WHERE id = '" . $user_id_tmp . "'";
+
+						$sth = $db->prepare($str_set_code);
+						$sth->execute();
+						$results = $sth->fetchAll();
+
+						echo 'true';
+						return false;
 					}
-					//echo $password . ' ' . $hashcode;
 				} else {
 					echo 'error_link_abgelaufen';
 					return false;
 				}
+				// echo $password . ' ' . $hashcode;
 			} else {
-				echo 'error_passwort_unsicher';	
+				echo 'error_link_abgelaufen';
 				return false;
 			}
+		} else {
+			echo 'error_passwort_unsicher';
+			return false;
 		}
-	
-		/*
-		Sendet die Mail mit dem ANhang an den Empfänger der angegeben wurde im Share File menü
-		*/
-		public function resetPasswordSendMailAction ()
-		{
-			$this->view = false;
-			$error = false;
+	}
 
-			$email = Ncw_Library_Sanitizer::escape($this->params['url']['email']);
-			$user_id_tmp = '0';
-			if (strlen($email) > 5) {
-				$db = Ncw_Database::getInstance();
+	/*
+	 * Sendet die Mail mit dem ANhang an den Empfänger der angegeben wurde im Share File menü
+	 */
+	public function resetPasswordSendMailAction()
+	{
+		$this->view = false;
+		$error = false;
 
-				$str_search = "
+		$email = Ncw_Library_Sanitizer::escape($this->params['url']['email']);
+		$user_id_tmp = '0';
+		if (strlen($email) > 5) {
+			$db = Ncw_Database::getInstance();
+
+			$str_search = "
 					SELECT
 					id,
 					email
 
 					FROM ncw_core_user
 
-					WHERE email = '". $email . "'
+					WHERE email = '" . $email . "'
 
 				";
 
-				$sth = $db->prepare( $str_search);
-				$sth->execute();
-				$results = $sth->fetchAll();
-				if ( strlen($results[0]['email']) < 1) {
-					echo 'error-mail-nicht-vorhanden';
-					$error = true;
-					return false;
-				}
-				$user_id_tmp = $results[0]['id'];
-			} else {
+			$sth = $db->prepare($str_search);
+			$sth->execute();
+			$results = $sth->fetchAll();
+			if (strlen($results[0]['email']) < 1) {
 				echo 'error-mail-nicht-vorhanden';
+				$error = true;
 				return false;
 			}
+			$user_id_tmp = $results[0]['id'];
+		} else {
+			echo 'error-mail-nicht-vorhanden';
+			return false;
+		}
 
-			$hashcode = md5($email . ' ' . time());
-			$datetime = time();
-			$str_set_code = "UPDATE ncw_core_user set passwordresethash='".$hashcode."', passwordresettime='" . $datetime . "' WHERE id = '" . $user_id_tmp . "'";
-			
-			
-			
-			$sth = $db->prepare( $str_set_code);
-			$sth->execute();
+		$hashcode = md5($email . ' ' . time());
+		$datetime = time();
+		$str_set_code = "UPDATE ncw_core_user set passwordresethash='" . $hashcode . "', passwordresettime='" . $datetime . "' WHERE id = '" . $user_id_tmp . "'";
 
-			if ($error == false) {
-				$arr_mail_addresses = array($email);
+		$sth = $db->prepare($str_set_code);
+		$sth->execute();
 
-				$str_subject = 'Passwort zurücksetzen';
-				$dieser_link = 'https://pdb.kraiburg-tpe.com/index.php?url=en/products/lost-password-24&resetpassword=' . $hashcode;
-				$customer_text = 'Passwort zurücksetzen<br />klicken Sie auf diesen Link <br /><a href="' . $dieser_link . '" >' . $dieser_link. '</a><br />um Ihr Passwort zurückzusetzen.';
-				$customer_text .= '<br />' . Wcms_ContentboxController::getContenbox('this-link-can24', $language_id) .'<br />';
-			
-					$str_body_html = '<br />' . $customer_text . ' <br /<br /><br /><br />
+		if ($error == false) {
+			$arr_mail_addresses = array($email);
+
+			$str_subject = 'Passwort zurücksetzen';
+			$dieser_link = 'https://pdb.kraiburg-tpe.com/index.php?url=en/products/lost-password-24&resetpassword=' . $hashcode;
+			$customer_text = 'Passwort zurücksetzen<br />klicken Sie auf diesen Link <br /><a href="' . $dieser_link . '" >' . $dieser_link . '</a><br />um Ihr Passwort zurückzusetzen.';
+			$customer_text .= '<br />' . Wcms_ContentboxController::getContenbox('this-link-can24', $language_id) . '<br />';
+
+			$str_body_html = '<br />' . $customer_text . ' <br /<br /><br /><br />
 					<img src="https://www.kraiburg-tpe.com/themes/schnitzraum/img/logo/logo-default.svg" id="page-logo" data-logo-small="https://www.kraiburg-tpe.com/themes/schnitzraum/img/logo/logo-default-small.svg" data-logo-big="https://www.kraiburg-tpe.com/themes/schnitzraum/img/logo/logo-default.svg">
 
 					KRAIBURG TPE GmbH & Co. KG
@@ -1691,20 +1627,19 @@ $str_where = '';
 					</table>
 
 					';
-					// Nachricht
-					$str_body_html = '<table border="0" width="730" cellpadding="0" cellspacing="0">';
-						$str_body_html .= '<tr><td style="font-size: 14px; ">';
-						//$str_body_html .= '<br />' . $customer_text . ' <br /><br />Dieser Link kann 24 Stunden lang benutzt werden.<br />' . $file_link .  '<br /><br /><br /><br />';
-						$str_body_html .= '<br />' . $customer_text . ' <br /><br /><br /><br />';
-						$str_body_html .= '</tr>';
-					$str_body_html .= '</table>';
+			// Nachricht
+			$str_body_html = '<table border="0" width="730" cellpadding="0" cellspacing="0">';
+			$str_body_html .= '<tr><td style="font-size: 14px; ">';
+			// $str_body_html .= '<br />' . $customer_text . ' <br /><br />Dieser Link kann 24 Stunden lang benutzt werden.<br />' . $file_link .  '<br /><br /><br /><br />';
+			$str_body_html .= '<br />' . $customer_text . ' <br /><br /><br /><br />';
+			$str_body_html .= '</tr>';
+			$str_body_html .= '</table>';
 
-					// Footer
-					$str_body_html .= '<table border="0" width="730" cellpadding="0" cellspacing="0">';
-						$str_body_html .= '<tr><td style="border-top: 5px solid #234e8f;  font-size: 16px; ">';
+			// Footer
+			$str_body_html .= '<table border="0" width="730" cellpadding="0" cellspacing="0">';
+			$str_body_html .= '<tr><td style="border-top: 5px solid #234e8f;  font-size: 16px; ">';
 
-
-				$str_body_html .= '<table style="font-size: 11px;" cellpadding="10" width="730">
+			$str_body_html .= '<table style="font-size: 11px;" cellpadding="10" width="730">
 					<tr>
 					<td style="background-color: #f3f3f3;border-right: 3px solid #ffffff;">' . Wcms_ContentboxController::getContenbox('datenblatt-adr-euro', $language_id) . '
 					</td>
@@ -1715,103 +1650,96 @@ $str_where = '';
 					</tr>
 				</table>';
 
-				$str_body_html .= 'Die gesetzlichen Pflichtangaben finden Sie unter <a href="https://www.kraiburg-tpe.com/de/disclaimer">www.kraiburg-tpe.com/de/disclaimer</a>';
-				$str_body_html .= '<table style="width: 730px;" cellpadding="3">
+			$str_body_html .= 'Die gesetzlichen Pflichtangaben finden Sie unter <a href="https://www.kraiburg-tpe.com/de/disclaimer">www.kraiburg-tpe.com/de/disclaimer</a>';
+			$str_body_html .= '<table style="width: 730px;" cellpadding="3">
 				<tr style=" color: #234e8f; font-size: 16px;"><td style="border-top: 5px solid #234e8f; border-bottom: 5px solid #234e8f; color: #234e8f; font-size: 16px;">DISCOVER KRAIBURG-TPE</td></tr>
 				</table>';
 
-				$str_body_txt = $customer_text;
-				$str_optional_sender = $your_email;
-				//echo $str_body_html;
-				$this->_sendEmails ($arr_mail_addresses, $str_subject, $str_body_html, $str_body_txt, $arr_attachement = array(), $arr_attachement_name = array(), $str_optional_sender);
-				echo 'true';
-				return true;
-			}
+			$str_body_txt = $customer_text;
+			$str_optional_sender = $your_email;
+			// echo $str_body_html;
+			$this->_sendEmails($arr_mail_addresses, $str_subject, $str_body_html, $str_body_txt, $arr_attachement = array(), $arr_attachement_name = array(), $str_optional_sender);
+			echo 'true';
+			return true;
 		}
-	
-		/*
-		* Sendet die Mail mit dem Anhang an den Empfänger der angegeben wurde im Share File menü
-		*/
-		public function shareFileAction ()
-		{
-			$this->view = false;
-			$customer_subject = Ncw_Library_Sanitizer::escape($this->params['url']['customer_subject']);
-			$customer_text = nl2br(Ncw_Library_Sanitizer::escape($this->params['url']['customer_text']));
-			$your_email = Ncw_Library_Sanitizer::escape($this->params['url']['your_email']);
-			$customer_email = Ncw_Library_Sanitizer::escape($this->params['url']['customer_email']);
-			$file_link = Ncw_Library_Sanitizer::escape($this->params['url']['file_link']);
-			$file_ls = Ncw_Library_Sanitizer::escape($this->params['url']['file_ls']);
-			$file_dm = Ncw_Library_Sanitizer::escape($this->params['url']['file_dm']);
-			$fileseriesOrCompound = Ncw_Library_Sanitizer::escape($this->params['url']['fileseriesOrCompound']);
+	}
 
-			if (true == strstr($customer_email, ';')) {
-				$arr_customer_email = explode(';', $customer_email);
-			} else {
-				$arr_customer_email[] = trim($customer_email);
+	/*
+	 * Sendet die Mail mit dem Anhang an den Empfänger der angegeben wurde im Share File menü
+	 */
+	public function shareFileAction()
+	{
+		$this->view = false;
+		$customer_subject = Ncw_Library_Sanitizer::escape($this->params['url']['customer_subject']);
+		$customer_text = nl2br(Ncw_Library_Sanitizer::escape($this->params['url']['customer_text']));
+		$your_email = Ncw_Library_Sanitizer::escape($this->params['url']['your_email']);
+		$customer_email = Ncw_Library_Sanitizer::escape($this->params['url']['customer_email']);
+		$file_link = Ncw_Library_Sanitizer::escape($this->params['url']['file_link']);
+		$file_ls = Ncw_Library_Sanitizer::escape($this->params['url']['file_ls']);
+		$file_dm = Ncw_Library_Sanitizer::escape($this->params['url']['file_dm']);
+		$fileseriesOrCompound = Ncw_Library_Sanitizer::escape($this->params['url']['fileseriesOrCompound']);
+
+		if (true == strstr($customer_email, ';')) {
+			$arr_customer_email = explode(';', $customer_email);
+		} else {
+			$arr_customer_email[] = trim($customer_email);
+		}
+		$tpm_arr_customer_email = array();
+		foreach ($arr_customer_email As $tpm_customer_email) {
+			$tpm_arr_customer_email[] = trim($tpm_customer_email);
+		}
+		$tpm_arr_customer_email[] = trim($your_email);
+		$arr_customer_email = $tpm_arr_customer_email;
+
+		$hashcode = md5($file_link . ' ' . time());
+
+		// Hashode in der DB speichern
+		$obj_save_hash = new Tpepdb2_Sharefile();
+		$obj_save_hash->setHashcode($hashcode);
+		$obj_save_hash->setStartzeit(time());
+		$obj_save_hash->save();
+
+		$customer_text = str_replace(',', ',<br><br>', $customer_text);
+		$customer_text = str_replace('\n', ',<br>', $customer_text);
+		$file_link2 = '';
+		if ($file_dm == 'related') {
+			$file_link = str_replace(' ', '%20', $file_link);
+		} else {
+			if ($file_dm == 'pg') {
+				$file_link2 = $file_link . '&l=' . $file_ls . '&datasheetmode=datasheet&u=' . $hashcode;
+			} else if ($file_dm == 'datasheet') {
+				$file_link2 = $file_link . '&l=' . $file_ls . '&datasheetmode=pg&u=' . $hashcode;
 			}
-			$tpm_arr_customer_email = array();
-			foreach ($arr_customer_email As $tpm_customer_email) {
-				$tpm_arr_customer_email[] = trim($tpm_customer_email);
-			}
-			$tpm_arr_customer_email[] = trim($your_email);
-			$arr_customer_email = $tpm_arr_customer_email;
+			$file_link = $file_link . '&l=' . $file_ls . '&datasheetmode=' . $file_dm . '&u=' . $hashcode;
+		}
+		// Mailanschreiben language_id 1 = en
+		$language_id = 1;
+		if (trim($file_ls) == 'de') {
+			$language_id = 2;
+		} else if (trim($file_ls) == 'fr') {
+			$language_id = 5;
+		} else if (trim($file_ls) == 'es') {
+			$language_id = 4;
+		} else if (trim($file_ls) == 'it') {
+			$language_id = 8;
+		} else if (trim($file_ls) == 'pl') {
+			$language_id = 11;
+		} else if (trim($file_ls) == 'zh') {
+			$language_id = 3;
+		} else if (trim($file_ls) == 'jp') {
+			$language_id = 7;
+		} else if (trim($file_ls) == 'kr') {
+			$language_id = 10;
+		}
+		$text = Wcms_ContentboxController::getContenbox('mailanschreiben4', $language_id) . '<br /><br />';
 
-			$hashcode = md5($file_link . ' ' . time());
-			
-			// Hashode in der DB speichern
-			$obj_save_hash = new Tpepdb2_Sharefile();
-			$obj_save_hash->setHashcode($hashcode);
-			$obj_save_hash->setStartzeit(time());
-			$obj_save_hash->save();
+		$text = '';
 
-			$customer_text = str_replace(',', ',<br><br>', $customer_text);
-			$customer_text = str_replace('\n', ',<br>', $customer_text);
-			$file_link2 = '';
-			if ($file_dm == 'related') {
-				$file_link = str_replace(' ', '%20',$file_link);
-			} else {
-				if ($file_dm == 'pg') {
-					$file_link2 = $file_link . '&l=' . $file_ls . '&datasheetmode=datasheet&u=' . $hashcode;
-				} else if ($file_dm == 'datasheet') {
-					$file_link2 = $file_link . '&l=' . $file_ls . '&datasheetmode=pg&u=' . $hashcode;
-				}
-				$file_link = $file_link . '&l=' . $file_ls . '&datasheetmode='. $file_dm .'&u=' . $hashcode;
-			}
-			// Mailanschreiben language_id 1 = en
-			$language_id = 1;
-			if (trim($file_ls) == 'de') {
-				$language_id = 2;
-			} else
-			if (trim($file_ls) == 'fr') {
-				$language_id = 5;
-			} else
-			if (trim($file_ls) == 'es') {
-				$language_id = 4;
-			} else
-			if (trim($file_ls) == 'it') {
-				$language_id = 8;
-			} else
-			if (trim($file_ls) == 'pl') {
-				$language_id = 11;
-			} else
-			if (trim($file_ls) == 'zh') {
-				$language_id = 3;
-			} else
-			if (trim($file_ls) == 'jp') {
-				$language_id = 7;
-			} else
-			if (trim($file_ls) == 'kr') {
-				$language_id = 10;
-			}
-			$text = Wcms_ContentboxController::getContenbox('mailanschreiben4', $language_id) . '<br /><br />';
+		$arr_mail_addresses = $arr_customer_email;
 
-			$text = '';
+		$str_subject = $customer_subject;
 
-			$arr_mail_addresses = $arr_customer_email;
-			
-			$str_subject = $customer_subject;
-
-			$str_body_html .= '<br /><br />
+		$str_body_html .= '<br /><br />
 			<img src="https://www.kraiburg-tpe.com/themes/schnitzraum/img/logo/logo-default.svg" id="page-logo" data-logo-small="https://www.kraiburg-tpe.com/themes/schnitzraum/img/logo/logo-default-small.svg" data-logo-big="https://www.kraiburg-tpe.com/themes/schnitzraum/img/logo/logo-default.svg">
 			
 			KRAIBURG TPE GmbH & Co. KG
@@ -1823,46 +1751,46 @@ $str_where = '';
 			<tr style="border-top: 5px solid #95b6ec; color: #95b6ec; font-size: 16px;"><td style="border-top: 10px solid #95b6ec; color: #95b6ec; font-size: 16px;">DISCOVER KRAIBURG-TPE</td></tr>
 			</table>
 			';
-			
-			if (trim($file_ls) == 'de') {
-				$labelMailDatasheet = Wcms_ContentboxController::getContenbox('mailanschreiben-2', 2);
-				$labelMailPg = Wcms_ContentboxController::getContenbox('mailanschreiben-3', 2);
-				$labelMailAfterLink = Wcms_ContentboxController::getContenbox('mailanschreiben-4', 2);
+
+		if (trim($file_ls) == 'de') {
+			$labelMailDatasheet = Wcms_ContentboxController::getContenbox('mailanschreiben-2', 2);
+			$labelMailPg = Wcms_ContentboxController::getContenbox('mailanschreiben-3', 2);
+			$labelMailAfterLink = Wcms_ContentboxController::getContenbox('mailanschreiben-4', 2);
+		} else {
+			$labelMailDatasheet = Wcms_ContentboxController::getContenbox('mailanschreiben-2', $language_id);
+			$labelMailPg = Wcms_ContentboxController::getContenbox('mailanschreiben-3', $language_id);
+			$labelMailAfterLink = Wcms_ContentboxController::getContenbox('mailanschreiben-4', $language_id);
+		}
+
+		// Nachricht
+		$str_body_html = '<table border="0" width="730" cellpadding="0" cellspacing="0">';
+		$str_body_html .= '<tr><td style="font-size: 14px; ">';
+		if ($file_dm == 'pg') {
+			$str_body_html .= '<br />';
+			$str_body_html .= '<br />' . nl2br($customer_text) . ' <br /><br />' . $text . '<br />' . $labelMailDatasheet . '<br />' . $file_link2 . '<br />';
+			$str_body_html .= '<br />' . $labelMailPg;
+			$str_body_html .= '<br />' . $file_link . '<br /><br />';
+			$str_body_html .= '<br />' . $labelMailAfterLink . '<br /><br /><br />';
+		} else if ($file_dm == 'datasheet') {
+			$str_body_html .= '<br />';
+			$str_body_html .= '<br />' . nl2br($customer_text) . ' <br /><br />' . $text . '<br />' . $labelMailDatasheet . '<br />' . $file_link . '<br />';
+			if ($fileseriesOrCompound != 'series') {
+				$str_body_html .= '<br />' . $labelMailPg;
+				$str_body_html .= '<br />' . $file_link2 . '<br /><br />';
 			} else {
-				$labelMailDatasheet = Wcms_ContentboxController::getContenbox('mailanschreiben-2', $language_id);
-				$labelMailPg = Wcms_ContentboxController::getContenbox('mailanschreiben-3', $language_id);
-				$labelMailAfterLink = Wcms_ContentboxController::getContenbox('mailanschreiben-4', $language_id);
+				$str_body_html .= '<br /><br />';
 			}
 
-			// Nachricht
-			$str_body_html = '<table border="0" width="730" cellpadding="0" cellspacing="0">';
-				$str_body_html .= '<tr><td style="font-size: 14px; ">';
-				if ($file_dm == 'pg') {
-					$str_body_html .= '<br />';
-					$str_body_html .= '<br />' . nl2br($customer_text) . ' <br /><br />' . $text .'<br />' . $labelMailDatasheet . '<br />' . $file_link2 .  '<br />';
-					$str_body_html .= '<br />' . $labelMailPg;
-					$str_body_html .= '<br />' . $file_link .  '<br /><br />';
-					$str_body_html .= '<br />' . $labelMailAfterLink .  '<br /><br /><br />';
-				} else if ($file_dm == 'datasheet') {
-					$str_body_html .= '<br />';
-					$str_body_html .= '<br />' . nl2br($customer_text) . ' <br /><br />' . $text .'<br />' . $labelMailDatasheet . '<br />' . $file_link .  '<br />';
-					if ($fileseriesOrCompound != 'series') {
-						$str_body_html .= '<br />' . $labelMailPg;
-						$str_body_html .= '<br />' . $file_link2 .  '<br /><br />';
-					} else {
-						$str_body_html .= '<br /><br />';
-					}
+			$str_body_html .= '<br />' . $labelMailAfterLink . '<br /><br /><br />';
+		}
+		$str_body_html .= '</tr>';
+		$str_body_html .= '</table>';
 
-					$str_body_html .= '<br />' . $labelMailAfterLink . '<br /><br /><br />';
-				}
-				$str_body_html .= '</tr>';
-			$str_body_html .= '</table>';
-			
-			// Footer
-			$str_body_html .= '<table border="0" width="730" cellpadding="0" cellspacing="0">';
-			$str_body_html .= '<tr><td style="border-top: 5px solid #234e8f;  font-size: 16px; ">';
-			
-			$str_body_html .= '<table style="font-size: 11px;" cellpadding="10" width="730">
+		// Footer
+		$str_body_html .= '<table border="0" width="730" cellpadding="0" cellspacing="0">';
+		$str_body_html .= '<tr><td style="border-top: 5px solid #234e8f;  font-size: 16px; ">';
+
+		$str_body_html .= '<table style="font-size: 11px;" cellpadding="10" width="730">
 				<tr>
 				<td style="background-color: #f3f3f3;border-right: 3px solid #ffffff;">' . Wcms_ContentboxController::getContenbox('datenblatt-adr-euro', $language_id) . '
 				</td>
@@ -1872,97 +1800,96 @@ $str_where = '';
 					</td>
 				</tr>
 			</table>';
-			
-			$str_body_html .= 'Die gesetzlichen Pflichtangaben finden Sie unter <a href="https://www.kraiburg-tpe.com/de/disclaimer">www.kraiburg-tpe.com/de/disclaimer</a>';
-			$str_body_html .= '<table style="width: 730px;" cellpadding="3">
+
+		$str_body_html .= 'Die gesetzlichen Pflichtangaben finden Sie unter <a href="https://www.kraiburg-tpe.com/de/disclaimer">www.kraiburg-tpe.com/de/disclaimer</a>';
+		$str_body_html .= '<table style="width: 730px;" cellpadding="3">
 			<tr style=" color: #234e8f; font-size: 16px;"><td style="border-top: 5px solid #234e8f; border-bottom: 5px solid #234e8f; color: #234e8f; font-size: 16px;">DISCOVER KRAIBURG-TPE</td></tr>
 			</table>';
-	
-			$str_body_txt = $customer_text;
-			$str_optional_sender = $your_email;
-			foreach ($arr_mail_addresses As $emailAdress) {
-				//echo '-->' . $emailAdress;
-				$this->_sendEmails ($emailAdress, $str_subject, $str_body_html, $str_body_txt, $arr_attachement = array(), $arr_attachement_name = array(), $str_optional_sender);
-			}
-			
-			echo 'Senden erfolgreich';
+
+		$str_body_txt = $customer_text;
+		$str_optional_sender = $your_email;
+		foreach ($arr_mail_addresses As $emailAdress) {
+			// echo '-->' . $emailAdress;
+			$this->_sendEmails($emailAdress, $str_subject, $str_body_html, $str_body_txt, $arr_attachement = array(), $arr_attachement_name = array(), $str_optional_sender);
+		}
+
+		echo 'Senden erfolgreich';
 	}
-	
-	protected function _sendEmails ($arr_mail_addresses, $str_subject, $str_body_html, $str_body_txt, $arr_attachement = array(), $arr_attachement_name = array(), $str_optional_sender = '')
-    {      
-        $html_body = $str_body_html;
-        $text_body = $str_body_txt;
-        $urls_to_replace = '';
 
-        $replacements = array();
+	protected function _sendEmails($arr_mail_addresses, $str_subject, $str_body_html, $str_body_txt, $arr_attachement = array(), $arr_attachement_name = array(), $str_optional_sender = '')
+	{
+		$html_body = $str_body_html;
+		$text_body = $str_body_txt;
+		$urls_to_replace = '';
 
-        include_once 'ncw/vendor/swift/swift_required.php';
+		$replacements = array();
 
-        $transport = Swift_MailTransport::newInstance();
-        $mailer = Swift_Mailer::newInstance($transport);
-        $mailer->registerPlugin(new Swift_Plugins_DecoratorPlugin($replacements));
-        //Use AntiFlood to re-connect after 100 emails
-        $mailer->registerPlugin(new Swift_Plugins_AntiFloodPlugin(100));
+		include_once 'ncw/vendor/swift/swift_required.php';
 
-        // wenn ein optionaler sender hinterlegt ist wird dieser als absender hergenommen
+		$transport = Swift_MailTransport::newInstance();
+		$mailer = Swift_Mailer::newInstance($transport);
+		$mailer->registerPlugin(new Swift_Plugins_DecoratorPlugin($replacements));
+		// Use AntiFlood to re-connect after 100 emails
+		$mailer->registerPlugin(new Swift_Plugins_AntiFloodPlugin(100));
+
+		// wenn ein optionaler sender hinterlegt ist wird dieser als absender hergenommen
 		$str_sender_email = 'info@kraiburg-tpe.com';
-        if (strlen($str_optional_sender) > 2) {
-            $str_sender_email = $str_optional_sender;
-        } 
-        // Create the message
-        $message = Swift_Message::newInstance()
-            ->setSubject($str_subject)
-            ->setFrom(array($str_sender_email => $str_sender_email))
-            ->setTo($arr_mail_addresses)
-            ->setBody($html_body, 'text/html')
-            ->addPart($text_body, 'text/plain');
-        $mailer->send($message);
-    }
-	
-	
+		if (strlen($str_optional_sender) > 2) {
+			$str_sender_email = $str_optional_sender;
+		}
+		// Create the message
+		$message = Swift_Message::newInstance()
+			->setSubject($str_subject)
+			->setFrom(array($str_sender_email => $str_sender_email))
+			->setTo($arr_mail_addresses)
+			->setBody($html_body, 'text/html')
+			->addPart($text_body, 'text/plain');
+		$mailer->send($message);
+	}
+
 	/*
-	* Liest alle Sprachen des WCMS aus
-	*/
+	 * Liest alle Sprachen des WCMS aus
+	 */
 	public function getWcmsLanguages()
 	{
 		$obj = new Wcms_Language();
 		$arr = $obj->fetch('all');
-		//var_dump($arr);
+		// var_dump($arr);
 		$arr_tmp = array();
 		foreach ($arr As $lang) {
-			//echo ;
+			// echo ;
 			$arr_tmp[$lang->getName()] = $lang->getShortcut();
 		}
 		return $arr_tmp;
 	}
 
-	public function helpListCompoundsAction() {
+	public function helpListCompoundsAction()
+	{
 		$this->view = false;
-        $db = Ncw_Database::getInstance();
+		$db = Ncw_Database::getInstance();
 
-        $language = new Wcms_Language();
-        $language->setId($language_id);
-        $language = $language->readField("shortcut");
+		$language = new Wcms_Language();
+		$language->setId($language_id);
+		$language = $language->readField('shortcut');
 
-        if (false === $this->_checkIfLanguageExists("markets", $language)) {
-            $language = "en";
-        }
+		if (false === $this->_checkIfLanguageExists('markets', $language)) {
+			$language = 'en';
+		}
 
-        $sth = $db->prepare(
-            "SELECT * FROM `ncw_tpepdb2_compound` ORDER BY `ncw_tpepdb2_compound`.`id` ASC LIMIT 0,25000"
-        );
+		$sth = $db->prepare(
+			'SELECT * FROM `ncw_tpepdb2_compound` ORDER BY `ncw_tpepdb2_compound`.`id` ASC LIMIT 0,25000'
+		);
 
-        $sth->execute();
+		$sth->execute();
 
-        $results = $sth->fetchAll();
+		$results = $sth->fetchAll();
 		$saveId = 0;
 		$counter = 0;
 		foreach ($results As $row) {
 			if ($counter > 0) {
-				//echo '<br><br><br>' . json_encode[$row];
-				//var_dump($row['id']);
-				if ($saveId == $row['id'] -1) {
-
+				// echo '<br><br><br>' . json_encode[$row];
+				// var_dump($row['id']);
+				if ($saveId == $row['id'] - 1) {
 				} else {
 					echo '<br>' . $row['id'];
 				}
@@ -1971,10 +1898,11 @@ $str_where = '';
 			$counter++;
 		}
 
-        //print json_encode($results);
+		// print json_encode($results);
 	}
 
-	public function suchbegriffReinigen ($str){
+	public function suchbegriffReinigen($str)
+	{
 		if (strtolower(substr($str, 0, 3)) == 'tpe') {
 			$str = substr($str, 3);
 		}
@@ -2003,10 +1931,6 @@ $str_where = '';
 
 		return $str;
 	}
-	
 }
-
-
-
 
 ?>
