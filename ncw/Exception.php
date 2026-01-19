@@ -45,20 +45,31 @@ class Ncw_Exception extends Exception
      * Sets the static error var to true, calls the parents construct and
      * appends the error message to the error log.
      *
-     * @param string|Throwable $message the exception message or Throwable object
-     * @param string $code    the exception status code (optional)
+     * @param string|Throwable|PEAR_Error $message the exception message, Throwable or PEAR_Error object
+     * @param string|int $code    the exception status code (optional)
      */
     public function __construct($message, $code = 0)
     {
         self::$error = true;
 
-        // Handle Throwable objects (Exception or Error)
-        if ($message instanceof Throwable) {
+        // Handle PEAR_Error objects
+        if (is_object($message) && method_exists($message, 'getMessage')) {
+            // PEAR_Error compatibility
+            $pear_code = $message->getCode();
+            $pear_message = $message->getMessage();
+            // Ensure code is an integer
+            $code = is_int($pear_code) ? $pear_code : 0;
+            $message = $pear_message;
+            parent::__construct($message, $code);
+        } elseif ($message instanceof Throwable) {
+            // Handle Throwable objects (Exception or Error)
             $code = $message->getCode();
             $previous = $message;
             $message = $message->getMessage();
             parent::__construct($message, $code, $previous);
         } else {
+            // Ensure code is an integer for string messages
+            $code = is_int($code) ? $code : 0;
             parent::__construct($message, $code);
         }
 
@@ -101,7 +112,16 @@ class Ncw_Exception extends Exception
      */
     public static function exceptionHandler(Throwable $exception)
     {
-        throw new Ncw_Exception($exception);
+        // Avoid recursive exception handling for Ncw_Exception
+        if ($exception instanceof Ncw_Exception) {
+            // Already an Ncw_Exception, just handle it
+            $exception->exitWithMessage();
+            return;
+        }
+        
+        // Wrap other exceptions
+        $wrapped = new Ncw_Exception($exception);
+        $wrapped->exitWithMessage();
     }
 }
 ?>

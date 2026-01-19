@@ -52,10 +52,20 @@ class Ncw_Helpers_Cache extends Ncw_Helper
 	 */
 	public function __construct ()
 	{
+		$cache_dir = Ncw_Configure::read('Cache.dir');
+		// Ensure cache_dir is set and not empty
+		if (empty($cache_dir)) {
+			$cache_dir = './tmp/cache';
+		}
+		// Make sure it's a relative or proper absolute path
+		if ($cache_dir[0] !== '/' && $cache_dir[0] !== '.') {
+			$cache_dir = './' . $cache_dir;
+		}
+		
 		$this->object = new Cache(
             'file',
             array(
-                'cache_dir' => Ncw_Configure::read('Cache.dir') . DS . 'views',
+                'cache_dir' => $cache_dir . DS . 'views',
                 'filename_prefix' => 'cache_'
             )
         );
