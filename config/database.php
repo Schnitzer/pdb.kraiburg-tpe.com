@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Netzcraftwerk database configuration
  *
@@ -27,10 +28,10 @@
 // Set the connection config
 Ncw_Database::set(
     array(
-        'host' => 'localhost',
-        'user' => 'kraibn_db31',
-        'password' => 'Hrf6wFUdJwWzyG2T',
-        'database' => 'kraibn_db31',
+        'host' => 'db',
+        'user' => 'db',
+        'password' => 'db',
+        'database' => 'db',
         'engine' => 'mysql',
         'prefix' => 'ncw_'
     )

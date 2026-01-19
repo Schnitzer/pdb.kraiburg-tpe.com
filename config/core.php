@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Netzcraftwerk core configuration.
  *
@@ -25,28 +26,25 @@
  * @modby     $LastChangedBy$
  * @lastmod   $LastChangedDate$
  */
+
 /*
  * -------------------------------------------------------------------------
  * Project configurations
  * -------------------------------------------------------------------------
  */
-/**
- * Project Domain
- */
-Ncw_Configure::write('Project.domain', 'kraiburg-tpe.com');
-/**
- * Project URL
- */
-Ncw_Configure::write('Project.url', 'https://pdb.' . Ncw_Configure::read('Project.domain') . '');
+/** Project Domain */
+Ncw_Configure::write('Project.domain', 'ddev.site');
+/** Project URL */
+Ncw_Configure::write('Project.url', 'https://kraiburg-pdb.' . Ncw_Configure::read('Project.domain') . '');
+
 /**
  * Lanuage in which the software
  * starts if the user has not chosen a language.
  */
 Ncw_Configure::write('App.language', 'en_EN');
-/**
- * Theme
- */
+/** Theme */
 Ncw_Configure::write('App.theme', 'default');
+
 /**
  * Debug mode.
  * 0 = debug mode is off.
@@ -55,116 +53,83 @@ Ncw_Configure::write('App.theme', 'default');
  * 2 = also queries will be saved and displayed.
  */
 Ncw_Configure::write('debug_mode', 1);
-/**
- * Search engine friendly urls by using mod rewrite.
- */
+/** Search engine friendly urls by using mod rewrite. */
 Ncw_Configure::write('App.rewrite', false);
-/**
- * If ssl must be used.
- */
+/** If ssl must be used. */
 Ncw_Configure::write('App.ssl', true);
-/**
- * Charset used
- */
+/** Charset used */
 Ncw_Configure::write('App.encodingdb', 'utf-32');
 Ncw_Configure::write('App.encoding', 'utf-8');
 Ncw_Configure::write('App.encodinglogin', 'utf-8');
+
 /*
  * -------------------------------------------------------------------------
  * Cache configurations
  * -------------------------------------------------------------------------
  */
-/**
- * If cache is enabled
- */
+/** If cache is enabled */
 Ncw_Configure::write('Cache', false);
-/**
- * Where the cache files are located.
- */
+/** Where the cache files are located. */
 Ncw_Configure::write('Cache.dir', './tmp/cache');
-/**
- * Expires header.
- */
+/** Expires header. */
 Ncw_Configure::write('Cache.expires', 36000);
-/**
- * Cache database queries?
- */
+/** Cache database queries? */
 Ncw_Configure::write('Cache.queries', false);
+
 /*
  * -------------------------------------------------------------------------
  * Session handling
  * -------------------------------------------------------------------------
  */
+
 /**
  * Session handling. (Standard is files.)
  * Use 'database' if you want to write the sessions
  * into a db.
  */
 Ncw_Configure::write('Session.handling', 'files');
-/**
- * Use session cookies
- */
+/** Use session cookies */
 Ncw_Configure::write('Session.use_cookie', true);
-/**
- * The session cookie name
- */
+/** The session cookie name */
 Ncw_Configure::write('Session.cookie_name', 'NCWSESSID');
-/**
- * The session cookie life time in seconds
- */
+/** The session cookie life time in seconds */
 Ncw_Configure::write('Session.cookie_lifetime', 36000);
-/**
- * The session cookie life time in seconds
- */
+/** The session cookie life time in seconds */
 Ncw_Configure::write('Session.cookie_path', '/');
-/**
- * The session save path
- */
+/** The session save path */
 Ncw_Configure::write('Session.save_path', '.' . DS . TMP . DS . 'sessions');
+
 /*
  * -------------------------------------------------------------------------
  * Logging
  * -------------------------------------------------------------------------
  */
-/**
- * Log
- */
+/** Log */
 Ncw_Configure::write('Log', true);
-/**
- * You can set the destination of the log
- */
+/** You can set the destination of the log */
 Ncw_Configure::write('Log.destination', './tmp/logs');
-/**
- * If exceptions should be logged
- */
+/** If exceptions should be logged */
 Ncw_Configure::write('Log.exceptions', false);
+
 /*
  * -------------------------------------------------------------------------
  * Other
  * -------------------------------------------------------------------------
  */
 
-/**
- * Only requests with www
- */
+/** Only requests with www */
 Ncw_Configure::write('App.only_www', false);
-/**
- * Max execution time of a php script
- */
+/** Max execution time of a php script */
 Ncw_Configure::write('App.max_execution_time', 30);
-/**
- * Use magic quotes
- */
+/** Use magic quotes */
 Ncw_Configure::write('App.use_magic_quotes', false);
-/**
- * Logout route
- */
+/** Logout route */
 Ncw_Configure::write('Logout.url', 'https://pdb.' . Ncw_Configure::read('Project.domain')) . '';
 
 /*
-* Internal IP's wird dazu verwendet Interne IP Adressen in Log Tool als solche zu kennzeichnen
-* Die letzte ist die Developer IP
-*/
+ * Internal IP's wird dazu verwendet Interne IP Adressen in Log Tool als solche zu kennzeichnen
+ * Die letzte ist die Developer IP
+ */
 $internal_ips = array(
   '212.68.121.65',
   '212.68.121.67',
@@ -172,7 +137,7 @@ $internal_ips = array(
   '58.26.183.192',
   '218.188.198.242',
   '110.92.79.234',
-  '212.68.120.129', 
+  '212.68.120.129',
   '212.68.120.129',
   '87.148.10.174',
   '176.74.57.181',
@@ -310,13 +275,10 @@ $internal_ips = array(
   '187.167.207.154',
   '',
   '79.208.202.220', '87.148.9.75'
-
-  
-  
 );
 
 Ncw_Configure::write('internal_ips', $internal_ips);
 
-Ncw_Configure::write('developer_internal_ip', $internal_ips[count($internal_ips) -1]);
+Ncw_Configure::write('developer_internal_ip', $internal_ips[count($internal_ips) - 1]);
 
 ?>
