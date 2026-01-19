@@ -1,13 +1,18 @@
 <?php
+
+// Load Composer autoloader for mcrypt_compat (PHP 8.3 compatibility)
+if (file_exists(__DIR__ . '/../../../vendor/autoload.php')) {
+    require_once __DIR__ . '/../../../vendor/autoload.php';
+}
+
 /**
  * Contains the Crypter component
  *
- * PHP Version 5.2
+ * PHP Version 8.3
  * Copyright (c) 2007 Netzcraftwerk UG
  *
- * LICENSE: All rights reserved, particularly the rights for copying
- * and publishing as well as translating. No part of this software is
- * allowed to be copied or published with out the acceptance of Netzcraftwerk UG
+ * Uses phpseclib/mcrypt_compat for PHP 8.3 compatibility
+ * Maintains full backward compatibility with mcrypt-encrypted data
  *
  * @category   Netzcraftwerk
  * @package    Ncw
@@ -21,6 +26,7 @@
  * @modby      $LastChangedBy$
  * @lastmod    $LastChangedDate$
  */
+
 /**
  * Encrypts a string with the mcrypt functions (standard crypher is rijndael-256).
  *
@@ -34,7 +40,6 @@
  */
 class Ncw_Components_Crypter extends Ncw_Component
 {
-
     /**
      * Handler for mcrypt
      *
@@ -47,21 +52,21 @@ class Ncw_Components_Crypter extends Ncw_Component
      *
      * @var string
      */
-    public $algorithm = "";
+    public $algorithm = '';
 
     /**
      * Mode. Standard is ofb.
      *
      * @var string
      */
-    public $mode = "";
+    public $mode = '';
 
     /**
      * Key
      *
      * @var string
      */
-    public $key = "";
+    public $key = '';
 
     /**
      * Sets the class attributes.
@@ -72,11 +77,11 @@ class Ncw_Components_Crypter extends Ncw_Component
      * @param string $algorithm the algorithm to use (optional)
      * @param string $mode      the encryption mode (optional)
      */
-    public function __construct ($key = "GiVeAGoOdKeY", $algorithm = "rijndael-256", $mode = "ofb")
+    public function __construct($key = 'GiVeAGoOdKeY', $algorithm = 'rijndael-256', $mode = 'ofb')
     {
-    	$this->key = $key;
-	    $this->algorithm = $algorithm;
-	    $this->mode = $mode;
+        $this->key = $key;
+        $this->algorithm = $algorithm;
+        $this->mode = $mode;
     }
 
     /**
@@ -86,45 +91,42 @@ class Ncw_Components_Crypter extends Ncw_Component
      *
      * @return void
      */
-    public function startup (Ncw_Controller &$controller)
+    public function startup(Ncw_Controller &$controller)
     {
-    	$controller->crypter = $this;
+        $controller->crypter = $this;
     }
 
     /**
      * Initialize the crypter
+     * Uses mcrypt_compat functions (phpseclib) for PHP 8.3 compatibility
      *
      * @return void
      */
-    protected function initializeCrypter ()
+    protected function initializeCrypter()
     {
-        // If the mcrypt functions are available or ncwcrypt is not wanted
-        if (true === function_exists("mcrypt_module_open")) {
-            // Use mcrypt for encryption.
-            $this->_td = mcrypt_module_open($this->algorithm, '', $this->mode, '');
-            // Create the key.
-            $this->key = substr(
-                md5($this->key),
-                0,
-                mcrypt_enc_get_key_size($this->_td)
-            );
-        }
+        // mcrypt_compat provides all mcrypt functions via phpseclib
+        // Use mcrypt for encryption.
+        $this->_td = mcrypt_module_open($this->algorithm, '', $this->mode, '');
+        // Create the key.
+        $this->key = substr(
+            md5($this->key),
+            0,
+            mcrypt_enc_get_key_size($this->_td)
+        );
     }
 
     /**
-     * Uses the mcrypt encryption function.
-     * If mcrypt is not available or ncwrypt is wanted then
-     * use ncwcrypt encryption.
+     * Uses the mcrypt encryption function via mcrypt_compat.
      *
      * @param string $plaintext the string to encrypt
      *
      * @return string
      */
-    public function encrypt ($plaintext)
+    public function encrypt($plaintext)
     {
-    	if (false === $this->_td) {
-    		$this->initializeCrypter();
-    	}
+        if (false === $this->_td) {
+            $this->initializeCrypter();
+        }
         $random_seed = MCRYPT_RAND;
         // Create the IV and determine.
         $iv = mcrypt_create_iv(mcrypt_enc_get_iv_size($this->_td), $random_seed);
@@ -138,13 +140,13 @@ class Ncw_Components_Crypter extends Ncw_Component
     }
 
     /**
-     * Decryption by mcrypt.
+     * Decryption by mcrypt_compat.
      *
      * @param string $encrypted the string to decrypt
      *
      * @return mixed
      */
-    public function decrypt ($encrypted)
+    public function decrypt($encrypted)
     {
         if (false === $this->_td) {
             $this->initializeCrypter();
@@ -168,13 +170,10 @@ class Ncw_Components_Crypter extends Ncw_Component
 
     /**
      * Close the mcrypt session
-     *
      */
-    public function __destruct ()
+    public function __destruct()
     {
-        if (true === function_exists("mcrypt_module_open")
-            && false !== $this->_td
-        ) {
+        if (false !== $this->_td) {
             // Close module
             mcrypt_module_close($this->_td);
         }

@@ -139,9 +139,13 @@ abstract class Ncw_TreeModel extends Ncw_Model
     /**
      * Insert a new tree model entry
      *
+     * @param string $fields  the fields (unused in TreeModel, kept for compatibility)
+     * @param string $holders the holders (unused in TreeModel, kept for compatibility)
+     * @param array  $values  the values (unused in TreeModel, kept for compatibility)
+     *
      * @return boolean
      */
-    protected function _doInsert ()
+    protected function _doInsert ($fields = '', $holders = '', array $values = array())
     {
         try {
             // Do the query.
@@ -214,9 +218,12 @@ abstract class Ncw_TreeModel extends Ncw_Model
     /**
      * Updates the model entry
      *
+     * @param string $fields  the fields (unused in TreeModel, kept for compatibility)
+     * @param array  $values  the values (unused in TreeModel, kept for compatibility)
+     *
      * @return boolean
      */
-    protected function _doUpdate ()
+    protected function _doUpdate ($fields = '', array $values = array())
     {
         $values = array(":id" => $this->getId());
         $data = array();

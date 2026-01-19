@@ -683,7 +683,7 @@ class Core_UserController extends Core_ModuleController
      */
     public static function login (Core_User $user)
     {
-        $user->setLastLogin(time());
+        $user->setLastLogin(date('Y-m-d H:i:s'));
         $user->saveField('last_login', false);
         // create the user array
         $user = array(
