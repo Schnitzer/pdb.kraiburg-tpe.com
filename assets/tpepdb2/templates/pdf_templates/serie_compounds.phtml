@@ -112,7 +112,7 @@ if (count($arr_compounds) > 0) {
 ?>
 
 <tcpdf method="AddPage" />
-    <table class="tpepdb2_rotate_table_content" width="100%" cellspacing="0" cellpadding="2" border="0">
+    <table class="tpepdb2_rotate_table_content" width="100%" cellspacing="0" cellpadding="2" border="0" style="border: none;">
 			<thead>
             <tr style="background-color: #ffffff; color: #134d93;">
                 <th style="display: none; font-size: <?php echo $font_size_table; ?>;color:#134d93; background-color: #fff; height: 215px; width: 1px; display: none;"></th>
@@ -131,7 +131,7 @@ if (count($arr_compounds) > 0) {
 							$ct++;							
 						?>
                     <th style="background-color: <?php echo $bg_color; ?>; font-size: <?php echo $font_size_table; ?>;border-left: <?php echo $border_left; ?>px solid #fff; color:#134d93; width:<?php echo $td_width_print; ?>%; height: 215px;">
-                      <tcpdf method="RotateCellContent" params="<?php print $params; ?>" />
+                      <tcpdf data="<?php echo $pdf->serializeTCPDFtag('RotateCellContent', array()); ?>" />
 					</th>
                 <?php } ?>
             </tr>
@@ -157,9 +157,9 @@ if (count($arr_compounds) > 0) {
 										echo '<tcpdf method="AddPage" />';
 
 										?>
-										
-										
-    <table class="tpepdb2_rotate_table_content" width="100%" cellspacing="0" cellpadding="2" border="0">
+									
+									
+    <table class="tpepdb2_rotate_table_content" width="100%" cellspacing="0" cellpadding="2" border="0" style="border: none;">
 			<thead>
             <tr style="background-color: #ffffff; color: #134d93;">
                 <th style="display: none; font-size: <?php echo $font_size_table; ?>;color:#134d93; background-color: #fff; height: 215px; width: 1px; display: none;"></th>
@@ -193,7 +193,7 @@ if (count($arr_compounds) > 0) {
 					$ctcompound++;
 				?>
                 <?php
-                $substr = substr($compound['name'], 0, 3);
+                $substr = substr($compound[0]['compound_name'] ?? '', 0, 3);
                 
                     if (true == is_int($count / 2)) {
                         $bg_color = "#e3e3e3";
@@ -206,7 +206,7 @@ if (count($arr_compounds) > 0) {
                    <td style="vertical-align: middle; height: 32px; border-bottom: 4px solid #fff; width: <?php if (true === $is_pdf) { print $name_width. "%"; } ?>;">
 						<table style="width: 100%" cellpadding="0" cellspacing="0">
                             <tr><td style="height: 7px;font-size: 2px;line-height: 2px">&nbsp;</td></tr>
-                            <tr><td style="font-size: <?php echo $font_size_table; ?>;text-align: center;"><?php if (false === $is_pdf) { ?><a href="?cid=<?php print $compound["id"]; ?><?php if ($language == "it") { ?>&amp;ls=it<?php } ?><?php if ($language == "pl") { ?>&amp;ls=pl<?php } ?>"><?php } ?><b><?php  print $compound[0]["compound_name"]; ?></b><?php if (false === $is_pdf) { ?></a><?php } ?></td></tr>
+                            <tr><td style="font-size: <?php echo $font_size_table; ?>;text-align: center;"><?php if (false === $is_pdf) { ?><a href="?cid=<?php print ($compound["id"] ?? 0); ?><?php if ($language == "it") { ?>&amp;ls=it<?php } ?><?php if ($language == "pl") { ?>&amp;ls=pl<?php } ?>"><?php } ?><b><?php  print $compound[0]["compound_name"]; ?></b><?php if (false === $is_pdf) { ?></a><?php } ?></td></tr>
                         </table>
                     </td>
 										

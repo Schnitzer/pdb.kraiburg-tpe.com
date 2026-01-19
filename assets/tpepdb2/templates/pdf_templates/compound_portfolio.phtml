@@ -6,12 +6,16 @@
 		include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "pdf_templates"  . DS . "compound_head.phtml";
 	}
 ?>
+<?php $pdf->writeHTML(ob_get_clean(), true, false, false, false, ""); ?>
+
 <?php
 	if ( $_SESSION['datasheetmode'] == 'datasheet' ) {
+		$pdf->AddPage();
+		ob_start();
 		include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "pdf_templates"  . DS . "compound_properties.phtml";
+		$pdf->writeHTML(ob_get_clean(), true, false, false, false, "");
 	}
 ?>
-<?php $pdf->writeHTML(ob_get_clean(), true, false, false, false, ""); ?>
 
 <?php if (count($documents) > 0 || count($serie['documents']) > 0) {?>
 	<?php //$pdf->AddPage(); ?>
@@ -46,7 +50,7 @@ $processingnotetypenumber = 1;
 <?php } ?>
 <?php $pdf->writeHTML(ob_get_clean(), true, false, false, false, ""); 
 $processing_type = 'extrusion';
-$processingnotes = $processingnotes_all['processing_ex'];
+$processingnotes = $processingnotes_all['processing_ex'] ?? array();
 $pdf->header_type = '<div style="font-size: 22px; color: #fff;"><b>' . Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-guideline', $language_id) . '</b> ('. Wcms_ContentboxController::getContenbox($processing_type, $language_id) . ')</div>';
 
 if ($count > 1 && isset($processingnotes_all['processing_im']) && isset($processingnotes_all['processing_ex'])) {
@@ -54,7 +58,7 @@ if ($count > 1 && isset($processingnotes_all['processing_im']) && isset($process
 }
 
 ob_start(); 
-$processingnotes = $processingnotes_all['processing_ex'];
+$processingnotes = $processingnotes_all['processing_ex'] ?? array();
 ?>
 <br style="height:1px;line-height:1px;" />
 <?php if ( $_SESSION['datasheetmode'] == 'pg' ) { 

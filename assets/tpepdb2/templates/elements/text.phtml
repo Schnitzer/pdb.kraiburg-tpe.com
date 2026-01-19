@@ -1,7 +1,7 @@
 <?php if (true === $is_pdf) { ?>
 
 <?php
-$descriptionText400 =  $this->getCompoundDescription400($compound['id'], $language_id);
+$descriptionText400 =  $this->getCompoundDescription400($compound['id'] ?? 0, $language_id);
 
 if (strlen($descriptionText400) > 2) {
 ?>
@@ -29,7 +29,7 @@ if (strlen($descriptionText400) > 2) {
 <table cellpadding="2" border="0" width="100%">
     <tr>
         <td style="font-size: 12px; line-height: <?php echo ((int) $font_size_table + 2); ?>px;"><?php
-            if ($compound['status'] == 'portfolio') {
+            if (isset($compound['status']) && $compound['status'] == 'portfolio') {
                 print Wcms_ContentboxController::getContenbox('pdb---datasheet---general', $language_id);
             } else {
                 //print Wcms_ContentboxController::getContenbox('pdb---datasheet---general-test-report', $language_id);
@@ -54,6 +54,9 @@ if (strlen($descriptionText400) > 2) {
 
 <?php
 // Neu hinzugekommen am 09.01.2024 **Recyclinganteil in den Fußnoten
+if (!isset($hasRecycling)) {
+	$hasRecycling = false;
+}
 if ($hasRecycling == true) {
 	?>
     <table cellpadding="2" border="0" width="100%">

@@ -2203,7 +2203,7 @@ class TpePdbModel extends Ncw_Model
 
 		$pdf_name = str_replace(array(' ', '/'), '-', $name);
 		$pdf_name_tmp = $pdf_name;
-		$dir = ASSETS . DS . 'tpepdb2' . DS . 'pdfs' . DS . $model_name . DS . $language;
+		$dir = getcwd() . DS . ASSETS . DS . 'tpepdb2' . DS . 'pdfs' . DS . $model_name . DS . $language;
 
 		$author = 'Kraiburg TPE';
 		if (${$model_name}['status'] == 'portfolio') {
@@ -2229,15 +2229,14 @@ class TpePdbModel extends Ncw_Model
 		// if (false === $pdf_created || false === is_file($pdf_file)) {
 		$pdf = new TpePdbPdf($author, str_replace('_', ' ', $pdf_title), $subject, $language_id, $language);
 
-		ob_start();
 		include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'pdf_templates' . DS . $model_name . '_pdf.phtml';
+		
 		if ($model_name == 'serie') {
 			$pdf->addPage();
-
+			ob_start();
 			include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'pdf_templates' . DS . 'page3' . '.phtml';
+			$pdf->writeHTML(ob_get_clean(), true, false, true, false, '');
 		}
-
-		ob_get_clean();
 
 		if (false == is_dir($dir)) {
 			@mkdir($dir, 0777, true);
@@ -2249,20 +2248,21 @@ $pdf_file = $dir . DS . $pdf_name_clean;
 
 		if (true == isset($_SESSION['allseries2'])) {
 			// $pdf_file = '/kraibn/public_html/pdb/assets/tpepdb2/pdfs/katalog/katdeDatenblatt_AD1_Reihe.pdf';
-			@mkdir(ASSETS . DS . 'tpepdb2' . DS . 'pdfs' . DS . 'katalog' . DS . $language);
+			@mkdir(getcwd() . DS . ASSETS . DS . 'tpepdb2' . DS . 'pdfs' . DS . 'katalog' . DS . $language);
 			$nametmp = $name;
 			$nametmp = str_replace(' ', '', $nametmp);
 			$nametmp = str_replace(' ', '-', $nametmp);
 			$nametmp = str_replace('/', '-', $nametmp);
 
-			$pdf_file = ASSETS . DS . 'tpepdb2' . DS . 'pdfs' . DS . 'katalog' . DS . $language . DS . 'kat' . $nametmp . '.pdf';
+			$pdf_file = getcwd() . DS . ASSETS . DS . 'tpepdb2' . DS . 'pdfs' . DS . 'katalog' . DS . $language . DS . 'kat' . $nametmp . '.pdf';
 			$pdf->Output($pdf_file, 'F');
 			// echo 'fertig';
 			exit;
 		} else {
 			if ($_SESSION['datasheetmode'] == 'pg') {
-				$pdf_file = Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-guideline', $language_id) . '-' . $pdf_name_tmp . '.pdf';
-				$pdf_file = str_replace('eacute', 'e', $pdf_file);
+				$pdf_filename = Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-guideline', $language_id) . '-' . $pdf_name_tmp . '.pdf';
+				$pdf_filename = str_replace('eacute', 'e', $pdf_filename);
+				$pdf_file = $dir . DS . $pdf_filename;
 				// $pdf_file = 'processing.pdf';
 				// $pdf->SetTitle($pdf_file);
 				// $pdf->SetSubject($pdf_file);

@@ -26,7 +26,7 @@ $layoutmode = 2021;
 					if ($layoutmode == 2021) {
 						print Wcms_ContentboxController::getContenbox('label-prodctinformation', $language_id);
 					} else {
-						if ($type == 'serie' || $compound['status'] == 'portfolio') {
+						if ($type == 'serie' || (isset($compound['status']) && $compound['status'] == 'portfolio')) {
 							print Wcms_ContentboxController::getContenbox('pdb---datasheet---datasheet', $language_id);
 						} else {
 							// print Wcms_ContentboxController::getContenbox('pdb---datasheet---test-report', $language_id);
@@ -41,7 +41,7 @@ $layoutmode = 2021;
             </table>
         </td>-->
     </tr>
-    <?php if ($_SESSION['datasheetmode'] != 'pg' && $compound['status'] != 'non_portfolio') { ?>
+    <?php if ($_SESSION['datasheetmode'] != 'pg' && (isset($compound['status']) && $compound['status'] != 'non_portfolio')) { ?>
 
     <?php } ?>
 </table>
@@ -50,10 +50,11 @@ $layoutmode = 2021;
 <br />
 <br /><br /><br /><br /><br />
 <?php
+// SCHNITZRAUM REVIEW => creates unused lines
 if ($type == 'serie') {
-	include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'elements' . DS . 'pdf_templates' . DS . 'serie_headline.phtml';
+	// @include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'pdf_templates' . DS . 'serie_headline.phtml';
 } else {
-	include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'elements' . DS . 'pdf_templates' . DS . 'compound_headline.phtml';
+	// @include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'pdf_templates' . DS . 'compound_headline.phtml';
 }
 ?>
 <?php
@@ -70,7 +71,7 @@ if ($_SESSION['datasheetmode'] == 'pg') {
 		$processing_type = 'extrusion';
 	}
 
-	$processingnotes_all = $this->getCompoundProcessing($compound['id'], $language_id);
+	$processingnotes_all = $this->getCompoundProcessing($compound['id'] ?? 0, $language_id);
 
 	// var_dump($processingnotes_all);
 	foreach ($processingnotes as $processingnote_type => $processingnote) {
@@ -92,7 +93,7 @@ if ($_SESSION['datasheetmode'] == 'pg') {
 		$pdf->header_type = '<div style="font-size: 22px; color: #fff;"><b>' . Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-guideline', $language_id) . '</b> (' . Wcms_ContentboxController::getContenbox($processing_type, $language_id) . ')</div>';
 	}
 } else {  // Normales Datenblatt
-	if ($compound['status'] != 'non_portfolio') {
+	if (isset($compound['status']) && $compound['status'] != 'non_portfolio') {
 		$pdf->header_type = '<div style="font-size: 22px; color: #fff;"><b>' . Wcms_ContentboxController::getContenbox('label-prodctinformation', $language_id) . '</b></div>';
 	} else {
 		$pdf->header_type = '<div style="font-size: 22px; color: #fff;"><b>' . Wcms_ContentboxController::getContenbox('pdb---datasheet---datasheet', $language_id) . '</b></div>';
@@ -117,12 +118,12 @@ if ($_SESSION['datasheetmode'] == 'pg') {
 		$cellpadding_anmerkung = '10';
 		$line_height_anmerkung = '1.2';
 	}
-	$pdf->header_description_anmerkung = '<div style="font-size: 15px; color: #333; border: 1px solid #134d93; width: 273px; line-height: ' . $line_height_anmerkung . '"><table border="0" cellpadding="' . $cellpadding_anmerkung . '"><tr><td>' . trim(Wcms_ContentboxController::getContenbox('diclaimer-s', $language_id)) . '</td></tr></table></div>';
+	$pdf->header_description_anmerkung = '<div style="font-size: 15px; color: #333; border: 1px solid #134d93; width: 273px; line-height: ' . $line_height_anmerkung . '"><table border="0" cellpadding="' . $cellpadding_anmerkung . '"><tr><td>' . trim(Wcms_ContentboxController::getContenbox('diclaimer-s', $language_id) ?? '') . '</td></tr></table></div>';
 }
 
 $headline = '<div style="font-size: 18px; color: #fff; width: 350px;">';
 if ($type == 'serie') {
-	if ($serie['name'] != '') {
+	if (isset($serie['name']) && $serie['name'] != '') {
 		if ($language_id == 8 || $language_id == 5 || $language_id == 11) {
 			$headline .= '' . Wcms_ContentboxController::getContenbox('pdb---series', $language_id) . ' ' . $serie['name'] . '';
 		} else {
@@ -130,8 +131,8 @@ if ($type == 'serie') {
 		}
 	}
 } else {
-	$headline .= '<b>' . $compound['name'] . '</b> ';
-	if ($serie['name'] != '') {
+	$headline .= '<b>' . ($compound['name'] ?? '') . '</b> ';
+	if (isset($serie['name']) && $serie['name'] != '') {
 		if ($language_id == 8 || $language_id == 5 || $language_id == 11) {
 			$headline .= ' (' . Wcms_ContentboxController::getContenbox('pdb---series', $language_id) . ' ' . $serie['name'] . ')';
 		} else {
@@ -142,22 +143,22 @@ if ($type == 'serie') {
 
 // Einbau am 05.08.2025 zuruf Henning
 
-$arr_brandname = $this->getCompoundBrandname($compound['id']);  // Holt den Brandnamen in zh und eng
-if (strlen(trim($arr_brandname['brandnameen'])) < 2) {  // Wenn im Compound kein Brandname vorhanden ist
-	$arr_brandname = $this->getBrandname($serie['brand_id']);  // Holt den Brandnamen in zh und eng
+$arr_brandname = $this->getCompoundBrandname($compound['id'] ?? 0);  // Holt den Brandnamen in zh und eng
+if (strlen(trim($arr_brandname['brandnameen'] ?? '')) < 2) {  // Wenn im Compound kein Brandname vorhanden ist
+	$arr_brandname = $this->getBrandname($serie['brand_id'] ?? 0);  // Holt den Brandnamen in zh und eng
 }
 if ($language_id != 3) {
-	$brandname = $brand['name'];
-	if (strlen($arr_brandname['brandnameen']) > 1) {
+	$brandname = $brand['name'] ?? '';
+	if (strlen($arr_brandname['brandnameen'] ?? '') > 1) {
 		$brandname = ' | ' . $arr_brandname['brandnameen'];
-	} else if (strlen(trim($brand['name'])) > 1) {
+	} else if (strlen(trim($brand['name'] ?? '')) > 1) {
 		$headline .= ' | ' . $brand['name'];
 	}
 } else {  // 3 ist Chinesisch und soll den Eintrag name_zh benutzen
-	$brandname = $brand['name_zh'];
-	if (strlen($arr_brandname['brandnamezh']) > 1) {
+	$brandname = $brand['name_zh'] ?? '';
+	if (strlen($arr_brandname['brandnamezh'] ?? '') > 1) {
 		$brandname = ' | ' . $arr_brandname['brandnamezh'];
-	} else if (strlen(trim($brand['name_zh'])) > 1) {
+	} else if (strlen(trim($brand['name_zh'] ?? '')) > 1) {
 		$headline .= ' | ' . $brand['name_zh'];
 	}
 }
@@ -171,20 +172,20 @@ $str_serie = '';
 
 if ($language_id == 2) {
 	$str_serie = 'Serie';
-	if (strlen(trim($serie['name'])) < 1) {
+	if (strlen(trim($serie['name'] ?? '')) < 1) {
 		$str_serie = '&nbsp;';
 	}
-	$headline = '<table style="color: #ffffff;" boder="0" cellpadding="0" cellspacing="0"><tr style="font-size: 12px;"><td style="color: #ffffff;">Markenname</td><td>Compoundbezeichnung</td><td>' . $str_serie . '</td></tr><tr style="font-size: 16px;"><td>' . $brandname . '</td><td>' . $compound['name'] . '</td><td>' . $serie['name'] . '</td></tr></table>';
+	$headline = '<table style="color: #ffffff;" boder="0" cellpadding="0" cellspacing="0"><tr style="font-size: 12px;"><td style="color: #ffffff;">Markenname</td><td>Compoundbezeichnung</td><td>' . $str_serie . '</td></tr><tr style="font-size: 16px;"><td>' . $brandname . '</td><td>' . ($compound['name'] ?? '') . '</td><td>' . ($serie['name'] ?? '') . '</td></tr></table>';
 } else {
 	$str_serie = 'Series';
-	if (strlen(trim($serie['name'])) < 1) {
+	if (strlen(trim($serie['name'] ?? '')) < 1) {
 		$str_serie = '&nbsp;';
 	}
 	if ($language_id == 3) {
 		$str_serie = '&nbsp;';
-		$headline = '<table style="color: #ffffff;" boder="0" cellpadding="0" cellspacing="0"><tr style="font-size: 12px;"><td style="color: #ffffff;">&nbsp;</td><td>&nbsp;</td><td>' . $str_serie . '</td></tr><tr style="font-size: 16px;"><td>' . $brandname . '</td><td>' . $compound['name'] . '</td><td>' . $serie['name'] . '</td></tr></table>';
+		$headline = '<table style="color: #ffffff;" boder="0" cellpadding="0" cellspacing="0"><tr style="font-size: 12px;"><td style="color: #ffffff;">&nbsp;</td><td>&nbsp;</td><td>' . $str_serie . '</td></tr><tr style="font-size: 16px;"><td>' . $brandname . '</td><td>' . ($compound['name'] ?? '') . '</td><td>' . ($serie['name'] ?? '') . '</td></tr></table>';
 	} else {
-		$headline = '<table style="color: #ffffff;" boder="0" cellpadding="0" cellspacing="0"><tr style="font-size: 12px;"><td style="color: #ffffff;">Brand Name</td><td>Product Code</td><td>' . $str_serie . '</td></tr><tr style="font-size: 16px;"><td>' . $brandname . '</td><td>' . $compound['name'] . '</td><td>' . $serie['name'] . '</td></tr></table>';
+		$headline = '<table style="color: #ffffff;" boder="0" cellpadding="0" cellspacing="0"><tr style="font-size: 12px;"><td style="color: #ffffff;">Brand Name</td><td>Product Code</td><td>' . $str_serie . '</td></tr><tr style="font-size: 16px;"><td>' . $brandname . '</td><td>' . ($compound['name'] ?? '') . '</td><td>' . ($serie['name'] ?? '') . '</td></tr></table>';
 	}
 }
 
@@ -197,13 +198,13 @@ if ($type == 'serie') {
 	$pdf->pdf_mode = 'series';
 	$font_size_symbol = 14;
 	$line_height_symbol = 19;
-	if (strlen($serie['description']) > 10) {
+	if (strlen($serie['description'] ?? '') > 10) {
 		$text_grauer_kasten_pdf = $serie['description'];
 		$text_grauer_kasten_pdf = str_replace(array('<p>', '</p>', '<P>', '</P>'), array('', ' '), $text_grauer_kasten_pdf);
 	} else {
 		$text_grauer_kasten_pdf = $this->getSerieDescription($serie['id'], $language_id);
 	}
-	$text_grauer_kasten_pdf = trim(str_replace(array('<p>', '</p>', '<P>', '</P>'), array('', ' '), $text_grauer_kasten_pdf));
+	$text_grauer_kasten_pdf = trim(str_replace(array('<p>', '</p>', '<P>', '</P>'), array('', ' '), $text_grauer_kasten_pdf ?? ''));
 } else {
 	$font_size_symbol = 14;
 	$line_height_symbol = 19;
@@ -211,15 +212,15 @@ if ($type == 'serie') {
 	// Abfrage ob Seriencompound, wenn nicht wird in der Footer PDF der Lagerhinweis auf die 1. Seite gedruckt
 	// $pdf->compoundStatusFooter dient nur diesem Zweck
 	// Wird evtl. in der compound_properties.phtml überschrieben wenn mehr als 6 Compoundeigsnschaften
-	if (strlen(trim($serie['description'])) < 10) {
+	if (strlen(trim($serie['description'] ?? '')) < 10) {
 		$pdf->compoundStatusFooter = 'non_portfolio';
 	}
-	if ($_SESSION['datasheetmode'] == 'datasheet' && $compound['status'] != 'non_portfolio') {
+	if ($_SESSION['datasheetmode'] == 'datasheet' && (isset($compound['status']) && $compound['status'] != 'non_portfolio')) {
 		// $pdf->compound_status = 'non_portfolio';
-		if (strlen(trim($this->getCompoundDescription($compound['id'], $language_id))) < 2) {
-			$text_grauer_kasten = trim(str_replace(array('<p>', '</p>', '<P>', '</P>'), array('', ' '), $serie['text1']));
+		if (strlen(trim($this->getCompoundDescription($compound['id'] ?? 0, $language_id) ?? '')) < 2) {
+			$text_grauer_kasten = trim(str_replace(array('<p>', '</p>', '<P>', '</P>'), array('', ' '), $serie['text1'] ?? ''));
 		} else {
-			$text_grauer_kasten = $this->getCompoundDescription($compound['id'], $language_id);
+			$text_grauer_kasten = $this->getCompoundDescription($compound['id'] ?? 0, $language_id);
 		}
 	}
 }

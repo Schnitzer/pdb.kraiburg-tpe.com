@@ -1,55 +1,53 @@
 <?php $is_pdf = true; ?>
 
-<?php include_once ASSETS . DS . "tpepdb2" . DS . "templates"  . DS . "functions.php"; ?>
+<?php include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'functions.php'; ?>
 
-<?php $font_size_table =  "11px"; ?>
+<?php $font_size_table = '11px'; ?>
 
 <?php
-$params = $pdf->serializeTCPDFtagParameters(array(90));
 $pdf->setOpenCell(0);
 $pdf->SetCellPadding(0);
 $pdf->setCellHeightRatio(1.25);
 $pdf->setCellHeightRatio(1);
 
-
 if ($language_id == 8 || $language_id == 5 || $language_id == 11 || $language_id == 4) {
-        	$headline = '<div style="font-size: 16px; color: #ffffff;">' . Wcms_ContentboxController::getContenbox('pdb---series', $language_id) . '" <b>"' . $serie["name"] . '</div>';
-        } else {
-        	$headline = '<div style="font-size: 16px; color: #ffffff;">' . $serie["name"] . "</b> " . Wcms_ContentboxController::getContenbox('pdb---series', $language_id) . '</div>';
+  $headline = '<div style="font-size: 16px; color: #ffffff;">' . Wcms_ContentboxController::getContenbox('pdb---series', $language_id) . '" <b>"' . $serie['name'] . '</div>';
+} else {
+  $headline = '<div style="font-size: 16px; color: #ffffff;">' . $serie['name'] . '</b> ' . Wcms_ContentboxController::getContenbox('pdb---series', $language_id) . '</div>';
 }
-    if (strlen($brand["name"]) > 1) {
-      if ($language_id != 3 || strlen($brand["name_zh"]) < 1) { // 3 ist Chinesisch und soll den eintrag name_zh benutezn
-        $headline .=  ' | ' . str_replace('®', '<sup>®</sup>', $brand["name"]);
-      } else {
-        $headline .=   ' | ' . str_replace('®', '<sup>®</sup>', $brand["name_zh"]);
-      }
-    }
+if (strlen($brand['name']) > 1) {
+  if ($language_id != 3 || strlen($brand['name_zh']) < 1) {  // 3 ist Chinesisch und soll den eintrag name_zh benutezn
+    $headline .= ' | ' . str_replace('®', '<sup>®</sup>', $brand['name']);
+  } else {
+    $headline .= ' | ' . str_replace('®', '<sup>®</sup>', $brand['name_zh']);
+  }
+}
 $pdf->header_name = $headline;
 
 ?>
 
-<?php $type = "serie"; ?>
-<?php $id = $serie["id"]; ?>
-<?php $name = $serie["name"]; ?>
-<?php $documents = $serie["documents"]; ?>
+<?php $type = 'serie'; ?>
+<?php $id = $serie['id']; ?>
+<?php $name = $serie['name']; ?>
+<?php $documents = $serie['documents']; ?>
 
-<?php include ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "pdf_templates" . DS . "header.phtml"; ?>
-<?php include ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "pdf_templates" . DS . "footer.phtml"; ?>
+<?php include ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'pdf_templates' . DS . 'header.phtml'; ?>
+<?php include ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'pdf_templates' . DS . 'footer.phtml'; ?>
 
-<?php $pdf->AddPage(); 
-
-
+<?php
+$pdf->AddPage();
 
 ?>
 <?php ob_start(); ?>
 <br style="height:1px;line-height:1px;" /><br><br><br><br><br>
-<?php 
-if ( $_SESSION['datasheetmode'] == 'datasheet' ) {
-    include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "pdf_templates"  . DS . "serie_head.phtml";
+<?php
+if ($_SESSION['datasheetmode'] == 'datasheet') {
+  include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'pdf_templates' . DS . 'serie_head.phtml';
 }
 ?>
+<?php $pdf->writeHTML(ob_get_clean(), true, false, true, false, ''); ?>
 
-<?php 
+<?php
 if (isset($_SESSION['allseries'])) {
   $arr_series = $this->getAllSeries();
   // $arr_series = array(7,4,5);
@@ -57,99 +55,107 @@ if (isset($_SESSION['allseries'])) {
   $testmax = 5;
   foreach ($arr_series as $se) {
     $serie['id'] = $se['id'];
-   // echo $se;
+    // echo $se;
     if ($scount > 0)
       $pdf->AddPage();
-      $arr_headline = $this->getSerieHeadline($serie, $language_id );
-      $arr_compounds = $this->getSerieValues($serie, $language_id );
-      include ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "pdf_templates"  . DS . "serie_head.phtml";
-      echo '<tcpdf method="AddPage" />';
-      include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "pdf_templates" . DS . "serie_compounds.phtml";
-      $scount++;
-      if ($scount >= $testmax) {
-        break;
-      }
-   }
+    $arr_headline = $this->getSerieHeadline($serie, $language_id);
+    $arr_compounds = $this->getSerieValues($serie, $language_id);
+    ob_start();
+    include ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'pdf_templates' . DS . 'serie_head.phtml';
+    $pdf->writeHTML(ob_get_clean(), true, false, true, false, '');
+    $pdf->AddPage();
+    ob_start();
+    include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'pdf_templates' . DS . 'serie_compounds.phtml';
+    $pdf->writeHTML(ob_get_clean(), true, false, true, false, '');
+    $scount++;
+    if ($scount >= $testmax) {
+      break;
+    }
+  }
 }
 
-if ( $_SESSION['datasheetmode'] == 'datasheet' ) {
-  include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "pdf_templates" . DS . "serie_compounds.phtml"; 
+if ($_SESSION['datasheetmode'] == 'datasheet') {
+  $pdf->AddPage();
+  ob_start();
+  include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'pdf_templates' . DS . 'serie_compounds.phtml';
+  $pdf->writeHTML(ob_get_clean(), true, false, true, false, '');
 }
 ?>
-<?php $pdf->writeHTML(ob_get_clean(), true, false, true, false, ""); ?>
 
-<?php if (count($documents) > 0 || count($serie['documents']) > 0) {?>
-    <?php //$pdf->AddPage(); ?>
+<?php if (count($documents) > 0 || count($serie['documents']) > 0) { ?>
+    <?php // $pdf->AddPage(); ?>
     <?php ob_start(); ?>
     <br style="height:1px;line-height:1px;" />
-    <?php //include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements"  . DS . "pictures.phtml"; ?>
-    <?php $pdf->writeHTML(ob_get_clean(), true, false, true, false, ""); ?>
+    <?php // include_once ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements"  . DS . "pictures.phtml"; ?>
+    <?php $pdf->writeHTML(ob_get_clean(), true, false, true, false, ''); ?>
 <?php } ?>
 
 <?php // $pdf->AddPage(); ?>
-<?php ob_start(); 
+<?php
+ob_start();
 $processingnotetypenumber = 1;
 ?>
 <br style="height:1px;line-height:1px;" />
-<?php 
+<?php
 $count = 0;
-if ( $_SESSION['datasheetmode'] == 'pg' ) {
-  include ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound" . DS . "processing_note.phtml";
+if ($_SESSION['datasheetmode'] == 'pg') {
+  include ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'elements' . DS . 'compound' . DS . 'processing_note.phtml';
 }
 ?>
-<?php $pdf->writeHTML(ob_get_clean(), true, false, false, false, ""); ?>
-<?php 
-    if ($count > 1) {
-        $pdf->AddPage();
-    }
+<?php $pdf->writeHTML(ob_get_clean(), true, false, false, false, ''); ?>
+<?php
+if ($count > 1) {
+  $pdf->AddPage();
+}
 ?>
-<?php ob_start(); 
+<?php
+ob_start();
 $processingnotetypenumber = 0;
 ?>
 <br style="height:1px;line-height:1px;" />
-<?php 
-//include ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound" . DS . "processing_note.phtml"; 
+<?php
+// include ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "compound" . DS . "processing_note.phtml";
 ?>
-<?php $pdf->writeHTML(ob_get_clean(), true, false, false, false, ""); ?>
+<?php $pdf->writeHTML(ob_get_clean(), true, false, false, false, ''); ?>
 
 <?
 $width = ($pdf->rotate_cells['cellxy'][1][0] - $pdf->rotate_cells['cellxy'][0][0]) / 2;
-//$cell_headings = array(array("<b>" . Wcms_ContentboxController::getContenbox('pdb---datasheet---srs-color', $language_id) . "</b>", $width - 3, 58));
-//$cell_headings = array(array("<b>Compound Name</b>", $width - 3, 58));
+// $cell_headings = array(array("<b>" . Wcms_ContentboxController::getContenbox('pdb---datasheet---srs-color', $language_id) . "</b>", $width - 3, 58));
+// $cell_headings = array(array("<b>Compound Name</b>", $width - 3, 58));
 
 $width = ($pdf->rotate_cells['cellxy'][2][0] - $pdf->rotate_cells['cellxy'][1][0]) / 2;
 foreach ($columns as $column) {
-    $cell_headings[] = array($column[0], $width - 6.5, 58);
+  $cell_headings[] = array($column[0], $width - 6.5, 58);
 }
 $count = count($cell_headings);
 
 $num_pages = $pdf->getNumPages();
 
 for ($i = 1; $i <= $num_pages; ++$i) {
-    $pdf->setPage($i);
-    if ($pdf->table_end >= $pdf->getPage()) {
-        foreach ($cell_headings as $num => $cols) {
-            $x = $pdf->rotate_cells['cellxy'][$num][0] + $cols[1];
+  $pdf->setPage($i);
+  if ($pdf->table_end >= $pdf->getPage()) {
+    foreach ($cell_headings as $num => $cols) {
+      $x = $pdf->rotate_cells['cellxy'][$num][0] + $cols[1];
 
-            if ($i == 1) {
-                $y = $pdf->rotate_cells['cellxy'][$num][1] + $cols[2];
-                $x = 999;
-            } elseif ($i > 1) {
-                $y = 96.7;
-                $y = 146.7;
-                $y = 95.7;
-                //$x = $width - 6.5;
-            }
+      if ($i == 1) {
+        $y = $pdf->rotate_cells['cellxy'][$num][1] + $cols[2];
+        $x = 999;
+      } elseif ($i > 1) {
+        $y = 96.7;
+        $y = 146.7;
+        $y = 95.7;
+        // $x = $width - 6.5;
+      }
 
-            $pdf->StartTransform();
-            $pdf->Rotate(90, $x, $y);
-            $pdf->SetColor("text", 255, 255, 255);
-            $pdf->SetFontSize(9);
+      $pdf->StartTransform();
+      $pdf->Rotate(90, $x, $y);
+      $pdf->SetColor('text', 255, 255, 255);
+      $pdf->SetFontSize(9);
 
-            $pdf->MultiCell(58, 10, $cols[0], 0, 'L', false, 1, $x, $y, true, 0, true);
-            $pdf->StopTransform();
-        }
+      $pdf->MultiCell(58, 10, $cols[0], 0, 'L', false, 1, $x, $y, true, 0, true);
+      $pdf->StopTransform();
     }
+  }
 }
 
 $pdf->lastPage();

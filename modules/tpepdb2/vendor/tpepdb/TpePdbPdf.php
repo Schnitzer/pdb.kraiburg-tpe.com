@@ -20,6 +20,8 @@ class TpePdbPdf extends TCPDF
 
     public $header_type = '';
 
+    public $header_type2 = '';
+
     public $header_lineheight = '20';
 
     public $header_top = 10;
@@ -96,28 +98,20 @@ class TpePdbPdf extends TCPDF
                 break;
             case 'pl':
                 if (strstr($_SERVER['HTTP_USER_AGENT'], 'Android')) {
-                    $this->font = 'TitilliumWeb';
+                    $this->font = 'titilliumweb';
                     // $this->font = "kozgopromedium";
                     // $this->font = "hanamina";
                 } else if (strstr($_SERVER['HTTP_USER_AGENT'], 'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'], 'iPad')) {
                     //    $this->font = "kozgopromedium";
                 } else {
-                    $this->font = 'TitilliumWeb';
+                    $this->font = 'titilliumweb';
                 }
                 // $this->font = "arialuni";
                 break;
             default:
-                if (strstr($_SERVER['HTTP_USER_AGENT'], 'Android') || strstr($_SERVER['HTTP_USER_AGENT'], 'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'], 'iPad')) {
-                    $this->font = '';
-                } else {
-                    // $this->font = "arialuni";
-                    $this->font = '';
-                }
+                $this->font = 'titilliumweb';
                 break;
         }
-
-        // $this->addTTFfont("modules/tpepdb2/vendor/tcpdf/fonts/ARIALUNI.ttf", "TrueTypeUnicode", "", 32);
-        // $this->addTTFfont("modules/tpepdb2/vendor/tcpdf/fonts/ArialUnicode-Bold.ttf", "TrueTypeUnicode", "", 32);
 
         parent::__construct(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
@@ -131,7 +125,21 @@ class TpePdbPdf extends TCPDF
         $this->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
 
         $this->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-        $this->SetFont($this->font);
+
+        // Set font only if not empty, otherwise use default
+        if (!empty($this->font)) {
+            // Register TitilliumWeb font family with Bold variant
+            if ($this->font == 'titilliumweb') {
+                $this->setFontSubsetting(true);
+                // Set regular font
+                $this->SetFont('titilliumweb', '', 10);
+                // Register bold variant - TCPDF will use it automatically when <b> tags are encountered
+                $this->addFont('titilliumwebb', 'B');
+            } else {
+                $this->SetFont($this->font);
+            }
+        }
+
         $this->SetMargins(0, 0, 0);
 
         if ($_SESSION['datasheetmode'] == 'pg') {
@@ -139,12 +147,12 @@ class TpePdbPdf extends TCPDF
         } else {
             if ($this->compound_status != 'non_portfolio') {
                 if (true == isset($_GET['sid'])) {
-                    $this->SetMargins(7.5, 88.5, 7.5, true);  // Hier werden Die Abstände des eigentlichen Contents eingestellt
+                    $this->SetMargins(7.5, 93.5, 7.5, true);  // Hier werden Die Abstände des eigentlichen Contents eingestellt
                 } else {
-                    $this->SetMargins(7.5, 108.5, 7.5, true);  // Hier werden Die Abstände des eigentlichen Contents eingestellt
+                    $this->SetMargins(7.5, 110.5, 7.5, true);  // Hier werden Die Abstände des eigentlichen Contents eingestellt
                 }
             } else {
-                $this->SetMargins(7.5, 46.5, 7.5, true);  // Hier werden Die Abstände des eigentlichen Contents eingestellt
+                $this->SetMargins(7.5, 47.5, 7.5, true);  // Hier werden Die Abstände des eigentlichen Contents eingestellt
             }
         }
 
@@ -172,7 +180,7 @@ class TpePdbPdf extends TCPDF
         $this->setImageScale(PDF_IMAGE_SCALE_RATIO);
     }
 
-    public function RotateCellContent($ae)
+    public function RotateCellContent($ae = null)
     {
         if (false === isset($this->rotate_cells['cellxy'])) {
             $this->rotate_cells['cellxy'] = array();
@@ -217,10 +225,10 @@ class TpePdbPdf extends TCPDF
             $this->writeHTMLCell($w = 195, $h = 0, $x = 7.5, 38.5, $html = $this->header_description_anmerkung, $border = 0, $ln = 0, $fill = 0, $reseth = true, $align = '', $autopadding = true);
             if ($this->language_code_tmp == 'es') {
                 $this->writeHTMLCell($w = 195, $h = 0, $x = 7.5, 108.5, $html = $this->header_content_symbol, $border = 0, $ln = 0, $fill = 0, $reseth = true, $align = '', $autopadding = true);  // Grauer Kasten unter Logo
-                $this->writeHTMLCell($w = 180, $h = 0, $x = 14.8, 110, $html = $this->header_description, $border = 0, $ln = 0, $fill = 0, $reseth = true, $align = '', $autopadding = true);
+                $this->writeHTMLCell($w = 180, $h = 0, $x = 7.8, 110, $html = $this->header_description, $border = 0, $ln = 0, $fill = 0, $reseth = true, $align = '', $autopadding = true);
             } else {
                 $this->writeHTMLCell($w = 195, $h = 0, $x = 7.5, 108.5, $html = $this->header_content_symbol, $border = 0, $ln = 0, $fill = 0, $reseth = true, $align = '', $autopadding = true);  // Grauer Kasten unter Logo
-                $this->writeHTMLCell($w = 180, $h = 0, $x = 14.8, 110, $html = $this->header_description, $border = 0, $ln = 0, $fill = 0, $reseth = true, $align = '', $autopadding = true);
+                $this->writeHTMLCell($w = 180, $h = 0, $x = 7.8, 110, $html = $this->header_description, $border = 0, $ln = 0, $fill = 0, $reseth = true, $align = '', $autopadding = true);
             }
         } else {
             $this->SetMargins(7.5, 38, 7.5, true);  // Hier wird der Abstand nach oben Seite 2 aller Datenblätter festgelegt
