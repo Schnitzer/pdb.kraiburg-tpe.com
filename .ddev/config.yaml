@@ -2,8 +2,8 @@ name: kraiburg-pdb
 type: php
 docroot: .
 php_version: '5.6'
-webserver_type: nginx-fpm
-xdebug_enabled: false
+webserver_type: apache-fpm
+xdebug_enabled: true
 additional_hostnames: []
 additional_fqdns:
   - pdb.kraiburg-tpe.com

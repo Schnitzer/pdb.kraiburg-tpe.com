@@ -3,4 +3,4 @@ services:
   web:
     volumes:
       # Mount the external SSD files directory directly (no symlink needed on host)
-      - /Volumes/SCHNITZRAUM/projekte/site.kraiburg-tpe.com/live/pdb/assets:/var/www/html/assets:cached
+      # - /Volumes/SCHNITZRAUM/projekte/site.kraiburg-tpe.com/live/pdb/assets:/var/www/html/assets:cached
