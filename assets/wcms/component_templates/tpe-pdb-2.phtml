@@ -17,7 +17,7 @@ print $tpepdb_web->content();
 if (isset($GLOBALS['html_head_included']) && !isset($GLOBALS['html_footer_included'])) {
     $GLOBALS['html_footer_included'] = true;
     $ls = $_GET['ls'] ?? $_SESSION['ls'] ?? 'en';
-    include_once 'https://pdb.kraiburg-tpe.com/include/' . $ls . '/ende.php';
+    include_once ROOT . '/include/' . $ls . '/ende.php';
 }
 
 

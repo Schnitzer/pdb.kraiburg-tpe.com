@@ -63,9 +63,9 @@ include_once '_footer2019.phtml';
 <?php
 
 if (true == isset($_SESSION['ls'])) {
-  include_once 'https://pdb.kraiburg-tpe.com/include/' . $_SESSION['ls'] . '/ende.php';
+  include_once ROOT . '/include/' . $_SESSION['ls'] . '/ende.php';
 } else {
-  include_once 'https://pdb.kraiburg-tpe.com/include/en/ende.php';
+  include_once ROOT . '/include/en/ende.php';
 }
 
 ?>
