@@ -57,9 +57,13 @@ class Ncw_Helpers_Cache extends Ncw_Helper
 		if (empty($cache_dir)) {
 			$cache_dir = './tmp/cache';
 		}
-		// Make sure it's a relative or proper absolute path
-		if ($cache_dir[0] !== '/' && $cache_dir[0] !== '.') {
-			$cache_dir = './' . $cache_dir;
+		// Convert relative paths to absolute based on document root
+		if ($cache_dir[0] !== '/') {
+			// Remove leading ./ if present
+			$cache_dir = ltrim($cache_dir, './');
+			// Use dirname of index.php (project root) as base
+			$project_root = dirname(dirname(dirname(__FILE__)));
+			$cache_dir = $project_root . DS . $cache_dir;
 		}
 		
 		$this->object = new Cache(
