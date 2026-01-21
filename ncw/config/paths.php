@@ -30,6 +30,12 @@
  * -------------------------------------------------------------------------
  */
 /**
+ * Root path - absolute path to project root directory
+ */
+if (!defined('ROOT')) {
+	define("ROOT", dirname(dirname(dirname(__FILE__))));
+}
+/**
  * Directory Separator
  */
 define("DS", DIRECTORY_SEPARATOR);

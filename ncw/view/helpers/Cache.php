@@ -55,15 +55,12 @@ class Ncw_Helpers_Cache extends Ncw_Helper
 		$cache_dir = Ncw_Configure::read('Cache.dir');
 		// Ensure cache_dir is set and not empty
 		if (empty($cache_dir)) {
-			$cache_dir = './tmp/cache';
+			$cache_dir = ROOT . DS . 'tmp' . DS . 'cache';
 		}
-		// Convert relative paths to absolute based on document root
-		if ($cache_dir[0] !== '/') {
-			// Remove leading ./ if present
-			$cache_dir = ltrim($cache_dir, './');
-			// Use dirname of index.php (project root) as base
-			$project_root = dirname(dirname(dirname(__FILE__)));
-			$cache_dir = $project_root . DS . $cache_dir;
+		
+		// Ensure the cache directory exists
+		if (!file_exists($cache_dir . DS . 'views')) {
+			@mkdir($cache_dir . DS . 'views', 0777, true);
 		}
 		
 		$this->object = new Cache(
