@@ -1,4 +1,5 @@
 <?php
+
 /**
  * contains the Password validation class
  *
@@ -21,6 +22,7 @@
  * @modby      $LastChangedBy$
  * @lastmod    $LastChangedDate$
  */
+
 /**
  * Password validation class.
  *
@@ -34,7 +36,6 @@
  */
 class Ncw_Validations_Password extends Ncw_Validation
 {
-
     /**
      * The error message
      *
@@ -52,13 +53,12 @@ class Ncw_Validations_Password extends Ncw_Validation
      *
      * @return boolean true or false
      */
-    public function check ($password)
+    public function check($password = null)
     {
-        if (false === empty($password)
-            && true == preg_match("/^[[:alnum:][:punct:]]{6,20}$/", $password)
-            && true == preg_match("/[[:digit:]]+/", $password)
-            && true == preg_match("/[[:alpha:]]+/", $password)
-        ) {
+        if (false === empty($password) &&
+                true == preg_match('/^[[:alnum:][:punct:]]{6,20}$/', $password) &&
+                true == preg_match('/[[:digit:]]+/', $password) &&
+                true == preg_match('/[[:alpha:]]+/', $password)) {
             return true;
         }
         return false;

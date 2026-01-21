@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Contains the controller class.
  *
@@ -26,10 +27,9 @@
  * @modby     $LastChangedBy$
  * @lastmod   $LastChangedDate$
  */
-/**
- * Gettext functions
- */
+/** Gettext functions */
 include_once VENDOR . DS . 'php-gettext' . DS . 'gettext.inc';
+
 /**
  * The controller class.
  *
@@ -42,7 +42,6 @@ include_once VENDOR . DS . 'php-gettext' . DS . 'gettext.inc';
  */
 abstract class Ncw_Controller extends Ncw_Object
 {
-
     /**
      * The controller name
      *
@@ -119,6 +118,20 @@ abstract class Ncw_Controller extends Ncw_Object
      * @var mixed
      */
     public $Core_Modules = null;
+
+    /**
+     * Access Control List component (dynamically loaded)
+     *
+     * @var Ncw_Components_Acl|null
+     */
+    public $acl = null;
+
+    /**
+     * Crypter component (dynamically loaded)
+     *
+     * @var Ncw_Components_Crypter|null
+     */
+    public $crypter = null;
 
     /**
      * As default the controller is assigned to a model.
@@ -261,9 +274,8 @@ abstract class Ncw_Controller extends Ncw_Object
     /**
      * Initializes the view object and
      * sets the method which is called first.
-     *
      */
-    public final function __construct ()
+    public final function __construct()
     {
         if (true === empty($this->name)) {
             $class_name = get_class($this);
@@ -290,6 +302,46 @@ abstract class Ncw_Controller extends Ncw_Object
     }
 
     /**
+     * Storage for dynamically loaded models (PHP 8.3 compatibility)
+     *
+     * @var array
+     */
+    private $_dynamicProperties = array();
+
+    /**
+     * Magic setter for dynamic properties (PHP 8.3 compatibility)
+     *
+     * @param string $name
+     * @param mixed $value
+     */
+    public function __set($name, $value)
+    {
+        $this->_dynamicProperties[$name] = $value;
+    }
+
+    /**
+     * Magic getter for dynamic properties (PHP 8.3 compatibility)
+     *
+     * @param string $name
+     * @return mixed
+     */
+    public function __get($name)
+    {
+        return $this->_dynamicProperties[$name] ?? null;
+    }
+
+    /**
+     * Magic isset for dynamic properties (PHP 8.3 compatibility)
+     *
+     * @param string $name
+     * @return bool
+     */
+    public function __isset($name)
+    {
+        return isset($this->_dynamicProperties[$name]);
+    }
+
+    /**
      * Loads a model
      *
      * @param string $model_class the model class
@@ -297,11 +349,11 @@ abstract class Ncw_Controller extends Ncw_Object
      *
      * @return void
      */
-    public final function loadModel ($model_class, $id = 0)
+    public final function loadModel($model_class, $id = 0)
     {
         $class = $model_class;
         if (false === strpos($model_class, '_')) {
-            $class = $this->module_name . "_" . $model_class;
+            $class = $this->module_name . '_' . $model_class;
         }
         $this->$model_class = new $class();
         if ($id > 0) {
@@ -311,9 +363,8 @@ abstract class Ncw_Controller extends Ncw_Object
 
     /**
      * Construct the classes
-     *
      */
-    public final function constructClasses ()
+    public final function constructClasses()
     {
         $this->components_object->init($this);
 
@@ -325,9 +376,8 @@ abstract class Ncw_Controller extends Ncw_Object
 
     /**
      * Sets the gettext locale and domain
-     *
      */
-    public function setLocale ()
+    public function setLocale()
     {
         $locale = Ncw_Configure::read('App.language');
         $domain = 'default';
@@ -347,14 +397,14 @@ abstract class Ncw_Controller extends Ncw_Object
      *
      * @return void
      */
-    protected final function _includeConfigs ()
+    protected final function _includeConfigs()
     {
         foreach ($this->configs as $config) {
-            $path_to_module_config = MODULES . DS . $this->module_name . DS . "config" . DS . $config . ".php";
+            $path_to_module_config = MODULES . DS . $this->module_name . DS . 'config' . DS . $config . '.php';
             if (true === is_file($path_to_module_config)) {
                 include_once $path_to_module_config;
             } else {
-                throw new Ncw_Exception("Config " . $config . " does not exist!");
+                throw new Ncw_Exception('Config ' . $config . ' does not exist!');
             }
         }
     }
@@ -364,20 +414,14 @@ abstract class Ncw_Controller extends Ncw_Object
      *
      * @return void
      */
-    public function beforeFilter ()
-    {
-
-    }
+    public function beforeFilter() {}
 
     /**
      * after filter
      *
      * @return void
      */
-    public function afterFilter ()
-    {
-
-    }
+    public function afterFilter() {}
 
     /**
      * Renders the view of the controller method.
@@ -387,10 +431,9 @@ abstract class Ncw_Controller extends Ncw_Object
      *
      * @return mixed
      */
-    public final function render ($view = '', $layout = null)
+    public final function render($view = '', $layout = null)
     {
         if (false !== $this->view) {
-
             $this->beforeRender();
 
             if (true === empty($view)) {
@@ -413,10 +456,7 @@ abstract class Ncw_Controller extends Ncw_Object
      *
      * @return void
      */
-    public function beforeRender ()
-    {
-
-    }
+    public function beforeRender() {}
 
     /**
      * Is used to call further actions.
@@ -426,7 +466,7 @@ abstract class Ncw_Controller extends Ncw_Object
      *
      * @return void
      */
-    public final function call ($action, $params = null)
+    public final function call($action, $params = null)
     {
         if (false === is_string($action)) {
             throw new Ncw_Exception('$action must be of type string!');
@@ -438,11 +478,11 @@ abstract class Ncw_Controller extends Ncw_Object
         if (true === is_array($params)) {
             $this->params = array_merge($this->params, $params);
         }
-        $action_name = $this->action . "Action";
+        $action_name = $this->action . 'Action';
         if (true === method_exists($this, $action_name)) {
             $this->dispatchMethod($action_name, $this->params['pass']);
         } else {
-            throw new Ncw_Exception("Action " . $this->action . " does not exist!");
+            throw new Ncw_Exception('Action ' . $this->action . ' does not exist!');
         }
     }
 
@@ -457,7 +497,7 @@ abstract class Ncw_Controller extends Ncw_Object
      *
      * @return void
      */
-    public final function redirect ($path = array(), $status = 301, $exit = true)
+    public final function redirect($path = array(), $status = 301, $exit = true)
     {
         $header = new Ncw_Components_Header();
         $header->object->sendStatusCode($status);
@@ -472,8 +512,8 @@ abstract class Ncw_Controller extends Ncw_Object
 
         $path = array_merge(
             array(
-                "module" => $this->module_name,
-                "controller" => strtolower($this->name),
+                'module' => $this->module_name,
+                'controller' => strtolower($this->name),
             ),
             $path
         );
@@ -495,15 +535,15 @@ abstract class Ncw_Controller extends Ncw_Object
      *
      * @return string Referring URL
      */
-    public function referer ($default = null, $local = false)
+    public function referer($default = null, $local = false)
     {
         $ref = env('HTTP_REFERER');
         if (false === empty($ref) && true === Ncw_Configure::check('Project.url')) {
             $base = Ncw_Configure::check('Project.url') . $this->webroot;
             if (strpos($ref, $base) === 0) {
-                $return =  substr($ref, strlen($base));
+                $return = substr($ref, strlen($base));
                 if ($return[0] != '/') {
-                    $return = '/'.$return;
+                    $return = '/' . $return;
                 }
                 return $return;
             } elseif (!$local) {
@@ -523,13 +563,13 @@ abstract class Ncw_Controller extends Ncw_Object
      * @return void
      * @access public
      */
-    public function disableCache ()
+    public function disableCache()
     {
-        header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
-        header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
-        header("Cache-Control: no-store, no-cache, must-revalidate");
-        header("Cache-Control: post-check=0, pre-check=0", false);
-        header("Pragma: no-cache");
+        header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+        header('Cache-Control: no-store, no-cache, must-revalidate');
+        header('Cache-Control: post-check=0, pre-check=0', false);
+        header('Pragma: no-cache');
     }
 
     /**
@@ -539,7 +579,7 @@ abstract class Ncw_Controller extends Ncw_Object
      *
      * @return boolean
      */
-    public final function registerCss ($file)
+    public final function registerCss($file)
     {
         if (false === is_string($file) && false === is_array($file)) {
             throw new Ncw_Exception('$file must be either of type string or array!');
@@ -564,7 +604,7 @@ abstract class Ncw_Controller extends Ncw_Object
      *
      * @return boolean
      */
-    public final function registerJs ($file)
+    public final function registerJs($file)
     {
         if (false === is_string($file) && false === is_array($file)) {
             throw new Ncw_Exception('$file must be either of type string or array!');
@@ -590,7 +630,7 @@ abstract class Ncw_Controller extends Ncw_Object
      *
      * @return boolean
      */
-    protected final function _registerFile ($type, $file)
+    protected final function _registerFile($type, $file)
     {
         $file_name = $file;
         $type_shortcuts = array('javascript' => 'js', 'css' => 'css', 'less' => 'css');
@@ -601,29 +641,30 @@ abstract class Ncw_Controller extends Ncw_Object
             $file .= '.less';
         } else {
             $path = MODULES . '/' . $this->module_name . '/' . 'web'
-                . '/' . $type  . '/' ;
+                . '/' . $type . '/';
         }
         $file .= '.' . $type_shortcuts[$type];
 
         if (true === is_file($path . $file)) {
             $url = $this->base . '/' . $path . $file;
             switch ($type) {
-            case 'css': case 'less':
-                $this->view->css[] = array(
-                    'path' => $path,
-                    'file' => $file,
-                    'tag' => '<link rel="stylesheet" type="text/css" href="'
-                    . $url . '" media="screen" />'
-                );
-                break;
-            case 'javascript':
-                $this->view->js[] = array(
-                    'path' => $path,
-                    'file' => $file,
-                    'tag' => '<script type="text/javascript" src="'
-                    . $url . '"></script>'
-                );
-                break;
+                case 'css':
+                case 'less':
+                    $this->view->css[] = array(
+                        'path' => $path,
+                        'file' => $file,
+                        'tag' => '<link rel="stylesheet" type="text/css" href="'
+                            . $url . '" media="screen" />'
+                    );
+                    break;
+                case 'javascript':
+                    $this->view->js[] = array(
+                        'path' => $path,
+                        'file' => $file,
+                        'tag' => '<script type="text/javascript" src="'
+                            . $url . '"></script>'
+                    );
+                    break;
             }
             return true;
         } else {
@@ -646,7 +687,7 @@ abstract class Ncw_Controller extends Ncw_Object
      *
      * @return array
      */
-    public final function paginate ($model = null, $scope = array(), $whitelist = array())
+    public final function paginate($model = null, $scope = array(), $whitelist = array())
     {
         if (true === is_array($model)) {
             $whitelist = $scope;
@@ -704,9 +745,8 @@ abstract class Ncw_Controller extends Ncw_Object
         if (false === isset($defaults['conditions'])) {
             $defaults['conditions'] = array();
         }
-        if (true === isset($defaults['order'])
-            && false === is_array($defaults['order'])
-        ) {
+        if (true === isset($defaults['order']) &&
+                false === is_array($defaults['order'])) {
             $defaults['order'] = array($defaults['order'] => 'asc');
         }
 
@@ -717,6 +757,13 @@ abstract class Ncw_Controller extends Ncw_Object
         );
         $options['limit'] = (empty($options['limit']) || !is_numeric($options['limit'])) ? 1 : (int) $options['limit'];
         extract($options);
+
+        // Ensure limit and page are integers after extract
+        $limit = (int) $limit;
+        $page = is_numeric($page) ? (int) $page : 1;
+
+        error_log('DEBUG EARLY: limit=' . var_export($limit, true) . ' (type: ' . gettype($limit) . ')');
+        error_log('DEBUG EARLY: page=' . var_export($page, true) . ' (type: ' . gettype($page) . ')');
 
         if (true === is_array($scope) && false === empty($scope)) {
             $conditions = array_merge($conditions, $scope);
@@ -743,11 +790,16 @@ abstract class Ncw_Controller extends Ncw_Object
         } elseif (intval($page) < 1) {
             $options['page'] = $page = 1;
         }
-        $page = $options['page'] = (integer) $page;
+        $page = $options['page'] = (int) $page;
 
         $parameters = compact('conditions', 'fields', 'order', 'limit');
         if ($page > 0) {
-            $parameters['limit'] = (int) $parameters['limit'] * ($page - 1) . ', ' . $parameters['limit'];
+            // DEBUG
+            error_log('DEBUG: page=' . var_export($page, true) . ' (type: ' . gettype($page) . ')');
+            error_log('DEBUG: limit=' . var_export($parameters['limit'], true) . ' (type: ' . gettype($parameters['limit']) . ')');
+            error_log('DEBUG: page-1=' . var_export($page - 1, true));
+
+            $parameters['limit'] = ((int) $parameters['limit'] * ((int) $page - 1)) . ', ' . ((int) $parameters['limit']);
         }
 
         $results = $this->{$model}->fetch(
@@ -757,20 +809,19 @@ abstract class Ncw_Controller extends Ncw_Object
 
         unset($defaults['conditions'], $defaults['fields'], $options['conditions'], $options['fields']);
         $paging = array(
-            'page'      => $page,
-            'current'   => count($results),
-            'count'     => $count,
-            'prevPage'  => ($page > 1),
-            'nextPage'  => ($count > ($page * $limit)),
+            'page' => $page,
+            'current' => count($results),
+            'count' => $count,
+            'prevPage' => ($page > 1),
+            'nextPage' => ($count > ($page * $limit)),
             'pageCount' => $page_count,
-            'defaults'  => array_merge(array('limit' => 20, 'step' => 1), $defaults),
-            'options'   => $options
+            'defaults' => array_merge(array('limit' => 20, 'step' => 1), $defaults),
+            'options' => $options
         );
         $this->params['paging'][$model] = $paging;
 
-        if (false === in_array('Paginator', $this->helpers)
-            && false === array_key_exists('Paginator', $this->helpers)
-        ) {
+        if (false === in_array('Paginator', $this->helpers) &&
+                false === array_key_exists('Paginator', $this->helpers)) {
             $this->helpers[] = 'Paginator';
         }
 

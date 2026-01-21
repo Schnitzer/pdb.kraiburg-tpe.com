@@ -52,7 +52,7 @@ class Ncw_Validations_Phonenumber extends Ncw_Validation
      *
      * @return boolean true or false
      */
-    public function check ($value)
+    public function check ($value = null)
     {
         if (true == preg_match("/^((((\+|00)[1-9]{1})-[1-9]{1}[0-9]{2,3}-[1-9]{1}[0-9]{3,9})|(((\+|00)[1-9]{1}[0-9]{1})-[1-9]{1}[0-9]{2,3}-[1-9]{1}[0-9]{3,8})|(((\+|00)[1-9]{1}[0-9]{2})-[0-9]{2,4}-[1-9]{1}[0-9]{3,7}))$/", $value)) {
             return true;

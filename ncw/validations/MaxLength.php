@@ -1,4 +1,5 @@
 <?php
+
 /**
  * contains the MaxLength validation class
  *
@@ -21,6 +22,7 @@
  * @modby      $LastChangedBy$
  * @lastmod    $LastChangedDate$
  */
+
 /**
  * MaxLength validation class.
  *
@@ -34,7 +36,6 @@
  */
 class Ncw_Validations_MaxLength extends Ncw_Validation
 {
-
     /**
      * The error message
      *
@@ -51,7 +52,7 @@ class Ncw_Validations_MaxLength extends Ncw_Validation
      *
      * @return boolean true or false
      */
-    public function check ($value, $max_length)
+    public function check($value = null, $max_length = null)
     {
         $cleaned_value = strlen($value);
         if ($cleaned_value <= $max_length) {

@@ -49,7 +49,7 @@ class Ncw_Validations_NotEmpty extends Ncw_Validation
      *
      * @return boolean true or false
      */
-    public function check ($value)
+    public function check ($value = null)
     {
         $value = trim($value);
         if (!empty($value)) {

@@ -50,7 +50,7 @@ class Ncw_Validations_Numeric extends Ncw_Validation
      *
      * @return boolean true or false
      */
-    public function check ($value)
+    public function check ($value = null)
     {
         $cleaned_value = (float) $value;
         if ("" . $cleaned_value . "" == $value) {

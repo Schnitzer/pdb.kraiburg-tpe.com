@@ -50,7 +50,7 @@ class Ncw_Validations_URL extends Ncw_Validation
      *
      * @return boolean true or false
      */
-    public function check ($value)
+    public function check ($value = null)
     {
         if (true == preg_match("=^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$=i", $value)) {
             return true;

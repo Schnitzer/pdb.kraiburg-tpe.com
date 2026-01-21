@@ -50,7 +50,7 @@ class Ncw_Validations_Decimal extends Ncw_Validation
      *
      * @return boolean true or false
      */
-    public function check ($value)
+    public function check ($value = null)
     {
         if (true == is_string($value)) {
             $new_value = (float) $value;

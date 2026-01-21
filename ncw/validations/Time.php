@@ -49,7 +49,7 @@ class Ncw_Validations_Time extends Ncw_Validation
      *
      * @return boolean true or false
      */
-    public function check ($value)
+    public function check ($value = null)
     {
         if (true == preg_match("/^([01][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$/", $value)) {
             return true;

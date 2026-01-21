@@ -581,9 +581,9 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
         }
         $start = 0;
         if ($paging['count'] >= 1) {
-            $start = (($paging['page'] - 1) * $paging['options']['limit']) + 1;
+            $start = (($paging['page'] - 1) * (int)$paging['options']['limit']) + 1;
         }
-        $end = $start + $paging['options']['limit'] - 1;
+        $end = $start + (int)$paging['options']['limit'] - 1;
         if ($paging['count'] < $end) {
             $end = $paging['count'];
         }
@@ -674,10 +674,10 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
             if ($end > $params['pageCount']) {
                 $end = $params['pageCount'];
             }
-            $start = $params['page'] - ($modulus - ($end - $params['page']));
+            $start = (int)$params['page'] - ((int)$modulus - ((int)$end - (int)$params['page']));
             if ($start <= 1) {
                 $start = 1;
-                $end = $params['page'] + ($modulus  - $params['page']) + 1;
+                $end = (int)$params['page'] + ((int)$modulus  - (int)$params['page']) + 1;
             }
 
             if ($first && $start > 1) {
@@ -712,8 +712,8 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
             $out .= $after;
 
             if ($last && $end < $params['pageCount']) {
-                $offset = ($params['pageCount'] < $end + (int)$last) ? $params['pageCount'] - $end : $last;
-                if ($offset <= $last && $params['pageCount'] - $end > $offset) {
+                $offset = ((int)$params['pageCount'] < $end + (int)$last) ? (int)$params['pageCount'] - $end : $last;
+                if ($offset <= $last && (int)$params['pageCount'] - $end > $offset) {
                     $out .= $this->last($offset, array('tag' => $tag, 'separator' => $separator));
                 } else {
                     $out .= $this->last($offset, array('tag' => $tag, 'before' => $separator, 'separator' => $separator));
@@ -836,7 +836,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
         unset($options['tag'], $options['before'], $options['model'], $options['separator']);
 
         $out = '';
-        $lower = $params['pageCount'] - $last + 1;
+        $lower = (int)$params['pageCount'] - (int)$last + 1;
 
         if (true === is_int($last) && $params['page'] < $lower) {
             if ($before === null) {

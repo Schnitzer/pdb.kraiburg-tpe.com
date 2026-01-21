@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Contains the Router class.
  *
@@ -26,6 +27,7 @@
  * @modby     $LastChangedBy$
  * @lastmod   $LastChangedDate$
  */
+
 /**
  * Router class.
  *
@@ -38,7 +40,6 @@
  */
 class Ncw_Router
 {
-
     /**
      * The connected routes
      *
@@ -61,7 +62,7 @@ class Ncw_Router
      *
      * @return void
      */
-    public static function connect ($url, $route)
+    public static function connect($url, $route)
     {
         $route = array_merge(
             array(
@@ -89,7 +90,7 @@ class Ncw_Router
      *
      * @return Array
      */
-    public static function parse ($url)
+    public static function parse($url)
     {
         if (ini_get('magic_quotes_gpc') === '1') {
             $url = stripslashes_deep($url);
@@ -104,8 +105,8 @@ class Ncw_Router
         }
 
         // set params
-        if (true === Ncw_Configure::check('Router.prefix')
-            && false !== Ncw_Configure::read('Router.prefix')) {
+        if (true === Ncw_Configure::check('Router.prefix') &&
+                false !== Ncw_Configure::read('Router.prefix')) {
             $route['params']['prefix'] = Ncw_Configure::read('Router.prefix');
         } else {
             $route['params']['prefix'] = false;
@@ -144,7 +145,7 @@ class Ncw_Router
      *
      * @return mixed
      */
-    protected static function _checkRoutes ($url)
+    protected static function _checkRoutes($url)
     {
         // check if a route matches
         foreach (self::$_routes as $route_regex => $route) {
@@ -224,7 +225,7 @@ class Ncw_Router
      *
      * @return array
      */
-    protected static function _replaceTags (&$route_value, $key, $userdata = null)
+    protected static function _replaceTags(&$route_value, $key, $userdata = null)
     {
         extract($userdata);
         $route_value = str_replace($tags, $value, $route_value);
@@ -237,26 +238,24 @@ class Ncw_Router
      *
      * @return Array
      */
-    protected static function _noRoute ($url)
+    protected static function _noRoute($url)
     {
         $controller = '';
         $action = '';
 
         $route = explode('/', trim($url, '/'));
         $index_start = 0;
-        if (true === Ncw_Configure::check('Router.prefix')
-            && false !== Ncw_Configure::read('Router.prefix')) {
-           $index_start = 1;
+        if (true === Ncw_Configure::check('Router.prefix') &&
+                false !== Ncw_Configure::read('Router.prefix')) {
+            $index_start = 1;
         }
         $module = $route[$index_start++];
-        if (true === isset($route[$index_start])
-            && false === empty($route[$index_start])
-        ) {
+        if (true === isset($route[$index_start]) &&
+                false === empty($route[$index_start])) {
             $controller = $route[$index_start++];
         }
-        if (true === isset($route[$index_start])
-            && false === empty($route[$index_start])
-        ) {
+        if (true === isset($route[$index_start]) &&
+                false === empty($route[$index_start])) {
             $action = $route[$index_start++];
         }
         $params = self::_getParams($route);
@@ -283,7 +282,7 @@ class Ncw_Router
      *
      * @return array
      */
-    protected static function _getParams ($route)
+    protected static function _getParams($route)
     {
         $params = array('pass' => array(), 'named' => array());
         if (true === isset($route[3])) {
@@ -315,7 +314,7 @@ class Ncw_Router
      *
      * @return string Full translated URL with base path.
      */
-    public static function url ($url = null, $full = false)
+    public static function url($url = null, $full = false)
     {
         if (true === is_null($url) || true === empty($url)) {
             $url = array();
@@ -325,27 +324,25 @@ class Ncw_Router
 
         if (true === is_array($url)) {
             $request_route = self::requestRoute();
-            if (true === Ncw_Configure::check('Router.prefix')
-                && false !== Ncw_Configure::check('Router.prefix')
-            ) {
+            if (true === Ncw_Configure::check('Router.prefix') &&
+                    false !== Ncw_Configure::check('Router.prefix')) {
                 $prefix = Ncw_Configure::read('Router.prefix');
             } else {
                 $prefix = false;
             }
             $url = array_merge(
                 array(
-                    "prefix" => $prefix,
-                    "module" => $request_route['module'],
+                    'prefix' => $prefix,
+                    'module' => $request_route['module'],
                     'controller' => '',
                     'action' => '',
                     'id' => null
                 ),
                 $url
             );
-            if (false === empty($url['action'])
-                && true === empty($url['controller'])
-                && $url['module'] === $request_route['module']
-            ) {
+            if (false === empty($url['action']) &&
+                    true === empty($url['controller']) &&
+                    $url['module'] === $request_route['module']) {
                 $url['controller'] = $request_route['controller'];
             }
 
@@ -366,7 +363,7 @@ class Ncw_Router
                     if (false === empty($url['action'])) {
                         $url_string .= $url['action'] . $extension;
                         if (false == is_null($url['id'])) {
-                             $url_string .= '/' . $url['id'];
+                            $url_string .= '/' . $url['id'];
                         }
                     }
                 }
@@ -388,11 +385,11 @@ class Ncw_Router
             );
 
             foreach ($url as $key => $value) {
-                if (true === is_array($value)
-                    || strlen($value) == 0) {
+                if (true === is_array($value) ||
+                        (is_string($value) && strlen($value) == 0)) {
                     continue;
                 }
-                $url_string .= "/";
+                $url_string .= '/';
                 if (true === is_string($key)) {
                     $url_string .= $key . ':';
                 }
@@ -403,9 +400,8 @@ class Ncw_Router
                 return Ncw_Configure::read('Project.url');
             } else {
                 $url_string = '';
-                if (true === Ncw_Configure::check('Router.prefix')
-                    && false !== Ncw_Configure::check('Router.prefix')
-                ) {
+                if (true === Ncw_Configure::check('Router.prefix') &&
+                        false !== Ncw_Configure::check('Router.prefix')) {
                     $url_string .= Ncw_Configure::read('Router.prefix') . '/';
                 }
                 if (strpos($url, '/') === 0) {
@@ -419,7 +415,7 @@ class Ncw_Router
         $url_string = $url['params']['url']['url'];*/
 
         if (false === Ncw_Configure::read('App.rewrite')) {
-            $url_string = "index.php?url=" . $url_string;
+            $url_string = 'index.php?url=' . $url_string;
         }
 
         if (true === $full) {
@@ -436,19 +432,19 @@ class Ncw_Router
      *
      * @return mixed Array or string escaped
      */
-    public static function stripEscape ($param)
+    public static function stripEscape($param)
     {
         if (false === is_array($param) || true === empty($param)) {
             if (true === is_bool($param)) {
                 return $param;
             }
 
-            return preg_replace('/^(?:[\\t ]*(?:-!)+)/', '', $param);
+            return preg_replace('/^(?:[\t ]*(?:-!)+)/', '', $param);
         }
 
         foreach ($param as $key => $value) {
             if (true === is_string($value)) {
-                $return[$key] = preg_replace('/^(?:[\\t ]*(?:-!)+)/', '', $value);
+                $return[$key] = preg_replace('/^(?:[\t ]*(?:-!)+)/', '', $value);
             } else {
                 foreach ($value as $array => $string) {
                     $return[$key][$array] = self::stripEscape($string);
@@ -463,7 +459,7 @@ class Ncw_Router
      *
      * @return array Matching route
      */
-    public static function requestRoute ()
+    public static function requestRoute()
     {
         return self::$__current_route[0];
     }
@@ -473,7 +469,7 @@ class Ncw_Router
      *
      * @return array Matching route
      */
-    public static function currentRoute ()
+    public static function currentRoute()
     {
         return self::$__current_route[count(self::$__current_route) - 1];
     }
@@ -487,7 +483,7 @@ class Ncw_Router
      *
      * @return array
      */
-    public static function queryString ($q, $extra = array(), $escape = false)
+    public static function queryString($q, $extra = array(), $escape = false)
     {
         if (true === empty($q) && true === empty($extra)) {
             return null;
@@ -504,7 +500,7 @@ class Ncw_Router
             $out = $q;
             $q = $extra;
         }
-        $out .= http_build_query($q, null, $join);
+        $out .= http_build_query($q, '', $join);
         if (true === isset($out[0]) && $out[0] != '?') {
             if (true === Ncw_Configure::read('App.rewrite')) {
                 $out = '?' . $out;

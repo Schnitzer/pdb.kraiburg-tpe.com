@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CSSTidy - CSS Parser and Optimiser
  *
@@ -35,7 +36,6 @@
  * @author Florian Schmitz (floele at gmail dot com) 2005-2006
  * @version 1.0
  */
-
 #[AllowDynamicProperties]
 class csstidy_print
 {
@@ -68,13 +68,13 @@ class csstidy_print
      */
     function __construct(&$css)
     {
-        $this->parser    =& $css;
-        $this->css       =& $css->css;
-        $this->template  =& $css->template;
-        $this->tokens    =& $css->tokens;
-        $this->charset   =& $css->charset;
-        $this->import    =& $css->import;
-        $this->namespace =& $css->namespace;
+        $this->parser = &$css;
+        $this->css = &$css->css;
+        $this->template = &$css->template;
+        $this->tokens = &$css->tokens;
+        $this->charset = &$css->charset;
+        $this->import = &$css->import;
+        $this->namespace = &$css->namespace;
     }
 
     /**
@@ -129,7 +129,7 @@ class csstidy_print
             $this->_convert_raw_css();
         }
 
-        $template =& $this->template;
+        $template = &$this->template;
 
         if ($plain) {
             $template = array_map('strip_tags', $template);
@@ -140,47 +140,48 @@ class csstidy_print
         }
 
         if (!empty($this->charset)) {
-            $output .= $template[0].'@charset '.$template[5].$this->charset.$template[6];
+            $output .= $template[0] . '@charset ' . $template[5] . $this->charset . $template[6];
         }
 
         if (!empty($this->import)) {
-            for ($i = 0, $size = count($this->import); $i < $size; $i ++) {
-                $output .= $template[0].'@import '.$template[5].$this->import[$i].$template[6];
+            for ($i = 0, $size = count($this->import); $i < $size; $i++) {
+                $output .= $template[0] . '@import ' . $template[5] . $this->import[$i] . $template[6];
             }
         }
 
         if (!empty($this->namespace)) {
-            $output .= $template[0].'@namespace '.$template[5].$this->namespace.$template[6];
+            $output .= $template[0] . '@namespace ' . $template[5] . $this->namespace . $template[6];
         }
 
         $output .= $template[13];
         $in_at_out = '';
-        $out =& $output;
+        $out = &$output;
 
-        foreach ($this->tokens as $key => $token)
-        {
-            switch ($token[0])
-            {
+        foreach ($this->tokens as $key => $token) {
+            switch ($token[0]) {
                 case AT_START:
-                    $out .= $template[0].$this->_htmlsp($token[1], $plain).$template[1];
-                    $out =& $in_at_out;
+                    $out .= $template[0] . $this->_htmlsp($token[1], $plain) . $template[1];
+                    $out = &$in_at_out;
                     break;
 
                 case SEL_START:
-                    if($this->parser->get_cfg('lowercase_s')) $token[1] = strtolower($token[1]);
-                    $out .= ($token[1][0] !== '@') ? $template[2].$this->_htmlsp($token[1], $plain) : $template[0].$this->_htmlsp($token[1], $plain);
+                    if ($this->parser->get_cfg('lowercase_s'))
+                        $token[1] = strtolower($token[1]);
+                    $out .= (!empty($token[1]) && $token[1][0] !== '@') ? $template[2] . $this->_htmlsp($token[1], $plain) : $template[0] . $this->_htmlsp($token[1], $plain);
                     $out .= $template[3];
                     break;
 
                 case PROPERTY:
-                    if($this->parser->get_cfg('case_properties') == 2) $token[1] = strtoupper($token[1]);
-                    if($this->parser->get_cfg('case_properties') == 1) $token[1] = strtolower($token[1]);
+                    if ($this->parser->get_cfg('case_properties') == 2)
+                        $token[1] = strtoupper($token[1]);
+                    if ($this->parser->get_cfg('case_properties') == 1)
+                        $token[1] = strtolower($token[1]);
                     $out .= $template[4] . $this->_htmlsp($token[1], $plain) . ':' . $template[5];
                     break;
 
                 case VALUE:
                     $out .= $this->_htmlsp($token[1], $plain);
-                    if($this->_seeknocomment($key, 1) == SEL_END && $this->parser->get_cfg('remove_last_;')) {
+                    if ($this->_seeknocomment($key, 1) == SEL_END && $this->parser->get_cfg('remove_last_;')) {
                         $out .= str_replace(';', '', $template[6]);
                     } else {
                         $out .= $template[6];
@@ -189,11 +190,12 @@ class csstidy_print
 
                 case SEL_END:
                     $out .= $template[7];
-                    if($this->_seeknocomment($key, 1) != AT_END) $out .= $template[8];
+                    if ($this->_seeknocomment($key, 1) != AT_END)
+                        $out .= $template[8];
                     break;
 
                 case AT_END:
-                    $out =& $output;
+                    $out = &$output;
                     $out .= $template[10] . str_replace("\n", "\n" . $template[10], $in_at_out);
                     $in_at_out = '';
                     $out .= $template[9];
@@ -223,9 +225,10 @@ class csstidy_print
      * @access private
      * @version 1.0
      */
-    function _seeknocomment($key, $move) {
+    function _seeknocomment($key, $move)
+    {
         $go = ($move > 0) ? 1 : -1;
-        for ($i = $key + 1; abs($key-$i)-1 < abs($move); $i += $go) {
+        for ($i = $key + 1; abs($key - $i) - 1 < abs($move); $i += $go) {
             if (!isset($this->tokens[$i])) {
                 return;
             }
@@ -246,20 +249,19 @@ class csstidy_print
     {
         $this->tokens = array();
 
-        foreach ($this->css as $medium => $val)
-        {
-            if ($this->parser->get_cfg('sort_selectors')) ksort($val);
+        foreach ($this->css as $medium => $val) {
+            if ($this->parser->get_cfg('sort_selectors'))
+                ksort($val);
             if ($medium != DEFAULT_AT) {
                 $this->parser->_add_token(AT_START, $medium, true);
             }
 
-            foreach ($val as $selector => $vali)
-            {
-                if ($this->parser->get_cfg('sort_properties')) ksort($vali);
+            foreach ($val as $selector => $vali) {
+                if ($this->parser->get_cfg('sort_properties'))
+                    ksort($vali);
                 $this->parser->_add_token(SEL_START, $selector, true);
 
-                foreach ($vali as $property => $valj)
-                {
+                foreach ($vali as $property => $valj) {
                     $this->parser->_add_token(PROPERTY, $property, true);
                     $this->parser->_add_token(VALUE, $valj, true);
                 }

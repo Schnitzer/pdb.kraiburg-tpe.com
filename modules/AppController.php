@@ -1,5 +1,6 @@
 <?php
 /* SVN FILE: $Id$ */
+
 /**
  * Contains the AppController class.
  *
@@ -20,6 +21,7 @@
  * @lastmodified	$LastChangedDate$
  * @license			http://www.netzcraftwerk.com/licenses/
  */
+
 /**
  * AppController class.
  *
@@ -27,7 +29,6 @@
  */
 class AppController extends Ncw_Controller
 {
-
 	/**
 	 * Use these components
 	 *
@@ -61,71 +62,70 @@ class AppController extends Ncw_Controller
 	 *
 	 * @param Array $params
 	 */
-	public function beforeFilter ()
+	public function beforeFilter()
 	{
 		// If ACL is used.
-		if (true === isset($this->acl) && true === $this->acl instanceof Ncw_Components_Acl
-		    && false === $this->do_not_check
-		) {
-		    $user = Ncw_Components_Session::readInAll('user');
+		if (true === isset($this->acl) &&
+				true === $this->acl instanceof Ncw_Components_Acl &&
+				false === $this->do_not_check) {
+			$user = Ncw_Components_Session::readInAll('user');
 			// If the ACOS are not read yet then read them if this action is not public
-			if (false === $this->acl->getIsAcosRead()
-                && false === in_array($this->action, $this->acl_publics)
-            ) {
+			if (false === $this->acl->getIsAcosRead() &&
+					false === in_array($this->action, $this->acl_publics)) {
 				$this->acl->read($user['id'], '');
 			}
 			if (true === $this->acl->getIsAcosRead()) {
-                $access = $this->checkAccess($this->params, false);
-    			// If ACOS are read and the acces is denied then call the noPermission action
-    			if (false === $access) {
-    				$this->redirect(
-                        array(
-                            'module' => 'core',
-                            'controller' => 'user',
-                            'action' => 'denied'
-                        )
-                    );
-    			} else if ($access === -1) {
-    			    if ($this->request_handler->responseType() === null) {
-        			    $html = new Ncw_Helpers_Html();
-        			    print '<script type="text/javascript">
-        			    window.location.href="' . $html->url(
-                            array(
-                                "module" => "core",
-                                "controller" => "user",
-                                "action" => "login"
-                            )
-                        ) . '"
+				$access = $this->checkAccess($this->params, false);
+				// If ACOS are read and the acces is denied then call the noPermission action
+				if (false === $access) {
+					$this->redirect(
+						array(
+							'module' => 'core',
+							'controller' => 'user',
+							'action' => 'denied'
+						)
+					);
+				} else if ($access === -1) {
+					if ($this->request_handler->responseType() === null) {
+						$html = new Ncw_Helpers_Html();
+						print "<script type=\"text/javascript\">
+        \t\t\t    window.location.href=\"" . $html->url(
+							array(
+								'module' => 'core',
+								'controller' => 'user',
+								'action' => 'login'
+							)
+						) . '"
                         </script>';
-    			    } else {
-                        $this->redirect(
-                            array(
-                                'module' => 'core',
-                                'controller' => 'user',
-                                'action' => 'login'
-                            )
-                        );
-    			    }
-                    exit();
-                } else {
-                    // set the language
-                    Ncw_Configure::write('App.language', $user['language']);
-                    $this->setLocale();
-                }
+					} else {
+						$this->redirect(
+							array(
+								'module' => 'core',
+								'controller' => 'user',
+								'action' => 'login'
+							)
+						);
+					}
+					exit();
+				} else {
+					// set the language
+					Ncw_Configure::write('App.language', $user['language']);
+					$this->setLocale();
+				}
 			}
 		}
 
 		// set the installed modules
-	    $this->loadModel('Core_Modules');
-        $modules = $this->Core_Modules->fetch(
-        	'all',
-        	array(
+		$this->loadModel('Core_Modules');
+		$modules = $this->Core_Modules->fetch(
+			'all',
+			array(
 				'order' => array('Modules.no_deinstall', 'Modules.name' => 'DESC'),
 			)
-        );
-        foreach ($modules as $module) {
-        	if (Ncw_Configure::read('App.language') == 'en_EN') {
-        		$module_name = $module->getName();
+		);
+		foreach ($modules as $module) {
+			if (Ncw_Configure::read('App.language') == 'en_EN') {
+				$module_name = $module->getName();
 			} else {
 				$language = str_replace('_', '', Ncw_Configure::read('App.language'));
 				$language[0] = strtoupper($language[0]);
@@ -135,81 +135,77 @@ class AppController extends Ncw_Controller
 					$module_name = $module->getName();
 				}
 			}
-            $this->installed_modules[$module->getPermissionName()] = array(
-                'id' => $module->getId(),
-                'name' => $module_name,
-                'version' => $module->getVersion(),
-                'url' => $module->getUrl(),
-                'permission_name' => $module->getPermissionName(),
-                'permission' => $this->acl->check('/' . $module->getPermissionName()),
-                'requirements' => $module->getRequirements(),
-            );
-        }
+			$this->installed_modules[$module->getPermissionName()] = array(
+				'id' => $module->getId(),
+				'name' => $module_name,
+				'version' => $module->getVersion(),
+				'url' => $module->getUrl(),
+				'permission_name' => $module->getPermissionName(),
+				'permission' => $this->acl->check('/' . $module->getPermissionName()),
+				'requirements' => $module->getRequirements(),
+			);
+		}
 	}
 
-    /**
-     * before Render
-     *
-     */
-	public function beforeRender ()
+	/**
+	 * before Render
+	 */
+	public function beforeRender()
 	{
-	    $applications = array();
-	    foreach ($this->installed_modules as $module) {
-	        if (true === $module['permission']) {
-	            $applications[] = $module;
-	        }
-	    }
-        $this->view->applications = $applications;
+		$applications = array();
+		foreach ($this->installed_modules as $module) {
+			if (true === $module['permission']) {
+				$applications[] = $module;
+			}
+		}
+		$this->view->applications = $applications;
 	}
 
 	/**
 	 * After filter...
-	 *
 	 */
-	public function afterFilter ()
+	public function afterFilter()
 	{
-	    $this->setReferer();
+		$this->setReferer();
 	}
 
 	/**
 	 * Sets the referer session
-	 *
 	 */
-	public function setReferer ()
+	public function setReferer()
 	{
-	    /*if (false === isset($this->request_handler)) {
-	        $request_handler = new Ncw_Components_RequestHandler();
-	        $request_handler->startup($this);
-	    }
-	    if (false === $this->request_handler->isAjax()
-	       && $this->name != 'User'
-	       && $this->action != 'login'
-	       && $this->action != 'logout'
-	    ) {
-            Ncw_Components_Session::writeInAll(
-                'referer',
-                array(
-                    "module" => $this->module_name,
-                    "controller" => strtolower($this->name),
-                    "action" => $this->action,
-                    'params' => $this->params
-                )
-            );
-	    }*/
+		/*if (false === isset($this->request_handler)) {
+			$request_handler = new Ncw_Components_RequestHandler();
+			$request_handler->startup($this);
+		}
+		if (false === $this->request_handler->isAjax()
+		   && $this->name != 'User'
+		   && $this->action != 'login'
+		   && $this->action != 'logout'
+		) {
+			Ncw_Components_Session::writeInAll(
+				'referer',
+				array(
+					"module" => $this->module_name,
+					"controller" => strtolower($this->name),
+					"action" => $this->action,
+					'params' => $this->params
+				)
+			);
+		}*/
 	}
 
 	/**
 	 * Redirects to the referer
-	 *
 	 */
-	public function redirectToReferer ()
+	public function redirectToReferer()
 	{
-	    /*if (true === Ncw_Components_Session::checkInAll('referer')) {
-	        $goto = Ncw_Components_Session::readInAll('referer');
-            $params = array_pop($goto);
-            Ncw_Components_Session::deleteInAll('referer');
-            $this->redirect($goto, $params);
-	    }*/
+		/*if (true === Ncw_Components_Session::checkInAll('referer')) {
+			$goto = Ncw_Components_Session::readInAll('referer');
+			$params = array_pop($goto);
+			Ncw_Components_Session::deleteInAll('referer');
+			$this->redirect($goto, $params);
+		}*/
 	}
 
 	/**
@@ -218,32 +214,32 @@ class AppController extends Ncw_Controller
 	 * @param boolean $redirect (optional)
 	 * @return boolean
 	 */
-	public final function checkLogin ($redirect = true)
+	public final function checkLogin($redirect = true)
 	{
 		switch (Core_UserController::checkUserLogin($this)) {
-		case 1:
-			return true;
+			case 1:
+				return true;
 
-		case 0:
-			if (true === $redirect) {
+			case 0:
+				if (true === $redirect) {
+					$this->redirect(
+						array(
+							'module' => 'core',
+							'controller' => 'user',
+							'action' => 'login'
+						)
+					);
+				}
+				break;
+
+			case -1:
 				$this->redirect(
-				    array(
-				        "module" => "core",
-				        "controller" => "user",
-				        "action" => "login"
-				    )
+					array(
+						'module' => 'core',
+						'controller' => 'user',
+						'action' => 'logout'
+					)
 				);
-			}
-			break;
-
-		case -1:
-			$this->redirect(
-			    array(
-			        "module" => "core",
-		            "controller" => "user",
-			        "action" => "logout"
-			    )
-			);
 		}
 		return false;
 	}
@@ -256,47 +252,59 @@ class AppController extends Ncw_Controller
 	 *
 	 * @return mixed
 	 */
-	public final function checkAccess ($args, $redirect = true)
+	public final function checkAccess($args, $redirect = true)
 	{
 		if (true === $this->checkLogin($redirect)) {
-			$aco = "/" . $this->module_name . "/" . strtolower($this->name) . "/" . $this->action;
+			$aco = '/' . $this->module_name . '/' . strtolower($this->name) . '/' . $this->action;
 			if (true === is_array($args)) {
 				foreach ($args as $arg) {
-					$aco .= "/" . $arg;
+					// Convert arg to string, handling nested arrays
+					if (is_array($arg)) {
+						// Flatten array recursively
+						$flattened = array();
+						array_walk_recursive($arg, function ($v) use (&$flattened) {
+							$flattened[] = $v;
+						});
+						$aco .= '/' . implode('/', $flattened);
+					} else {
+						$aco .= '/' . strval($arg);
+					}
 				}
+			} elseif (!empty($args)) {
+				// Handle single non-array argument
+				$aco .= '/' . $args;
 			}
 			return $this->acl->check($aco);
 		}
 		return -1;
 	}
 
-    /**
-     * Captcha
-     *
-     */
-    public function captchaAction ()
-    {
-        $this->layout = 'blank';
-        $this->view = false;
+	/**
+	 * Captcha
+	 */
+	public function captchaAction()
+	{
+		$this->layout = 'blank';
+		$this->view = false;
 
-        $this->captcha->perturbation = 0.85;
-        $this->captcha->multi_text_color = array(
-            new Securimage_Color(0x33, 0x99, 0xff),
-            new Securimage_Color(0x33, 0, 0xcc),
-            new Securimage_Color(0x33, 0x33, 0xcc),
-            new Securimage_Color(0x66, 0x66, 0xff),
-            new Securimage_Color(0x99, 0xcc, 0xcc)
-        );
-        $this->captcha->use_multi_text = true;
-        $this->captcha->text_angle_minimum = -5;
-        $this->captcha->text_angle_maximum = 5;
-        $this->captcha->use_transparent_text = true;
-        $this->captcha->text_transparency_percentage = 30;
-        $this->captcha->num_lines = 5;
-        $this->captcha->line_color = new Securimage_Color(0xcc, 0xcc, 0xcc);
-        $this->captcha->use_wordlist = true;
+		$this->captcha->perturbation = 0.85;
+		$this->captcha->multi_text_color = array(
+			new Securimage_Color(0x33, 0x99, 0xFF),
+			new Securimage_Color(0x33, 0, 0xCC),
+			new Securimage_Color(0x33, 0x33, 0xCC),
+			new Securimage_Color(0x66, 0x66, 0xFF),
+			new Securimage_Color(0x99, 0xCC, 0xCC)
+		);
+		$this->captcha->use_multi_text = true;
+		$this->captcha->text_angle_minimum = -5;
+		$this->captcha->text_angle_maximum = 5;
+		$this->captcha->use_transparent_text = true;
+		$this->captcha->text_transparency_percentage = 30;
+		$this->captcha->num_lines = 5;
+		$this->captcha->line_color = new Securimage_Color(0xCC, 0xCC, 0xCC);
+		$this->captcha->use_wordlist = true;
 
-        $this->captcha->show();
-    }
+		$this->captcha->show();
+	}
 }
 ?>

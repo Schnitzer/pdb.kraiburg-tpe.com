@@ -50,7 +50,7 @@ class Ncw_Validations_Integer extends Ncw_Validation
      *
      * @return boolean true or false
      */
-    public function check ($value)
+    public function check ($value = null)
     {
         $cleaned_value = (int) $value;
         if ("" . $cleaned_value . "" == $value) {

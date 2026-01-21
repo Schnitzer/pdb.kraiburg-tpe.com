@@ -1,4 +1,5 @@
 <?php
+
 /**
  * contains the Unique validation class
  *
@@ -21,6 +22,7 @@
  * @modby      $LastChangedBy$
  * @lastmod    $LastChangedDate$
  */
+
 /**
  * Unique validation class.
  *
@@ -34,7 +36,6 @@
  */
 class Ncw_Validations_Unique extends Ncw_Validation
 {
-
     /**
      * The error message
      *
@@ -49,14 +50,14 @@ class Ncw_Validations_Unique extends Ncw_Validation
      *
      * @return boolean true or false
      */
-    public function check ($value)
+    public function check($value = null)
     {
-        $sql = "SELECT count(1) AS `count`
-                FROM " . $this->options['db_table'] . "
-                WHERE `" . $this->field . "`=:value";
+        $sql = 'SELECT count(1) AS `count`
+                FROM ' . $this->options['db_table'] . '
+                WHERE `' . $this->field . '`=:value';
         $db = Ncw_Database::getInstance();
         $stmt = $db->prepare($sql);
-        $stmt->bindValue(":value", $value, PDO::PARAM_STR);
+        $stmt->bindValue(':value', $value, PDO::PARAM_STR);
         $stmt->execute();
         $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if ($row[0]['count'] == 0) {

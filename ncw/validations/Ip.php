@@ -50,7 +50,7 @@ class Ncw_Validations_IP extends Ncw_Validation
      *
      * @return boolean true or false
      */
-    public function check ($value)
+    public function check ($value = null)
     {
         // If the function filter_var is accesable
         if (true === function_exists("filter_var")) {

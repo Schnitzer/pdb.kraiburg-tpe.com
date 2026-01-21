@@ -1,4 +1,5 @@
 <?php
+
 /**
  * contains the Paginator helper
  *
@@ -27,6 +28,7 @@
  * @modby      $LastChangedBy$
  * @lastmod    $LastChangedDate$
  */
+
 /**
  * The Paginator class is used to make some wicked stuff with text.
  *
@@ -40,7 +42,6 @@
  */
 class Ncw_Helpers_Paginator extends Ncw_Helper
 {
-
     /**
      * The current action
      *
@@ -107,7 +108,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
      *
      * @return void
      */
-    public function startup (Ncw_View &$view)
+    public function startup(Ncw_View &$view)
     {
         $this->params = $view->controller->params;
         $this->_action = $view->controller->action;
@@ -123,26 +124,25 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
      *
      * @return array The array of paging parameters for the paginated resultset.
      */
-    public function params ($model = null)
+    public function params($model = null)
     {
         if (empty($model)) {
             $model = $this->defaultModel();
         }
-        if (false === isset($this->params['paging'])
-            || true === empty($this->params['paging'][$model])
-        ) {
+        if (false === isset($this->params['paging']) ||
+                true === empty($this->params['paging'][$model])) {
             return null;
         }
         return $this->params['paging'][$model];
     }
 
-	/**
-	 * Set the default model
-	 */
-	public function setDefaultModel ($model)
-	{
-		$this->_default_model = $model;
-	}
+    /**
+     * Set the default model
+     */
+    public function setDefaultModel($model)
+    {
+        $this->_default_model = $model;
+    }
 
     /**
      * Sets default options for all pagination links
@@ -150,7 +150,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
      * @param mixed $options Default options for pagination links. If a string is supplied - it
      * is used as the DOM id element to update. See #options for list of keys.
      */
-    public function options ($options = array())
+    public function options($options = array())
     {
         if (true === is_string($options)) {
             $options = array('update' => $options);
@@ -188,7 +188,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
      *
      * @return string The current page number of the recordset.
      */
-    public function current ($model = null)
+    public function current($model = null)
     {
         $params = $this->params($model);
 
@@ -207,7 +207,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
      * @return string The name of the key by which the recordset is being sorted, or
      *  null if the results are not currently sorted.
      */
-    public function sortKey ($model = null, $options = array())
+    public function sortKey($model = null, $options = array())
     {
         if (true === empty($options)) {
             $params = $this->params($model);
@@ -241,7 +241,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
      * @return string The direction by which the recordset is being sorted, or
      *  null if the results are not currently sorted.
      */
-    public function sortDir ($model = null, $options = array())
+    public function sortDir($model = null, $options = array())
     {
         $dir = null;
 
@@ -252,9 +252,8 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
 
         if (true === isset($options['direction'])) {
             $dir = strtolower($options['direction']);
-        } elseif (true === isset($options['order'])
-            && true === is_array($options['order'])
-        ) {
+        } elseif (true === isset($options['order']) &&
+                true === is_array($options['order'])) {
             $dir = strtolower(current($options['order']));
         }
 
@@ -280,7 +279,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
      *
      * @return string A "previous" link or $disabledTitle text if the link is disabled.
      */
-    public function prev ($title = '<< Previous', $options = array(), $disabled_title = null, $disabled_options = array())
+    public function prev($title = '<< Previous', $options = array(), $disabled_title = null, $disabled_options = array())
     {
         return $this->__pagingLink('Prev', $title, $options, $disabled_title, $disabled_options);
     }
@@ -301,7 +300,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
      *
      * @return string A "next" link or or $disabledTitle text if the link is disabled.
      */
-    public function next ($title = 'Next >>', $options = array(), $disabled_title = null, $disabled_options = array())
+    public function next($title = 'Next >>', $options = array(), $disabled_title = null, $disabled_options = array())
     {
         return $this->__pagingLink('Next', $title, $options, $disabled_title, $disabled_options);
     }
@@ -323,7 +322,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
      * @return string A link sorting default by 'asc'. If the resultset is sorted 'asc' by the specified
      *  key the returned link will sort by 'desc'.
      */
-    public function sort ($title, $key = null, $options = array())
+    public function sort($title, $key = null, $options = array())
     {
         $options = array_merge(array('url' => array(), 'model' => null), $options);
         $url = $options['url'];
@@ -336,15 +335,13 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
         $sort_key = $this->sortKey($options['model']);
         $is_sorted = ($sort_key === $key || $sort_key === $this->defaultModel() . '.' . $key);
 
-        if (true === $is_sorted
-            && $this->sortDir($options['model']) === 'asc'
-        ) {
+        if (true === $is_sorted &&
+                $this->sortDir($options['model']) === 'asc') {
             $dir = 'desc';
         }
 
-        if (true === is_array($title)
-            && true === array_key_exists($dir, $title)
-        ) {
+        if (true === is_array($title) &&
+                true === array_key_exists($dir, $title)) {
             $title = $title[$dir];
         }
 
@@ -372,7 +369,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
      *
      * @return string A link with pagination parameters.
      */
-    public function link ($title, $url = array(), $options = array())
+    public function link($title, $url = array(), $options = array())
     {
         $options = array_merge(array('model' => null, 'escape' => true), $options);
         $model = $options['model'];
@@ -408,7 +405,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
      *
      * @return mixed By default, returns a full pagination URL string for use in non-standard contexts (i.e. JavaScript)
      */
-    public function url ($options = array(), $model = null)
+    public function url($options = array(), $model = null)
     {
         $paging = $this->params($model);
         $url = array_merge($paging['options'], $options);
@@ -433,19 +430,17 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
 
     /**
      * Protected method for generating prev/next links
-     *
      */
-    private function __pagingLink ($which, $title = null, $options = array(), $disabled_title = null, $disabled_options = array())
+    private function __pagingLink($which, $title = null, $options = array(), $disabled_title = null, $disabled_options = array())
     {
         $check = 'has' . $which;
         $_defaults = array('url' => array(), 'step' => 1, 'escape' => true, 'model' => null, 'tag' => 'div');
         $options = array_merge($_defaults, (array) $options);
         $paging = $this->params($options['model']);
 
-        if (false === $this->{$check}($options['model'])
-            && (false === empty($disabled_title)
-            || false === empty($disabled_options))
-        ) {
+        if (false === $this->{$check}($options['model']) &&
+            (false === empty($disabled_title) ||
+                false === empty($disabled_options))) {
             if (false === empty($disabled_title) && true !== $disabled_title) {
                 $title = $disabled_title;
             }
@@ -455,7 +450,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
         }
 
         foreach (array_keys($_defaults) as $key) {
-            ${$key} = $options[$key]; // PHP 8 compatible variable variable
+            ${$key} = $options[$key];  // PHP 8 compatible variable variable
             unset($options[$key]);
         }
         $url = array_merge(
@@ -464,7 +459,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
             ),
             $url
         );
-		
+
         if ($this->{$check}($model)) {
             return $this->link(
                 $title,
@@ -485,9 +480,8 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
      * @param string $model Optional model name. Uses the default if none is specified.
      * @return boolean True if the result set is not at the first page.
      */
-    public function hasPrev ($model = null)
+    public function hasPrev($model = null)
     {
-
         return $this->__hasPage($model, 'prev');
     }
 
@@ -497,7 +491,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
      * @param string $model Optional model name.  Uses the default if none is specified.
      * @return boolean True if the result set is not at the last page.
      */
-    public function hasNext ($model = null)
+    public function hasNext($model = null)
     {
         return $this->__hasPage($model, 'next');
     }
@@ -509,7 +503,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
      * @param int $page The page number - if not set defaults to 1.
      * @return boolean True if the given result set has the specified page number.
      */
-    public function hasPage ($model = null, $page = 1)
+    public function hasPage($model = null, $page = 1)
     {
         if (true === is_numeric($model)) {
             $page = $model;
@@ -521,9 +515,8 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
 
     /**
      * Protected method
-     *
      */
-    private function __hasPage ($model, $page)
+    private function __hasPage($model, $page)
     {
         $params = $this->params($model);
         if (false === empty($params)) {
@@ -539,7 +532,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
      *
      * @return string Model name or null if the pagination isn't initialized.
      */
-    public function defaultModel ()
+    public function defaultModel()
     {
         if ($this->_default_model != null) {
             return $this->_default_model;
@@ -567,7 +560,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
      *
      * @return string Counter string.
      */
-    public function counter ($options = array())
+    public function counter($options = array())
     {
         if (true === is_string($options)) {
             $options = array('format' => $options);
@@ -588,9 +581,9 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
         }
         $start = 0;
         if ($paging['count'] >= 1) {
-            $start = (($paging['page'] - 1) * $paging['options']['limit']) + 1;
+            $start = (($paging['page'] - 1) * (int) $paging['options']['limit']) + 1;
         }
-        $end = $start + $paging['options']['limit'] - 1;
+        $end = $start + (int) $paging['options']['limit'] - 1;
         if ($paging['count'] < $end) {
             $end = $paging['count'];
         }
@@ -601,10 +594,10 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
                     $options['separator'] = array(' - ', $options['separator']);
                 }
                 $out = $start . $options['separator'][0] . $end . $options['separator'][1] . $paging['count'];
-            break;
+                break;
             case 'pages':
                 $out = $paging['page'] . $options['separator'] . $paging['pageCount'];
-            break;
+                break;
             default:
                 $replace = array(
                     '%page%' => $paging['page'],
@@ -615,7 +608,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
                     '%end%' => $end
                 );
                 $out = str_replace(array_keys($replace), array_values($replace), $options['format']);
-            break;
+                break;
         }
         return $out;
     }
@@ -641,27 +634,32 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
      *
      * @return string numbers string.
      */
-    public function numbers ($options = array())
+    public function numbers($options = array())
     {
         if ($options === true) {
             $options = array(
-                'before' => ' | ', 'after' => ' | ',
-                'first' => 'first', 'last' => 'last',
+                'before' => ' | ',
+                'after' => ' | ',
+                'first' => 'first',
+                'last' => 'last',
             );
         }
 
         $options = array_merge(
             array(
                 'tag' => 'span',
-                'before'=> null, 'after'=> null,
+                'before' => null,
+                'after' => null,
                 'model' => $this->defaultModel(),
-                'modulus' => '8', 'separator' => ' | ',
-                'first' => null, 'last' => null,
+                'modulus' => '8',
+                'separator' => ' | ',
+                'first' => null,
+                'last' => null,
             ),
             (array) $options
         );
 
-        $params = array_merge(array('page'=> 1), (array) $this->params($options['model']));
+        $params = array_merge(array('page' => 1), (array) $this->params($options['model']));
         unset($options['model']);
 
         if ($params['pageCount'] <= 1) {
@@ -681,14 +679,14 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
             if ($end > $params['pageCount']) {
                 $end = $params['pageCount'];
             }
-            $start = $params['page'] - ($modulus - ($end - $params['page']));
+            $start = (int) $params['page'] - ((int) $modulus - ((int) $end - (int) $params['page']));
             if ($start <= 1) {
                 $start = 1;
-                $end = $params['page'] + ($modulus  - $params['page']) + 1;
+                $end = (int) $params['page'] + ((int) $modulus - (int) $params['page']) + 1;
             }
 
             if ($first && $start > 1) {
-                $offset = ($start <= (int)$first) ? $start - 1 : $first;
+                $offset = ($start <= (int) $first) ? $start - 1 : $first;
                 if ($offset < $start - 1) {
                     $out .= $this->first($offset, array('tag' => $tag, 'separator' => $separator));
                 } else {
@@ -709,7 +707,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
 
             $start = $params['page'] + 1;
             for ($i = $start; $i < $end; $i++) {
-                $out .= $this->_html->tag($tag, $this->link($i, array('page' => $i), $options)). $separator;
+                $out .= $this->_html->tag($tag, $this->link($i, array('page' => $i), $options)) . $separator;
             }
 
             if ($end != $params['page']) {
@@ -719,14 +717,13 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
             $out .= $after;
 
             if ($last && $end < $params['pageCount']) {
-                $offset = ($params['pageCount'] < $end + (int)$last) ? $params['pageCount'] - $end : $last;
-                if ($offset <= $last && $params['pageCount'] - $end > $offset) {
+                $offset = ((int) $params['pageCount'] < $end + (int) $last) ? (int) $params['pageCount'] - $end : $last;
+                if ($offset <= $last && (int) $params['pageCount'] - $end > $offset) {
                     $out .= $this->last($offset, array('tag' => $tag, 'separator' => $separator));
                 } else {
                     $out .= $this->last($offset, array('tag' => $tag, 'before' => $separator, 'separator' => $separator));
                 }
             }
-
         } else {
             $out .= $before;
 
@@ -762,12 +759,12 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
      *
      * @return string numbers string.
      */
-    public function first ($first = '<< first', $options = array())
+    public function first($first = '<< first', $options = array())
     {
         $options = array_merge(
             array(
                 'tag' => 'span',
-                'after'=> null,
+                'after' => null,
                 'model' => $this->defaultModel(),
                 'separator' => ' | ',
             ),
@@ -775,7 +772,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
         );
 
         $params = array_merge(
-            array('page'=> 1),
+            array('page' => 1),
             (array) $this->params($options['model'])
         );
         unset($options['model']);
@@ -820,19 +817,19 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
      *
      * @return string numbers string.
      */
-    public function last ($last = 'last >>', $options = array())
+    public function last($last = 'last >>', $options = array())
     {
         $options = array_merge(
             array(
                 'tag' => 'span',
-                'before'=> null,
+                'before' => null,
                 'model' => $this->defaultModel(),
                 'separator' => ' | ',
             ),
             (array) $options
         );
 
-        $params = array_merge(array('page'=> 1), (array) $this->params($options['model']));
+        $params = array_merge(array('page' => 1), (array) $this->params($options['model']));
         unset($options['model']);
 
         if ($params['pageCount'] <= 1) {
@@ -843,7 +840,7 @@ class Ncw_Helpers_Paginator extends Ncw_Helper
         unset($options['tag'], $options['before'], $options['model'], $options['separator']);
 
         $out = '';
-        $lower = $params['pageCount'] - $last + 1;
+        $lower = (int) $params['pageCount'] - (int) $last + 1;
 
         if (true === is_int($last) && $params['page'] < $lower) {
             if ($before === null) {

@@ -49,7 +49,7 @@ class Ncw_Validations_Date extends Ncw_Validation
      *
      * @return boolean true or false
      */
-    public function check ($value)
+    public function check ($value = null)
     {
         $matches = array();
         if (true == preg_match("/^(\d{4})-(\d{2})-(\d{2})$/", $value, $matches)) {

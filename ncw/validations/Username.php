@@ -1,4 +1,5 @@
 <?php
+
 /**
  * contains the Username validation class
  *
@@ -21,6 +22,7 @@
  * @modby      $LastChangedBy$
  * @lastmod    $LastChangedDate$
  */
+
 /**
  * Username validation class.
  *
@@ -34,7 +36,6 @@
  */
 class Ncw_Validations_Username extends Ncw_Validation
 {
-
     /**
      * The error message
      *
@@ -49,9 +50,9 @@ class Ncw_Validations_Username extends Ncw_Validation
      *
      * @return boolean true or false
      */
-    public function check ($username)
+    public function check($username = null)
     {
-        if (!empty($username) && true == preg_match("/^[a-zA-Z0-9_-]{4,20}$/", $username) && true == preg_match("/[[:alpha:]]+/", $username)) {
+        if (!empty($username) && true == preg_match('/^[a-zA-Z0-9_-]{4,20}$/', $username) && true == preg_match('/[[:alpha:]]+/', $username)) {
             return true;
         }
         return false;

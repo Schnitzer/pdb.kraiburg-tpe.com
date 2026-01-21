@@ -1,4 +1,5 @@
 <?php
+
 /**
  * contains the Validator class
  *
@@ -20,6 +21,7 @@
  * @modby     $LastChangedBy$
  * @lastmod   $LastChangedDate$
  */
+
 /**
  * Validator class.
  *
@@ -32,7 +34,6 @@
  */
 class Ncw_Validator
 {
-
     /**
      * The validator options
      *
@@ -53,7 +54,7 @@ class Ncw_Validator
      * @param array $fields  the fields to set
      * @param array $options the validator options (optional)
      */
-    public function __construct ($fields, Array $options = array())
+    public function __construct($fields, Array $options = array())
     {
         $this->_fields = $fields;
         $this->_options = array_merge(array('db_table'), $options);
@@ -66,16 +67,16 @@ class Ncw_Validator
      *
      * @return boolean
      */
-    public function validate ($values = array())
+    public function validate($values = array())
     {
         $invalidFields = array();
         $return = true;
         foreach ($this->_fields as $field => $options) {
             if (false === array_key_exists($field, $values)) {
-                $values[$field] = "";
+                $values[$field] = '';
             }
             list($valid, $message) = $this->_validate($field, $values[$field], $options);
-            if (false === (boolean) $valid) {
+            if (false === (bool) $valid) {
                 $return = false;
                 $invalidFields[$field] = $message;
             }
@@ -92,7 +93,7 @@ class Ncw_Validator
      *
      * @return boolean
      */
-    public function validateField ($field, $value)
+    public function validateField($field, $value)
     {
         if (false === empty($field)) {
             if (false === array_key_exists($field, $this->_fields)) {
@@ -113,38 +114,38 @@ class Ncw_Validator
      *
      * @return boolean
      */
-    protected function _validate ($field, $value, $options)
+    protected function _validate($field, $value, $options)
     {
         $options = array_merge(
             array(
-                "rules" => array(),
-                "required" => false,
-                "invalidate" => false
+                'rules' => array(),
+                'required' => false,
+                'invalidate' => false
             ),
             $options
         );
         if (true === $options['invalidate']) {
-            $message = $this->_getErrorMessage($field, "invalidated");
+            $message = $this->_getErrorMessage($field, 'invalidated');
             return array(false, $message);
         }
-        $value = trim($value);
+        $value = $value !== null ? trim($value) : '';
         // check if the field is optional
         if (false === $options['required']) {
             // If the field is empty it can be skipped
             if (true === empty($value)) {
-                return array(true, "");
+                return array(true, '');
             }
         }
         foreach ($options['rules'] as $key => $rule) {
             $params = null;
             // if the key is set, then the rule is the key
             // because options are given.
-            if (false === empty($key) && "" . intval($key) . "" != $key) {
+            if (false === empty($key) && '' . intval($key) . '' != $key) {
                 $params = $rule;
                 $rule = $key;
             }
             $rule_name = $rule;
-            $rule_class = "Ncw_Validations_" . $rule;
+            $rule_class = 'Ncw_Validations_' . $rule;
             // Initialize the rule object
             $rule = new $rule_class($field, $this->_options);
             // check
@@ -152,7 +153,7 @@ class Ncw_Validator
                 return array(false, $this->_getErrorMessage($field, $rule_name, $rule->error_message));
             }
         }
-        return array(true, "");
+        return array(true, '');
     }
 
     /**
@@ -164,7 +165,7 @@ class Ncw_Validator
      *
      * @return string the message
      */
-    protected function _getErrorMessage ($field, $rule_name, $rule_defined_error_message = null)
+    protected function _getErrorMessage($field, $rule_name, $rule_defined_error_message = null)
     {
         $message = $rule_defined_error_message;
         // check if for this $rule_defined_error_message a special message is set.
@@ -178,7 +179,7 @@ class Ncw_Validator
             } else if (false !== $this->_fields[$field]['message']) {
                 $message = $this->_fields[$field]['message'];
             } else {
-                $message = "";
+                $message = '';
             }
         }
         return $message;
@@ -191,11 +192,11 @@ class Ncw_Validator
      *
      * @return void
      */
-    public function invalidateField ($field)
+    public function invalidateField($field)
     {
         if (false === empty($field)) {
             $this->_fields[$field]['invalidate'] = true;
-            return $this->_getErrorMessage($field, "invalidated", "The field was invalidated");
+            return $this->_getErrorMessage($field, 'invalidated', 'The field was invalidated');
         }
         return false;
     }

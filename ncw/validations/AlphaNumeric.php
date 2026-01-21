@@ -50,7 +50,7 @@ class Ncw_Validations_AlphaNumeric extends Ncw_Validation
      *
      * @return boolean true or false
      */
-    public function check ($value)
+    public function check ($value = null)
     {
         if (true == preg_match('/^[A-Za-z0-9äöüÄÖÜß]+$/', $value)) {
             return true;

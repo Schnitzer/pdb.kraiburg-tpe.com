@@ -1,4 +1,5 @@
 <?php
+
 /**
  * contains the Bool validation class
  *
@@ -21,6 +22,7 @@
  * @modby      $LastChangedBy$
  * @lastmod    $LastChangedDate$
  */
+
 /**
  * Bool validation class.
  *
@@ -34,7 +36,6 @@
  */
 class Ncw_Validations_Boolean extends Ncw_Validation
 {
-
     /**
      * The error message
      *
@@ -50,12 +51,12 @@ class Ncw_Validations_Boolean extends Ncw_Validation
      *
      * @return boolean true or false
      */
-    public function check ($value)
+    public function check($value = null)
     {
-        if ($value === true || $value === 1 || $value === "1") {
+        if ($value === true || $value === 1 || $value === '1') {
             return true;
         }
-        if ($value === false || $value === 0 || $value === "0") {
+        if ($value === false || $value === 0 || $value === '0') {
             return true;
         }
         return false;

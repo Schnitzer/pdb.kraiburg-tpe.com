@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Contains the model class.
  *
@@ -20,6 +21,7 @@
  * @modby     $LastChangedBy$
  * @lastmod   $LastChangedDate$
  */
+
 /**
  * The model class.
  *
@@ -32,7 +34,6 @@
  */
 abstract class Ncw_Model extends Ncw_DataModel
 {
-
     /**
      * The database connection object
      *
@@ -112,9 +113,8 @@ abstract class Ncw_Model extends Ncw_DataModel
 
     /**
      * Constructor
-     *
      */
-    public final function __construct ()
+    public final function __construct()
     {
         // set the names
         $model_class = get_class($this);
@@ -130,11 +130,11 @@ abstract class Ncw_Model extends Ncw_DataModel
             // db table name
             $arr_class_name[1][0] = strtolower($arr_class_name[1][0]);
             $arr_class_name[1] = preg_replace(
-                "([A-Z])", "_\\0",
+                '([A-Z])', '_\0',
                 $arr_class_name[1]
             );
             $this->db_table_name = strtolower(
-                Ncw_Database::getConfig('prefix') . $this->module_name . "_" . $arr_class_name[1]
+                Ncw_Database::getConfig('prefix') . $this->module_name . '_' . $arr_class_name[1]
             );
             unset($arr_class_name);
             self::$names[$model_class] = array(
@@ -150,7 +150,7 @@ abstract class Ncw_Model extends Ncw_DataModel
         );
         foreach ($fields as $field) {
             ;
-            $this->data[$field] = "";
+            $this->data[$field] = '';
         }
         // Backup the associations
         $this->associations_backup = array(
@@ -167,7 +167,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return void
      */
-    protected final function _initValidator ()
+    protected final function _initValidator()
     {
         if (false === $this->validator instanceof Ncw_Validator) {
             // Init the validator
@@ -186,7 +186,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return mixed
      */
-    public final function fetch ($type = 'first', Array $params = array())
+    public final function fetch($type = 'first', Array $params = array())
     {
         if (false === is_string($type)) {
             throw new Ncw_Exception('$type must be of type string');
@@ -213,7 +213,7 @@ abstract class Ncw_Model extends Ncw_DataModel
         $params['has_one_foreign_keys'] = array();
         $params['belongs_to_join_conditions'] = array();
         $params['belongs_to_foreign_keys'] = array();
-        if ($type === "first") {
+        if ($type === 'first') {
             $params['limit'] = 1;
         }
         $params['type'] = $type;
@@ -232,20 +232,20 @@ abstract class Ncw_Model extends Ncw_DataModel
             throw new Ncw_Exception('Fetch failed (' . $error_info[2] . ')', 1);
         }
         switch ($type) {
-        case "list" :
-            return $this->_fetchList($stmt, $params);
-            break;
+            case 'list':
+                return $this->_fetchList($stmt, $params);
+                break;
 
-        case "array" :
-            return $this->_fetchArray($stmt);
-            break;
+            case 'array':
+                return $this->_fetchArray($stmt);
+                break;
 
-        case 'count' :
-            return $this->_fetchCount($stmt);
-            break;
+            case 'count':
+                return $this->_fetchCount($stmt);
+                break;
 
-        default :
-            return $this->_fetchObjects($stmt, $params);
+            default:
+                return $this->_fetchObjects($stmt, $params);
         }
     }
 
@@ -256,32 +256,32 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return string
      */
-    protected function _prepareFetch (Array $params)
+    protected function _prepareFetch(Array $params)
     {
         // build the sql.
-        $sql = "SELECT ";
+        $sql = 'SELECT ';
         if ($params['type'] !== 'count') {
             $sql .= $this->_prepareFetchFields($params);
         } else {
-        	$sql .= 'count(1) AS \'count\' ';
+            $sql .= "count(1) AS 'count' ";
         }
-        $sql .= " FROM `" . $this->db_table_name . "` AS `" . $this->name . "`";
+        $sql .= ' FROM `' . $this->db_table_name . '` AS `' . $this->name . '`';
         $sql .= $this->_prepareFetchJoins($params);
         // where conditions
         $conditions = array();
         if (false === empty($params['conditions'])) {
-            $sql .= " WHERE ";
+            $sql .= ' WHERE ';
             list($sql_conditions, $conditions) = $this->_prepareFetchConditions($params);
             $sql .= $sql_conditions;
             unset($sql_conditions);
         }
         // group
         if (false === empty($params['group'])) {
-            $sql .= " GROUP BY ";
+            $sql .= ' GROUP BY ';
             $first = true;
             foreach ($params['group'] as $group) {
                 if (false === $first) {
-                    $sql .= ",";
+                    $sql .= ',';
                 }
                 if (false === strpos($group, '.')) {
                     $group = $this->name . '.' . $group;
@@ -292,7 +292,7 @@ abstract class Ncw_Model extends Ncw_DataModel
         }
         // order
         if (false === empty($params['order'])) {
-            $sql .= " ORDER BY ";
+            $sql .= ' ORDER BY ';
             $first = true;
             if (true === is_string($params['order'])) {
                 $params['order'] = array($params['order']);
@@ -304,7 +304,7 @@ abstract class Ncw_Model extends Ncw_DataModel
                     $value = $key;
                 }
                 if (false === $first) {
-                    $sql .= ",";
+                    $sql .= ',';
                 }
                 if (false === strpos($value, '.')) {
                     $value = $this->name . '.' . $value;
@@ -318,14 +318,13 @@ abstract class Ncw_Model extends Ncw_DataModel
         }
         // limitations
         if (false === empty($params['limit'])) {
-            if (is_array($params['limit'])
-                && isset($params['limit'][1])
-                && is_int($params['limit'][1])
-            ) {
-                $sql .= " LIMIT " . $params['limit'][0] . ","
+            if (is_array($params['limit']) &&
+                    isset($params['limit'][1]) &&
+                    is_int($params['limit'][1])) {
+                $sql .= ' LIMIT ' . $params['limit'][0] . ','
                     . $params['limit'][1];
             } else {
-                $sql .= " LIMIT " . $params['limit'];
+                $sql .= ' LIMIT ' . $params['limit'];
             }
         }
         return array($sql, $conditions);
@@ -338,7 +337,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return string the fields
      */
-    protected final function _prepareFetchFields (Array $params)
+    protected final function _prepareFetchFields(Array $params)
     {
         $sql = '';
         // fields
@@ -346,7 +345,7 @@ abstract class Ncw_Model extends Ncw_DataModel
             $first = true;
             foreach ($params['fields'] as $key => $field) {
                 if (false === $first) {
-                    $sql .= ",";
+                    $sql .= ',';
                 }
                 $first = false;
                 if (true === is_string($key)) {
@@ -363,33 +362,33 @@ abstract class Ncw_Model extends Ncw_DataModel
             $first = true;
             foreach (array_keys($this->data) as $field) {
                 if (false === $first) {
-                    $sql .= ",";
+                    $sql .= ',';
                 }
                 $first = false;
-                $sql .= "`" . $this->name . "`.`" . $field . "` AS `" . $this->name . "." . $field . "`";
+                $sql .= '`' . $this->name . '`.`' . $field . '` AS `' . $this->name . '.' . $field . '`';
             }
             // add the has one association fields
             if (false === empty($params['has_one_fields'])) {
-                $sql .= ",";
+                $sql .= ',';
                 $first = true;
                 foreach ($params['has_one_fields'] as $field) {
                     if (false === $first) {
-                        $sql .= ",";
+                        $sql .= ',';
                     }
                     $first = false;
-                    $sql .= $field . " AS " . "`" . $field . "`";
+                    $sql .= $field . ' AS ' . '`' . $field . '`';
                 }
             }
             // add the belongs to association fields
             if (false === empty($params['belongs_to_fields'])) {
-                $sql .= ",";
+                $sql .= ',';
                 $first = true;
                 foreach ($params['belongs_to_fields'] as $field) {
                     if (false === $first) {
-                        $sql .= ",";
+                        $sql .= ',';
                     }
                     $first = false;
-                    $sql .= $field . " AS " . "`" . $field . "`";
+                    $sql .= $field . ' AS ' . '`' . $field . '`';
                 }
             }
         }
@@ -403,12 +402,12 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return string the joins
      */
-    protected final function _prepareFetchJoins (Array $params)
+    protected final function _prepareFetchJoins(Array $params)
     {
         $sql = '';
         // Add the belongs to associations join
         foreach ($params['belongs_to_tables'] as $association => $table) {
-            $sql .= " LEFT JOIN `" . $table . "` AS `" . $association . "`";
+            $sql .= ' LEFT JOIN `' . $table . '` AS `' . $association . '`';
             if (false === isset($params['belongs_to_join_conditions'][$association])) {
                 $fk = '`' . $this->name . '`.'
                     . $params['belongs_to_foreign_keys'][$association];
@@ -419,7 +418,7 @@ abstract class Ncw_Model extends Ncw_DataModel
         }
         // Add the has one associations join
         foreach ($params['has_one_tables'] as $association => $table) {
-            $sql .= " LEFT JOIN `" . $table . "` AS `" . $association . "`";
+            $sql .= ' LEFT JOIN `' . $table . '` AS `' . $association . '`';
             if (false === isset($params['has_one_join_conditions'][$association])) {
                 $fk = '`' . $association . '`.'
                     . $params['has_one_foreign_keys'][$association];
@@ -440,13 +439,13 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return array the sql and the conditions
      */
-    protected final function _prepareFetchConditions (Array $params, $nested_set = false, $nice_keys = true)
+    protected final function _prepareFetchConditions(Array $params, $nested_set = false, $nice_keys = true)
     {
         $sql = '';
         $conditions = array();
         $count = 1;
         foreach ($params['conditions'] as $key => $condition) {
-            $operation = "=";
+            $operation = '=';
             $sql_connector = '&&';
             if (true === is_integer($key)) {
                 if (true === $nested_set || $count > 1) {
@@ -475,8 +474,8 @@ abstract class Ncw_Model extends Ncw_DataModel
                 if (true === $nice_keys && false === strpos($key, '.')) {
                     $key = $this->name . '.' . $key;
                 }
-                $sql .= $key . ' ' . $operation . ' :' . $count . "";
-                $conditions[":" . $count] = $condition;
+                $sql .= $key . ' ' . $operation . ' :' . $count . '';
+                $conditions[':' . $count] = $condition;
             }
             ++$count;
         }
@@ -490,7 +489,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return Array
      */
-    protected final function _prepareFetchAssociations (Array $params)
+    protected final function _prepareFetchAssociations(Array $params)
     {
         if (false === empty($this->has_one)) {
             foreach ($this->has_one as $key => $association) {
@@ -521,7 +520,7 @@ abstract class Ncw_Model extends Ncw_DataModel
                 }
                 $class_name = $name;
                 if (false === isset($params['has_one_foreign_keys'][$name])) {
-                    if (false === strpos($class_name, "_")) {
+                    if (false === strpos($class_name, '_')) {
                         $params['has_one_foreign_keys'][$name] = strtolower($this->name) . '_id';
                     } else {
                         $params['has_one_foreign_keys'][$name] = array_pop(
@@ -529,8 +528,8 @@ abstract class Ncw_Model extends Ncw_DataModel
                         ) . '_id';
                     }
                 }
-                if (false === strpos($class_name, "_")) {
-                    $class_name = $this->module_name . "_" . $class_name;
+                if (false === strpos($class_name, '_')) {
+                    $class_name = $this->module_name . '_' . $class_name;
                 }
                 $obj_association = new $class_name();
                 $params['has_one_tables'][$name] = self::$names[$class_name]['db_table_name'];
@@ -538,7 +537,7 @@ abstract class Ncw_Model extends Ncw_DataModel
                 if (false === $field_params) {
                     $fields = array_keys($obj_association->data());
                     foreach ($fields as $field) {
-                         $params['has_one_fields'][] = $name . '.' . $field;
+                        $params['has_one_fields'][] = $name . '.' . $field;
                     }
                 }
             }
@@ -572,16 +571,15 @@ abstract class Ncw_Model extends Ncw_DataModel
                 }
                 $class_name = $name;
                 if (false === isset($params['has_one_foreign_keys'][$name])) {
-                    if (false === strpos($class_name, "_")) {
+                    if (false === strpos($class_name, '_')) {
                         $params['belongs_to_foreign_keys'][$name] = strtolower($name) . '_id';
                     } else {
-                        $params['belongs_to_foreign_keys'][$name] = array_pop(
-                            explode('_', strtolower($name))
-                        ) . '_id';
+                        $parts = explode('_', strtolower($name));
+                        $params['belongs_to_foreign_keys'][$name] = array_pop($parts) . '_id';
                     }
                 }
-                if (false === strpos($class_name, "_")) {
-                    $class_name = $this->module_name . "_" . $class_name;
+                if (false === strpos($class_name, '_')) {
+                    $class_name = $this->module_name . '_' . $class_name;
                 }
                 $obj_association = new $class_name();
                 $params['belongs_to_tables'][$name] = self::$names[$class_name]['db_table_name'];
@@ -589,7 +587,7 @@ abstract class Ncw_Model extends Ncw_DataModel
                 if (false === $field_params) {
                     $fields = array_keys($obj_association->data());
                     foreach ($fields as $field) {
-                         $params['belongs_to_fields'][] = $name . '.' . $field;
+                        $params['belongs_to_fields'][] = $name . '.' . $field;
                     }
                 }
             }
@@ -605,7 +603,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return Array
      */
-    protected final function _fetchList (PDOStatement $stmt, Array $params)
+    protected final function _fetchList(PDOStatement $stmt, Array $params)
     {
         // Get the num of rows.
         $this->num_rows = count($all_rows = $stmt->fetchAll(PDO::FETCH_NUM));
@@ -629,14 +627,14 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return Array
      */
-    protected final function _fetchArray (PDOStatement $stmt)
+    protected final function _fetchArray(PDOStatement $stmt)
     {
         $this->num_rows = count($all_rows = $stmt->fetchAll(PDO::FETCH_ASSOC));
         $result = array();
         $row_count = 0;
         foreach ($all_rows as $row) {
             foreach ($row as $field => $value) {
-                $field = explode(".", $field);
+                $field = explode('.', $field);
                 if (true === isset($field[1])) {
                     $result[$row_count][$field[0]][$field[1]] = $value;
                 }
@@ -654,7 +652,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return int
      */
-    protected final function _fetchCount (PDOStatement $stmt)
+    protected final function _fetchCount(PDOStatement $stmt)
     {
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if ($rows[0]['count']) {
@@ -671,7 +669,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return Ncw_ModelList
      */
-    protected final function _fetchObjects (PDOStatement $stmt, Array $params)
+    protected final function _fetchObjects(PDOStatement $stmt, Array $params)
     {
         // Get the num of rows.
         $this->num_rows = count($all_rows = $stmt->fetchAll(PDO::FETCH_ASSOC));
@@ -701,7 +699,7 @@ abstract class Ncw_Model extends Ncw_DataModel
             }
             // set the fields.
             foreach ($row as $field => $value) {
-                $field = explode(".", $field);
+                $field = explode('.', $field);
                 if (true === isset($field[1])) {
                     if ($field[0] === $this->name) {
                         $model->data[$field[1]] = $value;
@@ -721,16 +719,15 @@ abstract class Ncw_Model extends Ncw_DataModel
                         $name = $association;
                     }
                     $class_name = $name;
-                    if (false === strpos($class_name, "_")) {
-                        $class_name = $this->module_name . "_" . $class_name;
+                    if (false === strpos($class_name, '_')) {
+                        $class_name = $this->module_name . '_' . $class_name;
                     }
                     // init the model object and read all
                     // which are associated to the current model
                     $associated_model = new $class_name();
-                    $unbind = array("belongs_to" => array($this->name));
-                    if (true === isset($options['unbind'])
-                        && true === is_array($options['unbind'])
-                    ) {
+                    $unbind = array('belongs_to' => array($this->name));
+                    if (true === isset($options['unbind']) &&
+                            true === is_array($options['unbind'])) {
                         $unbind = array_merge($unbind, $options['unbind']);
                     }
                     $associated_model->unbindModel($unbind);
@@ -753,7 +750,7 @@ abstract class Ncw_Model extends Ncw_DataModel
             $result->addModel($model);
         }
         $this->_resetAssociations();
-        if ($params['type'] === "first") {
+        if ($params['type'] === 'first') {
             if (true === isset($result[0])) {
                 return $result[0];
             }
@@ -767,17 +764,14 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return void
      */
-    public function beforeFetch ()
-    {
-
-    }
+    public function beforeFetch() {}
 
     /**
      * Resets the associations
      *
      * @return void
      */
-    protected final function _resetAssociations ()
+    protected final function _resetAssociations()
     {
         $this->has_one = $this->associations_backup['has_one'];
         $this->belongs_to = $this->associations_backup['belongs_to'];
@@ -793,13 +787,13 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return Ncw_DataModel the found model
      */
-    public final function findBy ($field, $value, Array $params = array())
+    public final function findBy($field, $value, Array $params = array())
     {
         if (false === is_string($field)) {
             throw new Ncw_Exception('$field must be of type string');
         }
-        $params = array_merge(array("conditions" => array()), $params);
-        $params['conditions'][$this->name . "." . $field] = $value;
+        $params = array_merge(array('conditions' => array()), $params);
+        $params['conditions'][$this->name . '.' . $field] = $value;
         return $this->fetch('first', $params);
     }
 
@@ -812,13 +806,13 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return Ncw_ModelList the found models
      */
-    public final function findAllBy ($field, $value, Array $params = array())
+    public final function findAllBy($field, $value, Array $params = array())
     {
         if (false === is_string($field)) {
             throw new Ncw_Exception('$field must be of type string');
         }
-        $params = array_merge(array("conditions" => array()), $params);
-        $params['conditions'][$this->name . "." . $field] = $value;
+        $params = array_merge(array('conditions' => array()), $params);
+        $params['conditions'][$this->name . '.' . $field] = $value;
         return $this->fetch('all', $params);
     }
 
@@ -829,11 +823,11 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return boolean
      */
-    public final function read (Array $params = array())
+    public final function read(Array $params = array())
     {
         if ($this->getId() > 0) {
-            $params = array_merge(array("conditions" => array()), $params);
-            $params['conditions']["`" . $this->name . "`.`id`"] = $this->getId();
+            $params = array_merge(array('conditions' => array()), $params);
+            $params['conditions']['`' . $this->name . '`.`id`'] = $this->getId();
             $model = $this->fetch('first', $params);
             if (true === $model instanceof Ncw_DataModel) {
                 $this->copyFrom($model);
@@ -851,7 +845,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return mixed the field value or false at failure
      */
-    public final function readField ($field, $options = array())
+    public final function readField($field, $options = array())
     {
         if (false === is_string($field)) {
             throw new Ncw_Exception('$field must be of type string');
@@ -876,7 +870,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return boolean
      */
-    public final function save ($validate = true, $dependencies = true)
+    public final function save($validate = true, $dependencies = true)
     {
         if (false === is_bool($validate)) {
             throw new Ncw_Exception('$validate must be of type boolean');
@@ -895,21 +889,21 @@ abstract class Ncw_Model extends Ncw_DataModel
                 $modified_field = false;
                 $data = array();
                 foreach ($this->data as $field => $value) {
-                    if ($field != "id" && $field != "created" && $field != "modified") {
+                    if ($field != 'id' && $field != 'created' && $field != 'modified') {
                         $data[$field] = $value;
-                    } else if ($field === "created") {
+                    } else if ($field === 'created') {
                         $modified_field = true;
                     }
                 }
-                $fields = "";
-                $values = array(":id" => $this->getId());
+                $fields = '';
+                $values = array(':id' => $this->getId());
                 $count = 1;
                 $count_data = count($data);
                 foreach ($data as $field => $value) {
-                    $fields .= "`" . $field . "`=" . ":" . $field;
-                    $values[":" . $field] = $value;
+                    $fields .= '`' . $field . '`=' . ':' . $field;
+                    $values[':' . $field] = $value;
                     if ($count < $count_data) {
-                        $fields .= ",";
+                        $fields .= ',';
                     }
                     ++$count;
                 }
@@ -922,24 +916,31 @@ abstract class Ncw_Model extends Ncw_DataModel
                 // If no id is set do an insert.
                 $data = array();
                 foreach ($this->data as $field => $value) {
-                    if (false === empty($value) && ($field != "created" || $field != "modified")) {
+                    // Skip id, created, modified fields
+                    if ($field === 'id' || $field === 'created' || $field === 'modified') {
+                        if ($field === 'created') {
+                            $created_field = true;
+                        }
+                        continue;
+                    }
+                    // Include all values except null
+                    // Empty strings are allowed for VARCHAR fields (NOT NULL without default)
+                    if ($value !== null) {
                         $data[$field] = $value;
-                    } else if ($field === "created") {
-                        $created_field = true;
                     }
                 }
-                $fields = "";
-                $holders = "";
+                $fields = '';
+                $holders = '';
                 $values = array();
                 $count = 1;
                 $count_data = count($data);
                 foreach ($data as $field => $value) {
-                    $fields .= "`" . $field . "`";
-                    $holders .= ":" . $field . "";
-                    $values[":" . $field] = $value;
+                    $fields .= '`' . $field . '`';
+                    $holders .= ':' . $field . '';
+                    $values[':' . $field] = $value;
                     if ($count < $count_data) {
-                        $fields .= ",";
-                        $holders .= ",";
+                        $fields .= ',';
+                        $holders .= ',';
                     }
                     ++$count;
                 }
@@ -956,8 +957,8 @@ abstract class Ncw_Model extends Ncw_DataModel
                             if (false === $obj_association instanceof Ncw_Model) {
                                 continue;
                             }
-                            if ($obj_association->{"get" . $this->name . "Id"}() == 0) {
-                                $obj_association->{"set" . $this->name . "Id"}($this->getId());
+                            if ($obj_association->{'get' . $this->name . 'Id'}() == 0) {
+                                $obj_association->{'set' . $this->name . 'Id'}($this->getId());
                             }
                             $obj_association->save($validate);
                         }
@@ -965,8 +966,8 @@ abstract class Ncw_Model extends Ncw_DataModel
                         if (false === $association instanceof Ncw_Model) {
                             continue;
                         }
-                        if ($association->{"get" . $this->name . "Id"}() == 0) {
-                            $association->{"set" . $this->name . "Id"}($this->getId());
+                        if ($association->{'get' . $this->name . 'Id'}() == 0) {
+                            $association->{'set' . $this->name . 'Id'}($this->getId());
                         }
                         $association->save($validate);
                     }
@@ -987,7 +988,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return void
      */
-    public final function create ()
+    public final function create()
     {
         $this->setId(0);
     }
@@ -1001,18 +1002,18 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return boolean
      */
-    protected function _doInsert ($fields, $holders, Array $values)
+    protected function _doInsert($fields, $holders, Array $values)
     {
         try {
             // Build the sql query.
-            $sql = "INSERT INTO `" . $this->db_table_name . "`
-                    (";
+            $sql = 'INSERT INTO `' . $this->db_table_name . '`
+                    (';
             $sql .= $fields;
-            $sql .= ")
+            $sql .= ')
                     VALUES
-                    (";
+                    (';
             $sql .= $holders;
-            $sql .= ")";
+            $sql .= ')';
             // Do the query.
             $stmt = $this->db->prepare($sql);
             if (false === $stmt) {
@@ -1042,17 +1043,17 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return boolean
      */
-    protected function _doUpdate ($fields, Array $values)
+    protected function _doUpdate($fields, Array $values)
     {
         if (false === $this->beforeSave()) {
             return false;
         }
         try {
             // Build the sql query.
-            $sql = "UPDATE `" . $this->db_table_name . "`
-                    SET ";
+            $sql = 'UPDATE `' . $this->db_table_name . '`
+                    SET ';
             $sql .= $fields;
-            $sql .= " WHERE id=:id";
+            $sql .= ' WHERE id=:id';
             // Do the query.
             $stmt = $this->db->prepare($sql);
             if (false === $stmt) {
@@ -1081,7 +1082,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return boolean
      */
-    public final function saveField ($field, $validate = true)
+    public final function saveField($field, $validate = true)
     {
         if (false === is_string($field)) {
             throw new Ncw_Exception('$validate must be of type string');
@@ -1101,7 +1102,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return boolean
      */
-    public final function saveFields (Array $fields, $validate = true)
+    public final function saveFields(Array $fields, $validate = true)
     {
         if (false === is_bool($validate)) {
             throw new Ncw_Exception('$validate must be of type boolean');
@@ -1110,10 +1111,10 @@ abstract class Ncw_Model extends Ncw_DataModel
             return false;
         }
         if ($this->getId() > 0 && is_array($fields)) {
-            $values = array(":id" => $this->getId());
+            $values = array(':id' => $this->getId());
             $count = 1;
             $count_data = count($fields);
-            $fields_sql = "";
+            $fields_sql = '';
             $valid = true;
             foreach ($fields as $field) {
                 // if the field validation is false then abort the saving.
@@ -1124,10 +1125,10 @@ abstract class Ncw_Model extends Ncw_DataModel
                     }
                 }
                 if (true === $valid) {
-                    $fields_sql .= "`" . $field . "`=:" . $field;
-                    $values[":" . $field] = $this->data[$field];
+                    $fields_sql .= '`' . $field . '`=:' . $field;
+                    $values[':' . $field] = $this->data[$field];
                     if ($count < $count_data) {
-                        $fields_sql .= ",";
+                        $fields_sql .= ',';
                     }
                     ++$count;
                 }
@@ -1156,14 +1157,14 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return boolean
      */
-    protected function _doSaveFields ($fields_sql, Array $values)
+    protected function _doSaveFields($fields_sql, Array $values)
     {
         try {
             // Build the sql query.
-            $sql = "UPDATE " . $this->db_table_name . "
-                    SET ";
+            $sql = 'UPDATE ' . $this->db_table_name . '
+                    SET ';
             $sql .= $fields_sql;
-            $sql .= " WHERE id=:id";
+            $sql .= ' WHERE id=:id';
             // Do the query.
             $stmt = $this->db->prepare($sql);
             if (false === $stmt) {
@@ -1188,7 +1189,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return mixed
      */
-    protected function _doBeforeSave ()
+    protected function _doBeforeSave()
     {
         return $this->beforeSave();
     }
@@ -1198,7 +1199,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return mixed
      */
-    protected function _doAfterSave ()
+    protected function _doAfterSave()
     {
         return $this->afterSave();
     }
@@ -1208,20 +1209,14 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return void
      */
-    public function beforeSave ()
-    {
-
-    }
+    public function beforeSave() {}
 
     /**
      * This method is called after the model is saved.
      *
      * @return void
      */
-    public function afterSave ()
-    {
-
-    }
+    public function afterSave() {}
 
     /**
      * Deletes a instance of this model with the set id.
@@ -1230,7 +1225,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return boolean
      */
-    public final function delete ($dependencies = true)
+    public final function delete($dependencies = true)
     {
         if (false === is_bool($dependencies)) {
             throw new Ncw_Exception('$dependencies must be of type boolean');
@@ -1260,7 +1255,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return boolean
      */
-    protected function deleteDependencies ()
+    protected function deleteDependencies()
     {
         $this->read();
         // Delete the associated model objects first.
@@ -1307,17 +1302,17 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return boolean
      */
-    protected function _doDelete ($id)
+    protected function _doDelete($id)
     {
         try {
-            $sql = "DELETE FROM `" . $this->db_table_name . "`
-                    WHERE `id`=:id";
+            $sql = 'DELETE FROM `' . $this->db_table_name . '`
+                    WHERE `id`=:id';
             $stmt = $this->db->prepare($sql);
             if (false === $stmt) {
                 $error_info = $this->db->errorInfo();
                 throw new Ncw_Exception('Insert failed (' . $error_info[2] . ')', 1);
             }
-            $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             if (false === $stmt->execute()) {
                 $error_info = $stmt->errorInfo();
                 throw new Ncw_Exception('Delete failed (' . $error_info[2] . ')', 1);
@@ -1336,7 +1331,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return mixed
      */
-    protected function _doBeforeDelete ()
+    protected function _doBeforeDelete()
     {
         return $this->beforeDelete();
     }
@@ -1348,7 +1343,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return mixed
      */
-    protected function _doAfterDelete ($return)
+    protected function _doAfterDelete($return)
     {
         return $this->afterDelete($return);
     }
@@ -1358,10 +1353,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return void
      */
-    public function beforeDelete ()
-    {
-
-    }
+    public function beforeDelete() {}
 
     /**
      * This method is called after the model is deleted.
@@ -1370,10 +1362,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return void
      */
-    public function afterDelete ($deleted)
-    {
-
-    }
+    public function afterDelete($deleted) {}
 
     /**
      * Deletes more instances of this model.
@@ -1383,7 +1372,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return boolean
      */
-    public function deleteAll ($conditions = array(), $dependencies = true)
+    public function deleteAll($conditions = array(), $dependencies = true)
     {
         if (false === is_bool($dependencies)) {
             throw new Ncw_Exception('$dependencies must be of type boolean');
@@ -1411,7 +1400,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return void
      */
-    protected final function flushCache ()
+    protected final function flushCache()
     {
         if (true === is_dir(TMP . DS . 'cache' . DS . '/' . $this->module_name)) {
             try {
@@ -1435,32 +1424,32 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return void
      */
-    public final function unbindModel ($associations)
+    public final function unbindModel($associations)
     {
         if (false === is_string($associations) && false === is_array($associations)) {
             throw new Ncw_Exception('$association must be either of type string or array');
         }
-        if ($associations === "all") {
+        if ($associations === 'all') {
             $this->has_one = array();
             $this->belongs_to = array();
             $this->has_many = array();
         } else {
             foreach ($associations as $type => $association) {
                 switch ($type) {
-                case "has_many" :
-                    foreach ($this->has_many as $key => $value) {
-                        if (true === in_array($value, $association) || (true === is_array($value) && true === in_array($key, $association))) {
-                            unset($this->has_many[$key]);
+                    case 'has_many':
+                        foreach ($this->has_many as $key => $value) {
+                            if (true === in_array($value, $association) || (true === is_array($value) && true === in_array($key, $association))) {
+                                unset($this->has_many[$key]);
+                            }
                         }
-                    }
-                    break;
+                        break;
 
-                default :
-                    foreach ($this->{$type} as $key => $value) {
-                        if (true === in_array($value, $association) || (true === is_array($value) && true === in_array($key, $association))) {
-                            unset($this->{$type}[$key]);
+                    default:
+                        foreach ($this->{$type} as $key => $value) {
+                            if (true === in_array($value, $association) || (true === is_array($value) && true === in_array($key, $association))) {
+                                unset($this->{$type}[$key]);
+                            }
                         }
-                    }
                 }
             }
         }
@@ -1473,20 +1462,20 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return void
      */
-    public final function bindModel (Array $associations)
+    public final function bindModel(Array $associations)
     {
         foreach ($associations as $type => $association) {
             switch ($type) {
-            case "has_one" :
-                $this->has_one = array_merge_recursive($this->has_one, $association);
-                break;
+                case 'has_one':
+                    $this->has_one = array_merge_recursive($this->has_one, $association);
+                    break;
 
-            case "belongs_to" :
-                $this->belongs_to = array_merge_recursive($this->belongs_to, $association);
-                break;
+                case 'belongs_to':
+                    $this->belongs_to = array_merge_recursive($this->belongs_to, $association);
+                    break;
 
-            case "has_many" :
-                $this->has_many = array_merge_recursive($this->has_many, $association);
+                case 'has_many':
+                    $this->has_many = array_merge_recursive($this->has_many, $association);
             }
         }
     }
@@ -1499,7 +1488,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return void
      */
-    public final function __set ($name, $value)
+    public final function __set($name, $value)
     {
         if (false === is_string($name)) {
             throw new Ncw_Exception('$name must be of type string');
@@ -1532,7 +1521,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return boolean
      */
-    public final function validate ($dependencies = true)
+    public final function validate($dependencies = true)
     {
         if (false === is_bool($dependencies)) {
             throw new Ncw_Exception('$dependencies must be of type boolean');
@@ -1577,7 +1566,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return boolean
      */
-    public final function validateField ($field, $value = '')
+    public final function validateField($field, $value = '')
     {
         if (false === is_string($field)) {
             throw new Ncw_Exception('$validate must be of type string');
@@ -1607,7 +1596,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return boolean
      */
-    public final function invalidateField ($field, $message = false)
+    public final function invalidateField($field, $message = false)
     {
         if (false === is_string($field)) {
             throw new Ncw_Exception('$validate must be of type string');
@@ -1630,10 +1619,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return void
      */
-    public function beforeValidate ()
-    {
-
-    }
+    public function beforeValidate() {}
 
     /**
      * Sets a attribute
@@ -1644,7 +1630,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return string
      */
-    protected final function _attributeSet ($field, Array $args)
+    protected final function _attributeSet($field, Array $args)
     {
         if (false === is_string($field)) {
             throw new Ncw_Exception('$validate must be of type string');
@@ -1671,7 +1657,7 @@ abstract class Ncw_Model extends Ncw_DataModel
      *
      * @return void
      */
-    public final function copyFrom (Ncw_DataModel $model)
+    public final function copyFrom(Ncw_DataModel $model)
     {
         $this->data($model->data());
         $this->associatedModels($model->associatedModels());
