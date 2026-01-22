@@ -106,17 +106,17 @@ foreach ($arr_languages As $key => $item)  {
 	$arr_code_website[0] = str_replace('www.', 'www.', $arr_code_website[0]);
 	$arr_code_website[1] = str_replace('www.', 'www.', $arr_code_website[1]);
 	
-	$arr_code_website[0] = str_replace('https://'.$subdomian.'.kraiburg-tpe.com/themes/schnitzraum/fonts/', $getDomain . '/themes/schnitzraum/fonts/', $arr_code_website[0]);
-	$arr_code_website[0] = str_replace('https://'.$subdomian.'.kraiburg-tpe.com/themes/schnitzraum/', $getDomain . '/themes/schnitzraum/', $arr_code_website[0]);
+	$arr_code_website[0] = str_replace('https://'.$subdomian.'.kraiburg-tpe.com/themes/schnitzraum/fonts/', $pdb_url . '/themes/schnitzraum/fonts/', $arr_code_website[0]);
+	$arr_code_website[0] = str_replace('https://'.$subdomian.'.kraiburg-tpe.com/themes/schnitzraum/', $pdb_url . '/themes/schnitzraum/', $arr_code_website[0]);
 	
 	
 	// PDB  Files schreiben DB jetzt online
 	saveToFile($arr_code_website[0], '../../include/' . $key . '/start.php');
 	saveToFile($arr_code_website[1], '../../include/'. $key. '/ende.php');
 	
-	// PDB 2 Files schreiben
-	saveToFile(str_replace('pdb.', $subdomian. '.',$arr_code_website[0]), '/public_html//pdb/include/' . $key . '/start.php');
-	saveToFile(str_replace('pdb.', $subdomian. '.',$arr_code_website[1]), '/public_html/pdb/include/'. $key. '/ende.php');
+	// PDB 2 Files schreiben - Commented out due to invalid absolute path
+	//saveToFile(str_replace('pdb.', $subdomian. '.',$arr_code_website[0]), '/public_html//pdb/include/' . $key . '/start.php');
+	//saveToFile(str_replace('pdb.', $subdomian. '.',$arr_code_website[1]), '/public_html/pdb/include/'. $key. '/ende.php');
 	echo $key .' done ' . date('Y-m-d H:i:s') . '<br />';
 }
 
