@@ -104,9 +104,15 @@ class Ncw_Describer
                         'fields' => self::$_fields[$name],
                         'getters_setters' => self::$getters_and_setters[$name])
                 );
-                $file = fopen($path_to_description_file, 'w');
-                fputs($file, $file_code);
-                fclose($file);
+                $dir = dirname($path_to_description_file);
+                if (!is_dir($dir)) {
+                    mkdir($dir, 0755, true);
+                }
+                $file = @fopen($path_to_description_file, 'w');
+                if ($file !== false) {
+                    fputs($file, $file_code);
+                    fclose($file);
+                }
             }
         }
     }

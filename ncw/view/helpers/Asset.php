@@ -66,8 +66,9 @@ class Ncw_Helpers_Asset extends Ncw_Helper {
      * options: default, low_compression, high_compression, highest_compression
      * default is no compression
      * I like high_compression because it still leaves the file readable.
+     * NOTE: Disabled for PHP 8.3 compatibility - csstidy is not compatible
      */
-    public $css_compression = 'high_compression';
+    public $css_compression = 'default';
 
     /**
      * Debug mode

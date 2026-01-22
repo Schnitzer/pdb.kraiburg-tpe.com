@@ -91,7 +91,16 @@ class Ncw_Components_File extends Ncw_Component
      */
     public function create ($filename, $value)
     {
-        $fp = fopen($filename, "w+");
+        // Ensure directory exists
+        $dir = dirname($filename);
+        if (!is_dir($dir)) {
+            mkdir($dir, 0755, true);
+        }
+        
+        $fp = @fopen($filename, "w+");
+        if ($fp === false) {
+            throw new Exception("Cannot create file: $filename - check directory permissions");
+        }
         fwrite($fp, $value);
         fclose($fp);
     }
