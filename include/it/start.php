@@ -74,13 +74,13 @@
 			}
 		</style>
 		<meta charset="utf-8" />
-<link rel="canonical" href="https://pdb.kraiburg-tpe.com/?ls=en" target="_self" />
+<link rel="canonical" href="https://test.kraiburg-tpe.com/?ls=en" target="_self" />
 <meta property="og:title" content="Product Database | KRAIBURG TPE" />
 <meta name="Generator" content="Drupal 11 (https://www.drupal.org)" />
 <meta name="MobileOptimized" content="width" />
 <meta name="HandheldFriendly" content="true" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="alternate" hreflang="en" href="https://pdb.kraiburg-tpe.com/?ls=en" target="_self" />
+<link rel="alternate" hreflang="en" href="https://test.kraiburg-tpe.com/?ls=en" target="_self" />
 
 		<title>Product Database | KRAIBURG TPE</title>
 		<link rel="apple-touch-icon" sizes="180x180" href="https://www.kraiburg-tpe.com/themes/schnitzraum/img/icons/apple-touch-icon.png?v=kP3A8dO4n0" />
@@ -251,7 +251,7 @@
 
 			
 	<div class="js-form-item form-item js-form-type-radio form-type-radio js-form-item-type form-item-type">
-		<a href="https://pdb.kraiburg-tpe.com" target="_blank" class="label" uk-icon="chevron-right">Ricerca prodotti</a>
+		<a href="https://test.kraiburg-tpe.com" target="_blank" class="label" uk-icon="chevron-right">Ricerca prodotti</a>
 		<div></div>
 </div>
 
@@ -335,7 +335,7 @@
 															<a href="https://www.kraiburg-tpe.com/it/node/11" class="quicklinks-contact" data-drupal-link-system-path="node/11">Contatti</a>
 																				</li>
 																																					<li data-grid-fullwidth="0" class="level-0">
-															<a href="https://pdb.kraiburg-tpe.com/?searchheader=true&ls=it" class="pdb-linksource" target="_self">Trova il prodotto giusto</a>
+															<a href="https://test.kraiburg-tpe.com/?searchheader=true&ls=it" class="pdb-linksource" target="_self">Trova il prodotto giusto</a>
 																				</li>
 												</ul>
 			
@@ -393,7 +393,7 @@
 
 																																						
 																																																																																	<li data-grid-fullwidth="0" class="active-li uk-position-relative uk-text-left level-1">
-																											<a href="https://pdb.kraiburg-tpe.com/?searchheader=true&ls=it" class="button-blue" target="_self">Product Finder</a>
+																											<a href="https://test.kraiburg-tpe.com/?searchheader=true&ls=it" class="button-blue" target="_self">Product Finder</a>
 																																																				</li>
 
 																																						
@@ -553,7 +553,7 @@
 									</div>
 																			</div>
 																																					<div class="uk-margin-remove ">
-																																									<span class="uk-hidden@l"><a href="https://pdb.kraiburg-tpe.com/?searchheader=true&ls=it" class="button-blue" target="_self">Product Finder</a></span>
+																																									<span class="uk-hidden@l"><a href="https://test.kraiburg-tpe.com/?searchheader=true&ls=it" class="button-blue" target="_self">Product Finder</a></span>
 																																								<div>																</div>
 																			</div>
 																																					<div class="uk-margin-remove ">
@@ -1078,7 +1078,7 @@
 									<span class="uppercase">it</span>
 								</button>
 								<ul block="block-sprachumschalter" class="level-1 uk-dropdown uk-drop" data-uk-dropdown="mode: click; pos: bottom-center;">
-										<li hreflang="en" data-drupal-link-system-path="node/63"><a href="https://pdb.kraiburg-tpe.com/?ls=en" target="_self" class="language-link" hreflang="en" data-drupal-link-system-path="node/63">English</a></li><li hreflang="de" data-drupal-link-system-path="node/63"><a href="https://pdb.kraiburg-tpe.com/?ls=de&sess=1" target="_self" class="language-link" hreflang="de" data-drupal-link-system-path="node/63">Deutsch</a></li><li hreflang="ru" data-drupal-link-system-path="node/63"><a href="https://www.kraiburg-tpe.com/ru/node/63" class="language-link" hreflang="ru" data-drupal-link-system-path="node/63">Russian</a></li><li hreflang="ja" data-drupal-link-system-path="node/63"><a href="https://pdb.kraiburg-tpe.com/?ls=jp" target="_self" class="language-link" hreflang="ja" data-drupal-link-system-path="node/63">日本語</a></li><li hreflang="zh-hans" data-drupal-link-system-path="node/63"><a href="https://pdb.kraiburg-tpe.com/?ls=zh" target="_self" class="language-link" hreflang="zh-hans" data-drupal-link-system-path="node/63">中文 （简体）</a></li><li hreflang="zh-hant" data-drupal-link-system-path="node/63"><a href="https://www.kraiburg-tpe.com/zh-hant/node/63" class="language-link" hreflang="zh-hant" data-drupal-link-system-path="node/63">中文 （繁體）</a></li><li hreflang="ko" data-drupal-link-system-path="node/63"><a href="https://pdb.kraiburg-tpe.com/?ls=kr" target="_self" class="language-link" hreflang="ko" data-drupal-link-system-path="node/63">한국어</a></li><li hreflang="es" data-drupal-link-system-path="node/63"><a href="https://pdb.kraiburg-tpe.com/?ls=es" target="_self" class="language-link" hreflang="es" data-drupal-link-system-path="node/63">Español</a></li><li hreflang="fr" data-drupal-link-system-path="node/63"><a href="https://pdb.kraiburg-tpe.com/?ls=fr" target="_self" class="language-link" hreflang="fr" data-drupal-link-system-path="node/63">Français</a></li><li hreflang="pl" data-drupal-link-system-path="node/63"><a href="https://pdb.kraiburg-tpe.com/?ls=pl" target="_self" class="language-link" hreflang="pl" data-drupal-link-system-path="node/63">Polski</a></li><li hreflang="it" data-drupal-link-system-path="node/63" class="is-active" aria-current="page"><a href="https://pdb.kraiburg-tpe.com/?ls=it" target="_self" class="language-link is-active" hreflang="it" data-drupal-link-system-path="node/63" aria-current="page">Italiano</a></li><li hreflang="vi" data-drupal-link-system-path="node/63"><a href="https://www.kraiburg-tpe.com/vi/node/63" class="language-link" hreflang="vi" data-drupal-link-system-path="node/63">Vietnamese</a></li><li hreflang="th" data-drupal-link-system-path="node/63"><a href="https://www.kraiburg-tpe.com/th/node/63" class="language-link" hreflang="th" data-drupal-link-system-path="node/63">Thai</a></li><li hreflang="cs" data-drupal-link-system-path="node/63"><a href="https://www.kraiburg-tpe.com/cs/node/63" class="language-link" hreflang="cs" data-drupal-link-system-path="node/63">Czech</a></li>
+										<li hreflang="en" data-drupal-link-system-path="node/63"><a href="https://test.kraiburg-tpe.com/?ls=en" target="_self" class="language-link" hreflang="en" data-drupal-link-system-path="node/63">English</a></li><li hreflang="de" data-drupal-link-system-path="node/63"><a href="https://test.kraiburg-tpe.com/?ls=de&sess=1" target="_self" class="language-link" hreflang="de" data-drupal-link-system-path="node/63">Deutsch</a></li><li hreflang="ru" data-drupal-link-system-path="node/63"><a href="https://www.kraiburg-tpe.com/ru/node/63" class="language-link" hreflang="ru" data-drupal-link-system-path="node/63">Russian</a></li><li hreflang="ja" data-drupal-link-system-path="node/63"><a href="https://test.kraiburg-tpe.com/?ls=jp" target="_self" class="language-link" hreflang="ja" data-drupal-link-system-path="node/63">日本語</a></li><li hreflang="zh-hans" data-drupal-link-system-path="node/63"><a href="https://test.kraiburg-tpe.com/?ls=zh" target="_self" class="language-link" hreflang="zh-hans" data-drupal-link-system-path="node/63">中文 （简体）</a></li><li hreflang="zh-hant" data-drupal-link-system-path="node/63"><a href="https://www.kraiburg-tpe.com/zh-hant/node/63" class="language-link" hreflang="zh-hant" data-drupal-link-system-path="node/63">中文 （繁體）</a></li><li hreflang="ko" data-drupal-link-system-path="node/63"><a href="https://test.kraiburg-tpe.com/?ls=kr" target="_self" class="language-link" hreflang="ko" data-drupal-link-system-path="node/63">한국어</a></li><li hreflang="es" data-drupal-link-system-path="node/63"><a href="https://test.kraiburg-tpe.com/?ls=es" target="_self" class="language-link" hreflang="es" data-drupal-link-system-path="node/63">Español</a></li><li hreflang="fr" data-drupal-link-system-path="node/63"><a href="https://test.kraiburg-tpe.com/?ls=fr" target="_self" class="language-link" hreflang="fr" data-drupal-link-system-path="node/63">Français</a></li><li hreflang="pl" data-drupal-link-system-path="node/63"><a href="https://test.kraiburg-tpe.com/?ls=pl" target="_self" class="language-link" hreflang="pl" data-drupal-link-system-path="node/63">Polski</a></li><li hreflang="it" data-drupal-link-system-path="node/63" class="is-active" aria-current="page"><a href="https://test.kraiburg-tpe.com/?ls=it" target="_self" class="language-link is-active" hreflang="it" data-drupal-link-system-path="node/63" aria-current="page">Italiano</a></li><li hreflang="vi" data-drupal-link-system-path="node/63"><a href="https://www.kraiburg-tpe.com/vi/node/63" class="language-link" hreflang="vi" data-drupal-link-system-path="node/63">Vietnamese</a></li><li hreflang="th" data-drupal-link-system-path="node/63"><a href="https://www.kraiburg-tpe.com/th/node/63" class="language-link" hreflang="th" data-drupal-link-system-path="node/63">Thai</a></li><li hreflang="cs" data-drupal-link-system-path="node/63"><a href="https://www.kraiburg-tpe.com/cs/node/63" class="language-link" hreflang="cs" data-drupal-link-system-path="node/63">Czech</a></li>
 	
 								</ul>
 							</li>

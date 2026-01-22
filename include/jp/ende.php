@@ -48,7 +48,7 @@
 															<a href="https://www.kraiburg-tpe.com/ja/%E6%80%A7%E8%B3%AA" data-drupal-link-system-path="node/24">性質</a>
 																				</li>
 																																					<li data-grid-fullwidth="0" class="level-0">
-															<a href="https://pdb.kraiburg-tpe.com/?searchheader=true&ls=en">製品検索</a>
+															<a href="https://test.kraiburg-tpe.com/?searchheader=true&ls=en">製品検索</a>
 																				</li>
 												</ul>
 			

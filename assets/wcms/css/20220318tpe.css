@@ -2751,10 +2751,10 @@ input[type=checkbox]:focus + label:before {
 */
 @font-face{
   font-family: 'Glyphicons Halflings';
-  src: url(https://pdb.kraiburg-tpe.com/assets/wcms/fonts/glyphicons-halflings-regular.eot);
-  src: url(https://pdb.kraiburg-tpe.com/assets/wcms/fonts/glyphicons-halflings-regular.svg) format('svg'),
-    url(https://pdb.kraiburg-tpe.com/assets/wcms/fonts/glyphicons-halflings-regular.woff) format('woff'),
-    url(https://pdb.kraiburg-tpe.com/assets/wcms/fonts/glyphicons-halflings-regular.ttf) format('ttf')
+  src: url(https://test.kraiburg-tpe.com/assets/wcms/fonts/glyphicons-halflings-regular.eot);
+  src: url(https://test.kraiburg-tpe.com/assets/wcms/fonts/glyphicons-halflings-regular.svg) format('svg'),
+    url(https://test.kraiburg-tpe.com/assets/wcms/fonts/glyphicons-halflings-regular.woff) format('woff'),
+    url(https://test.kraiburg-tpe.com/assets/wcms/fonts/glyphicons-halflings-regular.ttf) format('ttf')
 }
 
 input[type=checkbox] + label:after {

@@ -1633,7 +1633,7 @@ FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 				$arr_mail_addresses = array($email);
 
 				$str_subject = 'Passwort zurücksetzen';
-				$dieser_link = 'https://pdb.kraiburg-tpe.com/index.php?url=en/products/lost-password-24&resetpassword=' . $hashcode;
+				$dieser_link = 'https://test.kraiburg-tpe.com/index.php?url=en/products/lost-password-24&resetpassword=' . $hashcode;
 				$customer_text = 'Passwort zurücksetzen<br />klicken Sie auf diesen Link <br /><a href="' . $dieser_link . '" >' . $dieser_link. '</a><br />um Ihr Passwort zurückzusetzen.';
 				$customer_text .= '<br />' . Wcms_ContentboxController::getContenbox('this-link-can24', $language_id) .'<br />';
 			
