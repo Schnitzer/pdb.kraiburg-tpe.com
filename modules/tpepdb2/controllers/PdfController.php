@@ -205,7 +205,7 @@ class Tpepdb2_PdfController extends Tpepdb2_ModuleController
 		$pdf->SetXY(40, 95);
 		// $pdf->Write(8, ' - ' . $count . ' - ');
 		if ($language == 'zh' || $language == 'kr' || $language == 'jp') {
-			$pdf->setFont('arialuni');
+			$pdf->setFont('TitilliumWeb');
 		}
 
 		// STARTSEITE
@@ -243,7 +243,7 @@ class Tpepdb2_PdfController extends Tpepdb2_ModuleController
 		$pdf->SetXY(15, 70);
 		$pdf->SetFontSize(11.5);
 		if ($language == 'zh') {
-			$pdf->SetFont('arialuni');
+			$pdf->SetFont('TitilliumWeb');
 		}
 		$pdf->writeHTMLCell(0, 0, '', '', $str_inhaltsverzeichnis, '', 0, 0, false, 'L', false);
 		// $pdf->SetXY(120, 50);
@@ -350,6 +350,10 @@ class Tpepdb2_PdfController extends Tpepdb2_ModuleController
 	 */
 	public function safetydataAction()
 	{
+		// Suppress deprecated warnings for old FPDI library (Version 1.4.4)
+		$old_error_reporting = error_reporting();
+		error_reporting($old_error_reporting & ~E_DEPRECATED);
+
 		$this->view = false;
 
 		if (false === isset($this->params['url']['s']) &&
@@ -436,7 +440,12 @@ class Tpepdb2_PdfController extends Tpepdb2_ModuleController
 				$pdf->useTemplate($tpl_idx);
 
 				if ($page_no == 1) {
-					$pdf->SetFont('TitilliumWeb', '', 9);
+					// Try to set font, fallback to TitilliumWeb if TitilliumWeb not available
+					try {
+						$pdf->SetFont('TitilliumWeb', '', 9);
+					} catch (Exception $e) {
+						$pdf->SetFont('helvetica', '', 9);
+					}
 					$pdf->SetTextColor(0, 0, 0);
 					$x = 81.5;
 					$y = 33;
@@ -864,13 +873,18 @@ class Tpepdb2_PdfController extends Tpepdb2_ModuleController
 
 					if ($safetydata != 'S5 HTF867569' && $safetydata != 'S7' && $safetydata != 'S7 HTC94861819' && $safetydata != 'S99 SAP EHS') {
 						$pdf->SetXY($y, $x);
-						$pdf->SetFont('arialuni');
+						// Fallback to TitilliumWeb if TitilliumWeb not available
+						try {
+							$pdf->SetFont('TitilliumWeb');
+						} catch (Exception $e) {
+							$pdf->SetFont('TitilliumWeb');
+						}
 						$pdf->Write(0, $str_product_code . $text);
 					}
 
 					// if ($safetydata != "S5 HTF867569" && $safetydata != 'S7' && $safetydata != 'S7 HTC94861819') {
 					//     $pdf->SetXY($y, $x);
-					//	$pdf->SetFont('arialuni');
+					//	$pdf->SetFont('TitilliumWeb');
 					//      $pdf->Write(0, $str_product_code . $text);
 					//  }
 				}

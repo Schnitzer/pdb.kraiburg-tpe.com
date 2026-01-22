@@ -65,35 +65,35 @@ class TpePdbPdf extends TCPDF
                 // $this->font = "msungstdlight";
                 // $this->font = "cyberbit";
                 if (strstr($_SERVER['HTTP_USER_AGENT'], 'Android')) {
-                    $this->font = 'arialuni';
+                    $this->font = 'TitilliumWeb';
                     // $this->font = "kozgopromedium";
                     // $this->font = "hanamina";
                 } else if (strstr($_SERVER['HTTP_USER_AGENT'], 'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'], 'iPad')) {
                     $this->font = 'kozgopromedium';
-                    $this->font = 'arialuni';
+                    $this->font = 'TitilliumWeb';
                 } else {
-                    $this->font = 'arialuni';
+                    $this->font = 'TitilliumWeb';
                 }
                 break;
             case 'jp':
                 if (strstr($_SERVER['HTTP_USER_AGENT'], 'Android')) {
-                    $this->font = 'arialuni';
+                    $this->font = 'TitilliumWeb';
                     // $this->font = "kozgopromedium";
                     // $this->font = "hanamina";
                 } else if (strstr($_SERVER['HTTP_USER_AGENT'], 'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'], 'iPad')) {
                     $this->font = 'kozgopromedium';
                 } else {
-                    $this->font = 'arialuni';
+                    $this->font = 'TitilliumWeb';
                 }
                 break;
             case 'kr':
                 if (strstr($_SERVER['HTTP_USER_AGENT'], 'Android')) {
-                    $this->font = 'arialuni';
+                    $this->font = 'TitilliumWeb';
                 } else if (strstr($_SERVER['HTTP_USER_AGENT'], 'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'], 'iPad')) {
                     // $this->font = "hysmyeongjostdmedium";
-                    $this->font = 'arialuni';
+                    $this->font = 'TitilliumWeb';
                 } else {
-                    $this->font = 'arialuni';
+                    $this->font = 'TitilliumWeb';
                 }
                 break;
             case 'pl':
@@ -106,7 +106,7 @@ class TpePdbPdf extends TCPDF
                 } else {
                     $this->font = 'titilliumweb';
                 }
-                // $this->font = "arialuni";
+                // $this->font = "TitilliumWeb";
                 break;
             default:
                 $this->font = 'titilliumweb';
