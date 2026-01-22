@@ -737,12 +737,15 @@ class Core_UserController extends Core_ModuleController
 	 */
 	public static function logout()
 	{
+		include_once MODULES . DS . 'core' . DS . 'config' . DS . 'user.config.php';
 		// Delete the session
 		Ncw_Components_Session::deleteInAll('user');
 		Ncw_Components_Session::regenerate();
 		// delete the login cookie
-		setcookie(LOGIN_COOKIE_NAME, '', 0, '/');
-		unset($_COOKIE[LOGIN_COOKIE_NAME]);
+		if (defined('LOGIN_COOKIE_NAME')) {
+			setcookie(LOGIN_COOKIE_NAME, '', 0, '/');
+			unset($_COOKIE[LOGIN_COOKIE_NAME]);
+		}
 	}
 
 	/**

@@ -1,0 +1,7 @@
+Falls Logins nicht funktionieren - vermutlich fehlt session DIR => debugging via session_debug.php
+=> dazu .htaccess erweitern
+-----------------------------------------------------------
+    # Skip rewrite for session_debug.php
+    RewriteCond %{REQUEST_URI} ^/session_debug\.php$
+    RewriteRule .* - [L]
+-----------------------------------------------------------

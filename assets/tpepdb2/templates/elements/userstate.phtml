@@ -74,8 +74,9 @@ $url_pdb2 = Ncw_Configure::read('Project.url');
           if (true == TpePdbWeb::rights()) {
             //echo 'You are logged in as netzcraftwerk.';
             $login = Ncw_Components_Session::readInAll('PDB');
-            echo '<span class="bigscreen">' . Wcms_ContentboxController::getContenbox('you-are-logged-in-as', $language_id) . ' ' . $login['USRNAME'] . '</span>';
-            echo '<span class="smallscreen">' . $login['USRNAME'] . '</span>';
+            $username = (is_array($login) && isset($login['USRNAME'])) ? $login['USRNAME'] : 'User';
+            echo '<span class="bigscreen">' . Wcms_ContentboxController::getContenbox('you-are-logged-in-as', $language_id) . ' ' . $username . '</span>';
+            echo '<span class="smallscreen">' . $username . '</span>';
           } else {
             echo Wcms_ContentboxController::getContenbox('login', $language_id);
           }
