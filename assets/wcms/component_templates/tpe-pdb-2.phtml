@@ -4,29 +4,25 @@ $url_pdb = $this->base;
 
 // Include HTML head if no site template is being used
 if (!isset($GLOBALS['html_head_included'])) {
-    $GLOBALS['html_head_included'] = true;
-    $ls = $_GET['ls'] ?? $_SESSION['ls'] ?? 'en';
-    include_once Ncw_Configure::read('Project.url') . '/include/' . $ls . '/start.php';
+  $GLOBALS['html_head_included'] = true;
+  $ls = $_GET['ls'] ?? $_SESSION['ls'] ?? 'en';
+  include_once ROOT . '/include/' . $ls . '/start.php';
 }
 
-include_once "modules/tpepdb2/vendor/tpepdb/TpePdbWeb.php";
+include_once 'modules/tpepdb2/vendor/tpepdb/TpePdbWeb.php';
 $tpepdb_web = new TpePdbWeb($language_code, $language_id);
 print $tpepdb_web->content();
 
 // Include HTML footer if no site template is being used
 if (isset($GLOBALS['html_head_included']) && !isset($GLOBALS['html_footer_included'])) {
-    $GLOBALS['html_footer_included'] = true;
-    $ls = $_GET['ls'] ?? $_SESSION['ls'] ?? 'en';
-    include_once ROOT . '/include/' . $ls . '/ende.php';
+  $GLOBALS['html_footer_included'] = true;
+  $ls = $_GET['ls'] ?? $_SESSION['ls'] ?? 'en';
+  include_once ROOT . '/include/' . $ls . '/ende.php';
 }
-
-
-
-
 
 ?>
 <br />
-<?php 
+<?php
 if (true == TpePdbWeb::rights()) {
   ?>
   <script>
@@ -34,6 +30,10 @@ if (true == TpePdbWeb::rights()) {
         function () {
           removeChat();
         }
+    );
+  </script>
+  <?php
+}
     );
   </script>
   <?php

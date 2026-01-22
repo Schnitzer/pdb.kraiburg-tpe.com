@@ -20,11 +20,11 @@ $website_url = $url_website;
 
 if (true == isset($_GET['ls'])) {
   $_SESSION['ls'] = $_GET['ls'];
-  include_once Ncw_Configure::read('Project.url') . '/include/' . $_GET['ls'] . '/start.php';
+  include_once ROOT . '/include/' . $_GET['ls'] . '/start.php';
 } else if (true == isset($_SESSION['ls'])) {
-  include_once Ncw_Configure::read('Project.url') . '/include/' . $_SESSION['ls'] . '/start.php';
+  include_once ROOT . '/include/' . $_SESSION['ls'] . '/start.php';
 } else {
-  include_once Ncw_Configure::read('Project.url') . '/include/en/start.php';
+  include_once ROOT . '/include/en/start.php';
 }
 
 ?>
