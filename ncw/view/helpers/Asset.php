@@ -243,10 +243,9 @@ class Ncw_Helpers_Asset extends Ncw_Helper {
                             $less = new lessc();
                             $buffer = $less->parse($buffer);
                         }
-                        $tidy = new csstidy();
-                        $tidy->load_template($this->css_compression);
-                        $tidy->parse($buffer);
-                        $buffer = $tidy->print->plain();
+                        // csstidy disabled - incompatible with PHP 8.3
+                        // Just combine CSS files without compression
+                        $buffer = trim($buffer);
                         break;
                 }
 
