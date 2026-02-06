@@ -384,7 +384,8 @@ jQuery(document).on('click', '#tpepdb2_s_text', function () {
   pdb2_showhideSearch('checkboxes', 'textsearch');
   greyslider();
   //pdb2_count_suche();
-  reset_search_inputs();
+  // reset_search_inputs(); // Auskommentiert: Sollte nicht bei jedem Klick zurücksetzen
+  /* Auskommentiert: Sollte nicht die Liste leeren, wenn man ins Feld klickt
   var textinserach = jQuery('#tpepdb2_s_text').val();
   if (textinserach.length < 2) {
     if (mobile_search_view == false) {
@@ -392,6 +393,7 @@ jQuery(document).on('click', '#tpepdb2_s_text', function () {
       reset_disclaimer();
     }
   }
+  */
 });
 
 //oninput
