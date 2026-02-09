@@ -1,9 +1,4 @@
-<?php
-if (!isset($safetydatadocumentflag)) {
-	$safetydatadocumentflag = false;
-}
-if ($safetydatadocumentflag == true) {
-	?>
+<?php if ($safetydatadocumentflag == true) { ?>
 <div class="paragraph clearfix panel-group paragraph--type--akkordeon paragraph--view-mode--default ncw-u-padding-bottom-40000" id="392" role="tablist" aria-multiselectable="true" style="">
 		<div class="panel panel-default">
 			<div class="panel-heading flaticon-leave-right dark-font" role="tab" id="headingOne">
@@ -37,7 +32,7 @@ if ($safetydatadocumentflag == true) {
 
 <?php
 
-	// $pdb_url = 'http://pdb.kraiburg-tpe.com';
+	// $pdb_url = 'http://test.kraiburg-tpe.com';
 	$pdb_url = Ncw_Configure::read('Project.url');
 	$website_url = 'https://www.kraiburg-tpe.com';
 
@@ -73,6 +68,13 @@ if ($safetydatadocumentflag == true) {
 							$set_region = $last_search['region_id'];
 						}
 
+						/*
+						 * if ($set_region == 0) {
+						 *     $not_logged_in = false;
+						 * } else {
+						 *     $not_logged_in = true;
+						 * }
+						 */
 						if (true == TpePdbWeb::rights()) {
 							$not_logged_in = false;
 						} else {
@@ -81,19 +83,16 @@ if ($safetydatadocumentflag == true) {
 
 						// NONPORTFOLIO // Umgebaut am 15.10.2014 winni
 						$sds_lang = array('en', 'us', 'de', 'asia', 'fr', 'zh', 'it', 'kr', 'es', 'jp', 'pl');
-						if (date('Ymd') > '20230206') {
-							$sds_lang = array('us', 'asia', 'zh', 'kr', 'jp');
-						}
 
 						// Diese Ausnahme wurde am 07.04.2016 auf Wunsch von TPE eingeführt. Für das eine Compound gibt es nur diese
 						// Sprachen
 						if ($compound['name'] == 'HX6ICN') {
-							//   $sds_lang = array("en", "us", "de", "asia", "zh", "kr", "jp");
+							$sds_lang = array('en', 'us', 'de', 'asia', 'zh', 'kr', 'jp');
 						}
 						// Diese Ausnahme wurde am 19.04.2016 auf Wunsch von TPE eingeführt. Für das eine Compound gibt es nur de und en
 						// Sprachen
 						if ($compound['name'] == 'HTF8675/69') {
-							//   $sds_lang = array("de", "en");
+							$sds_lang = array('de', 'en');
 						}
 
 						foreach ($sds_lang as $sds_item) {
@@ -115,33 +114,21 @@ if ($safetydatadocumentflag == true) {
 							}
 							$arr_path_for_filesize = explode('pdb/', $sds_path);
 							$path_for_filesize = './' . $arr_path_for_filesize[1];
-							if (file_exists($path_for_filesize)) {
-								$filesize = number_format(filesize($path_for_filesize) / 1024 / 1024, 1);
-								if ($filesize == 0.0) {
-									$filesize = 1.8;
-								}
-							} else {
+							$filesize = number_format(filesize($path_for_filesize) / 1024 / 1024, 1);
+							if ($filesize == 0.0) {
 								$filesize = 1.8;
 							}
 							?>
 
-								<div class="paragraph clearfix paragraph--type--download paragraph--view-mode--default color-scheme-darkgrey light-font col-md-8 col-sm-12 no_image" style="height: 57px;">
-									<div class="clearfix">
-												<div class="col-xs-18 download-info" style="background-image:url('<?php echo $website_url; ?>/sites/default/files/assets/pattern/dark-grey.png')">
-											<div class="icon kbtpe-icon-download">
-												<span class="download-datum"><?php
-							$lang_display = isset($sds_lang_name[$sds_item]) ? $sds_lang_name[$sds_item] : ucfirst($sds_item);
-							echo $str_region . ' (' . $lang_display . $str_language_addon . ')';
-							?> PDF file - <?php echo $filesize; ?>MB</span><span class="download-title"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---safety-data-sheet', $language_id); ?></span>
-											</div>
-
-											<?php if (true == TpePdbWeb::rights()) { ?>
-												<div class="icosn kbtpe-icon-share" onclick="open_share_dialog('sds', '<?php echo $sds_item; ?>', '<?php echo $id; ?>', '<?php echo $sds_path; ?>', 'safetydata');"></div>
-											<?php } ?>
-										</div>
-									</div>
-									<a href="<?php print $sds_path; ?>" target="_blank" class="clickhelper" onclick="tpepedb2stats('<?php echo $sds_path; ?>','<?php echo $sds_item; ?>', 'compound', 'sds', 'download');"><span class="hidden">Download</span></a>
-								</div>
+																		<div class="paragraph clearfix paragraph--type--download paragraph--view-mode--default color-scheme-darkgrey light-font col-md-8 col-sm-12 no_image" style="height: 57px;">
+																			<div class="clearfix">
+																						<div class="col-xs-18 download-info" style="background-image:url('<?php echo $website_url; ?>/sites/default/files/assets/pattern/dark-grey.png')">
+																					<div class="icon kbtpe-icon-download">
+																						 <span class="download-datum"><?php echo $str_region . ' (' . $sds_lang_name[$sds_item] . $str_language_addon . ')'; ?> PDF files</span><span class="download-title"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---safety-data-sheet', $language_id); ?></span> 							</div>
+																				</div>
+																			</div>
+																			<a href="<?php print $sds_path; ?>" target="_blank" class="clickhelper"><span class="hidden">Download</span></a>
+																		</div>
 
                                 <?php $docs_count++; ?>
 
@@ -234,7 +221,7 @@ if ($type == 'compound') {
 		<div class="panel panel-default">
 			<div class="panel-heading flaticon-leave-right dark-font" role="tab" id="headingOne">
 				<h4 class="panel-title">
-					<a role="button" data-toggle="collapse" data-parent="#3926" href="#target394" aria-expanded="false" aria-controls="target394" class="noTrigger collapsed">
+					<a role="button" data-toggle="collapse" data-parent="#394" href="#target394" aria-expanded="false" aria-controls="target394" class="noTrigger collapsed">
 						<?php echo Wcms_ContentboxController::getContenbox('pdb---datasheet---download-related-docs', $language_id); ?>
 						<span class="kbtpe-icon-minus minus"></span>
 						<span class="kbtpe-icon-plus plus"></span>
@@ -247,34 +234,27 @@ if ($type == 'compound') {
 				<?php
 				// var_dump($documents);
 
+				$docs_count = 0;
 				foreach ($documents as $document) {
 					$arr_document_path = explode('/', $document['path']);
-					$document['path'] = '/assets/tpepdb2/imported_documents/' . $arr_document_path[count($arr_document_path) - 1]
+					$document['path'] = '/assets/tpepdb2/imported_documents/' . $arr_document_path[count($arr_document_path) - 1];
 
 					?>
-						<? php // if ($document['type'] == 'CAT') { ?>
+						<?php // if ($document['type'] == 'CAT') { ?>
 								<?php
 								$doc_name = explode('_', $document['name']);
 								if ($type == 'compound') {
-									$doc_name = strtoupper($doc_name[3]);
+									$doc_name = isset($doc_name[3]) ? strtoupper($doc_name[3]) : '';
 								} else {
-									$doc_name = strtoupper($doc_name[2]);
+									$doc_name = isset($doc_name[2]) ? strtoupper($doc_name[2]) : '';
 								}
 
 								$arr_pdb2_doc_name = explode('_', $arr_document_path[count($arr_document_path) - 1]);
-
-								if (false == is_int($arr_pdb2_doc_name[2])) {
-									$doc_name = $arr_pdb2_doc_name[2] . '-' . $arr_pdb2_doc_name[3];
-								}
-								if (strlen($doc_name) < 2) {
-									$doc_name = $arr_pdb2_doc_name[3];
+								$doc_name = isset($arr_pdb2_doc_name[3]) ? $arr_pdb2_doc_name[3] : '';
+								if (strlen($doc_name) < 4 && isset($arr_pdb2_doc_name[2])) {
+									$doc_name = $arr_pdb2_doc_name[2];
 								}
 
-								if (strlen($doc_name) < 4) {
-									$doc_name .= $arr_pdb2_doc_name[2];
-								}
-
-								$doc_name = str_replace('.pdf', '', $doc_name);
 								// $doc_name = $arr_document_path[count($arr_document_path) -1];
 								if ($doc_name == 'DER') {
 									$doc_name = 'CSTB Homologation';
@@ -294,8 +274,6 @@ if ($type == 'compound') {
 									'TC6EXN-999'
 								);
 
-								$doc_name = str_replace('-HTC9480', '', $doc_name);
-
 								if (true == in_array($doc_name, $arr_cstb_names)) {
 									$doc_name = 'CSTB Homologation';
 								}
@@ -311,12 +289,12 @@ if ($type == 'compound') {
 									$doc_name = 'UL94-YellowCard_FRAD1';
 								}
 								$arr_path_for_filesize = explode('pdb/', $document['path']);
-								$path_for_filesize = './' . $arr_path_for_filesize[1];
-								$filesize = number_format(filesize($path_for_filesize) / 1024 / 1024, 1);
-								// http://www.kraiburg-tpe.com/pdb/assets/tpepdb2/imported_documents/PORTFOLIO_20171218134807_TM3ADT_ISO10993-5_TM3ADT_.pdf
-								?>
+							$path_for_filesize = './' . ($arr_path_for_filesize[1] ?? '');
+							$filesize = file_exists($path_for_filesize) ? number_format(filesize($path_for_filesize) / 1024 / 1024, 1) : 0;
+							// http://www.kraiburg-tpe.com/pdb/assets/tpepdb2/imported_documents/PORTFOLIO_20171218134807_TM3ADT_ISO10993-5_TM3ADT_.pdf
+							?>
 
-								<div class="paragraph clearfix paragraph--type--download paragraph--view-mode--default color-scheme-darkgrey light-font col-md-8 col-sm-12 no_image" style="height: 57px;">
+							<div class="paragraph clearfix paragraph--type--download paragraph--view-mode--default color-scheme-darkgrey light-font col-md-8 col-sm-12 no_image" style="height: 57px;">
 									<div class="clearfix">
 												<div class="col-xs-18 download-info" style="background-image:url('<?php echo $website_url; ?>/sites/default/files/assets/pattern/dark-grey.png')">
 											<div class="icon kbtpe-icon-download">
