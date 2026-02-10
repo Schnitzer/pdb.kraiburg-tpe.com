@@ -592,7 +592,8 @@ class Wcms_WebsiteController extends Wcms_ModuleController
                     if (false !== $permalink) {
                         $id = $permalink->getSiteId();
                     } else {
-                        $id = (int) array_pop(explode('-', $matches[3]));
+                        $parts = explode('-', $matches[3]);
+                        $id = (int) array_pop($parts);
                     }
                     unset($permalink, $site_name, $part);
 				}
