@@ -19,7 +19,7 @@ function cleanstring($str)
 	return $str;
 }
 
-$webseite_url = 'https://drupaldev.kraiburg-tpe.com';
+$webseite_url = 'https://www.kraiburg-tpe.com';
 
 $country = 'de';
 
