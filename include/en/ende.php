@@ -42,7 +42,7 @@
 
 							<ul block="block-04footerquicklinks1" class="menu clearfix uk-list uk-list-collapse">
 																																			<li data-grid-fullwidth="0" class="level-0">
-															<a href="https://pdb.kraiburg-tpe.com/?searchheader=true&ls=en">Product Finder</a>
+															<a href="https://test.kraiburg-tpe.com/?searchheader=true&ls=en">Product Finder</a>
 																				</li>
 																																					<li data-grid-fullwidth="0" class="level-0">
 															<a href="https://www.kraiburg-tpe.com/en/product-properties" data-drupal-link-system-path="node/24">Product Properties</a>

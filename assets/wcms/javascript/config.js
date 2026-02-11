@@ -1,1 +1,1 @@
-var path = 'https://pdb.kraiburg-tpe.com';
+var path = 'https://test.kraiburg-tpe.com';

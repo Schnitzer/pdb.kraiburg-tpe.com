@@ -42,7 +42,7 @@
 
 							<ul block="block-04footerquicklinks1" class="menu clearfix uk-list uk-list-collapse">
 																																			<li data-grid-fullwidth="0" class="level-0">
-															<a href="https://pdb.kraiburg-tpe.com/?searchheader=true&ls=en">产品搜索</a>
+															<a href="https://test.kraiburg-tpe.com/?searchheader=true&ls=en">产品搜索</a>
 																				</li>
 																																					<li data-grid-fullwidth="0" class="level-0">
 															<a href="https://www.kraiburg-tpe.com/zh-hans/%E7%83%AD%E5%A1%91%E6%80%A7%E5%BC%B9%E6%80%A7%E4%BD%93TPE%E4%BA%A7%E5%93%81%E7%89%B9%E6%80%A7" data-drupal-link-system-path="node/24">产品特性</a>

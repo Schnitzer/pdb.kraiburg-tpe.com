@@ -45,7 +45,7 @@
 															<a href="https://www.kraiburg-tpe.com/fr/caract%C3%A9ristiques-des-produits" data-drupal-link-system-path="node/24">Caractéristiques des produits</a>
 																				</li>
 																																					<li data-grid-fullwidth="0" class="level-0">
-															<a href="https://pdb.kraiburg-tpe.com/?searchheader=true&ls=en">Recherche de produits</a>
+															<a href="https://test.kraiburg-tpe.com/?searchheader=true&ls=en">Recherche de produits</a>
 																				</li>
 																																					<li data-grid-fullwidth="0" class="level-0">
 															<a href="https://www.kraiburg-tpe.com/fr/solutions-produits" data-drupal-link-system-path="node/26">Solutions produits</a>

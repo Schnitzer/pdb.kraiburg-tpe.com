@@ -137,8 +137,8 @@ class Wcms_ModuleController extends AppController
             //     $menu[] = $html->link(T_('Statistics'), array('controller' => 'stats', 'action' => 'all'));
             // }
             // if (true === $this->acl->check('/wcms')) {
-            //    $menu[] =  '<a href="https://pdb.kraiburg-tpe.com/tpepdb/pdf?allseries=true&l=de&datasheetmode=datasheet" target="_blank">Katalog DE</a>';
-            //    $menu[] =  '<a href="https://pdb.kraiburg-tpe.com/tpepdb/pdf?allseries=true&l=en&datasheetmode=datasheet" target="_blank">Katalog EN</a>';
+            //    $menu[] =  '<a href="https://test.kraiburg-tpe.com/tpepdb/pdf?allseries=true&l=de&datasheetmode=datasheet" target="_blank">Katalog DE</a>';
+            //    $menu[] =  '<a href="https://test.kraiburg-tpe.com/tpepdb/pdf?allseries=true&l=en&datasheetmode=datasheet" target="_blank">Katalog EN</a>';
             // }
             /*if (true === $this->acl->check('/wcms/news/all')) {
                 $menu[] = $html->link(T_('News'), array('controller' => 'news', 'action' => 'all'), array('class' => (($this->name == 'News') ? 'opened' : '')));
@@ -157,27 +157,27 @@ class Wcms_ModuleController extends AppController
                     // $html->link(T_('Javascript'), array('controller' => 'javascript', 'action' => 'all')),
                     // $html->link(T_('CSS'), array('controller' => 'css', 'action' => 'all')),
                     // $html->link(T_('Site Structure'), array('controller' => 'site', 'action' => 'all')),
-                    '<a href="https://pdb.kraiburg-tpe.com/special/curl/generate.php" target="_blank">PDB Header generieren</a>',
-                    '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseries?l=de" target="_blank">Katalog generieren DE</a>',
-                    '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseriesjoin?l=de" target="_blank">Katalog DE download</a>',
+                    '<a href="https://test.kraiburg-tpe.com/special/curl/generate.php" target="_blank">PDB Header generieren</a>',
+                    '<a href="https://test.kraiburg-tpe.com/tpepdb/allseries?l=de" target="_blank">Katalog generieren DE</a>',
+                    '<a href="https://test.kraiburg-tpe.com/tpepdb/allseriesjoin?l=de" target="_blank">Katalog DE download</a>',
                     // '<a href="#" onclick="$(\'.ncw-main-tab-content\').html(\'<iframe></iframe>\'); $(\'.ncw-main-tab-content\').children(\'iframe\').attr(\'src\',\'/tpepdb/allseriesjoin?l=en\' );">Katalog EN download</a>',
-                    '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseries?l=en" target="_blank">Katalog generieren EN</a>',
+                    '<a href="https://test.kraiburg-tpe.com/tpepdb/allseries?l=en" target="_blank">Katalog generieren EN</a>',
                     '<a href="/tpepdb/allseriesjoin?l=en" target="_blank">Katalog EN download</a>',
                     // '<a href="#" onclick="$(\'.ncw-main-tab-content\').html(\'<iframe></iframe>\'); $(\'.ncw-main-tab-content\').children(\'iframe\').attr(\'src\',\'/tpepdb/allseriesjoin?l=en\' );">Katalog EN download</a>',
-                    '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseries?l=zh" target="_blank" >Katalog generieren ZH</a>',
-                    '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseriesjoin?l=zh" target="_blank" >Katalog ZH download</a>',
-                    '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseries?l=kr" target="_blank" >Katalog generieren KR</a>',
-                    '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseriesjoin?l=kr" target="_blank" >Katalog KR download</a>',
-                    '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseries?l=jp" target="_blank" >Katalog generieren JP</a>',
-                    '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseriesjoin?l=jp" target="_blank" >Katalog JP download</a>',
-                    '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseries?l=pl" target="_blank">Katalog generieren PL</a>',
-                    '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseriesjoin?l=pl" target="_blank">Katalog PL download</a>',
-                    '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseries?l=it" target="_blank">Katalog generieren IT</a>',
-                    '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseriesjoin?l=it" target="_blank">Katalog IT download</a>',
-                    '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseries?l=fr" target="_blank">Katalog generieren FR</a>',
-                    '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseriesjoin?l=fr" target="_blank">Katalog FR download</a>',
-                    '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseries?l=es" target="_blank">Katalog generieren SP</a>',
-                    '<a href="https://pdb.kraiburg-tpe.com/tpepdb/allseriesjoin?l=es" target="_blank">Katalog SP download</a>',
+                    '<a href="https://test.kraiburg-tpe.com/tpepdb/allseries?l=zh" target="_blank" >Katalog generieren ZH</a>',
+                    '<a href="https://test.kraiburg-tpe.com/tpepdb/allseriesjoin?l=zh" target="_blank" >Katalog ZH download</a>',
+                    '<a href="https://test.kraiburg-tpe.com/tpepdb/allseries?l=kr" target="_blank" >Katalog generieren KR</a>',
+                    '<a href="https://test.kraiburg-tpe.com/tpepdb/allseriesjoin?l=kr" target="_blank" >Katalog KR download</a>',
+                    '<a href="https://test.kraiburg-tpe.com/tpepdb/allseries?l=jp" target="_blank" >Katalog generieren JP</a>',
+                    '<a href="https://test.kraiburg-tpe.com/tpepdb/allseriesjoin?l=jp" target="_blank" >Katalog JP download</a>',
+                    '<a href="https://test.kraiburg-tpe.com/tpepdb/allseries?l=pl" target="_blank">Katalog generieren PL</a>',
+                    '<a href="https://test.kraiburg-tpe.com/tpepdb/allseriesjoin?l=pl" target="_blank">Katalog PL download</a>',
+                    '<a href="https://test.kraiburg-tpe.com/tpepdb/allseries?l=it" target="_blank">Katalog generieren IT</a>',
+                    '<a href="https://test.kraiburg-tpe.com/tpepdb/allseriesjoin?l=it" target="_blank">Katalog IT download</a>',
+                    '<a href="https://test.kraiburg-tpe.com/tpepdb/allseries?l=fr" target="_blank">Katalog generieren FR</a>',
+                    '<a href="https://test.kraiburg-tpe.com/tpepdb/allseriesjoin?l=fr" target="_blank">Katalog FR download</a>',
+                    '<a href="https://test.kraiburg-tpe.com/tpepdb/allseries?l=es" target="_blank">Katalog generieren SP</a>',
+                    '<a href="https://test.kraiburg-tpe.com/tpepdb/allseriesjoin?l=es" target="_blank">Katalog SP download</a>',
                     // '<a href="#" onclick="$(\'.ncw-main-tab-content\').html(\'<iframe></iframe>\'); $(\'.ncw-main-tab-content\').children(\'iframe\').attr(\'src\',\'/tpepdb/allseriesjoin?l=sp\' );">Katalog SP download</a>',
                     // $html->link(T_('Contentboxes'), array('controller' => 'contentboxgroup', 'action' => 'all')),
                     // $html->link(T_('Terms'), array('controller' => 'news', 'action' => 'all')),

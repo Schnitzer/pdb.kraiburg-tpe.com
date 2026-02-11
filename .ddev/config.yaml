@@ -6,7 +6,7 @@ webserver_type: apache-fpm
 xdebug_enabled: false
 additional_hostnames: []
 additional_fqdns:
-  - pdb.kraiburg-tpe.com
+  - test.kraiburg-tpe.com
 database:
   type: mariadb
   version: '10.11'

@@ -45,7 +45,7 @@
 															<a href="https://www.kraiburg-tpe.com/ko/%EC%86%94%EB%A3%A8%EC%85%98" data-drupal-link-system-path="node/26">솔루션</a>
 																				</li>
 																																					<li data-grid-fullwidth="0" class="level-0">
-															<a href="https://pdb.kraiburg-tpe.com/?searchheader=true&ls=en">제품 데이터베이스</a>
+															<a href="https://test.kraiburg-tpe.com/?searchheader=true&ls=en">제품 데이터베이스</a>
 																				</li>
 																																					<li data-grid-fullwidth="0" class="level-0">
 															<a href="https://www.kraiburg-tpe.com/ko/%EC%A0%9C%ED%92%88%ED%8A%B9%EC%84%B1" data-drupal-link-system-path="node/24">제품특성</a>

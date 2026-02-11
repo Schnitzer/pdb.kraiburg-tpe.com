@@ -9,7 +9,7 @@
 <link rel="shortcut icon" href="https://www.kraiburg-tpe.com/core/misc/favicon.ico" type="image/vnd.microsoft.icon" />
 <link rel="alternate" hreflang="en" href="https://www.kraiburg-tpe.com/en/product-database" />
 <link rel="canonical" href="https://www.kraiburg-tpe.com/en/product-database" />
-<link rel="shortlink" href="https://pdb.kraiburg-tpe.com/?ls=en" />
+<link rel="shortlink" href="https://test.kraiburg-tpe.com/?ls=en" />
 <link rel="revision" href="https://www.kraiburg-tpe.com/en/product-database" />
 
     <title>Product Database | Kraiburg TPE</title>
@@ -195,7 +195,7 @@
 									<a href="https://www.kraiburg-tpe.com/fr/contact" data-drupal-link-system-path="node/11">Contact</a>
 											</li>
 											<li class="active-li level-0">
-									<a href="https://pdb.kraiburg-tpe.com/?ls=fr" class="pdb-linksource">Recherche de produits</a>
+									<a href="https://test.kraiburg-tpe.com/?ls=fr" class="pdb-linksource">Recherche de produits</a>
 											</li>
 				</ul>
 	
@@ -320,7 +320,7 @@
 									</li>
 					
 																			<li class="active-li dropdown clearfix noselect level-1">
-											<a href="https://pdb.kraiburg-tpe.com/?ls=fr" class="uppercase fontweight-bold tpe-link">Recherche de produits</a>
+											<a href="https://test.kraiburg-tpe.com/?ls=fr" class="uppercase fontweight-bold tpe-link">Recherche de produits</a>
 										
 									</li>
 							</ul>
@@ -393,7 +393,7 @@
 </nav>
 
 				</div>
-				<div id="header-container--navigation--subwrapper-2--language" class="col-md-2"><ul class="level-0"><li class="language-dropdown"><a href="#" class="tpe-link kbtpe-icon-language dropdown-toggle noTrigger" data-toggle="dropdown"><span class="uppercase">fr</span></a>	<ul block="block-sprachumschalter" class="dropdown-menu level-1"><li hreflang="en" data-drupal-link-system-path="node/63" class="en"><a href="https://www.kraiburg-tpe.com/en/product-database" class="language-link" hreflang="en" data-drupal-link-system-path="node/63">English</a></li><li hreflang="de" data-drupal-link-system-path="node/63" class="de"><a href="https://pdb.kraiburg-tpe.com/?ls=de" class="language-link" hreflang="de" data-drupal-link-system-path="node/63">German</a></li><li hreflang="ru" data-drupal-link-system-path="node/63" class="ru"><a href="https://www.kraiburg-tpe.com/ru/node/63" class="language-link" hreflang="ru" data-drupal-link-system-path="node/63">Russian</a></li><li hreflang="ja" data-drupal-link-system-path="node/63" class="ja"><a href="https://pdb.kraiburg-tpe.com/?ls=jp" class="language-link" hreflang="ja" data-drupal-link-system-path="node/63">Japanese</a></li><li hreflang="zh-hans" data-drupal-link-system-path="node/63" class="zh-hans"><a href="https://pdb.kraiburg-tpe.com/?ls=zh" class="language-link" hreflang="zh-hans" data-drupal-link-system-path="node/63">Chinese</a></li><li hreflang="ko" data-drupal-link-system-path="node/63" class="ko"><a href="https://pdb.kraiburg-tpe.com/?ls=kr" class="language-link" hreflang="ko" data-drupal-link-system-path="node/63">Korean</a></li><li hreflang="es" data-drupal-link-system-path="node/63" class="es"><a href="https://pdb.kraiburg-tpe.com/?ls=es" class="language-link" hreflang="es" data-drupal-link-system-path="node/63">Español</a></li><li hreflang="fr" data-drupal-link-system-path="node/63" class="fr is-active"><a href="https://pdb.kraiburg-tpe.com/?ls=fr" class="language-link is-active" hreflang="fr" data-drupal-link-system-path="node/63">Français</a></li><li hreflang="pl" data-drupal-link-system-path="node/63" class="pl"><a href="https://pdb.kraiburg-tpe.com/?ls=pl" class="language-link" hreflang="pl" data-drupal-link-system-path="node/63">Polish</a></li><li hreflang="it" data-drupal-link-system-path="node/63" class="it"><a href="https://pdb.kraiburg-tpe.com/?ls=it" class="language-link" hreflang="it" data-drupal-link-system-path="node/63">Italian</a></li></ul>
+				<div id="header-container--navigation--subwrapper-2--language" class="col-md-2"><ul class="level-0"><li class="language-dropdown"><a href="#" class="tpe-link kbtpe-icon-language dropdown-toggle noTrigger" data-toggle="dropdown"><span class="uppercase">fr</span></a>	<ul block="block-sprachumschalter" class="dropdown-menu level-1"><li hreflang="en" data-drupal-link-system-path="node/63" class="en"><a href="https://www.kraiburg-tpe.com/en/product-database" class="language-link" hreflang="en" data-drupal-link-system-path="node/63">English</a></li><li hreflang="de" data-drupal-link-system-path="node/63" class="de"><a href="https://test.kraiburg-tpe.com/?ls=de" class="language-link" hreflang="de" data-drupal-link-system-path="node/63">German</a></li><li hreflang="ru" data-drupal-link-system-path="node/63" class="ru"><a href="https://www.kraiburg-tpe.com/ru/node/63" class="language-link" hreflang="ru" data-drupal-link-system-path="node/63">Russian</a></li><li hreflang="ja" data-drupal-link-system-path="node/63" class="ja"><a href="https://test.kraiburg-tpe.com/?ls=jp" class="language-link" hreflang="ja" data-drupal-link-system-path="node/63">Japanese</a></li><li hreflang="zh-hans" data-drupal-link-system-path="node/63" class="zh-hans"><a href="https://test.kraiburg-tpe.com/?ls=zh" class="language-link" hreflang="zh-hans" data-drupal-link-system-path="node/63">Chinese</a></li><li hreflang="ko" data-drupal-link-system-path="node/63" class="ko"><a href="https://test.kraiburg-tpe.com/?ls=kr" class="language-link" hreflang="ko" data-drupal-link-system-path="node/63">Korean</a></li><li hreflang="es" data-drupal-link-system-path="node/63" class="es"><a href="https://test.kraiburg-tpe.com/?ls=es" class="language-link" hreflang="es" data-drupal-link-system-path="node/63">Español</a></li><li hreflang="fr" data-drupal-link-system-path="node/63" class="fr is-active"><a href="https://test.kraiburg-tpe.com/?ls=fr" class="language-link is-active" hreflang="fr" data-drupal-link-system-path="node/63">Français</a></li><li hreflang="pl" data-drupal-link-system-path="node/63" class="pl"><a href="https://test.kraiburg-tpe.com/?ls=pl" class="language-link" hreflang="pl" data-drupal-link-system-path="node/63">Polish</a></li><li hreflang="it" data-drupal-link-system-path="node/63" class="it"><a href="https://test.kraiburg-tpe.com/?ls=it" class="language-link" hreflang="it" data-drupal-link-system-path="node/63">Italian</a></li></ul>
 	</li></ul></div>
 				<div id="header-container--navigation--subwrapper-2--search" class="col-lg-6 col-md-8">
 					<input id="schnitzraum-search" value="" autocomplete="off" placeholder="Recherche" data-padding-top-xs="40">
