@@ -62,39 +62,16 @@ class TpePdbPdf extends TCPDF
         $this->language_code_tmp = $language_code;
         switch ($language_code) {
             case 'zh':
-                // $this->font = "msungstdlight";
-                // $this->font = "cyberbit";
-                if (strstr($_SERVER['HTTP_USER_AGENT'], 'Android')) {
-                    $this->font = 'TitilliumWeb';
-                    // $this->font = "kozgopromedium";
-                    // $this->font = "hanamina";
-                } else if (strstr($_SERVER['HTTP_USER_AGENT'], 'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'], 'iPad')) {
-                    $this->font = 'kozgopromedium';
-                    $this->font = 'TitilliumWeb';
-                } else {
-                    $this->font = 'TitilliumWeb';
-                }
+                // Use stsongstdlight for Chinese (supports Chinese characters)
+                $this->font = 'stsongstdlight';
                 break;
             case 'jp':
-                if (strstr($_SERVER['HTTP_USER_AGENT'], 'Android')) {
-                    $this->font = 'TitilliumWeb';
-                    // $this->font = "kozgopromedium";
-                    // $this->font = "hanamina";
-                } else if (strstr($_SERVER['HTTP_USER_AGENT'], 'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'], 'iPad')) {
-                    $this->font = 'kozgopromedium';
-                } else {
-                    $this->font = 'TitilliumWeb';
-                }
+                // Use kozgopromedium for Japanese (supports Japanese characters)
+                $this->font = 'kozgopromedium';
                 break;
             case 'kr':
-                if (strstr($_SERVER['HTTP_USER_AGENT'], 'Android')) {
-                    $this->font = 'TitilliumWeb';
-                } else if (strstr($_SERVER['HTTP_USER_AGENT'], 'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'], 'iPad')) {
-                    // $this->font = "hysmyeongjostdmedium";
-                    $this->font = 'TitilliumWeb';
-                } else {
-                    $this->font = 'TitilliumWeb';
-                }
+                // Use hysmyeongjostdmedium for Korean (supports Korean characters)
+                $this->font = 'hysmyeongjostdmedium';
                 break;
             case 'pl':
                 if (strstr($_SERVER['HTTP_USER_AGENT'], 'Android')) {

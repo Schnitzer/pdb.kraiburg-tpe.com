@@ -2213,9 +2213,16 @@ class TpePdbModel extends Ncw_Model
 			// $subject = str_replace('-', '_', Wcms_ContentboxController::getContenbox('pdb---datasheet---test-report', $language_id));
 			$subject = Wcms_ContentboxController::getContenbox('pdb---datasheet---datasheet', $language_id);
 		}
+		// Remove HTML tags and line breaks from subject
+		$subject = strip_tags($subject);
+		$subject = str_replace(array("\r", "\n"), '', $subject);
 		$pdf_name = $subject . '_' . $pdf_name;
 		if ($model_name == 'serie') {
-			$pdf_name .= '_' . Wcms_ContentboxController::getContenbox('pdb---series', $language_id);
+			$series_label = Wcms_ContentboxController::getContenbox('pdb---series', $language_id);
+			// Remove HTML tags and line breaks from series label
+			$series_label = strip_tags($series_label);
+			$series_label = str_replace(array("\r", "\n"), '', $series_label);
+			$pdf_name .= '_' . $series_label;
 			// $subject = $author . " " . Wcms_ContentboxController::getContenbox('pdb---series', $language_id) . " " . $subject;
 			$subject = Wcms_ContentboxController::getContenbox('label-prodctinformation', $language_id);
 		} else {
@@ -2230,7 +2237,7 @@ class TpePdbModel extends Ncw_Model
 		$pdf = new TpePdbPdf($author, str_replace('_', ' ', $pdf_title), $subject, $language_id, $language);
 
 		include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'pdf_templates' . DS . $model_name . '_pdf.phtml';
-		
+
 		if ($model_name == 'serie') {
 			$pdf->addPage();
 			ob_start();
@@ -2241,10 +2248,10 @@ class TpePdbModel extends Ncw_Model
 		if (false == is_dir($dir)) {
 			@mkdir($dir, 0777, true);
 		}
-// Clean up the file name, not the full path
-$pdf_name_clean = str_replace(" ", "", $pdf_name);
-$pdf_name_clean = str_replace(" ", "-", $pdf_name_clean);
-$pdf_file = $dir . DS . $pdf_name_clean;
+		// Clean up the file name, not the full path
+		$pdf_name_clean = str_replace(' ', '', $pdf_name);
+		$pdf_name_clean = str_replace(' ', '-', $pdf_name_clean);
+		$pdf_file = $dir . DS . $pdf_name_clean;
 
 		if (true == isset($_SESSION['allseries2'])) {
 			// $pdf_file = '/kraibn/public_html/pdb/assets/tpepdb2/pdfs/katalog/katdeDatenblatt_AD1_Reihe.pdf';
@@ -2261,6 +2268,9 @@ $pdf_file = $dir . DS . $pdf_name_clean;
 		} else {
 			if ($_SESSION['datasheetmode'] == 'pg') {
 				$pdf_filename = Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-guideline', $language_id) . '-' . $pdf_name_tmp . '.pdf';
+				// Remove HTML tags and line breaks from filename
+				$pdf_filename = strip_tags($pdf_filename);
+				$pdf_filename = str_replace(array("\r", "\n"), '', $pdf_filename);
 				$pdf_filename = str_replace('eacute', 'e', $pdf_filename);
 				$pdf_file = $dir . DS . $pdf_filename;
 				// $pdf_file = 'processing.pdf';
