@@ -425,6 +425,16 @@ class Tpepdb2_PdfController extends Tpepdb2_ModuleController
 			$path = ASSETS . DS . 'tpepdb2' . DS . 'safetydata' . DS . $safetydata . '_en.pdf';
 		}
 
+		// Fallback to _us.pdf if _en.pdf doesn't exist
+		if (false === is_file($path)) {
+			$path = ASSETS . DS . 'tpepdb2' . DS . 'safetydata' . DS . $safetydata . '_us.pdf';
+		}
+
+		// Fallback to _asia.pdf if _us.pdf doesn't exist
+		if (false === is_file($path)) {
+			$path = ASSETS . DS . 'tpepdb2' . DS . 'safetydata' . DS . $safetydata . '_asia.pdf';
+		}
+
 		if (true === is_file($path)) {
 			include_once MODULES . DS . 'tpepdb2' . DS . 'vendor' . DS . 'tcpdf' . DS . 'config' . DS . 'tcpdf_config.php';
 			include_once MODULES . DS . 'tpepdb2' . DS . 'vendor' . DS . 'tcpdf' . DS . 'tcpdf.php';
@@ -440,9 +450,9 @@ class Tpepdb2_PdfController extends Tpepdb2_ModuleController
 				$pdf->useTemplate($tpl_idx);
 
 				if ($page_no == 1) {
-					// Try to set font, fallback to TitilliumWeb if TitilliumWeb not available
+					// Try to set font, fallback to helvetica if TitilliumWeb not available
 					try {
-						$pdf->SetFont('TitilliumWeb', '', 9);
+						$pdf->SetFont('titilliumweb', '', 9);
 					} catch (Exception $e) {
 						$pdf->SetFont('helvetica', '', 9);
 					}
@@ -873,11 +883,11 @@ class Tpepdb2_PdfController extends Tpepdb2_ModuleController
 
 					if ($safetydata != 'S5 HTF867569' && $safetydata != 'S7' && $safetydata != 'S7 HTC94861819' && $safetydata != 'S99 SAP EHS') {
 						$pdf->SetXY($y, $x);
-						// Fallback to TitilliumWeb if TitilliumWeb not available
+						// Fallback to helvetica if titilliumweb not available
 						try {
-							$pdf->SetFont('TitilliumWeb');
+							$pdf->SetFont('titilliumweb');
 						} catch (Exception $e) {
-							$pdf->SetFont('TitilliumWeb');
+							$pdf->SetFont('helvetica');
 						}
 						$pdf->Write(0, $str_product_code . $text);
 					}
