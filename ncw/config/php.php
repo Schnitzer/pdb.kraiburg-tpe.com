@@ -58,10 +58,34 @@ if (Ncw_Configure::read('Project.domain') !== 'localhost') {
 }
 // Specify in which path the cookie must be placed.
 ini_set("session.cookie_path", Ncw_Configure::read('Session.cookie_path'));
+
+// Session cookie parameters for PHP 8.3+ compatibility
+// Set cookie parameters before session_start()
+$cookie_domain = (Ncw_Configure::read('Project.domain') !== 'localhost') 
+    ? '.' . Ncw_Configure::read('Project.domain') 
+    : '';
+
+session_set_cookie_params([
+    'lifetime' => Ncw_Configure::read('Session.cookie_lifetime'),
+    'path' => Ncw_Configure::read('Session.cookie_path'),
+    'domain' => $cookie_domain,
+    'secure' => Ncw_Configure::read('Session.cookie_secure'),
+    'httponly' => Ncw_Configure::read('Session.cookie_httponly'),
+    'samesite' => Ncw_Configure::read('Session.cookie_samesite')
+]);
+
 // auto start sessions
 ini_set('session.auto_start', 0);
-// session save path
-session_save_path(Ncw_Configure::read('Session.save_path'));
+// session save path - ensure directory exists
+$session_path = Ncw_Configure::read('Session.save_path');
+if (!is_dir($session_path)) {
+    @mkdir($session_path, 0755, true);
+}
+// Set appropriate permissions if directory exists
+if (is_dir($session_path)) {
+    @chmod($session_path, 0755);
+}
+session_save_path($session_path);
 // Use html encoded &-separator.
 ini_set("arg_separator.output", "&amp;");
 // Maximal execution time of the script.

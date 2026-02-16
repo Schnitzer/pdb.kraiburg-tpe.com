@@ -51,6 +51,11 @@ class Ncw_Components_Session extends Ncw_Component
      */
     public static function start ()
     {
+        // Check if session is already active (PHP 5.4+)
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            return true;
+        }
+        
         if (function_exists('session_write_close')) {
             session_write_close();
         }
@@ -77,6 +82,9 @@ class Ncw_Components_Session extends Ncw_Component
      */
     public static function regenerate ()
     {
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            self::start();
+        }
         $old_session_id = session_id();
         if ($old_session_id) {
             $sessionpath = session_save_path();
@@ -114,7 +122,7 @@ class Ncw_Components_Session extends Ncw_Component
      */
     public static function destroy ()
     {
-        if (session_id()) {
+        if (session_status() === PHP_SESSION_ACTIVE) {
             session_destroy();
         }
     }
@@ -142,7 +150,7 @@ class Ncw_Components_Session extends Ncw_Component
      */
     public static function writeInAll ($name, $value)
     {
-        if (!session_id()) {
+        if (session_status() !== PHP_SESSION_ACTIVE) {
             self::start();
         }
         if (true === self::_validateKeys($name)) {
@@ -161,7 +169,7 @@ class Ncw_Components_Session extends Ncw_Component
      */
     public static function readInAll ($name)
     {
-        if (!session_id()) {
+        if (session_status() !== PHP_SESSION_ACTIVE) {
             self::start();
         }
         if (true === self::checkInAll($name)) {
@@ -179,7 +187,7 @@ class Ncw_Components_Session extends Ncw_Component
      */
     public static function deleteInAll ($name)
     {
-        if (!session_id()) {
+        if (session_status() !== PHP_SESSION_ACTIVE) {
             self::start();
         }
         if (true === self::checkInAll($name)) {
@@ -198,7 +206,7 @@ class Ncw_Components_Session extends Ncw_Component
      */
     public static function checkInAll ($name)
     {
-        if (!session_id()) {
+        if (session_status() !== PHP_SESSION_ACTIVE) {
             self::start();
         }
         if (true === self::_validateKeys($name)
@@ -247,7 +255,7 @@ class Ncw_Components_Session extends Ncw_Component
      */
     public function check ($name)
     {
-        if (!session_id()) {
+        if (session_status() !== PHP_SESSION_ACTIVE) {
             self::start();
         }
         if (false === empty($this->_module) && true === self::_validateKeys($name) && isset($_SESSION['modules'][$this->_module][$name])) {
@@ -266,7 +274,7 @@ class Ncw_Components_Session extends Ncw_Component
      */
     public function checkModule ($module, $name)
     {
-        if (!session_id()) {
+        if (session_status() !== PHP_SESSION_ACTIVE) {
             self::start();
         }
         if (false === empty($module) && true === self::_validateKeys($name) && true === array_key_exists($name, $_SESSION['modules'][$module])) {
@@ -286,7 +294,7 @@ class Ncw_Components_Session extends Ncw_Component
      */
     public function write ($name, $value)
     {
-        if (!session_id()) {
+        if (session_status() !== PHP_SESSION_ACTIVE) {
             self::start();
         }
         if (!empty($this->_module) && true === self::_validateKeys($name)) {
@@ -305,7 +313,7 @@ class Ncw_Components_Session extends Ncw_Component
      */
     public function read ($name)
     {
-        if (!session_id()) {
+        if (session_status() !== PHP_SESSION_ACTIVE) {
             self::start();
         }
         if (false === empty($this->_module) && true === $this->check($name)) {
@@ -325,7 +333,7 @@ class Ncw_Components_Session extends Ncw_Component
      */
     public function readModule ($module, $name)
     {
-        if (!session_id()) {
+        if (session_status() !== PHP_SESSION_ACTIVE) {
             self::start();
         }
         if (!empty($module) && true === $this->checkInModule($module, $name)) {
@@ -343,7 +351,7 @@ class Ncw_Components_Session extends Ncw_Component
      */
     public function delete ($name)
     {
-        if (!session_id()) {
+        if (session_status() !== PHP_SESSION_ACTIVE) {
             self::start();
         }
         if (!empty($this->_module) && true === $this->check($name)) {
