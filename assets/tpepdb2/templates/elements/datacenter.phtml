@@ -7,7 +7,7 @@
 </style>
 <![endif]-->
 <?php
-$sds_lang_name = array("us" => "English");
+$sds_lang_name = array("us" => "English", "asia" => "");
 foreach ($languages as $sds_lang_item => $sds_lang_key) {
     $sds_lang_name[$sds_lang_key] = $sds_lang_item;
 }
@@ -250,34 +250,38 @@ if (true == isset($compound["name"])) {
                             }
                             
                             foreach ($sds_lang as $sds_item) {
-                                $sds_path = ASSETS . DS . "tpepdb2" . DS ."safetydata" . DS . $compound["safetydata"] . "_" . $sds_item . ".pdf";
-                                $sds_path = Ncw_Configure::read('Project.url') . "/tpepdb/safetydata?s=" . $compound["safetydata"] . "&l=" . $sds_item . "&t=" . $str_compoundname_for_url;
+                                // Check if PDF file exists before displaying the link
+                                $sds_file_path = ASSETS . DS . "tpepdb2" . DS ."safetydata" . DS . $compound["safetydata"] . "_" . $sds_item . ".pdf";
+                                
+                                if (true === is_file($sds_file_path)) {
+                                    $sds_path = Ncw_Configure::read('Project.url') . "/tpepdb/safetydata?s=" . $compound["safetydata"] . "&l=" . $sds_item . "&t=" . $str_compoundname_for_url;
 
-                                $str_region = ' EMEA ';
-                                $str_language_addon = '';
-                                if ($sds_item == 'us') {
-                                	$str_region = ' Americas ';
-                                }
+                                    $str_region = ' EMEA ';
+                                    $str_language_addon = '';
+                                    if ($sds_item == 'us') {
+                                    	$str_region = ' Americas ';
+                                    }
 
-                                if ($sds_item == 'asia' || $sds_item == 'zh' || $sds_item == 'kr'  || $sds_item == 'jp') {
-                                	$str_region = ' Asia ';
-                                }
+                                    if ($sds_item == 'asia' || $sds_item == 'zh' || $sds_item == 'kr'  || $sds_item == 'jp') {
+                                    	$str_region = ' Asia ';
+                                    }
 
-                                if ($sds_item == 'asia') {
-                                	$str_language_addon = 'English';
-                                }
-                                ?>
+                                    if ($sds_item == 'asia') {
+                                    	$str_language_addon = 'English';
+                                    }
+                                    ?>
 
-                                <td style="width: 47.5%" class="compound_documents <?php if ($doc_num > 2 && $docs_count >= 2) { ?>document_border<?php } ?>">
-                                    <a href="<?php print $sds_path; ?>" target="_blank"><img src="../../assets/wcms/files/pfd_pic.jpg" alt="<?php print $compound["safetydata"]; ?> <?php print strtoupper($sds_item); ?>" title="<?php print $compound["safetydata"]; ?> <?php print strtoupper($sds_item); ?>" /></a>
-                                    <a href="<?php print $sds_path; ?>" target="_blank"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---safety-data-sheet', $language_id) . $str_region . ' (' . $sds_lang_name[$sds_item] . $str_language_addon . ')'; ?></a>
-                                </td>
-                                <td style="width: 5%;">&nbsp;</td>
-                                <?php $docs_count++; ?>
-                                <?php if ($docs_count % 2 == 0) { ?>
-                                    <?php if ($docs_count > 0) { ?></tr><?php } ?>
-                                    <tr>
-                                <?php } ?>
+                                    <td style="width: 47.5%" class="compound_documents <?php if ($doc_num > 2 && $docs_count >= 2) { ?>document_border<?php } ?>">
+                                        <a href="<?php print $sds_path; ?>" target="_blank"><img src="../../assets/wcms/files/pfd_pic.jpg" alt="<?php print $compound["safetydata"]; ?> <?php print strtoupper($sds_item); ?>" title="<?php print $compound["safetydata"]; ?> <?php print strtoupper($sds_item); ?>" /></a>
+                                        <a href="<?php print $sds_path; ?>" target="_blank"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---safety-data-sheet', $language_id) . $str_region . ' (' . $sds_lang_name[$sds_item] . $str_language_addon . ')'; ?></a>
+                                    </td>
+                                    <td style="width: 5%;">&nbsp;</td>
+                                    <?php $docs_count++; ?>
+                                    <?php if ($docs_count % 2 == 0) { ?>
+                                        <?php if ($docs_count > 0) { ?></tr><?php } ?>
+                                        <tr>
+                                    <?php } ?>
+                                <?php } // end if file exists ?>
                         <?php }
 
                             /*$sds_path = ASSETS . DS . "tpepdb2" . DS ."safetydata" . DS . $compound["safetydata"] . "_us.pdf";

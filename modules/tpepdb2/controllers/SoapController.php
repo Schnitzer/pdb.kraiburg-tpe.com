@@ -1153,27 +1153,31 @@ class Tpepdb2_SoapController extends Tpepdb2_ModuleController
         $sds_lang = array("en", "us", "de", "asia", "fr", "zh", "it", "kr",  "es", "jp");
         $arr_return = array();
         foreach ($sds_lang as $sds_item) {
-            $sds_path = ASSETS . DS . "tpepdb2" . DS ."safetydata" . DS . $safetydata . "_" . $sds_item . ".pdf";
-            $sds_path = Ncw_Configure::read('Project.url') . "/tpepdb/safetydata?s=" . $safetydata . "&l=" . $sds_item . "&t=" . $str_compoundname_for_url;
-
-            $str_region = ' EMEA ';
-            $str_language_addon = '';
-            if ($sds_item == 'us') {
-                $str_region = ' Americas ';
-            }
-
-            if ($sds_item == 'asia' || $sds_item == 'zh' || $sds_item == 'kr'  || $sds_item == 'jp') {
-                $str_region = ' Asia ';
-            }
-
-            if ($sds_item == 'asia') {
-                $str_language_addon = ' English ';
-            }
+            $sds_file_path = ASSETS . DS . "tpepdb2" . DS ."safetydata" . DS . $safetydata . "_" . $sds_item . ".pdf";
             
-            $str_label =  Wcms_ContentboxController::getContenbox('pdb---datasheet---safety-data-sheet', $language_id) . $str_region . ' (' . $sds_item . '' . $str_language_addon . ')';
-            $str_label = trim(str_replace('asia English', 'en', $str_label));
+            // Only include if the PDF file exists
+            if (true === is_file($sds_file_path)) {
+                $sds_path = Ncw_Configure::read('Project.url') . "/tpepdb/safetydata?s=" . $safetydata . "&l=" . $sds_item . "&t=" . $str_compoundname_for_url;
 
-            $arr_return[] = array('url' => $sds_path, 'label' => $str_label);
+                $str_region = ' EMEA ';
+                $str_language_addon = '';
+                if ($sds_item == 'us') {
+                    $str_region = ' Americas ';
+                }
+
+                if ($sds_item == 'asia' || $sds_item == 'zh' || $sds_item == 'kr'  || $sds_item == 'jp') {
+                    $str_region = ' Asia ';
+                }
+
+                if ($sds_item == 'asia') {
+                    $str_language_addon = ' English ';
+                }
+                
+                $str_label =  Wcms_ContentboxController::getContenbox('pdb---datasheet---safety-data-sheet', $language_id) . $str_region . ' (' . $sds_item . '' . $str_language_addon . ')';
+                $str_label = trim(str_replace('asia English', 'en', $str_label));
+
+                $arr_return[] = array('url' => $sds_path, 'label' => $str_label);
+            }
         }
         return $arr_return;
     }

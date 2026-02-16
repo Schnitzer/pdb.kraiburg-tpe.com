@@ -17,7 +17,7 @@
 					<div class="row">
 
 <?php
-	$sds_lang_name = array('us' => 'English');
+	$sds_lang_name = array('us' => 'English', 'asia' => '');
 	foreach ($languages as $sds_lang_item => $sds_lang_key) {
 		$sds_lang_name[$sds_lang_key] = $sds_lang_item;
 	}
@@ -96,41 +96,44 @@
 						}
 
 						foreach ($sds_lang as $sds_item) {
-							$sds_path = ASSETS . DS . 'tpepdb2' . DS . 'safetydata' . DS . $compound['safetydata'] . '_' . $sds_item . '.pdf';
-							$sds_path = Ncw_Configure::read('Project.url') . '/tpepdb/safetydata?s=' . $compound['safetydata'] . '&l=' . $sds_item . '&t=' . $str_compoundname_for_url;
+							// Check if PDF file exists before displaying the link
+							$sds_file_path = ASSETS . DS . 'tpepdb2' . DS . 'safetydata' . DS . $compound['safetydata'] . '_' . $sds_item . '.pdf';
+							
+							if (true === is_file($sds_file_path)) {
+								$sds_path = Ncw_Configure::read('Project.url') . '/tpepdb/safetydata?s=' . $compound['safetydata'] . '&l=' . $sds_item . '&t=' . $str_compoundname_for_url;
 
-							$str_region = ' EMEA ';
-							$str_language_addon = '';
-							if ($sds_item == 'us') {
-								$str_region = ' Americas ';
-							}
+								$str_region = ' EMEA ';
+								$str_language_addon = '';
+								if ($sds_item == 'us') {
+									$str_region = ' Americas ';
+								}
 
-							if ($sds_item == 'asia' || $sds_item == 'zh' || $sds_item == 'kr' || $sds_item == 'jp') {
-								$str_region = ' Asia ';
-							}
+								if ($sds_item == 'asia' || $sds_item == 'zh' || $sds_item == 'kr' || $sds_item == 'jp') {
+									$str_region = ' Asia ';
+								}
 
-							if ($sds_item == 'asia') {
-								$str_language_addon = 'English';
-							}
-							$arr_path_for_filesize = explode('pdb/', $sds_path);
-							$path_for_filesize = './' . $arr_path_for_filesize[1];
-							$filesize = number_format(filesize($path_for_filesize) / 1024 / 1024, 1);
-							if ($filesize == 0.0) {
-								$filesize = 1.8;
-							}
-							?>
+								if ($sds_item == 'asia') {
+									$str_language_addon = 'English';
+								}
+								
+								$filesize = number_format(filesize($sds_file_path) / 1024 / 1024, 1);
+								if ($filesize == 0.0) {
+									$filesize = 1.8;
+								}
+								?>
 
-																		<div class="paragraph clearfix paragraph--type--download paragraph--view-mode--default color-scheme-darkgrey light-font col-md-8 col-sm-12 no_image" style="height: 57px;">
-																			<div class="clearfix">
-																						<div class="col-xs-18 download-info" style="background-image:url('<?php echo $website_url; ?>/sites/default/files/assets/pattern/dark-grey.png')">
-																					<div class="icon kbtpe-icon-download">
-																						 <span class="download-datum"><?php echo $str_region . ' (' . $sds_lang_name[$sds_item] . $str_language_addon . ')'; ?> PDF files</span><span class="download-title"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---safety-data-sheet', $language_id); ?></span> 							</div>
+																			<div class="paragraph clearfix paragraph--type--download paragraph--view-mode--default color-scheme-darkgrey light-font col-md-8 col-sm-12 no_image" style="height: 57px;">
+																				<div class="clearfix">
+																							<div class="col-xs-18 download-info" style="background-image:url('<?php echo $website_url; ?>/sites/default/files/assets/pattern/dark-grey.png')">
+																						<div class="icon kbtpe-icon-download">
+																							 <span class="download-datum"><?php echo $str_region . ' (' . $sds_lang_name[$sds_item] . $str_language_addon . ')'; ?> PDF files</span><span class="download-title"><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---safety-data-sheet', $language_id); ?></span> 							</div>
+																					</div>
 																				</div>
+																				<a href="<?php print $sds_path; ?>" target="_blank" class="clickhelper"><span class="hidden">Download</span></a>
 																			</div>
-																			<a href="<?php print $sds_path; ?>" target="_blank" class="clickhelper"><span class="hidden">Download</span></a>
-																		</div>
 
-                                <?php $docs_count++; ?>
+	                                <?php $docs_count++; ?>
+							<?php } // end if file exists ?>
 
                         <?php } ?>
 
