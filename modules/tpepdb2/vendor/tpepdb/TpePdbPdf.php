@@ -120,7 +120,7 @@ class TpePdbPdf extends TCPDF
         $this->SetMargins(0, 0, 0);
 
         if ($_SESSION['datasheetmode'] == 'pg') {
-            $this->SetMargins(7.5, 16.5, 7.5, true);  // Hier werden Die Abstände des eigentlichen Contents eingestellt Margin beeinflusst auch den Header. Die 20 beeinflusst nur den Start
+            $this->SetMargins(7.5, 27.5, 7.5, true);  // Processing Guidelines: Gleicher Abstand wie normale Datasheets
         } else {
             if ($this->compound_status != 'non_portfolio') {
                 if (true == isset($_GET['sid'])) {

@@ -170,12 +170,16 @@ $headline .= '</div>';
 
 $str_serie = '';
 
+// Processing Guidelines: Identische Formatierung wie Datasheets (kein extra Padding)
+$table_cellpadding = '0';
+$table_row_height = '';
+
 if ($language_id == 2) {
 	$str_serie = 'Serie';
 	if (strlen(trim($serie['name'] ?? '')) < 1) {
 		$str_serie = '&nbsp;';
 	}
-	$headline = '<table style="color: #ffffff;" boder="0" cellpadding="0" cellspacing="0"><tr style="font-size: 12px;"><td style="color: #ffffff;">Markenname</td><td>Compoundbezeichnung</td><td>' . $str_serie . '</td></tr><tr style="font-size: 16px;"><td>' . $brandname . '</td><td>' . ($compound['name'] ?? '') . '</td><td>' . ($serie['name'] ?? '') . '</td></tr></table>';
+	$headline = '<table style="color: #ffffff;" boder="0" cellpadding="' . $table_cellpadding . '" cellspacing="0"><tr' . $table_row_height . ' style="font-size: 12px;"><td style="color: #ffffff;">Markenname</td><td>Compoundbezeichnung</td><td>' . $str_serie . '</td></tr><tr' . $table_row_height . ' style="font-size: 16px;"><td>' . $brandname . '</td><td>' . ($compound['name'] ?? '') . '</td><td>' . ($serie['name'] ?? '') . '</td></tr></table>';
 } else {
 	$str_serie = 'Series';
 	if (strlen(trim($serie['name'] ?? '')) < 1) {
@@ -183,9 +187,9 @@ if ($language_id == 2) {
 	}
 	if ($language_id == 3) {
 		$str_serie = '&nbsp;';
-		$headline = '<table style="color: #ffffff;" boder="0" cellpadding="0" cellspacing="0"><tr style="font-size: 12px;"><td style="color: #ffffff;">&nbsp;</td><td>&nbsp;</td><td>' . $str_serie . '</td></tr><tr style="font-size: 16px;"><td>' . $brandname . '</td><td>' . ($compound['name'] ?? '') . '</td><td>' . ($serie['name'] ?? '') . '</td></tr></table>';
+		$headline = '<table style="color: #ffffff;" boder="0" cellpadding="' . $table_cellpadding . '" cellspacing="0"><tr' . $table_row_height . ' style="font-size: 12px;"><td style="color: #ffffff;">&nbsp;</td><td>&nbsp;</td><td>' . $str_serie . '</td></tr><tr' . $table_row_height . ' style="font-size: 16px;"><td>' . $brandname . '</td><td>' . ($compound['name'] ?? '') . '</td><td>' . ($serie['name'] ?? '') . '</td></tr></table>';
 	} else {
-		$headline = '<table style="color: #ffffff;" boder="0" cellpadding="0" cellspacing="0"><tr style="font-size: 12px;"><td style="color: #ffffff;">Brand Name</td><td>Product Code</td><td>' . $str_serie . '</td></tr><tr style="font-size: 16px;"><td>' . $brandname . '</td><td>' . ($compound['name'] ?? '') . '</td><td>' . ($serie['name'] ?? '') . '</td></tr></table>';
+		$headline = '<table style="color: #ffffff;" boder="0" cellpadding="' . $table_cellpadding . '" cellspacing="0"><tr' . $table_row_height . ' style="font-size: 12px;"><td style="color: #ffffff;">Brand Name</td><td>Product Code</td><td>' . $str_serie . '</td></tr><tr' . $table_row_height . ' style="font-size: 16px;"><td>' . $brandname . '</td><td>' . ($compound['name'] ?? '') . '</td><td>' . ($serie['name'] ?? '') . '</td></tr></table>';
 	}
 }
 
