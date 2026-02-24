@@ -1,22 +1,21 @@
-<?php if (true === $is_pdf) { 
-
-
-?>
+<?php
+if (true === $is_pdf) {
+	?>
 
 
 <?php if (true === $is_pdf) { ?><br /><?php } ?>
 
 
-<?php 
-} else { // Ende PDF Anfang HTML
+<?php
+} else {  // Ende PDF Anfang HTML
 ?>
 <?php
 
-$pdb_url = 'https://test.kraiburg-tpe.com';
-$website_url = 'https://www.kraiburg-tpe.com';
+	$pdb_url = 'https://pdb.kraiburg-tpe.com';
+	$website_url = 'https://www.kraiburg-tpe.com';
 
-include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'elements' . DS . 'userstate.phtml';
-	
+	include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'elements' . DS . 'userstate.phtml';
+
 ?>
 <section class="serie">
   <div class="container">
@@ -25,55 +24,55 @@ include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'elements' . DS .
 				<div class="paragraph clearfix paragraph--type--textblock paragraph--view-mode--default col-sm-24">
 					<h2 class="headline-2 text-align-center">
 						<?php if ($language_id == 8 || $language_id == 5 || $language_id == 11 || $language_id == 4) { ?> 
-							<?php print Wcms_ContentboxController::getContenbox('pdb---series', $language_id) . ' ' . $serie["name"]; ?>
+							<?php print Wcms_ContentboxController::getContenbox('pdb---series', $language_id) . ' ' . $serie['name']; ?>
 							<?php } else { ?>
-							<?php print $serie["name"] . ' ' .  Wcms_ContentboxController::getContenbox('pdb---series', $language_id); ?>
+							<?php print $serie['name'] . ' ' . Wcms_ContentboxController::getContenbox('pdb---series', $language_id); ?>
 							<?php } ?>
-							<?php 
-						?>
+							<?php
+							?>
 					</h2>
 					<h4 class="subheadline text-align-center">
 						<strong>
-							<?php 
-        				    if ($language_id != 3 || strlen($brand["name_zh"]) < 1) { // 3 ist Chinesisch und soll den eintrag name_zh benutezn
-								     	print str_replace('®', '<sup>®</sup>', $brand["name"]);
-								    } else {
-								    	print str_replace('®', '<sup>®</sup>', $brand["name_zh"]);
-								    }
-								?>
+							<?php
+							if ($language_id != 3 || strlen($brand['name_zh']) < 1) {  // 3 ist Chinesisch und soll den eintrag name_zh benutezn
+								print str_replace('®', '<sup>®</sup>', $brand['name']);
+							} else {
+								print str_replace('®', '<sup>®</sup>', $brand['name_zh']);
+							}
+							?>
 						</strong>
-						<?php print $serie["description"]; ?>
+						<?php print $serie['description']; ?>
 					<strong><?php print Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-method', $language_id); ?>:</strong> 
 						<?php
-							$processingnotes_all = $this->getSerieProcessing($serie['id']);
-							//var_dump($processingnotes_all);
-							$str_processingnote_type = '';
-							if (true == isset($processingnotes_all['processing_im']) ){
-								$processing_type = 'injection';
-								$str_processingnote_type = Wcms_ContentboxController::getContenbox($processing_type, $language_id);
+						$processingnotes_all = $this->getSerieProcessing($serie['id']);
+						// var_dump($processingnotes_all);
+						$str_processingnote_type = '';
+						if (true == isset($processingnotes_all['processing_im'])) {
+							$processing_type = 'injection';
+							$str_processingnote_type = Wcms_ContentboxController::getContenbox($processing_type, $language_id);
+						}
+						if (true == isset($processingnotes_all['processing_ex'])) {
+							$processing_type = 'extrusion';
+							if (strlen($str_processingnote_type) > 1) {
+								$str_processingnote_type .= ', ' . Wcms_ContentboxController::getContenbox($processing_type, $language_id);
+							} else {
+								$str_processingnote_type .= Wcms_ContentboxController::getContenbox($processing_type, $language_id);
 							}
-							if (true == isset($processingnotes_all['processing_ex']) ){
-								$processing_type = 'extrusion';
-								if (strlen($str_processingnote_type) > 1) {
-									$str_processingnote_type .= ', ' . Wcms_ContentboxController::getContenbox($processing_type, $language_id);
-								} else {
-									$str_processingnote_type .= Wcms_ContentboxController::getContenbox($processing_type, $language_id);
-								}
-							}
-							echo $str_processingnote_type;
-		          ?>
+						}
+						echo $str_processingnote_type;
+						?>
 					</h4>
 				</div>
 			</div>
 			<?php
-				$height = 137;
-		
-				if (count($serie["materialvorteile"]) > count($serie["anwendungsbereiche"])) {
-					$height_add = count($serie["materialvorteile"]) * 26;
-				} else {
-					$height_add = count($serie["anwendungsbereiche"]) * 26;
-				}
-				$height = $height_add + $height;
+			$height = 137;
+
+			if (count($serie['materialvorteile']) > count($serie['anwendungsbereiche'])) {
+				$height_add = count($serie['materialvorteile']) * 26;
+			} else {
+				$height_add = count($serie['anwendungsbereiche']) * 26;
+			}
+			$height = $height_add + $height;
 			?>
 
 			<!-- Anwendungsbereiche -->
@@ -83,9 +82,9 @@ include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'elements' . DS .
 						<div class="paragraph clearfix paragraph--type--textblock paragraph--view-mode--default col-sm-24">
 							<p class="copy-text-bold"><?php print Wcms_ContentboxController::getContenbox('pdb---typical-applications', $language_id); ?></p>
 								<ul>
-									<?php foreach ($serie["anwendungsbereiche"] as $anwendungsbereich) { ?>
+									<?php foreach ($serie['anwendungsbereiche'] as $anwendungsbereich) { ?>
 										<li>
-											<?php print trim(str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $anwendungsbereich)); ?>
+											<?php print trim(str_replace(array('<p>', '</p>', '<P>', '</P>'), array('', ' '), $anwendungsbereich)); ?>
 										</li>
 									<?php } ?>
 								</ul>
@@ -101,10 +100,10 @@ include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'elements' . DS .
 						<div class="paragraph clearfix paragraph--type--textblock paragraph--view-mode--default col-sm-24">
 							<p class="copy-text-bold"><?php print Wcms_ContentboxController::getContenbox('pdb---material-advantages', $language_id); ?></p>
 							<ul>
-								<?php foreach ($serie["materialvorteile"] as $materialvorteile) { ?>
-									<?php //if (true === empty($materialvorteile)) { continue; } ?>
+								<?php foreach ($serie['materialvorteile'] as $materialvorteile) { ?>
+									<?php // if (true === empty($materialvorteile)) { continue; } ?>
 									<li>
-										<?php print trim(str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $materialvorteile)); ?>
+										<?php print trim(str_replace(array('<p>', '</p>', '<P>', '</P>'), array('', ' '), $materialvorteile)); ?>
 									</li>
 								<?php } ?>
 							</ul>
@@ -124,31 +123,31 @@ include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'elements' . DS .
 				<div class="col-sm-6 pdb-series-description">
         	<h3>
 	        	<?php if ($language_id == 8 || $language_id == 5 || $language_id == 11 || $language_id == 4) { ?> 
-	        	<?php print Wcms_ContentboxController::getContenbox('pdb---series', $language_id) . ' ' . $serie["name"]; ?>
+	        	<?php print Wcms_ContentboxController::getContenbox('pdb---series', $language_id) . ' ' . $serie['name']; ?>
 	        	<?php } else { ?>
-	        	<?php print $serie["name"] . ' ' .  Wcms_ContentboxController::getContenbox('pdb---series', $language_id); ?>
+	        	<?php print $serie['name'] . ' ' . Wcms_ContentboxController::getContenbox('pdb---series', $language_id); ?>
 	        	<?php } ?>
         	</h3>
         	<div class="row">
         		<div class="col-sm-12">
 	        	<?php
-	              if ($type == "serie") {
-	                  print trim(str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $serie["description"]));
-	              } else {
-	                  print trim(str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $serie["text1"]));
-	              }
-	          ?>
+				if ($type == 'serie') {
+					print trim(str_replace(array('<p>', '</p>', '<P>', '</P>'), array('', ' '), $serie['description']));
+				} else {
+					print trim(str_replace(array('<p>', '</p>', '<P>', '</P>'), array('', ' '), $serie['text1']));
+				}
+				?>
             </div>
           </div>
           <div class="row">
           	<div class="col-sm-12">
 		          <?php
-		            $processingnote_types = array();
-		            foreach ($processingnotes as $processingnote_type => $processingnote) {
-		                $processingnote_types[] = trim(str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $processingnote_type));
-		            }
-		            print implode(", ", $processingnote_types);
-		          ?>
+	$processingnote_types = array();
+	foreach ($processingnotes as $processingnote_type => $processingnote) {
+		$processingnote_types[] = trim(str_replace(array('<p>', '</p>', '<P>', '</P>'), array('', ' '), $processingnote_type));
+	}
+	print implode(', ', $processingnote_types);
+	?>
             </div>
           </div>
 						
@@ -165,10 +164,10 @@ include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'elements' . DS .
 							    <div id="collapse-1" role="tabpanel" aria-labelledby="header-1" class="panel-collapse collapse in">
 							      <div class="panel-body">
 							      	<ul>
-							    		<?php foreach ($serie["anwendungsbereiche"] as $anwendungsbereich) { ?>
-								        <?php //if (true === empty($anwendungsbereich)) { continue; } ?>
+							    		<?php foreach ($serie['anwendungsbereiche'] as $anwendungsbereich) { ?>
+								        <?php // if (true === empty($anwendungsbereich)) { continue; } ?>
 								        <li class="col-sm-6">
-								        	<?php print trim(str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $anwendungsbereich)); ?>
+								        	<?php print trim(str_replace(array('<p>', '</p>', '<P>', '</P>'), array('', ' '), $anwendungsbereich)); ?>
 								        </li>
 								      <?php } ?>
 								      </ul>
@@ -185,10 +184,10 @@ include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'elements' . DS .
 							    <div id="collapse-2" role="tabpanel" aria-labelledby="header-2" class="panel-collapse collapse">
 							      <div class="panel-body">
 							      	<ul>
-							        <?php foreach ($serie["materialvorteile"] as $materialvorteile) { ?>
-							            <?php //if (true === empty($materialvorteile)) { continue; } ?>
+							        <?php foreach ($serie['materialvorteile'] as $materialvorteile) { ?>
+							            <?php // if (true === empty($materialvorteile)) { continue; } ?>
 							            <li class="col-sm-6">
-							            	<?php print trim(str_replace(array("<p>", "</p>", "<P>", "</P>"), array("", " "), $materialvorteile)); ?>
+							            	<?php print trim(str_replace(array('<p>', '</p>', '<P>', '</P>'), array('', ' '), $materialvorteile)); ?>
 							            </li>
 							        <?php } ?>
 							        </ul>
@@ -217,12 +216,12 @@ include_once ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'elements' . DS .
           <!--
           <div class="row">
 						<div class="col-sm-24">
-						  <?php 
-						  		$path_include = ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "downloadcenter.phtml";
-						  		//$path_include = ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "datacenter.phtml";
-						  		//echo $path_include;
-						   		include_once $path_include; 
-						  ?>
+						  <?php
+	$path_include = ASSETS . DS . 'tpepdb2' . DS . 'templates' . DS . 'elements' . DS . 'downloadcenter.phtml';
+	// $path_include = ASSETS . DS . "tpepdb2" . DS . "templates" . DS . "elements" . DS . "datacenter.phtml";
+	// echo $path_include;
+	include_once $path_include;
+	?>
 						</div>
           </div>-->
           
