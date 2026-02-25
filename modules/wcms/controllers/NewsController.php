@@ -101,9 +101,9 @@ class Wcms_NewsController extends Wcms_ModuleController
 
 				if ($language_id == 5) {
 					$tmp_arr_str = explode("sollicitations de", $language->getHeadline());
-					$tmp[] = $tmp_arr_str[0];
+					$tmp[] = html_entity_decode($tmp_arr_str[0], ENT_QUOTES | ENT_HTML5, 'UTF-8');
 				} else {
-					$tmp[] = strip_tags( trim( $language->getHeadline() ) );
+					$tmp[] = html_entity_decode(strip_tags(trim($language->getHeadline())), ENT_QUOTES | ENT_HTML5, 'UTF-8');
 				}
 				
 
@@ -268,7 +268,7 @@ class Wcms_NewsController extends Wcms_ModuleController
 					AND language_id = " . $language_id . "
 					";
 
-					if ($_GET['mode'] == 'debug') {
+					if (($_GET['mode'] ?? '') == 'debug') {
 						echo $str_query;
 					}
 
