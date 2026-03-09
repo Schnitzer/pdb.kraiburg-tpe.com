@@ -72,8 +72,8 @@ class TpePdbPdf extends TCPDF
                 $this->font = 'kozgopromedium';
                 break;
             case 'kr':
-                // Use hysmyeongjostdmedium for Korean (supports Korean characters)
-                $this->font = 'hysmyeongjostdmedium';
+                // Use nanumgothic for Korean (embedded TrueTypeUnicode, works on all servers)
+                $this->font = 'nanumgothic';
                 break;
             case 'pl':
                 if (strstr($_SERVER['HTTP_USER_AGENT'], 'Android')) {
@@ -114,6 +114,9 @@ class TpePdbPdf extends TCPDF
                 $this->SetFont('titilliumweb', '', 10);
                 // Register bold variant - TCPDF will use it automatically when <b> tags are encountered
                 $this->addFont('titilliumwebb', 'B');
+            } elseif ($this->font == 'nanumgothic') {
+                $this->setFontSubsetting(true);
+                $this->SetFont('nanumgothic', '', 10);
             } else {
                 $this->SetFont($this->font);
             }

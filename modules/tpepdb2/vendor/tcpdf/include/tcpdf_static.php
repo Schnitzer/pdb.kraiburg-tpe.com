@@ -1803,10 +1803,12 @@ class TCPDF_STATIC {
 	 * @public static
 	 */
 	public static function fopenLocal($filename, $mode) {
-		if (strpos($filename, '://') === false) {
-			$filename = 'file://'.$filename;
-		} elseif (stream_is_local($filename) !== true) {
-			return false;
+		if (strpos($filename, '://') !== false) {
+			if (stream_is_local($filename) !== true) {
+				return false;
+			}
+			// strip file:// prefix for direct fopen (works even with allow_url_fopen=off)
+			$filename = preg_replace('#^file://#', '', $filename);
 		}
 		return fopen($filename, $mode);
 	}
