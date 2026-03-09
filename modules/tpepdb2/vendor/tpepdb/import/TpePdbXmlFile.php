@@ -69,10 +69,6 @@ class TpePdbXmlFile
 
 	public function importPDB20($mode)
 	{
-		// Ensure DB connection uses utf8mb4 so CJK characters (Korean, Japanese, Chinese)
-		// are stored correctly and not silently converted to '?' by MySQL.
-		Ncw_Database::getInstance()->exec("SET NAMES 'utf8mb4'");
-
 		if ($mode == 'fussnoten') {
 			$this->_importFussnoten();
 		}
