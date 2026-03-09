@@ -105,6 +105,7 @@ class TpePdbModel extends Ncw_Model
 	public function getSerieDescription($serie_id, $language_id = 0)
 	{
 		$obj_db = new Tpepdb2_Label();
+		$obj_db->db->exec("SET NAMES 'utf8mb4'");
 		$db_language = $this->_language_2stellen($language_id);
 		$str_query = "
 				SELECT 
@@ -153,6 +154,7 @@ class TpePdbModel extends Ncw_Model
 	public function getCompoundDescription($compound_id, $language_id = 0)
 	{
 		$obj_db = new Tpepdb2_Label();
+		$obj_db->db->exec("SET NAMES 'utf8mb4'");
 		$db_language = $this->_language_3stellen($language_id);
 		$str_query = "
 				SELECT 
@@ -2189,6 +2191,10 @@ class TpePdbModel extends Ncw_Model
 	 */
 	public function makePdf($language, $language_id, $str_sessid = '', $allseries = false)
 	{
+		// Ensure DB connection uses utf8mb4 for full CJK character support
+		$db = Ncw_Database::getInstance();
+		$db->exec("SET NAMES 'utf8mb4'");
+
 		$pdf_created = (bool) $this->readField('pdf_created');
 
 		include_once MODULES . DS . 'tpepdb2' . DS . 'vendor' . DS . 'tpepdb' . DS . 'TpePdbPdf.php';

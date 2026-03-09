@@ -226,6 +226,10 @@ if ($type == 'serie') {
 		} else {
 			$text_grauer_kasten = $this->getCompoundDescription($compound['id'] ?? 0, $language_id);
 		}
+		// Ensure text is valid UTF-8 for CJK languages; fall back to serie text1 if not
+		if (!empty($text_grauer_kasten) && !mb_check_encoding($text_grauer_kasten, 'UTF-8')) {
+			$text_grauer_kasten = trim(str_replace(array('<p>', '</p>', '<P>', '</P>'), array('', ' '), $serie['text1'] ?? ''));
+		}
 	}
 }
 

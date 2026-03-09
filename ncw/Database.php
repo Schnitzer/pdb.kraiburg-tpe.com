@@ -1,4 +1,5 @@
 <?php
+
 /**
  * contains the Database class.
  *
@@ -20,6 +21,7 @@
  * @modby     $LastChangedBy$
  * @lastmod   $LastChangedDate$
  */
+
 /**
  * Database connection.
  *
@@ -32,7 +34,6 @@
  */
 class Ncw_Database extends PDO
 {
-
     /**
      * Instance of this class
      *
@@ -73,17 +74,16 @@ class Ncw_Database extends PDO
      *
      * @return Ncw_Database
      */
-    public static function getInstance ()
+    public static function getInstance()
     {
         if (null === self::$_instance) {
             $encoding = Ncw_Configure::read('App.encodingdb');
             // Determine the correct DSN charset based on config
             $dsnCharset = 'utf8';
-            if ($encoding === 'utf-32'
-                || $encoding === 'utf32'
-                || $encoding === 'UTF-32'
-                || $encoding === 'UTF32'
-            ) {
+            if ($encoding === 'utf-32' ||
+                    $encoding === 'utf32' ||
+                    $encoding === 'UTF-32' ||
+                    $encoding === 'UTF32') {
                 $dsnCharset = 'utf8mb4';
             }
             $dns = self::$_config['engine'] . ':dbname='
@@ -92,20 +92,19 @@ class Ncw_Database extends PDO
                 $dns, self::$_config['user'],
                 self::$_config['password']
             );
-            if ($encoding === 'utf-8'
-                || $encoding === 'utf8'
-                || $encoding === 'UTF-8'
-                || $encoding === 'UTF8'
-            ) {
+            if ($encoding === 'utf-8' ||
+                    $encoding === 'utf8' ||
+                    $encoding === 'UTF-8' ||
+                    $encoding === 'UTF8') {
                 // Set db charset to utf8 (SET NAMES sets client, connection, and results charset consistently).
-                self::$_instance->exec('SET NAMES \'utf8\';');
+                self::$_instance->exec("SET NAMES 'utf8';");
             }
             if ($dsnCharset === 'utf8mb4') {
                 // Set db charset to utf8mb4 for full Unicode support (CJK characters etc.).
                 // Only SET NAMES is used — SET CHARACTER SET would override character_set_connection
                 // with the database default charset, which can cause conversion issues on servers
                 // where the database default is not utf8mb4.
-                self::$_instance->exec('SET NAMES \'utf8mb4\';');
+                self::$_instance->exec("SET NAMES 'utf8mb4';");
             }
             if (true === Ncw_Configure::check('Cache.queries')) {
                 self::$_instance->_cache_prepared_statements = Ncw_Configure::read('Cache.queries');
@@ -119,7 +118,7 @@ class Ncw_Database extends PDO
      *
      * @return void
      */
-    public static function disconnect ()
+    public static function disconnect()
     {
         self::$_instance = null;
     }
@@ -131,7 +130,7 @@ class Ncw_Database extends PDO
      *
      * @return void
      */
-    public static function set ($config = array())
+    public static function set($config = array())
     {
         self::$_config = $config;
     }
@@ -143,12 +142,11 @@ class Ncw_Database extends PDO
      *
      * @return mixed
      */
-    public static function getConfig ($name = null)
+    public static function getConfig($name = null)
     {
-        if (true === is_string($name)
-            && true === isset(self::$_config[$name])
-        ) {
-           return self::$_config[$name];
+        if (true === is_string($name) &&
+                true === isset(self::$_config[$name])) {
+            return self::$_config[$name];
         } else {
             return self::$_config;
         }
@@ -163,7 +161,7 @@ class Ncw_Database extends PDO
      *
      * @return void
      */
-    public function __construct ($dns, $user, $password = "")
+    public function __construct($dns, $user, $password = '')
     {
         try {
             try {
@@ -189,7 +187,7 @@ class Ncw_Database extends PDO
      * @return PDOStatement
      */
     #[\ReturnTypeWillChange]
-    public function prepare ($sql, $driver_options = array())
+    public function prepare($sql, $driver_options = array())
     {
         if (Ncw_Configure::read('debug_mode') > 1) {
             self::addSentQuery($sql);
@@ -216,7 +214,7 @@ class Ncw_Database extends PDO
      * @return PDOStatement
      */
     #[\ReturnTypeWillChange]
-    public function exec ($sql)
+    public function exec($sql)
     {
         if (Ncw_Configure::read('debug_mode') > 1) {
             self::addSentQuery($sql);
@@ -232,7 +230,7 @@ class Ncw_Database extends PDO
      *
      * @return void
      */
-    public static function addSentQuery ($sql, $execution_time = 0)
+    public static function addSentQuery($sql, $execution_time = 0)
     {
         // Add the query to the queries array
         self::$_logged_queries[] = array(
@@ -245,7 +243,7 @@ class Ncw_Database extends PDO
      *
      * @return Array
      */
-    public static function getLoggedQueries ()
+    public static function getLoggedQueries()
     {
         return self::$_logged_queries;
     }
