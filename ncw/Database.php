@@ -76,31 +76,36 @@ class Ncw_Database extends PDO
     public static function getInstance ()
     {
         if (null === self::$_instance) {
-            $dns = self::$_config['engine'] . ':dbname='
-                . self::$_config['database'] . ';charset=utf8;host=' . self::$_config['host'];
-            self::$_instance = new self(
-                $dns, self::$_config['user'],
-                self::$_config['password']
-            );
             $encoding = Ncw_Configure::read('App.encodingdb');
-            if ($encoding === 'utf-8'
-                || $encoding === 'utf8'
-                || $encoding === 'UTF-8'
-                || $encoding === 'UTF8'
-            ) {
-                // Set db default charset to utf8.
-                self::$_instance->exec('SET NAMES \'utf8\';');
-                self::$_instance->exec('SET CHARACTER SET \'utf8\';');
-                            //  self::$_instance->exec('SET encoding SET \'utf8\';');
-            }
+            // Determine the correct DSN charset based on config
+            $dsnCharset = 'utf8';
             if ($encoding === 'utf-32'
                 || $encoding === 'utf32'
                 || $encoding === 'UTF-32'
                 || $encoding === 'UTF32'
             ) {
-                // Set db default charset to utf8 (utf32 is not supported by MySQL for client connection).
+                $dsnCharset = 'utf8mb4';
+            }
+            $dns = self::$_config['engine'] . ':dbname='
+                . self::$_config['database'] . ';charset=' . $dsnCharset . ';host=' . self::$_config['host'];
+            self::$_instance = new self(
+                $dns, self::$_config['user'],
+                self::$_config['password']
+            );
+            if ($encoding === 'utf-8'
+                || $encoding === 'utf8'
+                || $encoding === 'UTF-8'
+                || $encoding === 'UTF8'
+            ) {
+                // Set db charset to utf8 (SET NAMES sets client, connection, and results charset consistently).
+                self::$_instance->exec('SET NAMES \'utf8\';');
+            }
+            if ($dsnCharset === 'utf8mb4') {
+                // Set db charset to utf8mb4 for full Unicode support (CJK characters etc.).
+                // Only SET NAMES is used — SET CHARACTER SET would override character_set_connection
+                // with the database default charset, which can cause conversion issues on servers
+                // where the database default is not utf8mb4.
                 self::$_instance->exec('SET NAMES \'utf8mb4\';');
-                self::$_instance->exec('SET CHARACTER SET \'utf8mb4\';');
             }
             if (true === Ncw_Configure::check('Cache.queries')) {
                 self::$_instance->_cache_prepared_statements = Ncw_Configure::read('Cache.queries');
