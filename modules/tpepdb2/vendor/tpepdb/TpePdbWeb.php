@@ -357,7 +357,9 @@ class TpePdbWeb extends Ncw_Object
             $pdf_name = strtoupper($this->pdf_language) . Wcms_ContentboxController::getContenbox('pdb---datasheet---processing-guideline', $this->pdf_language_id) . '.pdf';
         }
 
-        header('Content-disposition: attachment; filename="' . $this->sanitizeFileName($pdf_name) . '"');
+        // RFC 5987 encoding: ASCII-Fallback + korrekte UTF-8-codierte Variante fuer CJK-Dateinamen
+        $ascii_filename = preg_replace('/[\"\*\/\:\<\>\?\'\'\|]+/', '_', preg_replace('/[^\x20-\x7E]/', '_', $pdf_name));
+        header('Content-Disposition: attachment; filename="' . $ascii_filename . '"; filename*=UTF-8\'\'' . rawurlencode($pdf_name));
         header('Content-Transfer-Encoding: binary');
         if (false !== isset($_SERVER['HTTP_ACCEPT_ENCODING']) || empty($_SERVER['HTTP_ACCEPT_ENCODING'])) {
             header('Content-Length: ' . filesize($pdf_file));

@@ -57,6 +57,8 @@ class TpePdbPdf extends TCPDF
 
     public function __construct($author, $title, $subject, $language_id, $language_code = 'en')
     {
+        // Sicherstellen, dass mb_*-Funktionen (inkl. mb_convert_encoding in TCPDF) UTF-8 verwenden
+        mb_internal_encoding('UTF-8');
         $this->language_id = $language_id;
         $this->setLayoutmode();
         $this->language_code_tmp = $language_code;
