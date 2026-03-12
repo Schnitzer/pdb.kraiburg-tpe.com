@@ -1537,7 +1537,7 @@ FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 						$crypter = new Ncw_Components_Crypter('zm5c538mv');
 						$passwort_verschluesselt = $crypter->encrypt($password);
 
-						$str_set_code = "UPDATE ncw_core_user set password='" . $passwort_verschluesselt . "', passwordresethash='', passwordresettime='' WHERE id = '" . $user_id_tmp . "'";
+						$str_set_code = "UPDATE ncw_core_user set password='" . $passwort_verschluesselt . "', passwordresethash='', passwordresettime=0 WHERE id = '" . $user_id_tmp . "'";
 
 						$sth = $db->prepare($str_set_code);
 						$sth->execute();
@@ -1612,7 +1612,7 @@ FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 			$str_subject = 'Passwort zurücksetzen';
 			$dieser_link = 'https://pdb.kraiburg-tpe.com/index.php?url=en/products/lost-password-24&resetpassword=' . $hashcode;
 			$customer_text = 'Passwort zurücksetzen<br />klicken Sie auf diesen Link <br /><a href="' . $dieser_link . '" >' . $dieser_link . '</a><br />um Ihr Passwort zurückzusetzen.';
-			$customer_text .= '<br />' . Wcms_ContentboxController::getContenbox('this-link-can24', $language_id) . '<br />';
+			$customer_text .= '<br />' . Wcms_ContentboxController::getContenbox('this-link-can24', 1) . '<br />';
 
 			$str_body_html = '<br />' . $customer_text . ' <br /<br /><br /><br />
 					<img src="https://www.kraiburg-tpe.com/themes/schnitzraum/img/logo/logo-default.svg" id="page-logo" data-logo-small="https://www.kraiburg-tpe.com/themes/schnitzraum/img/logo/logo-default-small.svg" data-logo-big="https://www.kraiburg-tpe.com/themes/schnitzraum/img/logo/logo-default.svg">
@@ -1641,11 +1641,11 @@ FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 
 			$str_body_html .= '<table style="font-size: 11px;" cellpadding="10" width="730">
 					<tr>
-					<td style="background-color: #f3f3f3;border-right: 3px solid #ffffff;">' . Wcms_ContentboxController::getContenbox('datenblatt-adr-euro', $language_id) . '
+					<td style="background-color: #f3f3f3;border-right: 3px solid #ffffff;">' . Wcms_ContentboxController::getContenbox('datenblatt-adr-euro', 1) . '
 					</td>
-					<td style="background-color: #f3f3f3;border-right: 3px solid #ffffff;">' . Wcms_ContentboxController::getContenbox('datenblatt-adr-asia', $language_id) . '
+					<td style="background-color: #f3f3f3;border-right: 3px solid #ffffff;">' . Wcms_ContentboxController::getContenbox('datenblatt-adr-asia', 1) . '
 					</td>
-					<td style="background-color: #f3f3f3;">' . Wcms_ContentboxController::getContenbox('datenblatt-adr-usa', $language_id) . '
+					<td style="background-color: #f3f3f3;">' . Wcms_ContentboxController::getContenbox('datenblatt-adr-usa', 1) . '
 						</td>
 					</tr>
 				</table>';
@@ -1656,7 +1656,7 @@ FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 				</table>';
 
 			$str_body_txt = $customer_text;
-			$str_optional_sender = $your_email;
+			$str_optional_sender = '';
 			// echo $str_body_html;
 			$this->_sendEmails($arr_mail_addresses, $str_subject, $str_body_html, $str_body_txt, $arr_attachement = array(), $arr_attachement_name = array(), $str_optional_sender);
 			echo 'true';
