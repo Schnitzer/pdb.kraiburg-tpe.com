@@ -2960,7 +2960,7 @@ class PHPMailer
                 break;
         }
         $matches = array();
-        if (preg_match_all("/[{$pattern]]/", $encoded, $matches)) {
+        if (preg_match_all("/[$pattern]/", $encoded, $matches)) {
             // If the string contains an '=', make sure it's the first thing we replace
             // so as to avoid double-encoding
             $eqkey = array_search('=', $matches[0]);
