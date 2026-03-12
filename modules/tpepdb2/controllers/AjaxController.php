@@ -1655,7 +1655,8 @@ FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 				<tr style=" color: #234e8f; font-size: 16px;"><td style="border-top: 5px solid #234e8f; border-bottom: 5px solid #234e8f; color: #234e8f; font-size: 16px;">DISCOVER KRAIBURG-TPE</td></tr>
 				</table>';
 
-			$str_body_txt = $customer_text;
+			$str_body_txt = strip_tags(str_replace(['<br />', '<br>', '<BR />', '<BR>'], "\n", $customer_text));
+			$str_body_txt = html_entity_decode($str_body_txt, ENT_QUOTES, 'UTF-8');
 			$str_optional_sender = '';
 			// echo $str_body_html;
 			$this->_sendEmails($arr_mail_addresses, $str_subject, $str_body_html, $str_body_txt, $arr_attachement = array(), $arr_attachement_name = array(), $str_optional_sender);
