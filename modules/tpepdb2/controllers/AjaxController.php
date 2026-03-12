@@ -1827,6 +1827,7 @@ FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 		}
 
 		$mail = new PHPMailer();
+		$mail->isSendmail();
 		$mail->CharSet = 'UTF-8';
 		$mail->IsHTML(true);
 		$mail->Subject = $str_subject;
