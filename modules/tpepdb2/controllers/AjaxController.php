@@ -1819,33 +1819,32 @@ FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 
 	protected function _sendEmails($arr_mail_addresses, $str_subject, $str_body_html, $str_body_txt, $arr_attachement = array(), $arr_attachement_name = array(), $str_optional_sender = '')
 	{
-		$html_body = $str_body_html;
-		$text_body = $str_body_txt;
-		$urls_to_replace = '';
+		require_once ROOT . DS . 'assets' . DS . 'wcms' . DS . 'form' . DS . 'vendor' . DS . 'class.phpmailer.php';
 
-		$replacements = array();
-
-		include_once 'ncw/vendor/swift/swift_required.php';
-
-		$transport = Swift_MailTransport::newInstance();
-		$mailer = Swift_Mailer::newInstance($transport);
-		$mailer->registerPlugin(new Swift_Plugins_DecoratorPlugin($replacements));
-		// Use AntiFlood to re-connect after 100 emails
-		$mailer->registerPlugin(new Swift_Plugins_AntiFloodPlugin(100));
-
-		// wenn ein optionaler sender hinterlegt ist wird dieser als absender hergenommen
 		$str_sender_email = 'info@kraiburg-tpe.com';
 		if (strlen($str_optional_sender) > 2) {
 			$str_sender_email = $str_optional_sender;
 		}
-		// Create the message
-		$message = Swift_Message::newInstance()
-			->setSubject($str_subject)
-			->setFrom(array($str_sender_email => $str_sender_email))
-			->setTo($arr_mail_addresses)
-			->setBody($html_body, 'text/html')
-			->addPart($text_body, 'text/plain');
-		$mailer->send($message);
+
+		$mail = new PHPMailer();
+		$mail->CharSet = 'UTF-8';
+		$mail->IsHTML(true);
+		$mail->Subject = $str_subject;
+		$mail->Body    = $str_body_html;
+		$mail->AltBody = $str_body_txt;
+		$mail->SetFrom($str_sender_email, $str_sender_email);
+
+		$addresses = is_array($arr_mail_addresses) ? $arr_mail_addresses : array($arr_mail_addresses);
+		foreach ($addresses as $addr) {
+			$mail->AddAddress(trim($addr));
+		}
+
+		foreach ($arr_attachement as $k => $att) {
+			$name = isset($arr_attachement_name[$k]) ? $arr_attachement_name[$k] : '';
+			$mail->AddAttachment($att, $name);
+		}
+
+		$mail->Send();
 	}
 
 	/*
