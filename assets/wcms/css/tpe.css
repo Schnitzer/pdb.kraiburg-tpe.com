@@ -223,10 +223,13 @@ line-height: 38px;
 }
 .pdb2-search-console-show .show-results{
 	position: absolute;
-	left: 230px;
+	left: 0;
 	top: 10px;
 	text-transform: uppercase;
 	cursor: pointer;
+	width: 100%;
+	text-align: right;
+	padding-right: 15px;
 }
 .pdb2-search-console-show .show-results-small{
 	position: absolute;
