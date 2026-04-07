@@ -1,10 +1,10 @@
 <?php include (ASSETS . DS . 'wcms' . DS . 'nav_templates' . DS . '3-navigation.phtml'); ?>
             <?php
-            //$pd_url = $this->base . '/' . $language_code . '/' . 'products/product-database';
+            // $pd_url = $this->base . '/' . $language_code . '/' . 'products/product-database';
             $pd_url = $this->base . '/' . $language_code . '/' . 'products/product-database';
             ?>
 <div class="box_right search large_box_center" onclick="javascript: location.href='<?php echo $pd_url; ?>'" style="cursor:pointer; ">
-    <h2 style="background: url('http://www.kraiburg-tpe.com/assets/wcms/files/bg_vertical_gallery_h.gif') no-repeat scroll 0 0 transparent !important;"><?php print Wcms_ContentboxController::getContenbox('product-database', $language_id) ?></h3>
+    <h2 style="background: url('http://drupaldev.kraiburg-tpe.com/assets/wcms/files/bg_vertical_gallery_h.gif') no-repeat scroll 0 0 transparent !important;"><?php print Wcms_ContentboxController::getContenbox('product-database', $language_id) ?></h3>
     <div style="height: 20px; margin-top: 10px;">
     <!--<strong><?php print Wcms_ContentboxController::getContenbox('product-database', $language_id) . ' ' . Wcms_ContentboxController::getContenbox('pdb---search---search', $language_id); ?></strong>-->
         <ul>
@@ -22,8 +22,8 @@
         </ul>
     </div>
 </div>
-<?php if ('84.145.23.65.0000' != $_SERVER['REMOTE_ADDR']) {   
-    
+<?php
+if ('84.145.23.65.0000' != $_SERVER['REMOTE_ADDR']) {
     $search_2015_input_style = '
         border: 1px solid #ffffff;
         width: 186px;
@@ -41,8 +41,8 @@
         height: 37px;
         margin: 16px 0 0 0;
     ';
-    
-    //$search_2015_submit_style = '';
+
+    // $search_2015_submit_style = '';
     ?>
 <div class="box_right search" style="height: 160px;">
     <h3><?php print Wcms_ContentboxController::getContenbox('website', $language_id); ?></h3>
@@ -57,7 +57,7 @@
  </form>
     </div>
 </div>
-<?php } else { // Alte Textsuche?>
+<?php } else { // Alte Textsuche ?>
 <div class="box_right search">
     <h3><?php print Wcms_ContentboxController::getContenbox('website', $language_id); ?></h3>
     <div>
@@ -68,7 +68,7 @@
         </ul>
     </div>
 </div>
-<?php }?>
+<?php } ?>
 <div <?php if (true === $admin) { ?>id="{component.id}"<?php } ?> class="news box_right">
     <h3><?php print Wcms_ContentboxController::getContenbox('contact', $language_id); ?></h3>
     <?php print Wcms_ContentboxController::getContenbox('contact-archiv-box', $language_id); ?>

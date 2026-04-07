@@ -94,7 +94,7 @@ class Tpepdb2_PdfController extends Tpepdb2_ModuleController
 		$results = $sth->fetchAll();
 
 		foreach ($results As $seriestmp) {
-			echo '<iframe src="https://pdb.kraiburg-tpe.com/tpepdb/pdf?sid=' . $seriestmp['id'] . '&l=' . $language . '&datasheetmode=datasheet&notunset=true" style="width: 10px; height: 10px; border: 0; background: #000;"></iframe>';
+			echo '<iframe src="https://test.kraiburg-tpe.com/tpepdb/pdf?sid=' . $seriestmp['id'] . '&l=' . $language . '&datasheetmode=datasheet&notunset=true" style="width: 10px; height: 10px; border: 0; background: #000;"></iframe>';
 			// sleep(3);
 			// break;
 		}

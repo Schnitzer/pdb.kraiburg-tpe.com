@@ -82,7 +82,7 @@
 									<a href="https://2019.kraiburg-tpe.com/fr/home" data-drupal-link-system-path="node/1">Home</a>
 											</li>
 											<li class="active-li level-0">
-									<a href="https://pdb.kraiburg-tpe.com/?ls=fr" data-drupal-link-system-path="node/63" class="is-active">Recherche de produits</a>
+									<a href="https://test.kraiburg-tpe.com/?ls=fr" data-drupal-link-system-path="node/63" class="is-active">Recherche de produits</a>
 											</li>
 											<li class="level-0">
 									<a href="https://2019.kraiburg-tpe.com/fr/durabilite" data-drupal-link-system-path="node/60">Durabilité</a>
@@ -290,7 +290,7 @@
 									<a href="https://2019.kraiburg-tpe.com/fr/product-properties" data-drupal-link-system-path="node/24">Caractéristiques des produits</a>
 											</li>
 											<li class="level-1">
-									<a href="https://pdb.kraiburg-tpe.com/?ls=fr">Recherche de produits</a>
+									<a href="https://test.kraiburg-tpe.com/?ls=fr">Recherche de produits</a>
 											</li>
 				</ul>
 	
@@ -344,7 +344,7 @@
 									<a href="https://2019.kraiburg-tpe.com/fr/contact" data-drupal-link-system-path="node/11">Contact</a>
 											</li>
 											<li class="level-0">
-									<a href="https://pdb.kraiburg-tpe.com/?ls=fr" class="pdb-linksource">Recherche de produits</a>
+									<a href="https://test.kraiburg-tpe.com/?ls=fr" class="pdb-linksource">Recherche de produits</a>
 											</li>
 				</ul>
 	

@@ -25,7 +25,7 @@ if (true === isset($_GET['logout']) && 1 == $_GET['logout']) {
     if (!strstr($_SERVER['REQUEST_URI'], '/product/')) {
         header('Location: ' . $this->here);
     } else {
-        header('Location: http://www.kraiburg-tpe.com/product');
+        header('Location: http://drupaldev.kraiburg-tpe.com/product');
     }
     exit();
 }
@@ -134,7 +134,7 @@ if (true == strstr($_SERVER['REQUEST_URI'], '/loginktpepdb') || true === Ncw_Com
             if (!strstr($_SERVER['REQUEST_URI'], '/product/')) {
                 header('Location: ' . $this->here . '');
             } else {
-                header('Location: http://www.kraiburg-tpe.com/product');
+                header('Location: http://drupaldev.kraiburg-tpe.com/product');
             }
         } catch (Exception $e) {
             print $e->getMessage();
@@ -165,7 +165,7 @@ if (true == strstr($_SERVER['REQUEST_URI'], '/loginktpepdb') || true === Ncw_Com
         <div class="input-group">
           <input type="submit" value="<?php print Wcms_ContentboxController::getContenbox('login', $language_id); ?>" class="submit" tabindex="999" />
         </div>
-				<a href="https://pdb.kraiburg-tpe.com/index.php?url=en/products/lost-password-24"><?php print Wcms_ContentboxController::getContenbox('lost-pdw', $language_id); ?></a>
+				<a href="https://test.kraiburg-tpe.com/index.php?url=en/products/lost-password-24"><?php print Wcms_ContentboxController::getContenbox('lost-pdw', $language_id); ?></a>
        </form>
 
 			<?php } else { ?>

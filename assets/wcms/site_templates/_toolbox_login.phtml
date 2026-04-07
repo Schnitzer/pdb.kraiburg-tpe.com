@@ -25,22 +25,22 @@ if (true === isset($_GET['logout']) && 1 == $_GET['logout']) {
     if (!strstr($_SERVER['REQUEST_URI'], '/product/')) {
         header('Location: ' . $this->here);
     } else {
-        header('Location: http://www.kraiburg-tpe.com/product');
+        header('Location: http://drupaldev.kraiburg-tpe.com/product');
     }
     exit();
 }
 ?>
 <?php
-    $login = Ncw_Components_Session::readInAll('PDB');
-    //strlen($login['USRNAME']) > 3
-    if (true == strstr($_SERVER['REQUEST_URI'], '/loginktpepdb') ||  true === Ncw_Components_Session::checkInAll('tpe_login')) {
-?>
+$login = Ncw_Components_Session::readInAll('PDB');
+// strlen($login['USRNAME']) > 3
+if (true == strstr($_SERVER['REQUEST_URI'], '/loginktpepdb') || true === Ncw_Components_Session::checkInAll('tpe_login')) {
+    ?>
 <div class="login box_right">
     <?php
 
     $login_error = false;
-    if (true === isset($_POST['sent'], $_POST['login'], $_POST['password'])
-        && $_POST['sent'] == 1) {
+    if (true === isset($_POST['sent'], $_POST['login'], $_POST['password']) &&
+            $_POST['sent'] == 1) {
         try {
             Ncw_Components_Session::regenerate();
 
@@ -48,52 +48,51 @@ if (true === isset($_GET['logout']) && 1 == $_GET['logout']) {
                 'name' => array('rules' => array('Username'), 'required' => true),
                 'password' => array('rules' => array('Password'), 'required' => true)
             );
-            //$validator = new Ncw_Validator($fields);
+            // $validator = new Ncw_Validator($fields);
             $data = array();
-            
+
             $data['name'] = Ncw_Library_Sanitizer::clean($_POST['login']);
             $data['password'] = Ncw_Library_Sanitizer::clean($_POST['password']);
-            
-            //$data['name'] = $_POST['login'];
-            //$data['password'] = $_POST['password'];
-            //list($success, $invalid_fields) = $validator->validate($data);
-            //if (true === $success) {
-                $obj_user = Core_UserController::validateLogin($data['name'], $data['password']);
-                if (true === $obj_user instanceof Core_User) {
-                    Core_UserController::login($obj_user);
 
-                    $usergroup_user = new Core_UsergroupUser();
-                    $usergroup = $usergroup_user->fetch(
-                        'list',
-                        array(
-                            'fields' => array('Usergroup.name'),
-                            'conditions' => array(
-                                'User.id' => $obj_user->getId(),
-                                'Usergroup.parent_id' => 20
-                            ),
-                            'LIMIT' => 1
-                        )
-                    );
+            // $data['name'] = $_POST['login'];
+            // $data['password'] = $_POST['password'];
+            // list($success, $invalid_fields) = $validator->validate($data);
+            // if (true === $success) {
+            $obj_user = Core_UserController::validateLogin($data['name'], $data['password']);
+            if (true === $obj_user instanceof Core_User) {
+                Core_UserController::login($obj_user);
 
-                    $usr_role = array_pop(explode(';', array_pop($usergroup)));
+                $usergroup_user = new Core_UsergroupUser();
+                $usergroup = $usergroup_user->fetch(
+                    'list',
+                    array(
+                        'fields' => array('Usergroup.name'),
+                        'conditions' => array(
+                            'User.id' => $obj_user->getId(),
+                            'Usergroup.parent_id' => 20
+                        ),
+                        'LIMIT' => 1
+                    )
+                );
 
-                    Ncw_Components_Session::writeInAll(
-                        'PDB',
-                        array(
-                            'USRID' => $obj_user->getId(),
-                            'USRNAME' => $obj_user->getName(),
-                            'ROLE' => $usr_role,
-                            'LANG' => $language_code,
-                        )
-                    );
-                }
+                $usr_role = array_pop(explode(';', array_pop($usergroup)));
+
+                Ncw_Components_Session::writeInAll(
+                    'PDB',
+                    array(
+                        'USRID' => $obj_user->getId(),
+                        'USRNAME' => $obj_user->getName(),
+                        'ROLE' => $usr_role,
+                        'LANG' => $language_code,
+                    )
+                );
+            }
             /*} else {
                 $login_error = true;
             }*/
 
-            if (false === empty($_POST['login'])
-                && false === empty($_POST['password'])
-            ) {
+            if (false === empty($_POST['login']) &&
+                    false === empty($_POST['password'])) {
                 $request = new Ncw_Components_Request();
                 $request = $request->object;
                 $request->setUrl(
@@ -109,14 +108,13 @@ if (true === isset($_GET['logout']) && 1 == $_GET['logout']) {
                     $user = array();
                     foreach ($arr_response as $property) {
                         $property = explode('=>', $property);
-                        $user[trim($property[0], '\'')] = trim($property[1], '\'');
+                        $user[trim($property[0], "'")] = trim($property[1], "'");
                     }
                 }
             }
 
-            if (true === isset($user['mainid'], $user['un'])
-                && (int) $user['mainid'] > 0
-            ) {
+            if (true === isset($user['mainid'], $user['un']) &&
+                    (int) $user['mainid'] > 0) {
                 $login = new Tpe_Login();
                 $login->setSessId(session_id());
                 $login->setUser($user['un']);
@@ -125,11 +123,10 @@ if (true === isset($_GET['logout']) && 1 == $_GET['logout']) {
                 Ncw_Components_Session::writeInAll('tpe_login_id', $login->getId());
             }
             if (!strstr($_SERVER['REQUEST_URI'], '/product/')) {
-                header('Location: ' . $this->here  . '');
+                header('Location: ' . $this->here . '');
             } else {
-                header('Location: http://www.kraiburg-tpe.com/product');
+                header('Location: http://drupaldev.kraiburg-tpe.com/product');
             }
-
         } catch (Exception $e) {
             print $e->getMessage();
         }

@@ -32,9 +32,9 @@
 
 <?php
 
-	// $pdb_url = 'http://pdb.kraiburg-tpe.com';
+	// $pdb_url = 'http://test.kraiburg-tpe.com';
 	$pdb_url = Ncw_Configure::read('Project.url');
-	$website_url = 'https://www.kraiburg-tpe.com';
+	$website_url = 'https://drupaldev.kraiburg-tpe.com';
 
 ?>
 
@@ -290,7 +290,7 @@ if ($type == 'compound') {
 								$arr_path_for_filesize = explode('pdb/', $document['path']);
 								$path_for_filesize = './' . $arr_path_for_filesize[1];
 								$filesize = number_format(filesize($path_for_filesize) / 1024 / 1024, 1);
-								// http://www.kraiburg-tpe.com/pdb/assets/tpepdb2/imported_documents/PORTFOLIO_20171218134807_TM3ADT_ISO10993-5_TM3ADT_.pdf
+								// http://drupaldev.kraiburg-tpe.com/pdb/assets/tpepdb2/imported_documents/PORTFOLIO_20171218134807_TM3ADT_ISO10993-5_TM3ADT_.pdf
 								?>
 
 								<div class="paragraph clearfix paragraph--type--download paragraph--view-mode--default color-scheme-darkgrey light-font col-md-8 col-sm-12 no_image" style="height: 57px;">

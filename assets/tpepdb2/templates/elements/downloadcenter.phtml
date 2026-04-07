@@ -34,7 +34,7 @@
 
 	// $pdb_url = 'http://test.kraiburg-tpe.com';
 	$pdb_url = Ncw_Configure::read('Project.url');
-	$website_url = 'https://www.kraiburg-tpe.com';
+	$website_url = 'https://drupaldev.kraiburg-tpe.com';
 
 ?>
 
@@ -98,7 +98,7 @@
 						foreach ($sds_lang as $sds_item) {
 							// Check if PDF file exists before displaying the link
 							$sds_file_path = ASSETS . DS . 'tpepdb2' . DS . 'safetydata' . DS . $compound['safetydata'] . '_' . $sds_item . '.pdf';
-							
+
 							if (true === is_file($sds_file_path)) {
 								$sds_path = Ncw_Configure::read('Project.url') . '/tpepdb/safetydata?s=' . $compound['safetydata'] . '&l=' . $sds_item . '&t=' . $str_compoundname_for_url;
 
@@ -115,7 +115,7 @@
 								if ($sds_item == 'asia') {
 									$str_language_addon = 'English';
 								}
-								
+
 								$filesize = number_format(filesize($sds_file_path) / 1024 / 1024, 1);
 								if ($filesize == 0.0) {
 									$filesize = 1.8;
@@ -292,10 +292,10 @@ if ($type == 'compound') {
 									$doc_name = 'UL94-YellowCard_FRAD1';
 								}
 								$arr_path_for_filesize = explode('pdb/', $document['path']);
-							$path_for_filesize = './' . ($arr_path_for_filesize[1] ?? '');
-							$filesize = file_exists($path_for_filesize) ? number_format(filesize($path_for_filesize) / 1024 / 1024, 1) : 0;
-							// http://www.kraiburg-tpe.com/pdb/assets/tpepdb2/imported_documents/PORTFOLIO_20171218134807_TM3ADT_ISO10993-5_TM3ADT_.pdf
-							?>
+								$path_for_filesize = './' . ($arr_path_for_filesize[1] ?? '');
+								$filesize = file_exists($path_for_filesize) ? number_format(filesize($path_for_filesize) / 1024 / 1024, 1) : 0;
+								// http://drupaldev.kraiburg-tpe.com/pdb/assets/tpepdb2/imported_documents/PORTFOLIO_20171218134807_TM3ADT_ISO10993-5_TM3ADT_.pdf
+								?>
 
 							<div class="paragraph clearfix paragraph--type--download paragraph--view-mode--default color-scheme-darkgrey light-font col-md-8 col-sm-12 no_image" style="height: 57px;">
 									<div class="clearfix">

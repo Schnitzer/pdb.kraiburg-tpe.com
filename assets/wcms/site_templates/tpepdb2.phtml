@@ -3,20 +3,20 @@
 $allowed_ips = Ncw_Configure::read('internal_ips');
 
 // if (!in_array($_SERVER['REMOTE_ADDR'], $allowed_ips)) {
-// header("Location:https://www.kraiburg-tpe.com/");
+// header("Location:https://drupaldev.kraiburg-tpe.com/");
 // }
 
 // var_dump($_SESSION);
 
 if (isset($_SERVER['HTTP_REFERER']) && true == strstr(strtolower($_SERVER['HTTP_REFERER']), 'google')) {
-  header('Location:https://www.kraiburg-tpe.com/');
+  header('Location:https://drupaldev.kraiburg-tpe.com/');
 }
 
-$url_website = 'https://www.kraiburg-tpe.com';
+$url_website = 'https://drupaldev.kraiburg-tpe.com';
 $website_url = $url_website;
 
 // include_once 'https://pdb2.kraiburg-tpe.com/include/start.php';
-// include_once 'http://pdb.kraiburg-tpe.com/include/cleanpdb.php';
+// include_once 'http://test.kraiburg-tpe.com/include/cleanpdb.php';
 
 if (true == isset($_GET['ls'])) {
   $_SESSION['ls'] = $_GET['ls'];

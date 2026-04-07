@@ -2,11 +2,11 @@
 
     
             <?php
-            //$pd_url = $this->base . '/' . $language_code . '/' . 'products/product-database';
+            // $pd_url = $this->base . '/' . $language_code . '/' . 'products/product-database';
             $pd_url = $this->base . '/' . $language_code . '/' . 'products/product-database';
             ?>
 <div class="box_right search large_box_center" onclick="javascript: location.href='<?php echo $pd_url; ?>'" style="cursor:pointer; ">
-    <h2 style="background: url('http://www.kraiburg-tpe.com/assets/wcms/files/bg_vertical_gallery_h.gif') no-repeat scroll 0 0 transparent !important;"><?php print Wcms_ContentboxController::getContenbox('product-database', $language_id) ?></h3>
+    <h2 style="background: url('http://drupaldev.kraiburg-tpe.com/assets/wcms/files/bg_vertical_gallery_h.gif') no-repeat scroll 0 0 transparent !important;"><?php print Wcms_ContentboxController::getContenbox('product-database', $language_id) ?></h3>
     <div style="height: 20px; margin-top: 10px;">
     <!--<strong><?php print Wcms_ContentboxController::getContenbox('product-database', $language_id) . ' ' . Wcms_ContentboxController::getContenbox('pdb---search---search', $language_id); ?></strong>-->
         
@@ -26,9 +26,9 @@
     </div>
 </div>
 
-<?php // Textsuche 
-    
-    $search_2015_input_style = '
+<?php  // Textsuche
+
+$search_2015_input_style = '
         border: 1px solid #ffffff;
         width: 186px;
         float: left;
@@ -37,7 +37,7 @@
         padding-left: 4px;
         margin-top: 8px;
     ';
-    $search_2015_submit_style = '
+$search_2015_submit_style = '
         
         width: 193px;
         float: left;
@@ -45,9 +45,9 @@
         height: 37px;
         margin: 16px 0 0 0;
     ';
-    
-    //$search_2015_submit_style = '';
-    ?>
+
+// $search_2015_submit_style = '';
+?>
 <div class="box_right search" style="height: 160px;">
     <h3><?php print Wcms_ContentboxController::getContenbox('website', $language_id); ?></h3>
     <div>
@@ -62,12 +62,12 @@
  </form>
     </div>
 </div>
-<?php 
+<?php
 
-    //echo $_SERVER['REQUEST_URI'];
-    $arr_urls_only_address = array('/jp/', '/jp', '/kr/', '/kr', '/zh/', '/zh');
-    if (true == in_array($_SERVER['REQUEST_URI'], $arr_urls_only_address)) {
-        ?>
+// echo $_SERVER['REQUEST_URI'];
+$arr_urls_only_address = array('/jp/', '/jp', '/kr/', '/kr', '/zh/', '/zh');
+if (true == in_array($_SERVER['REQUEST_URI'], $arr_urls_only_address)) {
+    ?>
         <div <?php if (true === $admin) { ?>id="{component.id}"<?php } ?> class="news box_right" style="height: 158px">
             <h3><?php print Wcms_ContentboxController::getContenbox('service-hotline', $language_id); ?></h3>
                 <div class="line">
@@ -75,17 +75,17 @@
                 </div>
         </div>
         <?php
-    } else {
-        
-    ?>
+} else {
+        ?>
     
-<?php if ('87.148.14.2100' != $_SERVER['REMOTE_ADDR']) {
-		if ($language_code == 'us') {
-			$link = 'http://newton.newtonsoftware.com/career/CareerHome.action?clientId=8a78826756b5dae60156e28ada850b81';
-		} else {
-			$link = $this->base .'/' . $language_code . '/company/careers-14';
-		}
-    ?>
+<?php
+    if ('87.148.14.2100' != $_SERVER['REMOTE_ADDR']) {
+        if ($language_code == 'us') {
+            $link = 'http://newton.newtonsoftware.com/career/CareerHome.action?clientId=8a78826756b5dae60156e28ada850b81';
+        } else {
+            $link = $this->base . '/' . $language_code . '/company/careers-14';
+        }
+        ?>
     <style>
     	.news{
         height: 100px !important;
@@ -117,30 +117,31 @@
       <button  name="carreers " class="tpepdb2_submit wide-submit" tabindex="1" value="<?php print Wcms_ContentboxController::getContenbox('careers', $language_id); ?>" title="" style="height: 38px;" /><?php print Wcms_ContentboxController::getContenbox('careers', $language_id); ?></button>
 	  </a>
     <?php
-  }
+    }
     ?>
     
     
     <?php
     if (false == strstr($_SERVER['REQUEST_URI'], '/loginktpepdb')) {
-    ?>
+        ?>
         <?php if (count($news) > 0) { ?>
             <div <?php if (true === $admin) { ?>id="{component.id}"<?php } ?> class="news box_right" style="height: 158px">
                 <h3><?php print Wcms_ContentboxController::getContenbox('news', $language_id); ?></h3>
                 <?php $first = true; ?>
-                    <?php 
-                        for ($count = 0; $count < 1; $count++) {
-                          $news_head = $news[$count]['head'];
-                          $news_body = $news[$count]['body']
-                          ?>
-                            <div<?php if (true !== $first) { ?> class="line"<?php } $first = false; ?>>
+                    <?php
+                    for ($count = 0; $count < 1; $count++) {
+                        $news_head = $news[$count]['head'];
+                        $news_body = $news[$count]['body']
+                        ?>
+                            <div<?php if (true !== $first) { ?> class="line"<?php }
+                        $first = false; ?>>
                             <!--<h4><?php print $news_head; ?></h4>--><p><?php print $news_body; ?></p>
                             </div>
                 <?php } ?>
             </div>
         <?php } ?>
-    <?php }  ?>
+    <?php } ?>
         
     <?php
-    }
-    ?>
+}
+?>

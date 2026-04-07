@@ -14,9 +14,9 @@
 
 <script>
 var str = '<li hreflang="pl" data-drupal-link-system-path="node/23" class="pl">' 
-						+'<a href="http://www.kraiburg-tpe.com/neu/pl/product-database" class="language-link" hreflang="ko" data-drupal-link-system-path="node/23">Pol</a></li>'
+						+'<a href="http://drupaldev.kraiburg-tpe.com/neu/pl/product-database" class="language-link" hreflang="ko" data-drupal-link-system-path="node/23">Pol</a></li>'
 						+ '<li hreflang="it" data-drupal-link-system-path="node/23" class="it">'
-						+ '<a href="http://www.kraiburg-tpe.com/neu/it/node/57" class="language-link" hreflang="ko" data-drupal-link-system-path="node/23">Ita</a></li>';
+						+ '<a href="http://drupaldev.kraiburg-tpe.com/neu/it/node/57" class="language-link" hreflang="ko" data-drupal-link-system-path="node/23">Ita</a></li>';
 	
 	
 	jQuery(document).ready(function(){						

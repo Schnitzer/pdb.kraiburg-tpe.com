@@ -1610,12 +1610,12 @@ FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 			$arr_mail_addresses = array($email);
 
 			$str_subject = 'Passwort zurücksetzen';
-			$dieser_link = 'https://pdb.kraiburg-tpe.com/index.php?url=en/products/lost-password-24&resetpassword=' . $hashcode;
+			$dieser_link = 'https://test.kraiburg-tpe.com/index.php?url=en/products/lost-password-24&resetpassword=' . $hashcode;
 			$customer_text = 'Passwort zurücksetzen<br />klicken Sie auf diesen Link <br /><a href="' . $dieser_link . '" >' . $dieser_link . '</a><br />um Ihr Passwort zurückzusetzen.';
 			$customer_text .= '<br />' . Wcms_ContentboxController::getContenbox('this-link-can24', 1) . '<br />';
 
 			$str_body_html = '<br />' . $customer_text . ' <br /<br /><br /><br />
-					<img src="https://www.kraiburg-tpe.com/themes/schnitzraum/img/logo/logo-default.svg" id="page-logo" data-logo-small="https://www.kraiburg-tpe.com/themes/schnitzraum/img/logo/logo-default-small.svg" data-logo-big="https://www.kraiburg-tpe.com/themes/schnitzraum/img/logo/logo-default.svg">
+					<img src="https://drupaldev.kraiburg-tpe.com/themes/schnitzraum/img/logo/logo-default.svg" id="page-logo" data-logo-small="https://drupaldev.kraiburg-tpe.com/themes/schnitzraum/img/logo/logo-default-small.svg" data-logo-big="https://drupaldev.kraiburg-tpe.com/themes/schnitzraum/img/logo/logo-default.svg">
 
 					KRAIBURG TPE GmbH & Co. KG
 					Friedrich-Schmidt-Str. 2
@@ -1650,7 +1650,7 @@ FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 					</tr>
 				</table>';
 
-			$str_body_html .= 'Die gesetzlichen Pflichtangaben finden Sie unter <a href="https://www.kraiburg-tpe.com/de/disclaimer">www.kraiburg-tpe.com/de/disclaimer</a>';
+			$str_body_html .= 'Die gesetzlichen Pflichtangaben finden Sie unter <a href="https://drupaldev.kraiburg-tpe.com/de/disclaimer">drupaldev.kraiburg-tpe.com/de/disclaimer</a>';
 			$str_body_html .= '<table style="width: 730px;" cellpadding="3">
 				<tr style=" color: #234e8f; font-size: 16px;"><td style="border-top: 5px solid #234e8f; border-bottom: 5px solid #234e8f; color: #234e8f; font-size: 16px;">DISCOVER KRAIBURG-TPE</td></tr>
 				</table>';
@@ -1741,7 +1741,7 @@ FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 		$str_subject = $customer_subject;
 
 		$str_body_html .= '<br /><br />
-			<img src="https://www.kraiburg-tpe.com/themes/schnitzraum/img/logo/logo-default.svg" id="page-logo" data-logo-small="https://www.kraiburg-tpe.com/themes/schnitzraum/img/logo/logo-default-small.svg" data-logo-big="https://www.kraiburg-tpe.com/themes/schnitzraum/img/logo/logo-default.svg">
+			<img src="https://drupaldev.kraiburg-tpe.com/themes/schnitzraum/img/logo/logo-default.svg" id="page-logo" data-logo-small="https://drupaldev.kraiburg-tpe.com/themes/schnitzraum/img/logo/logo-default-small.svg" data-logo-big="https://drupaldev.kraiburg-tpe.com/themes/schnitzraum/img/logo/logo-default.svg">
 			
 			KRAIBURG TPE GmbH & Co. KG
 			Friedrich-Schmidt-Str. 2
@@ -1802,7 +1802,7 @@ FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 				</tr>
 			</table>';
 
-		$str_body_html .= 'Die gesetzlichen Pflichtangaben finden Sie unter <a href="https://www.kraiburg-tpe.com/de/disclaimer">www.kraiburg-tpe.com/de/disclaimer</a>';
+		$str_body_html .= 'Die gesetzlichen Pflichtangaben finden Sie unter <a href="https://drupaldev.kraiburg-tpe.com/de/disclaimer">drupaldev.kraiburg-tpe.com/de/disclaimer</a>';
 		$str_body_html .= '<table style="width: 730px;" cellpadding="3">
 			<tr style=" color: #234e8f; font-size: 16px;"><td style="border-top: 5px solid #234e8f; border-bottom: 5px solid #234e8f; color: #234e8f; font-size: 16px;">DISCOVER KRAIBURG-TPE</td></tr>
 			</table>';
@@ -1831,7 +1831,7 @@ FROM ncw_tpepdb2_compound WHERE serie_id = '" . $series_id . "'";
 		$mail->CharSet = 'UTF-8';
 		$mail->IsHTML(true);
 		$mail->Subject = $str_subject;
-		$mail->Body    = $str_body_html;
+		$mail->Body = $str_body_html;
 		$mail->AltBody = $str_body_txt;
 		$mail->SetFrom($str_sender_email, $str_sender_email);
 

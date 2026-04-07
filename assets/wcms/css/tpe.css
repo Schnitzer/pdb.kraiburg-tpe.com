@@ -75,7 +75,7 @@ select option {color: #333 !important;}
 	margin-left: 5%;
   top: 0px;
 	background-size: cover;
-  background-image: url(https://www.kraiburg-tpe.com/sites/default/files/assets/pattern/blue.png);
+  background-image: url(https://drupaldev.kraiburg-tpe.com/sites/default/files/assets/pattern/blue.png);
   background-size: revert;
 }
 @media only screen and (max-width: 1199px) {
@@ -88,7 +88,7 @@ select option {color: #333 !important;}
 
 @media only screen and (min-width: 1199px) {
 	.pdb2-search-console-textsearch {
-		background-image: url(https://www.kraiburg-tpe.com/sites/default/files/assets/pattern/blue.png);
+		background-image: url(https://drupaldev.kraiburg-tpe.com/sites/default/files/assets/pattern/blue.png);
 		height: 180px;
 	}
 }
@@ -169,7 +169,7 @@ line-height: 38px;
 	}
 }
 .pdb2-search-console-textsesarch {
-	background-image: url(https://www.kraiburg-tpe.com/sites/default/files/assets/pattern/blue.png);
+	background-image: url(https://drupaldev.kraiburg-tpe.com/sites/default/files/assets/pattern/blue.png);
 	height: 180px;
 }
 
@@ -965,7 +965,7 @@ background: #fff;
 
 
 .pdb-search-header {
-  background-image: url(https://www.kraiburg-tpe.com/sites/default/files/assets/pattern/blue.png);
+  background-image: url(https://drupaldev.kraiburg-tpe.com/sites/default/files/assets/pattern/blue.png);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -1329,7 +1329,7 @@ font-size: 16px;
 .search-small-label{
 	display: none;
 	z-index: 999 !important;
-  background-image: url(https://www.kraiburg-tpe.com/sites/default/files/assets/pattern/blue.png);
+  background-image: url(https://drupaldev.kraiburg-tpe.com/sites/default/files/assets/pattern/blue.png);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -1347,7 +1347,7 @@ font-size: 16px;
 	.search-small-label{
 		display: none;
 		z-index: 60;
-		background-image: url(https://www.kraiburg-tpe.com/sites/default/files/assets/pattern/blue.png);
+		background-image: url(https://drupaldev.kraiburg-tpe.com/sites/default/files/assets/pattern/blue.png);
 		background-position: center;
 		background-size: cover;
 		background-repeat: no-repeat;
@@ -1413,13 +1413,13 @@ font-size: 16px;
 		border-radius: 0;
 }
  .form-control {
-	 background: transparent url("https://www.kraiburg-tpe.com/pdb/assets/wcms/files/arrow-down-w.png") no-repeat 95% center !important;
+	 background: transparent url("https://drupaldev.kraiburg-tpe.com/pdb/assets/wcms/files/arrow-down-w.png") no-repeat 95% center !important;
 }
  .form-control:hover {
     color: #343434 !important;
     
 	 	border: 2px solid #1d559e !important;
-	  background: #fff url("https://www.kraiburg-tpe.com/pdb/assets/wcms/files/arrow-down-g.png") no-repeat 95% center !important;
+	  background: #fff url("https://drupaldev.kraiburg-tpe.com/pdb/assets/wcms/files/arrow-down-g.png") no-repeat 95% center !important;
 }
 
 .tpe-pdb-search-textsearch::-webkit-input-placeholder { /* WebKit, Blink, Edge */
@@ -2378,7 +2378,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 
 .pdb2-userstate {
-    background-image: url(https://www.kraiburg-tpe.com/sites/default/files/assets/pattern/blue.png_);
+    background-image: url(https://drupaldev.kraiburg-tpe.com/sites/default/files/assets/pattern/blue.png_);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

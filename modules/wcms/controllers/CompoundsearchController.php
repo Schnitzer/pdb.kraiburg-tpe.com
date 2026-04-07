@@ -1,5 +1,6 @@
 <?php
 /* SVN FILE: $Id$ */
+
 /**
  * Contains the Compoundsearch class.
  *
@@ -20,6 +21,7 @@
  * @lastmodified    $LastChangedDate$
  * @license         http://www.netzcraftwerk.com/licenses/
  */
+
 /**
  * Compoundsearch class.
  *
@@ -27,7 +29,6 @@
  */
 class Wcms_CompoundsearchController extends Wcms_SitetypeController
 {
-
     /**
      * has got no model
      *
@@ -52,7 +53,7 @@ class Wcms_CompoundsearchController extends Wcms_SitetypeController
      *
      * @return string
      */
-    public function searchCompoundsAction ($search_string)
+    public function searchCompoundsAction($search_string)
     {
         $this->view = false;
 
@@ -70,66 +71,57 @@ class Wcms_CompoundsearchController extends Wcms_SitetypeController
         );
         $html = '';
         if (count($compounds) == 1) {
-        //    return '<script type="text/javascript">window.location.href="http://www.kraiburg-tpe.com/en/products/new-product-database-179?c_id=' . $compounds[0]->getId() . '";</script>';
+            //    return '<script type="text/javascript">window.location.href="http://drupaldev.kraiburg-tpe.com/en/products/new-product-database-179?c_id=' . $compounds[0]->getId() . '";</script>';
         }
         $count = 0;
         $page = 1;
         $pagenavigation = '';
         if (count($compounds) < 1) {
-        	//$html .= T_('No Data Found');
+            // $html .= T_('No Data Found');
             $url = $_SERVER['REQUEST_URI'];
             $ex_url = explode('/', $url);
             if ($ex_url['1'] == 'de') {
                 $html .= Wcms_ContentboxController::getContenbox('no_data_found', '2');
-            } else
-            if ($ex_url['1'] == 'es') {
+            } else if ($ex_url['1'] == 'es') {
                 $html .= Wcms_ContentboxController::getContenbox('no_data_found', '4');
-            } else
-            if ($ex_url['1'] == 'zh') {
+            } else if ($ex_url['1'] == 'zh') {
                 $html .= Wcms_ContentboxController::getContenbox('no_data_found', '3');
-            } else
-            if ($ex_url['1'] == 'fr') {
+            } else if ($ex_url['1'] == 'fr') {
                 $html .= Wcms_ContentboxController::getContenbox('no_data_found', '5');
-            } else
-            if ($ex_url['1'] == 'jp') {
+            } else if ($ex_url['1'] == 'jp') {
                 $html .= Wcms_ContentboxController::getContenbox('no_data_found', '7');
-            } else
-            if ($ex_url['1'] == 'pt') {
+            } else if ($ex_url['1'] == 'pt') {
                 $html .= Wcms_ContentboxController::getContenbox('no_data_found', '9');
             } else {
                 $html .= Wcms_ContentboxController::getContenbox('no_data_found', '1');
             }
-            
-            
-            
-        } else if (count($compounds) > 299) {	
+        } else if (count($compounds) > 299) {
             echo T_('To many results. Please specify your request.');
         } else {
-        	echo T_('Compounds found') . ': ' . count($compounds);
-	        foreach ($compounds as $compound) {
-	        	if ( true == is_int($count / 30) ) {
-	        		if ($page != 1) {
-	        			$html .= '</div>';
-	        			$html .= '<div id="ncw-product-page-' . $page . '" class="ncw-product-page ncw-product-page-hidden">';
-	        			$pagenavigation .= '<div class="ncw-product-page-navigation-items" id="ncw-product-page-navigation-item-' . $page . '" onclick="pageinate_products(' . $page . ');">' . $page . '</div>';
-	        		} else {
-	                    $html .= '<div id="ncw-product-page-' . $page . '" class="ncw-product-page ncw-product-page-visible">';
-	                    $pagenavigation .= '<div class="ncw-product-page-navigation-items ncw-product-page-navigation-items-active" id="ncw-product-page-navigation-item-' . $page . '" onclick="pageinate_products(' . $page . ');">' . $page . '</div>';
-	        		}
-	        		
-	        		
-	        		$page++;
-	        	}
-	            $html .= '<a href="?c_id=' . $compound->getId() . '">' . $compound->getName() . '</a><br />';
-	            $count++;
-	        }
-	        $html .= '</div>';
-	        // navigation bar
-	        if ($page > 2) {
-	            $html = '<div class="ncw-product-page-navigation">' . $pagenavigation . '</div>' . $html;
-	        }
+            echo T_('Compounds found') . ': ' . count($compounds);
+            foreach ($compounds as $compound) {
+                if (true == is_int($count / 30)) {
+                    if ($page != 1) {
+                        $html .= '</div>';
+                        $html .= '<div id="ncw-product-page-' . $page . '" class="ncw-product-page ncw-product-page-hidden">';
+                        $pagenavigation .= '<div class="ncw-product-page-navigation-items" id="ncw-product-page-navigation-item-' . $page . '" onclick="pageinate_products(' . $page . ');">' . $page . '</div>';
+                    } else {
+                        $html .= '<div id="ncw-product-page-' . $page . '" class="ncw-product-page ncw-product-page-visible">';
+                        $pagenavigation .= '<div class="ncw-product-page-navigation-items ncw-product-page-navigation-items-active" id="ncw-product-page-navigation-item-' . $page . '" onclick="pageinate_products(' . $page . ');">' . $page . '</div>';
+                    }
+
+                    $page++;
+                }
+                $html .= '<a href="?c_id=' . $compound->getId() . '">' . $compound->getName() . '</a><br />';
+                $count++;
+            }
+            $html .= '</div>';
+            // navigation bar
+            if ($page > 2) {
+                $html = '<div class="ncw-product-page-navigation">' . $pagenavigation . '</div>' . $html;
+            }
         }
-        
+
         return $html;
     }
 
@@ -141,7 +133,7 @@ class Wcms_CompoundsearchController extends Wcms_SitetypeController
      *
      * @return string
      */
-    public function showCompoundAction ($compound_id, $language_code, $language_id)
+    public function showCompoundAction($compound_id, $language_code, $language_id)
     {
         $this->view = false;
         $special_language = false;
@@ -174,7 +166,7 @@ class Wcms_CompoundsearchController extends Wcms_SitetypeController
      *
      * @return string
      */
-    public function replaceSiteTags ($code)
+    public function replaceSiteTags($code)
     {
         $tags = array(
             '/{compoundsearch\.is_search}/',
